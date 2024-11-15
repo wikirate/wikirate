@@ -522,7 +522,7 @@
           "fields": [
             {
               "name": "records",
-              "description": "records that answer questions about company",
+              "description": "records that record questions about company",
               "args": [
 
               ],

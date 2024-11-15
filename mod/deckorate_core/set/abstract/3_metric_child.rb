@@ -93,7 +93,7 @@ def company_id
   company.card_id
 end
 
-def answer_name
+def record_name
   "#{metric_name}+#{company_name}+#{year}"
 end
 

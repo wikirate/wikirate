@@ -5,10 +5,10 @@ include_set Abstract::SearchCachedCount
 include_set Abstract::SourceSearch
 
 def cql_content
-  { referred_to_by: { right: :source, left_id: answer_relation.select(:answer_id) } }
+  { referred_to_by: { right: :source, left_id: record_relation.select(:record_id) } }
 end
 
-def answer_relation
+def record_relation
   query_key = left.calculated? ? :depender_metric : :metric_id
   RecordQuery.new(query_key => left.id).lookup_relation
 end

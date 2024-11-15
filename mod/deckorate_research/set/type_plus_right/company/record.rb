@@ -1,9 +1,9 @@
-# Answer search for a given Company
+# Record search for a given Company
 include_set Abstract::BookmarkFiltering
 include_set Abstract::CachedCount
 include_set Abstract::FixedRecordSearch
 
-# recount number of answers for a given metric when an answer card is
+# recount number of records for a given metric when an record card is
 # created or deleted
 recount_trigger :type, :record, on: %i[create delete] do |changed_card|
   changed_card.company_card&.fetch :record
@@ -15,7 +15,7 @@ field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
   changed_card.left.company_card.fetch :record
 end
 
-# ...or when answer is (un)published
+# ...or when record is (un)published
 field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
   changed_card.left.company_card.fetch :record
 end

@@ -1,4 +1,4 @@
-answer_molecule_view:
+record_molecule_view:
   type: object
   properties:
     id:

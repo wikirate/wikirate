@@ -18,9 +18,9 @@ def check_designer_permissions action
   action == :create ? true : super
 end
 
-# lookup field for answers in relationship table
-def answer_lookup_field
-  :inverse_answer_id
+# lookup field for records in relationship table
+def record_lookup_field
+  :inverse_record_id
 end
 
 def metric_lookup_field

@@ -1,10 +1,10 @@
-class Answer
-  # Methods to format answer for csv output
+class Record
+  # Methods to format record for csv output
   module Export
     include Card::Env::Location
     include LookupTable::Export
 
-    # Export methods for Answer class
+    # Export methods for Record class
     module ClassMethods
       include LookupTable::Export
 
@@ -17,17 +17,17 @@ class Answer
     end
 
     def csv_line detailed=false
-      basic = [answer_link, metric_name, company_name, year, value, source_page_url]
+      basic = [record_link, metric_name, company_name, year, value, source_page_url]
       with_detailed basic, detailed do
-        [answer_id, source_url, source_count, comments, isin]
+        [record_id, source_url, source_count, comments, isin]
       end
     end
 
-    def answer_link
-      card_url answer_id.present? ? "~#{answer_id}" : answer_name.url_key
+    def record_link
+      card_url record_id.present? ? "~#{record_id}" : record_name.url_key
     end
 
-    def answer_name
+    def record_name
       "#{record_log_name}+#{year}".to_name
     end
 
@@ -48,8 +48,8 @@ class Answer
     end
 
     def flex_id
-      # prefix id with V (for virtual) if using id from answers table
-      answer_id || "V#{id}"
+      # prefix id with V (for virtual) if using id from records table
+      record_id || "V#{id}"
     end
 
     def metric_name

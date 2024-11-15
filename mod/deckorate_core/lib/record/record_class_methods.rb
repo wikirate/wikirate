@@ -1,4 +1,4 @@
-class Answer
+class Record
   VERIFICATION_LEVELS = [
     { name: :flagged, icon: :flag,
       title: "Flagged" },
@@ -19,11 +19,11 @@ class Answer
     calculation: "Calculated (Derived)"
   }.freeze
 
-  # class methods for the Answer (lookup) constant
-  module AnswerClassMethods
+  # class methods for the Record (lookup) constant
+  module RecordClassMethods
     include Export::ClassMethods
 
-    # @return [Answer]
+    # @return [Record]
     def fetch cardish
       for_card(cardish) || new_researched(cardish) || virtual(cardish) || new
     end
@@ -36,7 +36,7 @@ class Answer
     # @return [BigDecimal, nil]
     # If a val is a valid number return BigDecimal, otherwise nil.
     def to_numeric val
-      val.nil? || Answer.unknown?(val) || !val.number? ? nil : val.to_d
+      val.nil? || Record.unknown?(val) || !val.number? ? nil : val.to_d
     end
 
     # convert value format to lookup-table-suitable value

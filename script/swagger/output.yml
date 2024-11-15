@@ -338,7 +338,7 @@ paths:
       - Wikirate
       summary: company-to-company relationship
       description: Relationship metrics ask questions about relationships between
-        companies. Each answer to these metrics is comprised of one or more relationships,
+        companies. Each record to these metrics is comprised of one or more relationships,
         each describing how two specific companies relate
       operationId: read15
       parameters:

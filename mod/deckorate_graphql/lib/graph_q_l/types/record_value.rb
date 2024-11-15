@@ -1,7 +1,7 @@
 module GraphQL
   module Types
-    # AnswerValue for GraphQL
-    class AnswerValue < BaseScalar
+    # RecordValue for GraphQL
+    class RecordValue < BaseScalar
       class << self
         # self.coerce_input takes a GraphQL input
         # and converts it into a Ruby value

@@ -7,9 +7,9 @@ def lookup_columns
   %i[value numeric_value route updated_at editor_id verification]
 end
 
-def answer_id
+def record_id
   left&.id || director.parent.card.id || left_id
-  # FIXME: director.parent thing fixes case where metric answer is renamed.
+  # FIXME: director.parent thing fixes case where metric record is renamed.
 end
 
 def history?

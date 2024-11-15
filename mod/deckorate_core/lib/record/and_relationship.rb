@@ -1,5 +1,5 @@
-class Answer
-  # Methods shared by answers and relationships
+class Record
+  # Methods shared by records and relationships
   module AndRelationship
     def no_refresh
       %w[id imported] # imported is deprecated
@@ -27,7 +27,7 @@ class Answer
     end
 
     # NOTE: the created and updated fields have a logic that differs slightly
-    # from the answer card
+    # from the record card
 
     def fetch_created_at
       card&.value_card&.created_at || created_at || Time.now

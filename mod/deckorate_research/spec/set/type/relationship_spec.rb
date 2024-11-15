@@ -6,11 +6,11 @@ RSpec.describe Card::Set::Type::Relationship do
   check_views_for_errors
 
   %w[Views Markers].each do |subdir|
-    abstract_answer_views =
+    abstract_record_views =
       Card::Set::Format::AbstractFormat::ViewDefinition.views[
         Card::Set::Abstract::Record.const_get(subdir).const_get("HtmlFormat")
       ].keys
-    include_context_for abstract_answer_views, "view without errors"
+    include_context_for abstract_record_views, "view without errors"
   end
 
   let(:year) { "1977" }
@@ -24,18 +24,18 @@ RSpec.describe Card::Set::Type::Relationship do
       end
     end
 
-    it "increases cached answer count" do
+    it "increases cached record count" do
       expect(Card.fetch("Monster Inc+metric").cached_count).to eq(6)
       add_first_relationship
       # Card::Count.refresh_flagged
       expect(Card.fetch("Monster Inc+metric").cached_count).to eq(7)
     end
 
-    it "creates inverse answer" do
+    it "creates inverse record" do
       add_first_relationship
-      inverse_answer_value =
+      inverse_record_value =
         Card[inverse_metric, "Slate_Rock_and_Gravel_Company", year, :value]
-      expect(inverse_answer_value.content).to eq "1"
+      expect(inverse_record_value.content).to eq "1"
     end
   end
 
@@ -46,25 +46,25 @@ RSpec.describe Card::Set::Type::Relationship do
       end
     end
 
-    def answer
+    def record
       Card[metric, "Death Star", year]
     end
 
-    def inverse_answer
+    def inverse_record
       Card[inverse_metric, "Monster Inc", year]
     end
 
     it "updates company count" do
       expect { add_relationship }
-        .to change(answer, :value).from("2").to("3")
+        .to change(record, :value).from("2").to("3")
     end
 
     it "creates inverse company count" do
       add_relationship
-      expect(inverse_answer.value).to eq "1"
+      expect(inverse_record.value).to eq "1"
     end
 
-    it "doesn't increase cached answer count" do
+    it "doesn't increase cached record count" do
       expect { add_relationship }
         .not_to change(Card.fetch("Death Star+metric"), :cached_count)
     end

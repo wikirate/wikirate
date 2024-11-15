@@ -1,4 +1,4 @@
-record_molecule_view:
+record_log_molecule_view:
   type: object
   properties:
     id:
@@ -18,7 +18,7 @@ record_molecule_view:
     items:
       type: array
       items:
-        "$ref": "#/components/schemas/answer_atom_view"
+        "$ref": "#/components/schemas/record_log_atom_view"
     ancestors:
       type: array
       items:

@@ -1,4 +1,4 @@
-# couldn't get this to work by adding it to abstract metric answer :(
+# couldn't get this to work by adding it to abstract metric record :(
 include_set Abstract::DesignerPermissions
 
 card_accessor :flag
@@ -34,22 +34,22 @@ format :html do
   end
 
   view :edit_inline do
-    voo.buttons_view = :edit_answer_buttons
+    voo.buttons_view = :edit_record_buttons
     super()
   end
 
   view :simple_new do
-    voo.buttons_view = :submit_answer_button
+    voo.buttons_view = :submit_record_button
     super()
   end
 
-  view :submit_answer_button do
-    button_formgroup { submit_answer_button }
+  view :submit_record_button do
+    button_formgroup { submit_record_button }
   end
 
-  view :edit_answer_buttons do
+  view :edit_record_buttons do
     button_formgroup do
-      [submit_answer_button, cancel_answer_button, delete_button]
+      [submit_record_button, cancel_record_button, delete_button]
     end
   end
 
@@ -59,14 +59,14 @@ format :html do
 
   view :new do
     research_page_link = research_button text: "Research Page"
-    "Answers are created via the #{research_page_link}."
+    "Records are created via the #{research_page_link}."
   end
 
   def research_button tab: nil, text: "Research Page"
     record_log_card.format.research_button year: year_name, tab: tab, text: text
   end
 
-  def cancel_answer_button
+  def cancel_record_button
     link_to_view :read_form_with_button, "Cancel",
                  class: "btn btn-outline-secondary btn-lg btn-sm"
   end
@@ -75,8 +75,8 @@ format :html do
     super class: "btn-lg" if card.ok? :delete
   end
 
-  def submit_answer_button
-    standard_save_button text: "Submit Answer", class: "btn-lg"
+  def submit_record_button
+    standard_save_button text: "Submit Record", class: "btn-lg"
   end
 
   def edit_fields

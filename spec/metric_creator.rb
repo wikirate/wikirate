@@ -13,10 +13,10 @@ module Deckorate
       }.freeze
 
       # Creates a metric card.
-      # A block can be used to create metric answer cards for the metric using
+      # A block can be used to create record cards for the metric using
       # the syntax
       # `company year => value, year => value`
-      # If you want to define more properties of a metric answer than just the
+      # If you want to define more properties of a record than just the
       # value (like a source for example) you can assign a hash to the year
       # @example
       # create_metric name: 'Jedi+disturbances in the Force',

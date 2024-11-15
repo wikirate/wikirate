@@ -1,4 +1,4 @@
-class Answer
+class Record
   # handle the "latest" flag
   module Latest
     # fetcher method for latest field
@@ -10,11 +10,11 @@ class Answer
       new_latest
     end
 
-    # other answers in same record
+    # other records in same record log
     def latest_context
       self.company_id ||= fetch_company_id
       self.metric_id ||= fetch_metric_id
-      Answer.where(company_id: company_id, metric_id: metric_id).where.not(id: id)
+      Record.where(company_id: company_id, metric_id: metric_id).where.not(id: id)
     end
 
     def handle_latest_in_record latest_year, new_latest
@@ -25,7 +25,7 @@ class Answer
       end
     end
 
-    # @return [Integer] year of latest answer
+    # @return [Integer] year of latest record
     def latest_year_in_db
       latest_context.maximum :year
     end

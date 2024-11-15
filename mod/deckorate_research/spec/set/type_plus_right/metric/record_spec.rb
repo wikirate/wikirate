@@ -15,7 +15,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Record do
   let(:record) { metric.fetch :record }
 
   # @return [Array] of company+year strings
-  let :answer_items do
+  let :record_items do
     record.item_cards.map { |c| c.name.parts[2..3].join "+" }
   end
 
@@ -24,21 +24,21 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Record do
   end
 
   context "when no filter in params" do
-    specify "#item_cards returns answers from multiple years and companies" do
-      expect(answer_items)
+    specify "#item_cards returns records from multiple years and companies" do
+      expect(record_items)
         .to include("Death Star+1977", "Death Star+2000", "Monster Inc+2000")
     end
 
     specify "#count counts all" do
-      expect(record.count).to eq(Answer.where(metric_id: metric.id).count)
+      expect(record.count).to eq(Record.where(metric_id: metric.id).count)
     end
   end
 
   context "when year=latest is set in params" do
     # This is current behavior, but I'd prefer that params only affect queries in formats.
-    specify "#item_cards returns only latest answers" do
+    specify "#item_cards returns only latest records" do
       with_latest_filter_params do
-        expect(answer_items).to eq(["Death Star+2001",
+        expect(record_items).to eq(["Death Star+2001",
                                     "Monster Inc+2000",
                                     "Slate Rock and Gravel Company+2006",
                                     "SPECTRE+2000"])
@@ -48,14 +48,14 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Record do
     specify "#count counts only latest years" do
       with_latest_filter_params do
         expect(record.count)
-          .to eq(Answer.where(metric_id: metric.id, latest: true).count)
+          .to eq(Record.where(metric_id: metric.id, latest: true).count)
       end
     end
   end
 
   describe ":table view" do
-    def with_answer_row
-      with_tag :tr, with: { "data-details-mark": answer_name } do
+    def with_record_row
+      with_tag :tr, with: { "data-details-mark": record_name } do
         with_tag :td, class: "header"
         with_tag :td, class: "data"
       end
@@ -73,7 +73,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Record do
           end
           is_expected.to have_tag ".sorting-header"
           is_expected.to have_tag ".grouped-record-log-list"
-          is_expected.not_to have_tag ".answer-search-chart"
+          is_expected.not_to have_tag ".record-search-chart"
         end
       end
 
@@ -81,7 +81,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Record do
         it "has filter button, has_chart, and does not list cards in bar view" do
           Card::Env.with_params filtered_body: "filtered_results_chart" do
             is_expected.to have_tag ".filtered-results-header"
-            is_expected.to have_tag ".answer-search-chart" do
+            is_expected.to have_tag ".record-search-chart" do
               with_tag ".vis"
             end
             is_expected.not_to have_tag ".grouped-company-list"

@@ -1,6 +1,6 @@
 format :json do
   def atom
-    lookup = card.answer
+    lookup = card.record
     super.tap do |atom|
       atom[:metric] = lookup.metric_name
       %i[company year value comments].each do |key|

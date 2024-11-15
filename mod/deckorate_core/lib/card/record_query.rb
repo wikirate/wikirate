@@ -39,7 +39,7 @@ class Card
       end
 
       def new_all_record_query? filter
-        # already AllAnswer; don't re-init
+        # already AllRecord; don't re-init
         return false if self == AllRecordQuery
 
         all_record_query? filter
@@ -55,11 +55,11 @@ class Card
     end
 
     def lookup_class
-      ::Answer
+      ::Record
     end
 
     def lookup_table
-      "answers"
+      "records"
     end
 
     def process_filters

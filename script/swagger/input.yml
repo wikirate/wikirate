@@ -137,7 +137,7 @@ paths:
       operationId: read9
       parameters:
       - $ref: '#/components/parameters/company'
-      - $ref: '#/components/parameters/answer_filter'
+      - $ref: '#/components/parameters/record_filter'
       responses:
         200:
           $ref: '#/components/responses/200'
@@ -210,7 +210,7 @@ paths:
       operationId: read12
       parameters:
       - $ref: '#/components/parameters/metric'
-      - $ref: '#/components/parameters/answer_filter'
+      - $ref: '#/components/parameters/record_filter'
       responses:
         200:
           $ref: '#/components/responses/200'

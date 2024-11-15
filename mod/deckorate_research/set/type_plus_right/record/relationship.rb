@@ -2,7 +2,7 @@ include_set Abstract::RelationshipSearch
 include_set Abstract::MetricChild, generation: 3
 
 def query_hash
-  { metric_card.answer_lookup_field => left.id }
+  { metric_card.record_lookup_field => left.id }
 end
 
 format :html do

@@ -2,7 +2,7 @@ format do
   SORT_OPTIONS = ::Set.new(
     %i[metric_bookmarkers metric_designer metric_title
        company_bookmarkers company_name name
-       year answer_count year_count
+       year record_count year_count
        value numeric_value ]
   )
 
@@ -15,7 +15,7 @@ format do
   SORT_TITLES = {
     company_name: "Company",
     metric_title: "Metric",
-    answer_count: "Data points",
+    record_count: "Data points",
     value: "Data point",
     year_count: "Years",
     year: "Year"
@@ -57,7 +57,7 @@ format do
   end
 
   def group_sort grouping
-    { grouping => 8, answer_count: 2, year_count: 2 }
+    { grouping => 8, record_count: 2, year_count: 2 }
   end
 
   def default_sort_dir sort_by
@@ -67,7 +67,7 @@ format do
   end
 
   def default_desc_sort_dir
-    ::Set.new %i[updated_at metric_bookmarkers value year answer_count year_count]
+    ::Set.new %i[updated_at metric_bookmarkers value year record_count year_count]
   end
 
   # for override
@@ -87,7 +87,7 @@ format do
     if current_group == :none
       default_ungrouped_sort_option
     else
-      :answer_count
+      :record_count
     end
   end
 
@@ -112,7 +112,7 @@ format do
   end
 
   def lookup?
-    return true if @answer_table_only
+    return true if @record_table_only
 
     !RecordQuery.all_record_query?(filter_hash.symbolize_keys)
   end

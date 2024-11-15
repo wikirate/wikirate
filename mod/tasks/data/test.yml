@@ -10,7 +10,7 @@
         },
         "limit": 5,
         "sort": {
-          "right": "answers",
+          "right": "records",
           "item": "cached_count",
           "return": "count"
         },

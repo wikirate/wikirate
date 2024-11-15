@@ -8,14 +8,14 @@
   "data": [
     {
       "name": "records",
-      "url": "http://localhost:3000/Answer/record_list.json?limit=0"
+      "url": "http://localhost:3000/Record/record_list.json?limit=0"
     },
     {
       "name": "counts",
       "source": "records",
 
       "transform": [
-        { "type": "aggregate", "ops": ["distinct", "distinct","count"], "fields": ["company", "metric", "id"], "groupby": ["year"], "as": ["companies", "metrics", "answers"] }
+        { "type": "aggregate", "ops": ["distinct", "distinct","count"], "fields": ["company", "metric", "id"], "groupby": ["year"], "as": ["companies", "metrics", "records"] }
       ]
     }
   ],
@@ -45,7 +45,7 @@
       "round": true,
       "nice": false,
       "zero": true,
-      "domain": {"data": "counts", "field": "answers"},
+      "domain": {"data": "counts", "field": "records"},
       "range": [0, 200]
     }
   ],
@@ -73,7 +73,7 @@
   "legends": [
     {
       "size": "size",
-      "title": "Answers",
+      "title": "Records",
       "format": "s",
       "symbolStrokeWidth": 0,
       "symbolFillColor" : "#03998D",
@@ -90,7 +90,7 @@
         "update": {
           "x": {"scale": "x", "field": "metrics"},
           "y": {"scale": "y", "field": "companies"},
-          "size": {"scale": "size", "field": "answers"},
+          "size": {"scale": "size", "field": "records"},
           "shape": {"value": "circle"},
           "opacity": {"value": 1},
           "fill": {"value": "#03998D"}

@@ -1,13 +1,13 @@
-RSpec.describe Answer do
-  def answer id=answer_id
+RSpec.describe Record do
+  def record id=record_id
     described_class.for_card id
   end
 
   let(:metric) { "Joe User+RM" }
-  let(:answer_name) { "#{metric}+Apple_Inc+2013" }
-  let(:answer_id) { answer_name.card_id }
+  let(:record_name) { "#{metric}+Apple_Inc+2013" }
+  let(:record_id) { record_name.card_id }
 
-  describe "seeded metric answer table" do
+  describe "seeded metric record table" do
     it "has more than researched values" do
       expect(described_class.count)
         .to be > Card.search(type_id: Card::RecordID, return: :count)
@@ -18,28 +18,28 @@ RSpec.describe Answer do
         is_expected.to be_instance_of(described_class)
       end
       it "has company_id" do
-        expect(answer.company_id).to eq "Apple Inc.".card_id
+        expect(record.company_id).to eq "Apple Inc.".card_id
       end
       it "has year" do
-        expect(answer.year).to eq 2013
+        expect(record.year).to eq 2013
       end
       it "has metric_id" do
-        expect(answer.metric_id).to eq "Joe User+RM".card_id
+        expect(record.metric_id).to eq "Joe User+RM".card_id
       end
       it "has metric_type_id" do
-        expect(answer.metric.metric_type_id).to eq "researched".card_id
+        expect(record.metric.metric_type_id).to eq "researched".card_id
       end
       it "has designer_id" do
-        expect(answer.metric.designer_id).to eq "Joe User".card_id
+        expect(record.metric.designer_id).to eq "Joe User".card_id
       end
       it "has value" do
-        expect(answer.value).to eq "13"
+        expect(record.value).to eq "13"
       end
       it "has metric_name" do
-        expect(answer.metric_name).to eq "Joe User+RM"
+        expect(record.metric_name).to eq "Joe User+RM"
       end
       it "has company_name" do
-        expect(answer.company_name).to eq "Apple Inc."
+        expect(record.company_name).to eq "Apple Inc."
       end
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe Answer do
   describe "#relation?" do
     context "when metric is a relation metric" do
       let(:relationship) do
-        answer "Jedi+more evil+Death Star+1977".card_id
+        record "Jedi+more evil+Death Star+1977".card_id
       end
 
       it "returns true" do
@@ -57,16 +57,16 @@ RSpec.describe Answer do
 
     context "when metric is not a relation metric" do
       it "returns false" do
-        expect(answer).not_to be_relation
+        expect(record).not_to be_relation
       end
     end
   end
 
   describe "delete" do
     it "removes entry" do
-      answer_id
-      delete answer_name
-      expect(answer).to be_nil
+      record_id
+      delete record_name
+      expect(record).to be_nil
     end
 
     it "updates latest" do
@@ -79,43 +79,43 @@ RSpec.describe Answer do
     end
 
     it "allows re-creation" do
-      delete answer_name
-      create name: answer_name,
+      delete record_name
+      create name: record_name,
              "+value": "Unknown",
              "+source": :space_opera_source.cardname
-      expect(answer.value).to eq("Unknown")
+      expect(record.value).to eq("Unknown")
     end
   end
 
   describe "updates" do
     before do
-      # fetch answer_id before the change
-      answer_id
+      # fetch record_id before the change
+      record_id
     end
     it "updates company" do
-      update answer_name, name: "Joe User+RM+Samsung+2013"
-      expect(answer.company_id).to eq "Samsung".card_id
-      expect(answer.company_name).to eq "Samsung"
+      update record_name, name: "Joe User+RM+Samsung+2013"
+      expect(record.company_id).to eq "Samsung".card_id
+      expect(record.company_name).to eq "Samsung"
     end
 
     it "updates metric" do
-      update answer_name, name: "Joe User+researched number 2+Apple_Inc+2013"
-      expect(answer.metric_id).to eq "Joe User+researched number 2".card_id
-      expect(answer.metric_name).to eq "Joe User+researched number 2"
+      update record_name, name: "Joe User+researched number 2+Apple_Inc+2013"
+      expect(record.metric_id).to eq "Joe User+researched number 2".card_id
+      expect(record.metric_name).to eq "Joe User+researched number 2"
     end
 
     it "updates metric when metric names changes" do
       update metric, name: "Joe User+invented"
-      expect(answer.metric_name).to eq "Joe User+invented"
+      expect(record.metric_name).to eq "Joe User+invented"
     end
 
     context "when year changes" do
-      # record_log has answers for 2002 and 2015
+      # record_log has records for 2002 and 2015
       let(:record_log_name) { "Joe User+researched number 1+Apple Inc" }
 
       it "updates year" do
-        update answer_name, name: "Joe User+RM+Apple_Inc+1999"
-        expect(answer.year).to eq 1999
+        update record_name, name: "Joe User+RM+Apple_Inc+1999"
+        expect(record.year).to eq 1999
       end
 
       def new_latest old_year, new_year
@@ -145,23 +145,23 @@ RSpec.describe Answer do
     end
 
     it "updates value" do
-      expect { update "#{answer_name}+value", content: "85" }
-        .to change { answer.value }.from("13").to("85")
+      expect { update "#{record_name}+value", content: "85" }
+        .to change { record.value }.from("13").to("85")
     end
 
     it "updates designer" do
       update "Joe User", name: "Jimmy User"
-      expect(answer.metric.designer_id.cardname).to eq("Jimmy User")
+      expect(record.metric.designer_id.cardname).to eq("Jimmy User")
     end
 
     it "updates metric type" do
       update [metric, :metric_type], content: "[[Score]]"
-      expect(answer.metric.metric_type_id).to eq "score".card_id
+      expect(record.metric.metric_type_id).to eq "score".card_id
     end
 
     it "updates policy" do
       Card.create! name: [metric, :research_policy], content: "[[Community Assessed]]"
-      expect(answer.metric.policy_id).to eq "Community Assessed".card_id
+      expect(record.metric.policy_id).to eq "Community Assessed".card_id
     end
 
     xit "updates updated_at" do

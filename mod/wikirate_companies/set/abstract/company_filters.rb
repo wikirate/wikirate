@@ -7,7 +7,7 @@ format do
   end
 
   # fixes handling of certain requests that use $.params(json) and send the company
-  # answer filter as { "0" => constraint1, "1" => constraint2... ...}
+  # record filter as { "0" => constraint1, "1" => constraint2... ...}
   def filter_hash
     super.tap do |hash|
       ans = hash[:company_record]
@@ -17,7 +17,7 @@ format do
 end
 
 format :html do
-  # don't show advanced company answer filter in compact form
+  # don't show advanced company record filter in compact form
   def compact_filter_form_fields
     super.select { |hash| hash[:key] != :company_record }
   end
@@ -39,7 +39,7 @@ format :html do
     vals.join " "
   end
 
-  # The following all help support the "advanced" filter for companies based on answers
+  # The following all help support the "advanced" filter for companies based on records
   # (a list of constraints; the same ui used for specifying company groups)
   def filter_company_record_type
     :company_record_custom
@@ -55,7 +55,7 @@ format :html do
     end
   end
 
-  # value shown on closer badge for company answer filter
+  # value shown on closer badge for company record filter
   def filter_company_record_closer_value constraints
     Array.wrap(constraints).map do |c|
       bits = closer_constraint_bits c[:metric_id].to_i, c[:value],

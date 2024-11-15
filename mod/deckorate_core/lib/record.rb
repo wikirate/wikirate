@@ -1,20 +1,20 @@
-# lookup table for metric answers
-class Answer < Cardio::Record
-  @card_column = :answer_id
+# lookup table for records (records to metric questions)
+class Record < Cardio::Record
+  @card_column = :record_id
 
   include LookupTable
-  extend AnswerClassMethods
+  extend RecordClassMethods
 
-  include CardlessAnswers
+  include CardlessRecords
   include Validations
   include EntryFetch
   include Export
   include Latest
   include AndRelationship
 
-  validates :answer_id, numericality: { only_integer: true }, presence: true,
+  validates :record_id, numericality: { only_integer: true }, presence: true,
                         unless: :virtual?
-  validate :must_be_an_answer, :card_must_exist, unless: :virtual?
+  validate :must_be_a_record, :card_must_exist, unless: :virtual?
   validate :metric_must_exist
 
   belongs_to :metric, primary_key: :metric_id
@@ -30,12 +30,12 @@ class Answer < Cardio::Record
 
   def card
     return @card if @card
-    if answer_id
+    if record_id
       super
     else
-      @card = card_without_answer_id
+      @card = card_without_record_id
     end
-    @card.answer = self
+    @card.record = self
     @card
   end
 
@@ -71,5 +71,5 @@ class Answer < Cardio::Record
   end
 end
 
-require_relative "answer/active_record_extension"
-Answer.const_get("ActiveRecord_Relation").send :include, Answer::ActiveRecordExtension
+require_relative "record/active_record_extension"
+Record.const_get("ActiveRecord_Relation").send :include, Record::ActiveRecordExtension

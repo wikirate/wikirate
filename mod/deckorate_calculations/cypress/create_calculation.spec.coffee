@@ -77,7 +77,7 @@ describe "metric creation", ->
       # go to records tab
       cy.get("#main .nav-tabs").within -> cy.contains("Companies").click()
 
-      # check that an answer exists
+      # check that an record exists
       cy.get("span.metric-value").should "contain", "1.1"
 
 
@@ -90,7 +90,7 @@ describe "metric creation", ->
         cy.get("._sample-result-value").should "have.text", "invalid formula"
 
         # add a valid formula
-        setValue "answer + 1"
+        setValue "record + 1"
 
       # click to save as metric
       cy.contains("Save as Metric").click()
@@ -100,12 +100,12 @@ describe "metric creation", ->
 
       # check that formula looks right
       cy.get(".RIGHT-formula.titled-view").within ->
-        cy.get(".code").should "contain", "answer + 1"
+        cy.get(".code").should "contain", "record + 1"
 
       # go to records tab
       cy.get("#main .nav-tabs").within -> cy.contains("Companies").click()
 
-      # check that an answer exists
+      # check that an record exists
       cy.get("span.metric-value").should "contain", "1.1"
 
   describe "from variable score metric page", ->
@@ -136,5 +136,5 @@ describe "metric creation", ->
       # go to records tab
       cy.get("#main .nav-tabs").within -> cy.contains("Companies").click()
 
-      # check that an answer exists
+      # check that an record exists
       cy.get("span.metric-value").should "contain", "10"

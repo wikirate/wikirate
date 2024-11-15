@@ -13,10 +13,10 @@ RSpec.describe GraphQL::Types::Company do
     GRAPHQL
   end
 
-  describe "company: answers field" do
-    it "returns answers pertaining to the company" do
-      query = query_string "Death Star", "answers { company { name } }"
-      expect(result(query)["answers"].first["company"]["name"]).to eq("Death Star")
+  describe "company: records field" do
+    it "returns records pertaining to the company" do
+      query = query_string "Death Star", "records { company { name } }"
+      expect(result(query)["records"].first["company"]["name"]).to eq("Death Star")
     end
   end
 
@@ -46,10 +46,10 @@ RSpec.describe GraphQL::Types::Company do
     end
   end
 
-  describe "company: answers field filtered by year" do
-    it "returns answers only related to year 2010 pertaining to the company" do
-      query = query_string "Death Star", "answers (year: \"2010\"){ year }"
-      expect(result(query)["answers"].first["year"]).to eq(2010)
+  describe "company: records field filtered by year" do
+    it "returns records only related to year 2010 pertaining to the company" do
+      query = query_string "Death Star", "records (year: \"2010\"){ year }"
+      expect(result(query)["records"].first["year"]).to eq(2010)
     end
   end
 end

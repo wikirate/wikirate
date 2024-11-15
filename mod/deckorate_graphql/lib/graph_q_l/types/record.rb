@@ -1,16 +1,16 @@
 module GraphQL
   module Types
-    # Answer type for GraphQL
-    class Answer < DeckorateCard
+    # Record type for GraphQL
+    class Record < DeckorateCard
       field :year, Integer, null: false
       field :company, Company, null: false
       field :metric, Metric, null: false
-      field :value, AnswerValue, null: false
+      field :value, RecordValue, null: false
       field :comments, String, null: true
       field :sources, [Source], null: true
 
       def id
-        object.answer_id
+        object.record_id
       end
 
       def company

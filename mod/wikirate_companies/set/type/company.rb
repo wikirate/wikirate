@@ -28,8 +28,8 @@ event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
 end
 
 event :delete_all_company_records, :store, on: :delete do
-  answers.delete_all
-  skip_event! :schedule_answer_counts,
+  records.delete_all
+  skip_event! :schedule_record_counts,
               :update_related_calculations,
               :update_related_scores,
               :update_related_verifications
@@ -43,16 +43,16 @@ end
 #   alias_card.insert_item! 0, alias_name
 # end
 
-# @return [Answer]
-def latest_answer metric
-  answers(metric: metric, latest: true).first
+# @return [Record]
+def latest_record metric
+  records(metric: metric, latest: true).first
 end
 
-# @return [Answer::ActiveRecord_Relation]
-def answers args={}
+# @return [Record::ActiveRecord_Relation]
+def records args={}
   args[:company_id] = id
   normalize_metric_arg args
-  ::Answer.where args
+  ::Record.where args
 end
 
 # @return [Relationship::ActiveRecord_Relation]

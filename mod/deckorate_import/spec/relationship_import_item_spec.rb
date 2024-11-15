@@ -15,7 +15,7 @@ RSpec.describe Card::RelationshipImportItem do
 
   let(:item_name_parts) { %i[metric subject_company year object_company] }
 
-  specify "answer doesn't exist" do
+  specify "record doesn't exist" do
     expect(Card[item_name]).to be_nil
   end
 
@@ -23,17 +23,17 @@ RSpec.describe Card::RelationshipImportItem do
     example "creates relationship card with valid data", as_bot: true do
       import
       expect_card(item_name).to exist
-      answer = Card[item_name.left]
-      expect(answer.type_id).to eq(Card::RecordID)
-      expect(answer.value).to eq("1")
-      expect(Card[item_name].inverse_answer_id.card.value).to eq("1")
+      record = Card[item_name.left]
+      expect(record.type_id).to eq(Card::RecordID)
+      expect(record.value).to eq("1")
+      expect(Card[item_name].inverse_record_id.card.value).to eq("1")
     end
 
     example "increments relationship counts", as_bot: true do
-      answer_card = Card[item_name(year: "1977").left]
-      expect(answer_card.answer.numeric_value).to eq(2)
+      record_card = Card[item_name(year: "1977").left]
+      expect(record_card.record.numeric_value).to eq(2)
       import year: "1977"
-      expect(answer_card.answer.reload.numeric_value).to eq(3)
+      expect(record_card.record.reload.numeric_value).to eq(3)
     end
   end
 

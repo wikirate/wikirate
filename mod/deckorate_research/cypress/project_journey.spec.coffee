@@ -64,8 +64,8 @@ describe "research page", ->
       cy.wait 2000
       cy.get("._dont_leave").click()
 
-    toPhase "answer"
-    cy.get("button").contains("Submit Answer").click()
-    cy.get(".research-record").should "contain", "Edit Answer"
+    toPhase "record"
+    cy.get("button").contains("Submit Record").click()
+    cy.get(".research-record").should "contain", "Edit Record"
     cy.get(".research-record ._next-question-button").click()
     cy.get(".research-metric-and-year").should "contain", "researched number 2"

@@ -33,7 +33,7 @@ RSpec.xdescribe Card::Set::TypePlusRight::Metric::Record::Stats do
 
   def stats filter
     Card::Env.params[:filter] = filter
-    name = "Jedi+disturbances in the Force+answer"
+    name = "Jedi+disturbances in the Force+record"
     Card.expire name # needed because empty @filter_hash is cached on card
     Card.fetch(name).format._render_stats
   end

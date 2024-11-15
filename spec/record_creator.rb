@@ -1,11 +1,11 @@
 module Deckorate
-  # test-only API for creating answers
+  # test-only API for creating records
   class RecordCreator
-    def initialize metric=nil, test_source=false, &answers_block
+    def initialize metric=nil, test_source=false, &records_block
       @metric = metric
       @metric = Card[metric] unless metric.is_a? Card
       @test_source = test_source
-      define_singleton_method(:add_records, answers_block)
+      define_singleton_method(:add_records, records_block)
     end
 
     def create_record company, year, value

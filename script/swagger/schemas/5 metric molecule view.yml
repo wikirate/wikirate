@@ -57,7 +57,7 @@ metric_molecule_view:
       type: array
       items:
         type: string
-    answers_url:
+    records_url:
       type: string
     items:
       type: array

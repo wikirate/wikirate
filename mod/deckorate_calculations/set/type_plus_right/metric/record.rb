@@ -1,11 +1,11 @@
-# Answer search for a given Metric
+# Record search for a given Metric
 
 include_set Abstract::BookmarkFiltering
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CachedCount
 include_set Abstract::FullRecordSearch
 
-# recount number of answers for a given metric when an Answer card is
+# recount number of records for a given metric when an Record card is
 # created or deleted
 recount_trigger :type, :record, on: %i[create delete] do |changed_card|
   input_record_and_source_fields changed_card.metric_card unless changed_card.unpublished?
@@ -16,7 +16,7 @@ field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
   input_record_and_source_fields changed_card.left
 end
 
-# ...or when answer is (un)published
+# ...or when record is (un)published
 field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
   input_record_and_source_fields changed_card.left.metric_card
 end

@@ -1,4 +1,4 @@
-def record_log_answers_card
+def record_log_records_card
   record_log_card.record_card
 end
 
@@ -13,12 +13,12 @@ format :html do
   def tab_options
     {
       contributions: { label: "Contributions" },
-      record_log: { count: card.record_log_answers_card.count, label: "Years" },
-      calculations: { count: card.depender_answers.count },
-      # inputs: { count: card.dependee_answers.count },
-      # NOTE: the inputs count is super slow on complicated answers, like
+      record_log: { count: card.record_log_records_card.count, label: "Years" },
+      calculations: { count: card.depender_records.count },
+      # inputs: { count: card.dependee_records.count },
+      # NOTE: the inputs count is super slow on complicated records, like
       # https://wikirate.org/Apparel_Research_Group+ESG_Disclosure_Rate+Adidas_AG+2020
-      # The problem is that it has to traverse the answers via the calculators in
+      # The problem is that it has to traverse the records via the calculators in
       # order to make sure it handles funky formulas correctly, and that takes a long
       # time when there are thousands of inputs.
       relationship: { count: relationship_count, label: "Relationships" }
@@ -44,11 +44,11 @@ format :html do
   end
 
   view :calculations_tab do
-    card.depender_answers.map { |a| nest a.card, view: :bar }
+    card.depender_records.map { |a| nest a.card, view: :bar }
   end
 
   view :inputs_tab do
-    card.dependee_answers.map { |a| nest a.card, view: :bar }
+    card.dependee_records.map { |a| nest a.card, view: :bar }
   end
 
   view :relationship_tab do
@@ -99,7 +99,7 @@ format :html do
   private
 
   def calculated_read_field_configs
-    if overridden? # meaning answer is researched
+    if overridden? # meaning record is researched
       overridden_read_field_configs
     else
       [self_core_as_field_config("Formula")]

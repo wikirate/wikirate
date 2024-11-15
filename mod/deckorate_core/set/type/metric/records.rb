@@ -1,18 +1,18 @@
-# @return [Answer::ActiveRecord_Relation]
-def answers args={}
+# @return [Record::ActiveRecord_Relation]
+def records args={}
   args[:metric_id] = id
   normalize_company_arg :company_id, args
-  Answer.where args
+  Record.where args
 end
 
-# @return [Answer]
-def latest_answer company
-  answers(company: company, latest: true).take
+# @return [Record]
+def latest_record company
+  records(company: company, latest: true).take
 end
 
 # @return [Array] of Integers
 def company_ids args={}
-  answers(args).distinct.pluck :company_id
+  records(args).distinct.pluck :company_id
 end
 
 # @return [Array] of Cards
@@ -21,12 +21,12 @@ def companies args={}
 end
 
 # @return [Array] of Integers
-def answer_ids args={}
-  answers(args).pluck :id
+def record_ids args={}
+  records(args).pluck :id
 end
 
-def answer_for company, year
-  Answer.where(metric_id: id, company_id: company.card_id, year: year.to_i).take
+def record_for company, year
+  Record.where(metric_id: id, company_id: company.card_id, year: year.to_i).take
 end
 
 private

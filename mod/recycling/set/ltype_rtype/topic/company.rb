@@ -17,7 +17,7 @@ format :html do
   end
 
   def record_count
-    ::Answer.where(metric_id: topic_metric.item_ids, company_id: company_id).count
+    ::Record.where(metric_id: topic_metric.item_ids, company_id: company_id).count
   end
 
   view :bar_left do

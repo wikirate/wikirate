@@ -24,7 +24,7 @@
     },
     {
       "name": "rawCounts",
-      "source": "answers",
+      "source": "records",
       "transform": [
         {
           "type": "aggregate",

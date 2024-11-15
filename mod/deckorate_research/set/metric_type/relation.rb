@@ -5,8 +5,8 @@ def value_required?
   false
 end
 
-def answer_lookup_field
-  :answer_id
+def record_lookup_field
+  :record_id
 end
 
 def metric_lookup_field
@@ -51,10 +51,10 @@ event :delete_relationships,
   if !Card::Auth.always_ok?
     # TODO: come up with better permissions scheme for this!
     # maybe something like `perms: :admin` in the event def?
-    errors.add :answers, "only admins can bulk delete answers"
+    errors.add :records, "only admins can bulk delete records"
   else
     with_company_from_params do |company|
-      delete_answers_for_company company
+      delete_records_for_company company
       true
     end
   end
@@ -107,23 +107,23 @@ def add_title_inverse_pointer title, inverse
   subcard [title, :inverse], content: inverse, type: :pointer
 end
 
-def delete_answers_for_company company
-  delete_subject_answer_for_company company
-  delete_object_answers_for_company company
+def delete_records_for_company company
+  delete_subject_record_for_company company
+  delete_object_records_for_company company
 end
 
-def delete_subject_answer_for_company company
-  return unless (answer_card = Card.fetch(self, company))
-  delete_as_subcard answer_card
+def delete_subject_record_for_company company
+  return unless (record_card = Card.fetch(self, company))
+  delete_as_subcard record_card
 end
 
-def delete_object_answers_for_company company
-  object_answers_for_company(company).each do |answer_card|
-    delete_as_subcard answer_card
+def delete_object_records_for_company company
+  object_records_for_company(company).each do |record_card|
+    delete_as_subcard record_card
   end
 end
 
-def object_answers_for_company company
+def object_records_for_company company
   Card.search left: { left: { left_id: id } },
               type_id: Card::RelationshipID,
               right: company

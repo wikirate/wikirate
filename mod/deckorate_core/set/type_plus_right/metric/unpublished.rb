@@ -34,7 +34,7 @@ def publish_inputs?
 end
 
 def records
-  Answer.where metric_id: left_id
+  Record.where metric_id: left_id
 end
 
 def unpublish_all_records
@@ -45,7 +45,7 @@ def publish_unflagged_records
   records.where(
     "NOT EXISTS (
       SELECT * from cards
-      WHERE left_id = answers.answer_id
+      WHERE left_id = records.record_id
       AND right_id = #{:unpublished.card_id}
       AND db_content= '1'
     )"

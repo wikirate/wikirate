@@ -2,31 +2,31 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
            total: "Total" }.freeze
 
 COUNT_FIELDS = {
-  "answers.company_id": :company,
-  "answers.metric_id": :metric,
-  "answers.year": :year,
-  "answers.id": :record
+  "records.company_id": :company,
+  "records.metric_id": :metric,
+  "records.year": :year,
+  "records.id": :record
 }.freeze
 
 DEEP_COUNT_FIELDS = {
   "designer_id": :designer,
   "metrics.metric_type_id": :metric_type,
   "metrics.value_type_id": :value_type,
-  "answers.verification": :verification,
-  "answers.route": :route
+  "records.verification": :verification,
+  "records.route": :route
 }.freeze
 
 format do
   delegate :lookup_query, :lookup_relation, to: :research_query
 
   def research_query
-    answer_table_only do |research_query_hash|
+    record_table_only do |research_query_hash|
       RecordQuery.new research_query_hash, sort_hash, paging_params
     end
   end
 
   def research_count_query
-    answer_table_only do |research_query_hash|
+    record_table_only do |research_query_hash|
       RecordQuery.new(research_query_hash).lookup_query
     end
   end
@@ -36,7 +36,7 @@ format do
   end
 
   def tally_counts
-    counts = answer_table_counts
+    counts = record_table_counts
     researched = counts[:record].to_i
     total = all_record? ? count_query.count : researched
 
@@ -57,7 +57,7 @@ format do
                         .symbolize_keys
   end
 
-  def answer_table_counts
+  def record_table_counts
     return {} if not_researched?
 
     research_count_query.pluck_all(*count_fields(COUNT_FIELDS)).first.symbolize_keys
@@ -75,7 +75,7 @@ format do
   end
 
   def count_unknowns
-    research_count_query.where("answers.value = 'Unknown'").count
+    research_count_query.where("records.value = 'Unknown'").count
   end
 
   def all_record?
@@ -108,13 +108,13 @@ format do
 
   private
 
-  def answer_table_only
-    @answer_table_only = true
+  def record_table_only
+    @record_table_only = true
 
-    yield query_hash.merge(answer_table_only_alteration)
+    yield query_hash.merge(record_table_only_alteration)
   end
 
-  def answer_table_only_alteration
+  def record_table_only_alteration
     case status_filter
     when :all
       { status: :exists }
@@ -143,7 +143,7 @@ format :html do
     sections = each_progress_bar_status do |status, count|
       { value: (count / total_results.to_f * 100),
         body: "#{count} #{LABELS[status]}",
-        title: "#{count} #{LABELS[status]} Answers",
+        title: "#{count} #{LABELS[status]} Records",
         class: "_compact-filter-link progress-#{status}",
         data: { filter: { status: status } } }
     end
@@ -156,14 +156,14 @@ format :html do
     Codename.exist?(codename) ? codename.cardname : codename.to_s.to_name
   end
 
-  def answer_count_badge codename, count=nil
+  def record_count_badge codename, count=nil
     count ||= counts[codename]
     labeled_badge number_with_delimiter(count),
-                  answer_count_badge_label(codename, count),
+                  record_count_badge_label(codename, count),
                   color: "light"
   end
 
-  def answer_count_badge_label codename, count
+  def record_count_badge_label codename, count
     simple_label = badge_label(codename).vary("capitalize").pluralize count
     if (icon = icon_tag codename)
       responsive_count_badge_label icon_tag: icon, simple_label: simple_label

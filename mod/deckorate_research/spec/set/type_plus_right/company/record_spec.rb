@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::TypePlusRight::Company::Record do
   it_behaves_like "cached count", ["Death Star", :record], 35, 3 do
-    # increment = 2, because one researched answer + one calculated answer
+    # increment = 2, because one researched record + one calculated record
     let :add_one do
       create_records "Jedi+disturbances in the force", true do
         Death_Star "1999" => "yes"
@@ -20,14 +20,14 @@ RSpec.describe Card::Set::TypePlusRight::Company::Record do
   check_views_for_errors
 
   describe "#count" do
-    it "counts all answers (regardless of year)" do
-      expect(card_subject.count).to eq(Answer.where(company_id: company.id).count)
+    it "counts all records (regardless of year)" do
+      expect(card_subject.count).to eq(Record.where(company_id: company.id).count)
     end
   end
 
   specify "compact json" do
     expect(format_subject(:json).render(:compact))
-      .to include(companies: a_hash, metrics: a_hash, answers: a_hash)
+      .to include(companies: a_hash, metrics: a_hash, records: a_hash)
   end
 
   def a_hash

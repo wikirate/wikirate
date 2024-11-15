@@ -4,7 +4,7 @@
 # @option args [String] :value
 # @option args [String] :source source url
 def create_record args
-  raise "invalid answer args: #{args}" unless (valid_args = create_record_args args)
+  raise "invalid record args: #{args}" unless (valid_args = create_record_args args)
   Card.create! valid_args
 end
 
@@ -19,7 +19,7 @@ def extract_record_name args, error_msg
   args[:name] || begin
     missing = [:company, :year, :value].reject { |v| args[v] }
     if missing.empty?
-      answer_name_from_args args
+      record_name_from_args args
     else
       error_msg.push("missing field(s) #{missing.join(',')}")
       nil
@@ -27,31 +27,31 @@ def extract_record_name args, error_msg
   end
 end
 
-def check_for_answer_conflict args, error_msg
-  return unless (answer_name = extract_record_name(args, error_msg))
-  value_card = Card[answer_name.to_name.field(:value)]
+def check_for_record_conflict args, error_msg
+  return unless (record_name = extract_record_name(args, error_msg))
+  value_card = Card[record_name.to_name.field(:value)]
   return unless value_card&.new_value?(args[:value])
   link = format.link_to_card value_card.metric_card, "value"
   error_msg << "#{link} '#{value_card.content}' exists"
 end
 
-def valid_answer_args? args
+def valid_record_args? args
   error_msg = []
-  check_for_answer_conflict args, error_msg unless args.delete(:ok_to_exist)
+  check_for_record_conflict args, error_msg unless args.delete(:ok_to_exist)
   error_msg << "missing source" if metric_type_codename == :researched && !args[:source]
   error_msg.each do |msg|
-    errors.add "answer", msg
+    errors.add "record", msg
   end
   error_msg.empty?
 end
 
-def answer_name_from_args args
+def record_name_from_args args
   parts = [name, args[:company], args[:year].to_s]
   parts << args[:related_company] if args[:related_company]
   Card::Name[*parts]
 end
 
-def answer_type_id related_company
+def record_type_id related_company
   related_company ? RelationshipID : RecordID
 end
 
@@ -64,9 +64,9 @@ def add_unpublished_args hash, val
 end
 
 def create_record_args args
-  return unless valid_answer_args? args
-  create_args = { name: answer_name_from_args(args),
-                  type_id: answer_type_id(args[:related_company]),
+  return unless valid_record_args? args
+  create_args = { name: record_name_from_args(args),
+                  type_id: record_type_id(args[:related_company]),
                   "+value" => args[:value] }
   add_record_discussion_args create_args, args[:comment]
   add_record_source_args create_args, args[:source]

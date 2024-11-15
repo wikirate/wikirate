@@ -9,7 +9,7 @@ class Card
     self.simple_filters = ::Set.new(
       %i[subject_company_id object_company_id
          metric_id inverse_metric_id
-         answer_id inverse_answer_id]
+         record_id inverse_record_id]
     )
 
     def lookup_class

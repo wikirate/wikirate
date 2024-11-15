@@ -17,9 +17,9 @@ API_USERS = [
 ].freeze
 
 def infer_routes
-  puts "infer calculated answers"
-  Answer.where(answer_id: nil).update_all route: route_index(:calculation)
-  [Answer, Relationship].each do | klass|
+  puts "infer calculated records"
+  Record.where(record_id: nil).update_all route: route_index(:calculation)
+  [Record, Relationship].each do | klass|
     puts "infer imported (#{klass})"
     klass.where(imported: true).update_all route: route_index(:import)
     if api_user_ids.present?
@@ -44,7 +44,7 @@ def api_user_ids
 end
 
 def route_index symbol
-  Answer.route_index symbol
+  Record.route_index symbol
 end
 
 def populate_relationship_editors

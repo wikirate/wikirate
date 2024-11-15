@@ -1,13 +1,13 @@
-class Answer
+class Record
   # Methods to validate a new lookup entry
   module Validations
     def card_must_exist
-      errors.add :answer_id, "no card with id #{answer_id}" unless card
+      errors.add :record_id, "no card with id #{record_id}" unless card
     end
 
-    def must_be_an_answer
+    def must_be_a_record
       return if card.type_id == Card::RecordID
-      errors.add :answer_id, "not a metric answer: #{answer_id.cardname}"
+      errors.add :record_id, "not a metric record: #{record_id.cardname}"
     end
 
     def metric_must_exist

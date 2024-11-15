@@ -21,13 +21,13 @@ class Card
 
     private
 
-    def company_record_join answer_alias
+    def company_record_join record_alias
       Query::Join.new side: :left, from: self, from_field: "id",
-                      to: [:answers, answer_alias, :company_id]
+                      to: [:records, record_alias, :company_id]
     end
 
     def add_record_condition cond, val
-      @conditions << ::Answer.sanitize_sql_for_conditions([cond, Array.wrap(val)])
+      @conditions << ::Record.sanitize_sql_for_conditions([cond, Array.wrap(val)])
     end
   end
 end

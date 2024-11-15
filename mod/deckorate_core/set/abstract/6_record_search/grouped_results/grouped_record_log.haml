@@ -1,5 +1,5 @@
 - sample_record = record_log_sample_record metric_id, company_id, year, value
-- if answer_count == 1
+- if record_count == 1
   = nest_item sample_record, view: :full_bar
 - else
   - class_up "bar", "with-bar-menu" if voo.show? :bar_menu
@@ -16,6 +16,6 @@
             = sample_record.year
           .ps-1
             +
-          = answer_count_badge :year, (answer_count - 1)
+          = record_count_badge :year, (record_count - 1)
     .bar-menu
       = nest sample_record, view: :bar_menu

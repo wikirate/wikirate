@@ -1,9 +1,9 @@
-class Answer
-  # module extends the functionality of Answer lookup relations
+class Record
+  # module extends the functionality of Record lookup relations
   module ActiveRecordExtension
     include Card::LookupQuery::ActiveRecordExtension
 
-    def answer_names
+    def record_names
       pluck(:metric_id, :company_id, :year).map { |m, c, y| Card::Name[m, c, y.to_s] }
     end
 
@@ -13,7 +13,7 @@ class Answer
     #
     # def return val
     #   if val.blank?
-    #     answer_cards
+    #     record_cards
     #   elsif val.is_a? Array
     #     pluck(*val)
     #   else
@@ -40,26 +40,26 @@ class Answer
     #     value_cards
     #   when "count"
     #     count
-    #   when "name", "answer_name"
-    #     answer_names
+    #   when "name", "record_name"
+    #     record_names
     #   when /^(\w+)_card/
     #     cards Regexp.last_match(1)
-    #   when *Answer.column_names
+    #   when *Record.column_names
     #     pluck(val)
     #   else
-    #     raise ArgumentError, "unknown Answer return val: #{val}"
+    #     raise ArgumentError, "unknown Record return val: #{val}"
     #   end
     # end
     #
     # # TODO: either optimize with a join or move out of here
     # def value_cards
-    #   left_ids = pluck :answer_id
+    #   left_ids = pluck :record_id
     #   return [] unless left_ids.present?
     #   Card.search left_id: ["in"] + left_ids, right_id: Card::ValueID
     # end
     #
     # def group_necessary? uniq, retrn
-    #   (!retrn && uniq != :answer_id) || (retrn != :count && uniq != retrn)
+    #   (!retrn && uniq != :record_id) || (retrn != :count && uniq != retrn)
     # end
   end
 end

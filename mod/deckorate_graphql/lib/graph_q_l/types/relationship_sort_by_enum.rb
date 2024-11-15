@@ -1,7 +1,7 @@
 module GraphQL
   module Types
     # RelationshipSortByEnum enumerates all available options when sorting relationship
-    # answer cards
+    # record cards
     class RelationshipSortByEnum < BaseEnum
       value :year, value: :year
     end

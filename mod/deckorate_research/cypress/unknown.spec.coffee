@@ -1,4 +1,4 @@
-toAnswerPhase = (metric, company, year)->
+toRecordPhase = (metric, company, year)->
   year ||= 2020
   company ||= "Sony_Corporation"
   cy.visit "#{metric}+#{company}/research?year=#{year}&tab=record_phase"
@@ -38,28 +38,28 @@ describe "the 'unknown' checkbox", ->
     cy.login "sample@user.com", "sample_pass"
 
   specify "numeric metric", ->
-    toAnswerPhase "Jedi+deadliness", "Death_Star"
+    toRecordPhase "Jedi+deadliness", "Death_Star"
     testUnknown ""
     cy.get(edSelector(".short-input")).clear().type "42"
     shiftFocus()
     testUnknown "42"
 
   specify "metric with checkboxes", ->
-    toAnswerPhase "Joe_User+small_multi"
+    toRecordPhase "Joe_User+small_multi"
     testUnknown ""
     cy.get(edSelector(".pointer-checkbox-button")).click(multiple: true)
     shiftFocus()
     testUnknown "1\n2\n3"
 
   specify "metric with radios", ->
-    toAnswerPhase "Joe_User+small_single"
+    toRecordPhase "Joe_User+small_single"
     testUnknown ""
     cy.get(edSelector("#pointer-radio-3")).click()
     shiftFocus()
     testUnknown "3"
 
   specify "metric with select", ->
-    toAnswerPhase "Joe_User+big_single"
+    toRecordPhase "Joe_User+big_single"
     testUnknown ""
     cy.get(edSelector("select")).select2 "7"
     shiftFocus()

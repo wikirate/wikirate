@@ -42,8 +42,8 @@ describe 'Formula editor', ->
         .get("._edit-variable-options").should "be.hidden"
       cy.get("._sample-value").should "have.value", '"no"'
 
-    # updates answers
-    cy.get(".tab-li-answer").click()
+    # updates records
+    cy.get(".tab-li-record").click()
     cy.get("._record-board ._ab-total").should "have.text", "3"
 
     # remove row
@@ -61,9 +61,9 @@ describe 'Formula editor', ->
 #    cy.get("._formula_options").should "contain", "(default)"
 #      .get("._edit-variable-options").should "be.hidden"
 #
-#    # open Answers tab
-#    cy.get(".tab-li-answer a").click force: true
-#    # There is one answer that is "unknown via options", meaning it's unknown based on
+#    # open Records tab
+#    cy.get(".tab-li-record a").click force: true
+#    # There is one record that is "unknown via options", meaning it's unknown based on
 #    # the formula option configuration alone (not the formula processing)
 #    cy.get "._record-board ._ab-result-unknown-count"
 #      .should "have.text", "1"
@@ -76,8 +76,8 @@ describe 'Formula editor', ->
 #    cy.get("._formula_options").should "include.text", "unknown: Unknown"
 #      .get("._edit-variable-options").should "be.hidden"
 #
-#    # open Answers tab
-#    cy.get(".tab-li-answer a").click force: true
+#    # open Records tab
+#    cy.get(".tab-li-record a").click force: true
 #    cy.get "._record-board ._ab-result-unknown-count"
 #      .should "have.text", "0"
 #      .should "be.hidden"
@@ -100,7 +100,7 @@ describe 'Formula editor', ->
 #    # make sure changes show
 #    cy.get("._formula_options").should "include.text", "unknown: no_result"
 #
-#    # make sure changes take effect in answers
+#    # make sure changes take effect in records
 #    cy.get "._record-board ._ab-result-unknown-count"
 #      .should "be.hidden"
 #

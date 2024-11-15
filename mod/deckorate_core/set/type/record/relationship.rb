@@ -13,7 +13,7 @@ def update_relationship_count! count=nil
   value_card.update! content: count
 end
 
-# number of companies that have a relationship for this answer
+# number of companies that have a relationship for this record
 def relationship_count
-  id ? ::Relationship.where(metric_card.answer_lookup_field => id).count : 0
+  id ? ::Relationship.where(metric_card.record_lookup_field => id).count : 0
 end

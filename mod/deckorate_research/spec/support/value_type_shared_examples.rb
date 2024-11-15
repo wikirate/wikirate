@@ -1,4 +1,4 @@
-shared_examples_for "create answer" do |value_type, valid_content, invalid_content|
+shared_examples_for "create record" do |value_type, valid_content, invalid_content|
   let(:metric) { sample_metric value_type.to_sym }
   let(:company) { sample_company }
   let(:error_msg) do
@@ -11,7 +11,7 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
     end
   end
 
-  describe "create a new answer" do
+  describe "create a new record" do
     def record_with_value value
       create_record metric: metric.name, company: company.name, value: value
     end
@@ -27,8 +27,8 @@ shared_examples_for "create answer" do |value_type, valid_content, invalid_conte
 
     context "when value fits the value type" do
       it "saves correct value" do
-        answer = record_with_value valid_content
-        expect(Card[answer, :value].content).to eq valid_content
+        record = record_with_value valid_content
+        expect(Card[record, :value].content).to eq valid_content
       end
     end
 

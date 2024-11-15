@@ -40,7 +40,7 @@
       "name":"xscale",
       "range":"width",
       "domain":{
-        "data":"answers",
+        "data":"records",
         "field":"value"
       },
       "type":"pow",
@@ -51,7 +51,7 @@
       "name":"yscale",
       "range":"height",
       "domain":{
-        "data":"answers",
+        "data":"records",
         "field": "label"
       },
       "type":"band",
@@ -61,7 +61,7 @@
       "name":"color",
       "type":"ordinal",
       "domain":{
-        "data":"answers",
+        "data":"records",
         "field":"highlight",
         "sort":true
       },
@@ -75,7 +75,7 @@
     {
       "type":"rect",
       "from":{
-        "data":"answers"
+        "data":"records"
       },
       "encode":{
         "enter":{

@@ -1,5 +1,5 @@
-class Answer
-  # Methods to fetch the data needed to initialize a new answer lookup table entry.
+class Record
+  # Methods to fetch the data needed to initialize a new record lookup table entry.
   module EntryFetch
     # when calculating, the fetch mechanism is skipped in favor of bulk updates
     def fetch_calculating

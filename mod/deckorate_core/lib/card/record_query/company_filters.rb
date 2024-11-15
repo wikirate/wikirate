@@ -56,7 +56,7 @@ class Card
       end
 
       def company_record_join table
-        @joins << "JOIN answers AS #{table} ON answers.company_id = #{table}.company_id"
+        @joins << "JOIN records AS #{table} ON records.company_id = #{table}.company_id"
       end
     end
   end

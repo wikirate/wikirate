@@ -15,8 +15,8 @@ require_field :source, when: :source_required?
 delegate :inverse_metric_id, :subject_company_id, :object_company_id, to: :lookup
 delegate :relationship_id, to: :lookup
 
-event :ensure_simple_answers, after: :prepare_left_and_right, on: :save do
-  [answer_card, inverse_answer_card].each do |card|
+event :ensure_simple_records, after: :prepare_left_and_right, on: :save do
+  [record_card, inverse_record_card].each do |card|
     # TODO: this shouldn't be necessary.
     # default type_id should be based on ltype rtype set
     # (but good to make sure the simple cards are there regardless)
@@ -25,20 +25,20 @@ event :ensure_simple_answers, after: :prepare_left_and_right, on: :save do
   end
 end
 
-event :schedule_answer_counts, :integrate do
-  answer_card.schedule :update_relationship_count
-  inverse_answer_card.schedule :update_relationship_count
+event :schedule_record_counts, :integrate do
+  record_card.schedule :update_relationship_count
+  inverse_record_card.schedule :update_relationship_count
 end
 
-event :schedule_old_answer_counts, :finalize, changed: :name, on: :update do
+event :schedule_old_record_counts, :finalize, changed: :name, on: :update do
   lu = lookup
-  [lu.answer_id, lu.inverse_answer_id].each do |id|
+  [lu.record_id, lu.inverse_record_id].each do |id|
     id.card.schedule :update_relationship_count
   end
 end
 
 event :auto_add_object_company,
-      after: :set_answer_name, on: :create, trigger: :required do
+      after: :set_record_name, on: :create, trigger: :required do
   add_company related_company unless valid_related_company?
 end
 
@@ -64,7 +64,7 @@ def valid_related_company?
 end
 
 def numeric_value
-  Answer.to_numeric value if metric_card.numeric?
+  Record.to_numeric value if metric_card.numeric?
 end
 
 def value_type_code
@@ -75,36 +75,36 @@ def value_cardtype_code
   metric_card.value_cardtype_code
 end
 
-def answer
-  @answer ||= Card.fetch(answer_name)&.answer
+def record
+  @record ||= Card.fetch(record_name)&.record
 end
 
-def answer_id
-  @answer_id ||= left_id.positive? ? left_id : answer_name.card_id
+def record_id
+  @record_id ||= left_id.positive? ? left_id : record_name.card_id
 end
 
-def answer_name
+def record_name
   name.left_name
 end
 
-def answer_card
-  answer_card_fetch answer_name
+def record_card
+  record_card_fetch record_name
 end
 
-def inverse_answer_name
+def inverse_record_name
   [metric_card.inverse, related_company, year].cardname
 end
 
-def inverse_answer_card
-  answer_card_fetch inverse_answer_name
+def inverse_record_card
+  record_card_fetch inverse_record_name
 end
 
-def answer_card_fetch name
+def record_card_fetch name
   Card.fetch name, new: { type: :record, fields: { value: "1" } }
 end
 
-def inverse_answer_id
-  @inverse_answer_id ||= inverse_answer_name.card_id
+def inverse_record_id
+  @inverse_record_id ||= inverse_record_name.card_id
 end
 
 def update_subcard_name subcard, new_name, name_to_replace

@@ -1,4 +1,4 @@
-type Answer {
+type Record {
   comments: String
   company: Company!
 
@@ -124,7 +124,7 @@ type Company {
   """
   records that answer questions about company
   """
-  records: [Answer!]!
+  records: [Record!]!
 
   """
   core view of card rendered in text format
@@ -193,7 +193,7 @@ type Company {
 }
 
 type Dataset {
-  records: [Answer!]!
+  records: [Record!]!
   companies: [Company!]!
 
   """
@@ -262,7 +262,7 @@ scalar ISO8601DateTime
 
 type Metric {
   about: String
-  records: [Answer!]!
+  records: [Record!]!
 
   """
   core view of card rendered in text format
@@ -340,8 +340,8 @@ type Mutation {
 }
 
 type Query {
-  answer(id: Int): Answer
-  records: [Answer!]!
+  record(id: Int): Record
+  records: [Record!]!
   card(id: Int, name: String): Card
   cards(name: String, type: String): [Card!]!
   companies(id: Int): [Company!]!
@@ -423,7 +423,7 @@ type Relationship {
 }
 
 type Source {
-  records: [Answer!]!
+  records: [Record!]!
 
   """
   core view of card rendered in text format

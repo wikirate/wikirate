@@ -57,7 +57,7 @@ updateIdentCommas = () ->
   $(".thumbnail-subtitle").find(".ident-comma:visible:last").hide()
 
 updateSlotItems = () ->
-  sdata = answerSlotData()
+  sdata = recordSlotData()
   hidden = fieldCheckboxes().filter(":not(:checked)").map ->
     $(this).data "fieldKey"
   sdata["items"] = {} unless sdata["items"]
@@ -99,11 +99,11 @@ companyIdentifiers = () ->
   map
 
 defaultChecked = (field) ->
-  sdata = answerSlotData()
+  sdata = recordSlotData()
   return true unless (items = sdata["items"]) && (hide = items["hide"])
   !hide.includes field
 
-answerSlotData = () ->
+recordSlotData = () ->
   slot = $(".record-result-items").slot()
   slot.data "slot", {} unless slot.data "slot"
   slot.data "slot"

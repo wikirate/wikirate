@@ -1,5 +1,5 @@
 de:
-  answer_validation_error_message: >
+  record_validation_error_message: >
     FEHLER: Der Antworttyp konnte nicht in 'Nummer' geändert werden. GRUND: Nicht
     numerischer Wert in vorhandenen Antworten gefunden ('%{bad_record}').
     Bitte aktualisieren oder löschen Sie alle Antworten, die vor der 

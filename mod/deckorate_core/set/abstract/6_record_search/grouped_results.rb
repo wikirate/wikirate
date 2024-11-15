@@ -1,12 +1,12 @@
-GROUP_SELECT = { answer_count: "count(distinct(answers.id))",
-                 year: "max(answers.year)",
-                 value: "max(answers.value)",
-                 year_count: "count(distinct(answers.year))" }.freeze
+GROUP_SELECT = { record_count: "count(distinct(records.id))",
+                 year: "max(records.year)",
+                 value: "max(records.value)",
+                 year_count: "count(distinct(records.year))" }.freeze
 
 GROUP_SELECT_KEYS = {
-  company: %i[answer_count year_count],
-  metric: %i[answer_count year_count],
-  record_log: %i[answer_count value year]
+  company: %i[record_count year_count],
+  metric: %i[record_count year_count],
+  record_log: %i[record_count value year]
 }.freeze
 
 format do
@@ -64,7 +64,7 @@ format :html do
   end
 
   def grouped_card_filter
-    answer_page_filters
+    record_page_filters
   end
 
   def grouped_card_stub_slot_options
@@ -72,7 +72,7 @@ format :html do
   end
 
   def group_by_fields_string
-    group_by_fields.map { |fld| "answers.#{fld}" }.join ", "
+    group_by_fields.map { |fld| "records.#{fld}" }.join ", "
   end
 
   def group_by_query
@@ -84,7 +84,7 @@ format :html do
   end
 
   def branching_results result
-    return yield if current_group == :record_log && result["answer_count"] == 1
+    return yield if current_group == :record_log && result["record_count"] == 1
 
     name = result[:name]
     tree_item yield, body: grouped_card_stub(name), context: name.safe_key
@@ -92,14 +92,14 @@ format :html do
 
   def record_log_sample_record metric_id, company_id, year, value
     if sort_param == "value"
-      latest_answer_with_value metric_id, company_id, value
+      latest_record_with_value metric_id, company_id, value
     else
       Card.fetch [metric_id, company_id, year.to_s], new: {}
     end
   end
 
-  def latest_answer_with_value metric_id, company_id, value
-    Answer.where(metric_id: metric_id, company_id: company_id, value: value)
+  def latest_record_with_value metric_id, company_id, value
+    Record.where(metric_id: metric_id, company_id: company_id, value: value)
           .order(year: :desc).take.card
   end
 end

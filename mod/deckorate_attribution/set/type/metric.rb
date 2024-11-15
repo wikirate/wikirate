@@ -12,10 +12,10 @@ end
 
 def each_reference_dump_row &block
   calc = calculated?
-  Answer.where(metric_id: id).in_batches do |answers|
-    answers.each do |answer|
-      yield answer
-      answer.each_dependee_answer(&block) if calc
+  Record.where(metric_id: id).in_batches do |records|
+    records.each do |record|
+      yield record
+      record.each_dependee_record(&block) if calc
     end
   end
 end

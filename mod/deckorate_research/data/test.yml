@@ -3,7 +3,7 @@
   :type: :report_type
 
 - sources
-- answers
+- records
 - relationships
 
 - :name: Flag 0000001

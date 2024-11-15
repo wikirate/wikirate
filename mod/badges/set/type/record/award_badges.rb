@@ -46,7 +46,7 @@ def affinity_name affinity, project_card=nil
 end
 
 def create_relation
-  Answer.where(creator_id: Auth.current_id).where.not(answer_id: nil)
+  Record.where(creator_id: Auth.current_id).where.not(record_id: nil)
 end
 
 def create_count restriction={}

@@ -1,11 +1,11 @@
-describe "research page from answer", ->
-  specify "existing answer journey", ->
+describe "research page from record", ->
+  specify "existing record journey", ->
     cy.login "sample@user.com", "sample_pass"
     cy.visit "Jedi+cost_of_planets_destroyed+Death_Star+1977"
-    cy.get("._research_answer_button").invoke('removeAttr', 'target').click()
+    cy.get("._research_record_button").invoke('removeAttr', 'target').click()
 
 
-    #    # year is already selected.  go to answer tab
+    #    # year is already selected.  go to record tab
     #    cy.contains("Select year").scrollIntoView().click()
 
     # check the breadcrumb
@@ -43,10 +43,10 @@ describe "research page from answer", ->
 
     cy.editor("value").find(".short-input").clear().type "54321"
 
-    cy.get("button").contains("Submit Answer").click()
+    cy.get("button").contains("Submit Record").click()
 
     cy.get(".research-record")
-      .should "contain", "Edit Answer"
+      .should "contain", "Edit Record"
       .should "contain", "Apple"
       .should "contain", "Star Wars"
       .should "contain", "54,321"

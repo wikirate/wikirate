@@ -60,11 +60,11 @@ class decko.FormulaEditor
     @ed.data "inputs", inputs
     @showInputs 0
     @runCalculations()
-    @updateAnswers()
+    @updateRecords()
 
   inputs: -> @ed.data "inputs"
 
-  updateAnswers: ->
+  updateRecords: ->
     i = @inputs()
     $("._ab-total").html i.total
     $("._ab-result-unknown").toggle i.unknown > 0

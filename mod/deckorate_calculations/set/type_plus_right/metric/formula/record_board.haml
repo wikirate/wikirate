@@ -2,22 +2,22 @@
   .record-board-help-text
     %p
       The
-      %strong Total answers
+      %strong Total records
       are determined by the variable metrics, their options, and the data currently
       available.
 
     %p
       %strong Unknown via options
-      refers to answers that return "Unknown" before even reaching the formula due to
+      refers to records that return "Unknown" before even reaching the formula due to
       the way the variable options are configured. For example, the default options
-      configuration is to return an "Unknown" answer if
+      configuration is to return an "Unknown" record if
       %em any
       of the input variables are unknown. In such cases, the formula is irrelevant.
 
     %p
       To test the formula, we take a sample of inputs based on the variable configuration.
       The
-      %strong Sampled answers
+      %strong Sampled records
       can then be used to see how the formula is working.
 
     %p
@@ -33,15 +33,15 @@
       result, like Infinity or a blank string.
       The
       %strong unknown
-      category refers to answers where the result value is literally the word "Unknown."
-      All other answers are considered
+      category refers to records where the result value is literally the word "Unknown."
+      All other records are considered
       %strong known.
 
 
 ._record-board.record-board
   .pb-2
     %strong._ab-total
-    Total answers
+    Total records
     = popover_link help_text
 
   .pb-2._ab-result-unknown

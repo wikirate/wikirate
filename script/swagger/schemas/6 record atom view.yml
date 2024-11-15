@@ -1,4 +1,4 @@
-answer_atom_view:
+record_atom_view:
   type: object
   properties:
     id:
