@@ -110,7 +110,7 @@ wikirate_cardtypes.each do |cardtype|
     }
   }
 
-  if plural_cardname == "Answers"
+  if plural_cardname == "Records"
     puts "working on special Answer paths"
 
     records_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
@@ -123,7 +123,7 @@ wikirate_cardtypes.each do |cardtype|
     mfieldget["parameters"] = records_params
     mfieldget["description"] = "Returns the answers of the specified metric."
     mfieldget["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
-      JSON.parse(File.read("./script/swagger/responses/200/Metric+Answers.json"))
+      JSON.parse(File.read("./script/swagger/responses/200/Metric+Records.json"))
 
     company_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
     company_answers_params.unshift("$ref" => "#/components/parameters/company")
@@ -134,7 +134,7 @@ wikirate_cardtypes.each do |cardtype|
     cfieldget["description"] = "Returns the answers of the specified company."
 
     cfieldget["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
-      JSON.parse(File.read("./script/swagger/responses/200/Company+Answers.json"))
+      JSON.parse(File.read("./script/swagger/responses/200/Company+Records.json"))
 
   end
   article = vowels.include?(cardtype_name[0]) ? "an" : "a"

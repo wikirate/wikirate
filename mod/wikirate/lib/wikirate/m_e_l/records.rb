@@ -1,66 +1,66 @@
 module Wikirate
   module MEL
-    # Answer methods in support of tracking details for
+    # Record methods in support of tracking details for
     # Monitoring, Evaluation, and Learning
-    module Answers
-      def answers
+    module Records
+      def records
         Answer
       end
 
       def calculations
-        answers_by_route :calculation
+        records_by_route :calculation
       end
 
       def import
-        answers_by_route :import
+        records_by_route :import
       end
 
       def direct
-        answers_by_route :direct
+        records_by_route :direct
       end
 
       def api
-        answers_by_route :api
+        records_by_route :api
       end
 
-      def answers_created
-        created { answers }
+      def records_created
+        created { records }
       end
 
       def calculations_created
-        created { answers_by_route :calculation }
+        created { records_by_route :calculation }
       end
 
       def import_created
-        created { answers_by_route :import }
+        created { records_by_route :import }
       end
 
       def direct_created
-        created { answers_by_route :direct }
+        created { records_by_route :direct }
       end
 
       def api_created
-        created { answers_by_route :api }
+        created { records_by_route :api }
       end
 
-      def answers_updated
-        updated { answers }
+      def records_updated
+        updated { records }
       end
 
-      def answers_community_verified
-        answers_by_verification :community_verified
+      def records_community_verified
+        records_by_verification :community_verified
       end
 
-      def answers_steward_verified
-        answers_by_verification :steward_verified
+      def records_steward_verified
+        records_by_verification :steward_verified
       end
 
-      def answers_checked
+      def records_checked
         verification_indexes = %i[community_verified steward_verified].map do |symbol|
           Answer.verification_index symbol
         end
 
-        answers.joins("join cards on left_id = answer_id")
+        records.joins("join cards on left_id = answer_id")
                .where("right_id = #{:checked_by.card_id}")
                .where("cards.updated_at > #{period_ago}")
                .where(verification: verification_indexes)
@@ -80,12 +80,12 @@ module Wikirate
 
       private
 
-      def answers_by_route symbol
-        answers.where route: Answer.route_index(symbol)
+      def records_by_route symbol
+        records.where route: Answer.route_index(symbol)
       end
 
-      def answers_by_verification symbol
-        answers.where verification: Answer.verification_index(symbol)
+      def records_by_verification symbol
+        records.where verification: Answer.verification_index(symbol)
       end
 
       def contributors

@@ -33,7 +33,7 @@ format :html do
   def answer_count_badge
     labeled_badge number_with_delimiter(answer_count),
                   icon_tag(:record),
-                  klass: "RIGHT-answer", title: "Answers"
+                  klass: "RIGHT-record", title: "Records"
   end
 
   def metric_count_badge
