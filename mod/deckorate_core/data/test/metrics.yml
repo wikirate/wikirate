@@ -24,7 +24,7 @@
     - more evil
   :type: :metric
   :fields:
-    :metric_type: Relationship
+    :metric_type: Relation
     :value_type: Category
     :value_options: |-
       yes
@@ -190,14 +190,14 @@
     - Has Brands
   :type: :metric
   :fields:
-    :metric_type: Relationship
+    :metric_type: Relation
     :inverse_title: Is Brand Of
 - :name:
     - Commons
     - Supplied by
   :type: :metric
   :fields:
-    :metric_type: Relationship
+    :metric_type: Relation
     :inverse_title: Supplier of
 
 - :name:

@@ -2,7 +2,7 @@ include_set Abstract::Export
 include_set Abstract::DetailedExport
 
 EXPORT_TYPES = {
-  Answers: :record,
+  Records: :record,
   Companies: :company,
   Metrics: :metric
 }.freeze
@@ -49,10 +49,10 @@ format :json do
   include ExportSearch
 
   view :compact, cache: :never do
-    each_answer_with_hash do |answer, hash|
-      hash[:companies][answer.company_id] ||= answer.company_name
-      hash[:metrics][answer.metric_id] ||= answer.metric_name
-      hash[:answers][answer.answer.flex_id] ||= answer.answer.compact_json
+    each_record_with_hash do |record, hash|
+      hash[:companies][record.company_id] ||= record.company_name
+      hash[:metrics][record.metric_id] ||= record.metric_name
+      hash[:records][record.record.flex_id] ||= record.record.compact_json
     end
   end
 
@@ -67,11 +67,11 @@ format :json do
     end
   end
 
-  view :answer_list, cache: :never do
+  view :record_list, cache: :never do
     lookup_relation.map(&:compact_json)
   end
 
-  view :keyed_answer_list, cache: :never do
+  view :keyed_record_list, cache: :never do
     lookup_relation.map { |a| a.compact_json.merge key: a.name.url_key }
   end
 
@@ -79,7 +79,7 @@ format :json do
     {
       companies: render_company_list,
       metrics: render_metric_list,
-      answers: render_answer_list
+      records: render_record_list
     }
   end
 
@@ -105,17 +105,17 @@ format :json do
     end
   end
 
-  def answer_array hash
-    hash[:answers] = hash[:answers].each_with_object([]) do |(key, val), array|
+  def record_array hash
+    hash[:records] = hash[:records].each_with_object([]) do |(key, val), array|
       array << val.merge(id: key)
     end
   end
 
-  def each_answer_with_hash
+  def each_record_with_hash
     search_with_params.each_with_object(
-      companies: {}, metrics: {}, answers: {}
-    ) do |answer, hash|
-      yield answer, hash
+      companies: {}, metrics: {}, records: {}
+    ) do |record, hash|
+      yield record, hash
     end
   end
 
@@ -132,7 +132,7 @@ format :csv do
   view :titles do
     case export_type
     when :record
-      Answer.csv_titles detailed?
+      Record.csv_titles detailed?
     else
       nest export_type, view: :titles
     end

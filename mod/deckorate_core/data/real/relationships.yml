@@ -1,17 +1,17 @@
 ---
 - :name: inverse
   :codename: inverse
-- :name: Inverse Relationship
+- :name: Inverse Relation
   :type: :metric_type_type
-  :codename: inverse_relationship
+  :codename: inverse_relation
 - :name: inverse title
   :codename: inverse_title
-- :name: Relationship
+- :name: Relation
   :type: :metric_type_type
-  :codename: relationship
-- :name: Relationship Answer
+  :codename: relation
+- :name: Relationship
   :type: :cardtype
-  :codename: relationship_answer
+  :codename: relationship
 - :name: related company
   :codename: related_company
 

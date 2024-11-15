@@ -10,7 +10,7 @@ def num_possible
   @num_possible ||= num_possible_records * year_multiplier
 end
 
-# used to calculate possible records/answers
+# used to calculate possible records/records
 def year_multiplier
   @year_multiplier ||= years? ? num_years : 1
 end
@@ -37,11 +37,11 @@ def num_years
 end
 
 # def num_users
-#   @num_users ||= answers.select(:creator_id).uniq.count
+#   @num_users ||= records.select(:creator_id).uniq.count
 # end
 
-def num_answers
-  @num_answers ||= type_count :record
+def num_records
+  @num_records ||= type_count :record
 end
 
 def num_data_subsets

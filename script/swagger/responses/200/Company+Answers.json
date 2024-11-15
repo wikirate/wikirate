@@ -1,6 +1,6 @@
 {
   "id": null,
-  "name": "Microsoft Corporation+Answers",
+  "name": "Microsoft Corporation+Records",
   "type": {
     "id": 30,
     "name": "Search",
@@ -8,12 +8,12 @@
     "url": "https://wikirate.org/Search.json",
     "codename": "search_type"
   },
-  "url": "https://wikirate.org/Microsoft_Corporation+Answers.json",
+  "url": "https://wikirate.org/Microsoft_Corporation+Records.json",
   "items": [
     {
       "id": 15525696,
       "name": "World Benchmarking Alliance+Industry+Microsoft Corporation+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/World_Benchmarking_Alliance+Industry+Microsoft_Corporation+2023.json",
       "content": "",
       "metric": "World Benchmarking Alliance+Industry",
@@ -26,7 +26,7 @@
     {
       "id": 15533963,
       "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)",
@@ -39,7 +39,7 @@
     {
       "id": 15533967,
       "name": "Global Reporting Initiative+Indirect greenhouse gas (GHG) emissions (Scope 2), GRI 305-2 (formerly G4-EN16-a)+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Global_Reporting_Initiative+Indirect_greenhouse_gas_GHG_emissions_Scope_2_GRI_305_2_formerly_G4_EN16_a+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Global Reporting Initiative+Indirect greenhouse gas (GHG) emissions (Scope 2), GRI 305-2 (formerly G4-EN16-a)",
@@ -52,7 +52,7 @@
     {
       "id": 15533808,
       "name": "Core+Company Report Available+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Core+Company_Report_Available+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Core+Company Report Available",
@@ -65,7 +65,7 @@
     {
       "id": 15533983,
       "name": "Core+Employee+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Core+Employee+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Core+Employee",
@@ -78,7 +78,7 @@
     {
       "id": 14548144,
       "name": "Business & Human Rights Resource Centre+Modern Slavery Statement+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Business_Human_Rights_Resource_Centre+Modern_Slavery_Statement+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Business & Human Rights Resource Centre+Modern Slavery Statement",
@@ -91,7 +91,7 @@
     {
       "id": 15533971,
       "name": "Global Reporting Initiative+Indirect greenhouse gas (GHG) emissions (Scope 3), GRI 305-3 (formerly G4-EN17-a)+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Global_Reporting_Initiative+Indirect_greenhouse_gas_GHG_emissions_Scope_3_GRI_305_3_formerly_G4_EN17_a+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Global Reporting Initiative+Indirect greenhouse gas (GHG) emissions (Scope 3), GRI 305-3 (formerly G4-EN17-a)",
@@ -104,7 +104,7 @@
     {
       "id": 15533987,
       "name": "Global Reporting Initiative+Total energy consumption, GRI 302-1-e (formerly G4-EN3-e)+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Global_Reporting_Initiative+Total_energy_consumption_GRI_302_1_e_formerly_G4_EN3_e+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Global Reporting Initiative+Total energy consumption, GRI 302-1-e (formerly G4-EN3-e)",
@@ -117,7 +117,7 @@
     {
       "id": 14548324,
       "name": "Business & Human Rights Resource Centre+MSA homepage link+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Business_Human_Rights_Resource_Centre+MSA_homepage_link+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Business & Human Rights Resource Centre+MSA homepage link",
@@ -130,7 +130,7 @@
     {
       "id": 15533996,
       "name": "Global Reporting Initiative+Fuel consumption from renewable sources, GRI 302-1-b (formerly G4-EN3-b)+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Global_Reporting_Initiative+Fuel_consumption_from_renewable_sources_GRI_302_1_b_formerly_G4_EN3_b+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Global Reporting Initiative+Fuel consumption from renewable sources, GRI 302-1-b (formerly G4-EN3-b)",
@@ -143,7 +143,7 @@
     {
       "id": 14548195,
       "name": "Walk Free+MSA Identification of risks+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Walk_Free+MSA_Identification_of_risks+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Walk Free+MSA Identification of risks",
@@ -156,7 +156,7 @@
     {
       "id": 14548167,
       "name": "Walk Free+MSA supply chain disclosure+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Walk_Free+MSA_supply_chain_disclosure+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Walk Free+MSA supply chain disclosure",
@@ -169,7 +169,7 @@
     {
       "id": 13176339,
       "name": "Ranking Digital Rights+RDR Total Score+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Ranking_Digital_Rights+RDR_Total_Score+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Ranking Digital Rights+RDR Total Score",
@@ -182,7 +182,7 @@
     {
       "id": 14548176,
       "name": "Walk Free+MSA policy (revised)+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Walk_Free+MSA_policy_revised+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Walk Free+MSA policy (revised)",
@@ -195,7 +195,7 @@
     {
       "id": 13176532,
       "name": "Ranking Digital Rights+Privacy Score+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Ranking_Digital_Rights+Privacy_Score+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Ranking Digital Rights+Privacy Score",
@@ -208,7 +208,7 @@
     {
       "id": 14548180,
       "name": "Walk Free+MSA risk assessment+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Walk_Free+MSA_risk_assessment+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Walk Free+MSA risk assessment",
@@ -221,7 +221,7 @@
     {
       "id": 14548148,
       "name": "Business & Human Rights Resource Centre+MSA statement signed+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Business_Human_Rights_Resource_Centre+MSA_statement_signed+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Business & Human Rights Resource Centre+MSA statement signed",
@@ -234,7 +234,7 @@
     {
       "id": 14548258,
       "name": "Walk Free+MSA incidents identified+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Walk_Free+MSA_incidents_identified+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Walk Free+MSA incidents identified",
@@ -247,7 +247,7 @@
     {
       "id": 14548275,
       "name": "Walk Free+MSA Performance Indicators+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Walk_Free+MSA_Performance_Indicators+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Walk Free+MSA Performance Indicators",
@@ -260,7 +260,7 @@
     {
       "id": 14548155,
       "name": "Business & Human Rights Resource Centre+MSA Statement Approval+Microsoft Corporation+2022",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Business_Human_Rights_Resource_Centre+MSA_Statement_Approval+Microsoft_Corporation+2022.json",
       "content": "",
       "metric": "Business & Human Rights Resource Centre+MSA Statement Approval",
@@ -283,17 +283,17 @@
     },
     {
       "id": 43678,
-      "name": "Answer",
+      "name": "Record",
       "type": "Cardtype",
-      "url": "https://wikirate.org/Answer.json",
+      "url": "https://wikirate.org/Record.json",
       "codename": "record"
     }
   ],
-  "html_url": "https://wikirate.org/Microsoft_Corporation+Answers",
+  "html_url": "https://wikirate.org/Microsoft_Corporation+Records",
   "created_at": null,
   "updated_at": null,
   "paging": {
-    "next": "https://wikirate.org/Microsoft_Corporation+Answers.json?filter%5Bmetric_name%5D=&item=name&limit=20&offset=20"
+    "next": "https://wikirate.org/Microsoft_Corporation+Records.json?filter%5Bmetric_name%5D=&item=name&limit=20&offset=20"
   },
   "requested_at": "2023-09-29 12:59:55 UTC",
   "license": "Creative Commons Attribution-ShareAlike 4.0 International License"

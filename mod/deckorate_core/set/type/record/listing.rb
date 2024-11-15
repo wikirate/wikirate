@@ -5,7 +5,7 @@ format :html do
   view :bar_left, template: :haml
 
   # TODO: make an Abstract Library for handling these fancy company and metric thumbnails
-  # (Eg we need them on Answer searches)
+  # (Eg we need them on Record searches)
   view :company_thumbnail, unknown: true do
     # %i[headquarters identifiers_list].each do |view|
     #   args[:show] << view if voo.explicit_show? view

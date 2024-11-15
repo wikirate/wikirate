@@ -1,5 +1,5 @@
-# cache # of metrics with answers for this company (=left)
-include_set Abstract::AnswerLookupCachedCount, target_type: :metric
+# cache # of metrics with records for this company (=left)
+include_set Abstract::RecordLookupCachedCount, target_type: :metric
 
 assign_type :record_log
 
@@ -14,13 +14,13 @@ end
 
 # # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
-  changed_card.left.fetch(:company).answer_query
+  changed_card.left.fetch(:company).record_query
               .pluck(:company_id).map do |company_id|
     company_id.card.fetch :metric
   end
 end
 
-# ...or when answer is (un)published
+# ...or when record is (un)published
 field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
   changed_card.left.company_card&.fetch :metric
 end

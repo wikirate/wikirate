@@ -2,7 +2,7 @@
   .specification-type
     .implicit-spec.p-1.ms-5.pt-3
       = radio_button_tag "spec-type", "implicit", !card.explicit?, form: :ignore
-      = label_tag "spec-type", "Implicit, via answer constraints", value: "implicit"
+      = label_tag "spec-type", "Implicit, via record constraints", value: "implicit"
     .explicit-spec.p-1.ms-5
       = radio_button_tag "spec-type", "explicit", card.explicit?, form: :ignore
       = label_tag "spec-type", "Explicit, via direct selection", value: "explicit"

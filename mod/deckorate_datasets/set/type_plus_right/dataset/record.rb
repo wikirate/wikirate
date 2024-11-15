@@ -17,21 +17,21 @@ end
   end
 end
 
-# ...or when answer is changed (created, deleted, renamed)
+# ...or when record is changed (created, deleted, renamed)
 recount_trigger :type, :record do |changed_card|
-  dataset_answer_cards changed_card
+  dataset_record_cards changed_card
 end
 
-# ...or when metric or answer is (un)published
+# ...or when metric or record is (un)published
 %i[metric record].each do |type|
   field_recount_trigger :type_plus_right, type, :unpublished do |changed_card|
-    dataset_answer_cards changed_card.left
+    dataset_record_cards changed_card.left
   end
 end
 
 private
 
-def self.dataset_answer_cards base
+def self.dataset_record_cards base
   base.dataset_card.item_cards.each(&:record_card)
 end
 

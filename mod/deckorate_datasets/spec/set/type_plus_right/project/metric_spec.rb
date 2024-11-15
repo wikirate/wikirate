@@ -11,7 +11,7 @@ describe Card::Set::TypePlusRight::Project::Metric do
     end
 
     it "includes research buttons" do
-      is_expected.to have_tag("a.research-answer-button")
+      is_expected.to have_tag("a.research-record-button")
     end
 
     it "includes progress bars" do

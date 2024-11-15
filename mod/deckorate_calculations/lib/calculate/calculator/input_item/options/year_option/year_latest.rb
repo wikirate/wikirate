@@ -17,7 +17,7 @@ class Calculate
               all_years
             end
 
-            def answer_query
+            def record_query
               super.merge latest: true
             end
           end

@@ -1,5 +1,5 @@
 # cache # of companies with values for metric (=_left)
-include_set Abstract::AnswerLookupCachedCount, target_type: :company
+include_set Abstract::RecordLookupCachedCount, target_type: :company
 
 def query_hash
   { metric_id: left_id }
@@ -16,7 +16,7 @@ field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
   changed_card.left.fetch :company
 end
 
-# ...or when answer is (un)published
+# ...or when record is (un)published
 field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
   changed_card.left.metric_card.fetch :company
 end

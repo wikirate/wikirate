@@ -1,39 +1,39 @@
 RSpec.describe Card::Set::TypePlusRight::Record::Source do
   let(:source) { sample_source }
-  let(:source_card) { new_answer.source_card }
+  let(:source_card) { new_record.source_card }
   let(:metric) { sample_metric }
   let(:company) { sample_company }
 
-  def new_answer args={}
+  def new_record args={}
     args.reverse_merge! value: "1234", year: "2015", source: source.name
-    create_answer args
+    create_record args
   end
 
-  describe "answer creation" do
+  describe "record creation" do
     it "includes source in +source" do
       expect(source_card.item_names).to include(source.name)
     end
 
     it "updates source's company" do
-      new_answer
+      new_record
       source_company = source.fetch :company
       expect(source_company.item_cards).to include(company)
     end
 
     it "updates source's report type" do
-      new_answer
+      new_record
       source_report_type = source.fetch :report_type
       expect(source_report_type.item_names)
         .to include("Conflict Mineral Report")
     end
 
     it "fails with a non-existing source" do
-      expect(build_answer(source: "Page-1"))
+      expect(build_record(source: "Page-1"))
         .to be_invalid.because_of("+Source": include("No such source exists"))
     end
 
     it "fails if source card cannot be created" do
-      expect(build_answer(source: nil))
+      expect(build_record(source: nil))
         .to be_invalid.because_of(source: include("required"))
     end
 
@@ -41,7 +41,7 @@ RSpec.describe Card::Set::TypePlusRight::Record::Source do
       let(:url) { "https://xkcd.com/1735/" }
 
       it "adds source when explicitly triggered to do so" do
-        a = new_answer source: { content: url, trigger_in_action: :auto_add_source },
+        a = new_record source: { content: url, trigger_in_action: :auto_add_source },
                        user: "Joe Admin"
         # shouldn't have to be Joe Admin.
         # It avoids permissions issue having to do with User+Source+Badges Earned
@@ -52,7 +52,7 @@ RSpec.describe Card::Set::TypePlusRight::Record::Source do
       end
 
       it "fails when not triggered to auto-add" do
-        expect(build_answer(source: url))
+        expect(build_record(source: url))
           .to be_invalid.because_of("+Source": include("requires event configuration"))
       end
     end

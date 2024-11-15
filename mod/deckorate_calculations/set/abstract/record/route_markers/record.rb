@@ -4,7 +4,7 @@ format :html do
   end
 
   def overridden_marker_icon
-    wrap_with :span, class: "overridden-icon", title: "Overridden calculated answer" do
+    wrap_with :span, class: "overridden-icon", title: "Overridden calculated record" do
       [icon_tag(:user), icon_tag(:calculator, class: "text-danger")]
     end
   end
