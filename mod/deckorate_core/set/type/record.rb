@@ -7,11 +7,11 @@ attr_writer :answer
 card_accessor :checked_by, type: :list
 card_accessor :source, type: :list
 
-event :delete_answer_lookup, :finalize, on: :delete do
+event :delete_record_lookup, :finalize, on: :delete do
   Answer.delete_for_card id
 end
 
-event :refresh_answer_lookup, :finalize, on: :save do
+event :refresh_record_lookup, :finalize, on: :save do
   answer.card = self
   answer.refresh
 end
@@ -29,7 +29,7 @@ def answer
 end
 
 def virtual?
-  new? && (!answer.new_record? || metric_card&.relationship?)
+  new? && (!answer.new_record? || metric_card&.relation?)
 end
 
 def content

@@ -4,7 +4,7 @@ delegate :steward_ids, :steward?, to: :metric_card
 def verification
   if researched_value?
     checked_by_card&.verification || researched_verification
-  elsif relationship?
+  elsif relation?
     1 # hard-code unverified for now
   else
     calculated_verification
@@ -21,7 +21,7 @@ def researched_verification_symbol
 end
 
 def calculated_verification
-  direct_dependee_answers.map(&:verification).compact.min || 1
+  direct_dependee_records.map(&:verification).compact.min || 1
 end
 
 def steward_added?

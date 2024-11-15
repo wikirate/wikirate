@@ -1,7 +1,7 @@
 class Card
   class AllRecordQuery
     # handles the application of filters to the cards table
-    # (as opposed to the answers lookup table.
+    # (as opposed to the records lookup table.
     # that handling is in RecordQuery::Filtering)
     module AllFiltering
       PARTNER_FILTER_QUERY = {
@@ -58,7 +58,7 @@ class Card
         add_card_condition CompanyFilterCql.send(condition_method), Array.wrap(value)
       end
 
-      # map answer fields to partner card fields
+      # map record fields to partner card fields
       def partner_field_map
         @partner_field_map ||= %i[id name].each_with_object({}) do |fld, hash|
           hash["#{partner}_#{fld}".to_sym] = fld

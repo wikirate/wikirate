@@ -1,6 +1,6 @@
 .filter-result-badges.flex.flex-wrap
   = answer_count_badge :record
-  - unless all_answer?
+  - unless all_record?
     - if show_company_count?
       = answer_count_badge :company
     - if show_metric_count?

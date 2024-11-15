@@ -27,7 +27,7 @@ event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
   field :wikipedia
 end
 
-event :delete_all_company_answers, :store, on: :delete do
+event :delete_all_company_records, :store, on: :delete do
   answers.delete_all
   skip_event! :schedule_answer_counts,
               :update_related_calculations,
@@ -52,21 +52,21 @@ end
 def answers args={}
   args[:company_id] = id
   normalize_metric_arg args
-  Answer.where args
+  ::Answer.where args
 end
 
 # @return [Relationship::ActiveRecord_Relation]
 def relationships args={}
   args[:subject_company_id] = id
   normalize_metric_arg args
-  Relationship.where args
+  ::Relationship.where args
 end
 
 # @return [Relationship::ActiveRecord_Relation]
 def inverse_relationships args={}
   args[:object_company_id] = id
   normalize_metric_arg args
-  Relationship.where args
+  ::Relationship.where args
 end
 
 # @return [Array] of Cards

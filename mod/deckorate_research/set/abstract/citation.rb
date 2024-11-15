@@ -54,7 +54,7 @@ def tag_with_report_type source_card
   add_trait_to_source source_card, :report_type, report_types
 end
 
-# note: company names overridden in answer and relationship_answer
+# note: company names overridden in answer and relationship
 def tag_with_company source_card
   return if source_card.company_card.count >= 100
 

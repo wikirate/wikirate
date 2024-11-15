@@ -1,4 +1,4 @@
-relationship_answer_atom_view:
+relationship_atom_view:
   type: object
   properties:
     id:
@@ -12,7 +12,7 @@ relationship_answer_atom_view:
       example: "https://wikirate.org/Commons+Supplied_By+Aldi_Sud+2020+Wenling_Mingshi_Hats_Co_Ltd.json?view=atom"
     type:
       type: string
-      example: "Relationship Answer"
+      example: "Relationship"
     content:
       type: string
       example: ''

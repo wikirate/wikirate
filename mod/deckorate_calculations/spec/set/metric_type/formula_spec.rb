@@ -238,7 +238,7 @@ RSpec.describe Card::Set::MetricType::Formula do
       end
       it "creates calculated value if missing value is added" do
         Card::Auth.as_bot do
-          Card["Joe User+researched number 2"].create_answer(
+          Card["Joe User+researched number 2"].create_record(
             company: "Death Star",
             year: "1977",
             value: "2",

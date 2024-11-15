@@ -104,7 +104,7 @@ RSpec.describe Card::Set::MetricType::Rating do
       end
       it "creates rating value if missing value is added" do
         Card::Auth.as_bot do
-          Card["Joe User+researched number 2"].create_answer(
+          Card["Joe User+researched number 2"].create_record(
             company: "Death Star",
             year: "1977",
             value: "2",

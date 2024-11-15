@@ -9,7 +9,7 @@ describe "research page from answer", ->
     #    cy.contains("Select year").scrollIntoView().click()
 
     # check the breadcrumb
-    crumb = cy.get ".answer-breadcrumb"
+    crumb = cy.get ".record-breadcrumb"
     crumb.should "contain", "1977"
     crumb.should "contain", "Death Star"
     crumb.should "contain", "cost of planets destroyed"
@@ -45,7 +45,7 @@ describe "research page from answer", ->
 
     cy.get("button").contains("Submit Answer").click()
 
-    cy.get(".research-answer")
+    cy.get(".research-record")
       .should "contain", "Edit Answer"
       .should "contain", "Apple"
       .should "contain", "Star Wars"

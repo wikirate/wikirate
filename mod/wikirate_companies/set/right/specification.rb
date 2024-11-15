@@ -47,8 +47,8 @@ end
 def implicit_item_ids
   return [] unless implicit? && constraints.present?
 
-  CompanyFilterCql # make sure company_answer attribute is loaded
-  Card.search company_answer: constraints, return: :name
+  CompanyFilterCql # make sure company_record attribute is loaded
+  Card.search company_record: constraints, return: :name
 end
 
 def standardize_content content
@@ -61,7 +61,7 @@ def standardize_content content
 end
 
 def content_from_params
-  cont = Env.params.dig :filter, :company_answer
+  cont = Env.params.dig :filter, :company_record
   cont = cont.values if cont && !cont.is_a?(Array)
   cont&.map { |c| Env.hash c }
 end

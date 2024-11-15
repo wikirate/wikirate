@@ -19,7 +19,7 @@ input.short-input[type=text] {
   border-bottom: 1px solid $gray-300;
 }
 
-.research-layout .tab-pane-answer_phase .card-form .form-group, .read-form-group {
+.research-layout .tab-pane-record_phase .card-form .form-group, .read-form-group {
   display: flex;
   margin: 1rem 0;
 
@@ -54,7 +54,7 @@ input.short-input[type=text] {
   }
 }
 
-.research-layout .tab-pane-answer_phase .card-form, .read_form_with_button-view {
+.research-layout .tab-pane-record_phase .card-form, .read_form_with_button-view {
 
   .button-form-group {
     margin-left: calc(30%);
@@ -76,7 +76,7 @@ input.short-input[type=text] {
   border-radius: 10px;
 }
 
-#main section.research-answer {
+#main section.research-record {
   padding: 0;
 }
 
@@ -157,10 +157,10 @@ input.short-input[type=text] {
     background-color: $primary;
     color: $white;
   }
-  .answer-breadcrumb-link:hover {
+  .record-breadcrumb-link:hover {
     text-decoration: none;
   }
-  .answer-breadcrumb {
+  .record-breadcrumb {
     background-color: $gray-200;
     color: $gray-800;
     border-radius: 5px;

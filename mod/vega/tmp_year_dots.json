@@ -7,12 +7,12 @@
 
   "data": [
     {
-      "name": "answers",
-      "url": "http://localhost:3000/Answer/answer_list.json?limit=0"
+      "name": "records",
+      "url": "http://localhost:3000/Answer/record_list.json?limit=0"
     },
     {
       "name": "counts",
-      "source": "answers",
+      "source": "records",
 
       "transform": [
         { "type": "aggregate", "ops": ["distinct", "distinct","count"], "fields": ["company", "metric", "id"], "groupby": ["year"], "as": ["companies", "metrics", "answers"] }

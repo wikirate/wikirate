@@ -316,7 +316,7 @@
   - researched number 1
   - Apple Inc.
   - '2002'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '100'
     :source: Source-000000001
@@ -325,7 +325,7 @@
   - researched number 1
   - Apple Inc.
   - '2015'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '100'
     :source: Source-000000001
@@ -334,7 +334,7 @@
   - researched number 1
   - Death Star
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '5'
     :source: Source-000000001
@@ -343,7 +343,7 @@
   - researched number 1
   - Sony Corporation
   - '2014'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '1'
     :source: Source-000000001
@@ -352,7 +352,7 @@
   - researched number 1
   - Samsung
   - '2015'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '5'
     :source: Source-000000001
@@ -361,7 +361,7 @@
   - researched number 1
   - Samsung
   - '2014'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '10'
     :source: Source-000000001
@@ -370,7 +370,7 @@
   - Victims by Employees
   - Samsung
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: Unknown
     :source: Source-000000001
@@ -379,7 +379,7 @@
   - Victims by Employees
   - Slate Rock and Gravel Company
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: "-0.01"
     :source: Source-000000001
@@ -388,7 +388,7 @@
   - Victims by Employees
   - Monster Inc
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '0.001'
     :source: Source-000000001
@@ -397,7 +397,7 @@
   - Victims by Employees
   - Los Pollos Hermanos
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '0.002'
     :source: Source-000000001
@@ -406,7 +406,7 @@
   - Victims by Employees
   - Death Star
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '0.31'
     :source: Source-000000001
@@ -415,7 +415,7 @@
   - Victims by Employees
   - SPECTRE
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '5.3'
     :source: Source-000000001
@@ -424,7 +424,7 @@
   - deadliness
   - Samsung
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: Unknown
     :source: Source-000000004
@@ -433,7 +433,7 @@
   - deadliness
   - Slate Rock and Gravel Company
   - '2005'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '10'
     :source: Source-000000004
@@ -442,7 +442,7 @@
   - deadliness
   - Slate Rock and Gravel Company
   - '2004'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '9'
     :source: Source-000000004
@@ -451,7 +451,7 @@
   - deadliness
   - Slate Rock and Gravel Company
   - '2003'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '8'
     :source: Source-000000004
@@ -460,7 +460,7 @@
   - deadliness
   - Slate Rock and Gravel Company
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '20'
     :source: Source-000000004
@@ -469,7 +469,7 @@
   - deadliness
   - Los Pollos Hermanos
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '40'
     :source: Source-000000004
@@ -478,7 +478,7 @@
   - deadliness
   - SPECTRE
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '50'
     :source: Source-000000004
@@ -487,7 +487,7 @@
   - deadliness
   - Death Star
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '100'
     :source: Source-000000004
@@ -496,7 +496,7 @@
   - cost of planets destroyed
   - Death Star
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: '200'
     :source: Source-000000004
@@ -505,7 +505,7 @@
   - Sith Lord in Charge
   - Death Star
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: Darth Sidious
     :source: Source-000000004
@@ -514,7 +514,7 @@
   - dinosaurlabor
   - Death Star
   - '2000'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'yes'
     :source: Source-000000001
@@ -523,7 +523,7 @@
   - dinosaurlabor
   - Death Star
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'no'
     :source: Source-000000001
@@ -532,7 +532,7 @@
   - dinosaurlabor
   - Monster Inc
   - '2000'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'no'
     :source: Source-000000001
@@ -541,7 +541,7 @@
   - dinosaurlabor
   - Monster Inc
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'no'
     :source: Source-000000001
@@ -550,7 +550,7 @@
   - dinosaurlabor
   - Slate Rock and Gravel Company
   - '2000'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'yes'
     :source: Source-000000001
@@ -559,7 +559,7 @@
   - dinosaurlabor
   - Slate Rock and Gravel Company
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'yes'
     :source: Source-000000001
@@ -568,7 +568,7 @@
   - disturbances in the Force
   - SPECTRE
   - '2000'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'no'
     :source: Source-000000004
@@ -577,7 +577,7 @@
   - disturbances in the Force
   - Slate Rock and Gravel Company
   - '2005'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'no'
     :source: Source-000000004
@@ -586,7 +586,7 @@
   - disturbances in the Force
   - Slate Rock and Gravel Company
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'no'
     :source: Source-000000004
@@ -595,7 +595,7 @@
     - disturbances in the Force
     - Slate Rock and Gravel Company
     - '2006'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: Unknown
     :source: Source-000000004
@@ -604,7 +604,7 @@
   - disturbances in the Force
   - Monster Inc
   - '2000'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'yes'
     :source: Source-000000004
@@ -613,7 +613,7 @@
   - disturbances in the Force
   - Monster Inc
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'no'
     :source: Source-000000004
@@ -622,7 +622,7 @@
   - disturbances in the Force
   - Death Star
   - '2001'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'yes'
     :source: Source-000000004
@@ -631,7 +631,7 @@
   - disturbances in the Force
   - Death Star
   - '2000'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'yes'
     :source: Source-000000004
@@ -640,7 +640,7 @@
   - disturbances in the Force
   - Death Star
   - '1977'
-  :type: :metric_answer
+  :type: :record
   :fields:
     :value: 'yes'
     :source: Source-000000004
@@ -649,7 +649,7 @@
 #  - Fuel consumption from non-renewable sources (G4-EN3-a)
 #  - AT&T Inc.
 #  - '2016'
-#  :type: :metric_answer
+#  :type: :record
 #  :fields:
 #    :value: Unknown
 #    :discussion: "<hr>\r\n<p><span>It has disappeared from the 2016 data report that
