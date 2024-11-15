@@ -116,7 +116,7 @@ format :html do
       value: card.send("percent_#{value}"),
       body: progress_section_body(value, link_method, num),
       class: progress_section_css_class(value),
-      title: "#{HOVER_TEXT[value]} #{units}"
+      title: HOVER_TEXT[value]
     }
   end
 

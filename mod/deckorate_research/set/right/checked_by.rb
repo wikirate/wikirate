@@ -73,7 +73,7 @@ def option_names
 end
 
 def answer_card
-  @answer_card ||= left new: { type_id: Card::MetricAnswerID }
+  @answer_card ||= left new: { type_id: Card::RecordID }
 end
 
 def answer

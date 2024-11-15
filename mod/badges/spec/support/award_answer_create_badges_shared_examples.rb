@@ -1,5 +1,5 @@
 shared_examples "create badges" do |threshold, badge_name|
-  let(:badge_type) { :metric_answer }
+  let(:badge_type) { :record }
   let(:badge) { badge_name }
 
   include_context "award badges context", threshold

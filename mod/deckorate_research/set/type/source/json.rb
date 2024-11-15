@@ -12,7 +12,7 @@ format :json do
   end
 
   def molecule_fields
-    atom_fields + %i[description discussion company metric metric_answer]
+    atom_fields + %i[description discussion company metric record]
   end
 
   def fields_with_view fields, view

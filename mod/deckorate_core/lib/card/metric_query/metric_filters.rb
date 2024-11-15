@@ -1,6 +1,6 @@
 class Card
   class MetricQuery
-    # metric-related filters (also used by AnswerQuery)
+    # metric-related filters (also used by RecordQuery)
     module MetricFilters
       def filter_by_topic value
         restrict_by_cql(

@@ -11,7 +11,7 @@ include_set Abstract::Bookmarkable
 include_set Abstract::SearchContentFields
 
 card_accessor :alias, type: :list
-card_accessor :metric_answer, type: :search_type
+card_accessor :record, type: :search_type
 card_accessor :metric, type: :search_type
 card_accessor :image
 card_accessor :incorporation

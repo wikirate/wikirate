@@ -1,7 +1,7 @@
 # name pattern: Metric+Subject Company+Year+Object Company
 
 include_set Abstract::MetricChild, generation: 3
-include_set Abstract::MetricAnswer
+include_set Abstract::Record
 include_set Abstract::DesignerPermissions
 include_set Abstract::Lookup
 include_set Abstract::LookupEvents
@@ -20,7 +20,7 @@ event :ensure_simple_answers, after: :prepare_left_and_right, on: :save do
     # TODO: this shouldn't be necessary.
     # default type_id should be based on ltype rtype set
     # (but good to make sure the simple cards are there regardless)
-    card.type_id = MetricAnswerID
+    card.type_id = RecordID
     subcard card if card.type_id_changed?
   end
 end
@@ -100,7 +100,7 @@ def inverse_answer_card
 end
 
 def answer_card_fetch name
-  Card.fetch name, new: { type: :metric_answer, fields: { value: "1" } }
+  Card.fetch name, new: { type: :record, fields: { value: "1" } }
 end
 
 def inverse_answer_id
