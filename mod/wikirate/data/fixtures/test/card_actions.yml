@@ -48447,3 +48447,211 @@ card_actions_6056:
   action_type: 1
   draft: 0
   comment:
+card_actions_6057:
+  id: 12983
+  card_id: 288
+  card_act_id: 110791
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment: logo.svg
+card_actions_6058:
+  id: 12984
+  card_id: 356
+  card_act_id: 110792
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6059:
+  id: 12985
+  card_id: 444
+  card_act_id: 110793
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6060:
+  id: 12986
+  card_id: 495
+  card_act_id: 110794
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6061:
+  id: 12987
+  card_id: 496
+  card_act_id: 110795
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6062:
+  id: 12988
+  card_id: 496
+  card_act_id: 110797
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6063:
+  id: 12989
+  card_id:
+  card_act_id: 110798
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6064:
+  id: 12990
+  card_id: 1493
+  card_act_id: 110798
+  super_action_id: 12989
+  action_type: 1
+  draft: 0
+  comment: guide_example.png
+card_actions_6065:
+  id: 12991
+  card_id: 818
+  card_act_id: 110799
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6066:
+  id: 12992
+  card_id: 495
+  card_act_id: 110800
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6067:
+  id: 12993
+  card_id:
+  card_act_id: 110802
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6068:
+  id: 12994
+  card_id: 1168
+  card_act_id: 110802
+  super_action_id: 12993
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6069:
+  id: 12995
+  card_id: 356
+  card_act_id: 110803
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6070:
+  id: 12996
+  card_id:
+  card_act_id: 110804
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6071:
+  id: 12997
+  card_id: 1168
+  card_act_id: 110804
+  super_action_id: 12996
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6072:
+  id: 12998
+  card_id: 444
+  card_act_id: 110805
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6073:
+  id: 12999
+  card_id: 288
+  card_act_id: 110806
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment: logo.png
+card_actions_6074:
+  id: 13000
+  card_id: 818
+  card_act_id: 110807
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6075:
+  id: 13001
+  card_id:
+  card_act_id: 110808
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6076:
+  id: 13002
+  card_id: 3993
+  card_act_id: 110808
+  super_action_id: 13001
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6077:
+  id: 13003
+  card_id: 3996
+  card_act_id: 110808
+  super_action_id: 13001
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6078:
+  id: 13004
+  card_id: 3997
+  card_act_id: 110808
+  super_action_id: 13001
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6079:
+  id: 13005
+  card_id:
+  card_act_id: 110810
+  super_action_id:
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6080:
+  id: 13006
+  card_id: 3996
+  card_act_id: 110810
+  super_action_id: 13005
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6081:
+  id: 13007
+  card_id: 3997
+  card_act_id: 110810
+  super_action_id: 13005
+  action_type: 1
+  draft: 0
+  comment:
+card_actions_6082:
+  id: 13008
+  card_id: 3993
+  card_act_id: 110810
+  super_action_id: 13005
+  action_type: 1
+  draft: 0
+  comment:
