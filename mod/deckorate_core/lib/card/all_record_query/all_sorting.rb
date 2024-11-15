@@ -1,6 +1,6 @@
 class Card
   class AllRecordQuery
-    # handles "answer" sorting in the cards table for AllRecordQuery searches
+    # handles "record" sorting in the cards table for AllRecordQuery searches
     module AllSorting
       private
 

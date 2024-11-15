@@ -9,7 +9,7 @@ format :json do
 
   view :odyssey do
     options = { filter: { year: "latest", metric_type: "Researched" }, limit: 5 }
-    data = format_odyssey_answer(odyssey_lookup_search(:record, options))
+    data = format_odyssey_record(odyssey_lookup_search(:record, options))
     {
       name: card.name,
       os_id: card.oar_id,
@@ -60,15 +60,15 @@ format :json do
     ).limit(10).all
   end
 
-  def format_odyssey_relationships answers
+  def format_odyssey_relationships records
     items = []
-    answers.each do |answer|
-      items.append metric: answer.metric.name,
-                   subject_company: odyssey_url(answer.subject_company_id),
-                   object_company: odyssey_url(answer.object_company_id),
-                   value: answer.value,
-                   year: answer.year,
-                   source: answer.source.card&.name
+    records.each do |record|
+      items.append metric: record.metric.name,
+                   subject_company: odyssey_url(record.subject_company_id),
+                   object_company: odyssey_url(record.object_company_id),
+                   value: record.value,
+                   year: record.year,
+                   source: record.source.card&.name
     end
     items
   end
@@ -79,13 +79,13 @@ format :json do
     "#{base_url}/#{card_name}.json?view=odyssey"
   end
 
-  def format_odyssey_answer answers
+  def format_odyssey_record records
     items = []
-    answers.each do |answer|
-      items.append metric: answer.metric.name,
-                   value: answer.value,
-                   year: answer.year,
-                   source: answer.source.card&.name
+    records.each do |record|
+      items.append metric: record.metric.name,
+                   value: record.value,
+                   year: record.year,
+                   source: record.source.card&.name
     end
     items
   end
@@ -106,7 +106,7 @@ format :csv do
     end
   end
 
-  # DEPRECATED.  +answer csv replaces following:
+  # DEPRECATED.  +record csv replaces following:
   view :titled do
     field_nest :record, view: :titled
   end

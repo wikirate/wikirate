@@ -47,16 +47,16 @@ event :silence_metric_deletions, :initialize, on: :delete do
   @silent_change = true
 end
 
-event :delete_answers, :prepare_to_validate, on: :update, trigger: :required do
+event :delete_records, :prepare_to_validate, on: :update, trigger: :required do
   if Card::Auth.always_ok? # TODO: come up with better permissions scheme for this!
-    answers.each { |answer_card| delete_as_subcard answer_card }
+    records.each { |record_card| delete_as_subcard record_card }
   else
-    errors.add :answers, "only admins can delete all answers"
+    errors.add :records, "only admins can delete all records"
   end
 end
 
 event :delete_all_records, :store, on: :delete do
-  answers.delete_all
+  records.delete_all
   skip_event! :update_related_calculations,
               :update_related_scores,
               :update_related_verifications

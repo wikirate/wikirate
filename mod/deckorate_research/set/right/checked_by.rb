@@ -18,7 +18,7 @@ end
 
 def verification
   symbol = verification_symbol
-  Answer.verification_index symbol if symbol
+  Record.verification_index symbol if symbol
 end
 
 def verification_symbol
@@ -32,7 +32,7 @@ def verification_symbol
 end
 
 def steward_verified?
-  (item_ids & answer_card.steward_ids).any?
+  (item_ids & record_card.steward_ids).any?
 end
 
 def user_checked?
@@ -56,7 +56,7 @@ def checker_count
 end
 
 def allowed_to_check?
-  Auth.current_id != answer&.value_card&.content_updater_id
+  Auth.current_id != record&.value_card&.content_updater_id
 end
 
 def items
@@ -72,10 +72,10 @@ def option_names
   ["request"]
 end
 
-def answer_card
-  @answer_card ||= left new: { type_id: Card::RecordID }
+def record_card
+  @record_card ||= left new: { type_id: Card::RecordID }
 end
 
-def answer
-  @answer ||= left&.answer
+def record
+  @record ||= left&.record
 end

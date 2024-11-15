@@ -32,7 +32,7 @@ class Calculate
         # keys are company ids, values are Hashes, each of which has
         # year as a key and InputRecord object as a value
         def input_records_by_company_and_year
-          each_input_record answers, {} do |input_record, hash|
+          each_input_record records, {} do |input_record, hash|
             company_hash = hash[input_record.company_id] ||= {}
             company_hash[input_record.year] = input_record
           end
@@ -42,7 +42,7 @@ class Calculate
           search_space.years?
         end
 
-        def answer_query
+        def record_query
           { metric_id: input_card.id }.tap do |query|
             restrict_companies query
             restrict_years query

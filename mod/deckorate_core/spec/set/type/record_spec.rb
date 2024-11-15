@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::Type::Record do
-  describe "answers by value type" do
+  describe "records by value type" do
     def card_subject
-      sample_answer value_type
+      sample_record value_type
     end
 
     Deckorate::Samples::METRIC_NAMES.each_key do |value_type|
@@ -14,7 +14,7 @@ RSpec.describe Card::Set::Type::Record do
     end
   end
 
-  describe "answers by metric type" do
+  describe "records by metric type" do
     def card_subject
       subject_with_metric_type
     end
@@ -23,7 +23,7 @@ RSpec.describe Card::Set::Type::Record do
       score: "Jedi+disturbances in the Force+Joe User+Death Star+1977",
       wikirating: "Jedi+deadliness+Death_Star+1977",
       formula: "Jedi+friendliness+Death Star+1977",
-      relationship: "Jedi+more evil+Death Star+1977"
+      relation: "Jedi+more evil+Death Star+1977"
     }.each do |metric_type, record_name|
       context "with #{metric_type} record" do
         let(:subject_with_metric_type) { Card.fetch record_name }
@@ -34,7 +34,7 @@ RSpec.describe Card::Set::Type::Record do
     end
   end
 
-  def fetch_answer *name_parts
+  def fetch_record *name_parts
     Card.fetch Card::Name[name_parts]
   end
 
@@ -87,8 +87,8 @@ RSpec.describe Card::Set::Type::Record do
   #   end
   #
   #   example "year range" do
-  #     answer = "Jedi+deadliness average+Slate Rock and Gravel Company+2005"
-  #     table = expanded_details answer, :formula
+  #     record = "Jedi+deadliness average+Slate Rock and Gravel Company+2005"
+  #     table = expanded_details record, :formula
   #     expect(table).to have_tag "table" do
   #       with_tag "td" do
   #         with_tag "a", text: "deadliness"
@@ -105,7 +105,7 @@ RSpec.describe Card::Set::Type::Record do
   #
   # describe "#expanded_score_details" do
   #   subject do
-  #     fetch_answer("Jedi+deadliness+Joe User+Death Star+1977")
+  #     fetch_record("Jedi+deadliness+Joe User+Death Star+1977")
   #       .format.expanded_score_details
   #   end
   #
@@ -126,7 +126,7 @@ RSpec.describe Card::Set::Type::Record do
   #
   # describe "#expanded_rating_details" do
   #   subject do
-  #     fetch_answer("Jedi+darkness rating+Death Star+1977")
+  #     fetch_record("Jedi+darkness rating+Death Star+1977")
   #       .format.expanded_rating_details
   #   end
   #
@@ -151,7 +151,7 @@ RSpec.describe Card::Set::Type::Record do
   #
   # describe "expanded_descendant_details" do
   #   subject do
-  #     fetch_answer("Joe User+descendant 1+Sony Corporation+2014")
+  #     fetch_record("Joe User+descendant 1+Sony Corporation+2014")
   #       .format.expanded_descendant_details
   #   end
   #
@@ -181,7 +181,7 @@ RSpec.describe Card::Set::Type::Record do
     end
 
     it "shows overridden value" do
-      is_expected.to have_tag "div.overridden-answer.metric-value", /0\.13/
+      is_expected.to have_tag "div.overridden-record.metric-value", /0\.13/
     end
 
     # it "links to input value" do
@@ -197,7 +197,7 @@ RSpec.describe Card::Set::Type::Record do
     end
 
     it "shows overridden value" do
-      is_expected.to have_tag "div.overridden-answer.metric-value", /5/
+      is_expected.to have_tag "div.overridden-record.metric-value", /5/
     end
 
     # it "shows table of ancestors" do

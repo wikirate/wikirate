@@ -1,4 +1,4 @@
-# TODO: make sure answer card's cache gets cleared and verification view gets
+# TODO: make sure record card's cache gets cleared and verification view gets
 # updated immediately
 
 event :add_check, :prepare_to_store, on: :save, trigger: :required do

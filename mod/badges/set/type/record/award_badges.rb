@@ -1,12 +1,12 @@
 include_set Abstract::AwardBadges, squad_type: :record
 
-# The answer table refresh happens on the act card.
+# The record table refresh happens on the act card.
 # That can cause problem if this is not the act card.
 # To be safe we count before the update
-event :award_answer_create_badges, :finalize,
+event :award_record_create_badges, :finalize,
       on: :create,
-      after: :refresh_answer_lookup,
-      when: :metric_awards_answer_badges? do
+      after: :refresh_record_lookup,
+      when: :metric_awards_record_badges? do
   award_create_badge_if_earned :general
   # [:general, :designer, :company].each do |affinity|
   #   award_create_badge_if_earned affinity
@@ -16,7 +16,7 @@ event :award_answer_create_badges, :finalize,
   # end
 end
 
-def metric_awards_answer_badges?
+def metric_awards_record_badges?
   researched? && !import_act?
 end
 
@@ -24,7 +24,7 @@ def award_create_badge_if_earned affinity, project_card=nil
   return unless awardable?
 
   # the actions of the current act are not included
-  # because we do this search before the answer table update
+  # because we do this search before the record table update
   count = award_action_count(:create, affinity, project_card) # +
   return unless (badge = earns_badge(:create, affinity, count))
 
@@ -46,7 +46,7 @@ def affinity_name affinity, project_card=nil
 end
 
 def create_relation
-  Answer.where(creator_id: Auth.current_id).where.not(answer_id: nil)
+  Record.where(creator_id: Auth.current_id).where.not(record_id: nil)
 end
 
 def create_count restriction={}

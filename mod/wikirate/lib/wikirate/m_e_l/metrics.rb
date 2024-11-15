@@ -15,8 +15,8 @@ module Wikirate
         created { metrics_by_type :formula, :rating, :score, :descendant }
       end
 
-      def metrics_relationship_created
-        created { metrics_by_type :inverse_relationship, :relationship }
+      def metrics_relation_created
+        created { metrics_by_type :inverse_relation, :relation }
       end
 
       def metric_designers_new

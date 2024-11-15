@@ -25,8 +25,8 @@ class Calculate
           end
 
           # input value has "not researched" value
-          def input_value_not_researched? answer
-            !answer || Array.wrap(answer.value).any?(&:blank?)
+          def input_value_not_researched? record
+            !record || Array.wrap(record.value).any?(&:blank?)
           end
 
           private

@@ -54,7 +54,7 @@ RSpec.describe Card::Set::TypePlusRight::Record::Value do
     let(:scored_value_name) { "#{metric}+#{scorer}+#{company}+#{year}+value" }
 
     def scored_value
-      Answer.where(metric_id: "#{metric}+#{scorer}".card_id,
+      Record.where(metric_id: "#{metric}+#{scorer}".card_id,
                    company_id: company.card_id,
                    year: year.to_i)
             .take.value
@@ -67,9 +67,9 @@ RSpec.describe Card::Set::TypePlusRight::Record::Value do
     end
 
     it "standardizes unknown" do
-      answer = sample_answer
-      answer.value_card.update! content: "uNkNoWn"
-      expect(answer.value).to eq("Unknown")
+      record = sample_record
+      record.value_card.update! content: "uNkNoWn"
+      expect(record.value).to eq("Unknown")
     end
   end
 end

@@ -15,7 +15,7 @@ namespace :wikirate do
     #       not: {
     #         right_plus: [
     #           { type_id: Card::YearID },
-    #           { type_id: Card::MetricAnswerID }
+    #           { type_id: Card::RecordID }
     #         ]
     #       }
     #     )

@@ -4,7 +4,7 @@ module Wikirate
     # Monitoring, Evaluation, and Learning
     module Records
       def records
-        Answer
+        Record
       end
 
       def calculations
@@ -57,10 +57,10 @@ module Wikirate
 
       def records_checked
         verification_indexes = %i[community_verified steward_verified].map do |symbol|
-          Answer.verification_index symbol
+          Record.verification_index symbol
         end
 
-        records.joins("join cards on left_id = answer_id")
+        records.joins("join cards on left_id = record_id")
                .where("right_id = #{:checked_by.card_id}")
                .where("cards.updated_at > #{period_ago}")
                .where(verification: verification_indexes)
@@ -81,11 +81,11 @@ module Wikirate
       private
 
       def records_by_route symbol
-        records.where route: Answer.route_index(symbol)
+        records.where route: Record.route_index(symbol)
       end
 
       def records_by_verification symbol
-        records.where verification: Answer.verification_index(symbol)
+        records.where verification: Record.verification_index(symbol)
       end
 
       def contributors
