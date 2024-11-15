@@ -28,7 +28,7 @@ def each_dependee_answer &block
   end
 end
 
-# note: cannot do this in a single answer query, because it's important that we not skip
+# note: cannot do this in a single record query, because it's important that we not skip
 # over direct dependencies.
 def each_depender_answer
   metric_card.each_depender_metric do |metric|

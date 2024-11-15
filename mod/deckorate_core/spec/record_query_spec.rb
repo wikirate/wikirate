@@ -1,5 +1,5 @@
 RSpec.describe Card::RecordQuery do
-  include_context "answer query"
+  include_context "record query"
 
   context "with combined filters" do
     context "with fixed company" do

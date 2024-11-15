@@ -3,7 +3,7 @@ include_set Abstract::ProgressBar
 # for this to work, you have to define at a minimum:
 #
 # 1. #num_possible returning the total number of answers/records in the problem space
-# 2. #where_answer returning query args for an answer query
+# 2. #where_answer returning query args for a record query
 
 CSS_CLASS = { not_researched: "progress-not-researched" }.freeze
 LINK_VALUE = { not_researched: "none" }.freeze

@@ -1,4 +1,4 @@
-RSpec.shared_context "answer query" do
+RSpec.shared_context "record query" do
   include_context "lookup query", Card::RecordQuery
 
   let(:default_sort) { { metric_title: :asc } }

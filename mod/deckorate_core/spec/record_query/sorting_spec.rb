@@ -1,5 +1,5 @@
 RSpec.describe Card::RecordQuery::Sorting do
-  include_context "answer query"
+  include_context "record query"
 
   # @return [Array] of answer cards
   def sort_by sort_by, sort_dir: :asc, researched_only: false
@@ -26,7 +26,7 @@ RSpec.describe Card::RecordQuery::Sorting do
       ]
     end
 
-    context "sorting by designer name" do
+    context "when sorting by designer name" do
       let(:answer_parts) { [0] }
 
       it "(asc)" do
@@ -39,7 +39,7 @@ RSpec.describe Card::RecordQuery::Sorting do
       end
     end
 
-    context "sorting by metric title" do
+    context "when sorting by metric title" do
       let(:answer_parts) { [1] }
 
       specify do

@@ -31,7 +31,7 @@ class Calculate
 
             private
 
-            # do not restrict the object answer query based on the company_id restriction,
+            # do not restrict the object record query based on the company_id restriction,
             # which is intended for the answer's subject company
             def answer_query
               super.tap { |h| h.delete :company_id }
