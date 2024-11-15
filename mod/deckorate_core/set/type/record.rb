@@ -2,46 +2,46 @@ include_set Abstract::MetricChild, generation: 2
 include_set Abstract::Record
 include_set Abstract::Lookup
 
-attr_writer :answer
+attr_writer :record
 
 card_accessor :checked_by, type: :list
 card_accessor :source, type: :list
 
-event :delete_answer_lookup, :finalize, on: :delete do
-  Answer.delete_for_card id
+event :delete_record_lookup, :finalize, on: :delete do
+  Record.delete_for_card id
 end
 
-event :refresh_answer_lookup, :finalize, on: :save do
-  answer.card = self
-  answer.refresh
+event :refresh_record_lookup, :finalize, on: :save do
+  record.card = self
+  record.refresh
 end
 
 def lookup_class
-  ::Answer
+  ::Record
 end
 
 def lookup
-  answer
+  record
 end
 
-def answer
-  @answer ||= Answer.fetch self
+def record
+  @record ||= Record.fetch self
 end
 
 def virtual?
-  new? && (!answer.new_record? || metric_card&.relationship?)
+  new? && (!record.new_record? || metric_card&.relation?)
 end
 
 def content
-  virtual? ? answer.value : super
+  virtual? ? record.value : super
 end
 
 def updated_at
-  virtual? ? answer.updated_at : super
+  virtual? ? record.updated_at : super
 end
 
 def created_at
-  virtual? ? answer.created_at : super
+  virtual? ? record.created_at : super
 end
 
 def virtual_query
@@ -77,5 +77,5 @@ def comments
 end
 
 def overridden_value
-  answer.overridden_value
+  record.overridden_value
 end

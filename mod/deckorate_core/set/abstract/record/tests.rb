@@ -1,23 +1,23 @@
 
 def researched_value?
-  researched? || (hybrid? && answer&.answer_id)
+  researched? || (hybrid? && record&.record_id)
 end
 
 def overridden?
-  hybrid? && answer&.answer_id
+  hybrid? && record&.record_id
 end
 
 def blank_overridden?
-  overridden? && !answer.overridden_value.present?
+  overridden? && !record.overridden_value.present?
 end
 
 def overridden_value?
-  answer.overridden_value.present?
+  record.overridden_value.present?
 end
 
-# Metric is calculated but this answer can't yet be calculated
+# Metric is calculated but this record can't yet be calculated
 def uncalculated?
-  !researched? && answer.new_record?
+  !researched? && record.new_record?
 end
 
 def inverse?

@@ -6,34 +6,34 @@ class Calculate
           # Used if a relationship metric (or inverse relationship metric) is
           # passed as company option.
           module RelatedCompanies
-            # answers can be calculated for any company/year for which there exists
-            # an answer to a company related by the relationship metric.
+            # records can be calculated for any company/year for which there exists
+            # an record to a company related by the relationship metric.
 
             # @return Hash
             # keys are company ids, values are Hashes, each of which has
             # year as a key and InputRecord object as a value
             def input_records_by_company_and_year
-              object_answers = super
-              # answers for object companies (same hash representation as result)
+              object_records = super
+              # records for object companies (same hash representation as result)
 
               relationship_hash.each_with_object({}) do |(subject_id, object_id_list), h|
-                obj_answers = object_id_list.map { |id| object_answers[id] }.compact
-                next unless obj_answers.present?
-                h[subject_id] = consolidate_object_answers obj_answers
+                obj_records = object_id_list.map { |id| object_records[id] }.compact
+                next unless obj_records.present?
+                h[subject_id] = consolidate_object_records obj_records
               end
             end
 
-            # must be overwritten, because "answers" does not filter by company
-            def answers_for company_id, year
+            # must be overwritten, because "records" does not filter by company
+            def records_for company_id, year
               @search_space = SearchSpace.new company_id, year
-              Answer.where answer_query.merge(company_id: relationship_hash[company_id])
+              Record.where record_query.merge(company_id: relationship_hash[company_id])
             end
 
             private
 
             # do not restrict the object record query based on the company_id restriction,
-            # which is intended for the answer's subject company
-            def answer_query
+            # which is intended for the record's subject company
+            def record_query
               super.tap { |h| h.delete :company_id }
             end
 
@@ -45,7 +45,7 @@ class Calculate
             # @return [Hash] keys are subject company ids,
             #   values are lists of object company ids
             #
-            # NOTE: regardless of the year of the resultant answer, the relationships
+            # NOTE: regardless of the year of the resultant record, the relationships
             #   are always based on the latest year
             def relationship_hash
               args = { latest: true }
@@ -55,11 +55,11 @@ class Calculate
 
             # for each list of
             # @return [Hash] keys are years, values are consolidated InputRecord objects
-            #   that represent answers for object companies
-            def consolidate_object_answers obj_answers
-              consolidate_object_hash(obj_answers).tap do |hash|
-                hash.each do |year, answer_list|
-                  hash[year] = consolidated_input_record answer_list, year
+            #   that represent records for object companies
+            def consolidate_object_records obj_records
+              consolidate_object_hash(obj_records).tap do |hash|
+                hash.each do |year, record_list|
+                  hash[year] = consolidated_input_record record_list, year
                 end
               end
             end
@@ -68,11 +68,11 @@ class Calculate
             # values are InputRecord objects) to a subject hash
             #
             # @return [Hash] keys are years, values are arrays of InputRecord objects
-            def consolidate_object_hash obj_answers
-              obj_answers.each_with_object({}) do |obj_hash, subj_hash|
-                obj_hash.each do |year, answer|
+            def consolidate_object_hash obj_records
+              obj_records.each_with_object({}) do |obj_hash, subj_hash|
+                obj_hash.each do |year, record|
                   subj_hash[year] ||= []
-                  subj_hash[year] << answer
+                  subj_hash[year] << record
                 end
               end
             end

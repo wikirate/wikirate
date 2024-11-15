@@ -13,7 +13,7 @@ def num_possible
   @num_possible ||= metric_ids.size * dataset_card.year_multiplier
 end
 
-def where_answer
+def where_record
   where_year do
     { metric_id: [:in] + metric_ids, company_id: company_card.id }
   end
@@ -70,7 +70,7 @@ format :html do
     end
   end
 
-  def record_log_answers record_log
+  def record_log_records record_log
     if dataset_card.years?
       dataset_card.years.map { |y| [record_log, y].cardname }
     else

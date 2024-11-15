@@ -5,7 +5,7 @@ RSpec.describe Card::Set::MetricType::Score do
   let(:scored) { Card[scored_name] }
 
   let(:score_name) { "#{scored_name}+Big Brother" }
-  let(:score_formula) { "answer * 2" }
+  let(:score_formula) { "record * 2" }
   let(:formula_type) { :formula }
 
   # TODO: stop creating this score over and over. move to test data
@@ -16,11 +16,11 @@ RSpec.describe Card::Set::MetricType::Score do
   end
 
   def score_value company="Samsung", year="2014"
-    score_answer(company, year)&.value
+    score_record(company, year)&.value
   end
 
-  def score_answer company="Samsung", year="2014"
-    Answer.where(
+  def score_record company="Samsung", year="2014"
+    Record.where(
       metric_id: score.id,
       company_id: company.card_id,
       year: year
@@ -39,7 +39,7 @@ RSpec.describe Card::Set::MetricType::Score do
         expect(score_value).to eq("10")
         expect(score_value("Samsung", "2015")).to eq("4")
         expect(score_value("Sony_Corporation")).to eq("4")
-        expect(score_answer("Death_Star", "1977")).to be_falsey
+        expect(score_record("Death_Star", "1977")).to be_falsey
       end
 
       context "when formula changes" do
@@ -50,7 +50,7 @@ RSpec.describe Card::Set::MetricType::Score do
         end
 
         it "updates existing score" do
-          update_formula "answer * 3"
+          update_formula "record * 3"
           expect(score_value).to eq "15"
         end
 
@@ -62,11 +62,11 @@ RSpec.describe Card::Set::MetricType::Score do
 
       context "when a input metric value is missing" do
         it "doesn't create score value" do
-          expect(score_answer("Death Star", "1977")).to be_falsey
+          expect(score_record("Death Star", "1977")).to be_falsey
         end
         it "creates score value if missing value is added" do
           Card::Auth.as_bot do
-            scored.create_answer company: "Death Star",
+            scored.create_record company: "Death Star",
                                  year: "1977",
                                  value: "2",
                                  source: sample_source
@@ -76,16 +76,16 @@ RSpec.describe Card::Set::MetricType::Score do
       end
 
       context "when input metric value changes" do
-        let(:answer_name) { "#{scored_name}+Samsung+2014" }
+        let(:record_name) { "#{scored_name}+Samsung+2014" }
 
         it "updates score value" do
-          Card["#{answer_name}+value"].update! content: "1"
+          Card["#{record_name}+value"].update! content: "1"
           expect(score_value).to eq "2"
         end
 
         it "removes score value that lost input metric value" do
-          Card::Auth.as_bot { Card[answer_name].delete }
-          expect(score_answer).to be_falsey
+          Card::Auth.as_bot { Card[record_name].delete }
+          expect(score_record).to be_falsey
         end
       end
     end
@@ -99,7 +99,7 @@ RSpec.describe Card::Set::MetricType::Score do
 
       it "creates score values if formula updated" do
         Card::Auth.as_bot do
-          score.formula_card.update!(content: "answer * 2")
+          score.formula_card.update!(content: "record * 2")
         end
         expect(score_value).to eq("10")
         expect(score_value("Samsung", "2015")).to eq("4")
@@ -109,8 +109,8 @@ RSpec.describe Card::Set::MetricType::Score do
   end
 
   context "when original value changed" do
-    def answer metric
-      Answer.where(
+    def record metric
+      Record.where(
         metric_id: metric.card_id,
         company_id: "Death Star".card_id,
         year: 1977
@@ -122,11 +122,11 @@ RSpec.describe Card::Set::MetricType::Score do
     end
 
     it "updates scored valued" do
-      expect(answer("Jedi+deadliness+Joe User").value).to eq "4"
+      expect(record("Jedi+deadliness+Joe User").value).to eq "4"
     end
 
     it "updates dependent ratings" do
-      expect(answer("Jedi+darkness rating").value).to eq "6.4"
+      expect(record("Jedi+darkness rating").value).to eq "6.4"
     end
   end
 

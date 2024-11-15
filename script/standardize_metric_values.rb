@@ -78,7 +78,7 @@ end
 def valid_values? metric_values
   metric_values.all? do |mv|
     content = mv.content.delete(",%$ BMK")
-    number?(content) || Answer.unknown?(content)
+    number?(content) || Record.unknown?(content)
   end
 end
 

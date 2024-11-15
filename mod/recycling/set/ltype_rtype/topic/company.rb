@@ -16,8 +16,8 @@ format :html do
     topic.fetch(:metric, new: {})
   end
 
-  def answer_count
-    ::Answer.where(metric_id: topic_metric.item_ids, company_id: company_id).count
+  def record_count
+    ::Record.where(metric_id: topic_metric.item_ids, company_id: company_id).count
   end
 
   view :bar_left do
@@ -27,11 +27,11 @@ format :html do
   end
 
   view :bar_right do
-    [answer_count_badge, metric_count_badge]
+    [record_count_badge, metric_count_badge]
   end
 
-  def answer_count_badge
-    labeled_badge number_with_delimiter(answer_count),
+  def record_count_badge
+    labeled_badge number_with_delimiter(record_count),
                   icon_tag(:record),
                   klass: "RIGHT-record", title: "Records"
   end

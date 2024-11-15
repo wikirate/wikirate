@@ -45,9 +45,9 @@ format :html do
   def editor_tabs
     tabs CoffeeScript: code_mirror_input,
          JavaScript: haml(:formula_as_javascript),
-         Answers: haml(:answer_board),
+         Records: haml(:record_board),
          Help: haml(:editor_help)
-    #:Answers)
+    #:Records)
   end
 
   # TODO: move to mod

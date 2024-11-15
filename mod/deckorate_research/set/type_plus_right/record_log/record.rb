@@ -16,7 +16,7 @@ format do
     :year
   end
 
-  def answer_page_fixed_filters
+  def record_page_fixed_filters
     { company: card.company_id.cardname, metric: card.metric_id.cardname }
   end
 end
@@ -35,14 +35,14 @@ format :html do
   end
 
   def header_cells
-    [answer_sort_links]
+    [record_sort_links]
   end
 
   def quick_filter_list
     []
   end
 
-  # none and all not available on answer dashboard yet.
+  # none and all not available on record dashboard yet.
   # def status_options
   #   super.merge "Not Researched" => "none", "Researched and Not" => "all"
   # end

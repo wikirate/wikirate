@@ -4,15 +4,15 @@ RSpec.describe Card::Set::Abstract::CompanyFieldMetric do
   end
 
   def google_llc_hq_lookup
-    Answer.where(
+    Record.where(
       company_id: "Google LLC".card_id,
       metric_id: card_subject.id
     ).first
   end
 
-  describe "calculate_answers" do
+  describe "calculate_records" do
     example do
-      card_subject.calculate_answers
+      card_subject.calculate_records
       expect(google_llc_hq_lookup.value).to eq("California (United States)")
     end
   end

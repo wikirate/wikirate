@@ -3,7 +3,7 @@ RSpec.describe Card::AllRecordQuery do
 
   context "with fixed company" do
     let(:default_filters) { { company_id: company_name.card_id, year: :latest } }
-    let(:answer_parts) { [1, -1] } # metric and year
+    let(:record_parts) { [1, -1] } # metric and year
     let(:company_name) { "Death_Star" }
 
     let(:all_metrics) { Card.search type: :metric, return: :name }
@@ -16,26 +16,26 @@ RSpec.describe Card::AllRecordQuery do
     end
 
     let(:researched_metric_keys) do
-      ::Set.new(latest_death_star_answers.map { |n| n.to_name.left_name.key })
+      ::Set.new(latest_death_star_records.map { |n| n.to_name.left_name.key })
     end
 
     let :unresearched_metric_keys do
       all_metric_titles.reject { |n| researched_metric_keys.include? n.key }.sort
     end
 
-    def unanswers year=Time.now.year
+    def unrecords year=Time.now.year
       with_year unresearched_metric_keys, year
     end
 
     context "with status :all" do
-      let :all_answers do
-        latest_answers + with_year(["researched number 2", "researched number 3",
+      let :all_records do
+        latest_records + with_year(["researched number 2", "researched number 3",
                                     "small multi", "small single"])
       end
 
       it "finds all values" do
         filtered = search(status: :all)
-        expect(filtered).to include(*latest_death_star_answers)
+        expect(filtered).to include(*latest_death_star_records)
         expect(filtered.size)
           .to eq Card.search(type: :metric, return: :count)
       end
@@ -61,18 +61,18 @@ RSpec.describe Card::AllRecordQuery do
       specify "metric_type" do
         expect(search(status: :all, metric_type: "Researched"))
           .to contain_exactly(
-            *(with_year(researched_titles) + researched_death_star_answers)
+            *(with_year(researched_titles) + researched_death_star_records)
           )
       end
     end
 
     context "with status :none" do
       it "finds not researched" do
-        expect(search(status: :none)).to contain_exactly(*unanswers)
+        expect(search(status: :none)).to contain_exactly(*unrecords)
       end
 
       specify "and year" do
-        nr2001 = unanswers(2001) + with_year(
+        nr2001 = unrecords(2001) + with_year(
           ["Victims by Employees", "cost of planets destroyed",
            "darkness rating", "deadliness", "deadliness",
            "deadliness", "dinosaurlabor", "friendliness",
@@ -115,13 +115,13 @@ RSpec.describe Card::AllRecordQuery do
   context "with fixed metric" do
     let(:metric_name) { "Jedi+disturbances in the Force" }
     let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
-    let(:answer_parts) { [-2, -1] }
+    let(:record_parts) { [-2, -1] }
     let(:default_sort) { {} }
 
     context "with status :all" do
       it "finds existing and non-existing values" do
         expect(search(status: :all))
-          .to include(*(latest_disturbance_answers + missing_disturbance_answers))
+          .to include(*(latest_disturbance_records + missing_disturbance_records))
       end
 
       specify "and dataset" do
@@ -146,11 +146,11 @@ RSpec.describe Card::AllRecordQuery do
     context "with status :none" do
       it "finds missing values" do
         expect(search(status: :none))
-          .to contain_exactly(*missing_disturbance_answers)
+          .to contain_exactly(*missing_disturbance_records)
       end
 
       specify "and year" do
-        missing2000 = missing_disturbance_answers 2000
+        missing2000 = missing_disturbance_records 2000
         missing2000 << "Slate Rock and Gravel Company+2000"
         expect(search(status: :none, year: "2000").sort)
           .to eq(missing2000.sort)

@@ -31,6 +31,6 @@ def submit_button
   find(".submit-button")
 end
 
-When(/^I edit answer$/) do
-  find(:css, ".titled-view a.edit-answer-link", visible: false).click
+When(/^I edit record$/) do
+  find(:css, ".titled-view a.edit-record-link", visible: false).click
 end

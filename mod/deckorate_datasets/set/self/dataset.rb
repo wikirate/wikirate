@@ -30,7 +30,7 @@ format :csv do
       dataset.name,
       dataset.num_metrics,
       dataset.num_companies,
-      dataset.num_answers,
+      dataset.num_records,
       # dataset.num_users
     ] + dataset.num_policies + [
       dataset.created_at

@@ -1,6 +1,6 @@
 format :json do
   def atom
-    lookup = card.answer
+    lookup = card.record
     super.tap do |atom|
       atom[:metric] = lookup.metric_name
       %i[company year value comments].each do |key|
@@ -16,9 +16,9 @@ format :json do
   end
 
   def item_cards
-    return [] unless card.metric_card.relationship?
+    return [] unless card.metric_card.relation?
 
-    card.fetch(:relationship_answer).format(:json).item_cards
+    card.fetch(:relationship).format(:json).item_cards
   end
 
   private

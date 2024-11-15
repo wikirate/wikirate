@@ -4,7 +4,7 @@ RSpec.describe Card::Set::TypePlusRight::Company::Headquarters do
   let(:hq_card) { Card.fetch "#{company_name}+headquarters", new: {} }
 
   def company_hq_lookup metric
-    Answer.where(
+    Record.where(
       company_id: company_name.card_id,
       metric_id: metric.card_id,
       year: "2019"
@@ -15,7 +15,7 @@ RSpec.describe Card::Set::TypePlusRight::Company::Headquarters do
     hq_card.update! content: country
   end
 
-  describe "event: update_company_field_answer_lookup" do
+  describe "event: update_company_field_record_lookup" do
     context "when hq card is created" do
       it "updates direct lookup value" do
         death_star_to "Netherlands"
