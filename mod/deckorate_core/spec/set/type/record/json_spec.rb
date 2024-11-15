@@ -84,7 +84,7 @@ RSpec.describe Card::Set::Type::Record::Json do
     end
   end
 
-  describe "exported json relationship metric record" do
+  describe "exported json relation metric record" do
     let(:metric) { Card["Jedi+more evil"] }
 
     xspecify "atom view" do

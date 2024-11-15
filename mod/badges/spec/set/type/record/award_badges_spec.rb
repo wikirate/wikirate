@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::Type::Record do
-  let(:sample_acting_card) { sample_answer }
+  let(:sample_acting_card) { sample_record }
 
   describe "create badges" do
     let(:start_year) { 1990 }
@@ -9,7 +9,7 @@ RSpec.describe Card::Set::Type::Record do
 
     def execute_awarded_action count
       year = start_year + count
-      create_answers metric, true do
+      create_records metric, true do
         Death_Star year => count
       end
     end
@@ -31,19 +31,19 @@ RSpec.describe Card::Set::Type::Record do
     let(:badge_action) { :update }
 
     def execute_awarded_action count
-      answer_card(count).value_card.update! content: count
+      record_card(count).value_card.update! content: count
     end
 
     context "when reached bronze update threshold" do
-      it_behaves_like "answer badges", 1, "Answer Chancer"
+      it_behaves_like "record badges", 1, "Answer Chancer"
     end
 
     context "when reached silver create threshold" do
-      it_behaves_like "answer badges", 2, "Answer Enhancer"
+      it_behaves_like "record badges", 2, "Answer Enhancer"
     end
 
     context "when reached gold create threshold" do
-      it_behaves_like "answer badges", 3, "Answer Advancer"
+      it_behaves_like "record badges", 3, "Answer Advancer"
     end
   end
 end

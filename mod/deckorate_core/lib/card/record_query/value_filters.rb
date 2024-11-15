@@ -1,6 +1,6 @@
 class Card
   class RecordQuery
-    # filters based on answer values
+    # filters based on record values
     module ValueFilters
       # :exists/researched (known + unknown) is default case;
       # :all and :none are handled in AllQuery

@@ -5,9 +5,9 @@ RSpec.describe Card::RecordQuery::AdvancedFilters do
   let(:metric_name) { "Jedi+disturbances in the Force" }
   let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
 
-  describe "#company_answer_query" do
+  describe "#company_record_query" do
     it "finds companies with metric" do
-      expect(search(company_answer: { metric_id: "Joe User+RM".card_id }))
+      expect(search(company_record: { metric_id: "Joe User+RM".card_id }))
         .to eq(["Death Star"])
     end
   end
@@ -20,7 +20,7 @@ RSpec.describe Card::RecordQuery::AdvancedFilters do
   # end
 
   describe "#related_company_group_query" do
-    context "with relationship metric" do
+    context "with relation metric" do
       let(:metric_name) { "Commons+Supplied by" }
 
       it "finds object companies" do
@@ -29,7 +29,7 @@ RSpec.describe Card::RecordQuery::AdvancedFilters do
       end
     end
 
-    context "with inverse relationship metric" do
+    context "with inverse relation metric" do
       let(:metric_name) { "Commons+Supplier of" }
 
       it "finds subject companies" do

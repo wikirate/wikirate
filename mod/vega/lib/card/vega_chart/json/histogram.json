@@ -12,7 +12,7 @@
   ],
   "data": [
     {
-      "name": "answers",
+      "name": "records",
       "transform": [
         {
           "type": "formula",

@@ -58,8 +58,8 @@ class Calculate
             #   that represent answers for object companies
             def consolidate_object_answers obj_answers
               consolidate_object_hash(obj_answers).tap do |hash|
-                hash.each do |year, answer_list|
-                  hash[year] = consolidated_input_record answer_list, year
+                hash.each do |year, record_list|
+                  hash[year] = consolidated_input_record record_list, year
                 end
               end
             end

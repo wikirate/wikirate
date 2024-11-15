@@ -4,7 +4,7 @@
       "name": "companies"
     },
     {
-      "name": "answers",
+      "name": "records",
       "transform": [
         {
           "type": "formula",

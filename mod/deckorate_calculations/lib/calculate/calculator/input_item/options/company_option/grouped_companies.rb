@@ -11,7 +11,7 @@ class Calculate
 
             # year => InputRecord
             def year_answer_pairs
-              answer_lists.each_with_object({}) do |(year, array), hash|
+              record_lists.each_with_object({}) do |(year, array), hash|
                 hash[year] = consolidated_input_record array, year
               end
             end
@@ -19,7 +19,7 @@ class Calculate
             private
 
             # year => [Answer]
-            def answer_lists
+            def record_lists
               answer_relation.each_with_object({}) do |answer, hash|
                 hash[answer.year] ||= []
                 hash[answer.year] << answer

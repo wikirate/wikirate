@@ -66,7 +66,7 @@ RSpec.describe Card::Set::MetricType::Score do
         end
         it "creates score value if missing value is added" do
           Card::Auth.as_bot do
-            scored.create_answer company: "Death Star",
+            scored.create_record company: "Death Star",
                                  year: "1977",
                                  value: "2",
                                  source: sample_source

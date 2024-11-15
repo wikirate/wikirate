@@ -13,15 +13,15 @@ def answer_id
 end
 
 def history?
-  !metric_card&.relationship?
+  !metric_card&.relation?
 end
 
 def typed_value?
   true
 end
 
-# if metric is a relationship, the Relationship Answer takes the value type from
-# the metric, but the Metric answer value is always a number (a count)
+# if metric is a relation, the Relationship takes the value type from
+# the metric, but the Metric record value is always a number (a count)
 def type_code_from_metric
   metric_card&.simple_value_cardtype_code
 end
@@ -31,5 +31,5 @@ def new_value? value
 end
 
 def relationship_count_value?
-  metric_card.relationship?
+  metric_card.relation?
 end

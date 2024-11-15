@@ -172,7 +172,7 @@ citedSources = () ->
   $(".RIGHT-source .bar").map( -> $(this).data("cardName") )
 
 selectedYear = ()->
-  selectedYearInput().val() || $(".answer-breadcrumb .year").html()
+  selectedYearInput().val() || $(".record-breadcrumb .year").html()
 
 selectedYearNotResearched = ->
   selectedYearInput().closest("._research-year-option").find("._not-researched")[0]

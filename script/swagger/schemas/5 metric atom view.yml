@@ -79,7 +79,7 @@ metric_atom_view:
       type: string
     variables:
       type: string
-    answers:
+    records:
       type: integer
     bookmarkers:
       type: integer

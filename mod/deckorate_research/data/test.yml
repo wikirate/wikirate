@@ -4,7 +4,7 @@
 
 - sources
 - answers
-- relationship_answers
+- relationships
 
 - :name: Flag 0000001
   :type: :flag

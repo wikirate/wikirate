@@ -1,5 +1,5 @@
 def chart_class horizontal=false
-  if numeric? || relationship?
+  if numeric? || relation?
     numeric_chart_class horizontal
   elsif categorical?
     :bar_graph
