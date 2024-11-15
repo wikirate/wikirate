@@ -6,7 +6,7 @@ format :html do
   def tab_list
     list = %i[details record_log calculations]
     list << (card.calculated? ? :inputs : :contributions)
-    list.insert 1, :relationship_answer if card.relationship?
+    list.insert 1, :relationship_answer if card.relation?
     list
   end
 
@@ -52,7 +52,7 @@ format :html do
   end
 
   view :relationship_answer_tab do
-    return "" unless card.relationship?
+    return "" unless card.relation?
 
     field_nest :relationship_answer, view: :filtered_content
   end
@@ -62,7 +62,7 @@ format :html do
   end
 
   def relationship_count
-    return 0 unless card.relationship?
+    return 0 unless card.relation?
 
     card.fetch(:relationship_answer).count
   end
@@ -72,7 +72,7 @@ format :html do
   end
 
   def special_field_configs
-    if card.relationship?
+    if card.relation?
       []
     elsif card.researched?
       [source_field_config]

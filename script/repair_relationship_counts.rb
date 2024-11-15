@@ -1,6 +1,6 @@
 # for use in the console
 
-metric_type_ids = [Card::RelationshipID, Card::InverseRelationshipID]
+metric_type_ids = [Card::RelationID, Card::InverseRelationID]
 Metric.where("metric_type_id in (#{metric_type_ids.join ', '})").each do |m|
   Answer.where(metric_id: m.metric_id).each do |a|
     cnt = a.relationship_answer_count

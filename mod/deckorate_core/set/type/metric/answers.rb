@@ -25,16 +25,8 @@ def answer_ids args={}
   answers(args).pluck :id
 end
 
-def random_answer_card
-  answers.take
-end
-
 def answer_for company, year
   Answer.where(metric_id: id, company_id: company.card_id, year: year.to_i).take
-end
-
-def answer_name_for company, year
-  Card::Name[name, company.cardname, year.to_s]
 end
 
 private

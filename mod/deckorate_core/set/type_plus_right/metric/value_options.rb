@@ -69,7 +69,7 @@ format :html do
   #   filtering(".RIGHT-answer ._compact-filter") do
   #     wrap_with :div, class: "pointer-list" do
   #       card.item_names.map do |name|
-  #         card.metric_card.relationship? ? name : filterable_div(name)
+  #         card.metric_card.relation? ? name : filterable_div(name)
   #       end
   #     end
   #   end

@@ -8,7 +8,7 @@ include_set Abstract::FixedRecordSearch
 recount_trigger :type, :record, on: %i[create delete] do |changed_card|
   changed_card.company_card&.fetch :record
 end
-# TODO: trigger recount from virtual answer batches
+# TODO: trigger recount from virtual record batches
 
 # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|

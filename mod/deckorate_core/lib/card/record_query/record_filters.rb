@@ -1,6 +1,6 @@
 class Card
   class RecordQuery
-    # filters based on year and children of the answer card
+    # filters based on year and children of the record card
     # (as opposed to metric and company)
     module RecordFilters
       TIMEPERIODS = {

@@ -4,7 +4,7 @@ RSpec.describe Card::VegaChart::TenScaleHistogram do
   let(:chart_class) { metric.chart_class }
   let(:chart_hash) { format.vega.hash }
 
-  context "with Rating (more than 10 answers)" do
+  context "with Rating (more than 10 records)" do
     before do
       format.define_singleton_method(:horizontal?) { false }
     end

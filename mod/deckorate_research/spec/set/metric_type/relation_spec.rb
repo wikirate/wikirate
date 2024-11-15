@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::MetricType::Relationship do
+RSpec.describe Card::Set::MetricType::Relation do
   def card_subject
     Card["Jedi+more evil"]
   end
@@ -21,15 +21,15 @@ RSpec.describe Card::Set::MetricType::Relationship do
     it "creates metric" do
       expect(metric).to be_instance_of Card
       expect(metric.type_name).to eq "Metric"
-      expect(metric.relationship?).to be true
+      expect(metric.relation?).to be true
       expect(metric.metric_type).to eq "Relationship"
     end
 
     it "creates inverse metric" do
       expect(inverse_metric).to be_instance_of Card
       expect(inverse_metric.type_name).to eq "Metric"
-      expect(inverse_metric.relationship?).to be true
-      expect(inverse_metric.metric_type).to eq "Inverse Relationship"
+      expect(inverse_metric.relation?).to be true
+      expect(inverse_metric.metric_type).to eq "Inverse Relation"
     end
 
     it "links relationship metric to inverse" do

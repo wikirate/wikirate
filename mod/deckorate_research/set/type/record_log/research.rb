@@ -2,7 +2,7 @@ format :html do
   RESEARCH_TABS = {
     question_phase: "Question",
     source_phase: "Source",
-    answer_phase: "Answer"
+    record_phase: "Record"
   }.freeze
 
   # view :data do

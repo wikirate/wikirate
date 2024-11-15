@@ -2,7 +2,7 @@ include_set Abstract::LazyTree
 
 # The answers that a calculated answer depends on
 # @return [Array] array of Answer objects
-def direct_dependee_answers
+def direct_dependee_records
   direct_dependee_map.flatten.uniq
 end
 
@@ -11,7 +11,7 @@ def direct_dependee_map
 end
 
 def dependee_answers
-  direct_dependee_answers.tap do |answers|
+  direct_dependee_records.tap do |answers|
     answers << answers.map(&:dependee_answers)
     answers.flatten!.uniq!
   end
@@ -22,7 +22,7 @@ def researched_dependee_answers
 end
 
 def each_dependee_answer &block
-  direct_dependee_answers.each do |answer|
+  direct_dependee_records.each do |answer|
     yield answer
     answer.each_dependee_answer(&block)
   end

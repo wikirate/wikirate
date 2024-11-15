@@ -32,13 +32,13 @@ shared_examples "create badges" do |threshold, badge_name|
     # end
   end
 
-  def answer number
+  def record number
     year = start_year + number - 1
     "#{metric_card.name}+Death Star+#{year}"
   end
 
   def value_card number
-    Card["#{answer(number)}+value"]
+    Card["#{record(number)}+value"]
   end
 
   # reduce thresholds to 1,2,3,...

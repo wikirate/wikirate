@@ -18,7 +18,7 @@ class Card
     def import_hash
       return {} unless (metric_card = Card[metric])
 
-      metric_card.create_answer_args translate_row_hash_to_create_answer_hash
+      metric_card.create_record_args translate_row_hash_to_create_record_hash
     end
 
     def normalize_value val
@@ -44,7 +44,7 @@ class Card
       result.first&.id
     end
 
-    def translate_row_hash_to_create_answer_hash
+    def translate_row_hash_to_create_record_hash
       r = input.clone
       r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
       r[:ok_to_exist] = true

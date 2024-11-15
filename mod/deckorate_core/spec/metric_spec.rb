@@ -1,4 +1,4 @@
-# This is really a test of the MetricCreator and AnswerCreator APIs
+# This is really a test of the MetricCreator and RecordCreator APIs
 
 RSpec.describe Metric do
   let :researched_metrics do
@@ -69,10 +69,10 @@ RSpec.describe Metric do
       end
     end
 
-    def create_relationship_metric
+    def create_relation_metric
       Card::Auth.as_bot do
         create_metric name: "Jedi+owns",
-                      type: :relationship,
+                      type: :relation,
                       inverse_title: "owned by",
                       test_source: true do
           SPECTRE 2000 => { "Los Pollos Hermanos" => "10",
@@ -81,8 +81,8 @@ RSpec.describe Metric do
       end
     end
 
-    it "creates relationship metric" do
-      create_relationship_metric
+    it "creates relation metric" do
+      create_relation_metric
 
       expect(Card["Jedi+owns"].type_id)
         .to eq Card::MetricID

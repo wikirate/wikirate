@@ -21,9 +21,9 @@ class Card
     end
 
     def normalize_filter_args
-      # NOTE: without this filtering for published answers can break things.
+      # NOTE: without this filtering for published records can break things.
       # Almost certainly need more sophisticated solution. (As is it probably will export
-      # relationships associated with unpublished answers.)
+      # relationships associated with unpublished records.)
       @filter_args.delete :published
     end
 
