@@ -25,7 +25,7 @@ format :csv do
 
   view :import_template do
     (
-      [CSV.generate_line(Card::AnswerImportItem.headers)] +
+      [CSV.generate_line(Card::RecordImportItem.headers)] +
         card.companies.map do |company|
           card.metrics.map do |metric|
             import_record_lines metric, company

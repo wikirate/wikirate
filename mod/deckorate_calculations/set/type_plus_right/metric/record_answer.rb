@@ -8,22 +8,22 @@ include_set Abstract::FullRecordSearch
 # recount number of answers for a given metric when an Answer card is
 # created or deleted
 recount_trigger :type, :record, on: %i[create delete] do |changed_card|
-  input_answer_and_source_fields changed_card.metric_card unless changed_card.unpublished?
+  input_record_and_source_fields changed_card.metric_card unless changed_card.unpublished?
 end
 
 # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
-  input_answer_and_source_fields changed_card.left
+  input_record_and_source_fields changed_card.left
 end
 
 # ...or when answer is (un)published
 field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
-  input_answer_and_source_fields changed_card.left.metric_card
+  input_record_and_source_fields changed_card.left.metric_card
 end
 
-def self.input_answer_and_source_fields metric
+def self.input_record_and_source_fields metric
   metric.depender_metrics.map do |depender|
-    %i[input_answer source].map { |fld| depender.fetch fld }
+    %i[input_record source].map { |fld| depender.fetch fld }
   end.flatten
 end
 
@@ -39,7 +39,7 @@ format do
   delegate :metric_card, to: :card
 
   def export_title
-    "#{metric_card.metric_title.to_name.url_key}+#{:input_answer.cardname}"
+    "#{metric_card.metric_title.to_name.url_key}+#{:input_record.cardname}"
   end
 
   def secondary_sort_hash

@@ -1,6 +1,6 @@
 class Card
   # This class provides an interface to import relationship answers
-  class RelationshipImportItem < AnswerImportItem
+  class RelationshipImportItem < RecordImportItem
     extend CompanyImportHelper
 
     @columns = { metric: { map: true, suggest: true },

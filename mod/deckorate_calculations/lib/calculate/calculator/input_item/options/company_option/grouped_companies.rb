@@ -9,10 +9,10 @@ class Calculate
           module GroupedCompanies
             include CompanyIndependentInput
 
-            # year => InputAnswer
+            # year => InputRecord
             def year_answer_pairs
               answer_lists.each_with_object({}) do |(year, array), hash|
-                hash[year] = consolidated_input_answer array, year
+                hash[year] = consolidated_input_record array, year
               end
             end
 

@@ -1,6 +1,6 @@
 class Card
   # Specifies the structure of a import item for an answer import.
-  class AnswerImportItem < ImportItem
+  class RecordImportItem < ImportItem
     extend CompanyImportHelper
 
     @columns = { metric: { map: true, suggest: true },

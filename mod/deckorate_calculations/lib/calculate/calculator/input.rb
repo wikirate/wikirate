@@ -6,7 +6,7 @@ class Calculate
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class Input
-      include Answers
+      include Records
 
       attr_reader :input_list, :result_cache
       delegate :no_mandatories?, :validate, to: :input_list

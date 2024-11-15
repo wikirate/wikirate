@@ -18,7 +18,7 @@ class Calculate
               return unless input_value_not_researched? answer
               return answer if answer
 
-              InputAnswer.new self, company_id, year
+              InputRecord.new self, company_id, year
             end
 
             def mandatory?

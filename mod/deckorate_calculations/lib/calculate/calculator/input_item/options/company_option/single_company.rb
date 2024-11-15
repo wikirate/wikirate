@@ -10,8 +10,8 @@ class Calculate
             include CompanyIndependentInput
 
             def year_answer_pairs
-              each_input_answer answers, {} do |input_answer, hash|
-                hash[input_answer.year] = input_answer
+              each_input_record answers, {} do |input_record, hash|
+                hash[input_record.year] = input_record
               end
             end
 

@@ -49,11 +49,11 @@ def when_dependee_applicable
   researched_value? || !metric_card ? [] : yield
 end
 
-def map_input_answer_and_detail
-  input_answers_map = direct_dependee_map
+def map_input_record_and_detail
+  input_records_map = direct_dependee_map
   metric_card.input_metrics_and_detail.map.with_index do |(metric, detail), index|
-    input_answers = input_answers_map[index]
-    yield input_answers, metric, detail if input_answers.present?
+    input_records = input_records_map[index]
+    yield input_records, metric, detail if input_records.present?
   end
 end
 
@@ -96,7 +96,7 @@ format :html do
 
   view :answer_tree do
     calculation_only do
-      card.map_input_answer_and_detail do |answers, metric, detail|
+      card.map_input_record_and_detail do |answers, metric, detail|
         input_tree_item answers, metric, detail
       end
     end

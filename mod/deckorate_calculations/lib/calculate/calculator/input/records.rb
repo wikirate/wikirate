@@ -2,7 +2,7 @@ class Calculate
   class Calculator
     class Input
       # methods for retrieving input answers
-      module Answers
+      module Records
         private
 
         # @return Array[String] simple input values for the given company and year

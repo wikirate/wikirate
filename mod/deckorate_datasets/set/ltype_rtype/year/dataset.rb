@@ -1,4 +1,4 @@
-include_set Abstract::KnownAnswers
+include_set Abstract::KnownRecords
 
 def year_card
   @year_card ||= left

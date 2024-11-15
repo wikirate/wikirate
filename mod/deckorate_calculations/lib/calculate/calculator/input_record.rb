@@ -1,7 +1,7 @@
 class Calculate
   class Calculator
     # Holds key answer fields for one input metric / company / year
-    class InputAnswer
+    class InputRecord
       attr_accessor :lookup_ids, :input_item,
                     :company_id, :year, :value,
                     :unpublished, :verification

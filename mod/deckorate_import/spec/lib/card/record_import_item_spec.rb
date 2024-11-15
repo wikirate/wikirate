@@ -1,4 +1,4 @@
-RSpec.describe Card::AnswerImportItem do
+RSpec.describe Card::RecordImportItem do
   include Cardio::ImportItemSpecHelper
 
   let :default_item_hash do
