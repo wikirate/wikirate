@@ -1,10 +1,10 @@
 $(document).ready ->
   # track whether there are changes in the answer form
-  $(".research-layout .tab-pane-answer_phase").on "change", "input, textarea, select", ->
-    $(".research-answer .card-form").data "changed", true
+  $(".research-layout .tab-pane-record_phase").on "change", "input, textarea, select", ->
+    $(".research-record .card-form").data "changed", true
 
   # must confirm links to new record when answer form is changed
-  $(".research-layout").on "click", "._research-metric-link, .research-answer-button", (e) ->
+  $(".research-layout").on "click", "._research-metric-link, .research-record-button", (e) ->
     return unless editInProgress()
     e.preventDefault()
     leave = $("#confirmLeave")
@@ -37,7 +37,7 @@ changeToYear = (year)->
   changeYearInMetricLinks year
 
 editInProgress = ->
-  $(".research-answer .card-form").data "changed"
+  $(".research-record .card-form").data "changed"
 
 answerReadyForYearChange = (input) ->
   if editInProgress()

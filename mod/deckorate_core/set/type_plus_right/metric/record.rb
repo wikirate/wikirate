@@ -29,7 +29,7 @@ def self.answer_fields metric
   ([metric] + metric.depender_metrics).map { |m| m.fetch :record }
 end
 
-# TODO: trigger recount from virtual answer batches
+# TODO: trigger recount from virtual record batches
 
 def fixed_field
   :metric_id
@@ -60,7 +60,7 @@ format do
 
   def filter_map
     filter_map_without_keys(super, :metric)
-      .tap { |arr| arr << :related_company_group if metric_card.relationship? }
+      .tap { |arr| arr << :related_company_group if metric_card.relation? }
   end
 
   def default_filter_hash
@@ -90,7 +90,7 @@ end
 
 format :html do
   view :export_links, cache: :never do
-    if metric_card.relationship?
+    if metric_card.relation?
       wrap_with :div, class: "export-links py-2" do
         [wrap_export_links("Answer", export_format_links),
          wrap_export_links("Relationship", relationship_export_links)]

@@ -1,8 +1,8 @@
 RSpec.describe Card::VegaChart::Timeline do
-  let(:answer) { Card[:record] }
+  let(:record) { Card[:record] }
 
   example "default timeline json" do
-    expect(answer.format(:json).vega.hash)
+    expect(record.format(:json).vega.hash)
       .to include(
         data: a_collection_including(
           a_hash_including(

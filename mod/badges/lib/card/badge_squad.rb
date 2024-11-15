@@ -1,6 +1,6 @@
 class Card
   # A BadgeSquad manages BadgeLines for one badge cardtype, for example
-  # all badges related to metric answers
+  # all badges related to records
   module BadgeSquad
     BADGE_TYPES =
       [:metric, :project, :record, :source, :company].freeze

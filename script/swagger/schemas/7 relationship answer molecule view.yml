@@ -1,4 +1,4 @@
-relationship_answer_molecule_view:
+relationship_molecule_view:
   type: object
   properties:
     id:

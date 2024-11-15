@@ -67,7 +67,7 @@ RSpec.describe Card::Set::TypePlusRight::Record::Value do
     end
 
     it "standardizes unknown" do
-      answer = sample_answer
+      answer = sample_record
       answer.value_card.update! content: "uNkNoWn"
       expect(answer.value).to eq("Unknown")
     end

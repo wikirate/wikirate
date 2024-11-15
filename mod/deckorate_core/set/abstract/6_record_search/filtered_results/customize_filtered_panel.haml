@@ -4,7 +4,7 @@
 
   ._custom-item-view-radios
     - customize_item_options.each do |key, label|
-      - id = "answer-group-#{key}-radio"
+      - id = "record-group-#{key}-radio"
       - value = key == :none ? "full_bar" : "grouped_#{key}"
       .form-check
         = radio_button_tag "slot[items][view]", value, (current_group==key),

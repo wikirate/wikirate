@@ -1,4 +1,4 @@
-include_set Abstract::Relationship
+include_set Abstract::Relation
 
 %i[topic value_type unpublished year company_group research_policy report_type
    steward about methodology unit range value_options].each do |property|
@@ -32,7 +32,7 @@ def company_id_field
 end
 
 # inverse here means "opposite".
-# like the inverse of an InverseRelationship is the Relationship
+# like the inverse of an InverseRelation is the Relation
 def inverse_company_id_field
   :subject_company_id
 end

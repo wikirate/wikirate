@@ -1,7 +1,7 @@
 toAnswerPhase = (metric, company, year)->
   year ||= 2020
   company ||= "Sony_Corporation"
-  cy.visit "#{metric}+#{company}/research?year=#{year}&tab=answer_phase"
+  cy.visit "#{metric}+#{company}/research?year=#{year}&tab=record_phase"
 
 # check and uncheck unknown box, ensuring desired effects
 testUnknown = (value) ->

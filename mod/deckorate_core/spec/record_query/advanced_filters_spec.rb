@@ -20,7 +20,7 @@ RSpec.describe Card::RecordQuery::AdvancedFilters do
   # end
 
   describe "#related_company_group_query" do
-    context "with relationship metric" do
+    context "with relation metric" do
       let(:metric_name) { "Commons+Supplied by" }
 
       it "finds object companies" do
@@ -29,7 +29,7 @@ RSpec.describe Card::RecordQuery::AdvancedFilters do
       end
     end
 
-    context "with inverse relationship metric" do
+    context "with inverse relation metric" do
       let(:metric_name) { "Commons+Supplier of" }
 
       it "finds subject companies" do

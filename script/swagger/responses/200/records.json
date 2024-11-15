@@ -1,6 +1,6 @@
 {
   "id": 43678,
-  "name": "Answer",
+  "name": "Record",
   "type": {
     "id": 5,
     "name": "Cardtype",
@@ -8,13 +8,13 @@
     "url": "https://wikirate.org/Cardtype.json",
     "codename": "cardtype"
   },
-  "url": "https://wikirate.org/Answers.json",
-  "codename": "metric_answer",
+  "url": "https://wikirate.org/Records.json",
+  "codename": "record",
   "items": [
     {
       "id": null,
       "name": "Clean Clothes Campaign+Supply Chain Transparency Score+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Supply_Chain_Transparency_Score+Sogesma_SA+2023.json",
       "content": "0.0",
       "metric": "Clean Clothes Campaign+Supply Chain Transparency Score",
@@ -27,7 +27,7 @@
     {
       "id": 15544531,
       "name": "Core+Company Report Available+Claire's Stores, Inc.+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Core+Company_Report_Available+Claire_s_Stores_Inc+2023.json",
       "content": "",
       "metric": "Core+Company Report Available",
@@ -40,7 +40,7 @@
     {
       "id": 15544306,
       "name": "Core+Company Report Available+Matalan+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Core+Company_Report_Available+Matalan+2023.json",
       "content": "",
       "metric": "Core+Company Report Available",
@@ -53,7 +53,7 @@
     {
       "id": 15544261,
       "name": "Core+Company Report Available+Primark+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Core+Company_Report_Available+Primark+2023.json",
       "content": "",
       "metric": "Core+Company Report Available",
@@ -66,7 +66,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Uses Living Wage Benchmark (Combined)+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Uses_Living_Wage_Benchmark_Combined+Sogesma_SA+2023.json",
       "content": "No",
       "metric": "Clean Clothes Campaign+Uses Living Wage Benchmark (Combined)",
@@ -79,7 +79,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Isolating Labour Cost (Combined)+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Isolating_Labour_Cost_Combined+Sogesma_SA+2023.json",
       "content": "No",
       "metric": "Clean Clothes Campaign+Isolating Labour Cost (Combined)",
@@ -92,7 +92,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Living Wage Action Plan (Combined)+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Living_Wage_Action_Plan_Combined+Sogesma_SA+2023.json",
       "content": "No",
       "metric": "Clean Clothes Campaign+Living Wage Action Plan (Combined)",
@@ -105,7 +105,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Policy Promise Score+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Policy_Promise_Score+Sogesma_SA+2023.json",
       "content": "No",
       "metric": "Clean Clothes Campaign+Policy Promise Score",
@@ -118,7 +118,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Public Commitment on Living Wage (Combined)+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Public_Commitment_on_Living_Wage_Combined+Sogesma_SA+2023.json",
       "content": "No",
       "metric": "Clean Clothes Campaign+Public Commitment on Living Wage (Combined)",
@@ -131,7 +131,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Supplier Disclosure+Clean Clothes Research Group+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Supplier_Disclosure+Clean_Clothes_Research_Group+Sogesma_SA+2023.json",
       "content": "0.0",
       "metric": "Clean Clothes Campaign+Supplier Disclosure+Clean Clothes Research Group",
@@ -144,7 +144,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Supplier Disclosure (combined)+Clean Clothes Research Group+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Supplier_Disclosure_combined+Clean_Clothes_Research_Group+Sogesma_SA+2023.json",
       "content": "0.0",
       "metric": "Clean Clothes Campaign+Supplier Disclosure (combined)+Clean Clothes Research Group",
@@ -157,7 +157,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Transparency Beyond Basic Pledge Standard+Clean Clothes Research Group+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Transparency_Beyond_Basic_Pledge_Standard+Clean_Clothes_Research_Group+Sogesma_SA+2023.json",
       "content": "0.0",
       "metric": "Clean Clothes Campaign+Transparency Beyond Basic Pledge Standard+Clean Clothes Research Group",
@@ -170,7 +170,7 @@
     {
       "id": null,
       "name": "Commons+Supplier List (all)+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Commons+Supplier_List_all+Sogesma_SA+2023.json",
       "content": "No",
       "metric": "Commons+Supplier List (all)",
@@ -183,7 +183,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Transparency Beyond Basic Pledge Standard (Combined)+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Transparency_Beyond_Basic_Pledge_Standard_Combined+Sogesma_SA+2023.json",
       "content": "No",
       "metric": "Clean Clothes Campaign+Transparency Beyond Basic Pledge Standard (Combined)",
@@ -196,7 +196,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Transparency Beyond Basic Pledge Standard (Combined)+Clean Clothes Research Group+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Transparency_Beyond_Basic_Pledge_Standard_Combined+Clean_Clothes_Research_Group+Sogesma_SA+2023.json",
       "content": "0.0",
       "metric": "Clean Clothes Campaign+Transparency Beyond Basic Pledge Standard (Combined)+Clean Clothes Research Group",
@@ -209,7 +209,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Open Format for Supply Chain Disclosure (Combined)+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Open_Format_for_Supply_Chain_Disclosure_Combined+Sogesma_SA+2023.json",
       "content": "No",
       "metric": "Clean Clothes Campaign+Open Format for Supply Chain Disclosure (Combined)",
@@ -222,7 +222,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Open Format for Supply Chain Disclosure (Combined)+Clean Clothes Research Group+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Open_Format_for_Supply_Chain_Disclosure_Combined+Clean_Clothes_Research_Group+Sogesma_SA+2023.json",
       "content": "0.0",
       "metric": "Clean Clothes Campaign+Open Format for Supply Chain Disclosure (Combined)+Clean Clothes Research Group",
@@ -235,7 +235,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Supplier Disclosure (combined)+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Supplier_Disclosure_combined+Sogesma_SA+2023.json",
       "content": "No",
       "metric": "Clean Clothes Campaign+Supplier Disclosure (combined)",
@@ -248,7 +248,7 @@
     {
       "id": 15544409,
       "name": "Core+Company Report Available+Quiksilver Inc+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Core+Company_Report_Available+Quiksilver_Inc+2023.json",
       "content": "",
       "metric": "Core+Company Report Available",
@@ -261,7 +261,7 @@
     {
       "id": null,
       "name": "Clean Clothes Campaign+Open Format for Supply Chain Disclosure+Clean Clothes Research Group+Sogesma SA+2023",
-      "type": "Answer",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Open_Format_for_Supply_Chain_Disclosure+Clean_Clothes_Research_Group+Sogesma_SA+2023.json",
       "content": "0.0",
       "metric": "Clean Clothes Campaign+Open Format for Supply Chain Disclosure+Clean Clothes Research Group",
@@ -278,11 +278,11 @@
   "ancestors": [
 
   ],
-  "html_url": "https://wikirate.org/Answer",
+  "html_url": "https://wikirate.org/Record",
   "created_at": "2015-04-22 18:36:42 UTC",
   "updated_at": "2023-05-07 15:31:20 UTC",
   "paging": {
-    "next": "https://wikirate.org/Answer.json?filter%5Bcompany_name%5D=&item=name&limit=20&offset=20"
+    "next": "https://wikirate.org/Record.json?filter%5Bcompany_name%5D=&item=name&limit=20&offset=20"
   },
   "requested_at": "2023-09-21 12:17:22 UTC",
   "license": "Creative Commons Attribution-ShareAlike 4.0 International License"

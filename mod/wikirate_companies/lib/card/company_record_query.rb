@@ -3,12 +3,12 @@ class Card
   module CompanyRecordQuery
     def company_country val
       joins << company_answer_join(:countries)
-      add_answer_condition CompanyFilterCql.country_condition, val
+      add_record_condition CompanyFilterCql.country_condition, val
     end
 
     def company_category val
       joins << company_answer_join(:categories)
-      add_answer_condition CompanyFilterCql.category_condition, val
+      add_record_condition CompanyFilterCql.category_condition, val
     end
 
     def company_answer val
@@ -26,7 +26,7 @@ class Card
                       to: [:answers, answer_alias, :company_id]
     end
 
-    def add_answer_condition cond, val
+    def add_record_condition cond, val
       @conditions << ::Answer.sanitize_sql_for_conditions([cond, Array.wrap(val)])
     end
   end

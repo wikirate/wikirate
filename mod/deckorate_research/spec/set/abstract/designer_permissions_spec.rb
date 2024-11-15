@@ -3,7 +3,7 @@
 RSpec.describe Card::Set::Abstract::DesignerPermissions do
   let(:metric_name) { "Joe User+researched number 3" }
   let(:metric) { metric_name.card }
-  let(:answer) { "#{metric_name}+Samsung+2014".card }
+  let(:record) { "#{metric_name}+Samsung+2014".card }
 
   def designer_can action, card
     Card::Auth.as "Joe User" do
@@ -31,14 +31,14 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
     end
   end
 
-  describe "answers" do
+  describe "records" do
     %i[create update delete].each do |action|
-      specify "designer can #{action} answer" do
-        designer_can action, answer
+      specify "designer can #{action} record" do
+        designer_can action, record
       end
 
-      specify "nondesigner cannot #{action} answer" do
-        nondesigner_cant action, answer
+      specify "nondesigner cannot #{action} record" do
+        nondesigner_cant action, record
       end
     end
   end
@@ -61,5 +61,5 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
 
   test_field_permissions :metric, %i[value_type research_policy unit range value_options
                                      report_type question about methodology]
-  test_field_permissions :answer, %i[value source]
+  test_field_permissions :record, %i[value source]
 end

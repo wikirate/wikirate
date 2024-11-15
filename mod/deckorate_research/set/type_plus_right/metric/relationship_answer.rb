@@ -1,5 +1,5 @@
 # Two main uses for this card:
-# 1. exporting relationship answers on metric pages
+# 1. exporting relationships on metric pages
 # 2. returning subbrands on fashionchecker (should probably use a different pattern)
 
 include_set Abstract::RelationshipSearch

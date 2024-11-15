@@ -9,7 +9,7 @@ include_set Abstract::RecordFilters
 delegate :inverse?, to: :metric_card
 
 def item_type_id
-  RelationshipAnswerID
+  RelationshipID
 end
 
 def query_class

@@ -10,7 +10,7 @@ Card::Auth.as_bot
 
 def validate answer_id
   answer = answer_id.card
-  return if answer.relationship? || answer.calculated?
+  return if answer.relation? || answer.calculated?
 
   validate_value answer.value_card
 rescue StandardError => e

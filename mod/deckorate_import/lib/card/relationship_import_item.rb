@@ -1,5 +1,5 @@
 class Card
-  # This class provides an interface to import relationship answers
+  # This class provides an interface to import relationships
   class RelationshipImportItem < RecordImportItem
     extend CompanyImportHelper
 
@@ -17,7 +17,7 @@ class Card
     CSV_KEYS = %i[relationship_id relationship_link metric answer_id
                   metric subject_company metric_company year value].freeze
 
-    def translate_row_hash_to_create_answer_hash
+    def translate_row_hash_to_create_record_hash
       super.tap do |hash|
         hash[:company] = hash.delete :subject_company
         hash[:related_company] = hash.delete :object_company

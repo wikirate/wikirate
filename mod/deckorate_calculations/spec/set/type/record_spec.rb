@@ -2,8 +2,8 @@ RSpec.describe Card::Set::Type::Record do
   context "with Rating" do
     let(:answer) { Card.fetch "Jedi+darkness_rating+Death_Star+1977" }
 
-    example "#direct_dependee_answers" do
-      expect(answer.direct_dependee_answers.count).to eq(2)
+    example "#direct_dependee_records" do
+      expect(answer.direct_dependee_records.count).to eq(2)
     end
 
     example "#dependee_answers" do

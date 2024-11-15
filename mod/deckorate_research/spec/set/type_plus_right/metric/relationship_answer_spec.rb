@@ -1,6 +1,6 @@
-RSpec.describe Card::Set::TypePlusRight::Metric::RelationshipAnswer do
+RSpec.describe Card::Set::TypePlusRight::Metric::Relationship do
   def card_subject
-    "Jedi+more evil".card.fetch :relationship_answer
+    "Jedi+more evil".card.fetch :relationship
   end
 
   # views used in csv / json exports
