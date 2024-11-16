@@ -13,7 +13,7 @@ class Calculate
         end
 
         def input_records_by_company_and_year
-          { nil => year_answer_pairs }
+          { nil => year_record_pairs }
         end
 
         def update_result_slice _company_id, year, _value

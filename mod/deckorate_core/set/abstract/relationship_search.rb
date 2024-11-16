@@ -9,7 +9,7 @@ include_set Abstract::RecordFilters
 delegate :inverse?, to: :metric_card
 
 def item_type_id
-  RelationshipAnswerID
+  RelationshipID
 end
 
 def query_class
@@ -41,7 +41,7 @@ format do
 end
 
 format :json do
-  view :answer_list, cache: :never do
+  view :record_list, cache: :never do
     query.lookup_relation.map(&:compact_json)
   end
 end

@@ -1,0 +1,51 @@
+relationship_atom_view:
+  type: object
+  properties:
+    id:
+      type: string
+      example: 7141196
+    name:
+      type: string
+      example: "Commons+Supplied By+Aldi Sud+2020+Wenling Mingshi Hats Co.Ltd"
+    url:
+      type: string
+      example: "https://wikirate.org/Commons+Supplied_By+Aldi_Sud+2020+Wenling_Mingshi_Hats_Co_Ltd.json?view=atom"
+    type:
+      type: string
+      example: "Relationship"
+    content:
+      type: string
+      example: ''
+    year:
+      type: integer
+      example: 2020
+    value:
+      type: string
+      example: Tier 1 Supplier
+    metric_id:
+      type: integer
+      example: 2929009
+    inverse_metric_id:
+      type: integer
+      example: 2929015
+    import:
+      type: boolean
+      example: false
+    comments:
+      type: string
+      example: ''
+    subject_company_id:
+      type: integer
+      example: 5208
+    object_company_id:
+      type: integer
+      example: 2929133
+    subject_company:
+      type: string
+      example: "Aldi Sud"
+    object_company:
+      type: string
+      example: "Wenling Mingshi Hats Co.Ltd"
+    requested_at:
+      type: string
+      example: "2023-09-21 10:02:46 UTC"

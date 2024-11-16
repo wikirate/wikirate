@@ -2,8 +2,8 @@ include_set Abstract::ProgressBar
 
 # for this to work, you have to define at a minimum:
 #
-# 1. #num_possible returning the total number of answers/records in the problem space
-# 2. #where_answer returning query args for a record query
+# 1. #num_possible returning the total number of records/records in the problem space
+# 2. #where_record returning query args for a record query
 
 CSS_CLASS = { not_researched: "progress-not-researched" }.freeze
 LINK_VALUE = { not_researched: "none" }.freeze
@@ -25,7 +25,7 @@ def dataset_card
   @dataset_card ||= project_card.dataset_card
 end
 
-# has an answer
+# has an record
 def num_researched
   @num_researched ||= smart_count { count_researched }
 end
@@ -35,12 +35,12 @@ def num_known
   @num_known ||= smart_count { count_known }
 end
 
-# answer's value is "Unknown"
+# record's value is "Unknown"
 def num_unknown
   @num_unknown ||= num_researched - num_known
 end
 
-# no answer
+# no record
 def num_not_researched
   @num_not_researched ||= num_possible - num_researched
 end
@@ -73,16 +73,16 @@ def count_known
   researched_relation.where.not(value: "Unknown").count
 end
 
-def answers
-  Answer.where where_answer
+def records
+  ::Record.where where_record
 end
 
 def records
-  Answer.select(:metric_id, :company_id).distinct.where where_answer
+  ::Record.select(:metric_id, :company_id).distinct.where where_record
 end
 
 def researched_relation
-  dataset_card.years? ? answers : records
+  dataset_card.years? ? records : records
 end
 
 def where_year

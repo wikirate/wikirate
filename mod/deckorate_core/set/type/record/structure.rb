@@ -1,4 +1,4 @@
-def record_log_answers_card
+def record_log_records_card
   record_log_card.record_card
 end
 
@@ -6,22 +6,22 @@ format :html do
   def tab_list
     list = %i[details record_log calculations]
     list << (card.calculated? ? :inputs : :contributions)
-    list.insert 1, :relationship_answer if card.relationship?
+    list.insert 1, :relationship if card.relation?
     list
   end
 
   def tab_options
     {
       contributions: { label: "Contributions" },
-      record_log: { count: card.record_log_answers_card.count, label: "Years" },
-      calculations: { count: card.depender_answers.count },
-      # inputs: { count: card.dependee_answers.count },
-      # NOTE: the inputs count is super slow on complicated answers, like
+      record_log: { count: card.record_log_records_card.count, label: "Years" },
+      calculations: { count: card.depender_records.count },
+      # inputs: { count: card.dependee_records.count },
+      # NOTE: the inputs count is super slow on complicated records, like
       # https://wikirate.org/Apparel_Research_Group+ESG_Disclosure_Rate+Adidas_AG+2020
-      # The problem is that it has to traverse the answers via the calculators in
+      # The problem is that it has to traverse the records via the calculators in
       # order to make sure it handles funky formulas correctly, and that takes a long
       # time when there are thousands of inputs.
-      relationship_answer: { count: relationship_count, label: "Relationships" }
+      relationship: { count: relationship_count, label: "Relationships" }
     }
   end
 
@@ -44,17 +44,17 @@ format :html do
   end
 
   view :calculations_tab do
-    card.depender_answers.map { |a| nest a.card, view: :bar }
+    card.depender_records.map { |a| nest a.card, view: :bar }
   end
 
   view :inputs_tab do
-    card.dependee_answers.map { |a| nest a.card, view: :bar }
+    card.dependee_records.map { |a| nest a.card, view: :bar }
   end
 
-  view :relationship_answer_tab do
-    return "" unless card.relationship?
+  view :relationship_tab do
+    return "" unless card.relation?
 
-    field_nest :relationship_answer, view: :filtered_content
+    field_nest :relationship, view: :filtered_content
   end
 
   view :read_form, cache: :never do
@@ -62,9 +62,9 @@ format :html do
   end
 
   def relationship_count
-    return 0 unless card.relationship?
+    return 0 unless card.relation?
 
-    card.fetch(:relationship_answer).count
+    card.fetch(:relationship).count
   end
 
   def read_field_configs
@@ -72,7 +72,7 @@ format :html do
   end
 
   def special_field_configs
-    if card.relationship?
+    if card.relation?
       []
     elsif card.researched?
       [source_field_config]
@@ -99,7 +99,7 @@ format :html do
   private
 
   def calculated_read_field_configs
-    if overridden? # meaning answer is researched
+    if overridden? # meaning record is researched
       overridden_read_field_configs
     else
       [self_core_as_field_config("Formula")]

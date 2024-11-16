@@ -14,10 +14,10 @@ class Calculate
 
     attr_reader :errors, :computer, :formula
 
-    # All the answers a given calculation depends on
+    # All the records a given calculation depends on
     # (same opts as #result)
-    # @return [Array] array of Answer objects
-    delegate :answers_for, to: :input
+    # @return [Array] array of Record objects
+    delegate :records_for, to: :input
 
     # @param input_array [Array]
     # @param normalizer: [Method] # called to normalize each *result* value
@@ -36,14 +36,14 @@ class Calculate
       @input ||= input_with :cast
     end
 
-    # Calculates answers
+    # Calculates records
     # @param :companies [Array, Integer] only yield input for given companies
     # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Hash] { year => { company_id => value } }
     def result **restraints
       restrain_to(**restraints)
       result_array do |result|
-        each_answer do |input_records, company, year|
+        each_record do |input_records, company, year|
           result << Calculation.new(company, year, calculator: self,
                                                    input_records: input_records)
         end
@@ -87,7 +87,7 @@ class Calculate
     end
 
     def input_values
-      each_answer do |input_records, company, year|
+      each_record do |input_records, company, year|
         values = input_records&.map { |a| a&.value }
         next if result_is_unknown? values
         yield values, company, year
@@ -96,7 +96,7 @@ class Calculate
 
     def raw_input_values
       [].tap do |list|
-        each_answer do |input_records, _company, _year|
+        each_record do |input_records, _company, _year|
           list << input_records&.map { |a| a&.value }
         end
       end
@@ -129,7 +129,7 @@ class Calculate
 
     # @param :companies [Integer Array] only yield input for given companies
     # @param :years [String, Integer, Array] :year only yield input for given years
-    def each_answer
+    def each_record
       with_restraints do |c, y|
         input.each(companies: c, years: y) do |input_records, company, year|
           yield input_records, company, year

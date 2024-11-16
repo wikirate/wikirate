@@ -19,7 +19,7 @@ format do
   #   filter_hash[:"#{partner}_name"]&.match?(/^\=/)
   # end
 
-  def answer_page_fixed_filters
+  def record_page_fixed_filters
     { fixed_filter_field => ["~#{card.left_id}"] }
   end
 end
@@ -35,7 +35,7 @@ format :html do
     current_group == :none
   end
 
-  # none and all not available on answer dashboard or datasets
+  # none and all not available on record dashboard or datasets
   # def filter_status_options
   #   super.merge "Not Researched" => "none", "Researched and Not" => "all"
   # end

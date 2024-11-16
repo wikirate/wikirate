@@ -15,16 +15,16 @@ RSpec.describe Card::Set::MetricType::Formula do
     ]
   end
 
-  def answer company: "Samsung", year: "2014", metric: "Jedi+formula1"
-    Answer.where(
+  def record company: "Samsung", year: "2014", metric: "Jedi+formula1"
+    ::Record.where(
       metric_id: metric.card_id,
       company_id: company.card_id,
       year: year
     ).take
   end
 
-  def answer_value **args
-    answer(**args)&.value
+  def record_value **args
+    record(**args)&.value
   end
 
   def create_formula formula="m1 + m2", vars=variables
@@ -49,7 +49,7 @@ RSpec.describe Card::Set::MetricType::Formula do
   describe "formula with year reference" do
     context "with single year" do
       let :value do
-        answer_value company: "Apple Inc", year: 2015
+        record_value company: "Apple Inc", year: 2015
       end
 
       def formula year:
@@ -75,20 +75,20 @@ RSpec.describe Card::Set::MetricType::Formula do
 
       it "latest" do
         formula year: "latest"
-        expect(answer_value(company: "Apple Inc", year: 2002)).to eq "115"
+        expect(record_value(company: "Apple Inc", year: 2002)).to eq "115"
       end
     end
 
     it "all years" do
       variables.first.merge! metric: metric_name3, year: "all"
       create_formula "SUM m1, m2"
-      expect(answer_value).to eq "12"
-      expect(answer_value(year: 2015)).to eq "7"
+      expect(record_value).to eq "12"
+      expect(record_value(year: 2015)).to eq "7"
     end
 
     context "with total of" do
       let :value do
-        answer_value company: "Apple Inc", year: 2015
+        record_value company: "Apple Inc", year: 2015
       end
 
       def formula year:
@@ -134,7 +134,7 @@ RSpec.describe Card::Set::MetricType::Formula do
 
   describe "unknown option" do
     let :value do
-      answer_value company: "Apple Inc", year: 2001
+      record_value company: "Apple Inc", year: 2001
     end
 
     def formula(unknown:)
@@ -176,12 +176,12 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     example "using direct relationship" do
       formula "Jedi+more evil"
-      expect(answer_value(company: "Death Star", year: 1977)).to eq "90"
+      expect(record_value(company: "Death Star", year: 1977)).to eq "90"
     end
 
     example "using inverse relationship" do
       formula "Jedi+less evil"
-      expect(answer_value(company: "Los Pollos Hermanos", year: 1977)).to eq "150"
+      expect(record_value(company: "Los Pollos Hermanos", year: 1977)).to eq "150"
     end
   end
 
@@ -202,10 +202,10 @@ RSpec.describe Card::Set::MetricType::Formula do
     end
 
     it "creates calculated values" do
-      expect(answer_value).to eq("60")
-      expect(answer_value(year: 2015)).to eq("29")
-      expect(answer_value(company: "Sony_Corporation")).to eq("9")
-      expect(answer(company: "Death_Star", year: 1977)).to be_falsey
+      expect(record_value).to eq("60")
+      expect(record_value(year: 2015)).to eq("29")
+      expect(record_value(company: "Sony_Corporation")).to eq("9")
+      expect(record(company: "Death_Star", year: 1977)).to be_falsey
     end
 
     context "when formula changes" do
@@ -217,35 +217,35 @@ RSpec.describe Card::Set::MetricType::Formula do
 
       it "updates existing calculated value" do
         update_formula formula: "m1 * 4 + m2 * 2"
-        expect(answer_value).to eq "50"
+        expect(record_value).to eq "50"
       end
 
       it "removes incomplete calculated value" do
         vars = variables << { metric: metric_name3, name: "m3" }
         update_formula formula: "m1*5+m2*2+m3", variables: vars.to_json
-        expect(answer(company: "Sony_Corporation")).to be_falsey
+        expect(record(company: "Sony_Corporation")).to be_falsey
       end
 
       it "adds complete calculated value" do
         update_formula formula: "m1*5", variables: [variables.first].to_json
-        expect(answer_value(company: "Death Star", year: 1977)).to eq("25")
+        expect(record_value(company: "Death Star", year: 1977)).to eq("25")
       end
     end
 
     context "when input metric value is missing" do
       it "doesn't create calculated value" do
-        expect(answer(company: "Death Star", year: 1977)).to be_falsey
+        expect(record(company: "Death Star", year: 1977)).to be_falsey
       end
       it "creates calculated value if missing value is added" do
         Card::Auth.as_bot do
-          Card["Joe User+researched number 2"].create_answer(
+          Card["Joe User+researched number 2"].create_record(
             company: "Death Star",
             year: "1977",
             value: "2",
             source: sample_source
           )
         end
-        expect(answer_value(company: "Death Star", year: 1977)).to eq("29")
+        expect(record_value(company: "Death Star", year: 1977)).to eq("29")
       end
     end
 
@@ -253,11 +253,11 @@ RSpec.describe Card::Set::MetricType::Formula do
       it "updates calculated value" do
         card = Card["#{metric_name1}+Samsung+2014+value"]
         expect { card.update! content: "1" }
-          .to change { answer_value }.from("60").to("15")
+          .to change { record_value }.from("60").to("15")
       end
       it "removes incomplete calculated values" do
         Card::Auth.as_bot { Card["#{metric_name1}+Samsung+2014"].delete! }
-        expect(answer).to be_falsey
+        expect(record).to be_falsey
       end
     end
   end
@@ -276,10 +276,10 @@ RSpec.describe Card::Set::MetricType::Formula do
 
     it "creates calculated values if formula created", as_bot: true do
       Card.create! name: [formula_metric_name, :formula], content: "m1 * 5 + m2 * 2"
-      expect(answer_value).to eq("60")
-      expect(answer_value(year: 2015)).to eq("29")
-      expect(answer_value(company: "Sony_Corporation")).to eq("9")
-      expect(answer(company: "Death_Star", year: 1977)).to be_falsey
+      expect(record_value).to eq("60")
+      expect(record_value(year: 2015)).to eq("29")
+      expect(record_value(company: "Sony_Corporation")).to eq("9")
+      expect(record(company: "Death_Star", year: 1977)).to be_falsey
     end
   end
 end

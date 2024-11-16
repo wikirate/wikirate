@@ -7,17 +7,17 @@
   .mt-5
     %h3 Researched Metric Types
     %p
-      Answers to researched metrics are added directly or via import/API. Each answer
+      Records for researched metrics are added directly or via import/API. Each record
       must cite a
       #{link_to_card :source}.
     .metric-type-list
       = new_metric_link :researched
-      = new_metric_link :relationship
+      = new_metric_link :relation
 
   .mt-5
     %h3 Calculated Metric Types
     %p
-      Answers to calculated metrics are dynamically computed from other answers
+      Records to calculated metrics are dynamically computed from other records
       formulaically.
     .metric-type-list
       = new_metric_link :formula

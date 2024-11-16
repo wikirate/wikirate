@@ -2,19 +2,19 @@ include_set Abstract::FilteredBodyToggle
 include_set Abstract::LazyTree
 
 format do
-  def answer_page_fixed_filters
+  def record_page_fixed_filters
     card.query_hash
   end
 
-  def answer_page_filters
-    filter_hash.merge answer_page_fixed_filters
+  def record_page_filters
+    filter_hash.merge record_page_fixed_filters
   end
 
   def search_with_params
     return super if current_group == :none
 
     @search_results ||= {}
-    @search_results[current_group] ||= Answer.connection.exec_query(group_by_query.to_sql)
+    @search_results[current_group] ||= Record.connection.exec_query(group_by_query.to_sql)
   end
 
   def count_with_params
@@ -56,7 +56,7 @@ format :html do
   end
 
   view :filtered_results_footer do
-    super() + wrap_with("div", class: "text-end py-3") { answer_page_link }
+    super() + wrap_with("div", class: "text-end py-3") { record_page_link }
   end
 
   view :core, cache: :never do
@@ -75,10 +75,10 @@ format :html do
     end
   end
 
-  def answer_page_link
+  def record_page_link
     link_to_card :record,
-                 "View all answers #{icon_tag :east}",
-                 path: { filter: answer_page_filters }
+                 "View all records #{icon_tag :east}",
+                 path: { filter: record_page_filters }
   end
 
   def default_filtered_body

@@ -31,7 +31,7 @@ format do
   end
 
   def sort_options
-    { "Most Data Points": :answer, "Most Metrics": :metric }.merge super
+    { "Most Data Points": :record, "Most Metrics": :metric }.merge super
   end
 
   def filter_map
@@ -47,7 +47,7 @@ end
 
 format :html do
   def default_sort_option
-    "answer"
+    "record"
   end
 
   def quick_filter_list
