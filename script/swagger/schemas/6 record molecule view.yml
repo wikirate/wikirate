@@ -1,0 +1,41 @@
+record_molecule_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 566035
+    name:
+      type: string
+      example: PayScale+CEO to Worker pay+Apple Inc.+2013
+    url:
+      type: string
+      example: https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc+2013.json
+    type:
+      type: string
+      example: Record
+    metric:
+      type: string
+      example: PayScale+CEO to Worker pay
+    company:
+      type: string
+      example: Apple Inc.
+    year:
+      type: integer
+      example: 2013
+    value:
+      type: string
+      example: '43'
+    record_url:
+      type: string
+      example: https://wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json
+    sources:
+      type: array
+      items:
+        "$ref" : "#/components/schemas/source_atom_view"
+    checked_by:
+      type: array
+      items:
+        type: object
+    requested_at:
+      type: string
+      example: "2023-09-21 10:30:20 UTC"

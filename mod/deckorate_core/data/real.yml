@@ -33,9 +33,6 @@
 - :name: Metric type
   :type: :cardtype
   :codename: metric_type_type
-- :name: Relationship Answer
-  :type: :cardtype
-  :codename: relationship_answer
 - :name: Year
   :type: :cardtype
   :codename: year

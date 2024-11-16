@@ -1,28 +1,28 @@
 class Calculate
   class Calculator
     class Input
-      # methods for retrieving input answers
+      # methods for retrieving input records
       module Records
         private
 
         # @return Array[String] simple input values for the given company and year
-        def fetch_answer company_id, year
+        def fetch_record company_id, year
           return unless @result_cache.has_value? company_id, year
 
           catch :cancel_calculation do
-            @input_list.map { |input_item| input_item.answer_for company_id, year }
+            @input_list.map { |input_item| input_item.record_for company_id, year }
           end
         end
 
-        def yield_answer company_id, year
-          yield fetch_answer(company_id, year), company_id, year
+        def yield_record company_id, year
+          yield fetch_record(company_id, year), company_id, year
         end
 
         def values_for_companies_and_years companies, years, &block
           each_year(years) do |year|
             each_company(companies) do |company_id|
               search_values_for company_id: company_id, year: year
-              yield_answer company_id, year, &block
+              yield_record company_id, year, &block
             end
           end
         end
@@ -30,7 +30,7 @@ class Calculate
         def values_for_years years, &block
           each_year(years) do |year|
             companies_with_value(year).each do |company_id|
-              yield_answer company_id, year, &block
+              yield_record company_id, year, &block
             end
           end
         end
@@ -38,7 +38,7 @@ class Calculate
         def values_for_companies companies, &block
           each_company(companies) do |company_id|
             years_with_values(company_id).each do |year|
-              yield_answer company_id, year, &block
+              yield_record company_id, year, &block
             end
           end
         end
@@ -46,7 +46,7 @@ class Calculate
         def all_values &block
           years_with_values.each do |year|
             companies_with_value(year).each do |company_id|
-              yield_answer company_id, year, &block
+              yield_record company_id, year, &block
             end
           end
         end

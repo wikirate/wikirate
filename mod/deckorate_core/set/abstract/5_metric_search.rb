@@ -39,7 +39,7 @@ format do
     %i[topic designer metric_type value_type research_policy bookmark]
   end
 
-  # answer searches have different handling of published and dataset filters
+  # record searches have different handling of published and dataset filters
   def filter_map
     filtering_by_published do
       shared_metric_filter_map.unshift key: :metric_keyword,
@@ -52,7 +52,7 @@ format do
     {
       "Most Bookmarked": :bookmarkers,
       "Most Companies": :company,
-      "Most Data Points": :answer,
+      "Most Data Points": :record,
       "Most References": :reference,
       "Designer": :metric_designer,
       "Title": :metric_title
@@ -60,7 +60,7 @@ format do
   end
 
   def default_desc_sort_dir
-    ::Set.new %i[bookmarkers company answer reference]
+    ::Set.new %i[bookmarkers company record reference]
   end
 
   def secondary_sort_hash
@@ -101,7 +101,7 @@ format :html do
   end
 
   def filter_metric_type_options
-    %i[researched relationship inverse_relationship formula rating score descendant]
+    %i[researched relation inverse_relation formula rating score descendant]
       .map(&:cardname)
   end
 
@@ -136,7 +136,7 @@ DETAILED_COLUMNS = %i[about methodology topic unpublished scorer formula
                       range hybrid inverse_title report_type year company_group].freeze
 
 format :csv do
-  # TODO: move to metric class, mirroring answer pattern.  Then use that in metric import.
+  # TODO: move to metric class, mirroring record pattern.  Then use that in metric import.
   view :titles do
     basic = headers(BASIC_COLUMNS).unshift "Metric Link"
     return basic unless detailed?

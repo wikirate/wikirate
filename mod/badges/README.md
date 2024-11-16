@@ -35,5 +35,5 @@ moved out.)
 
 There is a good bit of code for affinity badges, but this code is currently largely
 deactivated. Affinity badges add a layer of specificity.
-For example, instead of just receiving badges for adding an Answer, you can receive
-badges for adding Answers about a specific metric or company.
+For example, instead of just receiving badges for adding an Record, you can receive
+badges for adding Records about a specific metric or company.

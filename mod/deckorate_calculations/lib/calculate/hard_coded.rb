@@ -22,7 +22,7 @@ class Calculate
     end
 
     def no_unknowns? input
-      Array.wrap(input).flatten.none? { |inp| Answer.unknown? inp }
+      Array.wrap(input).flatten.none? { |inp| Record.unknown? inp }
     end
   end
 end

@@ -13,7 +13,7 @@ format :html do
   }.freeze
 
   def header_cells
-    [company_name_sort_link, metric_sort_links, answer_sort_links]
+    [company_name_sort_link, metric_sort_links, record_sort_links]
   end
 
   def metric_sort_links

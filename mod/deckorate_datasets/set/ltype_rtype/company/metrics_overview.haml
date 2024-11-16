@@ -3,7 +3,7 @@
   .lead
     %em
       = company_card.name
-    Answers in
+    Records in
     %em
       = card.project_name
   - record_log_names.each do |record_log_name|
@@ -11,7 +11,7 @@
         class: "_research-metric-link record-log-in-project" }
       .p-3
         = nest record_log_name.left, view: :title_and_question
-        .record-log-answers.d-flex.justify-content-center
+        .record-log-records.d-flex.justify-content-center
           .w-75
-            - record_log_answers(record_log_name).each do |answer|
-              = nest answer, view: :research_option, hide: :legend
+            - record_log_records(record_log_name).each do |record|
+              = nest record, view: :research_option, hide: :legend

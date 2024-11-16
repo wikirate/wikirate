@@ -1,7 +1,7 @@
 include_set Abstract::ListCachedCount
 
 CONTRIBUTION_CATEGORIES = %i[created updated discussed double_checked].freeze
-CONTRIBUTION_CATEGORY_HEADER = ["Answers"].concat(
+CONTRIBUTION_CATEGORY_HEADER = ["Records"].concat(
   CONTRIBUTION_CATEGORIES.map do |category|
     Card::Set::LtypeRtype::User::Cardtype::ACTION_LABELS[category]
   end

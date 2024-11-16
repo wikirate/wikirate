@@ -1,13 +1,13 @@
 def ids_related_to_research_group research_group
   research_group.projects.map do |project|
-    RecordQuery.new(dataset: project.dataset_name).lookup_relation.pluck :answer_id
+    RecordQuery.new(dataset: project.dataset_name).lookup_relation.pluck :record_id
   end.flatten.compact
 end
 
 # def report_query action, user_id, subvariant
-#   answer_query = send("#{action}_query", user_id, subvariant)
-#   #answer_ids = Answer.where(answer_query).pluck(:answer_id)
-#   #{ id: ["in"] + answer_ids, limit: 5 }
+#   record_query = send("#{action}_query", user_id, subvariant)
+#   #record_ids = ::Record.where(record_query).pluck(:record_id)
+#   #{ id: ["in"] + record_ids, limit: 5 }
 # end
 
 def subvariants
