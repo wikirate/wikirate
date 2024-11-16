@@ -1,0 +1,73 @@
+relationship_molecule_view:
+  type: object
+  properties:
+    id:
+      type: string
+      example: 3316841
+    name:
+      type: string
+      example: Commons+Supplied By+The Walt Disney Company+2016+Fastmaker LLC
+    url:
+      type: string
+      example: https://wikirate.org/Commons+Supplied_By+The_Walt_Disney_Company+2016+Fastmaker_LLC.json
+    html_url:
+      type: string
+      example: https://wikirate.org/Commons+Supplied_By+The_Walt_Disney_Company+2016+Fastmaker_LLC
+    type:
+      "$ref": "#/components/schemas/nucleus_view"
+    content:
+      type: string
+      example: ''
+    year:
+      type: integer
+      example: 2016
+    value:
+      type: string
+      example: Tier 1 Supplier
+    metric_id:
+      type: integer
+      example: 2929009
+    inverse_metric_id:
+      type: integer
+      example: 2929015
+    import:
+      type: boolean
+      example: false
+    comments:
+      type: string
+      example: ''
+    subject_company_id:
+      type: integer
+    object_company_id:
+      type: integer
+    subject_company:
+      "$ref": "#/components/schemas/company_atom_view"
+    object_company:
+      "$ref": "#/components/schemas/company_atom_view"
+    sources:
+      type: array
+      items:
+        "$ref": "#/components/schemas/source_atom_view"
+    checked_by:
+      type: object
+    items:
+      type: array
+      items:
+        type: object
+    links:
+      type: array
+      items:
+        type: string
+    ancestors:
+      type: array
+      items:
+        "$ref": "#/components/schemas/atom_view"
+    created_at:
+      type: string
+      example: "2021-03-22 14:07:57 UTC"
+    updated_at:
+      type: string
+      example: "2021-03-22 14:07:57 UTC"
+    requested_at:
+      type: string
+      example: "2023-09-21 10:02:46 UTC"

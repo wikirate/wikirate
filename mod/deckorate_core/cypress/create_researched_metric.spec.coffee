@@ -15,9 +15,9 @@ describe "researched metric creation", ->
       .should "contain", "Researched"
 
 
-  specify "metric type: Relationship", ->
-    cy.get(".SELF-relationship.box").within ->
-      cy.contains("Relationship").click()
+  specify "metric type: Relation", ->
+    cy.get(".SELF-relation.box").within ->
+      cy.contains("Relation").click()
 
     cy.get(".RIGHT-Xtitle .d0-card-content").type("owner of")
     cy.get(".RIGHT-inverse_title .d0-card-content").type("owned by")
@@ -28,7 +28,7 @@ describe "researched metric creation", ->
 
     cy.get(".header-middle")
     .should "contain", "Metric Type"
-    .should "contain", "Relationship"
+    .should "contain", "Relation"
 
     # go to details tab
     cy.contains("Details").click()

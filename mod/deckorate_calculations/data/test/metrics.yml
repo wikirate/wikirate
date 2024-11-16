@@ -49,7 +49,7 @@
     :value_type: Number
     :metric_type: Score
     :formula: |-
-      answer / 20
+      record / 20
 - :name:
     - Jedi
     - deadliness
@@ -59,7 +59,7 @@
     :value_type: Number
     :metric_type: Score
     :formula: |-
-      answer / 10
+      record / 10
 - :name:
     - Jedi
     - darkness rating

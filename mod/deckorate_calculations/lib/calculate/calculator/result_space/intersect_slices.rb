@@ -3,7 +3,7 @@ class Calculate
     class ResultSpace
       # ResultSpace for formulas where all or at least one of the input items needs to
       # have a value.
-      # Answer candidates for each input are intersected with the existing candidates.
+      # Record candidates for each input are intersected with the existing candidates.
       module IntersectSlices
         def update slice, mandatory
           return unless mandatory
@@ -11,7 +11,7 @@ class Calculate
           if fresh?
             @fresh = false
             replace slice
-            @answer_candidates = SearchSpace.new slice.company_ids, years
+            @record_candidates = SearchSpace.new slice.company_ids, years
           else
             intersect slice
           end
@@ -33,7 +33,7 @@ class Calculate
             @company_ids |= self[year]
           end
           delete_if { |_k, v| v.empty? }
-          @answer_candidates = SearchSpace.new @company_ids, years
+          @record_candidates = SearchSpace.new @company_ids, years
         end
       end
     end

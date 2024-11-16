@@ -3,7 +3,7 @@ module GraphQL
     # Company type for GraphQL
     class Company < DeckorateCard
       field :headquarters, String, null: true
-      lookup_field :answer, Answer, :record, true
+      lookup_field :record, Record, :record, true
       field :relationships, [Relationship],
             "relationships of which company is either subject or object", null: true
       field :datasets, [Dataset], null: false

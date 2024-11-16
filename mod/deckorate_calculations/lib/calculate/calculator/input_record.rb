@@ -1,6 +1,6 @@
 class Calculate
   class Calculator
-    # Holds key answer fields for one input metric / company / year
+    # Holds key record fields for one input metric / company / year
     class InputRecord
       attr_accessor :lookup_ids, :input_item,
                     :company_id, :year, :value,
@@ -14,7 +14,7 @@ class Calculate
 
       def assign lookup_ids, value, unpublished, verification
         @lookup_ids = Array.wrap lookup_ids
-        @value = Answer.value_from_lookup value, @input_item.type
+        @value = Record.value_from_lookup value, @input_item.type
         @unpublished = unpublished
         @verification = verification
         self
@@ -35,7 +35,7 @@ class Calculate
       end
 
       def replace_unknown
-        @value = replace_value(value, input_item.unknown_option) { |v| Answer.unknown? v }
+        @value = replace_value(value, input_item.unknown_option) { |v| Record.unknown? v }
       end
 
       def replace_not_researched

@@ -1,7 +1,7 @@
 RSpec.xdescribe Card::Set::TypePlusRight::Metric::Record::Stats do
   describe "view: stats" do
     example "filtered by 'all'" do
-      create_answers "Jedi+disturbances in the Force", true do
+      create_records "Jedi+disturbances in the Force", true do
         SPECTRE "2010" => "Unknown"
         Monster_Inc "2010" => "Unknown"
       end
@@ -16,7 +16,7 @@ RSpec.xdescribe Card::Set::TypePlusRight::Metric::Record::Stats do
     end
 
     example "restricted to a year" do
-      create_answers "Jedi+disturbances in the Force", true do
+      create_records "Jedi+disturbances in the Force", true do
         SPECTRE "1977" => "Unknown"
       end
       html = stats(year: "1977", status: :all)
@@ -33,7 +33,7 @@ RSpec.xdescribe Card::Set::TypePlusRight::Metric::Record::Stats do
 
   def stats filter
     Card::Env.params[:filter] = filter
-    name = "Jedi+disturbances in the Force+answer"
+    name = "Jedi+disturbances in the Force+record"
     Card.expire name # needed because empty @filter_hash is cached on card
     Card.fetch(name).format._render_stats
   end

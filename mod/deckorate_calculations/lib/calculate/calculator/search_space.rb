@@ -1,7 +1,7 @@
 class Calculate
   class Calculator
     # Keeps track of companies and years that have values for input metrics which means
-    # it's possible to calculate answers for them.
+    # it's possible to calculate records for them.
     class SearchSpace
       include AllSearchSpace
 

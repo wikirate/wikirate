@@ -38,8 +38,8 @@ updateFilter = (el, filterVals) ->
   $.extend decko.filter.query(el).filter, filterVals
   decko.filter.refilter el
 
-updateDetails = (detailsAnswer) ->
-  $(".bar[data-card-link-name=\"#{detailsAnswer}\"]").trigger "click"
+updateDetails = (detailsRecord) ->
+  $(".bar[data-card-link-name=\"#{detailsRecord}\"]").trigger "click"
 
 addAction = () ->
   $(".vega-actions").append "<a class='_filter-bindings'>Tweak</a>"
