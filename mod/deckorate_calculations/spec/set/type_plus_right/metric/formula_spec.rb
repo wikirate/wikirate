@@ -17,7 +17,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Formula do
 
   def calc_record metric_title="formula test", company_name=nil, year=1977
     company_id ||= (company_name || "Death Star").card_id
-    ::Record.where(metric_id: "Jedi+#{metric_title}".card_id,
+    Record.where(metric_id: "Jedi+#{metric_title}".card_id,
                  company_id: company_id,
                  year: year).take
   end
