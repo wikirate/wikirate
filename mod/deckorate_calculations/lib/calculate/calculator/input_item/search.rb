@@ -54,8 +54,8 @@ class Calculate
         end
 
         def search_company_ids
-          Record.select(:company_id).distinct
-                .where(metric_id: input_card.id).pluck(:company_id)
+          ::Record.select(:company_id).distinct
+                  .where(metric_id: input_card.id).pluck(:company_id)
         end
 
         def value_store

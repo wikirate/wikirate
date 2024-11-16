@@ -78,7 +78,7 @@ def records
 end
 
 def records
-  Record.select(:metric_id, :company_id).distinct.where where_record
+  ::Record.select(:metric_id, :company_id).distinct.where where_record
 end
 
 def researched_relation
