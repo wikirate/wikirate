@@ -16,7 +16,7 @@ RSpec.describe Card::Set::MetricType::Formula do
   end
 
   def record company: "Samsung", year: "2014", metric: "Jedi+formula1"
-    ::Record.where(
+    Record.where(
       metric_id: metric.card_id,
       company_id: company.card_id,
       year: year

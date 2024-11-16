@@ -37,7 +37,7 @@ RSpec.describe Card::Set::MetricType::Rating do
   end
 
   def rating_record company="Samsung", year="2014"
-    ::Record.where(metric_id: "Joe User+#{@metric_title}".card_id,
+    Record.where(metric_id: "Joe User+#{@metric_title}".card_id,
                  company_id: company.card_id,
                  year: year.to_i).take
   end

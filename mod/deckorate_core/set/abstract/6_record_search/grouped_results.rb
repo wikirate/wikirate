@@ -100,6 +100,6 @@ format :html do
 
   def latest_record_with_value metric_id, company_id, value
     ::Record.where(metric_id: metric_id, company_id: company_id, value: value)
-          .order(year: :desc).take.card
+            .order(year: :desc).take.card
   end
 end
