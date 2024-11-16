@@ -8,7 +8,7 @@ card_accessor :checked_by, type: :list
 card_accessor :source, type: :list
 
 event :delete_record_lookup, :finalize, on: :delete do
-  Record.delete_for_card id
+  ::Record.delete_for_card id
 end
 
 event :refresh_record_lookup, :finalize, on: :save do
