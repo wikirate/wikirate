@@ -8,7 +8,7 @@ RSpec.describe Relationship do
 
   describe "create" do
     it "creates relationship entry" do
-      create_answers "Jedi+more evil", true do
+      create_records "Jedi+more evil", true do
         Monster_Inc "2000" => { "Los_Pollos_Hermanos" => "no" }
       end
 
@@ -19,7 +19,7 @@ RSpec.describe Relationship do
         { record_log_id: "Jedi+more evil+Monster Inc",
           subject_company_id: "Monster Inc",
           object_company_id: "Los Pollos Hermanos",
-          answer_id: "Jedi+more evil+Monster Inc+2000",
+          record_id: "Jedi+more evil+Monster Inc+2000",
           relationship_id: "Jedi+more evil+Monster Inc+2000+Los Pollos Hermanos",
           metric_id: "Jedi+more evil" }.each_pair do |attr, name|
           expect(relation.send(attr)).to eq(name.card_id),
@@ -28,7 +28,7 @@ RSpec.describe Relationship do
         end
         expect(relation.year).to eq 2000
         expect(relation.value).to eq "no"
-        expect(relation.route).to eq Answer.route_index(:direct)
+        expect(relation.route).to eq Record.route_index(:direct)
         expect(relation.latest).to eq true
         expect(relation.subject_company_id.cardname).to eq("Monster Inc")
         expect(relation.object_company_id.cardname).to eq("Los Pollos Hermanos")
@@ -36,10 +36,10 @@ RSpec.describe Relationship do
     end
   end
 
-  describe "seeded relationship table" do
-    it "one for each relationship answer" do
+  describe "seeded relationships table" do
+    it "one for each relationship" do
       expect(described_class.count)
-        .to eq Card.search(type_id: Card::RelationshipAnswerID, return: :count)
+        .to eq Card.search(type_id: Card::RelationshipID, return: :count)
     end
 
     describe "random example" do
@@ -73,7 +73,7 @@ RSpec.describe Relationship do
 
     xit "updates latest" do
       record_log = "Commons+Supplied by+SPECTRE"
-      new_latest = described_class.find_by_answer_id "#{record_log}+1977".card_id
+      new_latest = described_class.find_by_record_id "#{record_log}+1977".card_id
       new_latest.refresh # FIXME: shouldn't be needed; if needed, data was wrong
       expect(new_latest.latest).to be_falsey
       delete "#{record_log}+2000" # "+Los Pollos Hermanos"
@@ -84,7 +84,7 @@ RSpec.describe Relationship do
 
   describe "updates" do
     before do
-      # fetch answer_id before the change
+      # fetch record_id before the change
       relation_id
     end
 
@@ -104,8 +104,8 @@ RSpec.describe Relationship do
         name = "Commons+Supplied by+SPECTRE+2000"
         new_name = "Commons+Supplied by+SPECTRE+1999"
         update name, name: new_name
-        relation_id = "#{new_name}+Los_Pollos_Hermanos".card_id
-        relation = described_class.find_by_relationship_id relation_id
+        relationship_id = "#{new_name}+Los_Pollos_Hermanos".card_id
+        relation = described_class.find_by_relationship_id relationship_id
         expect(relation.latest).to eq true
       end
     end

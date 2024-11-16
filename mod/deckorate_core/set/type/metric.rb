@@ -24,7 +24,7 @@ card_accessor :score, type: :search_type
 card_accessor :steward, type: :pointer
 card_accessor :topic, type: :list
 card_accessor :research_policy, type: :pointer, default_content: "Community Assessed"
-card_accessor :relationship_answer, type: :search_type
+card_accessor :relationship, type: :search_type
 card_accessor :company, type: :search_type
 
 # applicability
@@ -80,7 +80,7 @@ def self.default_false method_name
   define_method(method_name) { false }
 end
 
-default_false :relationship?
+default_false :relation?
 default_false :inverse?
 default_false :standard?
 default_false :researched?

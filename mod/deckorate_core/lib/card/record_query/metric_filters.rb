@@ -39,9 +39,9 @@ class Card
         metric = validate_depender_metric value
         return @empty_result = true unless (dependees = metric.dependee_metrics).present?
         filter :metric_id, dependees.map(&:id)
-        company_answer_join :dependee
+        company_record_join :dependee
         @conditions <<
-          "dependee.metric_id = #{metric.id} and dependee.year = answers.year"
+          "dependee.metric_id = #{metric.id} and dependee.year = records.year"
       end
 
       private

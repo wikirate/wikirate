@@ -5,7 +5,7 @@ def unpublished
     true
   elsif researched_value?
     super
-  elsif relationship?
+  elsif relation?
     false
   else
     calculated_unpublished
@@ -13,10 +13,10 @@ def unpublished
 end
 
 def unpublished?
-  answer.unpublished
+  record.unpublished
 end
 
-# this answer is calculated
+# this record is calculated
 def calculated_unpublished
-  direct_dependee_answers.find(&:unpublished).present?
+  direct_dependee_records.find(&:unpublished).present?
 end

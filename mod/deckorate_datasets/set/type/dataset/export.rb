@@ -36,22 +36,22 @@ format :csv do
 
   def import_record_lines metric, company
     if card.years.present?
-      card.years.map { |year| import_answer_line metric, company, year }
+      card.years.map { |year| import_record_line metric, company, year }
     else
-      import_answer_line metric, company, ""
+      import_record_line metric, company, ""
     end
   end
 
-  def import_answer_line metric, company, year
+  def import_record_line metric, company, year
     CSV.generate_line [metric, company, year, "", "", "", "", ""]
   end
 end
 
 format :json do
-  # note: if this returned answer objects, it would put answer ids (not card ids) in the
+  # note: if this returned record objects, it would put record ids (not card ids) in the
   # json results
   # def item_cards
-  #   card.answers.map(&:card)
+  #   card.records.map(&:card)
   # end
 
   def molecule

@@ -20,7 +20,7 @@ event :set_scored_metric_name, :initialize, on: :create do
 end
 
 # event :default_formula, :prepare_to_store, on: :create, when: :formula_unspecified? do
-#   field :formula, content: "answer", type_id: PlainTextID
+#   field :formula, content: "record", type_id: PlainTextID
 # end
 
 # <OVERRIDES>
@@ -41,7 +41,7 @@ def unorthodox?
 end
 
 def base_input_array
-  input = { metric: left_id, name: "answer" }
+  input = { metric: left_id, name: "record" }
   input[:unknown] = "Unknown" if categorical?
   [input]
 end

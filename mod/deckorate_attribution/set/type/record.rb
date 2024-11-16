@@ -5,8 +5,8 @@ def attribution_title
 end
 
 def each_reference_dump_row &block
-  yield answer
-  each_dependee_answer(&block)
+  yield record
+  each_dependee_record(&block)
 end
 
 def attribution_changes_link?

@@ -20,10 +20,10 @@ end
 
 # ANNOTATION
 
-# when an answer cites a source, make sure
-#   1. the source's +company has the answer's company
-#   2. the source's +report_type has the answer's metric's report type
-#   3. the source's +year has the answer's year
+# when an record cites a source, make sure
+#   1. the source's +company has the record's company
+#   2. the source's +report_type has the record's metric's report type
+#   3. the source's +year has the record's year
 event :annotate_sources, :integrate_with_delay, on: :save, changed: :content do
   item_names.each do |source_name|
     source_card = source_name.card
@@ -54,7 +54,7 @@ def tag_with_report_type source_card
   add_trait_to_source source_card, :report_type, report_types
 end
 
-# note: company names overridden in answer and relationship_answer
+# note: company names overridden in record and relationship
 def tag_with_company source_card
   return if source_card.company_card.count >= 100
 

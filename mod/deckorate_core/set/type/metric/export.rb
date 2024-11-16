@@ -8,7 +8,7 @@ COUNT_FIELD_CODENAMES = %i[record bookmarkers dataset company].freeze
 FIELD_LABELS = {
   topic: :topics,
   score: :scores,
-  record: :answers,
+  record: :records,
   dataset: :datasets,
   company: :companies
 }.freeze
@@ -76,7 +76,7 @@ format :csv do
     value_options: :semicolon_separated_values
   }.freeze
 
-  view :titled do # DEPRECATED.  +answer csv replaces this
+  view :titled do # DEPRECATED.  +record csv replaces this
     field_nest :record, view: :titled
   end
 

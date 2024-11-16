@@ -23,7 +23,7 @@ format do
        { key: :metric_filters, type: :group, label: :metric.cardname,
          filters: metric_filters },
        { key: :record, type: :group, label: "Data point",
-         filters: answer_filters },
+         filters: record_filters },
        :dataset]
     end
   end
@@ -44,7 +44,7 @@ format do
 
   private
 
-  def answer_filters
+  def record_filters
     [{ key: :value, open: true }] +
       %i[verification calculated status route updated updater source]
   end
