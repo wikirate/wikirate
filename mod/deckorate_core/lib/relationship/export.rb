@@ -1,5 +1,5 @@
 class Relationship
-  # Methods to format answer for csv output
+  # Methods to format record for csv output
   module Export
     include Card::Env::Location
     include LookupTable::Export
@@ -12,7 +12,7 @@ class Relationship
                  "Subject Company", "Object Company",
                  "Year", "Value"]
         with_detailed basic, detailed do
-          ["Relationship ID", "Answer ID"]
+          ["Relationship ID", "Record ID"]
         end
       end
     end
@@ -26,7 +26,7 @@ class Relationship
                subject_company_name, object_company_name,
                year, value]
       with_detailed basic, detailed do
-        [relationship_id, answer_id]
+        [relationship_id, record_id]
       end
     end
 

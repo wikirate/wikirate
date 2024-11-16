@@ -1,8 +1,8 @@
-include_set Abstract::AnswerCreateAffinityBadge
+include_set Abstract::RecordCreateAffinityBadge
 
 format :html do
   view :description do
-    "Awarded for adding #{threshold} answers for  #{affinity} metrics / companies"
+    "Awarded for adding #{threshold} records for  #{affinity} metrics / companies"
   end
 end
 

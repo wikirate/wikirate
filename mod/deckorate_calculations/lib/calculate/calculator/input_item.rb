@@ -20,7 +20,7 @@ class Calculate
       INPUT_RECORD_FIELDS = %i[company_id year id value unpublished verification].freeze
 
       attr_reader :input_card, :options, :input_index, :input_count, :result_space
-      delegate :answer_candidates, to: :result_space
+      delegate :record_candidates, to: :result_space
 
       # We instantiate with a super class because we dynamically include a lot of modules
       # based on options, and included modules don't override methods defined directly
@@ -44,9 +44,9 @@ class Calculate
         @type ||= @input_card.simple_value_type_code
       end
 
-      # @param [Array<company_id>] company_id when given search only for answers for those
+      # @param [Array<company_id>] company_id when given search only for records for those
       #    companies
-      # @param [Array<year>] year when given search only for answers for those years
+      # @param [Array<year>] year when given search only for records for those years
       def search_value_for result_space, company_id: nil, year: nil
         return search result_space if company_id.nil? && year.nil?
 
@@ -56,13 +56,13 @@ class Calculate
         end
       end
 
-      def answers_for company_id, year
+      def records_for company_id, year
         @search_space = SearchSpace.new company_id, year
         if option?(:company) || year_option?
           # cannot do simple query
-          nonstandard_answers
+          nonstandard_records
         else
-          answers
+          records
         end
       end
 
@@ -70,7 +70,7 @@ class Calculate
       #   Value is usually a string, but it can be an array of strings if the input item
       #   uses an option that generates multiple values for one year like a
       #   year option "year: 2000..-1"
-      def answer_for company_id, year
+      def record_for company_id, year
         value_store.get company_id, year
       end
 
@@ -82,17 +82,17 @@ class Calculate
 
       # don't need to pass company_id and year because it's
       # captured in the searchspace
-      def nonstandard_answers
-        answer_ids = []
+      def nonstandard_records
+        record_ids = []
         full_search do |_company_id, _year, input_record|
-          answer_ids << input_record.lookup_ids
+          record_ids << input_record.lookup_ids
         end
-        Answer.where id: answer_ids.flatten.uniq
+        ::Record.where id: record_ids.flatten.uniq
       end
 
-      def unknown! answer
-        answer.value = :unknown
-        throw :cancel_calculation, [answer]
+      def unknown! record
+        record.value = :unknown
+        throw :cancel_calculation, [record]
       end
     end
   end

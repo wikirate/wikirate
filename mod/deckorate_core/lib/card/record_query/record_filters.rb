@@ -1,6 +1,6 @@
 class Card
   class RecordQuery
-    # filters based on year and children of the answer card
+    # filters based on year and children of the record card
     # (as opposed to metric and company)
     module RecordFilters
       TIMEPERIODS = {
@@ -32,7 +32,7 @@ class Card
       end
 
       def filter_by_verification value
-        indeces = Array.wrap(value).map { |v| Answer.verification_index v }
+        indeces = Array.wrap(value).map { |v| Record.verification_index v }
         if indeces.present?
           filter :verification, indeces
         else
@@ -41,7 +41,7 @@ class Card
       end
 
       def checked_by whom
-        restrict_by_cql :checked_by, :answer_id,
+        restrict_by_cql :checked_by, :record_id,
                         type_id: RecordID,
                         right_plus: [CheckedByID, { refer_to: whom }]
       end
@@ -52,7 +52,7 @@ class Card
         #
         # Card.joins(actions: :act).where(
         #   "card_acts.actor_id" => whom.card_id,
-        #   left_id: "answers.id",
+        #   left_id: "records.id",
         #   right_id: Card::ValueID
         # ).arel.exists.to_sql
         add_condition "EXISTS (select * from cards c " \
@@ -60,7 +60,7 @@ class Card
                         "JOIN card_acts a on an.card_act_id = a.id " \
                         "WHERE a.actor_id in (?) " \
                         "AND c.right_id = #{Card::ValueID} " \
-                        "AND c.left_id = answers.answer_id) ",
+                        "AND c.left_id = records.record_id) ",
                       updater_ids(value)
       end
 
@@ -69,7 +69,7 @@ class Card
       end
 
       def filter_by_source value
-        restrict_by_cql :source, :answer_id,
+        restrict_by_cql :source, :record_id,
                         right: :source, refer_to: value, return: :left_id
       end
 
@@ -98,7 +98,7 @@ class Card
       end
 
       def calculated_condition negate
-        "answer_id IS #{'NOT ' if negate}NULL"
+        "record_id IS #{'NOT ' if negate}NULL"
       end
 
       def filter_by_updated_from_date value

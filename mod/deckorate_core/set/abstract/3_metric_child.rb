@@ -93,7 +93,7 @@ def company_id
   company.card_id
 end
 
-def answer_name
+def record_name
   "#{metric_name}+#{company_name}+#{year}"
 end
 
@@ -132,5 +132,5 @@ def self.delegate_to_metric_card_if_available *methods
 end
 
 delegate_to_metric_card_if_available :researched?, :calculated?, :hybrid?,
-                                     :relationship?, :standard?, :descendant?,
+                                     :relation?, :standard?, :descendant?,
                                      :score?, :ten_scale?, :rating?

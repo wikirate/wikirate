@@ -59,7 +59,7 @@ RSpec.describe Card::Set::Type::Record::Json do
     end
     let :molecule_fields do
       atom_fields.merge(
-        type: a_hash_including(name: "Answer"),
+        type: a_hash_including(name: "Record"),
         ancestors: a_collection_including(
           a_hash_including(company_fields),
           a_hash_including(metric_fields)
@@ -84,7 +84,7 @@ RSpec.describe Card::Set::Type::Record::Json do
     end
   end
 
-  describe "exported json relationship metric record" do
+  describe "exported json relation metric record" do
     let(:metric) { Card["Jedi+more evil"] }
 
     xspecify "atom view" do

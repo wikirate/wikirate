@@ -91,18 +91,18 @@ format :html do
       dataset_card&.years? ? dataset_card.years.sort.reverse : Type::Year.all_years
   end
 
-  def answer_for year
-    answers[year.to_i] || new_answer(year)
+  def record_for year
+    records[year.to_i] || new_record(year)
   end
 
-  def new_answer year
+  def new_record year
     Card.new type: :record, name: [card.record_log_name, year.to_s]
   end
 
-  def answers
-    @answers ||= card.record_log_card.record_card.search
-                     .each_with_object({}) do |answer, hash|
-      hash[answer.year.to_i] = answer
+  def records
+    @records ||= card.record_log_card.record_card.search
+                     .each_with_object({}) do |record, hash|
+      hash[record.year.to_i] = record
     end
   end
 end

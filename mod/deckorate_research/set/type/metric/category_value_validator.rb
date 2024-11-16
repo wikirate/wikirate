@@ -1,7 +1,7 @@
 #! no set module
 
 # This class is used for changing the value type of a metric to "category".
-# It Checks if all existing answers have valid options for the categorical metric.
+# It Checks if all existing records have valid options for the categorical metric.
 class CategoryValueValidator
   attr_reader :keys
 
@@ -12,7 +12,7 @@ class CategoryValueValidator
   end
 
   def initialize_values
-    @values = Answer.where(metric_id: @metric_card.id).distinct.pluck(:value)
+    @values = ::Record.where(metric_id: @metric_card.id).distinct.pluck(:value)
     return unless @metric_card.multi_categorical?
 
     @values = @values.map { |v| v.split ", " }.flatten.uniq.map(&:to_name)
@@ -31,7 +31,7 @@ class CategoryValueValidator
   end
 
   def error_msg
-    "The following values appear in answers " \
+    "The following values appear in records " \
     "but are not listed as valid options: #{invalid_values.to_sentence}"
   end
 end

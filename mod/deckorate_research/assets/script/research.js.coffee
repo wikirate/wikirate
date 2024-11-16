@@ -28,25 +28,25 @@ decko.slot.ready (slot) ->
         previous: false
         next: false
 
-    # add source to edit answer
+    # add source to edit record
     if slot.hasClass("edit_inline-view") && $("#_select_source").data("stash")
       $("#_select_source").data "stash", false
       addSourceItem()
 
-    # new answer success message (if in project context)
-    success_in_project = slot.find ".answer-success-in-project"
+    # new record success message (if in project context)
+    success_in_project = slot.find ".record-success-in-project"
     if success_in_project[0] && $("._company-project-research")[0]
       success_in_project.show()
 
     btn = $("._next-question-button")
-    if btn.length && slot.find("._edit-answer-button").length
+    if btn.length && slot.find("._edit-record-button").length
       btn = btn.clone()
       slot.find("._research-buttons").append btn
 
 $(document).ready ->
   $("body").on "click", "#_select_year", (e) ->
     return unless selectedYear()
-    phase = selectedYearNotResearched() && "source" || "answer"
+    phase = selectedYearNotResearched() && "source" || "record"
     toPhase phase, e
 
   $("body").on "click", "._to_question_phase", (e) ->
@@ -55,10 +55,10 @@ $(document).ready ->
   $("body").on "click", "._to_source_phase", (e) ->
     toPhase "source", e
 
-  # open answer tab after clicking "select year"
+  # open record tab after clicking "select year"
   $("body").on "click", "#_select_source", (event) ->
-    addSourceItem() unless tabPhase("answer").hasClass "load"
-    toPhase "answer", event
+    addSourceItem() unless tabPhase("record").hasClass "load"
+    toPhase "record", event
 
   # open new source form from button
   $("body").on "click", "._add_source_modal_link", () ->
@@ -74,7 +74,7 @@ $(document).ready ->
       e.stopPropagation()
       openPdf $(this).data("cardName")
 
-  # remove source item from answer page
+  # remove source item from record page
   $('body').on 'click', '._remove-removable', ->
     $(this).closest('li').remove()
 
@@ -141,16 +141,16 @@ tabPhase = (phase) ->
   $(".tab-li-#{phase}_phase a")
 
 addSourceItem = () ->
-  return if openAnswerFormBeforeAddingSource()
+  return if openRecordFormBeforeAddingSource()
   ed = $(".RIGHT-source.card-editor")
   sourceContent = addToSourceContent ed, selectedSource()
   slot = ed.find(".card-slot.removable_content-view")
   reloadSourceSlot slot, sourceContent
 
-openAnswerFormBeforeAddingSource = ->
-  edit_answer = $("._edit-answer-button")
-  return false unless edit_answer[0] # answer is in view mode
-  edit_answer.trigger "click"
+openRecordFormBeforeAddingSource = ->
+  edit_record = $("._edit-record-button")
+  return false unless edit_record[0] # record is in view mode
+  edit_record.trigger "click"
   $("#_select_source").data "stash", true
   true
 
@@ -172,7 +172,7 @@ citedSources = () ->
   $(".RIGHT-source .bar").map( -> $(this).data("cardName") )
 
 selectedYear = ()->
-  selectedYearInput().val() || $(".answer-breadcrumb .year").html()
+  selectedYearInput().val() || $(".record-breadcrumb .year").html()
 
 selectedYearNotResearched = ->
   selectedYearInput().closest("._research-year-option").find("._not-researched")[0]
@@ -219,7 +219,7 @@ deckorate.tabPhase = tabPhase
 # add related company to name
 # otherwise the card can get the wrong type because it
 # matches the ltype_rtype/record/year pattern
-#  $("body").on "submit", "form.answer-form", (e) ->
+#  $("body").on "submit", "form.record-form", (e) ->
 #    $form = $(e.target)
 #    related_company = $form.find("#card_subcards__related_company_content")
 #    if related_company.length == 1

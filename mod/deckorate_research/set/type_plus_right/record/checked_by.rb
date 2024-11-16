@@ -7,5 +7,5 @@ event :remove_checkers, :validate, on: :delete do
 end
 
 event :update_related_verifications, :after_integrate, skip: :allowed do
-  answer_card.update_related_verifications
+  record_card.update_related_verifications
 end

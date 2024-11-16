@@ -19,9 +19,9 @@ metric_atom_view:
     title:
       type: string
       example: CEO to Worker pay
-    answers_url:
+    records_url:
       type: string
-      example: https://wikirate.org/PayScale+CEO_to_Worker_pay+answer.json
+      example: https://wikirate.org/PayScale+CEO_to_Worker_pay+record.json
     ancestors:
       type: array
       items:
@@ -34,7 +34,7 @@ metric_atom_view:
       example: "This metric is based on the Global Reporting Initiative (GRI) Standard Guidelines."
     methodology:
       type: string
-      example: "To answer this metric question you need identify the Direct GHG emissions (Scope 1) of the organization for a specific year. Start by searching publicly available documents like Annual and CSR reports."
+      example: "To record this metric question you need identify the Direct GHG emissions (Scope 1) of the organization for a specific year. Start by searching publicly available documents like Annual and CSR reports."
     value_type:
       type: string
       example: Number
@@ -79,7 +79,7 @@ metric_atom_view:
       type: string
     variables:
       type: string
-    answers:
+    records:
       type: integer
     bookmarkers:
       type: integer

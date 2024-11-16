@@ -13,7 +13,7 @@ deckorate.calculator =
 
   country: (region) -> deckorate._regionLookup region, "country"
 
-  isKnown: (answer) -> answer != "Unknown"
+  isKnown: (record) -> record != "Unknown"
 
   numKnown: (list) -> list.filter(isKnown).length
 

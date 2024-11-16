@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Type::Metric do
   describe "#each_reference_dump_row" do
-    let :yielded_answers do
+    let :yielded_records do
       [].tap { |rows| card_subject.each_reference_dump_row { |row| rows << row } }
     end
 
@@ -9,9 +9,9 @@ RSpec.describe Card::Set::Type::Metric do
         "Jedi+disturbances_in_the_Force".card
       end
 
-      it "finds direct answers to metric" do
-        expect(yielded_answers.size)
-          .to be(Answer.where(metric_id: card_subject.id).count)
+      it "finds direct records to metric" do
+        expect(yielded_records.size)
+          .to be(::Record.where(metric_id: card_subject.id).count)
       end
     end
 
@@ -20,8 +20,8 @@ RSpec.describe Card::Set::Type::Metric do
         Card.fetch "Jedi+darkness rating"
       end
 
-      it "finds all dependee_answers" do
-        ya = yielded_answers
+      it "finds all dependee_records" do
+        ya = yielded_records
         expect(ya.size).to eq 15
         expect(ya.first.metric_id).to eq card_subject.id
         expect(ya.last.metric_id).not_to eq card_subject.id

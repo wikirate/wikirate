@@ -7,5 +7,5 @@ event :schedule_recalculation, :integrate, on: :save, changed: :content do
   # when Card::Cache.renew is called in delayed jobs, the old
   # version of the formula is brought up from the cache.
 
-  metric_card.schedule :recalculate_answers
+  metric_card.schedule :recalculate_records
 end

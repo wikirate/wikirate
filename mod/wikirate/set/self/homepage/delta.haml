@@ -13,23 +13,23 @@
       { breakpoint: "768", settings: { slidesToShow: 2 } }
     ]}.to_json
 } }
-  - delta_answers.each do |answer|
-    - benchmark_answer = answer.direct_dependee_answers.first
-    - height_reduction = 10 + (10 - benchmark_answer.numeric_value) * 12
-    - trend = trending answer.numeric_value
+  - delta_records.each do |record|
+    - benchmark_record = record.direct_dependee_records.first
+    - height_reduction = 10 + (10 - benchmark_record.numeric_value) * 12
+    - trend = trending record.numeric_value
     .h-100.px-2.pb-5{ style: "padding-top: #{height_reduction}px" }
       .card.bg-white.p-3.justify-content-between
         .delta-values
           .delta-score
-            = nest benchmark_answer.value_card, view: :core
+            = nest benchmark_record.value_card, view: :core
           .d-inline-block.py-2.small
-            .d-flex.answer-trending{ class: "answer-trending-#{trend[:direction]}"}
+            .d-flex.record-trending{ class: "record-trending-#{trend[:direction]}"}
               .d-flex.me-2
                 = icon_tag "trending_#{trend[:direction]}"
-              = "#{trend[:sign]}#{number_with_precision answer.value, precision: 2}"
+              = "#{trend[:sign]}#{number_with_precision record.value, precision: 2}"
           .pb-2.small
-            = answer.year.to_i - 1
+            = record.year.to_i - 1
             vs
-            = answer.year
+            = record.year
         .delta-company.pt-3
-          = nest answer.company, view: :thumbnail_no_subtitle
+          = nest record.company, view: :thumbnail_no_subtitle

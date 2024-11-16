@@ -1,8 +1,8 @@
 class Calculate
   class Calculator
-    # supports displaying the workings of a given answer calculation
+    # supports displaying the workings of a given record calculation
     module ShowWork
-      # All the inputs for a given answer (the calculator implies the metric)
+      # All the inputs for a given record (the calculator implies the metric)
       # @param [Integer, String, Card] company (any company mark)
       # @param year [String] four-digit year
       # @return [Array] [[metric_card_1, value_1, year_options_1], [metric_card2...], ...]
