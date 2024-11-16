@@ -1,7 +1,7 @@
 RSpec.describe Card::RecordQuery::Sorting do
   include_context "record query"
 
-  # @return [Array] of answer cards
+  # @return [Array] of record cards
   def sort_by sort_by, sort_dir: :asc, researched_only: false
     query = { year: :latest }
     query[:metric_type] = "Researched" if researched_only
@@ -9,11 +9,11 @@ RSpec.describe Card::RecordQuery::Sorting do
   end
 
   context "with company filtering" do
-    let(:answer_parts) { [1, -1] }
+    let(:record_parts) { [1, -1] }
     let(:default_filters) { { company_id: "Death Star".card_id, year: :latest } }
     let(:sorted_designer) { ["Commons", "Fred", "Jedi", "Joe User"] }
 
-    let :latest_answers_by_bookmarks do
+    let :latest_records_by_bookmarks do
       [
         "disturbances in the Force+2001", "Victims by Employees+1977",
         "Sith Lord in Charge+1977", "dinosaurlabor+2010",
@@ -27,7 +27,7 @@ RSpec.describe Card::RecordQuery::Sorting do
     end
 
     context "when sorting by designer name" do
-      let(:answer_parts) { [0] }
+      let(:record_parts) { [0] }
 
       it "(asc)" do
         expect(sort_by(:metric_designer, sort_dir: :asc).uniq).to eq(sorted_designer)
@@ -40,7 +40,7 @@ RSpec.describe Card::RecordQuery::Sorting do
     end
 
     context "when sorting by metric title" do
-      let(:answer_parts) { [1] }
+      let(:record_parts) { [1] }
 
       specify do
         sorted = sort_by(:metric_title)
@@ -60,7 +60,7 @@ RSpec.describe Card::RecordQuery::Sorting do
 
     it "sorts by bookmarkers" do
       actual = sort_by :metric_bookmarkers, sort_dir: :desc
-      expected = latest_answers_by_bookmarks
+      expected = latest_records_by_bookmarks
 
       bookmarked = (0..1)
       not_bookmarked = (2..-1)
@@ -71,23 +71,23 @@ RSpec.describe Card::RecordQuery::Sorting do
   end
 
   context "with metric filtering" do
-    let :latest_answers do
+    let :latest_records do
       ["Death Star+2001", "Monster Inc+2000",
        "Slate Rock and Gravel Company+2006", "SPECTRE+2000"]
     end
 
     let(:metric_name) { "Jedi+disturbances in the Force" }
     let(:metric_id) { metric_name.card_id }
-    let(:answer_parts) { [-2, -1] }
+    let(:record_parts) { [-2, -1] }
     let(:default_sort) { {} }
     let(:default_filters) { { metric_id: metric_id, year: :latest } }
 
     it "sorts by company name (asc)" do
-      expect(sort_by(:company_name)).to eq(latest_answers)
+      expect(sort_by(:company_name)).to eq(latest_records)
     end
 
     it "sorts by company name (desc)" do
-      expect(sort_by(:company_name, sort_dir: "desc")).to eq(latest_answers.reverse)
+      expect(sort_by(:company_name, sort_dir: "desc")).to eq(latest_records.reverse)
     end
 
     it "sorts categories by value" do

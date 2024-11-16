@@ -4,7 +4,7 @@ RSpec.describe Card::RecordQuery do
   context "with combined filters" do
     context "with fixed company" do
       let(:default_filters) { { company_id: "Death_Star".card_id, year: :latest } }
-      let(:answer_parts) { [1, -1] } # metric and year
+      let(:record_parts) { [1, -1] } # metric and year
 
       specify "policy and bookmark" do
         expect(search(policy: "Evil Dataset", bookmark: :bookmark))
@@ -33,7 +33,7 @@ RSpec.describe Card::RecordQuery do
     context "with fixed metric" do
       let(:metric_name) { "Jedi+disturbances in the Force" }
       let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
-      let(:answer_parts) { [-2, -1] }
+      let(:record_parts) { [-2, -1] }
       let(:default_sort) { {} }
 
       specify "dataset and company_category" do

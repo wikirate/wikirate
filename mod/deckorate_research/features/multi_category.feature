@@ -15,7 +15,7 @@ Feature: Multi-Category
 #  Scenario: Check and uncheck value for metric with many options
 #    When I am signed in as Joe User
 #    And I edit "Joe User+big multi+Sony Corporation+2010"
-#    And I select "3" from "Answer"
-#    #And I select "2" from "Answer"
+#    And I select "3" from "Record"
+#    #And I select "2" from "Record"
 #    And I submit
 #    Then I should see "1, 3"

@@ -12,13 +12,13 @@ class Card
                  comment: { optional: true },
                  headquarters: { optional: true } }
 
-    CSV_KEYS = %i[answer_link metric company year value
+    CSV_KEYS = %i[record_link metric company year value
                   source_page_url].freeze
 
     def import_hash
       return {} unless (metric_card = Card[metric])
 
-      metric_card.create_answer_args translate_row_hash_to_create_answer_hash
+      metric_card.create_record_args translate_row_hash_to_create_record_hash
     end
 
     def normalize_value val
@@ -44,7 +44,7 @@ class Card
       result.first&.id
     end
 
-    def translate_row_hash_to_create_answer_hash
+    def translate_row_hash_to_create_record_hash
       r = input.clone
       r[:year] = r[:year].cardname if r[:year].is_a?(Integer)
       r[:ok_to_exist] = true
@@ -61,7 +61,7 @@ class Card
     end
 
     def csv_line_for_card card
-      card.answer.csv_line
+      card.record.csv_line
     end
 
     class << self
@@ -70,7 +70,7 @@ class Card
       end
 
       def export_csv_header
-        Answer.csv_titles
+        ::Record.csv_titles
       end
 
       def source_suggestion_filter name, _import_manager

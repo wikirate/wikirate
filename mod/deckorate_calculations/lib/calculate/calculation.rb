@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 class Calculate
-  # handle outputs for a given answer
+  # handle outputs for a given record
   class Calculation
     attr_reader :company_id, :year, :value, :verification, :unpublished
 
@@ -18,12 +18,12 @@ class Calculate
       @input_records = nil # don't keep input_records (or calculator) in memory
     end
 
-    def answer_attributes
+    def record_attributes
       {
         company_id: company_id,
         year: year,
         value: value,
-        numeric_value: Answer.to_numeric(value),
+        numeric_value: ::Record.to_numeric(value),
         created_at: Time.now,
         updated_at: Time.now,
         creator_id: Card::Auth.current_id,

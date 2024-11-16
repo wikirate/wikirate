@@ -1,7 +1,7 @@
 class Calculate
   class Calculator
     # Keeps track of companies that have values for all input metrics which means
-    # it's possible to calculate answers for them.
+    # it's possible to calculate records for them.
     # It's a Set of company ids for every year
     class ResultCache < Hash
       def initialize

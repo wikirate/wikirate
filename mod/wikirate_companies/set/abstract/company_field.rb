@@ -1,9 +1,9 @@
-# handles company fields (eg headquarters) that are duplicated as metric answers
+# handles company fields (eg headquarters) that are duplicated as metric records
 #
 # includer must define #metric code
 
-event :update_company_field_answer_lookup, :finalize do
-  metric_card&.calculate_answers company_id: answer_company_id, year: answer_year
+event :update_company_field_record_lookup, :finalize do
+  metric_card&.calculate_records company_id: record_company_id, year: record_year
 end
 
 def metric_code
@@ -15,14 +15,14 @@ def metric_card
   Card[metric_code] if Codename.exist? metric_code
 end
 
-def answer_company_id
+def record_company_id
   left_id
 end
 
-def answer_value
+def record_value
   first_name
 end
 
-def answer_year
+def record_year
   ::Calculate::CompanyField::YEAR
 end

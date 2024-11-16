@@ -20,11 +20,11 @@ RSpec.describe Card::Set::Type::RecordImport do
     end
 
     # FIXME: I think this one isn't getting marked because it already exists?
-    xit "marks value in answer table as imported" do
+    xit "marks value in record table as imported" do
       import_ready_items
-      answer_id = status.item_hash(status.status_indices(:imported).first)[:id]
-      answer = Answer.for_card(answer_id)
-      expect(answer.route).to eq(Answer.route_index(:import))
+      record_id = status.item_hash(status.status_indices(:imported).first)[:id]
+      record = Record.for_card(record_id)
+      expect(record.route).to eq(Record.route_index(:import))
     end
   end
 end

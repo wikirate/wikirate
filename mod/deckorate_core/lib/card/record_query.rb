@@ -1,5 +1,5 @@
 class Card
-  # Query lookup table for researched answers
+  # Query lookup table for researched records
   # (See #new for handling of not-researched)
   class RecordQuery < LookupQuery
     include Sorting
@@ -29,24 +29,24 @@ class Card
 
     class << self
       # instantiates AllRecordQuery object for searches that can return
-      # not-researched answers and RecordQuery
+      # not-researched records and RecordQuery
       # objects for all other searches
       def new filter, sorting={}, paging={}
         filter = filter.deep_symbolize_keys
-        return super unless new_all_answer_query? filter
+        return super unless new_all_record_query? filter
 
         AllRecordQuery.new filter, sorting, paging
       end
 
-      def new_all_answer_query? filter
-        # already AllAnswer; don't re-init
+      def new_all_record_query? filter
+        # already AllRecord; don't re-init
         return false if self == AllRecordQuery
 
-        all_answer_query? filter
+        all_record_query? filter
       end
 
-      def all_answer_query? filter
-        # eg, if filtering by value, don't bother looking for not-yet-researched answers
+      def all_record_query? filter
+        # eg, if filtering by value, don't bother looking for not-yet-researched records
         RESEARCHED_ANSWERS_ONLY.each { |key| return false if filter[key].present? }
 
         # status is "all" or "none"
@@ -55,11 +55,11 @@ class Card
     end
 
     def lookup_class
-      ::Answer
+      ::Record
     end
 
     def lookup_table
-      "answers"
+      "records"
     end
 
     def process_filters

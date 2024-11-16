@@ -21,9 +21,9 @@ class Card
       end
 
       def all_numeric_values
-        Answer.where(metric_id: @filter_args[:metric_id])
-              .where.not(numeric_value: nil)
-              .pluck :id, :numeric_value
+        ::Record.where(metric_id: @filter_args[:metric_id])
+                .where.not(numeric_value: nil)
+                .pluck :id, :numeric_value
       end
 
       def outlier_ids
@@ -37,9 +37,9 @@ class Card
       # alternative method to determine outliers; not finished
       # def turkey_outliers
       #   res = []
-      #   all_related_answers.map do |answer|
-      #     next unless answer.numeric_value
-      #     res << [answer.numeric_value, answer.id]
+      #   all_related_records.map do |record|
+      #     next unless record.numeric_value
+      #     res << [record.numeric_value, record.id]
       #   end
       #   res.sort!
       #   return if res.size < 3

@@ -4,8 +4,8 @@ def year_card
   @year_card ||= left
 end
 
-def where_answer
-  where = dataset_card.where_record
+def where_record
+  where = dataset_card.where_record_log
   where[:year] = year
   where
 end

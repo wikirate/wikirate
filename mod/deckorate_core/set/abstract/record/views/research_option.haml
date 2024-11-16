@@ -3,7 +3,7 @@
     ._not-researched.not-researched-value
       = render_not_researched
   - else
-    .answer-value-and-legend.d-flex.justify-content-between.w-100.overflow-hidden
+    .record-value-and-legend.d-flex.justify-content-between.w-100.overflow-hidden
       .ellipsis{ title: card.value }
         = nest card.value_card, view: :pretty
         %span.text-muted.small{ title: card.format(:text).render_legend }
