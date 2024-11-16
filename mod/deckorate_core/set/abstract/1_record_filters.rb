@@ -109,7 +109,7 @@ format :html do
   end
 
   def standard_verification_options
-    Record::VERIFICATION_LEVELS.map.with_object({}) do |level, opts|
+    ::Record::VERIFICATION_LEVELS.map.with_object({}) do |level, opts|
       opts[level[:title]] = level[:name]
     end
   end

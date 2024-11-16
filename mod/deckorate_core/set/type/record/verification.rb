@@ -48,7 +48,7 @@ format :html do
   end
 
   def verification_hash
-    Record::VERIFICATION_LEVELS[(card.record.verification || 1)]
+    ::Record::VERIFICATION_LEVELS[(card.record.verification || 1)]
   end
 
   def verification_marker

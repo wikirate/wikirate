@@ -14,7 +14,8 @@ format do
     return super if current_group == :none
 
     @search_results ||= {}
-    @search_results[current_group] ||= Record.connection.exec_query(group_by_query.to_sql)
+    @search_results[current_group] ||=
+      ::Record.connection.exec_query(group_by_query.to_sql)
   end
 
   def count_with_params
