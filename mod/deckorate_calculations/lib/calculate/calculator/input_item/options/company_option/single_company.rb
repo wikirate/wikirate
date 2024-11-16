@@ -5,12 +5,12 @@ class Calculate
         module CompanyOption
           # Used if a single company is passed as company option.
           # It makes the values for this input item independent of the output company
-          # (since the answer for company of the company option is always used)
+          # (since the record for company of the company option is always used)
           module SingleCompany
             include CompanyIndependentInput
 
-            def year_answer_pairs
-              each_input_record answers, {} do |input_record, hash|
+            def year_record_pairs
+              each_input_record records, {} do |input_record, hash|
                 hash[input_record.year] = input_record
               end
             end

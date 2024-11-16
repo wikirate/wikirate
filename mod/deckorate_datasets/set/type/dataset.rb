@@ -38,19 +38,19 @@ def parent_dataset_card
   Card[parent_dataset]
 end
 
-def answers
-  @answers ||= Answer.where where_answer
+def records
+  @records ||= ::Record.where where_record
 end
 #
-# def answers_since_start
-#   Answer.where(where_answer).where "updated_at > ?", created_at
+# def records_since_start
+#   ::Record.where(where_record).where "updated_at > ?", created_at
 # end
 
-def where_answer
-  where_year { where_record }
+def where_record
+  where_year { where_record_log }
 end
 
-def where_record
+def where_record_log
   { metric_id: metric_ids, company_id: company_ids }
 end
 
@@ -82,7 +82,7 @@ def years?
   years.present?
 end
 
-# used in filtering answers on company and dataset pages
+# used in filtering records on company and dataset pages
 # @param status [Symbol] researched, known, not_researched
 def filter_path_args status
   { filter: { dataset: name, status: status } }

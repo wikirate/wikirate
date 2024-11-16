@@ -15,7 +15,7 @@ field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
   metric_searches_for_sources changed_card.left&.fetch(:source)&.item_cards
 end
 
-# ...or when answer is (un)published
+# ...or when record is (un)published
 field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
   metric_searches_for_sources changed_card.left&.fetch(:source)&.item_cards
 end

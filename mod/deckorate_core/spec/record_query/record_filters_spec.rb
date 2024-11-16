@@ -3,7 +3,7 @@ RSpec.describe Card::RecordQuery::RecordFilters do
 
   context "with fixed company" do
     let(:default_filters) { { company_id: company_name.card_id, year: :latest } }
-    let(:answer_parts) { [1, -1] } # metric and year
+    let(:record_parts) { [1, -1] } # metric and year
     let(:company_name) { "Death_Star" }
 
     specify "#year_query" do
@@ -34,7 +34,7 @@ RSpec.describe Card::RecordQuery::RecordFilters do
     end
 
     describe "#updated_query" do
-      let(:answer_parts) { [1] }
+      let(:record_parts) { [1] }
       let(:default_filters) { { company_id: company_name.card_id } }
 
       before { Timecop.freeze Deckorate::HAPPY_BIRTHDAY }
@@ -62,7 +62,7 @@ RSpec.describe Card::RecordQuery::RecordFilters do
       it "finds this months's edits" do
         # I added 'metric_type: "Researched"' because the new yaml loading
         # made it so that calculated metrics, including scores, were created before the
-        # researched answers, which meant timecop affect the calculation times
+        # researched records, which meant timecop affect the calculation times
         expect(search(updated: :month, metric_type: "Researched"))
           .to eq(["disturbances in the Force"] * 3)
       end
@@ -72,7 +72,7 @@ RSpec.describe Card::RecordQuery::RecordFilters do
   context "with fixed metric" do
     let(:metric_name) { "Jedi+disturbances in the Force" }
     let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
-    let(:answer_parts) { [-2, -1] }
+    let(:record_parts) { [-2, -1] }
     let(:default_sort) { {} }
 
     describe "#year_query" do
@@ -104,48 +104,48 @@ RSpec.describe Card::RecordQuery::RecordFilters do
   end
 
   describe "#published_query" do
-    let(:default_filters) { { metric_id: answer.card.metric_id } }
-    let(:answer) { answer_name.card }
+    let(:default_filters) { { metric_id: record.card.metric_id } }
+    let(:record) { record_name.card }
 
     context "when user is not steward" do
-      let(:answer_name) { "Jedi+deadliness+Death_Star+1977" }
+      let(:record_name) { "Jedi+deadliness+Death_Star+1977" }
 
-      it "implicitly finds answers.unpublished = nil" do
-        expect(search).to include(answer_name)
+      it "implicitly finds records.unpublished = nil" do
+        expect(search).to include(record_name)
       end
 
-      it "implicitly finds answers.unpublished = false" do
-        answer.unpublished_card.update! content: 0
-        expect(search).to include(answer_name)
+      it "implicitly finds records.unpublished = false" do
+        record.unpublished_card.update! content: 0
+        expect(search).to include(record_name)
       end
 
-      it "implicitly does not find answers.unpublished = true" do
-        answer.unpublished_card.update! content: 1
-        expect(search).not_to include(answer_name)
+      it "implicitly does not find records.unpublished = true" do
+        record.unpublished_card.update! content: 1
+        expect(search).not_to include(record_name)
       end
 
-      it "finds no answers when looking for unpublished" do
-        answer.unpublished_card.update! content: 1
+      it "finds no records when looking for unpublished" do
+        record.unpublished_card.update! content: 1
         expect(search(published: "false")).to be_empty
       end
     end
 
     context "when user is steward" do
-      let(:answer_name) { "Joe User+RM+Apple Inc+2015" }
+      let(:record_name) { "Joe User+RM+Apple Inc+2015" }
 
-      it "implicitly does not find answers.unpublished = true" do
-        answer.unpublished_card.update! content: 1
-        expect(search).not_to include(answer_name)
+      it "implicitly does not find records.unpublished = true" do
+        record.unpublished_card.update! content: 1
+        expect(search).not_to include(record_name)
       end
 
-      it "finds stewarded unpublished answer when looking for unpublished" do
-        answer.unpublished_card.update! content: 1
-        expect(search(published: "false").first).to eq(answer_name)
+      it "finds stewarded unpublished record when looking for unpublished" do
+        record.unpublished_card.update! content: 1
+        expect(search(published: "false").first).to eq(record_name)
       end
 
-      it "finds stewarded unpublished answer when looking for all" do
-        answer.unpublished_card.update! content: 1
-        expect(search(published: :all)).to include(answer_name)
+      it "finds stewarded unpublished record when looking for all" do
+        record.unpublished_card.update! content: 1
+        expect(search(published: :all)).to include(record_name)
       end
     end
   end

@@ -2,9 +2,9 @@ RSpec.shared_context "record query" do
   include_context "lookup query", Card::RecordQuery
 
   let(:default_sort) { { metric_title: :asc } }
-  let(:answer_parts) { nil }
+  let(:record_parts) { nil }
 
-  let :latest_death_star_answers do # by metric title
+  let :latest_death_star_records do # by metric title
     [
       "Company Category+2019", "cost of planets destroyed+1977", "darkness rating+1977",
       "deadliness+1977", "deadliness+1977", "deadliness+1977", "descendant 1+1977",
@@ -17,12 +17,12 @@ RSpec.shared_context "record query" do
     ]
   end
 
-  let :latest_disturbance_answers do
+  let :latest_disturbance_records do
     ["Death Star+2001", "Monster Inc+2000", "Slate Rock and Gravel Company+2006",
      "SPECTRE+2000"]
   end
 
-  let :researched_death_star_answers do
+  let :researched_death_star_records do
     [
       "cost of planets destroyed+1977", "deadliness+1977", "dinosaurlabor+2010",
       "disturbances in the Force+2001", "researched number 1+1977", "RM+1977",
@@ -32,13 +32,13 @@ RSpec.shared_context "record query" do
 
   let(:all_companies) { Card.search type: :company, return: :name }
   let :missing_disturbance_companies do
-    latest_answer_keys =
-      ::Set.new(latest_disturbance_answers.map { |n| n.to_name.left_name.key })
-    all_companies.reject { |name| latest_answer_keys.include? name.to_name.key }
+    latest_record_keys =
+      ::Set.new(latest_disturbance_records.map { |n| n.to_name.left_name.key })
+    all_companies.reject { |name| latest_record_keys.include? name.to_name.key }
   end
 
   # @return [Array] of company+year strings
-  def missing_disturbance_answers year=Time.now.year
+  def missing_disturbance_records year=Time.now.year
     with_year missing_disturbance_companies, year
   end
 
@@ -49,8 +49,8 @@ RSpec.shared_context "record query" do
 
   def altered_results
     yield.map do |r|
-      if answer_parts
-        answer_parts.map { |p| r.name.parts[p] }.cardname
+      if record_parts
+        record_parts.map { |p| r.name.parts[p] }.cardname
       else
         r.name
       end

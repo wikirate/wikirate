@@ -1,15 +1,15 @@
 event :standardize_unknown_value, :prepare_to_validate do
-  self.content = Answer::UNKNOWN if Answer.unknown? content
+  self.content = ::Record::UNKNOWN if ::Record.unknown? content
 end
 
 event :no_empty_value, :validate, on: :save do
-  errors.add :content, "empty answers are not allowed" unless content.present?
+  errors.add :content, "empty records are not allowed" unless content.present?
 end
 
 event :no_left_name_change, :prepare_to_validate, on: :update, changed: :name do
   return if @supercard # as part of other changes (probably) ok
   return unless name.right == "value" # ok if not a value anymore
-  return if Card[name.left]&.type_id == Card::RecordID  # or relationship answer??
+  return if Card[name.left]&.type_id == Card::RecordID  # or relationship??
   errors.add :name, "not allowed to change. " \
                     "Change #{name_was.to_name.left} instead"
 end
@@ -25,7 +25,7 @@ event :reset_double_check, :validate, on: :update, changed: :content do
 end
 
 event :monitor_hybridness, :integrate, on: %i[create delete], when: :calculated? do
-  metric_card.calculate_answers company_id: company_id, year: year
+  metric_card.calculate_records company_id: company_id, year: year
 end
 
 event :mark_action, before: :finalize_action, changed: :content do
@@ -43,7 +43,7 @@ private
 # FIXME: this test would return true for a calculated value card.
 # (but is so far only used on new cards, I think)
 def overridden_value?
-  metric_card.calculated? && left&.answer&.virtual?
+  metric_card.calculated? && left&.record&.virtual?
 end
 
 # in some cases, deleting a metric can lead to its scores getting deleted
