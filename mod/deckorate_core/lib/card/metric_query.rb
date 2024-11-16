@@ -13,12 +13,12 @@ class Card
     self.simple_filters = ::Set.new(card_id_map.values << :metric_id).freeze
 
     SORT_BY_COUNT = { company: :company,
-                      answer: :record,
+                      record: :record,
                       reference: :reference }.freeze
 
     include MetricFilters
 
-    # whether answer queries with this field should use a metrics table join
+    # whether record queries with this field should use a metrics table join
     def self.join? field
       field != :metric_id && simple_filters.include?(field)
     end

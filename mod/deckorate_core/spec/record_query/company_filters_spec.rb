@@ -4,7 +4,7 @@ RSpec.describe Card::RecordQuery::CompanyFilters do
   context "with fixed metric" do
     let(:metric_name) { "Jedi+disturbances in the Force" }
     let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
-    let(:answer_parts) { [-2, -1] }
+    let(:record_parts) { [-2, -1] }
     let(:default_sort) { {} }
 
     describe "#filter_by_company_keyword" do
@@ -28,7 +28,7 @@ RSpec.describe Card::RecordQuery::CompanyFilters do
     end
 
     describe "#filter_by_company_identifier" do
-      let(:answer_parts) { [-2] }
+      let(:record_parts) { [-2] }
 
       it "filters by type" do
         expect(search(company_identifier: { type: "Wikipedia" }))

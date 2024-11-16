@@ -7,7 +7,7 @@ RSpec.describe Card::Set::TypePlusRight::CompanyGroup::Company do
 
   it_behaves_like "cached count", "Deadliest+companies", 3, 1 do
     let :add_one do
-      create_answers "Jedi+deadliness", true do
+      create_records "Jedi+deadliness", true do
         Monster_Inc "1977" => 77
       end
     end

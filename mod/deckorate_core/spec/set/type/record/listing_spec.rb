@@ -22,12 +22,12 @@ RSpec.describe Card::Set::Type::Record::Listing do
   end
 
   describe "view :concise" do
-    def concise_answer_for metric_title
+    def concise_record_for metric_title
       render_view :concise, name: "#{metric_title}+Sony Corporation+2010"
     end
 
     context "with multi category metric" do
-      subject { concise_answer_for "Joe User+big multi" }
+      subject { concise_record_for "Joe User+big multi" }
 
       it "has comma separated list of values" do
         is_expected.to have_tag "span.metric-value", "1, 2"
@@ -41,7 +41,7 @@ RSpec.describe Card::Set::Type::Record::Listing do
     end
 
     context "with single category metric" do
-      subject { concise_answer_for "Joe User+big single" }
+      subject { concise_record_for "Joe User+big single" }
 
       it "has value" do
         is_expected.to have_tag "span.metric-value", "4"

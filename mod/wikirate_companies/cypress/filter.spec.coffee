@@ -2,7 +2,7 @@ describe "filtering on company pages", ->
   specify "topics tab", ->
     cy.visit "Death Star"
 
-    # shows lots of answers before filtering
+    # shows lots of records before filtering
     cy.get(".tab-li-record").click()
     cy.contains "Category"
     cy.contains "disturbances"
@@ -26,7 +26,7 @@ describe "filtering on company pages", ->
 
 
 #
-#    # shows answer for metric tagged by topic
+#    # shows record for metric tagged by topic
 #    cy.contains "disturbances"
 #    # ...but not for metric not tagged by topic
 #    cy.should "not.contain", "Company Category"

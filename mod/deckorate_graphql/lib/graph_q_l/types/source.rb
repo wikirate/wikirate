@@ -9,7 +9,7 @@ module GraphQL
       field :original_url, String, null: true
       field :file_url, String, null: true
       lookup_field :metric, Metric, nil, true
-      lookup_field :answer, Answer, :record, true
+      lookup_field :record, Record, :record, true
 
       # TODO: make companies filterable on sources
       # (see mod/deckorate_research/set/type_plus_right/source/company.rb)

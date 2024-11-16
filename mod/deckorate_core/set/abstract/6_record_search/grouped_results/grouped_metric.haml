@@ -1,10 +1,10 @@
 .bar.no-bar-hover.w-100.d-flex
-  .answer-group.grouped-metric-list.row.w-100.bar-body
+  .record-group.grouped-metric-list.row.w-100.bar-body
     .col-8.bar-left
       = nest metric_id.card, view: :thumbnail
     .col-2.bar-middle
-      = answer_count_badge :record, answer_count
+      = record_count_badge :record, record_count
     .col-2.bar-right
-      = answer_count_badge :year, year_count
+      = record_count_badge :year, year_count
   .bar-menu
     &nbsp;

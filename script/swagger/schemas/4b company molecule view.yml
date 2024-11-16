@@ -39,7 +39,7 @@ company_molecule_view:
       type: string
     updated_at:
       type: string
-    answers_url:
+    records_url:
       type: string
     requested_at:
       type: string

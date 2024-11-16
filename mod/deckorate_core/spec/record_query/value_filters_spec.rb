@@ -2,9 +2,9 @@ RSpec.describe Card::RecordQuery::ValueFilters do
   include_context "record query"
 
   let(:default_filters) { { company_id: "Samsung".card_id, year: :latest } }
-  let(:answer_parts) { [1, -1] } # metric and year
+  let(:record_parts) { [1, -1] } # metric and year
 
-  let :unknown_answers do
+  let :unknown_records do
     with_year(
       ["deadliness", "deadliness", "deadliness",
        "double friendliness", "friendliness", "Victims by Employees"], 1977
@@ -14,7 +14,7 @@ RSpec.describe Card::RecordQuery::ValueFilters do
   describe "#status_query" do
     it "finds unknown values" do
       expect(search(status: :unknown))
-        .to eq unknown_answers
+        .to eq unknown_records
     end
 
     it "finds known values" do
@@ -27,7 +27,7 @@ RSpec.describe Card::RecordQuery::ValueFilters do
 
   describe "#value_query" do
     let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
-    let(:answer_parts) { [-2, -1] }
+    let(:record_parts) { [-2, -1] }
     let(:default_sort) { {} }
 
     context "with multi-category metric" do

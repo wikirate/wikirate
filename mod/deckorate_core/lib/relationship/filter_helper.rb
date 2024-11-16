@@ -1,14 +1,14 @@
 class Relationship
   # supports filtering by related company groups
   module FilterHelper
-    def answer_ids_for metric, company_group
+    def record_ids_for metric, company_group
       relationship_prefix = metric.inverse? ? "inverse_" : ""
       company_field = "#{metric&.inverse? ? :subject : :object}_company_id"
       metric_field = "#{relationship_prefix}metric_id"
       company_list_id = company_group&.card&.company_card&.id
 
       rel = company_group_relation metric, company_field, metric_field, company_list_id
-      rel.distinct.pluck :"#{relationship_prefix}answer_id"
+      rel.distinct.pluck :"#{relationship_prefix}record_id"
     end
 
     private

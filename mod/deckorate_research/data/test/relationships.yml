@@ -1,0 +1,81 @@
+---
+- :name:
+  - Commons
+  - Supplied by
+  - SPECTRE
+  - '2000'
+  - Google LLC
+  :type: :relationship
+  :fields:
+    :value: Tier 2 Supplier
+    :source: Source-000000001
+- :name:
+  - Commons
+  - Supplied by
+  - Monster Inc
+  - '1977'
+  - Los Pollos Hermanos
+  :type: :relationship
+  :fields:
+    :value: Tier 1 Supplier
+    :source: Source-000000001
+- :name:
+  - Commons
+  - Has Brands
+  - SPECTRE
+  - '1977'
+  - Los Pollos Hermanos
+  :type: :relationship
+  :fields:
+    :value: '1'
+    :source: Source-000000001
+- :name:
+  - Commons
+  - Supplied by
+  - SPECTRE
+  - '1977'
+  - Los Pollos Hermanos
+  :type: :relationship
+  :fields:
+    :value: Tier 1 Supplier
+    :source: Source-000000001
+- :name:
+  - Commons
+  - Supplied by
+  - SPECTRE
+  - '2000'
+  - Los Pollos Hermanos
+  :type: :relationship
+  :fields:
+    :value: Tier 1 Supplier
+    :source: Source-000000001
+- :name:
+  - Jedi
+  - more evil
+  - Death Star
+  - '1977'
+  - Los Pollos Hermanos
+  :type: :relationship
+  :fields:
+    :value: 'yes'
+    :source: Source-000000001
+- :name:
+  - Jedi
+  - more evil
+  - Death Star
+  - '1977'
+  - SPECTRE
+  :type: :relationship
+  :fields:
+    :value: 'yes'
+    :source: Source-000000001
+- :name:
+  - Jedi
+  - more evil
+  - SPECTRE
+  - '1977'
+  - Los Pollos Hermanos
+  :type: :relationship
+  :fields:
+    :value: 'yes'
+    :source: Source-000000001

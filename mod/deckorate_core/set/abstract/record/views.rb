@@ -57,7 +57,7 @@ format :html do
 
   def edit_fields
     [
-      [card.value_card, title: "Answer"],
+      [card.value_card, title: "Record"],
       source_field_config,
       discussion_field_config
     ]

@@ -1,18 +1,18 @@
 RSpec.describe Card::Set::Abstract::Record::Name do
-  def answer year
+  def record year
     "Jedi+disturbances in the Force+Death Star+#{year}".card
   end
 
   describe ":validate_year_change" do
     def update_year_to year
-      answer(1977).update! subcards: { "+Year" => { "content" => year.to_s } }
+      record(1977).update! subcards: { "+Year" => { "content" => year.to_s } }
     end
 
     it "handles new year passed as subcard" do
       update_year_to 2016
-      answer = answer 2016
-      expect(answer).to be_real
-      expect(answer.fetch(:year)).to be_nil
+      record = record 2016
+      expect(record).to be_real
+      expect(record.fetch(:year)).to be_nil
     end
   end
 end

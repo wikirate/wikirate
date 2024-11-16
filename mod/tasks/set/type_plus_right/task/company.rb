@@ -4,7 +4,7 @@ include_set Abstract::TaskFilter
 
 format do
   def default_sort_option
-    "answer"
+    "record"
   end
 end
 

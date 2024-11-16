@@ -15,11 +15,11 @@ event :run_value_events_on_name_change, :validate, changed: :name, on: :update d
 end
 
 # on creation, we attempt to compose a valid name
-event :set_answer_name, :prepare_to_validate, on: :create, when: :invalid_answer_name? do
+event :set_record_name, :prepare_to_validate, on: :create, when: :invalid_record_name? do
   self.name = compose_name
 end
 
-event :auto_add_company, after: :set_answer_name, on: :create, trigger: :required do
+event :auto_add_company, after: :set_record_name, on: :create, trigger: :required do
   add_company name_part("company") unless valid_company?
 end
 
@@ -31,7 +31,7 @@ def year_updated?
   field(:year)&.item_names&.size&.positive?
 end
 
-event :validate_answer_name, :validate, on: :save, changed: :name do
+event :validate_record_name, :validate, on: :save, changed: :name do
   validate_name_parts
 end
 
@@ -44,11 +44,11 @@ def add_company company
   end
 end
 
-def invalid_answer_name?
-  !valid_answer_name?
+def invalid_record_name?
+  !valid_record_name?
 end
 
-def valid_answer_name?
+def valid_record_name?
   name.parts.size >= (name_part_types.size + 1) && valid_name_parts?
 end
 
