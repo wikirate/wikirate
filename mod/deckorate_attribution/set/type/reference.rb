@@ -170,7 +170,7 @@ end
 
 format :csv do
   view :titles do
-    Record.csv_titles true
+    ::Record.csv_titles true
   end
 
   view :body do

@@ -132,7 +132,7 @@ format :csv do
   view :titles do
     case export_type
     when :record
-      Record.csv_titles detailed?
+      ::Record.csv_titles detailed?
     else
       nest export_type, view: :titles
     end

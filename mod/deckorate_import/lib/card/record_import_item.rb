@@ -70,7 +70,7 @@ class Card
       end
 
       def export_csv_header
-        Record.csv_titles
+        ::Record.csv_titles
       end
 
       def source_suggestion_filter name, _import_manager

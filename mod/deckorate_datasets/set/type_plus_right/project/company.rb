@@ -18,7 +18,7 @@ end
 def researchable_metrics?
   return false unless (metric_card = Card.fetch([dataset_name, :metric]))
 
-  metric_card.item_cards.find(&:user_can_record?)
+  metric_card.item_cards.find(&:user_can_answer?)
 end
 
 format do
