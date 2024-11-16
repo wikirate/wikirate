@@ -64,7 +64,7 @@ def valid_related_company?
 end
 
 def numeric_value
-  Record.to_numeric value if metric_card.numeric?
+  ::Record.to_numeric value if metric_card.numeric?
 end
 
 def value_type_code

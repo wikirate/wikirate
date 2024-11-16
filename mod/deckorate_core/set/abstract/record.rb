@@ -37,7 +37,7 @@ def numeric_value
   if metric_card.relation?
     value.to_i
   elsif metric_card.numeric?
-    Record.to_numeric value
+    ::Record.to_numeric value
   end
 end
 

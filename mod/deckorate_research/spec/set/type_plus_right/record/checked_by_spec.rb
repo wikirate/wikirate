@@ -6,7 +6,7 @@ RSpec.describe Card::Set::TypePlusRight::Record::CheckedBy do
   let(:wikirating_card) { Card.fetch "Jedi+darkness_rating+Death_Star+1977" }
 
   def level symbol
-    Record.verification_index symbol
+    ::Record.verification_index symbol
   end
 
   describe "wikirating verification" do

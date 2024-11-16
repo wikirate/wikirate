@@ -32,7 +32,7 @@ class Card
       end
 
       def filter_by_verification value
-        indeces = Array.wrap(value).map { |v| Record.verification_index v }
+        indeces = Array.wrap(value).map { |v| ::Record.verification_index v }
         if indeces.present?
           filter :verification, indeces
         else

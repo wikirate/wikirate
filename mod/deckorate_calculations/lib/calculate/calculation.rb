@@ -23,7 +23,7 @@ class Calculate
         company_id: company_id,
         year: year,
         value: value,
-        numeric_value: Record.to_numeric(value),
+        numeric_value: ::Record.to_numeric(value),
         created_at: Time.now,
         updated_at: Time.now,
         creator_id: Card::Auth.current_id,

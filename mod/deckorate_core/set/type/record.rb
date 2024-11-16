@@ -25,7 +25,7 @@ def lookup
 end
 
 def record
-  @record ||= Record.fetch self
+  @record ||= ::Record.fetch self
 end
 
 def virtual?

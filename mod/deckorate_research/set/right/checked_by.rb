@@ -18,7 +18,7 @@ end
 
 def verification
   symbol = verification_symbol
-  Record.verification_index symbol if symbol
+  ::Record.verification_index symbol if symbol
 end
 
 def verification_symbol

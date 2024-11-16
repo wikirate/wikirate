@@ -57,7 +57,7 @@ module Wikirate
 
       def records_checked
         verification_indexes = %i[community_verified steward_verified].map do |symbol|
-          Record.verification_index symbol
+          ::Record.verification_index symbol
         end
 
         records.joins("join cards on left_id = record_id")
@@ -85,7 +85,7 @@ module Wikirate
       end
 
       def records_by_verification symbol
-        records.where verification: Record.verification_index(symbol)
+        records.where verification: ::Record.verification_index(symbol)
       end
 
       def contributors

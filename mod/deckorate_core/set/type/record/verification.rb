@@ -13,7 +13,7 @@ end
 alias :current_verification_index :verification
 
 def researched_verification
-  Record.verification_index researched_verification_symbol
+  ::Record.verification_index researched_verification_symbol
 end
 
 def researched_verification_symbol
