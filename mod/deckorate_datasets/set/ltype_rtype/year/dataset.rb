@@ -5,7 +5,7 @@ def year_card
 end
 
 def where_record
-  where = dataset_card.where_record
+  where = dataset_card.where_record_log
   where[:year] = year
   where
 end

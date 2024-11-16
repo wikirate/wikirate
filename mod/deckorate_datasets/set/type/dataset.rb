@@ -47,10 +47,10 @@ end
 # end
 
 def where_record
-  where_year { where_record }
+  where_year { where_record_log }
 end
 
-def where_record
+def where_record_log
   { metric_id: metric_ids, company_id: company_ids }
 end
 

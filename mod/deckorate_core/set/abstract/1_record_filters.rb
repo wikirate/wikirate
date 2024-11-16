@@ -70,13 +70,13 @@ format :html do
   end
 
   def filter_route_options
-    Record::ROUTES.values.each_with_object({}).with_index do |(v, h), i|
+    ::Record::ROUTES.values.each_with_object({}).with_index do |(v, h), i|
       h[v] = i
     end
   end
 
   def filter_route_closer_value value
-    Record::ROUTES.values[value.to_i]
+    ::Record::ROUTES.values[value.to_i]
   end
 
   def filter_value_label

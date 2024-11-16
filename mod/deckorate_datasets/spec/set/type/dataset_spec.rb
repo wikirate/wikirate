@@ -20,7 +20,7 @@ RSpec.describe Card::Set::Type::Dataset do
       expect_stat :num, metrics: 2, companies: 3
     end
 
-    it "counts all records" do
+    it "counts all record logs" do
       expect_stat :num, possible: 6, researched: 2, unknown: 0, not_researched: 4
     end
 

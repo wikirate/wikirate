@@ -77,12 +77,12 @@ def records
   ::Record.where where_record
 end
 
-def records
+def record_logs
   ::Record.select(:metric_id, :company_id).distinct.where where_record
 end
 
 def researched_relation
-  dataset_card.years? ? records : records
+  dataset_card.years? ? records : record_logs
 end
 
 def where_year
