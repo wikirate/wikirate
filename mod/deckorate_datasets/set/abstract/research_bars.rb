@@ -18,7 +18,7 @@ format :html do
   view :research_button, cache: :never do
     link_to "Research",
             class: "btn btn-outline-secondary btn-sm " \
-                   "research-answer-button _over-card-link",
+                   "research-record-button _over-card-link",
             path: { mark: record_log_name, project: project_name, view: :research }
   end
 

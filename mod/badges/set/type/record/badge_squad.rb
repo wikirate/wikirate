@@ -1,6 +1,6 @@
 #! no set module
 
-# all badges related to metric answers
+# all badges related to metric records
 class BadgeSquad
   extend Card::BadgeSquad
 

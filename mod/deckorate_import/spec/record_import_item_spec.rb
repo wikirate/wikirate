@@ -15,7 +15,7 @@ RSpec.describe Card::RecordImportItem do
 
   let(:item_name_parts) { %i[metric company year] }
 
-  specify "answer doesn't exist" do
+  specify "record doesn't exist" do
     expect(Card[item_name]).not_to be_a Card
   end
 
@@ -86,18 +86,18 @@ RSpec.describe Card::RecordImportItem do
   end
 
   describe "#import" do
-    example "creates answer card with valid data", as_bot: true do
+    example "creates record card with valid data", as_bot: true do
       import
       expect_card(item_name).to exist
     end
 
-    example "imports unpublished answer" do
+    example "imports unpublished record" do
       import unpublished: "1"
       expect_card(item_name).to be_unpublished
     end
 
-    example "updates existing answer" do
-      args = { company: "Death Star", year: "2000" } # existing answer
+    example "updates existing record" do
+      args = { company: "Death Star", year: "2000" } # existing record
       import args
       expect(Card[item_name(args)]).to be_real
     end
@@ -136,15 +136,15 @@ RSpec.describe Card::RecordImportItem do
         item = item_object(company: "Monster Inc", year: "1977")
         expect(item.conflict_strategy).to eq(:skip)
         item.import
-        answer = Card["Jedi+disturbances in the Force+Monster Inc+1977"]
-        expect(answer.value).to eq("no") # existing value is "no"
+        record = Card["Jedi+disturbances in the Force+Monster Inc+1977"]
+        expect(record.value).to eq("no") # existing value is "no"
       end
 
       it "overrides existing values when overriding" do
         overriding do
           import company: "Monster Inc", year: "1977"
-          answer = Card["Jedi+disturbances in the Force+Monster Inc+1977"]
-          expect(answer.value).to eq("yes") # existing value is "no"
+          record = Card["Jedi+disturbances in the Force+Monster Inc+1977"]
+          expect(record.value).to eq("yes") # existing value is "no"
         end
       end
 

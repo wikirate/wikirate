@@ -84,7 +84,7 @@ format :html do
     "#{count} #{:metric.cardname.pluralize count}"
   end
 
-  def delta_answers
+  def delta_records
     return [] unless (metric = delta_metric_card)
 
     ma = metric.record_card

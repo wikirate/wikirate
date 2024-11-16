@@ -1,5 +1,5 @@
 ._unknown-checkbox.pt-4
-  = check_box_tag "_unknown", Answer::UNKNOWN, card.unknown_value?
+  = check_box_tag "_unknown", ::Record::UNKNOWN, card.unknown_value?
   %label.ms-3{ for: "_unknown" }
-    = Answer::UNKNOWN
-    = popover_link "cannot find answer in source document"
+    = ::Record::UNKNOWN
+    = popover_link "cannot find record in source document"
