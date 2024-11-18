@@ -43,7 +43,7 @@ format :html do
   end
 
   def filter_verification_closer_value value
-    Answer.verification_title value
+    Record.verification_title value
   end
 
   def filter_updater_options
@@ -70,13 +70,13 @@ format :html do
   end
 
   def filter_route_options
-    Answer::ROUTES.values.each_with_object({}).with_index do |(v, h), i|
+    ::Record::ROUTES.values.each_with_object({}).with_index do |(v, h), i|
       h[v] = i
     end
   end
 
   def filter_route_closer_value value
-    Answer::ROUTES.values[value.to_i]
+    ::Record::ROUTES.values[value.to_i]
   end
 
   def filter_value_label
@@ -109,7 +109,7 @@ format :html do
   end
 
   def standard_verification_options
-    Answer::VERIFICATION_LEVELS.map.with_object({}) do |level, opts|
+    ::Record::VERIFICATION_LEVELS.map.with_object({}) do |level, opts|
       opts[level[:title]] = level[:name]
     end
   end

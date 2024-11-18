@@ -14,19 +14,20 @@ RSpec.describe Card::Set::MetricType::Descendant do
   end
 
   def inherited_value company, year
-    inherited_answer(company, year)&.value
+    inherited_record(company, year)&.value
   end
 
-  def inherited_answer company, year
-    Answer.where(metric_id: metric_name.card_id,
-                 company_id: company.card_id, year: year.to_i).take
+  def inherited_record company, year
+    Record.where(metric_id: metric_name.card_id,
+                 company_id: company.card_id,
+                 year: year.to_i).take
   end
 
   context "with two ancestors" do
     let(:metric_name) { "Joe User+descendant 1" }
     let(:metric) { Card[metric_name] }
 
-    context "with answers" do
+    context "with records" do
       it "uses first ancestor when both are present" do
         expect(inherited_value("Samsung", "2014")).to eq("5")
       end
@@ -35,7 +36,7 @@ RSpec.describe Card::Set::MetricType::Descendant do
         expect(inherited_value("Death_Star", "1977")).to eq("5")
       end
 
-      it "has no answer when neither are present" do
+      it "has no record when neither are present" do
         expect(inherited_value("Sony_Corporation", "1977")).to eq(nil)
       end
     end

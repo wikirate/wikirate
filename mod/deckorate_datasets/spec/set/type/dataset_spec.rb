@@ -20,7 +20,7 @@ RSpec.describe Card::Set::Type::Dataset do
       expect_stat :num, metrics: 2, companies: 3
     end
 
-    it "counts all records" do
+    it "counts all record logs" do
       expect_stat :num, possible: 6, researched: 2, unknown: 0, not_researched: 4
     end
 
@@ -44,12 +44,12 @@ RSpec.describe Card::Set::Type::Dataset do
       expect_stat :num, metrics: 2, companies: 3
     end
 
-    it "counts all answers" do
+    it "counts all records" do
       expect_stat :num, possible: 18, researched: 3, unknown: 0, not_researched: 15
       # note: 2 researched for same record_log
     end
 
-    it "calculates progress percentages based on answers" do
+    it "calculates progress percentages based on records" do
       expect_stat :percent, researched: 16.6, unknown: 0, not_researched: 83.3
     end
   end

@@ -3,7 +3,7 @@ RSpec.describe Card::RecordQuery::MetricFilters do
 
   context "with fixed company" do
     let(:default_filters) { { company_id: company_name.card_id, year: :latest } }
-    let(:answer_parts) { [1, -1] } # metric and year
+    let(:record_parts) { [1, -1] } # metric and year
     let(:company_name) { "Death_Star" }
 
     describe "#filter_by_metric_keyword" do
@@ -52,7 +52,7 @@ RSpec.describe Card::RecordQuery::MetricFilters do
 
         it "finds researched" do
           expect(search(metric_type: "Researched"))
-            .to contain_exactly(*researched_death_star_answers)
+            .to contain_exactly(*researched_death_star_records)
         end
 
         it "finds combinations" do
@@ -85,7 +85,7 @@ RSpec.describe Card::RecordQuery::MetricFilters do
       end
 
       it "finds not bookmarked" do
-        latest = latest_death_star_answers
+        latest = latest_death_star_records
         marked = "disturbances in the Force+2001"
         latest.slice! latest.index(marked)
         expect(search(bookmark: :nobookmark)).to eq(latest)
@@ -95,7 +95,7 @@ RSpec.describe Card::RecordQuery::MetricFilters do
     context "with invalid filter key" do
       it "doesn't matter" do
         expect(search(not_a_filter: "Death"))
-          .to contain_exactly(*latest_death_star_answers)
+          .to contain_exactly(*latest_death_star_records)
       end
     end
 
@@ -109,7 +109,7 @@ RSpec.describe Card::RecordQuery::MetricFilters do
   context "with fixed metric" do
     let(:metric_name) { "Jedi+disturbances in the Force" }
     let(:default_filters) { { metric_id: metric_name.card_id, year: :latest } }
-    let(:answer_parts) { [-2, -1] }
+    let(:record_parts) { [-2, -1] }
     let(:default_sort) { {} }
 
     specify "#dataset_query" do

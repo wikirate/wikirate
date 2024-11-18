@@ -1,5 +1,5 @@
 class Card
-  # Query for both researched AND NOT RESEARCHED answers
+  # Query for both researched AND NOT RESEARCHED records
   class AllRecordQuery < RecordQuery
     include AllFiltering
     include AllSorting
@@ -30,11 +30,11 @@ class Card
     private
 
     def partner_joins
-      @card_joins.unshift("AS #{partner}").push partner_answer_join
+      @card_joins.unshift("AS #{partner}").push partner_record_join
     end
 
     # Currently these queries only work with a fixed company or metric
-    # it is not yet possible to handle not-researched answers for multiple companies and
+    # it is not yet possible to handle not-researched records for multiple companies and
     # metrics in one query
     def partner
       @partner ||=
@@ -48,9 +48,9 @@ class Card
     end
 
     # This left join is the essence of the search strategy.
-    def partner_answer_join
-      "LEFT JOIN answers " \
-      "ON #{partner}.id = answers.#{partner}_id AND #{lookup_conditions}"
+    def partner_record_join
+      "LEFT JOIN records " \
+      "ON #{partner}.id = records.#{partner}_id AND #{lookup_conditions}"
     end
 
     def partner_where
@@ -58,7 +58,7 @@ class Card
     end
 
     def researched_card id
-      Answer.find(id).card
+      Record.find(id).card
     end
 
     def main_results
@@ -68,7 +68,7 @@ class Card
     end
 
     def main_results_sql
-      fields = "answers.id, #{partner}.name, #{partner}.left_id, #{partner}.right_id"
+      fields = "records.id, #{partner}.name, #{partner}.left_id, #{partner}.right_id"
       @main_results_sql ||= sort_and_page { main_query.select fields }.to_sql
     end
   end

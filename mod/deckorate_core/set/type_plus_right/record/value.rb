@@ -7,21 +7,21 @@ def lookup_columns
   %i[value numeric_value route updated_at editor_id verification]
 end
 
-def answer_id
+def record_id
   left&.id || director.parent.card.id || left_id
-  # FIXME: director.parent thing fixes case where metric answer is renamed.
+  # FIXME: director.parent thing fixes case where metric record is renamed.
 end
 
 def history?
-  !metric_card&.relationship?
+  !metric_card&.relation?
 end
 
 def typed_value?
   true
 end
 
-# if metric is a relationship, the Relationship Answer takes the value type from
-# the metric, but the Metric answer value is always a number (a count)
+# if metric is a relation, the Relationship takes the value type from
+# the metric, but the Metric record value is always a number (a count)
 def type_code_from_metric
   metric_card&.simple_value_cardtype_code
 end
@@ -31,5 +31,5 @@ def new_value? value
 end
 
 def relationship_count_value?
-  metric_card.relationship?
+  metric_card.relation?
 end

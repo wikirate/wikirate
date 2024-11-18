@@ -121,7 +121,7 @@ end
 format :csv do
   view :reference_dump_core do
     [].tap do |rows|
-      card.each_reference_dump_row { |answer| rows << answer.csv_line(true) }
+      card.each_reference_dump_row { |record| rows << record.csv_line(true) }
     end
   end
 end

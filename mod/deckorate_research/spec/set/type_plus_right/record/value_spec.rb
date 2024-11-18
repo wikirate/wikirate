@@ -1,12 +1,12 @@
 
 RSpec.describe Card::Set::TypePlusRight::Record::Value do
   let(:metric) do
-    m = sample_metric
-    Card::Auth.as_bot do
-      m.update! subcards: { "+Unit" => { content: "Imperial military units",
-                                         type_id: Card::PhraseID } }
+    sample_metric.tap do |m|
+      Card::Auth.as_bot do
+        m.update! subcards: { "+Unit" => { content: "Imperial military units",
+                                           type_id: Card::PhraseID } }
+      end
     end
-    m
   end
 
   let(:company) { sample_company }
@@ -54,10 +54,10 @@ RSpec.describe Card::Set::TypePlusRight::Record::Value do
     let(:scored_value_name) { "#{metric}+#{scorer}+#{company}+#{year}+value" }
 
     def scored_value
-      Answer.where(metric_id: "#{metric}+#{scorer}".card_id,
-                   company_id: company.card_id,
-                   year: year.to_i)
-            .take.value
+      ::Record.where(metric_id: "#{metric}+#{scorer}".card_id,
+                     company_id: company.card_id,
+                     year: year.to_i)
+              .take.value
     end
 
     it "updates related score" do
@@ -67,9 +67,9 @@ RSpec.describe Card::Set::TypePlusRight::Record::Value do
     end
 
     it "standardizes unknown" do
-      answer = sample_answer
-      answer.value_card.update! content: "uNkNoWn"
-      expect(answer.value).to eq("Unknown")
+      record = sample_record
+      record.value_card.update! content: "uNkNoWn"
+      expect(record.value).to eq("Unknown")
     end
   end
 end
