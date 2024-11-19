@@ -43,10 +43,10 @@ describe "research page from record", ->
 
     cy.editor("value").find(".short-input").clear().type "54321"
 
-    cy.get("button").contains("Submit Record").click()
+    cy.get("button").contains("Submit Answer").click()
 
     cy.get(".research-record")
-      .should "contain", "Edit Record"
+      .should "contain", "Edit Answer"
       .should "contain", "Apple"
       .should "contain", "Star Wars"
       .should "contain", "54,321"
