@@ -76,7 +76,7 @@ format :html do
   end
 
   def submit_record_button
-    standard_save_button text: "Submit Record", class: "btn-lg"
+    standard_save_button text: "Submit Answer", class: "btn-lg"
   end
 
   def edit_fields
