@@ -1,6 +1,6 @@
 $(document).ready ->
   # track whether there are changes in the record form
-  $(".research-layout .tab-pane-record_phase").on "change", "input, textarea, select", ->
+  $(".research-layout .tab-pane-answer_phase").on "change", "input, textarea, select", ->
     $(".research-record .card-form").data "changed", true
 
   # must confirm links to new record when record form is changed

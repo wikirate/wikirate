@@ -20,7 +20,7 @@ end
 
 format :html do
   view :research_button, unknown: true do
-    tab = card.real? ? :record_phase : nil
+    tab = card.real? ? :answer_phase : nil
     text = card.new? ? "Research" : "Review"
     research_button tab: tab, text: text
   end
