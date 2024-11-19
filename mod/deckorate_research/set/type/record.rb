@@ -20,7 +20,7 @@ end
 
 format :html do
   view :research_button, unknown: true do
-    tab = card.real? ? :record_phase : nil
+    tab = card.real? ? :answer_phase : nil
     text = card.new? ? "Research" : "Review"
     research_button tab: tab, text: text
   end
@@ -76,7 +76,7 @@ format :html do
   end
 
   def submit_record_button
-    standard_save_button text: "Submit Record", class: "btn-lg"
+    standard_save_button text: "Submit Answer", class: "btn-lg"
   end
 
   def edit_fields

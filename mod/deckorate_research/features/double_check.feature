@@ -6,7 +6,7 @@ Feature: Double check
     When I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Review"
     And I switch to new tab
-    And I click on "Confirm Record"
+    And I click on "Confirm Answer"
     And I wait for ajax response
     Then I should see "Please log in"
 
@@ -16,7 +16,7 @@ Feature: Double check
     And I click on "Review"
     And I switch to new tab
     Then I should see "Verifications 0"
-    And I click on "Confirm Record"
+    And I click on "Confirm Answer"
     Then I should see "Verification 1"
     And I should see "Joe User"
     And I should see "Un-confirm"
@@ -28,7 +28,7 @@ Feature: Double check
     And I switch to new tab
     Then I should see "Verification 1"
     And I should see "Joe User"
-    When I click on "Confirm Record"
+    When I click on "Confirm Answer"
     Then I should see "Verifications 2"
 
     When I am signed in as Joe User
@@ -38,14 +38,14 @@ Feature: Double check
     And I click on "Un-confirm"
     Then I should see "Verification 1"
     And I should see "Joe Admin"
-    And I should see "Confirm Record"
+    And I should see "Confirm Answer"
 
   Scenario: Check is removed if value is edited and same user can't double check
     When I am signed in as Joe User
     And I go to card "Jedi+disturbances in the Force+Death Star+2000"
     And I click on "Review"
     And I switch to new tab
-    When I click on "Confirm Record"
+    When I click on "Confirm Answer"
     And I wait for ajax response
     Then I should see "Verification 1"
     When I edit "Jedi+disturbances in the Force+Death Star+2000"
