@@ -24,7 +24,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
       example "other user" do
         expect(core).to have_tag :div do
           with_badge self, 0
-          with_tag :a, "Confirm Record"
+          with_tag :a, "Confirm Answer"
         end
       end
 
@@ -38,7 +38,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
         example "creator", with_user: "Decko Bot" do
           expect(core).to have_tag :div do
             with_badge self, 0
-            with_tag :a, "Confirm Record"
+            with_tag :a, "Confirm Answer"
           end
         end
 
@@ -79,7 +79,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
         expect(core).to have_tag :div do
           with_badge self, 1
           with_tag :a, "John"
-          with_tag :a, "Confirm Record"
+          with_tag :a, "Confirm Answer"
         end
       end
     end
