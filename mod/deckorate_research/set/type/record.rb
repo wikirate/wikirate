@@ -68,7 +68,7 @@ format :html do
 
   def cancel_record_button
     link_to_view :read_form_with_button, "Cancel",
-                 class: "btn btn-outline-secondary btn-lg btn-sm"
+                 class: "btn btn-outline-secondary btn-lg"
   end
 
   def delete_button
