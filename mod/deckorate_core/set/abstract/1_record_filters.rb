@@ -43,7 +43,7 @@ format :html do
   end
 
   def filter_verification_closer_value value
-    Record.verification_title value
+    ::Record.verification_title value
   end
 
   def filter_updater_options

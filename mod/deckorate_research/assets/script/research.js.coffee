@@ -46,7 +46,7 @@ decko.slot.ready (slot) ->
 $(document).ready ->
   $("body").on "click", "#_select_year", (e) ->
     return unless selectedYear()
-    phase = selectedYearNotResearched() && "source" || "record"
+    phase = selectedYearNotResearched() && "source" || "answer"
     toPhase phase, e
 
   $("body").on "click", "._to_question_phase", (e) ->
@@ -57,8 +57,8 @@ $(document).ready ->
 
   # open record tab after clicking "select year"
   $("body").on "click", "#_select_source", (event) ->
-    addSourceItem() unless tabPhase("record").hasClass "load"
-    toPhase "record", event
+    addSourceItem() unless tabPhase("answer").hasClass "load"
+    toPhase "answer", event
 
   # open new source form from button
   $("body").on "click", "._add_source_modal_link", () ->

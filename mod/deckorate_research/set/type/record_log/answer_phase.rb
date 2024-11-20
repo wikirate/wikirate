@@ -1,5 +1,5 @@
 format :html do
-  view :record_phase, cache: :never, template: :haml, perms: :can_research?
+  view :answer_phase, cache: :never, template: :haml, perms: :can_research?
 
   def current_year
     params[:year]
