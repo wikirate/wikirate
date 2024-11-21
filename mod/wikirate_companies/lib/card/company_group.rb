@@ -5,11 +5,13 @@ class Card
       MINIMUM_COMPANY_COUNT = 10_000
 
       def update_large_lists
-        each_large_company_group do |group|
-          next unless update_group? group
-          list = group.company_card
-          list.update_content_from_spec
-          list.save!
+        Auth.as_bot do
+          each_large_company_group do |group|
+            next unless update_group? group
+            list = group.company_card
+            list.update_content_from_spec
+            list.save!
+          end
         end
       end
 
