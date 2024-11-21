@@ -7,7 +7,7 @@
 
   .form-group.read-form-group
     %label
-      Record
+      Answer
     .read-formgroup-content
       = field_nest :value, view: :core
       .text-muted.small{ title: card.format(:text).render_legend }
@@ -19,7 +19,7 @@
   .research-buttons.button-form-group.d-flex.justify-content-between
     - class_up "flag-button", "btn-lg"
     ._research-buttons.pe-2
-      = link_to_view :edit_inline, "Edit Record",
+      = link_to_view :edit_inline, "Edit Answer",
                      class: "btn btn-outline-secondary btn-lg _edit-record-button mb-4",
                      data: { "disable-with": "Loading..." }
 
