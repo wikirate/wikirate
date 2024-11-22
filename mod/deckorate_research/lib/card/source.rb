@@ -42,6 +42,8 @@ class Card
     #
     # we want "user error" here, because it's not our code that's failing
     class ConversionError < Error::UserError
+      self.status_code = 424 # Failed Dependency
+
       def self.view
         :conversion_error
       end
