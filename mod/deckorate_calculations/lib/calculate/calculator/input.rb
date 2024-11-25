@@ -1,12 +1,12 @@
 class Calculate
   class Calculator
-    # It finds all applicable record values to a formula's input metrics and prepares
+    # It finds all applicable answer values to a formula's input metrics and prepares
     # them for calculating the formula values.
     # The key method is #each that iterates over all
     # company and year combination that could possible get a calculated value
     # and provides the input data for the calculation
     class Input
-      include Records
+      include Answers
 
       attr_reader :input_list, :result_cache
       delegate :no_mandatories?, :validate, to: :input_list
@@ -22,8 +22,8 @@ class Calculate
       # @param :companies [Array of Integers] only yield input for given companies
       # @option :years [Array of Integers] :year only yield input for given years
       def each companies: [], years: []
-        each_record companies: companies, years: years do |records, company_id, year|
-          yield records, company_id, year if normalize_records records
+        each_answer companies: companies, years: years do |answer, company_id, year|
+          yield answer, company_id, year if normalize_answers answer
         end
       end
 
@@ -32,18 +32,18 @@ class Calculate
       def input_for company_id, year
         with_integers company_id, year do |c, y|
           search_values_for company_id: c, year: y
-          normalize_records(fetch_record(c, y)).map(&:value)
+          normalize_answers(fetch_answer(c, y)).map(&:value)
         end
       end
 
       # @return [Array<Array>] for the given company and year returns a list of lists of
-      # Record objects. Each item in the outer list corresponds to an input.
+      # Answer objects. Each item in the outer list corresponds to an input.
       # Most inputs have only one item, but some have more, so we return an Array of
-      # records for each input
-      def records_for company_id, year
+      # answer for each input
+      def answer_for company_id, year
         with_integers company_id, year do |c, y|
           input_list.map do |input_item|
-            input_item.records_for(c, y).to_a
+            input_item.answer_for(c, y).to_a
           end
         end
       end
@@ -51,7 +51,7 @@ class Calculate
       private
 
       # yields value, company_id, and year (as integer) for each result
-      def each_record companies: [], years: [], &block
+      def each_answer companies: [], years: [], &block
         if companies.present? && years.present?
           values_for_companies_and_years companies, years, &block
         elsif years.present?
@@ -75,10 +75,10 @@ class Calculate
         Array.wrap(companies).map(&:card_id).each(&block)
       end
 
-      def normalize_records records
-        records&.map do |record|
-          record.cast { |val| @input_cast.call val } if @input_cast && !record.nil?
-          record
+      def normalize_answers answer
+        answer&.map do |answer|
+          answer.cast { |val| @input_cast.call val } if @input_cast && !answer.nil?
+          answer
         end
       end
 
@@ -106,7 +106,7 @@ class Calculate
       # optimization idea, never fully implemented:
       #
       # def cached_lookup
-      #   @cached_lookup ||= ::Record.where(metric_id: input_ids) # .sort(year: :desc)
+      #   @cached_lookup ||= ::Answer.where(metric_id: input_ids) # .sort(year: :desc)
       #                            .pluck(:metric_id, :company_id, :year, :value)
       #                            .each_with_object({}) do |(m, c, y, v), h|
       #     h[m] ||= {}

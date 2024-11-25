@@ -1,8 +1,8 @@
 require "decko/mods_spec_helper"
 require_relative "source_helper"
-require_relative "record_helper"
+require_relative "answer_helper"
 require_relative "metric_creator"
-require_relative "record_creator"
+require_relative "answer_creator"
 require_relative "samples"
 
 Spork.prefork do
@@ -14,7 +14,7 @@ Spork.prefork do
 end
 
 RSpec::Core::ExampleGroup.include Deckorate::SourceHelper
-RSpec::Core::ExampleGroup.include Deckorate::RecordHelper
+RSpec::Core::ExampleGroup.include Deckorate::AnswerHelper
 RSpec::Core::ExampleGroup.include Deckorate::Samples
 RSpec::Core::ExampleGroup.extend Deckorate::Samples
 

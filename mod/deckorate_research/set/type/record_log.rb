@@ -9,9 +9,9 @@ format :html do
     return "" unless card.metric_card.researchable?
 
     link_to_card card, text,
-                 class: "btn btn-secondary _research_record_button _over-card-link",
+                 class: "btn btn-secondary _research_answer_button _over-card-link",
                  path: { view: :research, year: year, tab: tab },
                  target: "_research_page",
-                 title: "Research/Review records for this company and metric"
+                 title: "Research/Review answer for this company and metric"
   end
 end

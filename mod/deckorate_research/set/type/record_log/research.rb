@@ -57,6 +57,6 @@ format :html do
   end
 
   def can_research?
-    Card.new(type: :record).ok? :create
+    Card.new(type: :answer).ok? :create
   end
 end

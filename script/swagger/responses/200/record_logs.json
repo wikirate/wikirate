@@ -1,6 +1,6 @@
 {
   "id": 3318057,
-  "name": "Record Log",
+  "name": "Record",
   "type": {
     "id": 5,
     "name": "Cardtype",
@@ -8,127 +8,127 @@
     "url": "https://wikirate.org/Cardtype.json",
     "codename": "cardtype"
   },
-  "url": "https://wikirate.org/Record_Logs.json",
-  "codename": "record_log",
+  "url": "https://wikirate.org/Answer_Logs.json",
+  "codename": "record",
   "items": [
     {
       "id": 43737,
       "name": "Clean Clothes Campaign+Worker Empowerment+Adidas AG",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Worker_Empowerment+Adidas_AG.json"
     },
     {
       "id": 43739,
       "name": "Clean Clothes Campaign+Worker Empowerment+Aldi Sud",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Worker_Empowerment+Aldi_Sud.json"
     },
     {
       "id": 43745,
       "name": "Clean Clothes Campaign+Living-wage Benchmarks+Adidas AG",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Living_wage_Benchmarks+Adidas_AG.json"
     },
     {
       "id": 43747,
       "name": "Clean Clothes Campaign+Living-wage Benchmarks+Aldi Sud",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Living_wage_Benchmarks+Aldi_Sud.json"
     },
     {
       "id": 43754,
       "name": "Clean Clothes Campaign+Commitment and Practices+Adidas AG",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Commitment_and_Practices+Adidas_AG.json"
     },
     {
       "id": 43756,
       "name": "Clean Clothes Campaign+Commitment and Practices+Aldi Sud",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Commitment_and_Practices+Aldi_Sud.json"
     },
     {
       "id": 43763,
       "name": "Clean Clothes Campaign+Collaborative Approach+Adidas AG",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Collaborative_Approach+Adidas_AG.json"
     },
     {
       "id": 43765,
       "name": "Clean Clothes Campaign+Collaborative Approach+Aldi Sud",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Collaborative_Approach+Aldi_Sud.json"
     },
     {
       "id": 43772,
       "name": "Clean Clothes Campaign+Strategy+Aldi Sud",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Strategy+Aldi_Sud.json"
     },
     {
       "id": 43774,
       "name": "Clean Clothes Campaign+Strategy+Adidas AG",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Clean_Clothes_Campaign+Strategy+Adidas_AG.json"
     },
     {
       "id": 43779,
       "name": "Greenpeace+Elimination of APEOs and Phthalates+Adidas AG",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Elimination_of_APEOs_and_Phthalates+Adidas_AG.json"
     },
     {
       "id": 43781,
       "name": "Greenpeace+Elimination of APEOs and Phthalates+H&M",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Elimination_of_APEOs_and_Phthalates+H_M.json"
     },
     {
       "id": 43787,
       "name": "Greenpeace+Elimination of PFCs+Adidas AG",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Elimination_of_PFCs+Adidas_AG.json"
     },
     {
       "id": 43789,
       "name": "Greenpeace+Elimination of PFCs+H&M",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Elimination_of_PFCs+H_M.json"
     },
     {
       "id": 43795,
       "name": "Greenpeace+Detox Transparency+Adidas AG",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Detox_Transparency+Adidas_AG.json"
     },
     {
       "id": 43797,
       "name": "Greenpeace+Detox Transparency+H&M",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Detox_Transparency+H_M.json"
     },
     {
       "id": 43816,
       "name": "Greenpeace+Seafood Labeling and Transparency+Aldi Sud",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Seafood_Labeling_and_Transparency+Aldi_Sud.json"
     },
     {
       "id": 43818,
       "name": "Greenpeace+Seafood Sustainability Initiatives+Aldi Sud",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Seafood_Sustainability_Initiatives+Aldi_Sud.json"
     },
     {
       "id": 43820,
       "name": "Greenpeace+Sustainable Seafood Policy+Aldi Sud",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Sustainable_Seafood_Policy+Aldi_Sud.json"
     },
     {
       "id": 43822,
       "name": "Greenpeace+Red List Seafood Sales+Aldi Sud",
-      "type": "Record Log",
+      "type": "Record",
       "url": "https://wikirate.org/Greenpeace+Red_List_Seafood_Sales+Aldi_Sud.json"
     }
   ],
@@ -138,11 +138,11 @@
   "ancestors": [
 
   ],
-  "html_url": "https://wikirate.org/Record_Log",
+  "html_url": "https://wikirate.org/Answer_Log",
   "created_at": "2018-01-21 02:21:45 UTC",
   "updated_at": "2020-03-31 12:16:30 UTC",
   "paging": {
-    "next": "https://wikirate.org/Record_Log.json?item=name&limit=20&offset=20"
+    "next": "https://wikirate.org/Answer_Log.json?item=name&limit=20&offset=20"
   },
   "requested_at": "2023-09-29 11:01:15 UTC",
   "license": "Creative Commons Attribution-ShareAlike 4.0 International License"

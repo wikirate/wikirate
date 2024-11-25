@@ -8,7 +8,7 @@ describe "research page", ->
     cy.get(".tab-li-company").click()
     cy.get(".tab-pane-company").within ->
       cy.bar("Death Star").within ->
-        cy.get(".research-record-button").click()
+        cy.get(".research-answer-button").click()
 
     # project and company
     cy.get(".research-company")
@@ -25,7 +25,7 @@ describe "research page", ->
 
     # choose Los Pollos Hermanos
     cy.bar("Los Pollos Hermanos").within ->
-      cy.get(".research-record-button").click()
+      cy.get(".research-answer-button").click()
 
     # previous metric
     cy.get(".research-metric-and-year").should "contain", "researched number 2"
@@ -48,7 +48,7 @@ describe "research page", ->
     cy.get(".TYPE-source.box:first").click()
     cy.get("#_select_source").click()
 
-    crumb = cy.get ".record-breadcrumb"
+    crumb = cy.get ".answer-breadcrumb"
     crumb.should "contain", "2020"
     crumb.should "contain", "Los Pollos Hermanos"
     crumb.should "contain", "disturbances in the Force"
@@ -66,6 +66,6 @@ describe "research page", ->
 
     toPhase "answer"
     cy.get("button").contains("Submit Answer").click()
-    cy.get(".research-record").should "contain", "Edit Answer"
-    cy.get(".research-record ._next-question-button").click()
+    cy.get(".research-answer").should "contain", "Edit Answer"
+    cy.get(".research-answer ._next-question-button").click()
     cy.get(".research-metric-and-year").should "contain", "researched number 2"

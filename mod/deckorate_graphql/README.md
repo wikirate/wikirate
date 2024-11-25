@@ -29,7 +29,7 @@ module GraphQL
       field :years, [Integer], null: false
       cardtype_field :company, Company, :company, true
       lookup_field :metric, Metric, nil, true
-      lookup_field :record, Record, :record, true
+      lookup_field :answer, Answer, :answer, true
     end
   end
 end

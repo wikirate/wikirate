@@ -4,7 +4,7 @@ class Calculate
       module Options
         module YearOption
           # Handles the year option that searches for all
-          # existing years for a given record
+          # existing years for a given answer
           # Example:
           #    year: all
           module YearAll

@@ -4,7 +4,7 @@ class RelationshipAnswerLookupTable < Cardio::Migration::Schema
     create_table :relationships do |t|
       t.integer :relationship_id
       t.integer :metric_id
-      t.integer :record_id
+      t.integer :answer_id
       t.integer :answer_id
       t.integer :object_company_id
       t.integer :subject_company_id
@@ -21,7 +21,7 @@ class RelationshipAnswerLookupTable < Cardio::Migration::Schema
     add_index :relationships, :answer_id, name: "answer_id_index"
     add_index :relationships, :relationship_id, name: "relationship_id_index", unique: true
     add_index :relationships, :metric_id, name: "metric_id_index"
-    add_index :relationships, :record_id, name: "record_id_index"
+    add_index :relationships, :answer_id, name: "answer_id_index"
     add_index :relationships, :object_company_id, name: "object_company_id_index"
     add_index :relationships, :subject_company_id, name: "subject_company_id_index"
     add_index :relationships, :value, name: "value_index"

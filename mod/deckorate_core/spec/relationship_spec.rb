@@ -8,7 +8,7 @@ RSpec.describe Relationship do
 
   describe "create" do
     it "creates relationship entry" do
-      create_records "Jedi+more evil", true do
+      create_answers "Jedi+more evil", true do
         Monster_Inc "2000" => { "Los_Pollos_Hermanos" => "no" }
       end
 
@@ -16,10 +16,10 @@ RSpec.describe Relationship do
       relation = described_class.find_by_relationship_id r_id
       expect(relation).to be_instance_of(described_class)
       aggregate_failures "relationship id attributes" do
-        { record_log_id: "Jedi+more evil+Monster Inc",
+        { record_id: "Jedi+more evil+Monster Inc",
           subject_company_id: "Monster Inc",
           object_company_id: "Los Pollos Hermanos",
-          record_id: "Jedi+more evil+Monster Inc+2000",
+          answer_id: "Jedi+more evil+Monster Inc+2000",
           relationship_id: "Jedi+more evil+Monster Inc+2000+Los Pollos Hermanos",
           metric_id: "Jedi+more evil" }.each_pair do |attr, name|
           expect(relation.send(attr)).to eq(name.card_id),
@@ -28,7 +28,7 @@ RSpec.describe Relationship do
         end
         expect(relation.year).to eq 2000
         expect(relation.value).to eq "no"
-        expect(relation.route).to eq Record.route_index(:direct)
+        expect(relation.route).to eq Answer.route_index(:direct)
         expect(relation.latest).to eq true
         expect(relation.subject_company_id.cardname).to eq("Monster Inc")
         expect(relation.object_company_id.cardname).to eq("Los Pollos Hermanos")
@@ -72,11 +72,11 @@ RSpec.describe Relationship do
     end
 
     xit "updates latest" do
-      record_log = "Commons+Supplied by+SPECTRE"
-      new_latest = described_class.find_by_record_id "#{record_log}+1977".card_id
+      record = "Commons+Supplied by+SPECTRE"
+      new_latest = described_class.find_by_answer_id "#{record}+1977".card_id
       new_latest.refresh # FIXME: shouldn't be needed; if needed, data was wrong
       expect(new_latest.latest).to be_falsey
-      delete "#{record_log}+2000" # "+Los Pollos Hermanos"
+      delete "#{record}+2000" # "+Los Pollos Hermanos"
       new_latest.refresh
       expect(new_latest.latest).to be_truthy
     end
@@ -84,7 +84,7 @@ RSpec.describe Relationship do
 
   describe "updates" do
     before do
-      # fetch record_id before the change
+      # fetch answer_id before the change
       relation_id
     end
 
@@ -114,7 +114,7 @@ RSpec.describe Relationship do
       expect do
         update relation_name,
                name: "Commons+Supplied by+Google LLC+1977+Los Pollos Hermanos"
-      end.to raise_error(ActiveRecord::RecordInvalid)
+      end.to raise_error(ActiveRecord::AnswerInvalid)
     end
 
     it "updates year" do

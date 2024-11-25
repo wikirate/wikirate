@@ -1,9 +1,9 @@
 class Card
   # A BadgeSquad manages BadgeLines for one badge cardtype, for example
-  # all badges related to records
+  # all badges related to answer
   module BadgeSquad
     BADGE_TYPES =
-      [:metric, :project, :record, :source, :company].freeze
+      [:metric, :project, :answer, :source, :company].freeze
 
     def self.for_type type_code
       Card::Set::Type.const_get("#{type_code.to_s.camelcase}::BadgeSquad")

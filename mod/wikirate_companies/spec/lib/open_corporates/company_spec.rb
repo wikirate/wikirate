@@ -64,7 +64,7 @@ RSpec.describe OpenCorporates::Company do
   #   end
   #
   #   it "has error" do
-  #     expect(oc.error).to eq "couldn't receive open corporates entry: Record not found"
+  #     expect(oc.error).to eq "couldn't receive open corporates entry: Answer not found"
   #   end
   # end
   #
@@ -76,7 +76,7 @@ RSpec.describe OpenCorporates::Company do
   #   end
   #
   #   it "has error" do
-  #     expect(oc.error).to eq "couldn't receive open corporates entry: Record not found"
+  #     expect(oc.error).to eq "couldn't receive open corporates entry: Answer not found"
   #   end
   # end
   #
@@ -88,7 +88,7 @@ RSpec.describe OpenCorporates::Company do
   #   end
   #
   #   it "has error" do
-  #     expect(oc.error).to eq "couldn't receive open corporates entry: Record not found"
+  #     expect(oc.error).to eq "couldn't receive open corporates entry: Answer not found"
   #   end
   # end
 end

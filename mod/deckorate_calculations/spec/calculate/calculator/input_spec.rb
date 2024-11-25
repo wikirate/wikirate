@@ -8,8 +8,8 @@ RSpec.describe Calculate::Calculator::Input do
   describe "#each" do
     def input_each metrics, years, companies=nil
       input_yields metrics do |input, yields|
-        input.each years: years, companies: companies do |input_records, company, year|
-          input_values = input_records.map { |a| a&.value }
+        input.each years: years, companies: companies do |input_answers, company, year|
+          input_values = input_answers.map { |a| a&.value }
           yields << [input_values, company, year]
         end
       end
@@ -75,7 +75,7 @@ RSpec.describe Calculate::Calculator::Input do
       example "related" do
         # @input ||= ["Jedi+deadliness"]
         # @company_options = []
-        # input_records(
+        # input_answers(
 
         expect(
           input_each(
@@ -102,29 +102,29 @@ RSpec.describe Calculate::Calculator::Input do
     end
   end
 
-  describe "#records_for" do
-    def records_for *args
-      input(input_array).records_for(*args)
+  describe "#answer_for" do
+    def answer_for *args
+      input(input_array).answer_for(*args)
     end
 
     context "with single metric" do
       let(:input_array) { [{ metric: "Jedi+Victims by Employees" }] }
 
       example "no year specified" do
-        expect(records_for(death_star, nil).first.first.value).to eq("0.31")
+        expect(answer_for(death_star, nil).first.first.value).to eq("0.31")
       end
 
       example "year specified" do
-        expect(records_for(death_star, 1977).first.first.value).to eq("0.31")
+        expect(answer_for(death_star, 1977).first.first.value).to eq("0.31")
       end
 
       context "with relative year" do
         let(:input_array) { [{ metric: "Jedi+Disturbances in the Force", year: "-1" }] }
 
         example "year specified" do
-          records = records_for death_star, 1993
-          expect(records.size).to eq(1)
-          expect(records.first.first.value).to eq("yes")
+          answer = answer_for death_star, 1993
+          expect(answer.size).to eq(1)
+          expect(answer.first.first.value).to eq("yes")
         end
       end
     end
@@ -135,12 +135,12 @@ RSpec.describe Calculate::Calculator::Input do
       end
 
       example "no year specified" do
-        expect(records_for(death_star, nil).map(&:first).map(&:value))
+        expect(answer_for(death_star, nil).map(&:first).map(&:value))
           .to eq(["0.31", "100"])
       end
 
       example "year specified" do
-        expect(records_for(death_star, 1977).map(&:first).map(&:value))
+        expect(answer_for(death_star, 1977).map(&:first).map(&:value))
           .to eq(["0.31", "100"])
       end
     end

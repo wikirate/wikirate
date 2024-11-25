@@ -2,13 +2,13 @@
 class Calculate
   include Clean
 
-  attr_reader :records, :metric
+  attr_reader :answer, :metric
 
   def initialize metric, args={}
     @metric = metric
     @company_id = args[:company_id]
     @year = args[:year]
-    @records = metric.records args
+    @answer = metric.answer args
   end
 
   def prepare
@@ -38,29 +38,29 @@ class Calculate
     array = if @company_id
               [@company_id]
             else
-              records.select(:company_id).distinct.pluck :company_id
+              answer.select(:company_id).distinct.pluck :company_id
             end
     ::Set.new array
   end
 
   def wipe_old_calculations
-    records.where(record_id: nil).delete_all if old_company_ids.present?
+    answer.where(answer_id: nil).delete_all if old_company_ids.present?
     return unless overridden_hash.present?
 
-    records.where("record_id is not null").update_all overridden_value: nil
+    answer.where("answer_id is not null").update_all overridden_value: nil
   end
 
   def expirables
     return [] unless old_company_ids.present?
 
-    @expirables ||= records.joins("JOIN cards AS companies ON company_id = companies.id")
+    @expirables ||= answer.joins("JOIN cards AS companies ON company_id = companies.id")
                            .pluck :name, :year
   end
 
   def overridden_hash
     return {} unless old_company_ids.present?
 
-    @overridden_hash ||= records.where("record_id is not null")
+    @overridden_hash ||= answer.where("answer_id is not null")
                                 .pluck(:company_id, :year)
                                 .each_with_object({}) do |(c, y), h|
       h["#{c}-#{y}"] = true
@@ -87,13 +87,13 @@ class Calculate
   end
 
   def insert_calculations calcs
-    attribs = calcs.map { |calc| calc.record_attributes.merge metric_id: metric.id }
-    attribs.each_slice(5000) { |slice| Record.insert_all slice }
+    attribs = calcs.map { |calc| calc.answer_attributes.merge metric_id: metric.id }
+    attribs.each_slice(5000) { |slice| Answer.insert_all slice }
   end
 
   def update_overridden_calculations overridden
     overridden.each do |o|
-      records.where(company_id: o.company_id, year: o.year)
+      answer.where(company_id: o.company_id, year: o.year)
              .update_all overridden_value: o.value
     end
   end

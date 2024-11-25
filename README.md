@@ -64,7 +64,7 @@ WikiRate's [Modfile][9] is more involved than most, but it's reasonably well com
 The mods can be grouped into four main groups:
 
 1. mods prefixed with **deckorate_**. DeckoRate is an abstraction of WikiRate; it has
-metrics, records, sources, datasets, etc, but the subject might be something other
+metrics, answer, sources, datasets, etc, but the subject might be something other
 than companies – could be governments, geographical areas, or whatever else. It's
 more of an idea than a reality thus far, but we're trying to organizing code to help 
 us approach that reality, and these mods are moving us in that direction. The idea is 

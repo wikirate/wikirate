@@ -70,8 +70,8 @@ format :html do
 
   def link_to_metric rel, label, index, text=nil
     text ||= label
-    record_log_name = metric_id_for_index(index).cardname.field card.company_name
-    link_to_card record_log_name, text,
+    record_name = metric_id_for_index(index).cardname.field card.company_name
+    link_to_card record_name, text,
                  class: "_metric_arrow_button #{classy '_research-metric-link'}",
                  rel: rel,
                  title: label,
@@ -91,18 +91,18 @@ format :html do
       dataset_card&.years? ? dataset_card.years.sort.reverse : Type::Year.all_years
   end
 
-  def record_for year
-    records[year.to_i] || new_record(year)
+  def answer_for year
+    answer[year.to_i] || new_answer(year)
   end
 
-  def new_record year
-    Card.new type: :record, name: [card.record_log_name, year.to_s]
+  def new_answer year
+    Card.new type: :answer, name: [card.record_name, year.to_s]
   end
 
-  def records
-    @records ||= card.record_log_card.record_card.search
-                     .each_with_object({}) do |record, hash|
-      hash[record.year.to_i] = record
+  def answer
+    @answer ||= card.record_card.answer_card.search
+                     .each_with_object({}) do |answer, hash|
+      hash[answer.year.to_i] = answer
     end
   end
 end

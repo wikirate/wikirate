@@ -29,10 +29,10 @@ RSpec.describe GraphQL::Types::Dataset do
     end
   end
 
-  describe "dataset: records field" do
-    it "returns the records included in dataset" do
-      query = query_string dataset_name, "records { id } "
-      expect(result(query)["records"].count).to be_positive
+  describe "dataset: answer field" do
+    it "returns the answer included in dataset" do
+      query = query_string dataset_name, "answer { id } "
+      expect(result(query)["answer"].count).to be_positive
     end
   end
 end

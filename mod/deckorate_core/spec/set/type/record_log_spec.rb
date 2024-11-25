@@ -1,6 +1,6 @@
-RSpec.describe Card::Set::Type::RecordLog do
+RSpec.describe Card::Set::Type::Record do
   def card_subject
-    sample_record.left
+    sample_answer.left
   end
 
   check_views_for_errors views: (views(:html).unshift(:tabs) - [:answer_phase])

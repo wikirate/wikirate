@@ -5,7 +5,7 @@ include_set Abstract::Attributable
 #   end
 
 def each_reference_dump_row &block
-  RecordQuery.new(dataset: name).lookup_query.in_batches do |records|
-    records.each { |record| record.each_reference_dump_row(&block) }
+  AnswerQuery.new(dataset: name).lookup_query.in_batches do |answer|
+    answer.each { |answer| answer.each_reference_dump_row(&block) }
   end
 end

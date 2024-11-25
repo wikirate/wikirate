@@ -1,18 +1,18 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::DeckorateTabbed
 
-card_accessor :record
+card_accessor :answer
 
-event :update_lookups_on_record_rename, :finalize, changed: :name, on: :update do
-  record_card.search.each(&:refresh)
+event :update_lookups_on_answer_rename, :finalize, changed: :name, on: :update do
+  answer_card.search.each(&:refresh)
 end
 
 def virtual?
   new?
 end
 
-def records
-  record_card.search
+def answer
+  answer_card.search
 end
 
 private
@@ -22,12 +22,12 @@ def expire_left?
 end
 
 format do
-  delegate :records, to: :card
+  delegate :answer, to: :card
 end
 
 format :html do
   def tab_list
-    %i[record metric company]
+    %i[answer metric company]
   end
 
   def tab_options
@@ -41,8 +41,8 @@ format :html do
             nest(card.company_card, view: :thumbnail)]
   end
 
-  view :record_tab do
-    field_nest :record, view: :filtered_content
+  view :answer_tab do
+    field_nest :answer, view: :filtered_content
   end
 
   view :metric_tab do
@@ -56,7 +56,7 @@ end
 
 format :csv do
   view :body do
-    records.each_with_object("") do |a, res|
+    answer.each_with_object("") do |a, res|
       res << CSV.generate_line([a.company, a.year, a.value])
     end
   end
@@ -64,6 +64,6 @@ end
 
 format :json do
   def item_cards
-    records
+    answer
   end
 end
