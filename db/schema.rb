@@ -143,7 +143,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_190243) do
     t.index ["value_type_id"], name: "metrics_value_type_id_index"
   end
 
-  create_table "answer", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+  create_table "answers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "answer_id"
     t.integer "metric_id", null: false
     t.integer "company_id", null: false

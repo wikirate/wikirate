@@ -44,7 +44,7 @@ class Calculate
         end
 
         def each_input_answer rel, object
-          rel.pluck(*INPUT_RECORD_FIELDS).each_with_object(object) do |fields, obj|
+          rel.pluck(*INPUT_ANSWER_FIELDS).each_with_object(object) do |fields, obj|
             company_id = fields.shift
             year = fields.shift
             input_answer = InputAnswer.new self, company_id, year

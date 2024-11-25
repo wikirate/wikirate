@@ -17,7 +17,7 @@ class Calculate
       include Defaults
       include Options
 
-      INPUT_RECORD_FIELDS = %i[company_id year id value unpublished verification].freeze
+      INPUT_ANSWER_FIELDS = %i[company_id year id value unpublished verification].freeze
 
       attr_reader :input_card, :options, :input_index, :input_count, :result_space
       delegate :answer_candidates, to: :result_space

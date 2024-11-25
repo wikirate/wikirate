@@ -104,10 +104,10 @@ private
 def latest_rel rel
   rel.where <<-SQL
       NOT EXISTS (
-        SELECT * FROM answer a1
-        WHERE a1.metric_id = answer.metric_id
-        AND a1.company_id = answer.company_id
-        AND a1.year > answer.year
+        SELECT * FROM answers a1
+        WHERE a1.metric_id = answers.metric_id
+        AND a1.company_id = answers.company_id
+        AND a1.year > answers.year
       )
   SQL
 end

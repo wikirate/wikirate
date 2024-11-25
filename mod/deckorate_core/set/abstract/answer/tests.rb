@@ -17,7 +17,7 @@ end
 
 # Metric is calculated but this answer can't yet be calculated
 def uncalculated?
-  !researched? && answer.new_answer?
+  !researched? && answer.new_record?
 end
 
 def inverse?

@@ -29,7 +29,7 @@ def answer
 end
 
 def virtual?
-  new? && (!answer.new_answer? || metric_card&.relation?)
+  new? && (!answer.new_record? || metric_card&.relation?)
 end
 
 def content

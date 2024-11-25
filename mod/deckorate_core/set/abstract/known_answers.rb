@@ -73,7 +73,7 @@ def count_known
   researched_relation.where.not(value: "Unknown").count
 end
 
-def answer
+def answers
   ::Answer.where where_answer
 end
 
@@ -82,7 +82,7 @@ def records
 end
 
 def researched_relation
-  dataset_card.years? ? answer : records
+  dataset_card.years? ? answers : records
 end
 
 def where_year

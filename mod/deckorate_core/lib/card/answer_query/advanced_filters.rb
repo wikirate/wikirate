@@ -29,7 +29,7 @@ class Card
       #
       # def filter_by_answer value
       #   return unless (metric_id = value[:metric_id]&.to_i)
-      #   exists = "SELECT * from answer AS a2 " \
+      #   exists = "SELECT * from answers AS a2 " \
       #     "WHERE answer.company_id = a2.company_id " \
       #     "AND a2.metric_id = ?"
       #   @conditions << "EXISTS (#{exists})"
