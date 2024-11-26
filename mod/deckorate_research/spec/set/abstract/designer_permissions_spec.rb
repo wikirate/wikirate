@@ -31,7 +31,7 @@ RSpec.describe Card::Set::Abstract::DesignerPermissions do
     end
   end
 
-  describe "answer" do
+  describe "answers" do
     %i[create update delete].each do |action|
       specify "designer can #{action} answer" do
         designer_can action, answer

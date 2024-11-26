@@ -7,7 +7,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Source do
       end
     end
     let :delete_one do
-      # this deletes multiple answer that use the same source,
+      # this deletes multiple answers that use the same source,
       # which in this case is necessary to get the source to decrement.
       Card["Jedi+disturbances in the force+Death Star"].delete
     end

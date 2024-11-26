@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::Type::Answer do
-  describe "answer by value type" do
+  describe "answers by value type" do
     def card_subject
       sample_answer value_type
     end
@@ -14,7 +14,7 @@ RSpec.describe Card::Set::Type::Answer do
     end
   end
 
-  describe "answer by metric type" do
+  describe "answers by metric type" do
     def card_subject
       subject_with_metric_type
     end

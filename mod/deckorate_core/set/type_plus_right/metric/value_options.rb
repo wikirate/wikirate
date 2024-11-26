@@ -15,7 +15,7 @@ event :validate_value_options_match_values, :validate,
       on: :save, when: :categorical?, changed: :content do
   return unless (error_message = metric_card.validate_all_values)
 
-  errors.add :content, "Change makes current answer invalid: #{error_message}"
+  errors.add :content, "Change makes current answers invalid: #{error_message}"
 end
 
 def item_names args={}

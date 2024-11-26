@@ -1,2 +1,21 @@
 // task_bar.js.coffee
-(function(){var n;n=function(n){var t;return t=n.slot().data("card-link-name"),window.open(decko.path(t))},$(document).ready(function(){return $("body").on("click",".bar.TYPE-task",function(){return n($(this))}),$("body").on("click",".bar.TYPE-task a",function(){return n($(this).closest(".bar")),!1})})}).call(this);
+(function() {
+  var openBar;
+
+  openBar = function(bar) {
+    var path;
+    path = bar.slot().data("card-link-name");
+    return window.open(decko.path(path));
+  };
+
+  $(document).ready(function() {
+    $('body').on('click', '.bar.TYPE-task', function() {
+      return openBar($(this));
+    });
+    return $('body').on('click', '.bar.TYPE-task a', function() {
+      openBar($(this).closest('.bar'));
+      return false;
+    });
+  });
+
+}).call(this);

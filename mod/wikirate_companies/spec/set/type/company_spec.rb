@@ -53,14 +53,14 @@ RSpec.describe Card::Set::Type::Company do
       company_card.update! name: "Life Star"
     end
 
-    it "refreshes all answer" do
+    it "refreshes all answers" do
       rename_company!
       expect(::Answer.where(company_id: "Death Star".card_id).count).to eq(0)
     end
   end
 
   describe "deleting company" do
-    it "deletes all answer", as_bot: true do
+    it "deletes all answers", as_bot: true do
       company_id = company_card.id
       company_card.delete!
       expect(::Answer.where(company_id: company_id).count).to eq(0)

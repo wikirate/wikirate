@@ -62,15 +62,15 @@ RSpec.describe Card::Set::MetricType::Relation do
 
     it "fails without admin permission" do
       delete_answers
-      expect(metric_card.errors).to have_key(:answer)
+      expect(metric_card.errors).to have_key(:answers)
     end
 
-    it "deletes subject answer", as_bot: true do
+    it "deletes subject answers", as_bot: true do
       delete_answers
       expect(Card.fetch(metric, company)).not_to be_real
     end
 
-    it "deletes object answer", as_bot: true do
+    it "deletes object answers", as_bot: true do
       delete_answers
       expect(Card["#{metric}+Death Star+1977+#{company}"]).to be_nil
     end

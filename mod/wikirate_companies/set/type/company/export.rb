@@ -60,9 +60,9 @@ format :json do
     ).limit(10).all
   end
 
-  def format_odyssey_relationships answer
+  def format_odyssey_relationships answers
     items = []
-    answer.each do |answer|
+    answers.each do |answer|
       items.append metric: answer.metric.name,
                    subject_company: odyssey_url(answer.subject_company_id),
                    object_company: odyssey_url(answer.object_company_id),
@@ -79,9 +79,9 @@ format :json do
     "#{base_url}/#{card_name}.json?view=odyssey"
   end
 
-  def format_odyssey_answer answer
+  def format_odyssey_answer answers
     items = []
-    answer.each do |answer|
+    answers.each do |answer|
       items.append metric: answer.metric.name,
                    value: answer.value,
                    year: answer.year,

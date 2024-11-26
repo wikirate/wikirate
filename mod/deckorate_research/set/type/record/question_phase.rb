@@ -92,7 +92,7 @@ format :html do
   end
 
   def answer_for year
-    answer[year.to_i] || new_answer(year)
+    answers[year.to_i] || new_answer(year)
   end
 
   def new_answer year

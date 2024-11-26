@@ -240,7 +240,7 @@
     },
     {
       "name": "calculatedAnswers",
-      "source": "answer",
+      "source": "answers",
       "transform": [
         {
           "type": "filter",
@@ -297,7 +297,7 @@
       "domain": {
         "fields": [
           {
-            "data": "answer",
+            "data": "answers",
             "field": "status"
           }
         ],

@@ -7,7 +7,7 @@ def query_hash
   { source: left_id }
 end
 
-# recount answer for a given source when a citation is updated
+# recount answers for a given source when a citation is updated
 recount_trigger :type_plus_right, :answer, :source do |citation|
   answer_searches_for_sources citation.item_cards
 end

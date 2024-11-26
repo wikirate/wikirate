@@ -3,7 +3,7 @@ include_set Abstract::BookmarkFiltering
 include_set Abstract::CachedCount
 include_set Abstract::FixedAnswerSearch
 
-# recount number of answer for a given metric when an answer card is
+# recount number of answers for a given metric when an answer card is
 # created or deleted
 recount_trigger :type, :answer, on: %i[create delete] do |changed_card|
   changed_card.company_card&.fetch :answer

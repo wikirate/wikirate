@@ -1,5 +1,128 @@
 // confirm.js.coffee
-(function(){var r,e,n,a,t,c,i,o,u,s,f,h;$(document).ready(function(){return $(".research-layout .tab-pane-answer_phase").on("change","input, textarea, select",function(){return $(".research-answer .card-form").data("changed",!0)}),$(".research-layout").on("click","._research-metric-link, .research-answer-button",function(r){var e;if(u())return r.preventDefault(),(e=$("#confirmLeave")).trigger("click"),e.data("confirmHref",$(this).attr("href"))}),$(".research-layout").on("click","._yes_leave",function(){return window.location.href=$("#confirmLeave").data("confirmHref")}),$(".research-layout").on("click","._yes_year",function(){var r;return r=$("#confirmYear").data("year"),n(r),i("answer")}),$("body").on("click","._research-year-option, ._research-year-option input",function(e){var a,t;return(a=$(this)).is("input")||(a=a.find("input")),t=a.val(),r(a)?n(t):o(e,t)})}),n=function(r){return $("._research-"+r+" input").prop("checked",!0),c(r),t(r)},u=function(){return $(".research-answer .card-form").data("changed")},r=function(r){return u()?a(r):(i("answer"),!0)},a=function(r){var n;return!s()&&!h(r)&&(n=f("answer").find("#new_card input#card_name"),e(n,r.val()),!0)},c=function(r){if($(".RIGHT-source ._compact-filter")[0])return decko.compactFilter(".RIGHT-source ._compact-filter").addRestrictions({year:r})},t=function(r){return $("._research-metric-link").each(function(){var e,n;return e=$(this),(n=new URL(e.prop("href"))).searchParams.set("year",r),e.prop("href",n.toString())})},e=function(r,e){var n;return n=r.val().replace(/\d{4}$/,e),r.val(n)},s=function(){return f("answer").find(".edit_inline-view")[0]},h=function(r){return!r.closest("._research-year-option").find(".not-researched")[0]},i=function(r){return deckorate.tabPhase(r).addClass("load"),f(r).html("")},f=function(r){return $(".tab-pane-"+r+"_phase")},o=function(r,e){var n;return(n=$("#confirmYear")).trigger("click"),n.data("year",e),r.preventDefault(),r.stopPropagation()}}).call(this);
+(function() {
+  var answerReadyForYearChange, changeHiddenName, changeToYear, changeYearInAnswerForm, changeYearInMetricLinks, changeYearInSourceFilter, clearTab, confirmYearChange, editInProgress, fromResearched, tabPane, toResearched;
+
+  $(document).ready(function() {
+    $(".research-layout .tab-pane-answer_phase").on("change", "input, textarea, select", function() {
+      return $(".research-answer .card-form").data("changed", true);
+    });
+    $(".research-layout").on("click", "._research-metric-link, .research-answer-button", function(e) {
+      var leave;
+      if (!editInProgress()) {
+        return;
+      }
+      e.preventDefault();
+      leave = $("#confirmLeave");
+      leave.trigger("click");
+      return leave.data("confirmHref", $(this).attr("href"));
+    });
+    $(".research-layout").on("click", "._yes_leave", function() {
+      return window.location.href = $("#confirmLeave").data("confirmHref");
+    });
+    $(".research-layout").on("click", "._yes_year", function() {
+      var year;
+      year = $("#confirmYear").data("year");
+      changeToYear(year);
+      return clearTab("answer");
+    });
+    return $("body").on("click", "._research-year-option, ._research-year-option input", function(e) {
+      var input, year;
+      input = $(this);
+      if (!input.is("input")) {
+        input = input.find("input");
+      }
+      year = input.val();
+      if (answerReadyForYearChange(input)) {
+        return changeToYear(year);
+      } else {
+        return confirmYearChange(e, year);
+      }
+    });
+  });
+
+  changeToYear = function(year) {
+    $("._research-" + year + " input").prop("checked", true);
+    changeYearInSourceFilter(year);
+    return changeYearInMetricLinks(year);
+  };
+
+  editInProgress = function() {
+    return $(".research-answer .card-form").data("changed");
+  };
+
+  answerReadyForYearChange = function(input) {
+    if (editInProgress()) {
+      return changeYearInAnswerForm(input);
+    } else {
+      clearTab("answer");
+      return true;
+    }
+  };
+
+  changeYearInAnswerForm = function(input) {
+    var answerName;
+    if (fromResearched() || toResearched(input)) {
+      return false;
+    }
+    answerName = tabPane("answer").find("#new_card input#card_name");
+    changeHiddenName(answerName, input.val());
+    return true;
+  };
+
+  changeYearInSourceFilter = function(year) {
+    if ($(".RIGHT-source ._compact-filter")[0]) {
+      return decko.compactFilter(".RIGHT-source ._compact-filter").addRestrictions({
+        year: year
+      });
+    }
+  };
+
+  changeYearInMetricLinks = function(year) {
+    return $("._research-metric-link").each(function() {
+      var link, url;
+      link = $(this);
+      url = new URL(link.prop("href"));
+      url.searchParams.set("year", year);
+      return link.prop("href", url.toString());
+    });
+  };
+
+  changeHiddenName = function(nameField, year) {
+    var newName;
+    newName = nameField.val().replace(/\d{4}$/, year);
+    return nameField.val(newName);
+  };
+
+  fromResearched = function() {
+    return tabPane("answer").find(".edit_inline-view")[0];
+  };
+
+  toResearched = function(input) {
+    return !input.closest("._research-year-option").find(".not-researched")[0];
+  };
+
+  clearTab = function(phase) {
+    var link;
+    link = deckorate.tabPhase(phase);
+    link.addClass("load");
+    return tabPane(phase).html("");
+  };
+
+  tabPane = function(phase) {
+    return $(".tab-pane-" + phase + "_phase");
+  };
+
+  confirmYearChange = function(event, year) {
+    var link;
+    link = $("#confirmYear");
+    link.trigger("click");
+    link.data("year", year);
+    event.preventDefault();
+    return event.stopPropagation();
+  };
+
+}).call(this);
+
 // jpages.js
 /**
  * jQuery jPages v0.7
@@ -10,10 +133,952 @@
  * Copyright 2012 Luís Almeida
  * https://github.com/luis-almeida
  */
-!function(t,i,s,e){function n(e,n){this.options=t.extend({},o,n),this._container=t("#"+this.options.containerID),this._container.length&&(this.jQwindow=t(i),this.jQdocument=t(s),this._holder=t(e),this._nav={},this._first=t(this.options.first),this._previous=t(this.options.previous),this._next=t(this.options.next),this._last=t(this.options.last),this._items=this._container.children(":visible"),this._itemsShowing=t([]),this._itemsHiding=t([]),this._numPages=Math.ceil(this._items.length/this.options.perPage),this._currentPageNum=this.options.startPage,this._clicked=!1,this._cssAnimSupport=this.getCSSAnimationSupport(),this.init())}var a="jPages",h=null,o={containerID:"",first:!1,previous:"\u2190 previous",next:"next \u2192",last:!1,links:"numeric",startPage:1,perPage:10,midRange:5,startRange:1,endRange:1,keyBrowse:!1,scrollBrowse:!1,pause:0,clickStop:!1,delay:50,direction:"forward",animation:"",fallback:400,minHeight:!0,callback:e};n.prototype={constructor:n,getCSSAnimationSupport:function(){var t=!1,i="Webkit Moz O ms Khtml".split(" "),s="",n=this._container.get(0);if(n.style.animationName&&(t=!0),!1===t)for(var a=0;a<i.length;a++)if(n.style[i[a]+"AnimationName"]!==e){(s=i[a])+"Animation","-"+s.toLowerCase()+"-",t=!0;break}return t},init:function(){this.setStyles(),this.setNav(),this.paginate(this._currentPageNum),this.setMinHeight()},setStyles:function(){t("<style>.jp-invisible { visibility: hidden !important; } .jp-hidden { display: none !important; }</style>").appendTo("head"),this._cssAnimSupport&&this.options.animation.length?this._items.addClass("animated jp-hidden"):this._items.hide()},setNav:function(){var i=this.writeNav();this._holder.each(this.bind(function(s,e){var n=t(e);n.html(i),this.cacheNavElements(n,s),this.bindNavHandlers(s),this.disableNavSelection(e)},this)),this.options.keyBrowse&&this.bindNavKeyBrowse(),this.options.scrollBrowse&&this.bindNavScrollBrowse()},writeNav:function(){var t,i=1;for(t=this.writeBtn("first")+this.writeBtn("previous");i<=this._numPages;i++){switch(1===i&&0===this.options.startRange&&(t+="<span class='p-2'>...</span>"),i>this.options.startRange&&i<=this._numPages-this.options.endRange?t+="<a href='#' class='page-link jp-hidden'>":t+="<a href= '#' class='page-link'>",this.options.links){case"numeric":t+=i;break;case"blank":break;case"title":var s=this._items.eq(i-1).attr("data-title");t+=s!==e?s:""}t+="</a>",i!==this.options.startRange&&i!==this._numPages-this.options.endRange||(t+="<span class='p-2'>...</span>")}return t+=this.writeBtn("next")+this.writeBtn("last")+"</div>"},writeBtn:function(i){return!1===this.options[i]||t(this["_"+i]).length?"":"<a class='page-link jp-"+i+"'>"+this.options[i]+"</a>"},cacheNavElements:function(i,s){this._nav[s]={},this._nav[s].holder=i,this._nav[s].first=this._first.length?this._first:this._nav[s].holder.find("a.jp-first"),this._nav[s].previous=this._previous.length?this._previous:this._nav[s].holder.find("a.jp-previous"),this._nav[s].next=this._next.length?this._next:this._nav[s].holder.find("a.jp-next"),this._nav[s].last=this._last.length?this._last:this._nav[s].holder.find("a.jp-last"),this._nav[s].fstBreak=this._nav[s].holder.find("span:first"),this._nav[s].lstBreak=this._nav[s].holder.find("span:last"),this._nav[s].pages=this._nav[s].holder.find("a").not(".jp-first, .jp-previous, .jp-next, .jp-last"),this._nav[s].permPages=this._nav[s].pages.slice(0,this.options.startRange).add(this._nav[s].pages.slice(this._numPages-this.options.endRange,this._numPages)),this._nav[s].pagesShowing=t([]),this._nav[s].currentPage=t([])},bindNavHandlers:function(i){var s=this._nav[i];s.holder.bind("click.jPages",this.bind(function(i){var e=this.getNewPage(s,t(i.target));this.validNewPage(e)&&(this._clicked=!0,this.paginate(e)),i.preventDefault()},this)),this._first.length&&this._first.bind("click.jPages",this.bind(function(){this.validNewPage(1)&&(this._clicked=!0,this.paginate(1))},this)),this._previous.length&&this._previous.bind("click.jPages",this.bind(function(){var t=this._currentPageNum-1;this.validNewPage(t)&&(this._clicked=!0,this.paginate(t))},this)),this._next.length&&this._next.bind("click.jPages",this.bind(function(){var t=this._currentPageNum+1;this.validNewPage(t)&&(this._clicked=!0,this.paginate(t))},this)),this._last.length&&this._last.bind("click.jPages",this.bind(function(){this.validNewPage(this._numPages)&&(this._clicked=!0,this.paginate(this._numPages))},this))},disableNavSelection:function(t){"undefined"!=typeof t.onselectstart?t.onselectstart=function(){return!1}:"undefined"!=typeof t.style.MozUserSelect?t.style.MozUserSelect="none":t.onmousedown=function(){return!1}},bindNavKeyBrowse:function(){this.jQdocument.bind("keydown.jPages",this.bind(function(t){var i=t.target.nodeName.toLowerCase();if(this.elemScrolledIntoView()&&"input"!==i&&"textarea"!=i){var s=this._currentPageNum;37==t.which&&(s=this._currentPageNum-1),39==t.which&&(s=this._currentPageNum+1),this.validNewPage(s)&&(this._clicked=!0,this.paginate(s))}},this))},elemScrolledIntoView:function(){var t,i,s;return i=(t=this.jQwindow.scrollTop())+this.jQwindow.height(),(s=this._container.offset().top)+this._container.height()>=t&&s<=i},bindNavScrollBrowse:function(){this._container.bind("mousewheel.jPages DOMMouseScroll.jPages",this.bind(function(t){var i=(t.originalEvent.wheelDelta||-t.originalEvent.detail)>0?this._currentPageNum-1:this._currentPageNum+1;return this.validNewPage(i)&&(this._clicked=!0,this.paginate(i)),t.preventDefault(),!1},this))},getNewPage:function(t,i){return i.is(t.currentPage)?this._currentPageNum:i.is(t.pages)?t.pages.index(i)+1:i.is(t.first)?1:i.is(t.last)?this._numPages:i.is(t.previous)?t.pages.index(t.currentPage):i.is(t.next)?t.pages.index(t.currentPage)+2:void 0},validNewPage:function(t){return t!==this._currentPageNum&&t>0&&t<=this._numPages},paginate:function(i){var s,e;s=this.updateItems(i),e=this.updatePages(i),this._currentPageNum=i,t.isFunction(this.options.callback)&&this.callback(i,s,e),this.updatePause()},updateItems:function(t){var i=this.getItemRange(t);return this._itemsHiding=this._itemsShowing,this._itemsShowing=this._items.slice(i.start,i.end),this._cssAnimSupport&&this.options.animation.length?this.cssAnimations(t):this.jQAnimations(t),i},getItemRange:function(t){var i={};return i.start=(t-1)*this.options.perPage,i.end=i.start+this.options.perPage,i.end>this._items.length&&(i.end=this._items.length),i},cssAnimations:function(t){clearInterval(this._delay),this._itemsHiding.removeClass(this.options.animation+" jp-invisible").addClass("jp-hidden"),this._itemsShowing.removeClass("jp-hidden").addClass("jp-invisible"),this._itemsOriented=this.getDirectedItems(t),this._index=0,this._delay=setInterval(this.bind(function(){this._index===this._itemsOriented.length?clearInterval(this._delay):this._itemsOriented.eq(this._index).removeClass("jp-invisible").addClass(this.options.animation),this._index=this._index+1},this),this.options.delay)},jQAnimations:function(t){clearInterval(this._delay),this._itemsHiding.addClass("jp-hidden"),this._itemsShowing.fadeTo(0,0).removeClass("jp-hidden"),this._itemsOriented=this.getDirectedItems(t),this._index=0,this._delay=setInterval(this.bind(function(){this._index===this._itemsOriented.length?clearInterval(this._delay):this._itemsOriented.eq(this._index).fadeTo(this.options.fallback,1),this._index=this._index+1},this),this.options.delay)},getDirectedItems:function(i){var s;switch(this.options.direction){case"backwards":s=t(this._itemsShowing.get().reverse());break;case"random":s=t(this._itemsShowing.get().sort(function(){return Math.round(Math.random())-.5}));break;case"auto":s=i>=this._currentPageNum?this._itemsShowing:t(this._itemsShowing.get().reverse());break;default:s=this._itemsShowing}return s},updatePages:function(t){var i,s,e;for(s in i=this.getInterval(t),this._nav)this._nav.hasOwnProperty(s)&&(e=this._nav[s],this.updateBtns(e,t),this.updateCurrentPage(e,t),this.updatePagesShowing(e,i),this.updateBreaks(e,i));return i},getInterval:function(t){var i,s;return i=Math.ceil(this.options.midRange/2),s=this._numPages-this.options.midRange,{start:t>i?Math.max(Math.min(t-i,s),0):0,end:t>i?Math.min(t+i-(this.options.midRange%2>0?1:0),this._numPages):Math.min(this.options.midRange,this._numPages)}},updateBtns:function(t,i){1===i&&(t.first.addClass("jp-disabled"),t.previous.addClass("jp-disabled")),i===this._numPages&&(t.next.addClass("jp-disabled"),t.last.addClass("jp-disabled")),1===this._currentPageNum&&i>1&&(t.first.removeClass("jp-disabled"),t.previous.removeClass("jp-disabled")),this._currentPageNum===this._numPages&&i<this._numPages&&(t.next.removeClass("jp-disabled"),t.last.removeClass("jp-disabled"))},updateCurrentPage:function(t,i){t.currentPage.removeClass("jp-current"),t.currentPage=t.pages.eq(i-1).addClass("jp-current")},updatePagesShowing:function(t,i){var s=t.pages.slice(i.start,i.end).not(t.permPages);t.pagesShowing.not(s).addClass("jp-hidden"),s.not(t.pagesShowing).removeClass("jp-hidden"),t.pagesShowing=s},updateBreaks:function(t,i){i.start>this.options.startRange||0===this.options.startRange&&i.start>0?t.fstBreak.removeClass("jp-hidden"):t.fstBreak.addClass("jp-hidden"),i.end<this._numPages-this.options.endRange?t.lstBreak.removeClass("jp-hidden"):t.lstBreak.addClass("jp-hidden")},callback:function(t,i,s){var e={current:t,interval:s,count:this._numPages},n={showing:this._itemsShowing,oncoming:this._items.slice(i.start+this.options.perPage,i.end+this.options.perPage),range:i,count:this._items.length};e.interval.start=e.interval.start+1,n.range.start=n.range.start+1,this.options.callback(e,n)},updatePause:function(){if(this.options.pause&&this._numPages>1){if(clearTimeout(this._pause),this.options.clickStop&&this._clicked)return;this._pause=setTimeout(this.bind(function(){this.paginate(this._currentPageNum!==this._numPages?this._currentPageNum+1:1)},this),this.options.pause)}},setMinHeight:function(){this.options.minHeight&&!this._container.is("table, tbody")&&setTimeout(this.bind(function(){this._container.css({"min-height":this._container.css("height")})},this),1e3)},bind:function(t,i){return function(){return t.apply(i,arguments)}},destroy:function(){this.jQdocument.unbind("keydown.jPages"),this._container.unbind("mousewheel.jPages DOMMouseScroll.jPages"),this.options.minHeight&&this._container.css("min-height",""),this._cssAnimSupport&&this.options.animation.length?this._items.removeClass("animated jp-hidden jp-invisible "+this.options.animation):this._items.removeClass("jp-hidden").fadeTo(0,1),this._holder.unbind("click.jPages").empty()}},t.fn[a]=function(i){var s=t.type(i);return"object"===s?(this.length&&!t.data(this,a)&&(h=new n(this,i),this.each(function(){t.data(this,a,h)})),this):"string"===s&&"destroy"===i?(h.destroy(),this.each(function(){t.removeData(this,a)}),this):"number"===s&&i%1==0?(h.validNewPage(i)&&h.paginate(i),this):this}}(jQuery,window,document);
+
+
+;(function($, window, document, undefined) {
+        var name = "jPages",
+            instance = null,
+            defaults = {
+                    containerID: "",
+                    first: false,
+                    previous: "← previous",
+                    next: "next →",
+                    last: false,
+                    links: "numeric", // blank || title
+                    startPage: 1,
+                    perPage: 10,
+                    midRange: 5,
+                    startRange: 1,
+                    endRange: 1,
+                    keyBrowse: false,
+                    scrollBrowse: false,
+                    pause: 0,
+                    clickStop: false,
+                    delay: 50,
+                    direction: "forward", // backwards || auto || random ||
+                    animation: "", // http://daneden.me/animate/ - any entrance animations
+                    fallback: 400,
+                    minHeight: true,
+                    callback: undefined // function( pages, items ) { }
+            };
+
+
+        function Plugin(element, options) {
+                this.options = $.extend({}, defaults, options);
+
+                this._container = $("#" + this.options.containerID);
+                if (!this._container.length) return;
+
+                this.jQwindow = $(window);
+                this.jQdocument = $(document);
+
+                this._holder = $(element);
+                this._nav = {};
+
+                this._first = $(this.options.first);
+                this._previous = $(this.options.previous);
+                this._next = $(this.options.next);
+                this._last = $(this.options.last);
+
+                /* only visible items! */
+                this._items = this._container.children(":visible");
+                this._itemsShowing = $([]);
+                this._itemsHiding = $([]);
+
+                this._numPages = Math.ceil(this._items.length / this.options.perPage);
+                this._currentPageNum = this.options.startPage;
+
+                this._clicked = false;
+                this._cssAnimSupport = this.getCSSAnimationSupport();
+
+                this.init();
+        }
+
+        Plugin.prototype = {
+
+                constructor : Plugin,
+
+                getCSSAnimationSupport : function() {
+                        var animation = false,
+                            animationstring = 'animation',
+                            keyframeprefix = '',
+                            domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
+                            pfx = '',
+                            elm = this._container.get(0);
+
+                        if (elm.style.animationName) animation = true;
+
+                        if (animation === false) {
+                                for (var i = 0; i < domPrefixes.length; i++) {
+                                        if (elm.style[domPrefixes[i] + 'AnimationName'] !== undefined) {
+                                                pfx = domPrefixes[i];
+                                                animationstring = pfx + 'Animation';
+                                                keyframeprefix = '-' + pfx.toLowerCase() + '-';
+                                                animation = true;
+                                                break;
+                                        }
+                                }
+                        }
+
+                        return animation;
+                },
+
+                init : function() {
+                        this.setStyles();
+                        this.setNav();
+                        this.paginate(this._currentPageNum);
+                        this.setMinHeight();
+                },
+
+                setStyles : function() {
+                        var requiredStyles = "<style>" +
+                            ".jp-invisible { visibility: hidden !important; } " +
+                            ".jp-hidden { display: none !important; }" +
+                            "</style>";
+
+                        $(requiredStyles).appendTo("head");
+
+                        if (this._cssAnimSupport && this.options.animation.length)
+                                this._items.addClass("animated jp-hidden");
+                        else this._items.hide();
+
+                },
+
+                setNav : function() {
+                        var navhtml = this.writeNav();
+
+                        this._holder.each(this.bind(function(index, element) {
+                                var holder = $(element);
+                                holder.html(navhtml);
+                                this.cacheNavElements(holder, index);
+                                this.bindNavHandlers(index);
+                                this.disableNavSelection(element);
+                        }, this));
+
+                        if (this.options.keyBrowse) this.bindNavKeyBrowse();
+                        if (this.options.scrollBrowse) this.bindNavScrollBrowse();
+                },
+
+                writeNav : function() {
+                        var i = 1, navhtml;
+                        navhtml = this.writeBtn("first") + this.writeBtn("previous");
+
+                        for (; i <= this._numPages; i++) {
+                                if (i === 1 && this.options.startRange === 0) navhtml += "<span class='p-2'>...</span>";
+                                if (i > this.options.startRange && i <= this._numPages - this.options.endRange)
+                                        navhtml += "<a href='#' class='page-link jp-hidden'>";
+                                else
+                                        navhtml += "<a href= '#' class='page-link'>";
+
+                                switch (this.options.links) {
+                                        case "numeric":
+                                                navhtml += i;
+                                                break;
+                                        case "blank":
+                                                break;
+                                        case "title":
+                                                var title = this._items.eq(i - 1).attr("data-title");
+                                                navhtml += title !== undefined ? title : "";
+                                                break;
+                                }
+
+                                navhtml += "</a>";
+                                if (i === this.options.startRange || i === this._numPages - this.options.endRange)
+                                        navhtml += "<span class='p-2'>...</span>";
+                        }
+                        navhtml += this.writeBtn("next") + this.writeBtn("last") + "</div>";
+                        return navhtml;
+                },
+
+                writeBtn : function(which) {
+
+                        return this.options[which] !== false && !$(this["_" + which]).length ?
+                            "<a class='page-link jp-" + which + "'>" + this.options[which] + "</a>" : "";
+
+                },
+
+                cacheNavElements : function(holder, index) {
+                        this._nav[index] = {};
+                        this._nav[index].holder = holder;
+                        this._nav[index].first = this._first.length ? this._first : this._nav[index].holder.find("a.jp-first");
+                        this._nav[index].previous = this._previous.length ? this._previous : this._nav[index].holder.find("a.jp-previous");
+                        this._nav[index].next = this._next.length ? this._next : this._nav[index].holder.find("a.jp-next");
+                        this._nav[index].last = this._last.length ? this._last : this._nav[index].holder.find("a.jp-last");
+                        this._nav[index].fstBreak = this._nav[index].holder.find("span:first");
+                        this._nav[index].lstBreak = this._nav[index].holder.find("span:last");
+                        this._nav[index].pages = this._nav[index].holder.find("a").not(".jp-first, .jp-previous, .jp-next, .jp-last");
+                        this._nav[index].permPages =
+                            this._nav[index].pages.slice(0, this.options.startRange)
+                                .add(this._nav[index].pages.slice(this._numPages - this.options.endRange, this._numPages));
+                        this._nav[index].pagesShowing = $([]);
+                        this._nav[index].currentPage = $([]);
+                },
+
+                bindNavHandlers : function(index) {
+                        var nav = this._nav[index];
+
+                        // default nav
+                        nav.holder.bind("click.jPages", this.bind(function(evt) {
+                                var newPage = this.getNewPage(nav, $(evt.target));
+                                if (this.validNewPage(newPage)) {
+                                        this._clicked = true;
+                                        this.paginate(newPage);
+                                }
+                                evt.preventDefault();
+                        }, this));
+
+                        // custom first
+                        if (this._first.length) {
+                                this._first.bind("click.jPages", this.bind(function() {
+                                        if (this.validNewPage(1)) {
+                                                this._clicked = true;
+                                                this.paginate(1);
+                                        }
+                                }, this));
+                        }
+
+                        // custom previous
+                        if (this._previous.length) {
+                                this._previous.bind("click.jPages", this.bind(function() {
+                                        var newPage = this._currentPageNum - 1;
+                                        if (this.validNewPage(newPage)) {
+                                                this._clicked = true;
+                                                this.paginate(newPage);
+                                        }
+                                }, this));
+                        }
+
+                        // custom next
+                        if (this._next.length) {
+                                this._next.bind("click.jPages", this.bind(function() {
+                                        var newPage = this._currentPageNum + 1;
+                                        if (this.validNewPage(newPage)) {
+                                                this._clicked = true;
+                                                this.paginate(newPage);
+                                        }
+                                }, this));
+                        }
+
+                        // custom last
+                        if (this._last.length) {
+                                this._last.bind("click.jPages", this.bind(function() {
+                                        if (this.validNewPage(this._numPages)) {
+                                                this._clicked = true;
+                                                this.paginate(this._numPages);
+                                        }
+                                }, this));
+                        }
+
+                },
+
+                disableNavSelection : function(element) {
+                        if (typeof element.onselectstart != "undefined")
+                                element.onselectstart = function() {
+                                        return false;
+                                };
+                        else if (typeof element.style.MozUserSelect != "undefined")
+                                element.style.MozUserSelect = "none";
+                        else
+                                element.onmousedown = function() {
+                                        return false;
+                                };
+                },
+
+                bindNavKeyBrowse : function() {
+                        this.jQdocument.bind("keydown.jPages", this.bind(function(evt) {
+                                var target = evt.target.nodeName.toLowerCase();
+                                if (this.elemScrolledIntoView() && target !== "input" && target != "textarea") {
+                                        var newPage = this._currentPageNum;
+
+                                        if (evt.which == 37) newPage = this._currentPageNum - 1;
+                                        if (evt.which == 39) newPage = this._currentPageNum + 1;
+
+                                        if (this.validNewPage(newPage)) {
+                                                this._clicked = true;
+                                                this.paginate(newPage);
+                                        }
+                                }
+                        }, this));
+                },
+
+                elemScrolledIntoView : function() {
+                        var docViewTop, docViewBottom, elemTop, elemBottom;
+                        docViewTop = this.jQwindow.scrollTop();
+                        docViewBottom = docViewTop + this.jQwindow.height();
+                        elemTop = this._container.offset().top;
+                        elemBottom = elemTop + this._container.height();
+                        return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom));
+
+                        // comment above and uncomment below if you want keyBrowse to happen
+                        // only when container is completely visible in the page
+                        /*return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom) &&
+                                  (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );*/
+                },
+
+                bindNavScrollBrowse : function() {
+                        this._container.bind("mousewheel.jPages DOMMouseScroll.jPages", this.bind(function(evt) {
+                                var newPage = (evt.originalEvent.wheelDelta || -evt.originalEvent.detail) > 0 ?
+                                    (this._currentPageNum - 1) : (this._currentPageNum + 1);
+                                if (this.validNewPage(newPage)) {
+                                        this._clicked = true;
+                                        this.paginate(newPage);
+                                }
+                                evt.preventDefault();
+                                return false;
+                        }, this));
+                },
+
+                getNewPage : function(nav, target) {
+                        if (target.is(nav.currentPage)) return this._currentPageNum;
+                        if (target.is(nav.pages)) return nav.pages.index(target) + 1;
+                        if (target.is(nav.first)) return 1;
+                        if (target.is(nav.last)) return this._numPages;
+                        if (target.is(nav.previous)) return nav.pages.index(nav.currentPage);
+                        if (target.is(nav.next)) return nav.pages.index(nav.currentPage) + 2;
+                },
+
+                validNewPage : function(newPage) {
+                        return newPage !== this._currentPageNum && newPage > 0 && newPage <= this._numPages;
+                },
+
+                paginate : function(page) {
+                        var itemRange, pageInterval;
+                        itemRange = this.updateItems(page);
+                        pageInterval = this.updatePages(page);
+                        this._currentPageNum = page;
+                        if ($.isFunction(this.options.callback))
+                                this.callback(page, itemRange, pageInterval);
+
+                        this.updatePause();
+                },
+
+                updateItems : function(page) {
+                        var range = this.getItemRange(page);
+                        this._itemsHiding = this._itemsShowing;
+                        this._itemsShowing = this._items.slice(range.start, range.end);
+                        if (this._cssAnimSupport && this.options.animation.length) this.cssAnimations(page);
+                        else this.jQAnimations(page);
+                        return range;
+                },
+
+                getItemRange : function(page) {
+                        var range = {};
+                        range.start = (page - 1) * this.options.perPage;
+                        range.end = range.start + this.options.perPage;
+                        if (range.end > this._items.length) range.end = this._items.length;
+                        return range;
+                },
+
+                cssAnimations : function(page) {
+                        clearInterval(this._delay);
+
+                        this._itemsHiding
+                            .removeClass(this.options.animation + " jp-invisible")
+                            .addClass("jp-hidden");
+
+                        this._itemsShowing
+                            .removeClass("jp-hidden")
+                            .addClass("jp-invisible");
+
+                        this._itemsOriented = this.getDirectedItems(page);
+                        this._index = 0;
+
+                        this._delay = setInterval(this.bind(function() {
+                                if (this._index === this._itemsOriented.length) clearInterval(this._delay);
+                                else {
+                                        this._itemsOriented
+                                            .eq(this._index)
+                                            .removeClass("jp-invisible")
+                                            .addClass(this.options.animation);
+                                }
+                                this._index = this._index + 1;
+                        }, this), this.options.delay);
+                },
+
+                jQAnimations : function(page) {
+                        clearInterval(this._delay);
+                        this._itemsHiding.addClass("jp-hidden");
+                        this._itemsShowing.fadeTo(0, 0).removeClass("jp-hidden");
+                        this._itemsOriented = this.getDirectedItems(page);
+                        this._index = 0;
+                        this._delay = setInterval(this.bind(function() {
+                                if (this._index === this._itemsOriented.length) clearInterval(this._delay);
+                                else {
+                                        this._itemsOriented
+                                            .eq(this._index)
+                                            .fadeTo(this.options.fallback, 1);
+                                }
+                                this._index = this._index + 1;
+                        }, this), this.options.delay);
+                },
+
+                getDirectedItems : function(page) {
+                        var itemsToShow;
+
+                        switch (this.options.direction) {
+                                case "backwards":
+                                        itemsToShow = $(this._itemsShowing.get().reverse());
+                                        break;
+                                case "random":
+                                        itemsToShow = $(this._itemsShowing.get().sort(function() {
+                                                return (Math.round(Math.random()) - 0.5);
+                                        }));
+                                        break;
+                                case "auto":
+                                        itemsToShow = page >= this._currentPageNum ?
+                                            this._itemsShowing : $(this._itemsShowing.get().reverse());
+                                        break;
+                                default:
+                                        itemsToShow = this._itemsShowing;
+                        }
+
+                        return itemsToShow;
+                },
+
+                updatePages : function(page) {
+                        var interval, index, nav;
+                        interval = this.getInterval(page);
+                        for (index in this._nav) {
+                                if (this._nav.hasOwnProperty(index)) {
+                                        nav = this._nav[index];
+                                        this.updateBtns(nav, page);
+                                        this.updateCurrentPage(nav, page);
+                                        this.updatePagesShowing(nav, interval);
+                                        this.updateBreaks(nav, interval);
+                                }
+                        }
+                        return interval;
+                },
+
+                getInterval : function(page) {
+                        var neHalf, upperLimit, start, end;
+                        neHalf = Math.ceil(this.options.midRange / 2);
+                        upperLimit = this._numPages - this.options.midRange;
+                        start = page > neHalf ? Math.max(Math.min(page - neHalf, upperLimit), 0) : 0;
+                        end = page > neHalf ?
+                            Math.min(page + neHalf - (this.options.midRange % 2 > 0 ? 1 : 0), this._numPages) :
+                            Math.min(this.options.midRange, this._numPages);
+                        return {start: start,end: end};
+                },
+
+                updateBtns : function(nav, page) {
+                        if (page === 1) {
+                                nav.first.addClass("jp-disabled");
+                                nav.previous.addClass("jp-disabled");
+                        }
+                        if (page === this._numPages) {
+                                nav.next.addClass("jp-disabled");
+                                nav.last.addClass("jp-disabled");
+                        }
+                        if (this._currentPageNum === 1 && page > 1) {
+                                nav.first.removeClass("jp-disabled");
+                                nav.previous.removeClass("jp-disabled");
+                        }
+                        if (this._currentPageNum === this._numPages && page < this._numPages) {
+                                nav.next.removeClass("jp-disabled");
+                                nav.last.removeClass("jp-disabled");
+                        }
+                },
+
+                updateCurrentPage : function(nav, page) {
+                        nav.currentPage.removeClass("jp-current");
+                        nav.currentPage = nav.pages.eq(page - 1).addClass("jp-current");
+                },
+
+                updatePagesShowing : function(nav, interval) {
+                        var newRange = nav.pages.slice(interval.start, interval.end).not(nav.permPages);
+                        nav.pagesShowing.not(newRange).addClass("jp-hidden");
+                        newRange.not(nav.pagesShowing).removeClass("jp-hidden");
+                        nav.pagesShowing = newRange;
+                },
+
+                updateBreaks : function(nav, interval) {
+                        if (
+                            interval.start > this.options.startRange ||
+                            (this.options.startRange === 0 && interval.start > 0)
+                        ) nav.fstBreak.removeClass("jp-hidden");
+                        else nav.fstBreak.addClass("jp-hidden");
+
+                        if (interval.end < this._numPages - this.options.endRange) nav.lstBreak.removeClass("jp-hidden");
+                        else nav.lstBreak.addClass("jp-hidden");
+                },
+
+                callback : function(page, itemRange, pageInterval) {
+                        var pages = {
+                                    current: page,
+                                    interval: pageInterval,
+                                    count: this._numPages
+                            },
+                            items = {
+                                    showing: this._itemsShowing,
+                                    oncoming: this._items.slice(itemRange.start + this.options.perPage, itemRange.end + this.options.perPage),
+                                    range: itemRange,
+                                    count: this._items.length
+                            };
+
+                        pages.interval.start = pages.interval.start + 1;
+                        items.range.start = items.range.start + 1;
+                        this.options.callback(pages, items);
+                },
+
+                updatePause : function() {
+                        if (this.options.pause && this._numPages > 1) {
+                                clearTimeout(this._pause);
+                                if (this.options.clickStop && this._clicked) return;
+                                else {
+                                        this._pause = setTimeout(this.bind(function() {
+                                                this.paginate(this._currentPageNum !== this._numPages ? this._currentPageNum + 1 : 1);
+                                        }, this), this.options.pause);
+                                }
+                        }
+                },
+
+                setMinHeight : function() {
+                        if (this.options.minHeight && !this._container.is("table, tbody")) {
+                                setTimeout(this.bind(function() {
+                                        this._container.css({ "min-height": this._container.css("height") });
+                                }, this), 1000);
+                        }
+                },
+
+                bind : function(fn, me) {
+                        return function() {
+                                return fn.apply(me, arguments);
+                        };
+                },
+
+                destroy : function() {
+                        this.jQdocument.unbind("keydown.jPages");
+                        this._container.unbind("mousewheel.jPages DOMMouseScroll.jPages");
+
+                        if (this.options.minHeight) this._container.css("min-height", "");
+                        if (this._cssAnimSupport && this.options.animation.length)
+                                this._items.removeClass("animated jp-hidden jp-invisible " + this.options.animation);
+                        else this._items.removeClass("jp-hidden").fadeTo(0, 1);
+                        this._holder.unbind("click.jPages").empty();
+                }
+
+        };
+
+        $.fn[name] = function(arg) {
+                var type = $.type(arg);
+
+                if (type === "object") {
+                        if (this.length && !$.data(this, name)) {
+                                instance = new Plugin(this, arg);
+                                this.each(function() {
+                                        $.data(this, name, instance);
+                                });
+                        }
+                        return this;
+                }
+
+                if (type === "string" && arg === "destroy") {
+                        instance.destroy();
+                        this.each(function() {
+                                $.removeData(this, name);
+                        });
+                        return this;
+                }
+
+                if (type === 'number' && arg % 1 === 0) {
+                        if (instance.validNewPage(arg)) instance.paginate(arg);
+                        return this;
+                }
+
+                return this;
+        };
+
+})(jQuery, window, document);
 // research.js.coffee
-(function(){var e,t,n,r,o,a,c,i,s,u,l,d,h,f,_,p,m,v,b,y,k;decko.editors.init["._removable-content-list ul"]=function(){return this.sortable({handle:"._handle",cancel:""})},decko.editors.content["._removable-content-list ul"]=function(){var e;return e=$(this).find("._removable-content-item").map(function(){return $(this).data("cardName")}),decko.pointerContent($.unique(e))},decko.slot.ready(function(t){var n,r;if(t.closest(".research-layout")[0]&&(t.hasClass("_overlay")&&f(t),t.find("._new_source").length&&(c(t),new decko.compactFilter($(".RIGHT-source.filtered_content-view ._compact-filter")).update()),t.find("#jPages")[0]&&$("#jPages").jPages({containerID:"research-year-list",perPage:5,previous:!1,next:!1}),t.hasClass("edit_inline-view")&&$("#_select_source").data("stash")&&($("#_select_source").data("stash",!1),e()),(r=t.find(".answer-success-in-project"))[0]&&$("._company-project-research")[0]&&r.show(),(n=$("._next-question-button")).length&&t.find("._edit-answer-button").length))return n=n.clone(),t.find("._research-buttons").append(n)}),$(document).ready(function(){return $("body").on("click","#_select_year",function(e){var t;if(p())return t=v()?"source":"answer",y(t,e)}),$("body").on("click","._to_question_phase",function(e){return y("question",e)}),$("body").on("click","._to_source_phase",function(e){return y("source",e)}),$("body").on("click","#_select_source",function(t){return b("answer").hasClass("load")||e(),y("answer",t)}),$("body").on("click","._add_source_modal_link",function(){var e,t;return(t=(e=$(this)).data("sourceFields"))._Year=p,r(e,t)}),$(".research-layout #main").on("click",".TYPE-source.box, .TYPE-source.bar",function(e){if("on"!==$(this).data("skip"))return y("source",e),e.stopPropagation(),l($(this).data("cardName"))}),$("body").on("click","._remove-removable",function(){return $(this).closest("li").remove()}),$(".research-layout #main").on("click",'[data-bs-dismiss="overlay"]',function(e){var t;return(t=$(this)).overlaySlot().hide("slide",{direction:"down",complete:function(){return t.removeOverlay()}},600),e.stopPropagation()}),$(".research-layout #main .nav-item:not(.tab-li-question_phase)").on("show.bs.tab",".nav-link",function(e){if($(this).hasClass("load"))return p()?n($(this),{year:p(),source:_()}):i(e)}),$(".research-layout").on("click","._copy_caught_source",function(e){var t,n;return n=(t=$(this)).data("cardName"),c(t),l(n),e.preventDefault()}),$(".research-layout").on("click","._methodology-link",function(e){return y("question",e),$("._methodology-button").click()}),$("body").on("click","._metric_arrow_button",function(){return $(this).slot().slotReloading()})}),c=function(e){return bootstrap.Modal.getInstance(e.closest("._modal-slot")).hide()},o=function(e,t){return e+(e.match(/\?/)?"&":"?")+$.param(t)},n=function(e,t){var n;return n=s(e,e.data("url")),e.data("url",o(n,t))},r=function(e,t){var n;return n=s(e,e.attr("href")),e.attr("href",o(n,t))},i=function(e){return alert("Please select a year"),e.preventDefault(),e.stopPropagation()},y=function(e,t){return new bootstrap.Tab(b(e)).show(),t.preventDefault()},b=function(e){return $(".tab-li-"+e+"_phase a")},e=function(){var e,n,r;if(!u())return e=$(".RIGHT-source.card-editor"),r=t(e,_()),n=e.find(".card-slot.removable_content-view"),d(n,r)},u=function(){var e;return!!(e=$("._edit-answer-button"))[0]&&(e.trigger("click"),$("#_select_source").data("stash",!0),!0)},t=function(e,t){var n,r;return(r=a()).push(t),n=decko.pointerContent($.uniqueSort(r)),e.find(".d0-card-content").val(n),n},d=function(e,t){var n;return n=$.param({assign:!0,card:{content:t}}),e.slotReload(e.data("cardLinkName")+"?"+n)},_=function(){return $("#_select_source").data("source")},a=function(){return $(".RIGHT-source .bar").map(function(){return $(this).data("cardName")})},p=function(){return m().val()||$(".answer-breadcrumb .year").html()},v=function(){return m().closest("._research-year-option").find("._not-researched")[0]},m=function(){return $("input[name='year']:checked")},s=function(e,t){return e.data("initialUrl")||e.data("initialUrl",t),e.data("initialUrl")},f=function(e){return e.hide(),$("html, body").animate({scrollTop:0},300),$(window).scrollTop,e.show("slide",{direction:"down"},600)},h=function(e){var t;return t=window.location.pathname.replace(/\/\w+$/,""),decko.path(t+"/"+e)},l=function(e){return k(".source_phase-view",function(){var t,n,r;if(t=$(".source_phase-view"),e!==_)return n={source:e},a().toArray().includes(e)&&(n.slot={hide:"select_source_button"}),r=h("source_selector")+"?"+$.param(n),t.addClass("slotter"),t[0].href=r,$.rails.handleRemote(t)})},k=function(e,t,n){return null==n&&(n=100),jQuery(e).length?t():!1===n||n>0?(!1!==n&&n--,setTimeout(function(){return k(e,t,n)},100)):void 0},deckorate.tabPhase=b}).call(this);
+(function() {
+  var addSourceItem, addToSourceContent, appendToDataUrl, appendToHref, appendToUrl, citedSources, closeSourceModal, demandYear, initialUrl, openAnswerFormBeforeAddingSource, openPdf, reloadSourceSlot, researchPath, revealOverlay, selectedSource, selectedYear, selectedYearInput, selectedYearNotResearched, tabPhase, toPhase, whenAvailable;
+
+  decko.editors.init["._removable-content-list ul"] = function() {
+    return this.sortable({
+      handle: '._handle',
+      cancel: ''
+    });
+  };
+
+  decko.editors.content["._removable-content-list ul"] = function() {
+    var itemNames;
+    itemNames = $(this).find("._removable-content-item").map(function() {
+      return $(this).data("cardName");
+    });
+    return decko.pointerContent($.unique(itemNames));
+  };
+
+  decko.slot.ready(function(slot) {
+    var btn, newSource, success_in_project;
+    if (slot.closest(".research-layout")[0]) {
+      if (slot.hasClass("_overlay")) {
+        revealOverlay(slot);
+      }
+      newSource = slot.find("._new_source");
+      if (newSource.length) {
+        closeSourceModal(slot);
+        (new decko.compactFilter($(".RIGHT-source.filtered_content-view ._compact-filter"))).update();
+      }
+      if (slot.find("#jPages")[0]) {
+        $("#jPages").jPages({
+          containerID: "research-year-list",
+          perPage: 5,
+          previous: false,
+          next: false
+        });
+      }
+      if (slot.hasClass("edit_inline-view") && $("#_select_source").data("stash")) {
+        $("#_select_source").data("stash", false);
+        addSourceItem();
+      }
+      success_in_project = slot.find(".answer-success-in-project");
+      if (success_in_project[0] && $("._company-project-research")[0]) {
+        success_in_project.show();
+      }
+      btn = $("._next-question-button");
+      if (btn.length && slot.find("._edit-answer-button").length) {
+        btn = btn.clone();
+        return slot.find("._research-buttons").append(btn);
+      }
+    }
+  });
+
+  $(document).ready(function() {
+    var researchTabSelector;
+    $("body").on("click", "#_select_year", function(e) {
+      var phase;
+      if (!selectedYear()) {
+        return;
+      }
+      phase = selectedYearNotResearched() && "source" || "answer";
+      return toPhase(phase, e);
+    });
+    $("body").on("click", "._to_question_phase", function(e) {
+      return toPhase("question", e);
+    });
+    $("body").on("click", "._to_source_phase", function(e) {
+      return toPhase("source", e);
+    });
+    $("body").on("click", "#_select_source", function(event) {
+      if (!tabPhase("answer").hasClass("load")) {
+        addSourceItem();
+      }
+      return toPhase("answer", event);
+    });
+    $("body").on("click", "._add_source_modal_link", function() {
+      var link, params;
+      link = $(this);
+      params = link.data("sourceFields");
+      params._Year = selectedYear;
+      return appendToHref(link, params);
+    });
+    $('.research-layout #main').on('click', ".TYPE-source.box, .TYPE-source.bar", function(e) {
+      if ($(this).data("skip") !== "on") {
+        toPhase("source", e);
+        e.stopPropagation();
+        return openPdf($(this).data("cardName"));
+      }
+    });
+    $('body').on('click', '._remove-removable', function() {
+      return $(this).closest('li').remove();
+    });
+    $(".research-layout #main").on("click", '[data-bs-dismiss="overlay"]', function(e) {
+      var el;
+      el = $(this);
+      el.overlaySlot().hide("slide", {
+        direction: "down",
+        complete: function() {
+          return el.removeOverlay();
+        }
+      }, 600);
+      return e.stopPropagation();
+    });
+    researchTabSelector = ".research-layout #main .nav-item:not(.tab-li-question_phase)";
+    $(researchTabSelector).on("show.bs.tab", ".nav-link", function(e) {
+      if (!$(this).hasClass("load")) {
+        return;
+      }
+      if (!selectedYear()) {
+        return demandYear(e);
+      } else {
+        return appendToDataUrl($(this), {
+          year: selectedYear(),
+          source: selectedSource()
+        });
+      }
+    });
+    $(".research-layout").on("click", "._copy_caught_source", function(e) {
+      var link, sourceMark;
+      link = $(this);
+      sourceMark = link.data("cardName");
+      closeSourceModal(link);
+      openPdf(sourceMark);
+      return e.preventDefault();
+    });
+    $(".research-layout").on("click", "._methodology-link", function(e) {
+      toPhase("question", e);
+      return $("._methodology-button").click();
+    });
+    return $("body").on("click", "._metric_arrow_button", function(e) {
+      return $(this).slot().slotReloading();
+    });
+  });
+
+  closeSourceModal = function(el) {
+    return bootstrap.Modal.getInstance(el.closest("._modal-slot")).hide();
+  };
+
+  appendToUrl = function(url, params) {
+    var joiner;
+    joiner = url.match(/\?/) && "&" || "?";
+    return url + joiner + $.param(params);
+  };
+
+  appendToDataUrl = function(link, params) {
+    var url;
+    url = initialUrl(link, link.data("url"));
+    return link.data("url", appendToUrl(url, params));
+  };
+
+  appendToHref = function(link, params) {
+    var href;
+    href = initialUrl(link, link.attr("href"));
+    return link.attr("href", appendToUrl(href, params));
+  };
+
+  demandYear = function(event) {
+    alert("Please select a year");
+    event.preventDefault();
+    return event.stopPropagation();
+  };
+
+  toPhase = function(phase, event) {
+    (new bootstrap.Tab(tabPhase(phase))).show();
+    return event.preventDefault();
+  };
+
+  tabPhase = function(phase) {
+    return $(".tab-li-" + phase + "_phase a");
+  };
+
+  addSourceItem = function() {
+    var ed, slot, sourceContent;
+    if (openAnswerFormBeforeAddingSource()) {
+      return;
+    }
+    ed = $(".RIGHT-source.card-editor");
+    sourceContent = addToSourceContent(ed, selectedSource());
+    slot = ed.find(".card-slot.removable_content-view");
+    return reloadSourceSlot(slot, sourceContent);
+  };
+
+  openAnswerFormBeforeAddingSource = function() {
+    var edit_answer;
+    edit_answer = $("._edit-answer-button");
+    if (!edit_answer[0]) {
+      return false;
+    }
+    edit_answer.trigger("click");
+    $("#_select_source").data("stash", true);
+    return true;
+  };
+
+  addToSourceContent = function(editor, source) {
+    var content, sources;
+    sources = citedSources();
+    sources.push(source);
+    content = decko.pointerContent($.uniqueSort(sources));
+    editor.find(".d0-card-content").val(content);
+    return content;
+  };
+
+  reloadSourceSlot = function(slot, content) {
+    var query;
+    query = $.param({
+      assign: true,
+      card: {
+        content: content
+      }
+    });
+    return slot.slotReload((slot.data('cardLinkName')) + "?" + query);
+  };
+
+  selectedSource = function() {
+    return $("#_select_source").data("source");
+  };
+
+  citedSources = function() {
+    return $(".RIGHT-source .bar").map(function() {
+      return $(this).data("cardName");
+    });
+  };
+
+  selectedYear = function() {
+    return selectedYearInput().val() || $(".answer-breadcrumb .year").html();
+  };
+
+  selectedYearNotResearched = function() {
+    return selectedYearInput().closest("._research-year-option").find("._not-researched")[0];
+  };
+
+  selectedYearInput = function() {
+    return $("input[name='year']:checked");
+  };
+
+  initialUrl = function(link, url) {
+    if (!link.data("initialUrl")) {
+      link.data("initialUrl", url);
+    }
+    return link.data("initialUrl");
+  };
+
+  revealOverlay = function(overlay) {
+    overlay.hide();
+    $("html, body").animate({
+      scrollTop: 0
+    }, 300);
+    $(window).scrollTop;
+    return overlay.show("slide", {
+      direction: "down"
+    }, 600);
+  };
+
+  researchPath = function(view) {
+    var path;
+    path = window.location.pathname.replace(/\/\w+$/, "");
+    return decko.path(path + "/" + view);
+  };
+
+  openPdf = function(sourceMark) {
+    return whenAvailable(".source_phase-view", function() {
+      var el, params, url;
+      el = $(".source_phase-view");
+      if (sourceMark !== selectedSource) {
+        params = {
+          source: sourceMark
+        };
+        if (citedSources().toArray().includes(sourceMark)) {
+          params["slot"] = {
+            hide: "select_source_button"
+          };
+        }
+        url = researchPath("source_selector") + "?" + $.param(params);
+        el.addClass("slotter");
+        el[0].href = url;
+        return $.rails.handleRemote(el);
+      }
+    });
+  };
+
+  whenAvailable = function(selector, callback, maxTimes) {
+    if (maxTimes == null) {
+      maxTimes = 100;
+    }
+    if (jQuery(selector).length) {
+      return callback();
+    } else if (maxTimes === false || maxTimes > 0) {
+      (maxTimes !== false) && maxTimes--;
+      return setTimeout((function() {
+        return whenAvailable(selector, callback, maxTimes);
+      }), 100);
+    }
+  };
+
+  deckorate.tabPhase = tabPhase;
+
+}).call(this);
+
 // sources.js.coffee
-(function(){$(document).ready(function(){return $("body").on("click","._toggle-source-option",function(){return $(".download-option input").val(""),$(".source-option").show(),$(this).closest(".source-option").hide()}),$("body").on("change",".RIGHT-file .download-option .d0-card-content",function(){var o,e;return(o=(e=$(this)).slot().find(".copy_catcher-view")).slotReload(o.slotUrl()+"&"+$.param({url:e.val()}))}),resizeIframe($("body"))}),decko.slot.ready(function(o){return resizeIframe(o)}),this.resizeIframe=function(o){var e;if((e=o.find(".pdf-source-preview")).exists())return e.height($(window).height()-$(".navbar").height()-1)}}).call(this);
+(function() {
+  $(document).ready(function() {
+    $('body').on('click', "._toggle-source-option", function() {
+      $('.download-option input').val("");
+      $('.source-option').show();
+      return $(this).closest('.source-option').hide();
+    });
+    $("body").on("change", ".RIGHT-file .download-option .d0-card-content", function() {
+      var catcher, el;
+      el = $(this);
+      catcher = el.slot().find(".copy_catcher-view");
+      return catcher.slotReload(catcher.slotUrl() + "&" + $.param({
+        url: el.val()
+      }));
+    });
+    return resizeIframe($('body'));
+  });
+
+  decko.slot.ready(function(slot) {
+    return resizeIframe(slot);
+  });
+
+  this.resizeIframe = function(el) {
+    var preview;
+    preview = el.find(".pdf-source-preview");
+    if (preview.exists()) {
+      return preview.height($(window).height() - $('.navbar').height() - 1);
+    }
+  };
+
+}).call(this);
+
 // unknown.js.coffee
-(function(){var n,t,e,c,i,o;decko.editors.content["._unknown-checkbox input:checked"]=function(){return this.val()},decko.slot.ready(function(n){return i(n).on("change",function(){if($(this).is(":checked"))return t(o(n))}),o(n).find(c+", select").on("change",function(){var t;if(!(t=i(n)).is(":checked")||$(this).val())return t.prop("checked",e($(this)))})}),o=function(n){return n.find(".card-editor.RIGHT-value .content-editor")},i=function(n){return n.find("._unknown-checkbox input[type=checkbox]")},e=function(n){return"unknown"===n.val().toString().toLowerCase()},c="input:not([name=_unknown]):visible",t=function(t){var e;return(e=t.find("select"))[0]?e.val(null).change():n(t)},n=function(n){return $.each(n.find(c),function(){var n;return"text"===(n=$(this)).prop("type")?n.val(null):n.prop("checked",!1)})}}).call(this);
+(function() {
+  var clearInputValue, clearValue, isUnknown, knownInputSelector, unknownCheckbox, valueEditor;
+
+  decko.editors.content["._unknown-checkbox input:checked"] = function() {
+    return this.val();
+  };
+
+  decko.slot.ready(function(slot) {
+    unknownCheckbox(slot).on("change", function() {
+      if ($(this).is(":checked")) {
+        return clearValue(valueEditor(slot));
+      }
+    });
+    return valueEditor(slot).find(knownInputSelector + ", select").on("change", function() {
+      var unbox;
+      unbox = unknownCheckbox(slot);
+      if (!(unbox.is(":checked") && !$(this).val())) {
+        return unbox.prop("checked", isUnknown($(this)));
+      }
+    });
+  });
+
+  valueEditor = function(el) {
+    return el.find(".card-editor.RIGHT-value .content-editor");
+  };
+
+  unknownCheckbox = function(el) {
+    return el.find("._unknown-checkbox input[type=checkbox]");
+  };
+
+  isUnknown = function(el) {
+    return el.val().toString().toLowerCase() === 'unknown';
+  };
+
+  knownInputSelector = "input:not([name=_unknown]):visible";
+
+  clearValue = function(editor) {
+    var select;
+    select = editor.find("select");
+    if (select[0]) {
+      return select.val(null).change();
+    } else {
+      return clearInputValue(editor);
+    }
+  };
+
+  clearInputValue = function(editor) {
+    return $.each(editor.find(knownInputSelector), function() {
+      var input;
+      input = $(this);
+      if (input.prop("type") === "text") {
+        return input.val(null);
+      } else {
+        return input.prop("checked", false);
+      }
+    });
+  };
+
+}).call(this);

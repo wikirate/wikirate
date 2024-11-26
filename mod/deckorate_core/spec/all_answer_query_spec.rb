@@ -23,7 +23,7 @@ RSpec.describe Card::AllAnswerQuery do
       all_metric_titles.reject { |n| researched_metric_keys.include? n.key }.sort
     end
 
-    def unanswer year=Time.now.year
+    def unanswers year=Time.now.year
       with_year unresearched_metric_keys, year
     end
 
@@ -68,11 +68,11 @@ RSpec.describe Card::AllAnswerQuery do
 
     context "with status :none" do
       it "finds not researched" do
-        expect(search(status: :none)).to contain_exactly(*unanswer)
+        expect(search(status: :none)).to contain_exactly(*unanswers)
       end
 
       specify "and year" do
-        nr2001 = unanswer(2001) + with_year(
+        nr2001 = unanswers(2001) + with_year(
           ["Victims by Employees", "cost of planets destroyed",
            "darkness rating", "deadliness", "deadliness",
            "deadliness", "dinosaurlabor", "friendliness",

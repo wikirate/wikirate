@@ -9,7 +9,7 @@ RSpec.describe Card::Set::Type::Metric do
         "Jedi+disturbances_in_the_Force".card
       end
 
-      it "finds direct answer to metric" do
+      it "finds direct answers to metric" do
         expect(yielded_answers.size)
           .to be(::Answer.where(metric_id: card_subject.id).count)
       end

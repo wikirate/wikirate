@@ -38,8 +38,8 @@ def parent_dataset_card
   Card[parent_dataset]
 end
 
-def answer
-  @answer ||= ::Answer.where where_answer
+def answers
+  @answers ||= ::Answer.where where_answer
 end
 #
 # def answer_since_start
@@ -82,7 +82,7 @@ def years?
   years.present?
 end
 
-# used in filtering answer on company and dataset pages
+# used in filtering answers on company and dataset pages
 # @param status [Symbol] researched, known, not_researched
 def filter_path_args status
   { filter: { dataset: name, status: status } }

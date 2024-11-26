@@ -2,7 +2,7 @@ def self.company_identifier_accessor codename
   card_accessor codename, type: :phrase if codename.present? && !method_defined?(codename)
 end
 
-# as in, NOT answer (company+metric)
+# as in, NOT answers (company+metric)
 def simple_field_names
   %i[image headquarters wikirate_website alias].map(&:cardname) + CompanyIdentifier.names
 end

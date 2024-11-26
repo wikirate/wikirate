@@ -12,7 +12,7 @@
   ],
   "data": [
     {
-      "name": "answer",
+      "name": "answers",
       "transform": [
         {
           "type": "formula",
@@ -23,7 +23,7 @@
     },
     {
       "name": "valueExtremes",
-      "source": "answer",
+      "source": "answers",
       "transform": [
         {
           "type": "aggregate",

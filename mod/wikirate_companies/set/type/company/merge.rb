@@ -61,7 +61,7 @@ end
 def merge_into target_company
   target_company = target_company.cardname
   move_relationships_to target_company
-  move_answer_to target_company
+  move_answers_to target_company
   move_dataset_listings_to target_company
   move_group_listings_to target_company
   move_source_listings_to target_company
@@ -77,8 +77,8 @@ def move_relationships_to target_company
   end
 end
 
-def move_answer_to target_company
-  answer.each do |answer|
+def move_answers_to target_company
+  answers.each do |answer|
     if answer.real?
       answer.move company: target_company
     else

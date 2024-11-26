@@ -6,7 +6,7 @@ RSpec.describe Card::Set::Type::CompanyGroup do
 
   check_views_for_errors
 
-  # Both SPECTRE and Monster Inc have Supplied By answer,
+  # Both SPECTRE and Monster Inc have Supplied By answers,
   # but only SPECTRE is supplied by Google LLC (the sole member of the Googliest Group)
   it "handles related company group restrictions" do
     supgoog =

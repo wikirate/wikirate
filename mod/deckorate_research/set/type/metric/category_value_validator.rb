@@ -1,7 +1,7 @@
 #! no set module
 
 # This class is used for changing the value type of a metric to "category".
-# It Checks if all existing answer have valid options for the categorical metric.
+# It Checks if all existing answers have valid options for the categorical metric.
 class CategoryValueValidator
   attr_reader :keys
 
@@ -31,7 +31,7 @@ class CategoryValueValidator
   end
 
   def error_msg
-    "The following values appear in answer " \
+    "The following values appear in answers " \
     "but are not listed as valid options: #{invalid_values.to_sentence}"
   end
 end

@@ -62,7 +62,7 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
       it "finds this months's edits" do
         # I added 'metric_type: "Researched"' because the new yaml loading
         # made it so that calculated metrics, including scores, were created before the
-        # researched answer, which meant timecop affect the calculation times
+        # researched answers, which meant timecop affect the calculation times
         expect(search(updated: :month, metric_type: "Researched"))
           .to eq(["disturbances in the Force"] * 3)
       end
@@ -110,7 +110,7 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
     context "when user is not steward" do
       let(:answer_name) { "Jedi+deadliness+Death_Star+1977" }
 
-      it "implicitly finds answer.unpublished = nil" do
+      it "implicitly finds answers.unpublished = nil" do
         expect(search).to include(answer_name)
       end
 
@@ -124,7 +124,7 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
         expect(search).not_to include(answer_name)
       end
 
-      it "finds no answer when looking for unpublished" do
+      it "finds no answers when looking for unpublished" do
         answer.unpublished_card.update! content: 1
         expect(search(published: "false")).to be_empty
       end
@@ -133,7 +133,7 @@ RSpec.describe Card::AnswerQuery::AnswerFilters do
     context "when user is steward" do
       let(:answer_name) { "Joe User+RM+Apple Inc+2015" }
 
-      it "implicitly does not find answer.unpublished = true" do
+      it "implicitly does not find answers.unpublished = true" do
         answer.unpublished_card.update! content: 1
         expect(search).not_to include(answer_name)
       end

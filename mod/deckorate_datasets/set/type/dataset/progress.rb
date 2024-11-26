@@ -5,12 +5,12 @@ def dataset_card
   self
 end
 
-# the space of possible metric answer
+# the space of possible metric answers
 def num_possible
   @num_possible ||= num_possible_answers * year_multiplier
 end
 
-# used to calculate possible answer/answer
+# used to calculate possible answers
 def year_multiplier
   @year_multiplier ||= years? ? num_years : 1
 end

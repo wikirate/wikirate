@@ -96,8 +96,8 @@ format :html do
 
   view :answer_tree do
     calculation_only do
-      card.map_input_answer_and_detail do |answer, metric, detail|
-        input_tree_item answer, metric, detail
+      card.map_input_answer_and_detail do |answers, metric, detail|
+        input_tree_item answers, metric, detail
       end
     end
   end
@@ -110,9 +110,9 @@ format :html do
 
   private
 
-  def input_tree_item answer, metric, detail
-    first_answer = answer.shift
-    first_answer.answer.card.format.answer_tree_item metric, detail, answer
+  def input_tree_item answers, metric, detail
+    first_answer = answers.shift
+    first_answer.answer.card.format.answer_tree_item metric, detail, answers
   end
 
   def overridden_answer_with_formula

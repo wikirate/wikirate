@@ -44,7 +44,7 @@ class Card
         "#{table}.metric_id = #{codename.card_id} AND #{table}.value IN (?)"
       end
 
-      # class for managing conditions that filter companies by their answer
+      # class for managing conditions that filter companies by their answers
       class AnswerCondition
         def initialize table, constraint
           @table = table

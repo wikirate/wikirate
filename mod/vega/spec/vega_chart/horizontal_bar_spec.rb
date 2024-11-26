@@ -3,7 +3,7 @@ RSpec.describe Card::VegaChart::HorizontalBar do
   let(:chart_class) { metric.chart_class true }
   let(:chart_hash) { format.vega.hash }
 
-  context "with Rating (10 or fewer answer)" do
+  context "with Rating (10 or fewer answers)" do
     let(:metric) { Card["Jedi+darkness rating"] }
 
     specify "chart_class" do
@@ -15,7 +15,7 @@ RSpec.describe Card::VegaChart::HorizontalBar do
         .to include(
           data: a_collection_including(
             a_hash_including(name: "companies"),
-            a_hash_including(name: "answer")
+            a_hash_including(name: "answers")
           )
         )
     end

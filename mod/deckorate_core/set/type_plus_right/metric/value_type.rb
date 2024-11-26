@@ -18,7 +18,7 @@ end
 event :validate_value_type_matches_values, :validate, on: :save, changed: :content do
   return unless (error_message = metric_card.validate_all_values)
 
-  errors.add :answer, "Cannot change to #{content}: #{error_message}"
+  errors.add :answers, "Cannot change to #{content}: #{error_message}"
 end
 
 def valid_content?

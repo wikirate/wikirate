@@ -51,10 +51,10 @@ event :delete_relationships,
   if !Card::Auth.always_ok?
     # TODO: come up with better permissions scheme for this!
     # maybe something like `perms: :admin` in the event def?
-    errors.add :answer, "only admins can bulk delete answer"
+    errors.add :answers, "only admins can bulk delete answers"
   else
     with_company_from_params do |company|
-      delete_answer_for_company company
+      delete_answers_for_company company
       true
     end
   end
@@ -107,9 +107,9 @@ def add_title_inverse_pointer title, inverse
   subcard [title, :inverse], content: inverse, type: :pointer
 end
 
-def delete_answer_for_company company
+def delete_answers_for_company company
   delete_subject_answer_for_company company
-  delete_object_answer_for_company company
+  delete_object_answers_for_company company
 end
 
 def delete_subject_answer_for_company company
@@ -117,13 +117,13 @@ def delete_subject_answer_for_company company
   delete_as_subcard answer_card
 end
 
-def delete_object_answer_for_company company
-  object_answer_for_company(company).each do |answer_card|
+def delete_object_answers_for_company company
+  object_answers_for_company(company).each do |answer_card|
     delete_as_subcard answer_card
   end
 end
 
-def object_answer_for_company company
+def object_answers_for_company company
   Card.search left: { left: { left_id: id } },
               type_id: Card::RelationshipID,
               right: company

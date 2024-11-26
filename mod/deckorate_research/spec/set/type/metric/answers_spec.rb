@@ -2,7 +2,7 @@
 
 RSpec.describe Card::Set::Type::Metric::Answers do
   context "when renaming metric" do
-    it "renames answer in lookup table", as_bot: true do
+    it "renames answers in lookup table", as_bot: true do
       # update_card "Joe User+researched number 1",
       #             name: "Joe User+invented number"
       Card["Joe User+researched number 1"]

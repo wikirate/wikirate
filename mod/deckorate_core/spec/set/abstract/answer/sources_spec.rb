@@ -24,7 +24,7 @@ RSpec.describe Card::Set::Abstract::Answer::Sources do
       Card["Joe User+RM+Apple Inc+2000+source"]
     end
 
-    it "requires that (most) answer have sources and a value" do
+    it "requires that (most) answers have sources and a value" do
       sourceless = answer_for("Joe User+RM")
       sourceless.save
       expect(sourceless.errors.attribute_names).to eq(%i[value source])

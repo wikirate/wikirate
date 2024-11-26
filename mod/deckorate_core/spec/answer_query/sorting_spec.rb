@@ -13,7 +13,7 @@ RSpec.describe Card::AnswerQuery::Sorting do
     let(:default_filters) { { company_id: "Death Star".card_id, year: :latest } }
     let(:sorted_designer) { ["Commons", "Fred", "Jedi", "Joe User"] }
 
-    let :latest_answer_by_bookmarks do
+    let :latest_answers_by_bookmarks do
       [
         "disturbances in the Force+2001", "Victims by Employees+1977",
         "Sith Lord in Charge+1977", "dinosaurlabor+2010",
@@ -60,7 +60,7 @@ RSpec.describe Card::AnswerQuery::Sorting do
 
     it "sorts by bookmarkers" do
       actual = sort_by :metric_bookmarkers, sort_dir: :desc
-      expected = latest_answer_by_bookmarks
+      expected = latest_answers_by_bookmarks
 
       bookmarked = (0..1)
       not_bookmarked = (2..-1)

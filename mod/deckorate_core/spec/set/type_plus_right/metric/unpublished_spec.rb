@@ -12,16 +12,16 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Unpublished do
       metric.unpublished_card.update! content: 1
     end
 
-    it "updates answer upon publishing" do
+    it "updates answers upon publishing" do
       expect(unpublished_vals).to eq([true])
     end
 
-    it "updates answer upon unpublishing" do
+    it "updates answers upon unpublishing" do
       metric.unpublished_card.update! content: 0
       expect(unpublished_vals).to eq([false])
     end
 
-    it "does not publish answer flagged as unpublished" do
+    it "does not publish answers flagged as unpublished" do
       answer.unpublished_card.update! content: 1
       metric.unpublished_card.update! content: 0
       expect(unpublished_vals).to include(true).and include(false)

@@ -20,14 +20,14 @@ RSpec.describe Card::Set::TypePlusRight::Company::Answer do
   check_views_for_errors
 
   describe "#count" do
-    it "counts all answer (regardless of year)" do
+    it "counts all answesr (regardless of year)" do
       expect(card_subject.count).to eq(::Answer.where(company_id: company.id).count)
     end
   end
 
   specify "compact json" do
     expect(format_subject(:json).render(:compact))
-      .to include(companies: a_hash, metrics: a_hash, answer: a_hash)
+      .to include(companies: a_hash, metrics: a_hash, answers: a_hash)
   end
 
   def a_hash

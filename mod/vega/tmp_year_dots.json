@@ -7,15 +7,15 @@
 
   "data": [
     {
-      "name": "answer",
+      "name": "answers",
       "url": "http://localhost:3000/Answer/answer_list.json?limit=0"
     },
     {
       "name": "counts",
-      "source": "answer",
+      "source": "answers",
 
       "transform": [
-        { "type": "aggregate", "ops": ["distinct", "distinct","count"], "fields": ["company", "metric", "id"], "groupby": ["year"], "as": ["companies", "metrics", "answer"] }
+        { "type": "aggregate", "ops": ["distinct", "distinct","count"], "fields": ["company", "metric", "id"], "groupby": ["year"], "as": ["companies", "metrics", "answers"] }
       ]
     }
   ],
@@ -45,7 +45,7 @@
       "round": true,
       "nice": false,
       "zero": true,
-      "domain": {"data": "counts", "field": "answer"},
+      "domain": {"data": "counts", "field": "answers"},
       "range": [0, 200]
     }
   ],
@@ -90,7 +90,7 @@
         "update": {
           "x": {"scale": "x", "field": "metrics"},
           "y": {"scale": "y", "field": "companies"},
-          "size": {"scale": "size", "field": "answer"},
+          "size": {"scale": "size", "field": "answers"},
           "shape": {"value": "circle"},
           "opacity": {"value": 1},
           "fill": {"value": "#03998D"}

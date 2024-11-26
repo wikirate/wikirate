@@ -28,7 +28,7 @@ RSpec.describe Card::Set::Type::Metric::Events do
           .to match(Regexp.new(Regexp.quote(newname)))
       end
 
-      it "doesn't add or lose answer" do
+      it "doesn't add or lose answers" do
         expect(newcard.answers.size).to eq(8)
       end
     end

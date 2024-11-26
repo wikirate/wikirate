@@ -49,7 +49,7 @@ def latest_answer metric
 end
 
 # @return [Answer::ActiveRecord_Relation]
-def answer args={}
+def answers args={}
   args[:company_id] = id
   normalize_metric_arg args
   ::Answer.where args

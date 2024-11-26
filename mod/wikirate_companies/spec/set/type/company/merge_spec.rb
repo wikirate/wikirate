@@ -12,8 +12,8 @@ RSpec.describe Card::Set::Type::Company::Merge do
     end
   end
 
-  describe "#move_answer_to" do
-    def expect_answer_to_move target_num
+  describe "#move_answers_to" do
+    def expect_answers_to_move target_num
       expect_company_and_target_answers 5, 10
       yield
       expect_company_and_target_answers 1, target_num
@@ -22,20 +22,20 @@ RSpec.describe Card::Set::Type::Company::Merge do
     end
 
     def expect_company_and_target_answers company_count, target_count
-      expect(company.answer.count).to eq(company_count)
-      expect(target.answer.count).to eq(target_count)
+      expect(company.answers.count).to eq(company_count)
+      expect(target.answers.count).to eq(target_count)
     end
 
-    it "moves non-conflicting answer from source to target company" do
-      expect_answer_to_move 11 do
-        company.move_answer_to target.name
+    it "moves non-conflicting answers from source to target company" do
+      expect_answers_to_move 11 do
+        company.move_answers_to target.name
       end
     end
 
     it "works when triggered within act", as_bot: true do
       Card::Env.params[:target_company] = target.name
 
-      expect_answer_to_move 14 do
+      expect_answers_to_move 14 do
         company.update! trigger_in_action: :merge_companies
       end
     end
@@ -47,8 +47,8 @@ RSpec.describe Card::Set::Type::Company::Merge do
     let(:metric) { Card["Jedi+more evil"] }
 
     # currently performed as bot because requires permission to delete
-    # simple answer where the count is now 0.
-    it "moves non-conflicting answer to target company", as_bot: true do
+    # simple answers where the count is now 0.
+    it "moves non-conflicting answesr to target company", as_bot: true do
       old_answer = [metric.name, company.name, "1977"]
       new_answer = [metric.name, target.name, "1977"]
       new_relationship = [metric.name, target.name, "1977", "Los_Pollos_Hermanos"]
