@@ -7,7 +7,7 @@ Cardio::Railtie.config.tap do |config|
   config.account_password_requirements = %i[special_char number letter]
 
   config.seed_mods.unshift :wikirate
-  config.extra_seed_tables = %w[records card_counts metrics relationships]
+  config.extra_seed_tables = %w[answers card_counts metrics relationships]
 end
 
 Wikirate::Application.configure do

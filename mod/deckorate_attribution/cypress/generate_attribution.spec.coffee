@@ -40,10 +40,10 @@ describe "Attribution Generator - Metric", ->
     cy.get(".tab-li-html").click()
     cy.contains("Wikirate's community")
 
-describe "Attribution Generator - Record Dashboard", ->
+describe "Attribution Generator - Answer Dashboard", ->
   beforeEach ->
     cy.login()
-    cy.visit("http://localhost:5002/Records")
+    cy.visit("http://localhost:5002/Answers")
   it "finds the attribution generator ic\"span.card-title[title='Death Star']\"on.", ->
     cy.get(".tree-button").first().click()
     dropdown = cy.get("div.bar-menu-button[data-bs-toggle='dropdown']").first().invoke("show")

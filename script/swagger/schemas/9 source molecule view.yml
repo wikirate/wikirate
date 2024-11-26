@@ -27,7 +27,7 @@ source_molecule_view:
       "$ref": "#/components/schemas/atom_view"
     metric:
       "$ref": "#/components/schemas/atom_view"
-    record:
+    answer:
       "$ref": "#/components/schemas/atom_view"
     items:
       type: array

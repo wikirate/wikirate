@@ -1,8 +1,8 @@
 # include_set Abstract::CompanySearch
 #
-# # cache # of companies related to this topic (=left) via records for metrics that
+# # cache # of companies related to this topic (=left) via answer for metrics that
 # # are tagged with this topic
-# include_set Abstract::RecordLookupCachedCount, target_type: :company
+# include_set Abstract::AnswerLookupCachedCount, target_type: :company
 #
 # def query_hash
 #   { topic: left_id }
@@ -12,14 +12,14 @@
 #   name.left_name
 # end
 #
-# # when record is created/deleted
-# recount_trigger :type, :record, on: %i[create delete] do |changed_card|
-#   company_cache_cards_for_record changed_card
+# # when answer is created/deleted
+# recount_trigger :type, :answer, on: %i[create delete] do |changed_card|
+#   company_cache_cards_for_answer changed_card
 # end
 #
-# # ...or when record is (un)published
-# field_recount_trigger :type_plus_right, :record, :unpublished do |changed_card|
-#   company_cache_cards_for_record changed_card.left
+# # ...or when answer is (un)published
+# field_recount_trigger :type_plus_right, :answer, :unpublished do |changed_card|
+#   company_cache_cards_for_answer changed_card.left
 # end
 #
 # # ... when <metric>+topic is edited
@@ -28,12 +28,12 @@
 # end
 #
 # class << self
-#   def company_cache_cards_for_record record
-#     company_cache_cards_for_topics topic_names_for_record(record)
+#   def company_cache_cards_for_answer answer
+#     company_cache_cards_for_topics topic_names_for_answer(answer)
 #   end
 #
-#   def topic_names_for_record record
-#     record.metric_card&.topic_card&.item_names
+#   def topic_names_for_answer answer
+#     answer.metric_card&.topic_card&.item_names
 #   end
 #
 #   def company_cache_cards_for_topics topic_names

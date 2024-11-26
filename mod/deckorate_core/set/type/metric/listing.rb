@@ -4,7 +4,7 @@ format :html do
   end
 
   view :bar_right do
-    [count_badges(:company, :record, :reference), render_bookmark]
+    [count_badges(:company, :answer, :reference), render_bookmark]
   end
 
   view :bar_middle do
@@ -22,7 +22,7 @@ format :html do
   end
 
   view :box_bottom do
-    count_badges :record, :company
+    count_badges :answer, :company
   end
 
   # thumbnails

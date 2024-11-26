@@ -1,0 +1,25 @@
+.custom-filtered-panel
+  %h6
+    %strong Custom view
+
+  ._custom-item-view-radios
+    - customize_item_options.each do |key, label|
+      - id = "answer-group-#{key}-radio"
+      - value = key == :none ? "full_bar" : "grouped_#{key}"
+      .form-check
+        = radio_button_tag "slot[items][view]", value, (current_group==key),
+                           class: "form-check-input", id: id
+        %label.form-check-label{ for: id }
+          = label
+
+  %hr
+  .form-check
+    %input#_all-custom-fields.form-check-input{ type: "checkbox", checked: true }
+    %label.form-check-label{ for: "_all-custom-fields"}
+      %h6
+        %strong Custom fields
+  ._custom-field-checkboxes.ps-4
+  ._custom-field-template.d-none
+    .custom-field._custom-field.form-check
+      %input.form-check-input{ type: "checkbox" }
+      %label.form-check-label

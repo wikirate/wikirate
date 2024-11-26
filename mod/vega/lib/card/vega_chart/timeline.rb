@@ -1,6 +1,6 @@
 class Card
   class VegaChart
-    # Timeline of record values
+    # Timeline of answer values
     class Timeline < VegaChart
       include Helper::Axes
       include Helper::CountTips

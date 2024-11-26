@@ -6,7 +6,7 @@ class LookupWithoutNames < Cardio::Migration::Schema
     remove_column :answers, :designer_name
     remove_column :answers, :title_name
     remove_column :answers, :company_name
-    remove_column :answers, :record_name
+    remove_column :answers, :answer_name
 
     remove_column :relationships, :subject_company_name
     remove_column :relationships, :object_company_name

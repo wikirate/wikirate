@@ -6,7 +6,7 @@ class Calculate
           # Used if the "not_researched" option is set to "result_unknown" which means
           # that the calculated value becomes "Unknown".
           module NotResearchedResultUnknown
-            def record_for company_id, year
+            def answer_for company_id, year
               super.tap { |a| unknown! a if input_value_not_researched? a }
             end
           end

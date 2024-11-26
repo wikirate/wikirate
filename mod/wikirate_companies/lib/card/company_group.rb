@@ -35,7 +35,7 @@ class Card
         m_ids = metric_ids_for_group group
         return false unless m_ids.present?
 
-        Record.where(metric_id: m_ids)
+        Answer.where(metric_id: m_ids)
               .where("updated_at > now() - interval 1 day")
               .take.present?
       end

@@ -1,6 +1,6 @@
 class Card
   # This class provides an interface to import relationships
-  class RelationshipImportItem < RecordImportItem
+  class RelationshipImportItem < AnswerImportItem
     extend CompanyImportHelper
 
     @columns = { metric: { map: true, suggest: true },
@@ -14,10 +14,10 @@ class Card
                  comment: { optional: true } }
 
     # NOTE: lookup table does not contain source / comment
-    CSV_KEYS = %i[relationship_id relationship_link metric record_id
+    CSV_KEYS = %i[relationship_id relationship_link metric answer_id
                   metric subject_company metric_company year value].freeze
 
-    def translate_row_hash_to_create_record_hash
+    def translate_row_hash_to_create_answer_hash
       super.tap do |hash|
         hash[:company] = hash.delete :subject_company
         hash[:related_company] = hash.delete :object_company
