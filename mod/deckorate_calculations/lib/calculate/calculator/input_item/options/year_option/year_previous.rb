@@ -5,7 +5,7 @@ class Calculate
         module YearOption
           # Handles the "previous" year option
           # Example:
-          #    year: previous # use the last record before the current year
+          #    year: previous # use the last answer before the current year
           module YearPrevious
             def process_year_option
               :previous

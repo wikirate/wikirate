@@ -1,0 +1,38 @@
+answer_atom_view:
+  type: object
+  properties:
+    id:
+      type: integer
+      example: 14165962
+    name:
+      type: string
+      example: "US Securities and Exchange Commission+Assets+Apple Inc.+2022"
+    url:
+      type: string
+      example: "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2022.json?view=atom"
+    content:
+      type: string
+      example: ""
+    type:
+      type: string
+      example: Answer
+    metric:
+      type: string
+      example: US Securities and Exchange Commission+Assets
+    company:
+      type: string
+      example: Apple Inc.
+    year:
+      type: integer
+      example: 2022
+    value:
+      type: string
+      example: '352755000000'
+    comments:
+      type: string
+    answer_url:
+      type: string
+      example: https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json
+    requested_at:
+      type: string
+      example: "2023-09-21 10:27:16 UTC"

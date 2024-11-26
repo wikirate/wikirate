@@ -1,9 +1,9 @@
 ---
-- :name: record import test
-  :type: :record_import
-  :codename: record_import_test
+- :name: answer import test
+  :type: :answer_import
+  :codename: answer_import_test
   :storage_type: :coded
-  :record_import: record_import_test/record_import.csv
+  :answer_import: answer_import_test/answer_import.csv
 - :name: relationship import test
   :type: :relationship_import
   :codename: relationship_import_test

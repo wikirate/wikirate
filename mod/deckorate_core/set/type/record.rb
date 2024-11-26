@@ -1,81 +1,69 @@
-include_set Abstract::MetricChild, generation: 2
-include_set Abstract::Record
-include_set Abstract::Lookup
+include_set Abstract::MetricChild, generation: 1
+include_set Abstract::DeckorateTabbed
 
-attr_writer :record
+card_accessor :answer
 
-card_accessor :checked_by, type: :list
-card_accessor :source, type: :list
-
-event :delete_record_lookup, :finalize, on: :delete do
-  ::Record.delete_for_card id
-end
-
-event :refresh_record_lookup, :finalize, on: :save do
-  record.card = self
-  record.refresh
-end
-
-def lookup_class
-  ::Record
-end
-
-def lookup
-  record
-end
-
-def record
-  @record ||= ::Record.fetch self
+event :update_lookups_on_answer_rename, :finalize, changed: :name, on: :update do
+  answer_card.search.each(&:refresh)
 end
 
 def virtual?
-  new? && (!record.new_record? || metric_card&.relation?)
+  new?
 end
 
-def content
-  virtual? ? record.value : super
+def answer
+  answer_card.search
 end
 
-def updated_at
-  virtual? ? record.updated_at : super
+private
+
+def expire_left?
+  false
 end
 
-def created_at
-  virtual? ? record.created_at : super
+format do
+  delegate :answer, to: :card
 end
 
-def virtual_query
-  return unless calculated?
+format :html do
+  def tab_list
+    %i[answer metric company]
+  end
 
-  { metric_id: metric_id, company_id: company_id, year: year.to_i }
+  def tab_options
+    tab_list.each_with_object({}) do |tab, hash|
+      hash[tab] = { count: nil, label: tab.cardname }
+    end
+  end
+
+  def header_left
+    output [nest(card.metric_card, view: :thumbnail),
+            nest(card.company_card, view: :thumbnail)]
+  end
+
+  view :answer_tab do
+    field_nest :answer, view: :filtered_content
+  end
+
+  view :metric_tab do
+    nest card.metric_card, view: :details_tab
+  end
+
+  view :company_tab do
+    nest card.company_card, view: :details_tab
+  end
 end
 
-def value_type_code
-  metric_card.simple_value_type_code
+format :csv do
+  view :body do
+    answer.each_with_object("") do |a, res|
+      res << CSV.generate_line([a.company, a.year, a.value])
+    end
+  end
 end
 
-def value_cardtype_code
-  metric_card.simple_value_cardtype_code
-end
-
-# FOR LOOKUP
-# ~~~~~~~~~~
-
-def record_log_id
-  left_id.positive? ? left_id : super
-end
-
-def checkers
-  cb = checked_by_card
-  cb.checkers.join ", " if cb&.checked?
-end
-
-def comments
-  return unless (comment_card = fetch :discussion)
-
-  comment_card.format(:text).render_core.gsub(/^\s*--.*$/, "").squish.truncate 1024
-end
-
-def overridden_value
-  record.overridden_value
+format :json do
+  def item_cards
+    answer
+  end
 end

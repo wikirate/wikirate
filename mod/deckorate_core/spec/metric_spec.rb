@@ -1,4 +1,4 @@
-# This is really a test of the MetricCreator and RecordCreator APIs
+# This is really a test of the MetricCreator and AnswerCreator APIs
 
 RSpec.describe Metric do
   let :researched_metrics do
@@ -39,7 +39,7 @@ RSpec.describe Metric do
       expect(metric.metric_type).to eq "Researched"
 
       expect(value).to be_truthy
-      expect(value.type_id).to eq Card::RecordID
+      expect(value.type_id).to eq Card::AnswerID
       expect(value.fetch("value").content).to eq "50"
       expect(Card["MD+MT+SPECTRE+2001+value"].content).to eq "100"
 
@@ -87,7 +87,7 @@ RSpec.describe Metric do
       expect(Card["Jedi+owns"].type_id)
         .to eq Card::MetricID
       expect(Card["Jedi+owns+SPECTRE+2000"].type_code)
-        .to eq :record
+        .to eq :answer
       expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos"].type_name)
         .to eq "Relationship"
       expect(Card["Jedi+owns+SPECTRE+2000+Los Pollos Hermanos+value"].content)

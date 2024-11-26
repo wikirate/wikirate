@@ -4,7 +4,7 @@ include_set Abstract::LookupSearch
 include_set Abstract::SearchViews
 include_set Abstract::DetailedExport
 include_set Abstract::MetricSearch
-include_set Abstract::RecordFilters
+include_set Abstract::AnswerFilters
 
 delegate :inverse?, to: :metric_card
 
@@ -33,7 +33,7 @@ format do
         type: :group,
         open: true,
         filters: super },
-      { key: :record,
+      { key: :answer,
         type: :group,
         filters: [{ key: :value, open: true }, :updated] }
     ]
@@ -41,7 +41,7 @@ format do
 end
 
 format :json do
-  view :record_list, cache: :never do
+  view :answer_list, cache: :never do
     query.lookup_relation.map(&:compact_json)
   end
 end

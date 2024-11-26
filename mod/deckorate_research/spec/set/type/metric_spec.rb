@@ -50,7 +50,7 @@ RSpec.describe Card::Set::Type::Metric do
 
       example "when to category" do
         expect { metric.value_type_card.update! content: "Category" }
-          .to raise_error ActiveRecord::RecordInvalid
+          .to raise_error ActiveRecord::AnswerInvalid
       end
 
       example "when to money" do

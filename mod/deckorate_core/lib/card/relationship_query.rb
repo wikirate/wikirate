@@ -1,15 +1,15 @@
 class Card
   # Query lookup table for relationships
   class RelationshipQuery < LookupQuery
-    include RecordQuery::RecordFilters
-    include RecordQuery::ValueFilters
-    include RecordQuery::MetricFilters
-    include RecordQuery::CompanyFilters
+    include AnswerQuery::AnswerFilters
+    include AnswerQuery::ValueFilters
+    include AnswerQuery::MetricFilters
+    include AnswerQuery::CompanyFilters
 
     self.simple_filters = ::Set.new(
       %i[subject_company_id object_company_id
          metric_id inverse_metric_id
-         record_id inverse_record_id]
+         answer_id inverse_answer_id]
     )
 
     def lookup_class
@@ -21,9 +21,9 @@ class Card
     end
 
     def normalize_filter_args
-      # NOTE: without this filtering for published records can break things.
+      # NOTE: without this filtering for published answers can break things.
       # Almost certainly need more sophisticated solution. (As is it probably will export
-      # relationships associated with unpublished records.)
+      # relationships associated with unpublished answers.)
       @filter_args.delete :published
     end
 

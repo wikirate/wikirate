@@ -3,7 +3,7 @@ class Calculate
     class SearchSpace
       # SearchSpace for formulas where all or at least one of the input items needs to
       # have a value.
-      # Record candidates for each input are intersected with the existing candidates.
+      # Answer candidates for each input are intersected with the existing candidates.
       module AllSearchSpace
         def update company_ids, years
           intersect company_ids, years
