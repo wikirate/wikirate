@@ -17,5 +17,5 @@ def each_reference_dump_row &block
       yield answer
       answer.each_dependee_answer(&block) if calc
     end
-  endw
+  end
 end
