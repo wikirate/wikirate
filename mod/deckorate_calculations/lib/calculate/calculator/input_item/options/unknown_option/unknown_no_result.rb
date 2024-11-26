@@ -5,8 +5,8 @@ class Calculate
         module UnknownOption
           # Used if the "unknown" option is set to "no_result"
           module UnknownNoResult
-            def update_result_slice company_id, year, record
-              return super unless input_record_unknown? record
+            def update_result_slice company_id, year, answer
+              return super unless input_answer_unknown? answer
 
               @result_slice.remove company_id, year
             end

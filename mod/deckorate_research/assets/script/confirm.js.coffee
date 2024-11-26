@@ -1,32 +1,32 @@
 $(document).ready ->
-  # track whether there are changes in the record form
+  # track whether there are changes in the answer form
   $(".research-layout .tab-pane-answer_phase").on "change", "input, textarea, select", ->
-    $(".research-record .card-form").data "changed", true
+    $(".research-answer .card-form").data "changed", true
 
-  # must confirm links to new record when record form is changed
-  $(".research-layout").on "click", "._research-metric-link, .research-record-button", (e) ->
+  # must confirm links to new answer when answer form is changed
+  $(".research-layout").on "click", "._research-metric-link, .research-answer-button", (e) ->
     return unless editInProgress()
     e.preventDefault()
     leave = $("#confirmLeave")
     leave.trigger "click"
     leave.data "confirmHref", $(this).attr "href"
 
-  # handle confirmed link to new record
+  # handle confirmed link to new answer
   $(".research-layout").on "click", "._yes_leave", () ->
     window.location.href = $("#confirmLeave").data "confirmHref"
 
-  # handle confirmed link to new record
+  # handle confirmed link to new answer
   $(".research-layout").on "click", "._yes_year", () ->
     year = $("#confirmYear").data "year"
     changeToYear year
-    clearTab "record"
+    clearTab "answer"
 
   # click anywhere on year option to select it and (if necessary) trigger confirmation
   $("body").on "click", "._research-year-option, ._research-year-option input", (e) ->
     input = $(this)
     input = input.find "input" unless input.is "input"
     year = input.val()
-    if recordReadyForYearChange input
+    if answerReadyForYearChange input
       changeToYear year
     else
       confirmYearChange e, year
@@ -37,20 +37,20 @@ changeToYear = (year)->
   changeYearInMetricLinks year
 
 editInProgress = ->
-  $(".research-record .card-form").data "changed"
+  $(".research-answer .card-form").data "changed"
 
-recordReadyForYearChange = (input) ->
+answerReadyForYearChange = (input) ->
   if editInProgress()
-    changeYearInRecordForm input
+    changeYearInAnswerForm input
   else
-    clearTab "record"
+    clearTab "answer"
     true
 
-changeYearInRecordForm = (input)->
+changeYearInAnswerForm = (input)->
   return false if fromResearched() || toResearched(input)
 
-  recordName = tabPane("record").find "#new_card input#card_name"
-  changeHiddenName recordName, input.val()
+  answerName = tabPane("answer").find "#new_card input#card_name"
+  changeHiddenName answerName, input.val()
   true
 
 changeYearInSourceFilter = (year)->
@@ -69,7 +69,7 @@ changeHiddenName = (nameField, year) ->
   nameField.val newName
 
 fromResearched = ->
-  tabPane("record").find(".edit_inline-view")[0]
+  tabPane("answer").find(".edit_inline-view")[0]
 
 toResearched = (input) ->
   !input.closest("._research-year-option").find(".not-researched")[0]

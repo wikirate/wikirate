@@ -13,7 +13,7 @@ def num_possible
   @num_possible ||= metric_ids.size * dataset_card.year_multiplier
 end
 
-def where_record
+def where_answer
   where_year do
     { metric_id: [:in] + metric_ids, company_id: company_card.id }
   end
@@ -50,7 +50,7 @@ format :html do
 
   view :research_header_progress, template: :haml
 
-  def record_log_name
+  def record_name
     metric_name = (params[:metric] || card.metric_ids.first).cardname
     metric_name.field card.company_card.name
   end
@@ -64,17 +64,17 @@ format :html do
     link_to_card card.company_card, yield, path: path_args, class: "company-color"
   end
 
-  def record_log_names
-    @record_log_names ||= metric_ids.map do |metric_id|
+  def record_names
+    @record_names ||= metric_ids.map do |metric_id|
       [metric_id, company_card].cardname
     end
   end
 
-  def record_log_records record_log
+  def record_answers record
     if dataset_card.years?
-      dataset_card.years.map { |y| [record_log, y].cardname }
+      dataset_card.years.map { |y| [record, y].cardname }
     else
-      record_log.card.record_card.format.search_with_params
+      record.card.answer_card.format.search_with_params
     end
   end
 end

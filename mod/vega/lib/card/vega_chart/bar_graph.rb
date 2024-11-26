@@ -5,7 +5,7 @@ class Card
       include Helper::VerticalBar
 
       def hash
-        with_values(record_list: 0) do
+        with_values(answer_list: 0) do
           super.tap do |h|
             transform_multi_values h[:data]
             translate_value_options h[:data]

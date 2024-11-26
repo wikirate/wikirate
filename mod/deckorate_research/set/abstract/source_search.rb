@@ -22,7 +22,7 @@ format do
   end
 
   def sort_options
-    { "Recently Added": :create, "Title": :title, "Most Data Points": :record }
+    { "Recently Added": :create, "Title": :title, "Most Data Points": :answer }
   end
 
   def default_sort_option

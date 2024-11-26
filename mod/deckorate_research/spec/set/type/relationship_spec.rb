@@ -6,11 +6,11 @@ RSpec.describe Card::Set::Type::Relationship do
   check_views_for_errors
 
   %w[Views Markers].each do |subdir|
-    abstract_record_views =
+    abstract_answer_views =
       Card::Set::Format::AbstractFormat::ViewDefinition.views[
-        Card::Set::Abstract::Record.const_get(subdir).const_get("HtmlFormat")
+        Card::Set::Abstract::Answer.const_get(subdir).const_get("HtmlFormat")
       ].keys
-    include_context_for abstract_record_views, "view without errors"
+    include_context_for abstract_answer_views, "view without errors"
   end
 
   let(:year) { "1977" }
@@ -19,52 +19,52 @@ RSpec.describe Card::Set::Type::Relationship do
 
   context "when adding first relationship" do
     def add_first_relationship
-      create_records metric, true do
+      create_answers metric, true do
         Monster_Inc "1977" => { "Slate_Rock_and_Gravel_Company" => "yes" }
       end
     end
 
-    it "increases cached record count" do
+    it "increases cached answer count" do
       expect(Card.fetch("Monster Inc+metric").cached_count).to eq(6)
       add_first_relationship
       # Card::Count.refresh_flagged
       expect(Card.fetch("Monster Inc+metric").cached_count).to eq(7)
     end
 
-    it "creates inverse record" do
+    it "creates inverse answer" do
       add_first_relationship
-      inverse_record_value =
+      inverse_answer_value =
         Card[inverse_metric, "Slate_Rock_and_Gravel_Company", year, :value]
-      expect(inverse_record_value.content).to eq "1"
+      expect(inverse_answer_value.content).to eq "1"
     end
   end
 
   context "when adding another relationship" do
     def add_relationship
-      create_records metric, true do
+      create_answers metric, true do
         Death_Star "1977" => { "Monster Inc" => "yes" }
       end
     end
 
-    def record
+    def answer
       Card[metric, "Death Star", year]
     end
 
-    def inverse_record
+    def inverse_answer
       Card[inverse_metric, "Monster Inc", year]
     end
 
     it "updates company count" do
       expect { add_relationship }
-        .to change(record, :value).from("2").to("3")
+        .to change(answer, :value).from("2").to("3")
     end
 
     it "creates inverse company count" do
       add_relationship
-      expect(inverse_record.value).to eq "1"
+      expect(inverse_answer.value).to eq "1"
     end
 
-    it "doesn't increase cached record count" do
+    it "doesn't increase cached answer count" do
       expect { add_relationship }
         .not_to change(Card.fetch("Death Star+metric"), :cached_count)
     end

@@ -326,19 +326,19 @@ $orange-grad-2: orange !default;
   background-color: $light-purple;
 }
 
-.record-trending {
+.answer-trending {
   padding: 0.2em 0.5em;
   border-radius: 0.3rem;
 }
-.record-trending-down {
+.answer-trending-down {
   background-color: $light-red;
   color: $red;
 }
-.record-trending-up {
+.answer-trending-up {
   background-color: $light-teal;
   color: $teal;
 }
-.record-trending-flat {
+.answer-trending-flat {
   background-color: $gray-100;
 }
 

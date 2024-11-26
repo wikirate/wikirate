@@ -8,6 +8,11 @@
   :codename: topic_framework
   :type: :cardtype
 
+# TODO: get rid of this!
+- :name: Overview
+  :codename: general_overview
+
+
 - :name: Wikirate ESG Topics
   :type: :topic_framework
   :codename: esg_topics

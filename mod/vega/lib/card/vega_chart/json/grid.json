@@ -73,11 +73,11 @@
     },
     {
       "name": "researchedExist",
-      "init": "data('researchedRecords').length > 0"
+      "init": "data('researchedAnswers').length > 0"
     },
     {
       "name": "calculatedExist",
-      "init": "data('calculatedRecords').length > 0"
+      "init": "data('calculatedAnswers').length > 0"
     }
   ],
   "data": [
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "name": "records",
+      "name": "answer",
       "transform": [
         {
           "type": "lookup",
@@ -229,8 +229,8 @@
       ]
     },
     {
-      "name": "researchedRecords",
-      "source": "records",
+      "name": "researchedAnswers",
+      "source": "answer",
       "transform": [
         {
           "type": "filter",
@@ -239,8 +239,8 @@
       ]
     },
     {
-      "name": "calculatedRecords",
-      "source": "records",
+      "name": "calculatedAnswers",
+      "source": "answers",
       "transform": [
         {
           "type": "filter",
@@ -297,7 +297,7 @@
       "domain": {
         "fields": [
           {
-            "data": "records",
+            "data": "answers",
             "field": "status"
           }
         ],
@@ -342,7 +342,7 @@
     {
       "type": "rect",
       "from": {
-        "data": "researchedRecords"
+        "data": "researchedAnswers"
       },
       "encode": {
         "update": {
@@ -392,7 +392,7 @@
       "type": "rect",
       "name": "coloredScores",
       "from": {
-        "data": "calculatedRecords"
+        "data": "calculatedAnswers"
       },
       "encode": {
         "update": {

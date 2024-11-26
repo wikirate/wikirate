@@ -5,7 +5,7 @@ class Card
       include Helper::VerticalBar
 
       def hash
-        with_values(record_list: 0) { super }.tap do |hash|
+        with_values(answer_list: 0) { super }.tap do |hash|
           hash[:signals] << { name: "extent", init: extent }
         end
       end

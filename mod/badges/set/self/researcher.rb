@@ -1,1 +1,1 @@
-include_set Abstract::RecordCreateBadge
+include_set Abstract::AnswerCreateBadge

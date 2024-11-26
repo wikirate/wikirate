@@ -1,4 +1,4 @@
-# The record "legend" is the qualifying detail that typically follows the value
+# The answer "legend" is the qualifying detail that typically follows the value
 # Can involve unit, range, categories, etc.
 
 format do
@@ -32,7 +32,7 @@ format do
 
   def category_legend_options
     @category_legend_options ||=
-      card.value_option_names.reject { |o| ::Record.unknown? o }
+      card.value_option_names.reject { |o| ::Answer.unknown? o }
   end
 end
 

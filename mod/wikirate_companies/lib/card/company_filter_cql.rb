@@ -3,15 +3,15 @@ class Card
   class CompanyFilterCql < DeckorateFilterCql
     class << self
       def country_condition
-        record_condition :countries, :core_country
+        answer_condition :countries, :core_country
       end
 
       def category_condition
-        record_condition :categories, :commons_company_category
+        answer_condition :categories, :commons_company_category
       end
 
-      def company_record_condition table, constraint
-        RecordCondition.new(table, constraint).sql
+      def company_answer_condition table, constraint
+        AnswerCondition.new(table, constraint).sql
       end
 
       def company_identifier_clauses hash
@@ -40,12 +40,12 @@ class Card
         end
       end
 
-      def record_condition table, codename
+      def answer_condition table, codename
         "#{table}.metric_id = #{codename.card_id} AND #{table}.value IN (?)"
       end
 
-      # class for managing conditions that filter companies by their records
-      class RecordCondition
+      # class for managing conditions that filter companies by their answers
+      class AnswerCondition
         def initialize table, constraint
           @table = table
           @metric = constraint[:metric_id].to_i.card
@@ -77,7 +77,7 @@ class Card
         def related_clause
           return unless @group.present?
 
-          safe_clause "record_id in (?)", Relationship.record_ids_for(@metric, @group)
+          safe_clause "answer_id in (?)", Relationship.answer_ids_for(@metric, @group)
         end
 
         # TODO: reuse more code from value_filters.rb (logic is largely the same)
@@ -110,7 +110,7 @@ class Card
         def category_value_clause
           if @metric.multi_categorical?
             # see comment in value_filters.rb
-            ::Record.sanitize_sql_for_conditions(
+            ::Answer.sanitize_sql_for_conditions(
               ["FIND_IN_SET(?, REPLACE(#{@table}.value, ', ', ','))",
                Array.wrap(@value)]
             )
@@ -120,7 +120,7 @@ class Card
         end
 
         def safe_clause field, val
-          ::Record.sanitize_sql_for_conditions ["#{@table}.#{field}", Array.wrap(val)]
+          ::Answer.sanitize_sql_for_conditions ["#{@table}.#{field}", Array.wrap(val)]
         end
       end
     end
@@ -133,8 +133,8 @@ class Card
       add_to_cql :company_category, company_category
     end
 
-    def company_record_cql company_record
-      add_to_cql :company_record, company_record
+    def company_answer_cql company_answer
+      add_to_cql :company_answer, company_answer
     end
 
     def company_cql company
@@ -162,13 +162,13 @@ class Card
     end
   end
 
-  # add :company_country, company_category, and company_record attribute to Card::Query
+  # add :company_country, company_category, and company_answer attribute to Card::Query
   module Query
     attributes.merge! company_country: :conjunction,
                       company_category: :conjunction,
-                      company_record: :conjunction
+                      company_answer: :conjunction
     # FIXME: conjunction is weird here, but unlike :relational it passes on arrays
 
-    CardQuery.include CompanyRecordQuery
+    CardQuery.include CompanyAnswerQuery
   end
 end

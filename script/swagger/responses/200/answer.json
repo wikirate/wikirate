@@ -1,0 +1,38 @@
+{
+  "id": 6580208,
+  "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2020",
+  "type": "Answer",
+  "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2020.json",
+  "content": "",
+  "metric": "US Securities and Exchange Commission+Assets",
+  "company": "Apple Inc.",
+  "year": 2020,
+  "value": "323888000000",
+  "comments": null,
+  "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json",
+  "sources": [
+    {
+      "id": 6564056,
+      "name": "Source-000102251",
+      "type": "Source",
+      "url": "https://wikirate.org/Source_000102251.json",
+      "file": "https://dq06ugkuram52.cloudfront.net/files/6564080/28695625.pdf",
+      "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019320000096/aapl-20200926.htm",
+      "report_type": [
+        "Corporate Social Responsibility Report",
+        "Form-10K",
+        "Annual Report"
+      ],
+      "title": "Apple Inc.'s Annual Form 10-K report 2020",
+      "year": [
+        "2020",
+        "2019",
+        "2018"
+      ]
+    }
+  ],
+  "checked_by": [
+
+  ],
+  "requested_at": "2023-09-21 09:36:23 UTC"
+}

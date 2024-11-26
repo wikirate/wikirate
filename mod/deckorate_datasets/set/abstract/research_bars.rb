@@ -1,4 +1,4 @@
-include_set Abstract::KnownRecords
+include_set Abstract::KnownAnswers
 include_set Abstract::Media
 
 def virtual?
@@ -18,8 +18,8 @@ format :html do
   view :research_button, cache: :never do
     link_to "Research",
             class: "btn btn-outline-secondary btn-sm " \
-                   "research-record-button _over-card-link",
-            path: { mark: record_log_name, project: project_name, view: :research }
+                   "research-answer-button _over-card-link",
+            path: { mark: record_name, project: project_name, view: :research }
   end
 
   view :bar_bottom do

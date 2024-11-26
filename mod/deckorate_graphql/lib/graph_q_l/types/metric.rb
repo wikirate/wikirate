@@ -15,7 +15,7 @@ module GraphQL
       field :range, String, null: true
       field :formula, String, null: true
       field :report_type, String, null: true
-      lookup_field :record, Record, :record, true
+      lookup_field :answer, Answer, :answer, true
       field :topics, [Topic], null: false
       field :datasets, [Dataset], null: false
 
