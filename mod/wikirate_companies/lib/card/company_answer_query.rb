@@ -23,7 +23,7 @@ class Card
 
     def company_answer_join answer_alias
       Query::Join.new side: :left, from: self, from_field: "id",
-                      to: [:answer, answer_alias, :company_id]
+                      to: [:answers, answer_alias, :company_id]
     end
 
     def add_answer_condition cond, val

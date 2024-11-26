@@ -22870,1070 +22870,1091 @@ card_references_3267:
   is_present:
 card_references_3268:
   id: 4381
+  referer_id: 3955
+  referee_key:
+  referee_id: 3163
+  ref_type: L
+  is_present:
+card_references_3269:
+  id: 4382
+  referer_id: 3955
+  referee_key:
+  referee_id: 3170
+  ref_type: L
+  is_present:
+card_references_3270:
+  id: 4383
+  referer_id: 3955
+  referee_key:
+  referee_id: 3173
+  ref_type: L
+  is_present:
+card_references_3271:
+  id: 4384
   referer_id: 3958
   referee_key:
   referee_id: 3176
   ref_type: L
   is_present:
-card_references_3269:
-  id: 4382
+card_references_3272:
+  id: 4385
   referer_id: 3959
   referee_key: deadliest
   referee_id: 3953
   ref_type: L
   is_present:
-card_references_3270:
-  id: 4383
+card_references_3273:
+  id: 4386
   referer_id: 444
   referee_key: wikirate_skin
   referee_id: 856
   ref_type: L
   is_present:
-card_references_3271:
-  id: 4399
+card_references_3274:
+  id: 4402
   referer_id: 481
   referee_key: "*autoname"
   referee_id: 17
   ref_type: L
   is_present:
-card_references_3272:
-  id: 4400
+card_references_3275:
+  id: 4403
   referer_id: 481
   referee_key: "*style"
   referee_id: 347
   ref_type: L
   is_present:
-card_references_3273:
-  id: 4401
+card_references_3276:
+  id: 4404
   referer_id: 481
   referee_key: "*layout"
   referee_id: 492
   ref_type: L
   is_present:
-card_references_3274:
-  id: 4402
+card_references_3277:
+  id: 4405
   referer_id: 481
   referee_key: "*read"
   referee_id: 9
   ref_type: L
   is_present:
-card_references_3275:
-  id: 4403
+card_references_3278:
+  id: 4406
   referer_id: 481
   referee_key: "*follow"
   referee_id: 453
   ref_type: L
   is_present:
-card_references_3276:
-  id: 4404
+card_references_3279:
+  id: 4407
   referer_id: 481
   referee_key: "*follow_field"
   referee_id: 462
   ref_type: L
   is_present:
-card_references_3277:
-  id: 4405
+card_references_3280:
+  id: 4408
   referer_id: 481
   referee_key: "*default"
   referee_id: 8
   ref_type: L
   is_present:
-card_references_3278:
-  id: 4406
+card_references_3281:
+  id: 4409
   referer_id: 481
   referee_key: "*update"
   referee_id: 66
   ref_type: L
   is_present:
-card_references_3279:
-  id: 4407
+card_references_3282:
+  id: 4410
   referer_id: 481
   referee_key: "*create"
   referee_id: 65
   ref_type: L
   is_present:
-card_references_3280:
-  id: 4408
+card_references_3283:
+  id: 4411
   referer_id: 481
   referee_key: "*content_option"
   referee_id: 59
   ref_type: L
   is_present:
-card_references_3281:
-  id: 4409
+card_references_3284:
+  id: 4412
   referer_id: 481
   referee_key: "*structure"
   referee_id: 28
   ref_type: L
   is_present:
-card_references_3282:
-  id: 4410
+card_references_3285:
+  id: 4413
   referer_id: 481
   referee_key: "*script"
   referee_id: 301
   ref_type: L
   is_present:
-card_references_3283:
-  id: 4411
+card_references_3286:
+  id: 4414
   referer_id: 481
   referee_key: "*input_type"
   referee_id: 148
   ref_type: L
   is_present:
-card_references_3284:
-  id: 4412
+card_references_3287:
+  id: 4415
   referer_id: 481
   referee_key: "*delete"
   referee_id: 67
   ref_type: L
   is_present:
-card_references_3285:
-  id: 4413
+card_references_3288:
+  id: 4416
   referer_id: 481
   referee_key: "*captcha"
   referee_id: 512
   ref_type: L
   is_present:
-card_references_3286:
-  id: 4414
+card_references_3289:
+  id: 4417
   referer_id: 3978
   referee_key: dashboard
   referee_id: 523
   ref_type: L
   is_present:
-card_references_3287:
-  id: 4416
+card_references_3290:
+  id: 4419
   referer_id: 3984
   referee_key: dashboard
   referee_id: 523
   ref_type: L
   is_present:
-card_references_3288:
-  id: 4417
+card_references_3291:
+  id: 4420
   referer_id: 3986
   referee_key: the_wikirate_project_e_v
   referee_id:
   ref_type: L
   is_present:
-card_references_3289:
-  id: 4418
+card_references_3292:
+  id: 4421
   referer_id: 3990
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3290:
-  id: 4419
+card_references_3293:
+  id: 4422
   referer_id: 3992
   referee_key: walk_free
   referee_id:
   ref_type: L
   is_present:
-card_references_3291:
-  id: 4420
+card_references_3294:
+  id: 4423
   referer_id: 3996
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3292:
-  id: 4421
+card_references_3295:
+  id: 4424
   referer_id: 3998
   referee_key: organisation_for_economic_cooperation_development_oecd
   referee_id:
   ref_type: L
   is_present:
-card_references_3293:
-  id: 4422
+card_references_3296:
+  id: 4425
   referer_id: 4002
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3294:
-  id: 4423
+card_references_3297:
+  id: 4426
   referer_id: 4004
   referee_key: the_wikirate_project_e_v
   referee_id:
   ref_type: L
   is_present:
-card_references_3295:
-  id: 4424
+card_references_3298:
+  id: 4427
   referer_id: 4008
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3296:
-  id: 4425
+card_references_3299:
+  id: 4428
   referer_id: 4010
   referee_key: walk_free
   referee_id:
   ref_type: L
   is_present:
-card_references_3297:
-  id: 4426
+card_references_3300:
+  id: 4429
   referer_id: 4014
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3298:
-  id: 4427
+card_references_3301:
+  id: 4430
   referer_id: 4016
   referee_key: principle_for_responsible_management_education_prme
   referee_id:
   ref_type: L
   is_present:
-card_references_3299:
-  id: 4428
+card_references_3302:
+  id: 4431
   referer_id: 4020
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3300:
-  id: 4429
+card_references_3303:
+  id: 4432
   referer_id: 4022
   referee_key: walk_free
   referee_id:
   ref_type: L
   is_present:
-card_references_3301:
-  id: 4430
+card_references_3304:
+  id: 4433
   referer_id: 4026
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3302:
-  id: 4431
+card_references_3305:
+  id: 4434
   referer_id: 4028
   referee_key: universidad_eafit
   referee_id:
   ref_type: L
   is_present:
-card_references_3303:
-  id: 4432
+card_references_3306:
+  id: 4435
   referer_id: 4032
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3304:
-  id: 4433
+card_references_3307:
+  id: 4436
   referer_id: 4034
   referee_key: walk_free
   referee_id:
   ref_type: L
   is_present:
-card_references_3305:
-  id: 4434
+card_references_3308:
+  id: 4437
   referer_id: 4038
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3306:
-  id: 4435
+card_references_3309:
+  id: 4438
   referer_id: 4040
   referee_key: university_of_wollongong
   referee_id:
   ref_type: L
   is_present:
-card_references_3307:
-  id: 4436
+card_references_3310:
+  id: 4439
   referer_id: 4044
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3308:
-  id: 4437
+card_references_3311:
+  id: 4440
   referer_id: 4046
   referee_key: walk_free
   referee_id:
   ref_type: L
   is_present:
-card_references_3309:
-  id: 4438
+card_references_3312:
+  id: 4441
   referer_id: 4050
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3310:
-  id: 4439
+card_references_3313:
+  id: 4442
   referer_id: 4052
   referee_key: principle_for_responsible_management_education_prme
   referee_id:
   ref_type: L
   is_present:
-card_references_3311:
-  id: 4440
+card_references_3314:
+  id: 4443
   referer_id: 4056
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3312:
-  id: 4441
+card_references_3315:
+  id: 4444
   referer_id: 4058
   referee_key: university_of_wollongong
   referee_id:
   ref_type: L
   is_present:
-card_references_3313:
-  id: 4442
+card_references_3316:
+  id: 4445
   referer_id: 4061
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3314:
-  id: 4443
+card_references_3317:
+  id: 4446
   referer_id: 4063
   referee_key: principle_for_responsible_management_education_prme
   referee_id:
   ref_type: L
   is_present:
-card_references_3315:
-  id: 4444
+card_references_3318:
+  id: 4447
   referer_id: 4067
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3316:
-  id: 4445
+card_references_3319:
+  id: 4448
   referer_id: 4069
   referee_key: walk_free
   referee_id:
   ref_type: L
   is_present:
-card_references_3317:
-  id: 4446
+card_references_3320:
+  id: 4449
   referer_id: 4073
   referee_key: dashboard
   referee_id: 523
   ref_type: L
   is_present:
-card_references_3318:
-  id: 4447
+card_references_3321:
+  id: 4450
   referer_id: 4075
   referee_key: walk_free
   referee_id:
   ref_type: L
   is_present:
-card_references_3319:
-  id: 4448
+card_references_3322:
+  id: 4451
   referer_id: 4079
   referee_key: dashboard
   referee_id: 523
   ref_type: L
   is_present:
-card_references_3320:
-  id: 4449
+card_references_3323:
+  id: 4452
   referer_id: 4081
   referee_key: clean_clothe_campaign
   referee_id: 3189
   ref_type: L
   is_present:
-card_references_3321:
-  id: 4450
+card_references_3324:
+  id: 4453
   referer_id: 4085
   referee_key: dashboard
   referee_id: 523
   ref_type: L
   is_present:
-card_references_3322:
-  id: 4451
+card_references_3325:
+  id: 4454
   referer_id: 4087
   referee_key: business_human_right_resource_centre
   referee_id:
   ref_type: L
   is_present:
-card_references_3323:
-  id: 4452
+card_references_3326:
+  id: 4455
   referer_id: 4090
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3324:
-  id: 4453
+card_references_3327:
+  id: 4456
   referer_id: 4091
   referee_key: university_of_cambridge
   referee_id:
   ref_type: L
   is_present:
-card_references_3325:
-  id: 4454
+card_references_3328:
+  id: 4457
   referer_id: 4095
   referee_key: publication
   referee_id: 1054
   ref_type: L
   is_present:
-card_references_3326:
-  id: 4455
+card_references_3329:
+  id: 4458
   referer_id: 4096
   referee_key: glasgow_caledonian_university
   referee_id:
   ref_type: L
   is_present:
-card_references_3327:
-  id: 4456
+card_references_3330:
+  id: 4459
   referer_id: 4102
   referee_key: term_of_use_summary
   referee_id:
   ref_type: I
   is_present:
-card_references_3328:
-  id: 4457
+card_references_3331:
+  id: 4460
   referer_id: 4102
   referee_key: privacy_policy
   referee_id: 1083
   ref_type: L
   is_present:
-card_references_3329:
-  id: 4458
+card_references_3332:
+  id: 4461
   referer_id: 4102
   referee_key: licensing
   referee_id: 1087
   ref_type: L
   is_present:
-card_references_3330:
-  id: 4459
+card_references_3333:
+  id: 4462
   referer_id: 4102
   referee_key: notice_and_take_down_procedure
   referee_id: 1086
   ref_type: L
   is_present:
-card_references_3331:
-  id: 4460
+card_references_3334:
+  id: 4463
   referer_id: 4102
   referee_key: wikirate_legal_announcement
   referee_id:
   ref_type: L
   is_present:
-card_references_3332:
-  id: 4461
+card_references_3335:
+  id: 4464
   referer_id: 4104
   referee_key: term_of_use_summary
   referee_id:
   ref_type: I
   is_present:
-card_references_3333:
-  id: 4462
+card_references_3336:
+  id: 4465
   referer_id: 4104
   referee_key: privacy_policy
   referee_id: 1083
   ref_type: L
   is_present:
-card_references_3334:
-  id: 4463
+card_references_3337:
+  id: 4466
   referer_id: 4104
   referee_key: licensing
   referee_id: 1087
   ref_type: L
   is_present:
-card_references_3335:
-  id: 4464
+card_references_3338:
+  id: 4467
   referer_id: 4104
   referee_key: notice_and_take_down_procedure
   referee_id: 1086
   ref_type: L
   is_present:
-card_references_3336:
-  id: 4465
+card_references_3339:
+  id: 4468
   referer_id: 4104
   referee_key: wiki_rate_legal_announcement
   referee_id:
   ref_type: L
   is_present:
-card_references_3337:
-  id: 4466
-  referer_id: 852
-  referee_key: jedi
-  referee_id: 3186
-  ref_type: L
-  is_present:
-card_references_3338:
-  id: 4467
-  referer_id: 852
-  referee_key: joe_user
-  referee_id: 1191
-  ref_type: L
-  is_present:
-card_references_3339:
-  id: 4468
-  referer_id: 852
-  referee_key: global_reporting_initiative
-  referee_id: 3308
-  ref_type: L
-  is_present:
 card_references_3340:
   id: 4469
   referer_id: 852
-  referee_key: core
-  referee_id: 847
+  referee_key: jedi
+  referee_id: 3186
   ref_type: L
   is_present:
 card_references_3341:
   id: 4470
   referer_id: 852
-  referee_key: isic
-  referee_id: 3720
+  referee_key: joe_user
+  referee_id: 1191
   ref_type: L
   is_present:
 card_references_3342:
   id: 4471
   referer_id: 852
-  referee_key: clean_clothe_campaign
-  referee_id: 3189
+  referee_key: global_reporting_initiative
+  referee_id: 3308
   ref_type: L
   is_present:
 card_references_3343:
   id: 4472
+  referer_id: 852
+  referee_key: core
+  referee_id: 847
+  ref_type: L
+  is_present:
+card_references_3344:
+  id: 4473
+  referer_id: 852
+  referee_key: isic
+  referee_id: 3720
+  ref_type: L
+  is_present:
+card_references_3345:
+  id: 4474
+  referer_id: 852
+  referee_key: clean_clothe_campaign
+  referee_id: 3189
+  ref_type: L
+  is_present:
+card_references_3346:
+  id: 4475
   referer_id: 853
   referee_key: jedi
   referee_id: 3186
   ref_type: L
   is_present:
-card_references_3344:
-  id: 4473
+card_references_3347:
+  id: 4476
   referer_id: 853
   referee_key: joe_user
   referee_id: 1191
   ref_type: L
   is_present:
-card_references_3345:
-  id: 4474
+card_references_3348:
+  id: 4477
   referer_id: 851
   referee_key: joe_user
   referee_id: 1191
   ref_type: L
   is_present:
-card_references_3346:
-  id: 4475
+card_references_3349:
+  id: 4478
   referer_id: 851
   referee_key: joe_camel
   referee_id: 1197
   ref_type: L
   is_present:
-card_references_3347:
-  id: 4476
+card_references_3350:
+  id: 4479
   referer_id: 854
   referee_key: jedi+deadliness
   referee_id: 3268
   ref_type: L
   is_present:
-card_references_3348:
-  id: 4477
+card_references_3351:
+  id: 4480
   referer_id: 854
   referee_key: jedi+friendliness
   referee_id: 3815
   ref_type: L
   is_present:
-card_references_3349:
-  id: 4478
+card_references_3352:
+  id: 4481
   referer_id: 4112
   referee_key: californium_united_state
   referee_id: 3037
   ref_type: L
   is_present:
-card_references_3350:
-  id: 4479
+card_references_3353:
+  id: 4482
   referer_id: 4115
   referee_key: google
   referee_id:
   ref_type: L
   is_present:
-card_references_3351:
-  id: 4480
+card_references_3354:
+  id: 4483
   referer_id: 4115
   referee_key: alphabet
   referee_id:
   ref_type: L
   is_present:
-card_references_3352:
-  id: 4481
+card_references_3355:
+  id: 4484
   referer_id: 4118
   referee_key: number
   referee_id: 35
   ref_type: L
   is_present:
-card_references_3353:
-  id: 4482
+card_references_3356:
+  id: 4485
   referer_id: 4119
   referee_key: formula
   referee_id: 786
   ref_type: L
   is_present:
-card_references_3354:
-  id: 4483
+card_references_3357:
+  id: 4486
   referer_id: 4120
   referee_key:
   referee_id: 3779
   ref_type: L
   is_present:
-card_references_3355:
-  id: 4484
+card_references_3358:
+  id: 4487
   referer_id: 4120
   referee_key:
   referee_id: 3779
   ref_type: L
   is_present:
-card_references_3356:
-  id: 4485
+card_references_3359:
+  id: 4488
   referer_id: 3980
   referee_key: death_star
   referee_id: 3163
   ref_type: L
   is_present:
-card_references_3357:
-  id: 4486
+card_references_3360:
+  id: 4489
   referer_id: 4125
   referee_key: research_master
   referee_id: 671
   ref_type: L
   is_present:
-card_references_3358:
-  id: 4487
+card_references_3361:
+  id: 4490
   referer_id: 4125
   referee_key: research_pro
   referee_id: 670
   ref_type: L
   is_present:
-card_references_3359:
-  id: 4488
+card_references_3362:
+  id: 4491
   referer_id: 4125
   referee_key: death_star+research_pro+company_badge
   referee_id:
   ref_type: L
   is_present:
-card_references_3360:
-  id: 4489
+card_references_3363:
+  id: 4492
   referer_id: 4125
   referee_key: death_star+research_pro
   referee_id:
   ref_type: P
   is_present:
-card_references_3361:
-  id: 4490
+card_references_3364:
+  id: 4493
   referer_id: 4125
   referee_key: death_star
   referee_id: 3163
   ref_type: P
   is_present:
-card_references_3362:
-  id: 4491
-  referer_id: 4125
-  referee_key: company_badge
-  referee_id: 700
-  ref_type: P
-  is_present:
-card_references_3363:
-  id: 4492
-  referer_id: 4125
-  referee_key: researcher
-  referee_id: 681
-  ref_type: L
-  is_present:
-card_references_3364:
-  id: 4493
-  referer_id: 4125
-  referee_key: evil_project+researcher+project_badge
-  referee_id:
-  ref_type: L
-  is_present:
 card_references_3365:
   id: 4494
   referer_id: 4125
-  referee_key: evil_project+researcher
-  referee_id:
+  referee_key: company_badge
+  referee_id: 700
   ref_type: P
   is_present:
 card_references_3366:
   id: 4495
   referer_id: 4125
-  referee_key: evil_project
-  referee_id: 3870
-  ref_type: P
+  referee_key: researcher
+  referee_id: 681
+  ref_type: L
   is_present:
 card_references_3367:
   id: 4496
   referer_id: 4125
-  referee_key: project_badge
-  referee_id: 699
-  ref_type: P
+  referee_key: evil_project+researcher+project_badge
+  referee_id:
+  ref_type: L
   is_present:
 card_references_3368:
   id: 4497
   referer_id: 4125
-  referee_key: death_star+researcher+company_badge
+  referee_key: evil_project+researcher
   referee_id:
-  ref_type: L
+  ref_type: P
   is_present:
 card_references_3369:
   id: 4498
   referer_id: 4125
-  referee_key: death_star+researcher
-  referee_id:
+  referee_key: evil_project
+  referee_id: 3870
   ref_type: P
   is_present:
 card_references_3370:
   id: 4499
   referer_id: 4125
-  referee_key: answer_enhancer
-  referee_id: 676
-  ref_type: L
+  referee_key: project_badge
+  referee_id: 699
+  ref_type: P
   is_present:
 card_references_3371:
   id: 4500
   referer_id: 4125
-  referee_key: answer_advancer
-  referee_id: 675
+  referee_key: death_star+researcher+company_badge
+  referee_id:
   ref_type: L
   is_present:
 card_references_3372:
   id: 4501
   referer_id: 4125
-  referee_key: commentator
-  referee_id: 678
-  ref_type: L
+  referee_key: death_star+researcher
+  referee_id:
+  ref_type: P
   is_present:
 card_references_3373:
   id: 4502
-  referer_id: 4127
-  referee_key: metric_creator
-  referee_id: 695
+  referer_id: 4125
+  referee_key: answer_enhancer
+  referee_id: 676
   ref_type: L
   is_present:
 card_references_3374:
   id: 4503
-  referer_id: 4127
-  referee_key: metric_tonne
-  referee_id: 696
+  referer_id: 4125
+  referee_key: answer_advancer
+  referee_id: 675
   ref_type: L
   is_present:
 card_references_3375:
   id: 4504
-  referer_id: 4127
-  referee_key: research_agenda_setter
-  referee_id: 697
+  referer_id: 4125
+  referee_key: commentator
+  referee_id: 678
   ref_type: L
   is_present:
 card_references_3376:
   id: 4505
   referer_id: 4127
-  referee_key: metric_bookmarker
-  referee_id: 669
+  referee_key: metric_creator
+  referee_id: 695
   ref_type: L
   is_present:
 card_references_3377:
   id: 4506
   referer_id: 4127
-  referee_key: metric_critic
-  referee_id: 682
+  referee_key: metric_tonne
+  referee_id: 696
   ref_type: L
   is_present:
 card_references_3378:
   id: 4507
   referer_id: 4127
-  referee_key: metric_connoisseur
-  referee_id: 683
+  referee_key: research_agenda_setter
+  referee_id: 697
   ref_type: L
   is_present:
 card_references_3379:
   id: 4508
+  referer_id: 4127
+  referee_key: metric_bookmarker
+  referee_id: 669
+  ref_type: L
+  is_present:
+card_references_3380:
+  id: 4509
+  referer_id: 4127
+  referee_key: metric_critic
+  referee_id: 682
+  ref_type: L
+  is_present:
+card_references_3381:
+  id: 4510
+  referer_id: 4127
+  referee_key: metric_connoisseur
+  referee_id: 683
+  ref_type: L
+  is_present:
+card_references_3382:
+  id: 4511
   referer_id: 4129
   referee_key: project_launcher
   referee_id: 685
   ref_type: L
   is_present:
-card_references_3380:
-  id: 4509
+card_references_3383:
+  id: 4512
   referer_id: 4129
   referee_key: project_q_a
   referee_id: 684
-  ref_type: L
-  is_present:
-card_references_3381:
-  id: 4510
-  referer_id: 4131
-  referee_key: checker
-  referee_id: 672
-  ref_type: L
-  is_present:
-card_references_3382:
-  id: 4511
-  referer_id: 4131
-  referee_key: check_pro
-  referee_id: 673
-  ref_type: L
-  is_present:
-card_references_3383:
-  id: 4512
-  referer_id: 4131
-  referee_key: check_mate
-  referee_id: 674
   ref_type: L
   is_present:
 card_references_3384:
   id: 4513
   referer_id: 4131
-  referee_key: answer_chancer
-  referee_id: 677
+  referee_key: checker
+  referee_id: 672
   ref_type: L
   is_present:
 card_references_3385:
   id: 4514
   referer_id: 4131
-  referee_key: answer_enhancer
-  referee_id: 676
+  referee_key: check_pro
+  referee_id: 673
   ref_type: L
   is_present:
 card_references_3386:
   id: 4515
   referer_id: 4131
-  referee_key: answer_advancer
-  referee_id: 675
+  referee_key: check_mate
+  referee_id: 674
   ref_type: L
   is_present:
 card_references_3387:
   id: 4516
   referer_id: 4131
-  referee_key: commentator
-  referee_id: 678
+  referee_key: answer_chancer
+  referee_id: 677
   ref_type: L
   is_present:
 card_references_3388:
   id: 4517
   referer_id: 4131
-  referee_key: commentary_team
-  referee_id: 679
+  referee_key: answer_enhancer
+  referee_id: 676
   ref_type: L
   is_present:
 card_references_3389:
   id: 4518
   referer_id: 4131
-  referee_key: expert_commentary
-  referee_id: 680
+  referee_key: answer_advancer
+  referee_id: 675
   ref_type: L
   is_present:
 card_references_3390:
   id: 4519
   referer_id: 4131
-  referee_key: researcher
-  referee_id: 681
+  referee_key: commentator
+  referee_id: 678
   ref_type: L
   is_present:
 card_references_3391:
   id: 4520
   referer_id: 4131
-  referee_key: research_pro
-  referee_id: 670
+  referee_key: commentary_team
+  referee_id: 679
   ref_type: L
   is_present:
 card_references_3392:
   id: 4521
   referer_id: 4131
-  referee_key: research_master
-  referee_id: 671
+  referee_key: expert_commentary
+  referee_id: 680
   ref_type: L
   is_present:
 card_references_3393:
   id: 4522
   referer_id: 4131
-  referee_key: death_star+research_pro+company_badge
-  referee_id:
+  referee_key: researcher
+  referee_id: 681
   ref_type: L
   is_present:
 card_references_3394:
   id: 4523
   referer_id: 4131
+  referee_key: research_pro
+  referee_id: 670
+  ref_type: L
+  is_present:
+card_references_3395:
+  id: 4524
+  referer_id: 4131
+  referee_key: research_master
+  referee_id: 671
+  ref_type: L
+  is_present:
+card_references_3396:
+  id: 4525
+  referer_id: 4131
+  referee_key: death_star+research_pro+company_badge
+  referee_id:
+  ref_type: L
+  is_present:
+card_references_3397:
+  id: 4526
+  referer_id: 4131
   referee_key: death_star+research_pro
   referee_id:
   ref_type: P
   is_present:
-card_references_3395:
-  id: 4524
+card_references_3398:
+  id: 4527
   referer_id: 4131
   referee_key: death_star
   referee_id: 3163
   ref_type: P
   is_present:
-card_references_3396:
-  id: 4525
+card_references_3399:
+  id: 4528
   referer_id: 4131
   referee_key: company_badge
   referee_id: 700
   ref_type: P
   is_present:
-card_references_3397:
-  id: 4526
+card_references_3400:
+  id: 4529
   referer_id: 4131
   referee_key: evil_project+researcher+project_badge
   referee_id:
   ref_type: L
   is_present:
-card_references_3398:
-  id: 4527
+card_references_3401:
+  id: 4530
   referer_id: 4131
   referee_key: evil_project+researcher
   referee_id:
   ref_type: P
   is_present:
-card_references_3399:
-  id: 4528
+card_references_3402:
+  id: 4531
   referer_id: 4131
   referee_key: evil_project
   referee_id: 3870
   ref_type: P
   is_present:
-card_references_3400:
-  id: 4529
+card_references_3403:
+  id: 4532
   referer_id: 4131
   referee_key: project_badge
   referee_id: 699
   ref_type: P
   is_present:
-card_references_3401:
-  id: 4530
+card_references_3404:
+  id: 4533
   referer_id: 4131
   referee_key: death_star+researcher+company_badge
   referee_id:
   ref_type: L
   is_present:
-card_references_3402:
-  id: 4531
+card_references_3405:
+  id: 4534
   referer_id: 4131
   referee_key: death_star+researcher
   referee_id:
   ref_type: P
   is_present:
-card_references_3403:
-  id: 4532
+card_references_3406:
+  id: 4535
   referer_id: 4133
   referee_key: inside_source
   referee_id: 686
   ref_type: L
   is_present:
-card_references_3404:
-  id: 4533
+card_references_3407:
+  id: 4536
   referer_id: 4133
   referee_key: a_cite_to_behold
   referee_id: 687
   ref_type: L
   is_present:
-card_references_3405:
-  id: 4534
+card_references_3408:
+  id: 4537
   referer_id: 4133
   referee_key: a_source_of_inspiration
   referee_id: 688
   ref_type: L
   is_present:
-card_references_3406:
-  id: 4535
+card_references_3409:
+  id: 4538
   referer_id: 4135
   referee_key: company_register
   referee_id: 689
   ref_type: L
   is_present:
-card_references_3407:
-  id: 4536
+card_references_3410:
+  id: 4539
   referer_id: 4135
   referee_key: the_company_store
   referee_id: 690
   ref_type: L
   is_present:
-card_references_3408:
-  id: 4537
+card_references_3411:
+  id: 4540
   referer_id: 4135
   referee_key: company_in_the_house
   referee_id: 691
   ref_type: L
   is_present:
-card_references_3409:
-  id: 4538
+card_references_3412:
+  id: 4541
   referer_id: 4135
   referee_key: logo_adder
   referee_id: 692
   ref_type: L
   is_present:
-card_references_3410:
-  id: 4539
+card_references_3413:
+  id: 4542
   referer_id: 4135
   referee_key: how_lo_can_you_go
   referee_id: 693
   ref_type: L
   is_present:
-card_references_3411:
-  id: 4540
+card_references_3414:
+  id: 4543
   referer_id: 4135
   referee_key: logo_and_behold
   referee_id: 694
   ref_type: L
   is_present:
-card_references_3412:
-  id: 4541
+card_references_3415:
+  id: 4544
   referer_id: 3933
   referee_key: project_launcher
   referee_id: 685
   ref_type: L
   is_present:
-card_references_3413:
-  id: 4542
+card_references_3416:
+  id: 4545
   referer_id: 3933
   referee_key: project_q_a
   referee_id: 684
   ref_type: L
   is_present:
-card_references_3414:
-  id: 4543
+card_references_3417:
+  id: 4546
   referer_id: 3213
   referee_key: metric_creator
   referee_id: 695
   ref_type: L
   is_present:
-card_references_3415:
-  id: 4544
+card_references_3418:
+  id: 4547
   referer_id: 3213
   referee_key: metric_bookmarker
   referee_id: 669
   ref_type: L
   is_present:
-card_references_3416:
-  id: 4545
+card_references_3419:
+  id: 4548
   referer_id: 4137
   referee_key: metric_bookmarker
   referee_id: 669
   ref_type: L
   is_present:
-card_references_3417:
-  id: 4546
+card_references_3420:
+  id: 4549
   referer_id: 4139
   referee_key: company
   referee_id: 708
   ref_type: Q
   is_present:
-card_references_3418:
-  id: 4547
+card_references_3421:
+  id: 4550
   referer_id: 4139
   referee_key: image
   referee_id: 284
   ref_type: Q
   is_present:
-card_references_3419:
-  id: 4548
+card_references_3422:
+  id: 4551
   referer_id: 4139
   referee_key: answer
   referee_id: 705
   ref_type: Q
   is_present:
-card_references_3420:
-  id: 4549
+card_references_3423:
+  id: 4552
   referer_id: 4139
   referee_key: cached_count
   referee_id:

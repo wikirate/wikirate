@@ -967,42 +967,60 @@ card_counts_161:
   flag: 0
 card_counts_162:
   id: 162
-  left_id: 3953
-  right_id: 708
-  value: 0
+  left_id: 3163
+  right_id: 716
+  value: 1
   flag: 0
 card_counts_163:
   id: 163
-  left_id: 3176
+  left_id: 3170
   right_id: 716
   value: 1
   flag: 0
 card_counts_164:
   id: 164
-  left_id: 3956
-  right_id: 708
+  left_id: 3173
+  right_id: 716
   value: 1
   flag: 0
 card_counts_165:
   id: 165
-  left_id: 3835
-  right_id: 705
-  value: 1
+  left_id: 3953
+  right_id: 708
+  value: 3
   flag: 0
 card_counts_166:
   id: 166
-  left_id: 3835
-  right_id: 708
+  left_id: 3176
+  right_id: 716
   value: 1
   flag: 0
 card_counts_167:
   id: 167
+  left_id: 3956
+  right_id: 708
+  value: 1
+  flag: 0
+card_counts_168:
+  id: 168
+  left_id: 3835
+  right_id: 705
+  value: 1
+  flag: 0
+card_counts_169:
+  id: 169
+  left_id: 3835
+  right_id: 708
+  value: 1
+  flag: 0
+card_counts_170:
+  id: 170
   left_id: 4117
   right_id: 705
   value: 4
   flag: 0
-card_counts_168:
-  id: 168
+card_counts_171:
+  id: 171
   left_id: 4117
   right_id: 708
   value: 2
