@@ -3,12 +3,12 @@ NESTED_FIELD_CODENAMES = %i[
   research_policy unit range hybrid topic score formula rubric variables
 ].freeze
 
-COUNT_FIELD_CODENAMES = %i[record bookmarkers dataset company].freeze
+COUNT_FIELD_CODENAMES = %i[answer bookmarkers dataset company].freeze
 
 FIELD_LABELS = {
   topic: :topics,
   score: :scores,
-  record: :records,
+  answer: :answer,
   dataset: :datasets,
   company: :companies
 }.freeze
@@ -34,12 +34,12 @@ format :json do
     add_nested_fields_to_hash hash, view
     add_count_fields_to_hash hash
     add_calculations_to_hash hash
-    add_records_to_hash hash
+    add_answers_to_hash hash
     hash
   end
 
-  def add_records_to_hash hash
-    hash[:records_url] = path mark: card.record_card, format: :json
+  def add_answers_to_hash hash
+    hash[:answers_url] = path mark: card.answer_card, format: :json
   end
 
   def add_calculations_to_hash hash
@@ -76,8 +76,8 @@ format :csv do
     value_options: :semicolon_separated_values
   }.freeze
 
-  view :titled do # DEPRECATED.  +record csv replaces this
-    field_nest :record, view: :titled
+  view :titled do # DEPRECATED.  +answer csv replaces this
+    field_nest :answer, view: :titled
   end
 
   view :row do

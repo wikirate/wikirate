@@ -17,7 +17,7 @@ event :ensure_correct_value_type, :prepare_to_validate, on: :save, when: :typed_
   standardize_unknown_value
 end
 
-event :validate_record_value_type, :validate, on: :save, when: :typed_value? do
+event :validate_answer_value_type, :validate, on: :save, when: :typed_value? do
   errors.add :type, "not a valid +value card" unless type_code.match?(/value$/)
 end
 

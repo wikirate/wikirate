@@ -6,9 +6,9 @@ include_set Abstract::ListRefCachedCount,
             list_field: :company
 
 format do
-  # don't show record sort option, because that means "total records"
-  # users are likely to interpret records as meaning records for current company
+  # don't show answer sort option, because that means "total answers"
+  # users are likely to interpret answers as meaning answers for current company
   def sort_options
-    super.reject { |_k, v| v == :record }
+    super.reject { |_k, v| v == :answer }
   end
 end

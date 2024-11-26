@@ -1,22 +1,22 @@
-include_set Abstract::KnownRecords
+include_set Abstract::KnownAnswers
 
 # override
 def dataset_card
   self
 end
 
-# the space of possible metric records
+# the space of possible metric answers
 def num_possible
-  @num_possible ||= num_possible_records * year_multiplier
+  @num_possible ||= num_possible_answers * year_multiplier
 end
 
-# used to calculate possible records/records
+# used to calculate possible answers
 def year_multiplier
   @year_multiplier ||= years? ? num_years : 1
 end
 
-def num_possible_records
-  @num_possible_records ||= num_companies * num_metrics
+def num_possible_answers
+  @num_possible_answers ||= num_companies * num_metrics
 end
 
 def type_count type
@@ -37,11 +37,11 @@ def num_years
 end
 
 # def num_users
-#   @num_users ||= records.select(:creator_id).uniq.count
+#   @num_users ||= answer.select(:creator_id).uniq.count
 # end
 
-def num_records
-  @num_records ||= type_count :record
+def num_answers
+  @num_answers ||= type_count :answer
 end
 
 def num_data_subsets
@@ -49,7 +49,7 @@ def num_data_subsets
 end
 
 def units
-  years.present? ? "data points" : "record logs"
+  years.present? ? "data points" : "records"
 end
 
 format :html do

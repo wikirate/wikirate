@@ -1,9 +1,9 @@
 
 .metric-value {
   a {
-    color: $record-color;
+    color: $answer-color;
   }
-  color: $record-color;
+  color: $answer-color;
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -190,7 +190,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 
 .row.panel-default.metric-list {
   background: $purple-800;
- .record-log-row {
+ .record-row {
    background: $white;
    margin-bottom: 30px;
    border-top: 1px solid $border-color;
@@ -198,7 +198,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
  }
 }
 
-.record-unit {
+.answer-unit {
   font-size: 13px;
   color: $gray-600;
   padding: 5px;
@@ -236,7 +236,7 @@ fieldset > .RIGHT-Xmetric_type ul.pointer-radio-list > li {
 //.badge {
 //  &.known {
 //    color: $white;
-//    background-color: $record-color;
+//    background-color: $answer-color;
 //  }
 //  &.total {
 //    color: $white;
