@@ -4,7 +4,7 @@
       "name": "companies"
     },
     {
-      "name": "records",
+      "name": "answer",
       "transform": [
         {
           "type": "formula",
@@ -40,7 +40,7 @@
       "name":"xscale",
       "range":"width",
       "domain":{
-        "data":"records",
+        "data":"answer",
         "field":"value"
       },
       "type":"pow",
@@ -51,7 +51,7 @@
       "name":"yscale",
       "range":"height",
       "domain":{
-        "data":"records",
+        "data":"answer",
         "field": "label"
       },
       "type":"band",
@@ -61,7 +61,7 @@
       "name":"color",
       "type":"ordinal",
       "domain":{
-        "data":"records",
+        "data":"answer",
         "field":"highlight",
         "sort":true
       },
@@ -75,7 +75,7 @@
     {
       "type":"rect",
       "from":{
-        "data":"records"
+        "data":"answer"
       },
       "encode":{
         "enter":{

@@ -14,7 +14,7 @@ format :html do
   def clean_ten_scale value
     if value.number?
       ten_scale_decimal value.to_f
-    elsif ::Record.unknown? value
+    elsif ::Answer.unknown? value
       "?"
     else
       "!"

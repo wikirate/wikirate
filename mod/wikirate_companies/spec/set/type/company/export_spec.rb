@@ -33,7 +33,7 @@ RSpec.describe Card::Set::Type::Company::Export do
             "open_corporates_id" => a_hash_including(id: nil),
             "alias" => a_hash_including(id: nil),
             "headquarters" => a_hash_including(id: nil),
-            records_url: "http://wikirate.org/Samsung+Record.json"
+            answer_url: "http://wikirate.org/Samsung+Answer.json"
           )
       end
     end

@@ -54,31 +54,31 @@ RSpec.describe Card::Set::MetricType::Relation do
     let(:metric_card) { Card[metric] }
     let(:company) { "SPECTRE" }
 
-    def delete_records
+    def delete_answers
       Card::Env.with_params company: company do
         metric_card.update trigger: :delete_relationships
       end
     end
 
     it "fails without admin permission" do
-      delete_records
-      expect(metric_card.errors).to have_key(:records)
+      delete_answers
+      expect(metric_card.errors).to have_key(:answer)
     end
 
-    it "deletes subject records", as_bot: true do
-      delete_records
+    it "deletes subject answer", as_bot: true do
+      delete_answers
       expect(Card.fetch(metric, company)).not_to be_real
     end
 
-    it "deletes object records", as_bot: true do
-      delete_records
+    it "deletes object answer", as_bot: true do
+      delete_answers
       expect(Card["#{metric}+Death Star+1977+#{company}"]).to be_nil
     end
 
-    it "does not delete unrelated object records", as_bot: true do
-      delete_records
-      unrelated_record = Card["#{metric}+Death Star+1977+Los Pollos Hermanos"]
-      expect(unrelated_record).to be_instance_of(Card)
+    it "does not delete unrelated object answer", as_bot: true do
+      delete_answers
+      unrelated_answer = Card["#{metric}+Death Star+1977+Los Pollos Hermanos"]
+      expect(unrelated_answer).to be_instance_of(Card)
     end
   end
 

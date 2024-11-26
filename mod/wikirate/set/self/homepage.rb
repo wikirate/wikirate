@@ -58,7 +58,7 @@ format :html do
   end
 
   def count_categories
-    %i[company metric record source]
+    %i[company metric answer source]
   end
 
   def delta_metric_card
@@ -84,10 +84,10 @@ format :html do
     "#{count} #{:metric.cardname.pluralize count}"
   end
 
-  def delta_records
+  def delta_answers
     return [] unless (metric = delta_metric_card)
 
-    ma = metric.record_card
-    RecordQuery.new(ma.query_hash.merge(latest: true), { random: "" }, limit: 10).run
+    ma = metric.answer_card
+    AnswerQuery.new(ma.query_hash.merge(latest: true), { random: "" }, limit: 10).run
   end
 end

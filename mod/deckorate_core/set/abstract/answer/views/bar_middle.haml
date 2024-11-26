@@ -1,0 +1,6 @@
+.answer-value-and-legend.d-flex.justify-content-between.w-100
+  .ellipsis{ title: card.value }
+    = link_to_card card, nest(card.value_card, view: :pretty)
+    %span.text-muted.small{ title: card.format(:text).render_legend }
+      = render_legend
+= render_credit optional: :show

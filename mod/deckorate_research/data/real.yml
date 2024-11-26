@@ -32,6 +32,6 @@
   :fields:
     :description: Data point's value is incorrect and/or not supported by source
 
-- :name: Records with check requests
+- :name: Answers with check requests
   :type: :search_type
-  :content: '{ "type": "Record", "right_plus": ["checked_by", { "eq": "request" }] }'
+  :content: '{ "type": "Answer", "right_plus": ["checked_by", { "eq": "request" }] }'

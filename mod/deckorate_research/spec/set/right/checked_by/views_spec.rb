@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::Right::CheckedBy::Views do
-  let(:record_card) { Card["joe_user+RM+death_star+1977"] }
+  let(:answer_card) { Card["joe_user+RM+death_star+1977"] }
   let(:checked_by_card) { Card["joe_user+RM+death_star+1977"].checked_by_card }
 
   def with_badge binding, num
@@ -7,7 +7,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
   end
 
   def check_value
-    check_record record_card
+    check_answer answer_card
   end
 
   describe "view :core" do
@@ -31,7 +31,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
       context "when value was updated" do
         before do
           with_user "John" do
-            record_card.value_card.update content: "200"
+            answer_card.value_card.update content: "200"
           end
         end
 
@@ -71,7 +71,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
         expect(core).to have_tag :div do
           with_badge self, 1
           with_tag :a, "John"
-          with_tag :a, "Un-confirm Record"
+          with_tag :a, "Un-confirm Answer"
         end
       end
 
@@ -98,7 +98,7 @@ RSpec.describe Card::Set::Right::CheckedBy::Views do
           with_badge self, 4
           with_tag :a, "Joe Admin"
           with_text /John, Joe User, Joe Camel, and Joe Admin/
-          with_tag :a, "Un-confirm Record"
+          with_tag :a, "Un-confirm Answer"
         end
       end
     end

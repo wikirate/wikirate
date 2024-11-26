@@ -12,9 +12,9 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueOptions do
     expect(card.item_names).to contain_exactly "A+", "+B"
   end
 
-  it "doesn't allow removal of options with records" do
+  it "doesn't allow removal of options with answer" do
     options_card = update_options "Fred+dinosaurlabor", "[[yes]]\n[[maybe]]"
-    expect(options_card).to be_invalid.because_of content: include("records invalid")
+    expect(options_card).to be_invalid.because_of content: include("answer invalid")
   end
 
   it "doesn't allow commas in multi-category options" do

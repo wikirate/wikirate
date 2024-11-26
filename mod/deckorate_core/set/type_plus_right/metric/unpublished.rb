@@ -7,11 +7,11 @@ delegate :unpublished?, :published?, :calculated?, to: :metric_card
 
 assign_type :toggle
 
-event :toggle_record_publication, :finalize, changed: :content do
+event :toggle_answer_publication, :finalize, changed: :content do
   if content == "1"
-    unpublish_all_records
+    unpublish_all_answers
   else
-    publish_unflagged_records
+    publish_unflagged_answers
   end
 end
 
@@ -33,19 +33,19 @@ def publish_inputs?
   published? && calculated? && !metric_card.trash
 end
 
-def records
-  ::Record.where metric_id: left_id
+def answer
+  ::Answer.where metric_id: left_id
 end
 
-def unpublish_all_records
-  records.update_all unpublished: true
+def unpublish_all_answers
+  answer.update_all unpublished: true
 end
 
-def publish_unflagged_records
-  records.where(
+def publish_unflagged_answers
+  answer.where(
     "NOT EXISTS (
       SELECT * from cards
-      WHERE left_id = records.record_id
+      WHERE left_id = answer.answer_id
       AND right_id = #{:unpublished.card_id}
       AND db_content= '1'
     )"

@@ -1,5 +1,5 @@
 format :html do
-  delegate :record, :allowed_to_check?, :checked?, :user_checked?,
+  delegate :answer, :allowed_to_check?, :checked?, :user_checked?,
            :checkers, :check_requester, :user, :checker_count, to: :card
 
   view(:core) { card_form(:update) { haml :core } }
@@ -11,7 +11,7 @@ format :html do
   end
 
   def verb
-    record.editor_id ? "last updated" : "created"
+    answer.editor_id ? "last updated" : "created"
   end
 
   def checkers_list

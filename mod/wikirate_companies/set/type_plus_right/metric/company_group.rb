@@ -4,8 +4,8 @@ def ok_item_types
   :company_group
 end
 
-def inapplicable_records
-  researched_records.where.not company_id: company_ids
+def inapplicable_answers
+  researched_answers.where.not company_id: company_ids
 end
 
 def company_ids

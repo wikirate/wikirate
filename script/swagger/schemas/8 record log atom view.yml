@@ -1,4 +1,4 @@
-record_log_atom_view:
+record_atom_view:
   type: object
   properties:
     id:
@@ -12,4 +12,4 @@ record_log_atom_view:
       example: https://wikirate.org/Clean_Clothes_Campaign+Worker_Empowerment+Adidas_AG.json
     type:
       type: string
-      example: Record
+      example: Answer

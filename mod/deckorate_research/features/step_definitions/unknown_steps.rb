@@ -1,5 +1,5 @@
 
-When(/^I edit record of "([^"]*)" for "([^"]*)" for "([^"]*)"$/) do |m, c, y|
+When(/^I edit answer of "([^"]*)" for "([^"]*)" for "([^"]*)"$/) do |m, c, y|
   visit "#{m}+#{c}+#{y}?view=edit"
 end
 
@@ -8,11 +8,11 @@ Then(/^Unknown should not be checked$/) do
 end
 
 Then(/^value select field should be empty$/) do
-  expect(record_value).to be_empty
+  expect(answer_value).to be_empty
 end
 
 Then(/^value input field should be empty$/) do
-  expect(record_value).to be_empty
+  expect(answer_value).to be_empty
 end
 
 Then(/^value input field should not be disabled$/) do
@@ -23,7 +23,7 @@ Then(/^value select field should not be disabled$/) do
   expect(value_select_field).not_to be_disabled
 end
 
-def record_value
+def answer_value
   page.execute_script "$('.card-form').setContentFieldsFromMap()"
   page.evaluate_script %Q{$("[name='card[subcards][+values][content]']").val()}
 end

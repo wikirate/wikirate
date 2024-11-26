@@ -1,7 +1,7 @@
 class MoreAnswerFieldsRequired < Cardio::Migration::Schema
   REQUIRED_ANSWER_COLUMNS =
     %i[metric_id designer_id company_id metric_type_id year
-       metric_name company_name record_name creator_id]
+       metric_name company_name answer_name creator_id]
 
   REQUIRED_RELATIONSHIP_COLUMNS =
     %i[metric_id inverse_metric_id subject_company_id object_company_id year

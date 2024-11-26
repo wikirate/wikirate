@@ -15,10 +15,10 @@ RSpec.describe GraphQL::Types::Metric do
 
   let(:metric_name) { "Jedi+disturbances in the force" }
 
-  describe "metric: records field" do
-    it "returns records pertaining to the metric" do
-      query = query_string metric_name, "records { metric { id } }"
-      expect(result(query)["records"].first["metric"]["id"]).to eq(metric_name.card_id)
+  describe "metric: answer field" do
+    it "returns answer pertaining to the metric" do
+      query = query_string metric_name, "answer { metric { id } }"
+      expect(result(query)["answer"].first["metric"]["id"]).to eq(metric_name.card_id)
     end
   end
 

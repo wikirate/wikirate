@@ -6,8 +6,8 @@ require "csv"
 
 FILENAME = File.expand_path "script/single-use/data/wrong_year3.csv"
 
-# For correcting record years
-module RecordFixer
+# For correcting answer years
+module AnswerFixer
   class << self
     def csv
       CSV.new raw, headers: true
@@ -43,7 +43,7 @@ module RecordFixer
     def run!
       csv.each do |r|
         next unless
-          (card = card_ok r["Record ID"]) &&
+          (card = card_ok r["Answer ID"]) &&
           (year = year_ok r["Correct year"], card) &&
           (name = name_ok year, card)
         puts "renaming: #{card.name}\n      to: #{name}"
@@ -53,5 +53,5 @@ module RecordFixer
   end
 end
 
-RecordFixer.run!
+AnswerFixer.run!
 puts "done."

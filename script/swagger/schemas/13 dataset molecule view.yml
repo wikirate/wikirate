@@ -26,9 +26,9 @@ data_set_molecule_view:
     html_url:
       type: string
       example: "https://wikirate.org/Tea_Transparency_Tracker"
-    records_url:
+    answer_url:
       type: string
-      example: "https://wikirate.org/Tea_Transparency_Tracker+Record.json"
+      example: "https://wikirate.org/Tea_Transparency_Tracker+Answer.json"
     metrics_url:
       type: string
       example: "https://wikirate.org/Tea_Transparency_Tracker+Metric.json"

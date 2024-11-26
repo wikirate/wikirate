@@ -33,11 +33,11 @@ RSpec.describe Card::Set::MetricType::Rating do
   end
 
   def rating_value company="Samsung", year="2014"
-    rating_record(company, year).value
+    rating_answer(company, year).value
   end
 
-  def rating_record company="Samsung", year="2014"
-    Record.where(metric_id: "Joe User+#{@metric_title}".card_id,
+  def rating_answer company="Samsung", year="2014"
+    Answer.where(metric_id: "Joe User+#{@metric_title}".card_id,
                  company_id: company.card_id,
                  year: year.to_i).take
   end
@@ -56,7 +56,7 @@ RSpec.describe Card::Set::MetricType::Rating do
       expect(rating_value).to eq("8.0")
       expect(rating_value("Samsung", "2015")).to eq("3.8")
       expect(rating_value("Sony_Corporation")).to eq("1.4")
-      expect(rating_record("Death_Star", "1977")).to be_falsey
+      expect(rating_answer("Death_Star", "1977")).to be_falsey
     end
 
     context "when variables/formula change" do
@@ -73,7 +73,7 @@ RSpec.describe Card::Set::MetricType::Rating do
         update_weights "Joe User+researched number 1" => 40,
                        "Joe User+researched number 2" => 40,
                        "Joe User+researched number 3" => 20
-        expect(rating_record("Sony_Corporation", "2014")).to be_falsey
+        expect(rating_answer("Sony_Corporation", "2014")).to be_falsey
       end
       it "adds complete rating value" do
         # Death Star has only a value for +researched number 1
@@ -94,17 +94,17 @@ RSpec.describe Card::Set::MetricType::Rating do
         Card::Auth.as_bot do
           Card["Joe User+researched number 1+Samsung+2014"].delete
         end
-        expect(rating_record).to be_falsey
+        expect(rating_answer).to be_falsey
       end
     end
 
     context "when input metric value is missing" do
       it "doesn't create rating value" do
-        expect(rating_record("Death Star", "1977")).to be_falsey
+        expect(rating_answer("Death Star", "1977")).to be_falsey
       end
       it "creates rating value if missing value is added" do
         Card::Auth.as_bot do
-          Card["Joe User+researched number 2"].create_record(
+          Card["Joe User+researched number 2"].create_answer(
             company: "Death Star",
             year: "1977",
             value: "2",
@@ -139,7 +139,7 @@ RSpec.describe Card::Set::MetricType::Rating do
       expect(rating_value).to eq("8.0")
       expect(rating_value("Samsung", "2015")).to eq("3.8")
       expect(rating_value("Sony_Corporation")).to eq("1.4")
-      expect(rating_record("Death_Star", "1977")).to be_falsey
+      expect(rating_answer("Death_Star", "1977")).to be_falsey
     end
   end
 

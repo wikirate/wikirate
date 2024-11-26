@@ -77,8 +77,8 @@ paths:
       - Wikirate
       summary: a company
       description: |-
-        Basic company details. Records for this company can be found via its
-        `records_url`."
+        Basic company details. Answers for this company can be found via its
+        `answer_url`."
       operationId: read8
       parameters:
       - $ref: '#/components/parameters/company'
@@ -120,24 +120,24 @@ paths:
                       type: string
                     example:
                       - California (United States)
-                  records_url:
+                  answer_url:
                     type: string
-                    example: https://Wikirate.org/Apple_Inc+records.json
+                    example: https://Wikirate.org/Apple_Inc+answer.json
         404:
           $ref: '#/components/responses/404'
-  /{company}+Record:
+  /{company}+Answer:
     get:
       tags:
       - Wikirate
-      summary: Records for company
+      summary: Answers for company
       description: |-
-        Record names follow the pattern `{Metric}+{Company}+{Year}`.
+        Answer names follow the pattern `{Metric}+{Company}+{Year}`.
 
         Note that request URLS can be generated on company pages on Wikirate.org.
       operationId: read9
       parameters:
       - $ref: '#/components/parameters/company'
-      - $ref: '#/components/parameters/record_filter'
+      - $ref: '#/components/parameters/answer_filter'
       responses:
         200:
           $ref: '#/components/responses/200'
@@ -187,7 +187,7 @@ paths:
       tags:
       - Wikirate
       summary: "a metric"
-      description: "Basic metric details. Records for this metric can be found via its `records_url`."
+      description: "Basic metric details. Answers for this metric can be found via its `answer_url`."
       operationId: read11
       parameters:
       - $ref: '#/components/parameters/metric'
@@ -198,19 +198,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/metric_atom'
-  /{metric}+Record:
+  /{metric}+Answer:
     get:
       tags:
       - Wikirate
-      summary: "Records for metric"
+      summary: "Answers for metric"
       description: |-
-        Record names follow the pattern `{Metric}+{Company}+{Year}`.
+        Answer names follow the pattern `{Metric}+{Company}+{Year}`.
 
         Note that request URLS can be generated on metric pages on Wikirate.org.
       operationId: read12
       parameters:
       - $ref: '#/components/parameters/metric'
-      - $ref: '#/components/parameters/record_filter'
+      - $ref: '#/components/parameters/answer_filter'
       responses:
         200:
           $ref: '#/components/responses/200'
@@ -220,8 +220,8 @@ paths:
     get:
       tags:
       - Wikirate
-      summary: "A record for a metric/company"
-      description: "A record contains all of a company's records to a given metric (for all years). Records are included under `items`."
+      summary: "A answer for a metric/company"
+      description: "A answer contains all of a company's answer to a given metric (for all years). Answers are included under `items`."
       operationId: read13
       parameters:
       - $ref: '#/components/parameters/metric'
@@ -232,19 +232,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/record'
+                $ref: '#/components/schemas/answer'
   /{metric}+{company}+{year}:
     put:
       tags:
       - Wikirate
-      summary: "update an record card"
+      summary: "update an answer card"
       description: |-
-        Update the record for a specific metric company and year.
+        Update the answer for a specific metric company and year.
       parameters:
       - $ref: '#/components/parameters/metric'
       - $ref: '#/components/parameters/company'
       - $ref: '#/components/parameters/year'
-      - $ref: '#/components/parameters/record_subcards'
+      - $ref: '#/components/parameters/answer_subcards'
       responses:
         302:
           $ref: '#/components/responses/302'
@@ -253,8 +253,8 @@ paths:
     get:
       tags:
       - "Wikirate"
-      summary: "A record for a metric/company/year"
-      description: "A record includes a value and various bits of metadata, including sources, discussions, and verification. For relation metrics, it also includes details about related companies under `items`"
+      summary: "A answer for a metric/company/year"
+      description: "A answer includes a value and various bits of metadata, including sources, discussions, and verification. For relation metrics, it also includes details about related companies under `items`"
       operationId: read14
       parameters:
       - $ref: '#/components/parameters/metric'
@@ -266,13 +266,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/record'
+                $ref: '#/components/schemas/answer'
   /{metric}+{company}+{year}+{company}:
     get:
       tags:
       - Wikirate
       summary: "company-to-company relationship"
-      description: "Relationship metrics ask questions about relationships between companies. Each record for these metrics is comprised of one or more relationships, each describing how two specific companies relate"
+      description: "Relationship metrics ask questions about relationships between companies. Each answer for these metrics is comprised of one or more relationships, each describing how two specific companies relate"
       operationId: read15
       parameters:
       - $ref: '#/components/parameters/metric'
@@ -298,16 +298,16 @@ paths:
       responses:
         302:
           $ref: '#/components/responses/302'
-  "/ #card[type]=Record":
+  "/ #card[type]=Answer":
     post:
       tags:
       - Wikirate
-      summary: "create an Record card"
+      summary: "create an Answer card"
       description: |-
-        Create a new record to a specified metric, company, and year.
+        Create a new answer to a specified metric, company, and year.
       parameters:
-      - $ref: '#/components/parameters/record_name'
-      - $ref: '#/components/parameters/record_subcards'
+      - $ref: '#/components/parameters/answer_name'
+      - $ref: '#/components/parameters/answer_subcards'
       responses:
         302:
           $ref: '#/components/responses/302'
@@ -317,7 +317,7 @@ paths:
       - Wikirate
       summary: "create a Source card"
       description: |-
-        Create a source record that can be cited by records.
+        Create a source answer that can be cited by answer.
       parameters:
       - $ref: '#/components/parameters/source_subcards'
       responses:
@@ -396,7 +396,7 @@ components:
 
         - `card[subcards][+wikipedia]=MyCompanyWikipediaName`
         - `card[subcards][+open_corporates]=MyCompanyOpenCorporatesEntityID`
-    record_filter:
+    answer_filter:
       name: filter
       in: query
       required: false
@@ -405,15 +405,15 @@ components:
         eg `filter[status]=known`.
 
         - **status:** all, exists (researched), known, unknown, or none (not researched)
-        - **year:** record year
-        - **value:** record value to match, OR a hash with `to` and/or `from` keys to
+        - **year:** answer year
+        - **value:** answer value to match, OR a hash with `to` and/or `from` keys to
           represent a range (eg `filter[value][from]=5`
-        - **updated:** today, week, or month (returns records updated in that time range)
-        - **source:** source card name(s). restrict to records citing source
-        - **project:** project card name(s). restrict to records connected to project
+        - **updated:** today, week, or month (returns answer updated in that time range)
+        - **source:** source card name(s). restrict to answer citing source
+        - **project:** project card name(s). restrict to answer connected to project
         - **check:** Completed, Requested, or Neither
 
-        {company}+Record only:
+        {company}+Answer only:
         - **metric_name:** string to match (or exact name in quotes)
         - **metric_id:** numerical_id
         - **metric_type:** name of "metric type" card (Researched, Relation, Formula,
@@ -421,7 +421,7 @@ components:
         - **topic:** topic card name(s). restrict to metrics with topic
         - **research policy:** name of research policy card
 
-        {metric}+Record only:
+        {metric}+Answer only:
         - **company_name:** string to match (or exact name in quotes)
         - **company_id:** numerical id
         - **outliers:** only, exclude
@@ -434,30 +434,30 @@ components:
         items:
           type: string
 
-    record_name:
+    answer_name:
       name: card[name]
       in: query
       required: true
       description:
-        The name of an record follows the pattern Metric+Company+Year.  (Note,
+        The name of an answer follows the pattern Metric+Company+Year.  (Note,
         the name of a company follows the pattern Designer+Title).
 
         Any piece of the name (or the entire name ) can be substituted with its numerical
         id in the form of `~INTEGER`.  Eg, if your metric's id is 867 and your company's
-        id is 5309, then you can address the record as ~867+~5309+1981
+        id is 5309, then you can address the answer as ~867+~5309+1981
       schema:
         type: string
         example:
           PayScale+CEO to Worker pay+Apple Inc+2010
 
-    record_subcards:
+    answer_subcards:
       name: card[subcards]
       in: query
       description: |-
-        An record can have several subcards, including:
+        An answer can have several subcards, including:
 
-        - **+:value**: the record value
-        - **+:source**: (required) list of source card names separated by line breaks.  All records
+        - **+:value**: the answer value
+        - **+:source**: (required) list of source card names separated by line breaks.  All answer
           must have valid sources.
         - **+:checked_by**: value can be a list of names separated by line breaks or
           `[[request]]` to indicate that a check is requested.
@@ -555,9 +555,9 @@ components:
         title:
           type: string
           example: CEO to Worker pay
-        records_url:
+        answer_url:
           type: string
-          example: "https://Wikirate.org/PayScale+CEO_to_Worker_pay+record.json"
+          example: "https://Wikirate.org/PayScale+CEO_to_Worker_pay+answer.json"
         ancestors:
           type: array
           items:
@@ -587,7 +587,7 @@ components:
         question:
           type: string
 
-    "record":
+    "answer":
       type: object
       properties:
         id:
@@ -604,17 +604,17 @@ components:
           example: "https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc"
         type:
           type: string
-          example: Record
+          example: Answer
         items:
-          description: records
+          description: answer
           type: array
           items:
-            $ref: '#/components/schemas/record'
+            $ref: '#/components/schemas/answer'
         ancestors:
           type: array
           items:
             $ref: '#/components/schemas/atom%20view'
-    "record":
+    "answer":
       type: object
       properties:
         id:
@@ -631,7 +631,7 @@ components:
           example: "https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc+2013"
         type:
           type: string
-          example: "Record"
+          example: "Answer"
         metric:
           type: string
           example:  "PayScale+CEO to Worker pay"
@@ -644,7 +644,7 @@ components:
         value:
           type: string
           example:  "43"
-        record_url:
+        answer_url:
           type: string
           example:  "https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json"
         items:
