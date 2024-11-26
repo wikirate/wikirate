@@ -2,18 +2,18 @@ LABELS = { known: "Known", unknown: "Unknown", none: "Not Researched",
            total: "Total" }.freeze
 
 COUNT_FIELDS = {
-  "answer.company_id": :company,
-  "answer.metric_id": :metric,
-  "answer.year": :year,
-  "answer.id": :answer
+  "answers.company_id": :company,
+  "answers.metric_id": :metric,
+  "answers.year": :year,
+  "answers.id": :answer
 }.freeze
 
 DEEP_COUNT_FIELDS = {
   "designer_id": :designer,
   "metrics.metric_type_id": :metric_type,
   "metrics.value_type_id": :value_type,
-  "answer.verification": :verification,
-  "answer.route": :route
+  "answers.verification": :verification,
+  "answers.route": :route
 }.freeze
 
 format do
@@ -75,7 +75,7 @@ format do
   end
 
   def count_unknowns
-    research_count_query.where("answer.value = 'Unknown'").count
+    research_count_query.where("answers.value = 'Unknown'").count
   end
 
   def all_answer?

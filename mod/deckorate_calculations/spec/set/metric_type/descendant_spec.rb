@@ -27,7 +27,7 @@ RSpec.describe Card::Set::MetricType::Descendant do
     let(:metric_name) { "Joe User+descendant 1" }
     let(:metric) { Card[metric_name] }
 
-    context "with answer" do
+    context "with answers" do
       it "uses first ancestor when both are present" do
         expect(inherited_value("Samsung", "2014")).to eq("5")
       end

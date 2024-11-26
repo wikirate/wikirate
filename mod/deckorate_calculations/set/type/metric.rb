@@ -92,7 +92,7 @@ def formula_metrics
 end
 
 def update_latest company_id=nil
-  rel = company_id ? answer.where(company_id: company_id) : answer
+  rel = company_id ? answers.where(company_id: company_id) : answers
   rel.update_all latest: false
   latest_rel(rel).pluck(:id).each_slice(25_000) do |ids|
     ::Answer.where("id in (#{ids.join ', '})").update_all latest: true

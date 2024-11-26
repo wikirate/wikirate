@@ -10,7 +10,7 @@ class Answer
       new_latest
     end
 
-    # other answer in same record
+    # other answers in same record
     def latest_context
       self.company_id ||= fetch_company_id
       self.metric_id ||= fetch_metric_id

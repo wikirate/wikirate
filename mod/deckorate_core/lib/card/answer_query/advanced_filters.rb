@@ -2,7 +2,7 @@ class Card
   class AnswerQuery
     # conditions and condition support methods for non-standard fields.
     module AdvancedFilters
-      # filter for companies with answer that meet the criteria
+      # filter for companies with answers that meet the criteria
       # @param value [Hash (or Array of Hashes)] each hash represents one constraint.
       #   companies much match all constraints.
       # @option value [Integer] metric_id
@@ -30,7 +30,7 @@ class Card
       # def filter_by_answer value
       #   return unless (metric_id = value[:metric_id]&.to_i)
       #   exists = "SELECT * from answers AS a2 " \
-      #     "WHERE answer.company_id = a2.company_id " \
+      #     "WHERE answers.company_id = a2.company_id " \
       #     "AND a2.metric_id = ?"
       #   @conditions << "EXISTS (#{exists})"
       #   @values << metric_id
@@ -54,7 +54,7 @@ class Card
         return unless (m = metric_id&.card)
 
         exists = "SELECT * FROM relationships AS r " \
-          "WHERE answer.company_id = r.#{m.company_id_field} " \
+          "WHERE answers.company_id = r.#{m.company_id_field} " \
           "AND r.#{m.metric_lookup_field} = ?"
 
         @values << metric_id

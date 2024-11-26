@@ -52,7 +52,7 @@ format :json do
     each_answer_with_hash do |answer, hash|
       hash[:companies][answer.company_id] ||= answer.company_name
       hash[:metrics][answer.metric_id] ||= answer.metric_name
-      hash[:answer][answer.answer.flex_id] ||= answer.answer.compact_json
+      hash[:answers][answer.answer.flex_id] ||= answer.answer.compact_json
     end
   end
 
@@ -79,7 +79,7 @@ format :json do
     {
       companies: render_company_list,
       metrics: render_metric_list,
-      answer: render_answer_list
+      answers: render_answer_list
     }
   end
 
@@ -106,14 +106,14 @@ format :json do
   end
 
   def answer_array hash
-    hash[:answer] = hash[:answer].each_with_object([]) do |(key, val), array|
+    hash[:answers] = hash[:answers].each_with_object([]) do |(key, val), array|
       array << val.merge(id: key)
     end
   end
 
   def each_answer_with_hash
     search_with_params.each_with_object(
-      companies: {}, metrics: {}, answer: {}
+      companies: {}, metrics: {}, answers: {}
     ) do |answer, hash|
       yield answer, hash
     end

@@ -1,5 +1,5 @@
 class Answer
-  # Methods shared by answer and relationships
+  # Methods shared by answers and relationships
   module AndRelationship
     def no_refresh
       %w[id imported] # imported is deprecated

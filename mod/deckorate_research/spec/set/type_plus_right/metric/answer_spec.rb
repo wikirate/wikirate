@@ -72,7 +72,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Answer do
             with_tag "._open-filters-button"
           end
           is_expected.to have_tag ".sorting-header"
-          is_expected.to have_tag ".grouped-answer-log-list"
+          is_expected.to have_tag ".grouped-record-list"
           is_expected.not_to have_tag ".answer-search-chart"
         end
       end

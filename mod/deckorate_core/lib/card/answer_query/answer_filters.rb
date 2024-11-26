@@ -52,7 +52,7 @@ class Card
         #
         # Card.joins(actions: :act).where(
         #   "card_acts.actor_id" => whom.card_id,
-        #   left_id: "answer.id",
+        #   left_id: "answers.id",
         #   right_id: Card::ValueID
         # ).arel.exists.to_sql
         add_condition "EXISTS (select * from cards c " \
@@ -60,7 +60,7 @@ class Card
                         "JOIN card_acts a on an.card_act_id = a.id " \
                         "WHERE a.actor_id in (?) " \
                         "AND c.right_id = #{Card::ValueID} " \
-                        "AND c.left_id = answer.answer_id) ",
+                        "AND c.left_id = answers.answer_id) ",
                       updater_ids(value)
       end
 

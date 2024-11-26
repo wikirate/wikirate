@@ -17,8 +17,8 @@ def virtual_value_card lookup_value
                              new: { content: content, type_code: value_cardtype_code }
 end
 
-# since real answer require real values, it is assumed that new answer
-# (and only new answer) will have new values
+# since real answers require real values, it is assumed that new answers
+# (and only new answers) will have new values
 def fetch_value_card
   fetch :value, new: new_value_card_args
 end

@@ -1,5 +1,5 @@
 class Answer
-  # Methods to handle answer that exist only in the the answer table
+  # Methods to handle answers that exist only in the the answers table
   # and don't have a card. Used for calculated answer.
   module CardlessAnswers
     def card_without_answer_id name=nil, val=nil

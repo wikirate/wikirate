@@ -10,7 +10,7 @@ def calculator variant=:standard
                        companies: company_group_card.company_ids
 end
 
-# update all answer of this metric and the answer of all metrics that
+# update all answers of this metric and the answers of all metrics that
 # depend on this one
 def calculate_answers args={}
   calculate_direct_answers args
@@ -28,7 +28,7 @@ def calculate_direct_answers args={}
 end
 
 # USE WITH CAUTION
-# This method works DOWN the dependency tree and recalculates answer. It's not a
+# This method works DOWN the dependency tree and recalculates answers. It's not a
 # typical pattern and was written as a bit of hail mary attempt to fix some confusing
 # results. But it can be very computationally expensive, and if things are working
 # properly it should never be necessary.
@@ -76,7 +76,7 @@ def formula_field?
   field? formula_field
 end
 
-# metric's answer depends ONLY on other answer for the same company and year
+# metric's answers depend ONLY on other answers for the same company and year
 def orthodox_tree?
   !unorthodox_tree?
 end

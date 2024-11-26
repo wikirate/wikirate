@@ -2,14 +2,14 @@ include_set Abstract::MetricChild, generation: 1
 
 delegate :researchable?, :calculated?, to: :metric_card
 
-event :verify_no_current_answer_inapplicable, :validate,
+event :verify_no_current_answers_inapplicable, :validate,
       on: :save, changed: :content, when: :researchable? do
 
   return if errors[:content].any?
   return unless content.present? && metric_id && inapplicable_answers.any?
 
   errors.add :content, "Invalid #{name.right} applicability restriction." \
-    "This change would disallow existing researched answer."
+    "This change would disallow existing researched answers."
 end
 
 event :enforce_applicability_to_calculations, :integrate_with_delay,

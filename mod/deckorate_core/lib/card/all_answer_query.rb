@@ -1,5 +1,5 @@
 class Card
-  # Query for both researched AND NOT RESEARCHED answer
+  # Query for both researched AND NOT RESEARCHED answers
   class AllAnswerQuery < AnswerQuery
     include AllFiltering
     include AllSorting
@@ -34,7 +34,7 @@ class Card
     end
 
     # Currently these queries only work with a fixed company or metric
-    # it is not yet possible to handle not-researched answer for multiple companies and
+    # it is not yet possible to handle not-researched answers for multiple companies and
     # metrics in one query
     def partner
       @partner ||=
@@ -49,8 +49,8 @@ class Card
 
     # This left join is the essence of the search strategy.
     def partner_answer_join
-      "LEFT JOIN answer " \
-      "ON #{partner}.id = answer.#{partner}_id AND #{lookup_conditions}"
+      "LEFT JOIN answers " \
+      "ON #{partner}.id = answers.#{partner}_id AND #{lookup_conditions}"
     end
 
     def partner_where

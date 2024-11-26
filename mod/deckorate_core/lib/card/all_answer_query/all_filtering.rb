@@ -1,7 +1,7 @@
 class Card
   class AllAnswerQuery
     # handles the application of filters to the cards table
-    # (as opposed to the answer lookup table.
+    # (as opposed to the answers lookup table.
     # that handling is in AnswerQuery::Filtering)
     module AllFiltering
       PARTNER_FILTER_QUERY = {
@@ -54,7 +54,7 @@ class Card
       end
 
       def filter_by_company_filter table, condition_method, value
-        @card_joins << "JOIN answer AS #{table} ON #{partner}.id = #{table}.company_id"
+        @card_joins << "JOIN answers AS #{table} ON #{partner}.id = #{table}.company_id"
         add_card_condition CompanyFilterCql.send(condition_method), Array.wrap(value)
       end
 
@@ -107,7 +107,7 @@ class Card
       end
 
       def not_researched!
-        @card_conditions << "answer.id is null"
+        @card_conditions << "answers.id is null"
       end
     end
   end

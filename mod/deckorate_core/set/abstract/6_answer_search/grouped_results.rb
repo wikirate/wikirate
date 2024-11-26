@@ -1,7 +1,7 @@
-GROUP_SELECT = { answer_count: "count(distinct(answer.id))",
-                 year: "max(answer.year)",
-                 value: "max(answer.value)",
-                 year_count: "count(distinct(answer.year))" }.freeze
+GROUP_SELECT = { answer_count: "count(distinct(answers.id))",
+                 year: "max(answers.year)",
+                 value: "max(answers.value)",
+                 year_count: "count(distinct(answers.year))" }.freeze
 
 GROUP_SELECT_KEYS = {
   company: %i[answer_count year_count],
@@ -72,7 +72,7 @@ format :html do
   end
 
   def group_by_fields_string
-    group_by_fields.map { |fld| "answer.#{fld}" }.join ", "
+    group_by_fields.map { |fld| "answers.#{fld}" }.join ", "
   end
 
   def group_by_query

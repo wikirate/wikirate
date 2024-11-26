@@ -38,7 +38,7 @@ class Card
         # FIND_IN_SET only works with comma separation (no spaces).
         # So we have to use REPLACE to transform the category into what is expected
         constraints = array.map do |val|
-          condition_sql ["FIND_IN_SET(?, REPLACE(answer.value, ', ', ','))", val]
+          condition_sql ["FIND_IN_SET(?, REPLACE(answers.value, ', ', ','))", val]
         end
         @conditions << "(#{constraints.join ' OR '})"
       end

@@ -41,7 +41,7 @@ class Card
         filter :metric_id, dependees.map(&:id)
         company_answer_join :dependee
         @conditions <<
-          "dependee.metric_id = #{metric.id} and dependee.year = answer.year"
+          "dependee.metric_id = #{metric.id} and dependee.year = answers.year"
       end
 
       private

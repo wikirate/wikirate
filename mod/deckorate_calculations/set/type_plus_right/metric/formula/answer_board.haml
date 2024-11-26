@@ -2,13 +2,13 @@
   .answer-board-help-text
     %p
       The
-      %strong Total answer
+      %strong Total answers
       are determined by the variable metrics, their options, and the data currently
       available.
 
     %p
       %strong Unknown via options
-      refers to answer that return "Unknown" before even reaching the formula due to
+      refers to answers that return "Unknown" before even reaching the formula due to
       the way the variable options are configured. For example, the default options
       configuration is to return an "Unknown" answer if
       %em any
@@ -17,7 +17,7 @@
     %p
       To test the formula, we take a sample of inputs based on the variable configuration.
       The
-      %strong Sampled answer
+      %strong Sampled answers
       can then be used to see how the formula is working.
 
     %p
@@ -33,15 +33,15 @@
       result, like Infinity or a blank string.
       The
       %strong unknown
-      category refers to answer where the result value is literally the word "Unknown."
-      All other answer are considered
+      category refers to answers where the result value is literally the word "Unknown."
+      All other answers are considered
       %strong known.
 
 
 ._answer-board.answer-board
   .pb-2
     %strong._ab-total
-    Total answer
+    Total answers
     = popover_link help_text
 
   .pb-2._ab-result-unknown
@@ -50,7 +50,7 @@
 
   .pb-2
     %strong._ab-sample-size
-    Sampled answer:
+    Sampled answers:
 
   .px-5
     - %w[error unknown known].each do |group|

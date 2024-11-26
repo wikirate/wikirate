@@ -1,4 +1,4 @@
-# lookup table for answer (answer to metric questions)
+# lookup table for answers (answers to metric questions)
 class Answer < Cardio::Record
   @card_column = :answer_id
 

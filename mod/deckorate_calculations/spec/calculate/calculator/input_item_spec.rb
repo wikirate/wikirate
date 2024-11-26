@@ -38,9 +38,9 @@ RSpec.describe Calculate::Calculator::InputItem do
 
     describe "year options" do
       example "metric with fixed year option" do
-        answer = answer_for death_star, nil, year: "1977"
-        expect(answer.length).to eq(32)
-        expect(answer.values.map(&:value).uniq).to eq ["0.31"]
+        answers = answer_for death_star, nil, year: "1977"
+        expect(answers.length).to eq(32)
+        expect(answers.values.map(&:value).uniq).to eq ["0.31"]
       end
 
       example "metric with relative year option" do
@@ -113,7 +113,7 @@ RSpec.describe Calculate::Calculator::InputItem do
       end
 
       context "when subject company does not have answer" do
-        # there was previously an issue where answer seemed to be working because
+        # there was previously an issue where answers seemed to be working because
         # Death Star had an answer for
         let(:mark) { "Joe User+RM" }
 
