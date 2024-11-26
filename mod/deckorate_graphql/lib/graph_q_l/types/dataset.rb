@@ -6,7 +6,7 @@ module GraphQL
       field :description, String, null: false
       cardtype_field :company, Company, :company, true
       lookup_field :metric, Metric, nil, true
-      lookup_field :record, Record, :record, true
+      lookup_field :answer, Answer, :answer, true
       def years
         object.year_card.item_names.map(&:to_i)
       end

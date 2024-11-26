@@ -17,14 +17,14 @@
   ],
   "data": [
     {
-      "name": "records"
+      "name": "answers"
     },
     {
       "name": "options"
     },
     {
       "name": "rawCounts",
-      "source": "records",
+      "source": "answers",
       "transform": [
         {
           "type": "aggregate",

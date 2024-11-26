@@ -5,20 +5,20 @@ class Calculate
         module NotResearchedOption
           # Used if the "not researched" option is set to an arbitrary return value
           module NotResearchedPassValue
-            def record_for company_id, year
+            def answer_for company_id, year
               super.tap do |a|
-                if (nra = not_researched_record a, company_id, year)
+                if (nra = not_researched_answer a, company_id, year)
                   nra.replace_not_researched
                   return nra
                 end
               end
             end
 
-            def not_researched_record record, company_id, year
-              return unless input_value_not_researched? record
-              return record if record
+            def not_researched_answer answer, company_id, year
+              return unless input_value_not_researched? answer
+              return answer if answer
 
-              InputRecord.new self, company_id, year
+              InputAnswer.new self, company_id, year
             end
 
             def mandatory?

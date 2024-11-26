@@ -1,6 +1,6 @@
 class Card
   class VegaChart
-    # Timeline of record values
+    # Timeline of answer values
     class Pie < VegaChart
       include Helper::Subgroup
 

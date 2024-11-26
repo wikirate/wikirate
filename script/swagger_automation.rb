@@ -110,31 +110,31 @@ wikirate_cardtypes.each do |cardtype|
     }
   }
 
-  if plural_cardname == "Records"
-    puts "working on special Record paths"
+  if plural_cardname == "Answers"
+    puts "working on special Answer paths"
 
-    records_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
-    records_params.unshift("$ref" => "#/components/parameters/metric")
+    answer_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
+    answer_params.unshift("$ref" => "#/components/parameters/metric")
     mfieldpaths =
       paths["/{metric}+#{plural_cardname}"] =
         deep_copy(paths["/#{plural_cardname}"])
 
     mfieldget = mfieldpaths["get"]
-    mfieldget["parameters"] = records_params
-    mfieldget["description"] = "Returns the records of the specified metric."
+    mfieldget["parameters"] = answer_params
+    mfieldget["description"] = "Returns the answer of the specified metric."
     mfieldget["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
-      JSON.parse(File.read("./script/swagger/responses/200/Metric+Records.json"))
+      JSON.parse(File.read("./script/swagger/responses/200/Metric+Answers.json"))
 
-    company_records_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
-    company_records_params.unshift("$ref" => "#/components/parameters/company")
-    company_records_path = "/{company}+#{plural_cardname}"
-    cfieldpaths = paths[company_records_path] = deep_copy(paths["/#{plural_cardname}"])
+    company_answers_params = deep_copy paths["/#{plural_cardname}"]["get"]["parameters"]
+    company_answers_params.unshift("$ref" => "#/components/parameters/company")
+    company_answers_path = "/{company}+#{plural_cardname}"
+    cfieldpaths = paths[company_answers_path] = deep_copy(paths["/#{plural_cardname}"])
     cfieldget = cfieldpaths["get"]
-    cfieldget["parameters"] = company_records_params
-    cfieldget["description"] = "Returns the records of the specified company."
+    cfieldget["parameters"] = company_answers_params
+    cfieldget["description"] = "Returns the answer of the specified company."
 
     cfieldget["responses"]["200"]["content"]["application/json"]["schema"]["example"] =
-      JSON.parse(File.read("./script/swagger/responses/200/Company+Records.json"))
+      JSON.parse(File.read("./script/swagger/responses/200/Company+Answers.json"))
 
   end
   article = vowels.include?(cardtype_name[0]) ? "an" : "a"
@@ -178,7 +178,7 @@ wikirate_cardtypes.each do |cardtype|
     }
   }
 
-  next if cardtype == :record_log
+  next if cardtype == :record
 
   p = []
   if cardtype_name != "Source"

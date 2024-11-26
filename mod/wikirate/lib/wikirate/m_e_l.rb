@@ -3,7 +3,7 @@ module Wikirate
   # Monitoring, Evaluation, and Learning
   module MEL
     extend Metrics
-    extend Records
+    extend Answers
     extend Datasets
     extend Flags
 
@@ -11,22 +11,22 @@ module Wikirate
       PERIOD = "1 month".freeze
 
       COLUMNS = {
-        records: "Records Total",
-        calculations: "Records total calculated",
-        import: "Records total import",
-        direct: "Records total direct",
-        api: "Records total API",
-        records_created: "Records created",
-        calculations_created: "Records created calculated",
-        import_created: "Records created import",
-        direct_created: "Records created direct",
-        api_created: "Records created API",
+        answer: "Answers Total",
+        calculations: "Answers total calculated",
+        import: "Answers total import",
+        direct: "Answers total direct",
+        api: "Answers total API",
+        answer_created: "Answers created",
+        calculations_created: "Answers created calculated",
+        import_created: "Answers created import",
+        direct_created: "Answers created direct",
+        api_created: "Answers created API",
         relationships: "Relationships total",
         relationships_created: "Relationships created",
-        records_updated: "Records updated",
-        records_community_verified: "Records verified by community total",
-        records_steward_verified: "Records verified by steward total",
-        records_checked: "Records checked",
+        answer_updated: "Answers updated",
+        answer_community_verified: "Answers verified by community total",
+        answer_steward_verified: "Answers verified by steward total",
+        answer_checked: "Answers checked",
         contributors_direct: "Contributors direct",
         contributors_import: "Contributors import",
         contributors_api: "Contributors API",

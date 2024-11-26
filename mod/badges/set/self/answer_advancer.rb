@@ -1,4 +1,4 @@
-include_set Abstract::RecordUpdateBadge
+include_set Abstract::AnswerUpdateBadge
 
 format :html do
   def valued_action
@@ -6,6 +6,6 @@ format :html do
   end
 
   def valued_object
-    "record value"
+    "answer value"
   end
 end

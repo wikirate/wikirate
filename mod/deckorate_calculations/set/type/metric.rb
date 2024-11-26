@@ -5,8 +5,8 @@ card_accessor :variables, type: :json # Formula, Ratings, and Descendants (not S
 card_accessor :rubric, type: :json # Scores (of categorical metrics)
 card_accessor :formula, type: :coffee_script # Formula and non-categorical Scores
 
-event :recalculate_records, delay: true, priority: 5 do
-  calculate_records
+event :recalculate_answers, delay: true, priority: 5 do
+  calculate_answers
 end
 
 event :disallow_input_deletion, :validate, on: :delete do
@@ -15,7 +15,7 @@ event :disallow_input_deletion, :validate, on: :delete do
   errors.add :content, "Cannot delete a metric that other metrics depend on"
 end
 
-# an unorthodox metric is a calculated metric that directly depends on an record
+# an unorthodox metric is a calculated metric that directly depends on an answer
 # that is not for the same company and year
 def unorthodox?
   false
@@ -38,20 +38,20 @@ end
 
 def update_depender_values_for! company_id
   each_depender_metric do |metric|
-    metric.calculate_direct_records company_id: company_id
+    metric.calculate_direct_answers company_id: company_id
   end
 end
 
-def all_depender_record_ids
-  ids = record_ids
+def all_depender_answer_ids
+  ids = answer_ids
   each_depender_metric do |m|
-    ids += m.record_ids
+    ids += m.answer_ids
   end
   ids
 end
 
 def all_depender_relation
-  @all_depender_relation ||= ::Record.where id: all_depender_record_ids
+  @all_depender_relation ||= ::Answer.where id: all_depender_answer_ids
 end
 
 # all metrics that depend on this metric
@@ -92,10 +92,10 @@ def formula_metrics
 end
 
 def update_latest company_id=nil
-  rel = company_id ? records.where(company_id: company_id) : records
+  rel = company_id ? answers.where(company_id: company_id) : answers
   rel.update_all latest: false
   latest_rel(rel).pluck(:id).each_slice(25_000) do |ids|
-    ::Record.where("id in (#{ids.join ', '})").update_all latest: true
+    ::Answer.where("id in (#{ids.join ', '})").update_all latest: true
   end
 end
 
@@ -104,10 +104,10 @@ private
 def latest_rel rel
   rel.where <<-SQL
       NOT EXISTS (
-        SELECT * FROM records a1
-        WHERE a1.metric_id = records.metric_id
-        AND a1.company_id = records.company_id
-        AND a1.year > records.year
+        SELECT * FROM answers a1
+        WHERE a1.metric_id = answers.metric_id
+        AND a1.company_id = answers.company_id
+        AND a1.year > answers.year
       )
   SQL
 end
@@ -163,8 +163,8 @@ format :html do
     end
   end
 
-  def metric_tree_item_title detail:, record: nil
-    haml :metric_tree_item_title, detail: variable_detail(detail), record: record
+  def metric_tree_item_title detail:, answer: nil
+    haml :metric_tree_item_title, detail: variable_detail(detail), answer: answer
   end
 
   private

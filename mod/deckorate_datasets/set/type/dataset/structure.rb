@@ -9,11 +9,11 @@ format :html do
   end
 
   def tab_list
-    %i[details record company metric data_subset]
+    %i[details answer company metric data_subset]
   end
 
   def tab_options
-    { record: { count: card.records.count, label: "Data points" } }
+    { answer: { count: card.answers.count, label: "Data points" } }
   end
 
   view :company_tab do
@@ -24,8 +24,8 @@ format :html do
     field_nest :metric, view: :filtered_content, show: :menu_block
   end
 
-  view :record_tab do
-    [field_nest(:record, view: :filtered_content), render_import_links]
+  view :answer_tab do
+    [field_nest(:answer, view: :filtered_content), render_import_links]
   end
 
   # view :project_tab, template: :haml

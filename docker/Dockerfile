@@ -17,7 +17,7 @@ RUN rm -f /etc/service/nginx/down && \
 
 USER app
 
-WORKDIR /home/app/wikirate
+WORKDIR /home/app/decko
 
 COPY --chown=app:app . .
 
@@ -32,4 +32,4 @@ USER root
 
 ENV RAILS_ENV=production
 
-CMD ["/bin/bash", "/home/app/wikirate/docker/entrypoint.sh"]
+CMD ["/bin/bash", "/home/app/decko/docker/entrypoint.sh"]

@@ -47,7 +47,7 @@ RSpec.describe Card::Set::Type::Reference do
     end
   end
 
-  context "when it is an record." do
+  context "when it is an answer." do
     let(:reference_number) { 4 }
 
     it "does include company and year in Rich Text." do
@@ -72,7 +72,7 @@ RSpec.describe Card::Set::Type::Reference do
 
     it "saves a snapshot of subject data when reference is stored" do
       expect(CSV.parse(new_reference.file_card.file.read).length).to eq(8)
-      # 8 = 4 header rows + 1 title row + 3 record rows
+      # 8 = 4 header rows + 1 title row + 3 answer rows
     end
   end
 end
