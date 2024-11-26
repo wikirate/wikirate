@@ -110,11 +110,11 @@
       "Global Reporting Initiative+Recycled Input Materials (%), GRI 301-2 (formerly G4-EN2)"
     ]
   },
-  "record": {
+  "answer": {
     "id": null,
-    "name": "Source-000190921+Record",
+    "name": "Source-000190921+Answer",
     "type": "Search",
-    "url": "https://wikirate.org/Source_000190921+Record.json"
+    "url": "https://wikirate.org/Source_000190921+Answer.json"
   },
   "requested_at": "2023-09-21 09:37:53 UTC"
 }

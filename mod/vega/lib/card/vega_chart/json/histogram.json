@@ -12,7 +12,7 @@
   ],
   "data": [
     {
-      "name": "records",
+      "name": "answers",
       "transform": [
         {
           "type": "formula",
@@ -23,7 +23,7 @@
     },
     {
       "name": "valueExtremes",
-      "source": "records",
+      "source": "answers",
       "transform": [
         {
           "type": "aggregate",
@@ -40,7 +40,7 @@
     },
     {
       "name": "counts",
-      "source": "records",
+      "source": "answer",
       "transform": [
         {
           "type": "filter",

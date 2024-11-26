@@ -5,7 +5,7 @@ class Calculate
         @full_search = false
         @all_years_searched = ::Set.new
         @all_companies_searched = ::Set.new
-        @record_searched = Hash.new_nested ::Set
+        @answer_searched = Hash.new_nested ::Set
       end
 
       def searched? company_id: nil, year: nil
@@ -23,7 +23,7 @@ class Calculate
           @all_companies_searched.merge search_space.years
         else
           search_space.years.each do |y|
-            @record_searched[y.to_i].merge search_space.company_ids
+            @answer_searched[y.to_i].merge search_space.company_ids
           end
         end
       end
@@ -32,7 +32,7 @@ class Calculate
 
       def explicitly_searched? company_id: nil, year: nil
         if company_id && year
-          searched_record? company_id, year
+          searched_answer? company_id, year
         elsif year
           searched_year? year
         elsif company_id
@@ -40,8 +40,8 @@ class Calculate
         end
       end
 
-      def searched_record? company_id, year
-        @record_searched[year.to_i].include?(company_id)
+      def searched_answer? company_id, year
+        @answer_searched[year.to_i].include?(company_id)
       end
 
       def searched_year? year

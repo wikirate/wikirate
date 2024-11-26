@@ -22,12 +22,12 @@ RSpec.describe Card::Set::Type::RelationshipImport do
 
   def check_relationship_cards
     object_companies.each do |object_company_name|
-      expect(Card[record_name, object_company_name]).to be_present
+      expect(Card[answer_name, object_company_name]).to be_present
     end
   end
 
   context "with known company" do
-    let :record_name do
+    let :answer_name do
       "Jedi+more evil+Death Star+2000"
     end
 
@@ -35,17 +35,17 @@ RSpec.describe Card::Set::Type::RelationshipImport do
       ["Google Inc", "SPECTRE"]
     end
 
-    it "correctly updates counts for records with multiple relationships" do
+    it "correctly updates counts for answer with multiple relationships" do
       import_indices :known
 
       check_relationship_cards
-      expect(Card[record_name].value).to eq("2")
+      expect(Card[answer_name].value).to eq("2")
       expect(Card["Jedi+less evil+SPECTRE+2000"].value).to eq("1")
     end
   end
 
   context "with unknown company" do
-    let :record_name do
+    let :answer_name do
       "Jedi+more evil+New Company+2017"
     end
 
@@ -64,14 +64,14 @@ RSpec.describe Card::Set::Type::RelationshipImport do
       expect(card_subject.status.count(:ready)).to eq(5)
     end
 
-    example "it correctly updates counts for records with multiple relationships" do
+    example "it correctly updates counts for answer with multiple relationships" do
       mapping :company, "New Company" => "AutoAdd", "Sony" => "AutoAdd" do
         card_subject.import_map_card.update!({})
       end
 
       import_indices :unknown
       check_relationship_cards
-      expect(Card[record_name].value).to eq("3")
+      expect(Card[answer_name].value).to eq("3")
       expect(Card["Jedi+less evil+SPECTRE+2017"].value).to eq("1")
     end
   end

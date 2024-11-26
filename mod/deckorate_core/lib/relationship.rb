@@ -6,12 +6,12 @@ class Relationship < Cardio::Record
 
   include EntryFetch
   include Export
-  include Record::AndRelationship
+  include Answer::AndRelationship
 
   extend FilterHelper
 
-  delegate :company_id, :designer_id, :title_id, to: :record
-  fetcher :record_id, :metric_id, :record_log_id, :value, :numeric_value
+  delegate :company_id, :designer_id, :title_id, to: :answer
+  fetcher :answer_id, :metric_id, :record_id, :value, :numeric_value
 
   belongs_to :metric, primary_key: :metric_id
 
@@ -50,6 +50,6 @@ class Relationship < Cardio::Record
   end
 
   def unknown? val
-    Record.unknown? val
+    Answer.unknown? val
   end
 end

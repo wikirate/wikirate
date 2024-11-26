@@ -8,7 +8,7 @@ class Calculate
         #   company: "Death Star"
         # Case 2: explicit company group
         #   company: "Deadliest"
-        # Case 2: related companies (record output company is subject, inputs are objects)
+        # Case 2: related companies (answer output company is subject, inputs are objects)
         #   company: "Jedi+more evil"
         #
         # TODO: store company ids, not names!

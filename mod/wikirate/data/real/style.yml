@@ -49,7 +49,7 @@
       $company-group-color: $red;
       $metric-color: $purple;
       $answer-color: $metric-color;
-      $record-color: $metric-color;
+      $answer-color: $metric-color;
       $topic-color: $teal;
       $source-color: $metric-color;
       $user-color: $teal;

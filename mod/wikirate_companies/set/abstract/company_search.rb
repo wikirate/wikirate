@@ -3,7 +3,7 @@ include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
 include_set Abstract::CommonFilters
-include_set Abstract::RecordFilters
+include_set Abstract::AnswerFilters
 include_set Abstract::CompanyFilters
 include_set Abstract::BarBoxToggle
 
@@ -31,7 +31,7 @@ format do
   end
 
   def sort_options
-    { "Most Data Points": :record, "Most Metrics": :metric }.merge super
+    { "Most Data Points": :answer, "Most Metrics": :metric }.merge super
   end
 
   def filter_map
@@ -47,7 +47,7 @@ end
 
 format :html do
   def default_sort_option
-    "record"
+    "answer"
   end
 
   def quick_filter_list

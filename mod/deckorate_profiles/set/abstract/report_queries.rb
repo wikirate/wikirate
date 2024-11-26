@@ -35,7 +35,7 @@ def subvariants
   {}
 end
 
-# [ :record, :metric, :company, :project ]
+# [ :answer, :metric, :company, :project ]
 #
 # project
 # - RG is organizer

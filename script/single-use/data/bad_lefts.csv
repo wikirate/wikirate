@@ -5,7 +5,7 @@ Vasiliki Gkatziaki+is Gold supplier of+Rio Tinto Group+2016+values,6023403,60234
 Vasiliki Gkatziaki+is Gold supplier of+Rio Tinto Group+2016+overridden value,6023404,6023402,3652510,
 Commons+Supplier of+GROUPE-BEL - FROMAGERIES BEL CLERY+2018+values,6044395,6044394,43591,
 Commons+Supplier of+GROUPE-BEL - FROMAGERIES BEL CLERY+2018+overridden value,6044396,6044394,3652510,
-Commons+is Tin supplier of+Operaciones Metalurgica S.A.+2019+values,6143635,6143634,43591,"This company was merged into this company: https://wikirate.org/Operaciones_Metalurgical_S_A but there's an error rendering the company's record table, so it's difficult to tell whether there's a similar issue in the corresponding data point. Also getting a rat here when trying to see the history."
+Commons+is Tin supplier of+Operaciones Metalurgica S.A.+2019+values,6143635,6143634,43591,"This company was merged into this company: https://wikirate.org/Operaciones_Metalurgical_S_A but there's an error rendering the company's answer table, so it's difficult to tell whether there's a similar issue in the corresponding data point. Also getting a rat here when trying to see the history."
 Commons+is Tin supplier of+Operaciones Metalurgica S.A.+2019+overridden value,6143636,6143634,3652510,
 "Commons+is Tin supplier of+KOVOHUTĚ PŘÍBRAM NÁSTUPNICKÁ, A.S.+2016+values",6143644,6143643,43591,
 "Commons+is Tin supplier of+KOVOHUTĚ PŘÍBRAM NÁSTUPNICKÁ, A.S.+2016+overridden value",6143645,6143643,3652510,
@@ -13,7 +13,7 @@ Commons+uses Tungsten smelted by+Ball Corporation+2018+A.L.M.T. TUNGSTEN Corp.+v
 Commons+uses Tungsten smelted by+Ball Corporation+2018+A.L.M.T. TUNGSTEN Corp.+source,6144840,6144838,629,A.L.M.T. TUNGSTEN Corp. was merged into Allied Material (A.L.M.T) Corp - can't see the history for merges so it's difficult to identify the problem areas
 Commons+uses Tungsten smelted by+Ball Corporation+2018+ACL Metais Eireli+values,6144842,6144841,43591,
 Commons+uses Tungsten smelted by+Ball Corporation+2018+ACL Metais Eireli+source,6144843,6144841,629,
-Commons+uses Tungsten smelted by+Ball Corporation+2018+Asia Tungsten Products Vietnam Ltd.+values,6144845,6144844,43591,"It seems like something has happened to all of the Ball Corporation's 2018 records to Commons+Tungsten smelted by. There are none, but there are releationships for all other years from 2015 to 2019. There was also a merge in this case where Ball was merged into Ball Corporation. This could have played into the issue"
+Commons+uses Tungsten smelted by+Ball Corporation+2018+Asia Tungsten Products Vietnam Ltd.+values,6144845,6144844,43591,"It seems like something has happened to all of the Ball Corporation's 2018 answer to Commons+Tungsten smelted by. There are none, but there are releationships for all other years from 2015 to 2019. There was also a merge in this case where Ball was merged into Ball Corporation. This could have played into the issue"
 Commons+uses Tungsten smelted by+Ball Corporation+2018+Asia Tungsten Products Vietnam Ltd.+source,6144846,6144844,629,
 "Commons+uses Tungsten smelted by+Ball Corporation+2018+Chenzhou Diamond Tungsten Products Co., Ltd.+values",6144848,6144847,43591,
 "Commons+uses Tungsten smelted by+Ball Corporation+2018+Chenzhou Diamond Tungsten Products Co., Ltd.+source",6144849,6144847,629,
@@ -97,7 +97,7 @@ Commons+uses Tungsten smelted by+Ball Corporation+2018+Wolfram Bergbau und Hũtt
 "Commons+uses Tungsten smelted by+Ball Corporation+2018+Xinfeng Huarui Tungsten & Molybdenum New Material Co., Ltd.+source",6144969,6144967,629,
 "Commons+uses Tungsten smelted by+Ball Corporation+2018+Xinhai Rendan Shaoguan Tungsten Co., Ltd.+values",6144971,6144970,43591,
 "Commons+uses Tungsten smelted by+Ball Corporation+2018+Xinhai Rendan Shaoguan Tungsten Co., Ltd.+source",6144972,6144970,629,
-Commons+uses Tin smelted by+Ball Corporation+2019+Metallo Belgium N.V.+values,6145651,6145650,43591,Ball Corporation 2019 records for Commons+uses Tin smelted by are not accessible - getting rat. Here's the ticket https://wikirate.org/Rat_when_trying_to_filter_for_metric_name
+Commons+uses Tin smelted by+Ball Corporation+2019+Metallo Belgium N.V.+values,6145651,6145650,43591,Ball Corporation 2019 answer for Commons+uses Tin smelted by are not accessible - getting rat. Here's the ticket https://wikirate.org/Rat_when_trying_to_filter_for_metric_name
 Commons+uses Tin smelted by+Ball Corporation+2019+Metallo Belgium N.V.+source,6145652,6145650,629,
 Commons+uses Tin smelted by+Ball Corporation+2019+EM Vinto+values,6145654,6145653,43591,
 Commons+uses Tin smelted by+Ball Corporation+2019+EM Vinto+source,6145655,6145653,629,

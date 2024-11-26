@@ -1,0 +1,4351 @@
+---
+answers_001:
+  id: 1
+  answer_id: 3399
+  metric_id: 3280
+  company_id: 3163
+  record_id: 3398
+  year: 1990
+  value: 'yes'
+  numeric_value:
+  updated_at: 2035-02-05 12:00:00.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2035-02-05 12:00:00.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_002:
+  id: 2
+  answer_id: 3404
+  metric_id: 3280
+  company_id: 3163
+  record_id: 3398
+  year: 1991
+  value: 'yes'
+  numeric_value:
+  updated_at: 2035-02-03 12:00:00.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2035-02-03 12:00:00.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_003:
+  id: 3
+  answer_id: 3407
+  metric_id: 3280
+  company_id: 3163
+  record_id: 3398
+  year: 1992
+  value: 'yes'
+  numeric_value:
+  updated_at: 2035-01-22 12:00:00.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2035-01-22 12:00:00.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_004:
+  id: 4
+  answer_id: 3411
+  metric_id: 3273
+  company_id: 3163
+  record_id: 3410
+  year: 2010
+  value: 'yes'
+  numeric_value:
+  updated_at: 2024-11-26 16:14:00.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:26.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 0
+  unpublished: 0
+  open_flags: 1
+  route: 0
+answers_005:
+  id: 5
+  answer_id: 3415
+  metric_id: 3191
+  company_id: 3176
+  record_id: 3414
+  year: 2000
+  value: Mountain View
+  numeric_value:
+  updated_at: 2024-11-26 16:13:26.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:26.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_006:
+  id: 6
+  answer_id: 3419
+  metric_id: 3191
+  company_id: 3166
+  record_id: 3418
+  year: 1977
+  value: Alderaan
+  numeric_value:
+  updated_at: 2024-11-26 16:13:27.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:27.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_007:
+  id: 7
+  answer_id: 3423
+  metric_id: 3191
+  company_id: 3173
+  record_id: 3422
+  year: 1977
+  value: Baker Street, London
+  numeric_value:
+  updated_at: 2024-11-26 16:13:27.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:27.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_008:
+  id: 8
+  answer_id: 3427
+  metric_id: 3208
+  company_id: 3178
+  record_id: 3426
+  year: 2003
+  value: '3'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:28.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id:
+  created_at: 2024-11-26 16:13:28.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_009:
+  id: 9
+  answer_id: 3432
+  metric_id: 3208
+  company_id: 3178
+  record_id: 3426
+  year: 2004
+  value: '4'
+  numeric_value:
+  updated_at: 2024-11-26 16:14:17.000000000 Z
+  imported:
+  latest: 0
+  checkers: Joe Admin
+  creator_id: 1191
+  editor_id:
+  created_at: 2024-11-26 16:13:29.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 2
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_010:
+  id: 10
+  answer_id: 3435
+  metric_id: 3208
+  company_id: 3178
+  record_id: 3426
+  year: 2005
+  value: '5'
+  numeric_value:
+  updated_at: 2024-11-26 16:14:16.000000000 Z
+  imported:
+  latest: 0
+  checkers: Joe User
+  creator_id: 1191
+  editor_id:
+  created_at: 2024-11-26 16:13:30.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_011:
+  id: 11
+  answer_id: 3438
+  metric_id: 3208
+  company_id: 3178
+  record_id: 3426
+  year: 2006
+  value: '6'
+  numeric_value:
+  updated_at: 2024-11-26 16:14:16.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id:
+  created_at: 2024-11-26 16:13:30.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments: content
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_012:
+  id: 12
+  answer_id: 3441
+  metric_id: 3208
+  company_id: 3178
+  record_id: 3426
+  year: 2007
+  value: '7'
+  numeric_value:
+  updated_at: 2024-11-26 16:14:15.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id:
+  created_at: 2024-11-26 16:13:31.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments: comment
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_013:
+  id: 13
+  answer_id: 3444
+  metric_id: 3208
+  company_id: 3178
+  record_id: 3426
+  year: 2008
+  value: '6'
+  numeric_value:
+  updated_at: 2024-11-26 16:14:16.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1185
+  created_at: 2024-11-26 16:13:31.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_014:
+  id: 14
+  answer_id: 3447
+  metric_id: 3208
+  company_id: 3178
+  record_id: 3426
+  year: 2009
+  value: '5'
+  numeric_value:
+  updated_at: 2024-11-26 16:14:16.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id: 1185
+  created_at: 2024-11-26 16:13:32.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_015:
+  id: 15
+  answer_id: 3450
+  metric_id: 3208
+  company_id: 3178
+  record_id: 3426
+  year: 2010
+  value: '4'
+  numeric_value:
+  updated_at: 2024-11-26 16:14:15.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:13:32.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_016:
+  id: 16
+  answer_id: 3454
+  metric_id: 3215
+  company_id: 3178
+  record_id: 3453
+  year: 2010
+  value: '1'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:33.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:33.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_017:
+  id: 17
+  answer_id: 3458
+  metric_id: 3221
+  company_id: 3178
+  record_id: 3457
+  year: 2010
+  value: 1, 2
+  numeric_value:
+  updated_at: 2024-11-26 16:13:33.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:33.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_018:
+  id: 18
+  answer_id: 3462
+  metric_id: 3226
+  company_id: 3178
+  record_id: 3461
+  year: 2010
+  value: 1, 2
+  numeric_value:
+  updated_at: 2024-11-26 16:13:33.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:33.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_019:
+  id: 19
+  answer_id: 3466
+  metric_id: 3231
+  company_id: 3163
+  record_id: 3465
+  year: 1977
+  value: '77'
+  numeric_value: !ruby/object:BigDecimal 18:0.77e2
+  updated_at: 2024-11-26 16:13:34.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:34.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_020:
+  id: 20
+  answer_id: 3470
+  metric_id: 3231
+  company_id: 3182
+  record_id: 3469
+  year: 2015
+  value: '15'
+  numeric_value: !ruby/object:BigDecimal 18:0.15e2
+  updated_at: 2024-11-26 16:13:34.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:34.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_021:
+  id: 21
+  answer_id: 3473
+  metric_id: 3231
+  company_id: 3182
+  record_id: 3469
+  year: 2014
+  value: '14'
+  numeric_value: !ruby/object:BigDecimal 18:0.14e2
+  updated_at: 2024-11-26 16:13:35.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:35.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_022:
+  id: 22
+  answer_id: 3476
+  metric_id: 3231
+  company_id: 3182
+  record_id: 3469
+  year: 2013
+  value: '13'
+  numeric_value: !ruby/object:BigDecimal 18:0.13e2
+  updated_at: 2024-11-26 16:13:35.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:35.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_023:
+  id: 23
+  answer_id: 3479
+  metric_id: 3231
+  company_id: 3182
+  record_id: 3469
+  year: 2012
+  value: '12'
+  numeric_value: !ruby/object:BigDecimal 18:0.12e2
+  updated_at: 2024-11-26 16:13:35.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:35.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_024:
+  id: 24
+  answer_id: 3482
+  metric_id: 3231
+  company_id: 3182
+  record_id: 3469
+  year: 2011
+  value: '11'
+  numeric_value: !ruby/object:BigDecimal 18:0.11e2
+  updated_at: 2024-11-26 16:13:36.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:36.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_025:
+  id: 25
+  answer_id: 3485
+  metric_id: 3231
+  company_id: 3182
+  record_id: 3469
+  year: 2010
+  value: '10'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:13:36.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:36.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_026:
+  id: 26
+  answer_id: 3488
+  metric_id: 3231
+  company_id: 3182
+  record_id: 3469
+  year: 2002
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:13:36.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:36.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_027:
+  id: 27
+  answer_id: 3491
+  metric_id: 3231
+  company_id: 3182
+  record_id: 3469
+  year: 2001
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:13:37.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:37.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_028:
+  id: 28
+  answer_id: 3494
+  metric_id: 3231
+  company_id: 3182
+  record_id: 3469
+  year: 2000
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:13:37.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:37.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_029:
+  id: 29
+  answer_id: 3498
+  metric_id: 3235
+  company_id: 3180
+  record_id: 3497
+  year: 2014
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:38.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:38.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_030:
+  id: 30
+  answer_id: 3501
+  metric_id: 3235
+  company_id: 3180
+  record_id: 3497
+  year: 2015
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:38.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:38.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_031:
+  id: 31
+  answer_id: 3505
+  metric_id: 3241
+  company_id: 3178
+  record_id: 3504
+  year: 2014
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:13:38.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:38.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_032:
+  id: 32
+  answer_id: 3509
+  metric_id: 3241
+  company_id: 3180
+  record_id: 3508
+  year: 2015
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:13:39.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:39.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_033:
+  id: 33
+  answer_id: 3512
+  metric_id: 3241
+  company_id: 3180
+  record_id: 3508
+  year: 2014
+  value: '5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  updated_at: 2024-11-26 16:13:39.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:39.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_034:
+  id: 34
+  answer_id: 3516
+  metric_id: 3245
+  company_id: 3182
+  record_id: 3515
+  year: 2002
+  value: '100'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  updated_at: 2024-11-26 16:13:39.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:39.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_035:
+  id: 35
+  answer_id: 3519
+  metric_id: 3245
+  company_id: 3182
+  record_id: 3515
+  year: 2015
+  value: '100'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  updated_at: 2024-11-26 16:13:40.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:40.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_036:
+  id: 36
+  answer_id: 3523
+  metric_id: 3245
+  company_id: 3163
+  record_id: 3522
+  year: 1977
+  value: '5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  updated_at: 2024-11-26 16:13:40.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:40.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_037:
+  id: 37
+  answer_id: 3527
+  metric_id: 3245
+  company_id: 3178
+  record_id: 3526
+  year: 2014
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:40.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:40.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_038:
+  id: 38
+  answer_id: 3531
+  metric_id: 3245
+  company_id: 3180
+  record_id: 3530
+  year: 2015
+  value: '5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  updated_at: 2024-11-26 16:13:41.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:41.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_039:
+  id: 39
+  answer_id: 3534
+  metric_id: 3245
+  company_id: 3180
+  record_id: 3530
+  year: 2014
+  value: '10'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:13:41.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:41.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_040:
+  id: 40
+  answer_id: 3538
+  metric_id: 3264
+  company_id: 3180
+  record_id: 3537
+  year: 1977
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:13:42.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:42.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_041:
+  id: 41
+  answer_id: 3542
+  metric_id: 3264
+  company_id: 3168
+  record_id: 3541
+  year: 1977
+  value: "-0.01"
+  numeric_value: !ruby/object:BigDecimal 18:-0.1e-1
+  updated_at: 2024-11-26 16:13:42.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:42.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_042:
+  id: 42
+  answer_id: 3546
+  metric_id: 3264
+  company_id: 3166
+  record_id: 3545
+  year: 1977
+  value: '0.001'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e-2
+  updated_at: 2024-11-26 16:13:42.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:42.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_043:
+  id: 43
+  answer_id: 3550
+  metric_id: 3264
+  company_id: 3170
+  record_id: 3549
+  year: 1977
+  value: '0.002'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e-2
+  updated_at: 2024-11-26 16:13:43.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:43.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_044:
+  id: 44
+  answer_id: 3554
+  metric_id: 3264
+  company_id: 3163
+  record_id: 3553
+  year: 1977
+  value: '0.31'
+  numeric_value: !ruby/object:BigDecimal 18:0.31e0
+  updated_at: 2024-11-26 16:13:43.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:43.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_045:
+  id: 45
+  answer_id: 3558
+  metric_id: 3264
+  company_id: 3173
+  record_id: 3557
+  year: 1977
+  value: '5.3'
+  numeric_value: !ruby/object:BigDecimal 18:0.53e1
+  updated_at: 2024-11-26 16:13:43.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:43.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_046:
+  id: 46
+  answer_id: 3562
+  metric_id: 3268
+  company_id: 3180
+  record_id: 3561
+  year: 1977
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:13:44.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:44.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_047:
+  id: 47
+  answer_id: 3566
+  metric_id: 3268
+  company_id: 3168
+  record_id: 3565
+  year: 2005
+  value: '10'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:13:44.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:44.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_048:
+  id: 48
+  answer_id: 3569
+  metric_id: 3268
+  company_id: 3168
+  record_id: 3565
+  year: 2004
+  value: '9'
+  numeric_value: !ruby/object:BigDecimal 18:0.9e1
+  updated_at: 2024-11-26 16:13:44.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:44.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_049:
+  id: 49
+  answer_id: 3572
+  metric_id: 3268
+  company_id: 3168
+  record_id: 3565
+  year: 2003
+  value: '8'
+  numeric_value: !ruby/object:BigDecimal 18:0.8e1
+  updated_at: 2024-11-26 16:13:45.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:45.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_050:
+  id: 50
+  answer_id: 3575
+  metric_id: 3268
+  company_id: 3168
+  record_id: 3565
+  year: 1977
+  value: '20'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e2
+  updated_at: 2024-11-26 16:13:45.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:45.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_051:
+  id: 51
+  answer_id: 3579
+  metric_id: 3268
+  company_id: 3170
+  record_id: 3578
+  year: 1977
+  value: '40'
+  numeric_value: !ruby/object:BigDecimal 18:0.4e2
+  updated_at: 2024-11-26 16:13:45.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:45.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_052:
+  id: 52
+  answer_id: 3583
+  metric_id: 3268
+  company_id: 3173
+  record_id: 3582
+  year: 1977
+  value: '50'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e2
+  updated_at: 2024-11-26 16:13:46.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:46.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_053:
+  id: 53
+  answer_id: 3587
+  metric_id: 3268
+  company_id: 3163
+  record_id: 3586
+  year: 1977
+  value: '100'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  updated_at: 2024-11-26 16:13:46.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:46.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_054:
+  id: 54
+  answer_id: 3591
+  metric_id: 3259
+  company_id: 3163
+  record_id: 3590
+  year: 1977
+  value: '200'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e3
+  updated_at: 2024-11-26 16:13:46.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:46.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_055:
+  id: 55
+  answer_id: 3595
+  metric_id: 3253
+  company_id: 3163
+  record_id: 3594
+  year: 1977
+  value: Darth Sidious
+  numeric_value:
+  updated_at: 2024-11-26 16:13:47.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:47.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_056:
+  id: 56
+  answer_id: 3598
+  metric_id: 3273
+  company_id: 3163
+  record_id: 3410
+  year: 2000
+  value: 'yes'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:47.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:47.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_057:
+  id: 57
+  answer_id: 3601
+  metric_id: 3273
+  company_id: 3163
+  record_id: 3410
+  year: 1977
+  value: 'no'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:48.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:48.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_058:
+  id: 58
+  answer_id: 3605
+  metric_id: 3273
+  company_id: 3166
+  record_id: 3604
+  year: 2000
+  value: 'no'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:48.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:48.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_059:
+  id: 59
+  answer_id: 3608
+  metric_id: 3273
+  company_id: 3166
+  record_id: 3604
+  year: 1977
+  value: 'no'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:49.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:49.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_060:
+  id: 60
+  answer_id: 3612
+  metric_id: 3273
+  company_id: 3168
+  record_id: 3611
+  year: 2000
+  value: 'yes'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:49.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:49.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_061:
+  id: 61
+  answer_id: 3615
+  metric_id: 3273
+  company_id: 3168
+  record_id: 3611
+  year: 1977
+  value: 'yes'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:49.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:49.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 3
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_062:
+  id: 62
+  answer_id: 3619
+  metric_id: 3280
+  company_id: 3173
+  record_id: 3618
+  year: 2000
+  value: 'no'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:50.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:50.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_063:
+  id: 63
+  answer_id: 3623
+  metric_id: 3280
+  company_id: 3168
+  record_id: 3622
+  year: 2005
+  value: 'no'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:50.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:50.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_064:
+  id: 64
+  answer_id: 3626
+  metric_id: 3280
+  company_id: 3168
+  record_id: 3622
+  year: 1977
+  value: 'no'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:50.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:50.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_065:
+  id: 65
+  answer_id: 3629
+  metric_id: 3280
+  company_id: 3168
+  record_id: 3622
+  year: 2006
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:13:51.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:51.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_066:
+  id: 66
+  answer_id: 3633
+  metric_id: 3280
+  company_id: 3166
+  record_id: 3632
+  year: 2000
+  value: 'yes'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:51.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:51.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_067:
+  id: 67
+  answer_id: 3636
+  metric_id: 3280
+  company_id: 3166
+  record_id: 3632
+  year: 1977
+  value: 'no'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:51.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:51.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_068:
+  id: 68
+  answer_id: 3639
+  metric_id: 3280
+  company_id: 3163
+  record_id: 3398
+  year: 2001
+  value: 'yes'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:52.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:52.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_069:
+  id: 69
+  answer_id: 3642
+  metric_id: 3280
+  company_id: 3163
+  record_id: 3398
+  year: 2000
+  value: 'yes'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:52.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:52.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_070:
+  id: 70
+  answer_id: 3645
+  metric_id: 3280
+  company_id: 3163
+  record_id: 3398
+  year: 1977
+  value: 'yes'
+  numeric_value:
+  updated_at: 2024-11-26 16:13:52.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:52.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Star_Wars
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_071:
+  id: 71
+  answer_id: 3649
+  metric_id: 3298
+  company_id: 3173
+  record_id: 3648
+  year: 2000
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:13:56.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:13:53.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_072:
+  id: 72
+  answer_id: 3655
+  metric_id: 3302
+  company_id: 3176
+  record_id: 3654
+  year: 2000
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:53.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:53.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_073:
+  id: 73
+  answer_id: 3658
+  metric_id: 3298
+  company_id: 3166
+  record_id: 3657
+  year: 1977
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:54.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:54.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_074:
+  id: 74
+  answer_id: 3664
+  metric_id: 3302
+  company_id: 3170
+  record_id: 3663
+  year: 1977
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:13:56.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:13:54.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_075:
+  id: 75
+  answer_id: 3667
+  metric_id: 3287
+  company_id: 3173
+  record_id: 3666
+  year: 1977
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:55.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:55.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_076:
+  id: 76
+  answer_id: 3673
+  metric_id: 3291
+  company_id: 3170
+  record_id: 3672
+  year: 1977
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:55.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:55.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_077:
+  id: 77
+  answer_id: 3675
+  metric_id: 3298
+  company_id: 3173
+  record_id: 3648
+  year: 1977
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:55.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:55.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_078:
+  id: 78
+  answer_id: 3683
+  metric_id: 3302
+  company_id: 3170
+  record_id: 3663
+  year: 2000
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:56.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:56.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_079:
+  id: 79
+  answer_id: 3686
+  metric_id: 3195
+  company_id: 3163
+  record_id: 3685
+  year: 1977
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:13:58.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:13:57.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_080:
+  id: 80
+  answer_id: 3692
+  metric_id: 3201
+  company_id: 3170
+  record_id: 3691
+  year: 1977
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:13:59.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:13:57.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_081:
+  id: 81
+  answer_id: 3698
+  metric_id: 3201
+  company_id: 3173
+  record_id: 3697
+  year: 1977
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:58.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:58.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_082:
+  id: 82
+  answer_id: 3701
+  metric_id: 3195
+  company_id: 3173
+  record_id: 3700
+  year: 1977
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:13:59.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:13:59.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count: 0
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_083:
+  id: 83
+  answer_id:
+  metric_id: 3764
+  company_id: 3178
+  record_id:
+  year: 2014
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:14:02.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:02.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_084:
+  id: 84
+  answer_id:
+  metric_id: 3764
+  company_id: 3180
+  record_id:
+  year: 2014
+  value: '5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  updated_at: 2024-11-26 16:14:02.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:02.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_085:
+  id: 85
+  answer_id:
+  metric_id: 3764
+  company_id: 3180
+  record_id:
+  year: 2015
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:14:02.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:02.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_086:
+  id: 86
+  answer_id:
+  metric_id: 3764
+  company_id: 3182
+  record_id:
+  year: 2015
+  value: '100'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  updated_at: 2024-11-26 16:14:02.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:02.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_087:
+  id: 87
+  answer_id:
+  metric_id: 3764
+  company_id: 3163
+  record_id:
+  year: 1977
+  value: '5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  updated_at: 2024-11-26 16:14:02.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:02.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_088:
+  id: 88
+  answer_id:
+  metric_id: 3764
+  company_id: 3182
+  record_id:
+  year: 2002
+  value: '100'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  updated_at: 2024-11-26 16:14:02.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:02.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_089:
+  id: 89
+  answer_id:
+  metric_id: 3769
+  company_id: 3163
+  record_id:
+  year: 1977
+  value: '77'
+  numeric_value: !ruby/object:BigDecimal 18:0.77e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_090:
+  id: 90
+  answer_id:
+  metric_id: 3769
+  company_id: 3182
+  record_id:
+  year: 2000
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_091:
+  id: 91
+  answer_id:
+  metric_id: 3769
+  company_id: 3182
+  record_id:
+  year: 2001
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_092:
+  id: 92
+  answer_id:
+  metric_id: 3769
+  company_id: 3182
+  record_id:
+  year: 2002
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_093:
+  id: 93
+  answer_id:
+  metric_id: 3769
+  company_id: 3182
+  record_id:
+  year: 2010
+  value: '10'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_094:
+  id: 94
+  answer_id:
+  metric_id: 3769
+  company_id: 3182
+  record_id:
+  year: 2011
+  value: '11'
+  numeric_value: !ruby/object:BigDecimal 18:0.11e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_095:
+  id: 95
+  answer_id:
+  metric_id: 3769
+  company_id: 3182
+  record_id:
+  year: 2012
+  value: '12'
+  numeric_value: !ruby/object:BigDecimal 18:0.12e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_096:
+  id: 96
+  answer_id:
+  metric_id: 3769
+  company_id: 3182
+  record_id:
+  year: 2013
+  value: '13'
+  numeric_value: !ruby/object:BigDecimal 18:0.13e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_097:
+  id: 97
+  answer_id:
+  metric_id: 3769
+  company_id: 3182
+  record_id:
+  year: 2014
+  value: '14'
+  numeric_value: !ruby/object:BigDecimal 18:0.14e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_098:
+  id: 98
+  answer_id:
+  metric_id: 3769
+  company_id: 3178
+  record_id:
+  year: 2014
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_099:
+  id: 99
+  answer_id:
+  metric_id: 3769
+  company_id: 3180
+  record_id:
+  year: 2014
+  value: '10'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_100:
+  id: 100
+  answer_id:
+  metric_id: 3769
+  company_id: 3182
+  record_id:
+  year: 2015
+  value: '15'
+  numeric_value: !ruby/object:BigDecimal 18:0.15e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_101:
+  id: 101
+  answer_id:
+  metric_id: 3769
+  company_id: 3180
+  record_id:
+  year: 2015
+  value: '5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_102:
+  id: 102
+  answer_id:
+  metric_id: 3774
+  company_id: 3178
+  record_id:
+  year: 2014
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_103:
+  id: 103
+  answer_id:
+  metric_id: 3774
+  company_id: 3180
+  record_id:
+  year: 2014
+  value: '5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_104:
+  id: 104
+  answer_id:
+  metric_id: 3774
+  company_id: 3180
+  record_id:
+  year: 2015
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_105:
+  id: 105
+  answer_id:
+  metric_id: 3774
+  company_id: 3182
+  record_id:
+  year: 2015
+  value: '100'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_106:
+  id: 106
+  answer_id: 3860
+  metric_id: 3774
+  company_id: 3163
+  record_id: 3859
+  year: 1977
+  value: '1000'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e4
+  updated_at: 2024-11-26 16:14:11.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:14:11.000000000 Z
+  overridden_value: '5'
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_107:
+  id: 107
+  answer_id:
+  metric_id: 3774
+  company_id: 3182
+  record_id:
+  year: 2002
+  value: '100'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_108:
+  id: 108
+  answer_id:
+  metric_id: 3779
+  company_id: 3163
+  record_id:
+  year: 1977
+  value: '10.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_109:
+  id: 109
+  answer_id:
+  metric_id: 3779
+  company_id: 3166
+  record_id:
+  year: 1977
+  value: '0.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_110:
+  id: 110
+  answer_id:
+  metric_id: 3779
+  company_id: 3168
+  record_id:
+  year: 1977
+  value: '0.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_111:
+  id: 111
+  answer_id:
+  metric_id: 3779
+  company_id: 3163
+  record_id:
+  year: 1990
+  value: '10.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_112:
+  id: 112
+  answer_id:
+  metric_id: 3779
+  company_id: 3163
+  record_id:
+  year: 1991
+  value: '10.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_113:
+  id: 113
+  answer_id:
+  metric_id: 3779
+  company_id: 3163
+  record_id:
+  year: 1992
+  value: '10.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_114:
+  id: 114
+  answer_id:
+  metric_id: 3779
+  company_id: 3163
+  record_id:
+  year: 2000
+  value: '10.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_115:
+  id: 115
+  answer_id:
+  metric_id: 3779
+  company_id: 3166
+  record_id:
+  year: 2000
+  value: '10.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_116:
+  id: 116
+  answer_id:
+  metric_id: 3779
+  company_id: 3173
+  record_id:
+  year: 2000
+  value: '0.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_117:
+  id: 117
+  answer_id:
+  metric_id: 3779
+  company_id: 3163
+  record_id:
+  year: 2001
+  value: '10.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_118:
+  id: 118
+  answer_id:
+  metric_id: 3779
+  company_id: 3168
+  record_id:
+  year: 2005
+  value: '0.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_119:
+  id: 119
+  answer_id:
+  metric_id: 3779
+  company_id: 3168
+  record_id:
+  year: 2006
+  value: '0.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:03.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1191
+  editor_id: 1191
+  created_at: 2024-11-26 16:14:03.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_120:
+  id: 120
+  answer_id:
+  metric_id: 3782
+  company_id: 3163
+  record_id:
+  year: 1977
+  value: '5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_121:
+  id: 121
+  answer_id:
+  metric_id: 3782
+  company_id: 3168
+  record_id:
+  year: 1977
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_122:
+  id: 122
+  answer_id:
+  metric_id: 3782
+  company_id: 3170
+  record_id:
+  year: 1977
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_123:
+  id: 123
+  answer_id:
+  metric_id: 3782
+  company_id: 3173
+  record_id:
+  year: 1977
+  value: '2.5'
+  numeric_value: !ruby/object:BigDecimal 18:0.25e1
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_124:
+  id: 124
+  answer_id:
+  metric_id: 3782
+  company_id: 3180
+  record_id:
+  year: 1977
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_125:
+  id: 125
+  answer_id:
+  metric_id: 3782
+  company_id: 3168
+  record_id:
+  year: 2003
+  value: '0.4'
+  numeric_value: !ruby/object:BigDecimal 18:0.4e0
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_126:
+  id: 126
+  answer_id:
+  metric_id: 3782
+  company_id: 3168
+  record_id:
+  year: 2004
+  value: '0.45'
+  numeric_value: !ruby/object:BigDecimal 18:0.45e0
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_127:
+  id: 127
+  answer_id:
+  metric_id: 3782
+  company_id: 3168
+  record_id:
+  year: 2005
+  value: '0.5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e0
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_128:
+  id: 128
+  answer_id:
+  metric_id: 3786
+  company_id: 3163
+  record_id:
+  year: 1977
+  value: '10'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_129:
+  id: 129
+  answer_id:
+  metric_id: 3786
+  company_id: 3168
+  record_id:
+  year: 1977
+  value: '2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_130:
+  id: 130
+  answer_id:
+  metric_id: 3786
+  company_id: 3170
+  record_id:
+  year: 1977
+  value: '4'
+  numeric_value: !ruby/object:BigDecimal 18:0.4e1
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_131:
+  id: 131
+  answer_id:
+  metric_id: 3786
+  company_id: 3173
+  record_id:
+  year: 1977
+  value: '5'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_132:
+  id: 132
+  answer_id:
+  metric_id: 3786
+  company_id: 3180
+  record_id:
+  year: 1977
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_133:
+  id: 133
+  answer_id:
+  metric_id: 3786
+  company_id: 3168
+  record_id:
+  year: 2003
+  value: '0.8'
+  numeric_value: !ruby/object:BigDecimal 18:0.8e0
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_134:
+  id: 134
+  answer_id:
+  metric_id: 3786
+  company_id: 3168
+  record_id:
+  year: 2004
+  value: '0.9'
+  numeric_value: !ruby/object:BigDecimal 18:0.9e0
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_135:
+  id: 135
+  answer_id:
+  metric_id: 3786
+  company_id: 3168
+  record_id:
+  year: 2005
+  value: '1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  updated_at: 2024-11-26 16:14:04.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:04.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_136:
+  id: 136
+  answer_id:
+  metric_id: 3791
+  company_id: 3163
+  record_id:
+  year: 1977
+  value: '10.0'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_137:
+  id: 137
+  answer_id:
+  metric_id: 3791
+  company_id: 3168
+  record_id:
+  year: 1977
+  value: '1.2'
+  numeric_value: !ruby/object:BigDecimal 18:0.12e1
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_138:
+  id: 138
+  answer_id:
+  metric_id: 3791
+  company_id: 3168
+  record_id:
+  year: 2005
+  value: '0.6'
+  numeric_value: !ruby/object:BigDecimal 18:0.6e0
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_139:
+  id: 139
+  answer_id:
+  metric_id: 3796
+  company_id: 3163
+  record_id:
+  year: 1977
+  value: '97'
+  numeric_value: !ruby/object:BigDecimal 18:0.97e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_140:
+  id: 140
+  answer_id:
+  metric_id: 3796
+  company_id: 3182
+  record_id:
+  year: 2000
+  value: '20'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_141:
+  id: 141
+  answer_id:
+  metric_id: 3796
+  company_id: 3182
+  record_id:
+  year: 2001
+  value: '30'
+  numeric_value: !ruby/object:BigDecimal 18:0.3e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_142:
+  id: 142
+  answer_id:
+  metric_id: 3796
+  company_id: 3182
+  record_id:
+  year: 2002
+  value: '30'
+  numeric_value: !ruby/object:BigDecimal 18:0.3e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_143:
+  id: 143
+  answer_id:
+  metric_id: 3796
+  company_id: 3182
+  record_id:
+  year: 2010
+  value: '30'
+  numeric_value: !ruby/object:BigDecimal 18:0.3e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_144:
+  id: 144
+  answer_id:
+  metric_id: 3796
+  company_id: 3182
+  record_id:
+  year: 2011
+  value: '31'
+  numeric_value: !ruby/object:BigDecimal 18:0.31e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_145:
+  id: 145
+  answer_id:
+  metric_id: 3796
+  company_id: 3182
+  record_id:
+  year: 2012
+  value: '32'
+  numeric_value: !ruby/object:BigDecimal 18:0.32e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_146:
+  id: 146
+  answer_id:
+  metric_id: 3796
+  company_id: 3182
+  record_id:
+  year: 2013
+  value: '33'
+  numeric_value: !ruby/object:BigDecimal 18:0.33e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_147:
+  id: 147
+  answer_id:
+  metric_id: 3796
+  company_id: 3182
+  record_id:
+  year: 2014
+  value: '34'
+  numeric_value: !ruby/object:BigDecimal 18:0.34e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_148:
+  id: 148
+  answer_id:
+  metric_id: 3796
+  company_id: 3182
+  record_id:
+  year: 2015
+  value: '35'
+  numeric_value: !ruby/object:BigDecimal 18:0.35e2
+  updated_at: 2024-11-26 16:14:05.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:05.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_149:
+  id: 149
+  answer_id:
+  metric_id: 3802
+  company_id: 3168
+  record_id:
+  year: 2005
+  value: '19'
+  numeric_value: !ruby/object:BigDecimal 18:0.19e2
+  updated_at: 2024-11-26 16:14:06.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:06.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_150:
+  id: 150
+  answer_id:
+  metric_id: 3802
+  company_id: 3168
+  record_id:
+  year: 2004
+  value: '17'
+  numeric_value: !ruby/object:BigDecimal 18:0.17e2
+  updated_at: 2024-11-26 16:14:06.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:06.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_151:
+  id: 151
+  answer_id:
+  metric_id: 3809
+  company_id: 3168
+  record_id:
+  year: 2005
+  value: '27'
+  numeric_value: !ruby/object:BigDecimal 18:0.27e2
+  updated_at: 2024-11-26 16:14:07.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:07.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_152:
+  id: 152
+  answer_id:
+  metric_id: 3815
+  company_id: 3163
+  record_id:
+  year: 1977
+  value: '0.01'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e-1
+  updated_at: 2024-11-26 16:14:07.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:07.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_153:
+  id: 153
+  answer_id:
+  metric_id: 3815
+  company_id: 3168
+  record_id:
+  year: 1977
+  value: '0.05'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e-1
+  updated_at: 2024-11-26 16:14:07.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:07.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_154:
+  id: 154
+  answer_id:
+  metric_id: 3815
+  company_id: 3170
+  record_id:
+  year: 1977
+  value: '0.025'
+  numeric_value: !ruby/object:BigDecimal 18:0.25e-1
+  updated_at: 2024-11-26 16:14:07.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:07.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_155:
+  id: 155
+  answer_id:
+  metric_id: 3815
+  company_id: 3173
+  record_id:
+  year: 1977
+  value: '0.02'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e-1
+  updated_at: 2024-11-26 16:14:07.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:07.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_156:
+  id: 156
+  answer_id:
+  metric_id: 3815
+  company_id: 3180
+  record_id:
+  year: 1977
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:14:07.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:07.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_157:
+  id: 157
+  answer_id: 3856
+  metric_id: 3815
+  company_id: 3168
+  record_id: 3855
+  year: 2003
+  value: '100'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  updated_at: 2024-11-26 16:14:09.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id:
+  created_at: 2024-11-26 16:14:09.000000000 Z
+  overridden_value: '0.125'
+  calculating: 0
+  source_count: 1
+  source_url: https://thereaderwiki.com/en/Opera
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags: 0
+  route: 0
+answers_158:
+  id: 158
+  answer_id:
+  metric_id: 3815
+  company_id: 3168
+  record_id:
+  year: 2004
+  value: '0.1111111111111111'
+  numeric_value: !ruby/object:BigDecimal 18:0.11111e0
+  updated_at: 2024-11-26 16:14:07.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:07.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_159:
+  id: 159
+  answer_id:
+  metric_id: 3815
+  company_id: 3168
+  record_id:
+  year: 2005
+  value: '0.1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e0
+  updated_at: 2024-11-26 16:14:07.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:07.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_160:
+  id: 160
+  answer_id:
+  metric_id: 3822
+  company_id: 3163
+  record_id:
+  year: 1977
+  value: '0.02'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e-1
+  updated_at: 2024-11-26 16:14:08.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:08.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_161:
+  id: 162
+  answer_id:
+  metric_id: 3822
+  company_id: 3170
+  record_id:
+  year: 1977
+  value: '0.05'
+  numeric_value: !ruby/object:BigDecimal 18:0.5e-1
+  updated_at: 2024-11-26 16:14:08.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:08.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_162:
+  id: 163
+  answer_id:
+  metric_id: 3822
+  company_id: 3173
+  record_id:
+  year: 1977
+  value: '0.04'
+  numeric_value: !ruby/object:BigDecimal 18:0.4e-1
+  updated_at: 2024-11-26 16:14:08.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:08.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_163:
+  id: 164
+  answer_id:
+  metric_id: 3822
+  company_id: 3180
+  record_id:
+  year: 1977
+  value: Unknown
+  numeric_value:
+  updated_at: 2024-11-26 16:14:08.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:08.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_164:
+  id: 169
+  answer_id:
+  metric_id: 3822
+  company_id: 3168
+  record_id:
+  year: 1977
+  value: '0.1'
+  numeric_value: !ruby/object:BigDecimal 18:0.1e0
+  updated_at: 2024-11-26 16:14:10.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:10.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_165:
+  id: 170
+  answer_id:
+  metric_id: 3822
+  company_id: 3168
+  record_id:
+  year: 2003
+  value: '200'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e3
+  updated_at: 2024-11-26 16:14:10.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:10.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_166:
+  id: 171
+  answer_id:
+  metric_id: 3822
+  company_id: 3168
+  record_id:
+  year: 2004
+  value: '0.2222222222222222'
+  numeric_value: !ruby/object:BigDecimal 18:0.22222e0
+  updated_at: 2024-11-26 16:14:10.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:10.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_167:
+  id: 172
+  answer_id:
+  metric_id: 3822
+  company_id: 3168
+  record_id:
+  year: 2005
+  value: '0.2'
+  numeric_value: !ruby/object:BigDecimal 18:0.2e0
+  updated_at: 2024-11-26 16:14:10.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:10.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_168:
+  id: 173
+  answer_id:
+  metric_id: 3835
+  company_id: 3176
+  record_id:
+  year: 2019
+  value: California (United States)
+  numeric_value:
+  updated_at: 2024-11-26 16:14:31.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:31.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_169:
+  id: 174
+  answer_id:
+  metric_id: 3845
+  company_id: 3176
+  record_id:
+  year: 2019
+  value: Americas
+  numeric_value:
+  updated_at: 2024-11-26 16:14:31.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:31.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_170:
+  id: 175
+  answer_id:
+  metric_id: 848
+  company_id: 3176
+  record_id:
+  year: 2019
+  value: United States
+  numeric_value:
+  updated_at: 2024-11-26 16:14:31.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:31.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_171:
+  id: 176
+  answer_id:
+  metric_id: 4117
+  company_id: 3163
+  record_id:
+  year: 1991
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:32.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:32.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_172:
+  id: 177
+  answer_id:
+  metric_id: 4117
+  company_id: 3163
+  record_id:
+  year: 1992
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:32.000000000 Z
+  imported:
+  latest: 0
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:32.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_173:
+  id: 178
+  answer_id:
+  metric_id: 4117
+  company_id: 3163
+  record_id:
+  year: 2001
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:32.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:32.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
+answers_174:
+  id: 179
+  answer_id:
+  metric_id: 4117
+  company_id: 3168
+  record_id:
+  year: 2006
+  value: '0'
+  numeric_value: !ruby/object:BigDecimal 18:0.0
+  updated_at: 2024-11-26 16:14:32.000000000 Z
+  imported:
+  latest: 1
+  checkers:
+  creator_id: 1
+  editor_id: 1
+  created_at: 2024-11-26 16:14:32.000000000 Z
+  overridden_value:
+  calculating: 0
+  source_count:
+  source_url:
+  comments:
+  verification: 1
+  unpublished: 0
+  open_flags:
+  route: 3
