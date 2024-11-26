@@ -20,7 +20,7 @@ def metric_designer_image
   metric_designer_card.fetch(:image, new: {})
 end
 
-def where_record
+def where_answer
   where_year do
     { metric_id: metric_card.id, company_id: [:in] + company_ids }
   end
@@ -51,7 +51,7 @@ format :html do
     research_progress_bar :metric_link
   end
 
-  def record_log_name
+  def record_name
     company_name = (params[:company] || company_ids.first).cardname
     metric_card.name.field company_name
   end

@@ -7,7 +7,7 @@ class RemoveRealNonResearchedAnswers < Cardio::Migration::Transform
 
     Answer.where(answer_id: nil, metric_type_id: calculated_ids, overridden_value: nil)
           .find_each do |answer|
-      next unless (answer_card = Card[answer.record_name, answer.year.to_s])
+      next unless (answer_card = Card[answer.answer_name, answer.year.to_s])
       children = answer_card&.children || []
       if children&.empty? || only_value_child?(children)
         answer_card.delete!

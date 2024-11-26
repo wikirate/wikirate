@@ -1,12 +1,12 @@
 def merge_into target_metric
-  move_records_to target_metric
+  move_answer_to target_metric
   move_dataset_listings_to target_metric
 end
 
-def move_records_to target_metric
-  records.each do |record|
-    next unless record.real? # needed? we only merge researched metrics, right?
-    record.move metric: target_metric
+def move_answer_to target_metric
+  answer.each do |answer|
+    next unless answer.real? # needed? we only merge researched metrics, right?
+    answer.move metric: target_metric
   end
 end
 

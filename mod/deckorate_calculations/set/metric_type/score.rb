@@ -7,7 +7,7 @@ delegate :calculator_class, to: :formula_card
 
 event :validate_score_name, :validate, changed: :name, on: :save do
   errors.add :name, "#{scoree} is not a metric" unless scoree_card&.type_id == MetricID
-  # can't be company because Metric+Company is a record
+  # can't be company because Metric+Company is an answer
   unless scorer_card&.type_id.in? [UserID, ResearchGroupID]
     errors.add :name, "Invalid Scorer: #{scorer}; must be a User or Research Group"
   end
@@ -20,7 +20,7 @@ event :set_scored_metric_name, :initialize, on: :create do
 end
 
 # event :default_formula, :prepare_to_store, on: :create, when: :formula_unspecified? do
-#   field :formula, content: "record", type_id: PlainTextID
+#   field :formula, content: "answer", type_id: PlainTextID
 # end
 
 # <OVERRIDES>
@@ -41,7 +41,7 @@ def unorthodox?
 end
 
 def base_input_array
-  input = { metric: left_id, name: "record" }
+  input = { metric: left_id, name: "answer" }
   input[:unknown] = "Unknown" if categorical?
   [input]
 end

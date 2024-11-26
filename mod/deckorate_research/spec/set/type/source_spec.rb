@@ -26,7 +26,7 @@ RSpec.describe Card::Set::Type::Source do
 
     xit "handles empty source" do
       expect { create_source "" }
-        .to raise_error(ActiveRecord::RecordInvalid, /File required/)
+        .to raise_error(ActiveRecord::AnswerInvalid, /File required/)
     end
 
     it "creates website card with actions" do

@@ -1,23 +1,23 @@
 class Calculate
   class Calculator
     class InputItem
-      # private methods for finding relevant input records
+      # private methods for finding relevant input answer
       module Search
         def search result_space=nil
           @result_space = result_space || ResultSpace.new(false)
           @result_slice = ResultSlice.new
-          full_search do |company_id, year, input_record|
-            store_value company_id, year, input_record
+          full_search do |company_id, year, input_answer|
+            store_value company_id, year, input_answer
           end
           after_search
         end
 
-        # Find record for the given input card and cache the result.
+        # Find answer for the given input card and cache the result.
         # If year is given look only for that year
         def full_search
-          input_records_by_company_and_year.each do |company_id, input_record_hash|
-            each_applicable_year(input_record_hash.keys) do |year|
-              yield company_id, year, apply_year_option(input_record_hash, year)
+          input_answer_by_company_and_year.each do |company_id, input_answer_hash|
+            each_applicable_year(input_answer_hash.keys) do |year|
+              yield company_id, year, apply_year_option(input_answer_hash, year)
             end
           end
         end
@@ -31,30 +31,30 @@ class Calculate
         end
 
         def search_space
-          @search_space ||= result_space.record_candidates
+          @search_space ||= result_space.answer_candidates
         end
 
         def after_search
           result_space.update @result_slice, mandatory?
         end
 
-        # Searches for all metric records for this metric input.
-        def records
-          ::Record.where record_query
+        # Searches for all metric answer for this metric input.
+        def answer
+          ::Answer.where answer_query
         end
 
-        def each_input_record rel, object
-          rel.pluck(*INPUT_RECORD_FIELDS).each_with_object(object) do |fields, obj|
+        def each_input_answer rel, object
+          rel.pluck(*INPUT_ANSWER_FIELDS).each_with_object(object) do |fields, obj|
             company_id = fields.shift
             year = fields.shift
-            input_record = InputRecord.new self, company_id, year
-            input_record.assign(*fields)
-            yield input_record, obj
+            input_answer = InputAnswer.new self, company_id, year
+            input_answer.assign(*fields)
+            yield input_answer, obj
           end
         end
 
         def search_company_ids
-          ::Record.select(:company_id).distinct
+          ::Answer.select(:company_id).distinct
                   .where(metric_id: input_card.id).pluck(:company_id)
         end
 
@@ -69,23 +69,23 @@ class Calculate
 
         def with_restricted_search_space company_id, year
           @search_space = SearchSpace.new company_id, year
-          @search_space.intersect! result_space.record_candidates
+          @search_space.intersect! result_space.answer_candidates
           yield
         ensure
           @search_space = nil
         end
 
-        def consolidated_input_record records, year
-          lookup_ids = consolidate_lookup_ids records
-          value = records.map(&:value)
-          unpublished = records.find(&:unpublished)
-          verification = records.map(&:verification).compact.min || 1
-          InputRecord.new(self, nil, year)
+        def consolidated_input_answer answer, year
+          lookup_ids = consolidate_lookup_ids answer
+          value = answer.map(&:value)
+          unpublished = answer.find(&:unpublished)
+          verification = answer.map(&:verification).compact.min || 1
+          InputAnswer.new(self, nil, year)
                      .assign lookup_ids, value, unpublished, verification
         end
 
-        def consolidate_lookup_ids records
-          records.map { |a| a.try(:lookup_ids) || a.id }.flatten.uniq
+        def consolidate_lookup_ids answer
+          answer.map { |a| a.try(:lookup_ids) || a.id }.flatten.uniq
         end
       end
     end

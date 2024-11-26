@@ -3,7 +3,7 @@
 RSpec.describe Card::Set::TypePlusRight::Metric::Company do
   it_behaves_like "cached count", "Jedi+disturbances in the force+companies", 4, 1 do
     let :add_one do
-      create_records "Jedi+disturbances in the force", true do
+      create_answers "Jedi+disturbances in the force", true do
         Samsung "1977" => "yes"
       end
     end

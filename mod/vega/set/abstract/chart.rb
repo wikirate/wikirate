@@ -24,7 +24,7 @@ format :html do
          subgroup: params[:subgroup]
   end
 
-  # json does not show not-researched records.
+  # json does not show not-researched answer.
   def chart_filter_hash
     filter_hash.dup.tap do |hash|
       hash.delete(:status) if hash[:status]&.to_sym == :all

@@ -1,6 +1,6 @@
 class Card
   class VegaChart
-    # Metric/Company Grid of record values
+    # Metric/Company Grid of answer values
     class Grid < VegaChart
       def initialize format, opts
         @invert = opts[:invert]
@@ -8,7 +8,7 @@ class Card
       end
 
       def hash
-        with_values(company_list: 0, metric_list: 1, record_list: 4) do
+        with_values(company_list: 0, metric_list: 1, answer_list: 4) do
           super.tap do |h|
             h[:scales] << builtin(:ten_scale_color)
             invert h

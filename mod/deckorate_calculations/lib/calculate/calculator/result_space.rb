@@ -1,15 +1,15 @@
 class Calculate
   class Calculator
-    # Keeps track of which companies can calculate records for which years
+    # Keeps track of which companies can calculate answer for which years
     class ResultSpace < Hash
-      attr_reader :record_candidates
+      attr_reader :answer_candidates
 
       def initialize no_mandatories
         super() do |h, k|
           h[k] = ::Set.new
         end
         @fresh = true
-        @record_candidates = SearchSpace.new
+        @answer_candidates = SearchSpace.new
         @company_ids = ::Set.new
 
         if no_mandatories

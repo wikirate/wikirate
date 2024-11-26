@@ -31,10 +31,10 @@ class Calculate
           end
 
           # input value has the value "Unknown"
-          def input_record_unknown? record
-            return if record.is_a? Hash
+          def input_answer_unknown? answer
+            return if answer.is_a? Hash
 
-            Array.wrap(record&.value).any? { |v| Record.unknown? v }
+            Array.wrap(answer&.value).any? { |v| Answer.unknown? v }
           end
 
           private

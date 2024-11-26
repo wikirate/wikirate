@@ -1,11 +1,11 @@
-include_set Abstract::KnownRecords
+include_set Abstract::KnownAnswers
 
 def year_card
   @year_card ||= left
 end
 
-def where_record
-  where = dataset_card.where_record_log
+def where_answer
+  where = dataset_card.where_record
   where[:year] = year
   where
 end
@@ -15,7 +15,7 @@ def year
 end
 
 def num_possible
-  @num_possible ||= dataset_card.num_possible_records
+  @num_possible ||= dataset_card.num_possible_answers
 end
 
 format :html do

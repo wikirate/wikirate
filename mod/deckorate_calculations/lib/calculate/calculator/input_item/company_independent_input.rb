@@ -12,8 +12,8 @@ class Calculate
           YearlyValueStore
         end
 
-        def input_records_by_company_and_year
-          { nil => year_record_pairs }
+        def input_answer_by_company_and_year
+          { nil => year_answer_pairs }
         end
 
         def update_result_slice _company_id, year, _value

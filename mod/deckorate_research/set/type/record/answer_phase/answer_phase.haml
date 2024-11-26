@@ -1,0 +1,5 @@
+%section.container.research-answer
+  %a.answer-breadcrumb-link._to_question_phase.mb-5.d-block{ href: "#" }
+    = nest answer, view: :breadcrumb
+  .py-2
+    = nest answer, view: :read_form_with_button, unknown: :simple_new
