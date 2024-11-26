@@ -168,8 +168,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_190243) do
     t.integer "open_flags"
     t.integer "route", limit: 1
     t.index ["company_id"], name: "company_id_index"
-    t.index ["metric_id", "company_id", "year"], name: "index_answer_on_metric_id_and_company_id_and_year", unique: true
-    t.index ["metric_id", "company_id"], name: "index_answer_on_metric_id_and_company_id"
+    t.index ["metric_id", "company_id", "year"], name: "index_answers_on_metric_id_and_company_id_and_year", unique: true
+    t.index ["metric_id", "company_id"], name: "index_answers_on_metric_id_and_company_id"
     t.index ["metric_id"], name: "metric_id_index"
     t.index ["numeric_value"], name: "numeric_value_index"
     t.index ["answer_id"], name: "answer_id_index", unique: true

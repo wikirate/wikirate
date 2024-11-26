@@ -68,7 +68,7 @@ class Card
     end
 
     def main_results_sql
-      fields = "answer.id, #{partner}.name, #{partner}.left_id, #{partner}.right_id"
+      fields = "answers.id, #{partner}.name, #{partner}.left_id, #{partner}.right_id"
       @main_results_sql ||= sort_and_page { main_query.select fields }.to_sql
     end
   end

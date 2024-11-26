@@ -18,7 +18,7 @@ Two abstract sets facilitate the use of References and their custom views:
 
 - **Card::Set::Abstract::Attributable** - when this abstract set is included in
   a card set, that set has extra UI to support attributions for those cards. 
-  Specifically, datasets, metrics, and answer include this set.
+  Specifically, datasets, metrics, and answers include this set.
 - **Card::Set::Abstract::AttributableSearch** - including this abstract set means
   that exports of its searches will be accompanied by a reminder to attribute 
   the results.

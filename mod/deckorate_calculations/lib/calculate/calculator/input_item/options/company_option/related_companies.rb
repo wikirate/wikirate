@@ -6,15 +6,15 @@ class Calculate
           # Used if a relationship metric (or inverse relationship metric) is
           # passed as company option.
           module RelatedCompanies
-            # answer can be calculated for any company/year for which there exists
+            # answers can be calculated for any company/year for which there exists
             # an answer to a company related by the relationship metric.
 
             # @return Hash
             # keys are company ids, values are Hashes, each of which has
             # year as a key and InputAnswer object as a value
-            def input_answer_by_company_and_year
+            def input_answers_by_company_and_year
               object_answers = super
-              # answer for object companies (same hash representation as result)
+              # answers for object companies (same hash representation as result)
 
               relationship_hash.each_with_object({}) do |(subject_id, object_id_list), h|
                 obj_answers = object_id_list.map { |id| object_answers[id] }.compact
@@ -23,8 +23,8 @@ class Calculate
               end
             end
 
-            # must be overwritten, because "answer" does not filter by company
-            def answer_for company_id, year
+            # must be overwritten, because "answers" does not filter by company
+            def answers_for company_id, year
               @search_space = SearchSpace.new company_id, year
               ::Answer.where answer_query.merge(company_id: relationship_hash[company_id])
             end
@@ -55,7 +55,7 @@ class Calculate
 
             # for each list of
             # @return [Hash] keys are years, values are consolidated InputAnswer objects
-            #   that represent answer for object companies
+            #   that represent answers for object companies
             def consolidate_object_answers obj_answers
               consolidate_object_hash(obj_answers).tap do |hash|
                 hash.each do |year, answer_list|

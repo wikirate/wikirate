@@ -2,7 +2,7 @@ class Calculate
   # This "Calculator" class replicates the behavior of
   # more sophisticated Calculate::Calculator classes but performs a much
   # simpler "calculation" - it just takes values from company fields
-  # and creates metric answer out of them.
+  # and creates answers out of them.
   class CompanyField < Calculator
     YEAR = "2019".freeze
 
@@ -14,8 +14,8 @@ class Calculate
       @errors = []
     end
 
-    # company fields don't depend on any other answer
-    def answer_for _company_id, _year
+    # company fields don't depend on any other answers
+    def answers_for _company_id, _year
       []
     end
 

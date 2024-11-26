@@ -22,8 +22,8 @@ class Calculate
       # @param :companies [Array of Integers] only yield input for given companies
       # @option :years [Array of Integers] :year only yield input for given years
       def each companies: [], years: []
-        each_answer companies: companies, years: years do |answer, company_id, year|
-          yield answer, company_id, year if normalize_answers answer
+        each_answer companies: companies, years: years do |answers, company_id, year|
+          yield answers, company_id, year if normalize_answers answers
         end
       end
 
@@ -39,11 +39,11 @@ class Calculate
       # @return [Array<Array>] for the given company and year returns a list of lists of
       # Answer objects. Each item in the outer list corresponds to an input.
       # Most inputs have only one item, but some have more, so we return an Array of
-      # answer for each input
-      def answer_for company_id, year
+      # answers for each input
+      def answers_for company_id, year
         with_integers company_id, year do |c, y|
           input_list.map do |input_item|
-            input_item.answer_for(c, y).to_a
+            input_item.answers_for(c, y).to_a
           end
         end
       end
@@ -75,8 +75,8 @@ class Calculate
         Array.wrap(companies).map(&:card_id).each(&block)
       end
 
-      def normalize_answers answer
-        answer&.map do |answer|
+      def normalize_answers answers
+        answers&.map do |answer|
           answer.cast { |val| @input_cast.call val } if @input_cast && !answer.nil?
           answer
         end

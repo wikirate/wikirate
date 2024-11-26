@@ -2,13 +2,13 @@
 class Calculate
   include Clean
 
-  attr_reader :answer, :metric
+  attr_reader :answers, :metric
 
   def initialize metric, args={}
     @metric = metric
     @company_id = args[:company_id]
     @year = args[:year]
-    @answer = metric.answer args
+    @answers = metric.answers args
   end
 
   def prepare
@@ -38,29 +38,29 @@ class Calculate
     array = if @company_id
               [@company_id]
             else
-              answer.select(:company_id).distinct.pluck :company_id
+              answers.select(:company_id).distinct.pluck :company_id
             end
     ::Set.new array
   end
 
   def wipe_old_calculations
-    answer.where(answer_id: nil).delete_all if old_company_ids.present?
+    answers.where(answer_id: nil).delete_all if old_company_ids.present?
     return unless overridden_hash.present?
 
-    answer.where("answer_id is not null").update_all overridden_value: nil
+    answers.where("answer_id is not null").update_all overridden_value: nil
   end
 
   def expirables
     return [] unless old_company_ids.present?
 
-    @expirables ||= answer.joins("JOIN cards AS companies ON company_id = companies.id")
+    @expirables ||= answers.joins("JOIN cards AS companies ON company_id = companies.id")
                            .pluck :name, :year
   end
 
   def overridden_hash
     return {} unless old_company_ids.present?
 
-    @overridden_hash ||= answer.where("answer_id is not null")
+    @overridden_hash ||= answers.where("answer_id is not null")
                                 .pluck(:company_id, :year)
                                 .each_with_object({}) do |(c, y), h|
       h["#{c}-#{y}"] = true
@@ -93,7 +93,7 @@ class Calculate
 
   def update_overridden_calculations overridden
     overridden.each do |o|
-      answer.where(company_id: o.company_id, year: o.year)
+      answers.where(company_id: o.company_id, year: o.year)
              .update_all overridden_value: o.value
     end
   end

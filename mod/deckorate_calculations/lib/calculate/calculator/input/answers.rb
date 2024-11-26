@@ -1,7 +1,7 @@
 class Calculate
   class Calculator
     class Input
-      # methods for retrieving input answer
+      # methods for retrieving input answers
       module Answers
         private
 

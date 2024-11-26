@@ -5,7 +5,7 @@ class Calculate
         module CompanyOption
           # Used if a company group is passed as company option.
           # It makes the values for this input item independent of the output company
-          # (since the answer for the company group are always used)
+          # (since the answers for the company group are always used)
           module GroupedCompanies
             include CompanyIndependentInput
 

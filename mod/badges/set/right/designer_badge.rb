@@ -2,7 +2,7 @@ include_set Abstract::AnswerCreateAffinityBadge
 
 format :html do
   view :description do
-    "Awarded for adding #{threshold} answer for metrics designed by #{affinity}"
+    "Awarded for adding #{threshold} answers for metrics designed by #{affinity}"
   end
 end
 

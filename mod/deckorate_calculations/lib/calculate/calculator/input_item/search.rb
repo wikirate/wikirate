@@ -1,7 +1,7 @@
 class Calculate
   class Calculator
     class InputItem
-      # private methods for finding relevant input answer
+      # private methods for finding relevant input answers
       module Search
         def search result_space=nil
           @result_space = result_space || ResultSpace.new(false)
@@ -15,7 +15,7 @@ class Calculate
         # Find answer for the given input card and cache the result.
         # If year is given look only for that year
         def full_search
-          input_answer_by_company_and_year.each do |company_id, input_answer_hash|
+          input_answers_by_company_and_year.each do |company_id, input_answer_hash|
             each_applicable_year(input_answer_hash.keys) do |year|
               yield company_id, year, apply_year_option(input_answer_hash, year)
             end
@@ -38,8 +38,8 @@ class Calculate
           result_space.update @result_slice, mandatory?
         end
 
-        # Searches for all metric answer for this metric input.
-        def answer
+        # Searches for all answers for this metric input.
+        def answers
           ::Answer.where answer_query
         end
 
@@ -75,17 +75,17 @@ class Calculate
           @search_space = nil
         end
 
-        def consolidated_input_answer answer, year
-          lookup_ids = consolidate_lookup_ids answer
-          value = answer.map(&:value)
-          unpublished = answer.find(&:unpublished)
-          verification = answer.map(&:verification).compact.min || 1
+        def consolidated_input_answer answers, year
+          lookup_ids = consolidate_lookup_ids answers
+          value = answers.map(&:value)
+          unpublished = answers.find(&:unpublished)
+          verification = answers.map(&:verification).compact.min || 1
           InputAnswer.new(self, nil, year)
                      .assign lookup_ids, value, unpublished, verification
         end
 
-        def consolidate_lookup_ids answer
-          answer.map { |a| a.try(:lookup_ids) || a.id }.flatten.uniq
+        def consolidate_lookup_ids answers
+          answers.map { |a| a.try(:lookup_ids) || a.id }.flatten.uniq
         end
       end
     end

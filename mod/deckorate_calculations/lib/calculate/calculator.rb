@@ -14,10 +14,10 @@ class Calculate
 
     attr_reader :errors, :computer, :formula
 
-    # All the answer a given calculation depends on
+    # All the answers a given calculation depends on
     # (same opts as #result)
     # @return [Array] array of Answer objects
-    delegate :answer_for, to: :input
+    delegate :answers_for, to: :input
 
     # @param input_array [Array]
     # @param normalizer: [Method] # called to normalize each *result* value
@@ -36,7 +36,7 @@ class Calculate
       @input ||= input_with :cast
     end
 
-    # Calculates answer
+    # Calculates answers
     # @param :companies [Array, Integer] only yield input for given companies
     # @param :years [String, Integer, Array] :year only yield input for given years
     # @return [Hash] { year => { company_id => value } }

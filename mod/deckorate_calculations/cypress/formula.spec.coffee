@@ -42,7 +42,7 @@ describe 'Formula editor', ->
         .get("._edit-variable-options").should "be.hidden"
       cy.get("._sample-value").should "have.value", '"no"'
 
-    # updates answer
+    # updates answers
     cy.get(".tab-li-answer").click()
     cy.get("._answer-board ._ab-total").should "have.text", "3"
 
@@ -100,7 +100,7 @@ describe 'Formula editor', ->
 #    # make sure changes show
 #    cy.get("._formula_options").should "include.text", "unknown: no_result"
 #
-#    # make sure changes take effect in answer
+#    # make sure changes take effect in answers
 #    cy.get "._answer-board ._ab-result-unknown-count"
 #      .should "be.hidden"
 #

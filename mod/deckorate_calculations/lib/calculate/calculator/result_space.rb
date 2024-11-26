@@ -1,6 +1,6 @@
 class Calculate
   class Calculator
-    # Keeps track of which companies can calculate answer for which years
+    # Keeps track of which companies can calculate answers for which years
     class ResultSpace < Hash
       attr_reader :answer_candidates
 

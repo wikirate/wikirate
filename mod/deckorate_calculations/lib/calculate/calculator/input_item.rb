@@ -44,9 +44,9 @@ class Calculate
         @type ||= @input_card.simple_value_type_code
       end
 
-      # @param [Array<company_id>] company_id when given search only for answer for those
+      # @param [Array<company_id>] company_id when given search only for answers for those
       #    companies
-      # @param [Array<year>] year when given search only for answer for those years
+      # @param [Array<year>] year when given search only for answers for those years
       def search_value_for result_space, company_id: nil, year: nil
         return search result_space if company_id.nil? && year.nil?
 
@@ -56,13 +56,13 @@ class Calculate
         end
       end
 
-      def answer_for company_id, year
+      def answers_for company_id, year
         @search_space = SearchSpace.new company_id, year
         if option?(:company) || year_option?
           # cannot do simple query
           nonstandard_answers
         else
-          answer
+          answers
         end
       end
 
