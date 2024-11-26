@@ -1,38 +1,242 @@
 {
-  "id": 6580208,
-  "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2020",
-  "type": "Record",
-  "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2020.json",
-  "content": "",
-  "metric": "US Securities and Exchange Commission+Assets",
-  "company": "Apple Inc.",
-  "year": 2020,
-  "value": "323888000000",
-  "comments": null,
-  "record_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json",
-  "sources": [
+  "id": 2365831,
+  "name": "US Securities and Exchange Commission+Assets+Apple Inc.",
+  "type": {
+    "id": 3318057,
+    "name": "Record",
+    "type": "Cardtype",
+    "url": "https://wikirate.org/Answer_Log.json",
+    "codename": "record"
+  },
+  "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json",
+  "items": [
     {
-      "id": 6564056,
-      "name": "Source-000102251",
-      "type": "Source",
-      "url": "https://wikirate.org/Source_000102251.json",
-      "file": "https://dq06ugkuram52.cloudfront.net/files/6564080/28695625.pdf",
-      "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019320000096/aapl-20200926.htm",
-      "report_type": [
-        "Corporate Social Responsibility Report",
-        "Form-10K",
-        "Annual Report"
-      ],
-      "title": "Apple Inc.'s Annual Form 10-K report 2020",
-      "year": [
-        "2020",
-        "2019",
-        "2018"
-      ]
+      "id": 2365845,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2008",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2008.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2008,
+      "value": "36171000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 2365848,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2009",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2009.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2009,
+      "value": "53851000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 2365839,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2010",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2010.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2010,
+      "value": "75183000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 2365842,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2011",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2011.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2011,
+      "value": "116371000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 2365832,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2012",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2012.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2012,
+      "value": "176064000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 2365836,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2013",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2013.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2013,
+      "value": "207000000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 2365851,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2014",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2014.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2014,
+      "value": "231839000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 2365854,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2015",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2015.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2015,
+      "value": "290479000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 4650229,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2016",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2016.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2016,
+      "value": "321686000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 4607765,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2017",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2017.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2017,
+      "value": "375319000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 4595037,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2018",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2018.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2018,
+      "value": "365725000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 6580205,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2019",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2019.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2019,
+      "value": "338516000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 6580208,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2020",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2020.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2020,
+      "value": "323888000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 10727724,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2021",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2021.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2021,
+      "value": "351002000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
+    },
+    {
+      "id": 14165962,
+      "name": "US Securities and Exchange Commission+Assets+Apple Inc.+2022",
+      "type": "Answer",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc+2022.json",
+      "content": "",
+      "metric": "US Securities and Exchange Commission+Assets",
+      "company": "Apple Inc.",
+      "year": 2022,
+      "value": "352755000000",
+      "comments": null,
+      "answer_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc.json"
     }
   ],
-  "checked_by": [
+  "links": [
 
   ],
-  "requested_at": "2023-09-21 09:36:23 UTC"
+  "ancestors": [
+    {
+      "id": 3099594,
+      "name": "US Securities and Exchange Commission",
+      "type": "Company",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission.json"
+    },
+    {
+      "id": 46652,
+      "name": "Assets",
+      "type": "Metric Title",
+      "url": "https://wikirate.org/Assets.json"
+    },
+    {
+      "id": 1578,
+      "name": "Apple Inc.",
+      "type": "Company",
+      "url": "https://wikirate.org/Apple_Inc.json"
+    },
+    {
+      "id": 1908858,
+      "name": "US Securities and Exchange Commission+Assets",
+      "type": "Metric",
+      "url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets.json"
+    }
+  ],
+  "html_url": "https://wikirate.org/US_Securities_and_Exchange_Commission+Assets+Apple_Inc",
+  "created_at": "2017-01-19 08:29:34 UTC",
+  "updated_at": "2020-03-31 12:16:30 UTC",
+  "requested_at": "2023-09-21 08:51:34 UTC"
 }

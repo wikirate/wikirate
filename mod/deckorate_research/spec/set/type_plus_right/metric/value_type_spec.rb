@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admin" do
   def type_change_for_value value, value_type, metric
-    create_record metric: metric.name,
+    create_answer metric: metric.name,
                   company: sample_company.name, value: value
     card = metric.value_type_card
     Card::Auth.as_bot do
@@ -18,7 +18,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
         # key = "#{metric.name}+#{sample_company.name}+2015".to_sym
         expect(type_change_for_value("wow", new_type, metric))
           .to be_invalid.because_of(
-            records: /Cannot change to #{new_type}.*delete all records containing 'wow'/
+            answers: /Cannot change to #{new_type}.*delete all answers containing 'wow'/
           )
       end
     end
@@ -55,7 +55,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::ValueType, with_user: "Joe Admi
       context "when some values are not in the options" do
         it "blocks type changing" do
           subject.update content:  "Category"
-          is_expected.to be_invalid.because_of records: include("valid options")
+          is_expected.to be_invalid.because_of answers: include("valid options")
           expect(subject.errors.first.message).to match("100")
         end
       end

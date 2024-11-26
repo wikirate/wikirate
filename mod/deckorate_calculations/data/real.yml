@@ -7,9 +7,9 @@
 - :name: Yearly Value
   :type: :cardtype
   :codename: yearly_value
-- :name: Yearly Record
+- :name: Yearly Answer
   :type: :cardtype
-  :codename: yearly_record
+  :codename: yearly_answer
 
 - :name: overridden value
   :codename: overridden_value
@@ -17,8 +17,8 @@
   :codename: hybrid
 - :name: Rubric
   :codename: rubric
-- :name: Input Record
-  :codename: input_record
+- :name: Input Answer
+  :codename: input_answer
 
 - :name: Formula
   :type: :metric_type_type

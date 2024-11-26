@@ -40,7 +40,7 @@ end
 
 def metric_values metric_name
   Card.search left: {
-    type_id: Card::RecordID,
+    type_id: Card::AnswerID,
     left: { left: metric_name }
   }, right: "value"
 end
@@ -78,7 +78,7 @@ end
 def valid_values? metric_values
   metric_values.all? do |mv|
     content = mv.content.delete(",%$ BMK")
-    number?(content) || Record.unknown?(content)
+    number?(content) || Answer.unknown?(content)
   end
 end
 
@@ -152,7 +152,7 @@ end
 
 def handle_ratio_metric
   ratio_mv = Card.search left: { left: "PayScale+CEO to Worker pay" },
-                         type_id: Card::RecordID, append: "value"
+                         type_id: Card::AnswerID, append: "value"
   ratio_mv.each do |mv|
     mv_content = mv.content.clone
     if mv.content.gsub!(":01", "")

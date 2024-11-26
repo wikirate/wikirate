@@ -1,1 +1,1 @@
-include_set Abstract::RecordDiscussBadge
+include_set Abstract::AnswerDiscussBadge

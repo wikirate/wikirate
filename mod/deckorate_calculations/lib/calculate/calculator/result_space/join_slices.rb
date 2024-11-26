@@ -2,10 +2,10 @@ class Calculate
   class Calculator
     class ResultSpace
       # SearchSpace for formulas where only one of the input items needs to have a value.
-      # Record candidates for each input are joined with the existing candidates.
+      # Answer candidates for each input are joined with the existing candidates.
       module JoinSlices
-        def record_candidates
-          @record_candidates ||= SearchSpace.new
+        def answer_candidates
+          @answer_candidates ||= SearchSpace.new
         end
 
         def update slice, _mandatory

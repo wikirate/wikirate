@@ -53,17 +53,17 @@ RSpec.describe Card::Set::Type::Company do
       company_card.update! name: "Life Star"
     end
 
-    it "refreshes all records" do
+    it "refreshes all answers" do
       rename_company!
-      expect(::Record.where(company_id: "Death Star".card_id).count).to eq(0)
+      expect(::Answer.where(company_id: "Death Star".card_id).count).to eq(0)
     end
   end
 
   describe "deleting company" do
-    it "deletes all records", as_bot: true do
+    it "deletes all answers", as_bot: true do
       company_id = company_card.id
       company_card.delete!
-      expect(::Record.where(company_id: company_id).count).to eq(0)
+      expect(::Answer.where(company_id: company_id).count).to eq(0)
       expect(Relationship.where(subject_company_id: company_id).count).to eq(0)
       expect(Relationship.where(object_company_id: company_id).count).to eq(0)
     end

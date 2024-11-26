@@ -45,7 +45,7 @@ metric_molecule_view:
       "$ref": "#/components/schemas/atom_view"
     variables:
       "$ref": "#/components/schemas/atom_view"
-    records:
+    answer:
       type: integer
     bookmarkers:
       type: integer
@@ -57,7 +57,7 @@ metric_molecule_view:
       type: array
       items:
         type: string
-    records_url:
+    answer_url:
       type: string
     items:
       type: array

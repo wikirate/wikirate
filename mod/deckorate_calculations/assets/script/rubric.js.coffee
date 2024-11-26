@@ -23,7 +23,7 @@ variableMetricRows = (table) ->
   table.find("tbody tr")
 
 class deckorate.ScoreVariableEditor extends deckorate.FormulaVariablesEditor
-  variableNames: -> ["record"]
+  variableNames: -> ["answer"]
 
   sampleValueInput: -> @ed.find("._sample-value")
 

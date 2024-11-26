@@ -93,24 +93,24 @@ def company_id
   company.card_id
 end
 
-def record_name
+def answer_name
   "#{metric_name}+#{company_name}+#{year}"
 end
 
-def record_log
-  record_log_name.s
+def record
+  record_name.s
 end
 
-def record_log_name
+def record_name
   metric_name.field_name(company)
 end
 
-def record_log_id
-  record_log_name.card_id
+def record_id
+  record_name.card_id
 end
 
-def record_log_card
-  Card.fetch record_log
+def record_card
+  Card.fetch record
 end
 
 def parts_for_metric full_name
@@ -118,8 +118,8 @@ def parts_for_metric full_name
 end
 
 format do
-  delegate :metric_name, :company_name, :record_log_name, :year_name,
-           :metric_card, :company_card, :record_log_card, :year_card,
+  delegate :metric_name, :company_name, :record_name, :year_name,
+           :metric_card, :company_card, :record_card, :year_card,
            to: :card
 end
 

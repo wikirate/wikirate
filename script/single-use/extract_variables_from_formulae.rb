@@ -96,9 +96,9 @@ def update_coffeescript_score metric
   update_coffeescript metric, :light_blue do
     variables_and_formula(metric).tap do |fields|
       next unless (varname = fields.delete(:variables).first&.dig :name)
-      fields[:formula].gsub! /\b#{varname}\b/, "record"
+      fields[:formula].gsub! /\b#{varname}\b/, "answer"
       if fields[:formula].lines.size == 1
-        fields[:formula].sub! /^record =\s*/, ""
+        fields[:formula].sub! /^answer =\s*/, ""
       end
     end
   end

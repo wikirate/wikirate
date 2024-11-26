@@ -1,12 +1,12 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::TypePlusRight::Metric::CompanyGroup do
-  # only has records for Samsung in 2014, 2015
+  # only has answers for Samsung in 2014, 2015
   let(:metric) { Card["Joe User+researched number 3"] }
 
   # event in in Abstract::Applicability
-  describe "event: verify_no_current_records_inapplicable" do
-    it "disallows restriction that invalidates current researched records" do
+  describe "event: verify_no_current_answer_inapplicable" do
+    it "disallows restriction that invalidates current researched answers" do
       expect { metric.company_group_card.update! content: "Googliest" }
         .to raise_error /would disallow existing/
     end

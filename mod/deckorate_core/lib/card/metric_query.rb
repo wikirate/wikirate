@@ -13,12 +13,12 @@ class Card
     self.simple_filters = ::Set.new(card_id_map.values << :metric_id).freeze
 
     SORT_BY_COUNT = { company: :company,
-                      record: :record,
+                      answer: :answer,
                       reference: :reference }.freeze
 
     include MetricFilters
 
-    # whether record queries with this field should use a metrics table join
+    # whether answer queries with this field should use a metrics table join
     def self.join? field
       field != :metric_id && simple_filters.include?(field)
     end
@@ -49,7 +49,7 @@ class Card
     end
 
     def filter_by_source value
-      subsql = RecordQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
+      subsql = AnswerQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
       @conditions << "metrics.metric_id in (#{subsql})"
     end
   end
