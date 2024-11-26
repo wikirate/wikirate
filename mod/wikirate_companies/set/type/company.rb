@@ -28,7 +28,7 @@ event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
 end
 
 event :delete_all_company_answers, :store, on: :delete do
-  answer.delete_all
+  answers.delete_all
   skip_event! :schedule_answer_counts,
               :update_related_calculations,
               :update_related_scores,

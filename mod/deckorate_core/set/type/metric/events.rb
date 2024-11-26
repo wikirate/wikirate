@@ -56,7 +56,7 @@ event :delete_answers, :prepare_to_validate, on: :update, trigger: :required do
 end
 
 event :delete_all_answers, :store, on: :delete do
-  answer.delete_all
+  answers.delete_all
   skip_event! :update_related_calculations,
               :update_related_scores,
               :update_related_verifications

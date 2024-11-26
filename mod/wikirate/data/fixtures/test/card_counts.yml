@@ -123,8 +123,8 @@ card_counts_021:
   id: 21
   left_id: 3163
   right_id: 710
-  value: 20
-  flag: 1
+  value: 21
+  flag: 0
 card_counts_022:
   id: 22
   left_id: 3280
@@ -141,14 +141,14 @@ card_counts_024:
   id: 24
   left_id: 705
   right_id: -1
-  value: 167
+  value: 176
   flag: 0
 card_counts_025:
   id: 25
   left_id: 3163
   right_id: 705
-  value: 32
-  flag: 1
+  value: 35
+  flag: 0
 card_counts_026:
   id: 26
   left_id: 3280
@@ -171,13 +171,13 @@ card_counts_029:
   id: 29
   left_id: 3355
   right_id: 705
-  value: 52
+  value: 54
   flag: 0
 card_counts_030:
   id: 30
   left_id: 3355
   right_id: 710
-  value: 14
+  value: 15
   flag: 0
 card_counts_031:
   id: 31
@@ -243,14 +243,14 @@ card_counts_041:
   id: 41
   left_id: 3173
   right_id: 710
-  value: 13
-  flag: 1
+  value: 14
+  flag: 0
 card_counts_042:
   id: 42
   left_id: 3173
   right_id: 705
-  value: 14
-  flag: 1
+  value: 15
+  flag: 0
 card_counts_043:
   id: 43
   left_id: 3178
@@ -795,23 +795,23 @@ card_counts_133:
   id: 133
   left_id: 3840
   right_id: 705
-  value: 0
+  value: 2
   flag: 0
 card_counts_134:
   id: 134
   left_id: 3840
   right_id: 708
-  value: 0
+  value: 2
   flag: 0
 card_counts_135:
   id: 135
-  left_id: 3845
+  left_id: 3846
   right_id: 705
   value: 1
   flag: 0
 card_counts_136:
   id: 136
-  left_id: 3845
+  left_id: 3846
   right_id: 708
   value: 1
   flag: 0
@@ -853,13 +853,13 @@ card_counts_142:
   flag: 0
 card_counts_143:
   id: 143
-  left_id: 3863
+  left_id: 3864
   right_id: 710
   value: 2
   flag: 0
 card_counts_144:
   id: 144
-  left_id: 3863
+  left_id: 3864
   right_id: 705
   value: 7
   flag: 0
@@ -877,7 +877,7 @@ card_counts_146:
   flag: 0
 card_counts_147:
   id: 147
-  left_id: 3863
+  left_id: 3864
   right_id: 708
   value: 3
   flag: 0
@@ -907,7 +907,7 @@ card_counts_151:
   flag: 0
 card_counts_152:
   id: 152
-  left_id: 3863
+  left_id: 3864
   right_id: 802
   value: 1
   flag: 0
@@ -919,7 +919,7 @@ card_counts_153:
   flag: 0
 card_counts_154:
   id: 154
-  left_id: 3863
+  left_id: 3864
   right_id: 803
   value: 1
   flag: 0
@@ -961,7 +961,7 @@ card_counts_160:
   flag: 0
 card_counts_161:
   id: 161
-  left_id: 3915
+  left_id: 3916
   right_id: 620
   value: 1
   flag: 0
@@ -985,7 +985,7 @@ card_counts_164:
   flag: 0
 card_counts_165:
   id: 165
-  left_id: 3953
+  left_id: 3954
   right_id: 708
   value: 3
   flag: 0
@@ -997,7 +997,7 @@ card_counts_166:
   flag: 0
 card_counts_167:
   id: 167
-  left_id: 3956
+  left_id: 3957
   right_id: 708
   value: 1
   flag: 0
@@ -1015,13 +1015,19 @@ card_counts_169:
   flag: 0
 card_counts_170:
   id: 170
-  left_id: 4117
+  left_id: 4118
   right_id: 705
   value: 4
   flag: 0
 card_counts_171:
   id: 171
-  left_id: 4117
+  left_id: 4118
   right_id: 708
   value: 2
+  flag: 0
+card_counts_172:
+  id: 172
+  left_id: 3840
+  right_id: 761
+  value: 0
   flag: 0

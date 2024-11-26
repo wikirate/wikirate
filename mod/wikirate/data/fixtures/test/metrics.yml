@@ -525,11 +525,11 @@ metrics_044:
   value_type_id: 735
   policy_id: 720
   unit: ''
-  hybrid: 0
+  hybrid: 1
   unpublished: 0
 metrics_045:
   id: 45
-  metric_id: 3845
+  metric_id: 3846
   designer_id: 847
   title_id: 726
   scorer_id:
@@ -541,9 +541,9 @@ metrics_045:
   unpublished: 0
 metrics_046:
   id: 46
-  metric_id: 4117
+  metric_id: 4118
   designer_id: 3186
-  title_id: 4116
+  title_id: 4117
   scorer_id:
   metric_type_id: 786
   value_type_id: 35

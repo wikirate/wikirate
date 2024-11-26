@@ -1007,7 +1007,7 @@ card_changes_122:
   value: '743'
 card_changes_123:
   id: 123
-  card_action_id: 4679
+  card_action_id: 4680
   field: 2
   value: |-
     Afghanistan
@@ -1256,7 +1256,7 @@ card_changes_123:
     Zimbabwe
 card_changes_124:
   id: 124
-  card_action_id: 4690
+  card_action_id: 4691
   field: 0
   value: Parent
 card_changes_125:
@@ -1291,7 +1291,7 @@ card_changes_130:
   value: '748'
 card_changes_131:
   id: 131
-  card_action_id: 4743
+  card_action_id: 4744
   field: 2
   value: changed
 card_changes_132:
@@ -1326,7 +1326,7 @@ card_changes_137:
   value: '711'
 card_changes_138:
   id: 138
-  card_action_id: 4744
+  card_action_id: 4745
   field: 2
   value: '4'
 card_changes_139:
@@ -1361,7 +1361,7 @@ card_changes_144:
   value: '711'
 card_changes_145:
   id: 145
-  card_action_id: 4745
+  card_action_id: 4746
   field: 2
   value: '5'
 card_changes_146:
@@ -1396,157 +1396,157 @@ card_changes_151:
   value: '711'
 card_changes_152:
   id: 152
-  card_action_id: 4748
+  card_action_id: 4749
   field: 2
   value: '5'
 card_changes_153:
   id: 153
-  card_action_id: 4750
+  card_action_id: 4751
   field: 2
   value: '6'
 card_changes_154:
   id: 154
-  card_action_id: 4753
+  card_action_id: 4754
   field: 0
   value: updated topic
 card_changes_155:
   id: 155
-  card_action_id: 4753
+  card_action_id: 4754
   field: 1
   value: '657'
 card_changes_156:
   id: 156
-  card_action_id: 4753
+  card_action_id: 4754
   field: 2
   value: ''
 card_changes_157:
   id: 157
-  card_action_id: 4753
+  card_action_id: 4754
   field: 3
   value: f
 card_changes_158:
   id: 158
-  card_action_id: 4753
+  card_action_id: 4754
   field: 4
   value:
 card_changes_159:
   id: 159
-  card_action_id: 4753
+  card_action_id: 4754
   field: 5
   value:
 card_changes_160:
   id: 160
-  card_action_id: 4757
+  card_action_id: 4758
   field: 2
   value: updated
 card_changes_161:
   id: 161
-  card_action_id: 4760
+  card_action_id: 4761
   field: 0
   value: updated project
 card_changes_162:
   id: 162
-  card_action_id: 4760
+  card_action_id: 4761
   field: 1
   value: '800'
 card_changes_163:
   id: 163
-  card_action_id: 4760
+  card_action_id: 4761
   field: 2
   value: ''
 card_changes_164:
   id: 164
-  card_action_id: 4760
+  card_action_id: 4761
   field: 3
   value: f
 card_changes_165:
   id: 165
-  card_action_id: 4760
+  card_action_id: 4761
   field: 4
   value:
 card_changes_166:
   id: 166
-  card_action_id: 4760
+  card_action_id: 4761
   field: 5
   value:
 card_changes_167:
   id: 167
-  card_action_id: 4782
+  card_action_id: 4783
   field: 2
   value: updated
 card_changes_168:
   id: 168
-  card_action_id: 4789
+  card_action_id: 4790
   field: 0
   value: updated company
 card_changes_169:
   id: 169
-  card_action_id: 4789
+  card_action_id: 4790
   field: 1
   value: '708'
 card_changes_170:
   id: 170
-  card_action_id: 4789
+  card_action_id: 4790
   field: 2
   value: ''
 card_changes_171:
   id: 171
-  card_action_id: 4789
+  card_action_id: 4790
   field: 3
   value: f
 card_changes_172:
   id: 172
-  card_action_id: 4789
+  card_action_id: 4790
   field: 4
   value:
 card_changes_173:
   id: 173
-  card_action_id: 4789
+  card_action_id: 4790
   field: 5
   value:
 card_changes_174:
   id: 174
-  card_action_id: 4795
+  card_action_id: 4796
   field: 2
   value: updated
 card_changes_175:
   id: 175
-  card_action_id: 4798
+  card_action_id: 4799
   field: 0
   value: updated research group
 card_changes_176:
   id: 176
-  card_action_id: 4798
+  card_action_id: 4799
   field: 1
   value: '818'
 card_changes_177:
   id: 177
-  card_action_id: 4798
+  card_action_id: 4799
   field: 2
   value: ''
 card_changes_178:
   id: 178
-  card_action_id: 4798
+  card_action_id: 4799
   field: 3
   value: f
 card_changes_179:
   id: 179
-  card_action_id: 4798
+  card_action_id: 4799
   field: 4
   value:
 card_changes_180:
   id: 180
-  card_action_id: 4798
+  card_action_id: 4799
   field: 5
   value:
 card_changes_181:
   id: 181
-  card_action_id: 4802
+  card_action_id: 4803
   field: 2
   value: updated
 card_changes_182:
   id: 182
-  card_action_id: 4806
+  card_action_id: 4807
   field: 2
   value: |-
     Afghanistan
@@ -1802,22 +1802,22 @@ card_changes_182:
     Åland Islands
 card_changes_183:
   id: 183
-  card_action_id: 4815
+  card_action_id: 4816
   field: 1
   value: '55'
 card_changes_184:
   id: 184
-  card_action_id: 4815
+  card_action_id: 4816
   field: 2
   value: wikirate skin
 card_changes_185:
   id: 185
-  card_action_id: 4816
+  card_action_id: 4817
   field: 2
   value: ":logo/wikirate.png"
 card_changes_186:
   id: 186
-  card_action_id: 4817
+  card_action_id: 4818
   field: 0
   value: Wikirate Policies
 card_changes_187:
@@ -1852,12 +1852,12 @@ card_changes_192:
   value:
 card_changes_193:
   id: 193
-  card_action_id: 4984
+  card_action_id: 4985
   field: 1
   value: '652'
 card_changes_194:
   id: 194
-  card_action_id: 4984
+  card_action_id: 4985
   field: 2
   value: "<p style=\"font-size: 14px;\">Welcome to the Wikirate Community!</p>\r\n<p
     style=\"font-size: 14px;\">We are people who seek to create clarity through evidence.
@@ -1987,7 +1987,7 @@ card_changes_200:
   value: '654'
 card_changes_201:
   id: 201
-  card_action_id: 5000
+  card_action_id: 5001
   field: 2
   value: |-
     Jedi
@@ -2028,7 +2028,7 @@ card_changes_207:
   value: '654'
 card_changes_208:
   id: 208
-  card_action_id: 5001
+  card_action_id: 5002
   field: 2
   value: |-
     Jedi
@@ -2065,7 +2065,7 @@ card_changes_214:
   value: '654'
 card_changes_215:
   id: 215
-  card_action_id: 5002
+  card_action_id: 5003
   field: 2
   value: |-
     Joe User
@@ -2102,94 +2102,94 @@ card_changes_221:
   value: '654'
 card_changes_222:
   id: 222
-  card_action_id: 5003
+  card_action_id: 5004
   field: 2
   value: |-
     Jedi+deadliness
     Jedi+friendliness
 card_changes_223:
   id: 223
-  card_action_id: 4842
+  card_action_id: 4843
   field: 0
   value:
 card_changes_224:
   id: 224
-  card_action_id: 4842
+  card_action_id: 4843
   field: 1
   value: '447'
 card_changes_225:
   id: 225
-  card_action_id: 4842
+  card_action_id: 4843
   field: 2
   value: '2021-09-20'
 card_changes_226:
   id: 226
-  card_action_id: 4842
+  card_action_id: 4843
   field: 3
   value: f
 card_changes_227:
   id: 227
-  card_action_id: 4842
+  card_action_id: 4843
   field: 4
-  value: '3975'
+  value: '3976'
 card_changes_228:
   id: 228
-  card_action_id: 4842
+  card_action_id: 4843
   field: 5
   value: '447'
 card_changes_229:
   id: 229
-  card_action_id: 5019
+  card_action_id: 5020
   field: 2
   value: '2020'
 card_changes_230:
   id: 230
-  card_action_id: 4843
+  card_action_id: 4844
   field: 0
   value:
 card_changes_231:
   id: 231
-  card_action_id: 4843
+  card_action_id: 4844
   field: 1
   value: '55'
 card_changes_232:
   id: 232
-  card_action_id: 4843
+  card_action_id: 4844
   field: 2
   value: Clean Clothes Campaign
 card_changes_233:
   id: 233
-  card_action_id: 4843
+  card_action_id: 4844
   field: 3
   value: f
 card_changes_234:
   id: 234
-  card_action_id: 4843
+  card_action_id: 4844
   field: 4
-  value: '3975'
+  value: '3976'
 card_changes_235:
   id: 235
-  card_action_id: 4843
+  card_action_id: 4844
   field: 5
   value: '708'
 card_changes_236:
   id: 236
-  card_action_id: 5021
+  card_action_id: 5022
   field: 2
   value: Death Star
 card_changes_237:
   id: 237
-  card_action_id: 4839
+  card_action_id: 4840
   field: 0
   value:
 card_changes_238:
   id: 238
-  card_action_id: 4839
+  card_action_id: 4840
   field: 1
   value: '2'
 card_changes_239:
   id: 239
-  card_action_id: 4839
+  card_action_id: 4840
   field: 2
   value: "<p>Fashion Checker is a data tool that connects the dots between brand commitments
     on living wages and the reality for workers on the ground.</p>\r\n<p>The project
@@ -2204,22 +2204,678 @@ card_changes_239:
     to minimum wage pay gap and collective bargaining agreements.</p>"
 card_changes_240:
   id: 240
-  card_action_id: 4839
+  card_action_id: 4840
   field: 3
   value: f
 card_changes_241:
   id: 241
-  card_action_id: 4839
+  card_action_id: 4840
   field: 4
-  value: '3975'
+  value: '3976'
 card_changes_242:
   id: 242
-  card_action_id: 4839
+  card_action_id: 4840
   field: 5
   value: '12'
 card_changes_243:
   id: 243
-  card_action_id: 5022
+  card_action_id: 5023
+  field: 2
+  value: |
+    <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
+    <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">Wikirate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
+    <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
+    <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>
+card_changes_244:
+  id: 244
+  card_action_id: 5034
+  field: 2
+  value: ":logo/carrierwave.svg"
+card_changes_245:
+  id: 245
+  card_action_id: 5035
+  field: 0
+  value: parent
+card_changes_246:
+  id: 246
+  card_action_id: 5036
+  field: 1
+  value: '4'
+card_changes_247:
+  id: 247
+  card_action_id: 5036
+  field: 2
+  value: yeti skin
+card_changes_248:
+  id: 248
+  card_action_id: 5037
+  field: 2
+  value: Default Layout
+card_changes_249:
+  id: 249
+  card_action_id: 5038
+  field: 2
+  value: "[[:recent|Recent Changes]]"
+card_changes_250:
+  id: 250
+  card_action_id: 5039
+  field: 2
+  value: |-
+    [[:getting_started_links|Getting started]]
+    [[:recent|Recent Changes]]
+card_changes_251:
+  id: 251
+  card_action_id: 1829
+  field: 0
+  value:
+card_changes_252:
+  id: 252
+  card_action_id: 1829
+  field: 1
+  value: '284'
+card_changes_253:
+  id: 253
+  card_action_id: 1829
+  field: 2
+  value: "~1492/1829.png"
+card_changes_254:
+  id: 254
+  card_action_id: 1829
+  field: 3
+  value: f
+card_changes_255:
+  id: 255
+  card_action_id: 1829
+  field: 4
+  value: '1489'
+card_changes_256:
+  id: 256
+  card_action_id: 1829
+  field: 5
+  value: '284'
+card_changes_257:
+  id: 257
+  card_action_id: 5041
+  field: 2
+  value: "~1492/5041.png"
+card_changes_258:
+  id: 258
+  card_action_id: 5042
+  field: 0
+  value: Policy
+card_changes_259:
+  id: 259
+  card_action_id: 5043
+  field: 2
+  value: deckorate_layout
+card_changes_260:
+  id: 260
+  card_action_id: 5045
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    Andorra
+    Angola
+    Anguilla (United Kingdom)
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba (Netherlands)
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda (United Kingdom)
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba (Netherlands)
+    Bosnia and Herzegovina
+    Botswana
+    Brazil
+    British Indian Ocean Territory  (United Kingdom)
+    British Virgin Islands (United Kingdom)
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands  (United Kingdom)
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island (Australia)
+    Cocos (Keeling) Islands (Australia)
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao (Netherlands)
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas) (United Kingdom)
+    Faroe Islands (Denmark)
+    Fiji
+    Finland
+    France
+    French Guiana (France)
+    French Polynesia (France)
+    French Southern Territories (France)
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar (United Kingdom)
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe (France)
+    Guam (United States)
+    Guatemala
+    Guernsey (United Kingdom)
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands (Australia)
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man (United Kingdom)
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey (United Kingdom)
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands (United States)
+    Martinique (France)
+    Mauritania
+    Mauritius
+    Mayotte (France)
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat (United Kingdom)
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia (France)
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island (Australia)
+    North Macedonia
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn (United Kingdom)
+    Poland
+    Portugal
+    Puerto Rico (United States)
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion (France)
+    Saint Barthélemy (France)
+    Saint Helena, Ascension and Tristan da Cunha (United Kingdom)
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part) (France)
+    Saint Pierre and Miquelon (France)
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part) (Netherlands)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands (United Kingdom)
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan, Province of China
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands (United Kingdom)
+    Tuvalu
+    U.S. Virgin Islands (United States)
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna (France)
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+card_changes_261:
+  id: 261
+  card_action_id: 5046
+  field: 0
+  value: Parent
+card_changes_262:
+  id: 262
+  card_action_id: 5048
+  field: 2
+  value: |-
+    Afghanistan
+    Albania
+    Algeria
+    American Samoa
+    Andorra
+    Angola
+    Anguilla
+    Antarctica
+    Antigua and Barbuda
+    Argentina
+    Armenia
+    Aruba
+    Australia
+    Austria
+    Azerbaijan
+    Bahamas
+    Bahrain
+    Bangladesh
+    Barbados
+    Belarus
+    Belgium
+    Belize
+    Benin
+    Bermuda
+    Bhutan
+    Bolivia
+    Bonaire, Sint Eustatius and Saba
+    Bosnia and Herzegovina
+    Botswana
+    Bouvet Island
+    Brazil
+    British Indian Ocean Territory
+    British Virgin Islands
+    Brunei Darussalam
+    Bulgaria
+    Burkina Faso
+    Burundi
+    Cambodia
+    Cameroon
+    Canada
+    Cape Verde
+    Cayman Islands
+    Central African Republic
+    Chad
+    Chile
+    China
+    Christmas Island
+    Cocos (Keeling) Islands
+    Colombia
+    Comoros
+    Congo
+    Cook Islands
+    Costa Rica
+    Croatia
+    Cuba
+    Curaçao
+    Cyprus
+    Czech Republic
+    Côte d'Ivoire
+    Democratic Republic of the Congo
+    Denmark
+    Djibouti
+    Dominica
+    Dominican Republic
+    Ecuador
+    Egypt
+    El Salvador
+    Equatorial Guinea
+    Eritrea
+    Estonia
+    Ethiopia
+    Falkland Islands (Malvinas)
+    Faroe Islands
+    Fiji
+    Finland
+    France
+    French Guiana
+    French Polynesia
+    French Southern Territories
+    Gabon
+    Gambia
+    Georgia
+    Germany
+    Ghana
+    Gibraltar
+    Greece
+    Greenland
+    Grenada
+    Guadeloupe
+    Guam
+    Guatemala
+    Guernsey
+    Guinea
+    Guinea-Bissau
+    Guyana
+    Haiti
+    Heard Island and McDonald Islands
+    Holy See (Vatican City State)
+    Honduras
+    Hong Kong
+    Hungary
+    Iceland
+    India
+    Indonesia
+    Iran
+    Iraq
+    Ireland
+    Isle of Man
+    Israel
+    Italy
+    Jamaica
+    Japan
+    Jersey
+    Jordan
+    Kazakhstan
+    Kenya
+    Kiribati
+    Korea, Democratic People's Republic of
+    Korea, Republic of
+    Kosovo
+    Kuwait
+    Kyrgyzstan
+    Lao People's Democratic Republic
+    Laos
+    Latvia
+    Lebanon
+    Lesotho
+    Liberia
+    Libya
+    Liechtenstein
+    Lithuania
+    Luxembourg
+    Macao
+    Madagascar
+    Malawi
+    Malaysia
+    Maldives
+    Mali
+    Malta
+    Marshall Islands
+    Martinique
+    Mauritania
+    Mauritius
+    Mayotte
+    Mexico
+    Micronesia, Federated States of
+    Moldova
+    Monaco
+    Mongolia
+    Montenegro
+    Montserrat
+    Morocco
+    Mozambique
+    Myanmar
+    Namibia
+    Nauru
+    Nepal
+    Netherlands
+    New Caledonia
+    New Zealand
+    Nicaragua
+    Niger
+    Nigeria
+    Niue
+    Norfolk Island
+    North Macedonia
+    Northern Mariana Islands
+    Norway
+    Oman
+    Pakistan
+    Palau
+    Palestinian Territory
+    Panama
+    Papua New Guinea
+    Paraguay
+    Peru
+    Philippines
+    Pitcairn
+    Poland
+    Portugal
+    Puerto Rico
+    Qatar
+    Romania
+    Russia
+    Rwanda
+    Réunion
+    Saint Barthélemy
+    Saint Helena, Ascension and Tristan da Cunha
+    Saint Kitts and Nevis
+    Saint Lucia
+    Saint Martin (French part)
+    Saint Pierre and Miquelon
+    Saint Vincent and the Grenadines
+    Samoa
+    San Marino
+    Sao Tome and Principe
+    Saudi Arabia
+    Senegal
+    Serbia
+    Seychelles
+    Sierra Leone
+    Singapore
+    Sint Maarten (Dutch part)
+    Slovakia
+    Slovenia
+    Solomon Islands
+    Somalia
+    South Africa
+    South Georgia and the South Sandwich Islands
+    South Sudan
+    Spain
+    Sri Lanka
+    Sudan
+    Suriname
+    Svalbard and Jan Mayen
+    Swaziland
+    Sweden
+    Switzerland
+    Syrian Arab Republic
+    Taiwan
+    Tajikistan
+    Tanzania
+    Thailand
+    Timor-Leste
+    Togo
+    Tokelau
+    Tonga
+    Trinidad and Tobago
+    Tunisia
+    Turkey
+    Turkmenistan
+    Turks and Caicos Islands
+    Tuvalu
+    U.S. Virgin Islands
+    Uganda
+    Ukraine
+    United Arab Emirates
+    United Kingdom
+    United States
+    United States Minor Outlying Islands
+    Uruguay
+    Uzbekistan
+    Vanuatu
+    Venezuela
+    Vietnam
+    Wallis and Futuna
+    Western Sahara
+    Yemen
+    Zambia
+    Zimbabwe
+    Åland Islands
+card_changes_263:
+  id: 263
+  card_action_id: 5059
+  field: 1
+  value: '55'
+card_changes_264:
+  id: 264
+  card_action_id: 5059
+  field: 2
+  value: wikirate skin
+card_changes_265:
+  id: 265
+  card_action_id: 5060
+  field: 2
+  value: ":logo/wikirate.png"
+card_changes_266:
+  id: 266
+  card_action_id: 5061
+  field: 0
+  value: Wikirate Policies
+card_changes_267:
+  id: 267
+  card_action_id: 5063
+  field: 2
+  value: "<p>Fashion Checker is a data tool that connects the dots between brand commitments
+    on living wages and the reality for workers on the ground.</p>\r\n<p>The project
+    is coordinated by <a href=\"https://cleanclothes.org/\">Clean Clothes Campaign</a>
+    in partnership with <a href=\"https://semcon.com/\">Semcon</a>, <a href=\"https://wageindicator.org/\">WageIndicator</a>
+    and <a href=\"/\">Wikirate</a>. The campaign seeks to make brands accountable
+    for their promises on living wages and invites the public in to explore the data.</p>\r\n<p>Through
+    the tool you can explore how companies score on currently paying their workers
+    a living wage, the transparency of their supply chain and their commitments to
+    paying workers a living wage in the future.</p>\r\n<p>The tool also pulls in data
+    on the company’s supply chain including gender breakdowns of workers, the actual
+    to minimum wage pay gap and collective bargaining agreements.</p>"
+card_changes_268:
+  id: 268
+  card_action_id: 5064
+  field: 2
+  value: '2021-09-20'
+card_changes_269:
+  id: 269
+  card_action_id: 5065
+  field: 2
+  value: Clean Clothes Campaign
+card_changes_270:
+  id: 270
+  card_action_id: 5067
+  field: 2
+  value: '2020'
+card_changes_271:
+  id: 271
+  card_action_id: 5068
+  field: 2
+  value: Death Star
+card_changes_272:
+  id: 272
+  card_action_id: 5069
   field: 2
   value: |
     <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
