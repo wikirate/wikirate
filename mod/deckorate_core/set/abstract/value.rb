@@ -9,7 +9,7 @@ def value
 end
 
 def unknown_value?
-  ::Record.unknown? content
+  ::Answer.unknown? content
 end
 
 def metric_key
@@ -24,12 +24,12 @@ def company_id
   company_key.card_id
 end
 
-def record_log
+def record
   name.parts[0..-3].join "+"
 end
 
-def record_log_card
-  Card.fetch record_log
+def record_card
+  Card.fetch record
 end
 
 def view_cache_clean?

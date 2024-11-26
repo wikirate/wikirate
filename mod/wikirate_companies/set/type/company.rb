@@ -11,7 +11,7 @@ include_set Abstract::Bookmarkable
 include_set Abstract::SearchContentFields
 
 card_accessor :alias, type: :list
-card_accessor :record, type: :search_type
+card_accessor :answer, type: :search_type
 card_accessor :metric, type: :search_type
 card_accessor :image
 card_accessor :incorporation
@@ -27,9 +27,9 @@ event :ensure_wikipedia_mapping_attempt, :validate, on: :create do
   field :wikipedia
 end
 
-event :delete_all_company_records, :store, on: :delete do
-  records.delete_all
-  skip_event! :schedule_record_counts,
+event :delete_all_company_answers, :store, on: :delete do
+  answer.delete_all
+  skip_event! :schedule_answer_counts,
               :update_related_calculations,
               :update_related_scores,
               :update_related_verifications
@@ -43,16 +43,16 @@ end
 #   alias_card.insert_item! 0, alias_name
 # end
 
-# @return [Record]
-def latest_record metric
-  records(metric: metric, latest: true).first
+# @return [Answer]
+def latest_answer metric
+  answer(metric: metric, latest: true).first
 end
 
-# @return [Record::ActiveRecord_Relation]
-def records args={}
+# @return [Answer::ActiveRecord_Relation]
+def answer args={}
   args[:company_id] = id
   normalize_metric_arg args
-  ::Record.where args
+  ::Answer.where args
 end
 
 # @return [Relationship::ActiveRecord_Relation]

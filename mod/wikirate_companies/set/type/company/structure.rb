@@ -2,7 +2,7 @@ def self.company_identifier_accessor codename
   card_accessor codename, type: :phrase if codename.present? && !method_defined?(codename)
 end
 
-# as in, NOT records (company+metric)
+# as in, NOT answer (company+metric)
 def simple_field_names
   %i[image headquarters wikirate_website alias].map(&:cardname) + CompanyIdentifier.names
 end
@@ -30,7 +30,7 @@ format :html do
     if contrib_page?
       %i[details metrics_designed research_group projects_organized]
     else
-      %i[details record source company_group dataset]
+      %i[details answer source company_group dataset]
     end
   end
 
@@ -40,12 +40,12 @@ format :html do
         metrics_designed: { label: "Metrics Designed" },
         company_group: { label: "Groups" } }
     else
-      { record: { label: "Metrics", count: card.metric_card.cached_count } }
+      { answer: { label: "Metrics", count: card.metric_card.cached_count } }
     end
   end
 
-  view :record_tab do
-    field_nest :record, view: :filtered_content
+  view :answer_tab do
+    field_nest :answer, view: :filtered_content
   end
 
   view :source_tab do

@@ -5,7 +5,7 @@ include_set Abstract::ProfileType
 
 # include_set Abstract::Bookmarker
 
-CONTRIBUTION_TYPES = %i[record metric company project
+CONTRIBUTION_TYPES = %i[answer metric company project
                         source topic research_group].freeze
 
 card_reader :projects_organized, type: :search_type

@@ -5,22 +5,22 @@ delegate :unorthodox?, to: :variables_card
 def calculator variant=:standard
   calculator_class.new input_array(variant),
                        formula: formula,
-                       normalizer: ::Record.method(:value_to_lookup),
+                       normalizer: ::Answer.method(:value_to_lookup),
                        years: year_card.item_names,
                        companies: company_group_card.company_ids
 end
 
-# update all records of this metric and the records of all metrics that
+# update all answers of this metric and the answers of all metrics that
 # depend on this one
-def calculate_records args={}
-  calculate_direct_records args
-  each_depender_metric { |m| m.calculate_direct_records args }
+def calculate_answers args={}
+  calculate_direct_answers args
+  each_depender_metric { |m| m.calculate_direct_answers args }
 end
 
 # param @args [Hash] :company_id, :year, both, or neither.
 # TODO: convert to :companies and :years as named arguments to be consistent with
 # calculator#result
-def calculate_direct_records args={}
+def calculate_direct_answers args={}
   c = ::Calculate.new self, args
   c.prepare
   c.transact
@@ -28,15 +28,15 @@ def calculate_direct_records args={}
 end
 
 # USE WITH CAUTION
-# This method works DOWN the dependency tree and recalculates records. It's not a
+# This method works DOWN the dependency tree and recalculates answers. It's not a
 # typical pattern and was written as a bit of hail mary attempt to fix some confusing
 # results. But it can be very computationally expensive, and if things are working
 # properly it should never be necessary.
-def recalculate_all_records dependers: true
+def recalculate_all_answers dependers: true
   return if researched?
 
-  direct_dependee_metrics.each { |m| m.recalculate_all_records dependers: false }
-  dependers ? calculate_records : calculate_direct_records
+  direct_dependee_metrics.each { |m| m.recalculate_all_answers dependers: false }
+  dependers ? calculate_answers : calculate_direct_answers
 end
 
 def input_array variant
@@ -76,7 +76,7 @@ def formula_field?
   field? formula_field
 end
 
-# metric's records depends ONLY on other records for the same company and year
+# metric's answers depend ONLY on other answers for the same company and year
 def orthodox_tree?
   !unorthodox_tree?
 end
@@ -91,11 +91,11 @@ end
 
 format :html do
   def tab_list
-    super.insert 2, :input_record
+    super.insert 2, :input_answer
   end
 
   def tab_options
-    super.merge input_record: { label: "Inputs" }
+    super.merge input_answer: { label: "Inputs" }
   end
 
   view :new do
@@ -116,7 +116,7 @@ format :html do
     end
   end
 
-  view :input_record_tab, template: :haml
+  view :input_answer_tab, template: :haml
 
   def metric_tree_item detail=nil
     tree_item metric_tree_item_title(detail: detail),

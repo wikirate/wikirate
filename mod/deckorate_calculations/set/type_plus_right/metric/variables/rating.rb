@@ -10,7 +10,7 @@ end
 
 format :html do
   def rating_algorithm
-    "Records are calculated as a weighted average. To find a weighted average of " \
+    "Answers are calculated as a weighted average. To find a weighted average of " \
     "a group of numbers that have been normalized to the same 0-10 scale, you simply " \
     "multiply each number by its weight (percentage) and add them up."
   end

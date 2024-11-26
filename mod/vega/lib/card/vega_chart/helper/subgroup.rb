@@ -73,13 +73,13 @@ class Card
         private
 
         def verification_values
-          ::Record::VERIFICATION_LEVELS.map.with_index do |h, i|
+          ::Answer::VERIFICATION_LEVELS.map.with_index do |h, i|
             h.merge id: i
           end
         end
 
         def route_values
-          ::Record::ROUTES.map.with_index do |(k, v), i|
+          ::Answer::ROUTES.map.with_index do |(k, v), i|
             { title: v, id: i, name: k }
           end
         end

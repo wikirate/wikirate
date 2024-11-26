@@ -8,7 +8,7 @@ class Calculate
 
       def input_for _company, _year; end
 
-      def records_for _company_id, _year
+      def answers_for _company_id, _year
         []
       end
 

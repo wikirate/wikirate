@@ -1,7 +1,7 @@
 ---
-- :name: Record Import
+- :name: Answer Import
   :type: :cardtype
-  :codename: record_import
+  :codename: answer_import
 - :name: Relationship Import
   :type: :cardtype
   :codename: relationship_import
