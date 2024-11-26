@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Abstract::Answer::Sources do
 
     it "prevents deletion of source citations", as_bot: true do
       expect { existing_citation.delete! }
-        .to raise_error(ActiveRecord::AnswerInvalid, /required field/)
+        .to raise_error(ActiveRecord::RecordInvalid, /required field/)
     end
   end
 end

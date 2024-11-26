@@ -33,19 +33,19 @@ def publish_inputs?
   published? && calculated? && !metric_card.trash
 end
 
-def answer
+def answers
   ::Answer.where metric_id: left_id
 end
 
 def unpublish_all_answers
-  answer.update_all unpublished: true
+  answers.update_all unpublished: true
 end
 
 def publish_unflagged_answers
-  answer.where(
+  answers.where(
     "NOT EXISTS (
       SELECT * from cards
-      WHERE left_id = answer.answer_id
+      WHERE left_id = answers.answer_id
       AND right_id = #{:unpublished.card_id}
       AND db_content= '1'
     )"

@@ -11,7 +11,7 @@ def virtual?
   new?
 end
 
-def answer
+def answers
   answer_card.search
 end
 
@@ -22,7 +22,7 @@ def expire_left?
 end
 
 format do
-  delegate :answer, to: :card
+  delegate :answers, to: :card
 end
 
 format :html do
@@ -56,7 +56,7 @@ end
 
 format :csv do
   view :body do
-    answer.each_with_object("") do |a, res|
+    answers.each_with_object("") do |a, res|
       res << CSV.generate_line([a.company, a.year, a.value])
     end
   end
@@ -64,6 +64,6 @@ end
 
 format :json do
   def item_cards
-    answer
+    answers
   end
 end

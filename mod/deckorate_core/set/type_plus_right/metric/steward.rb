@@ -8,5 +8,5 @@ def metric_card
 end
 
 event :update_stewarded_answers, :finalize, changed: :content do
-  metric_card.answer.each(&:update_verification)
+  metric_card.answers.each(&:update_verification)
 end

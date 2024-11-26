@@ -30,9 +30,9 @@ RSpec.describe GraphQL::Types::Source do
   end
 
   describe "sources: answer field" do
-    it "returns answer linked with the source" do
-      query = query_string source_name, "answer { metric { id } }"
-      expect(result(query)["answer"].count).to be_positive
+    it "returns answers linked with the source" do
+      query = query_string source_name, "answers { metric { id } }"
+      expect(result(query)["answers"].count).to be_positive
     end
   end
 

@@ -3,20 +3,20 @@ module Wikirate
     # Answer methods in support of tracking details for
     # Monitoring, Evaluation, and Learning
     module Answers
-      def answer
+      def answers
         Answer
       end
 
       def calculations
-        answer_by_route :calculation
+        answers_by_route :calculation
       end
 
       def import
-        answer_by_route :import
+        answers_by_route :import
       end
 
       def direct
-        answer_by_route :direct
+        answers_by_route :direct
       end
 
       def api
@@ -24,7 +24,7 @@ module Wikirate
       end
 
       def answer_created
-        created { answer }
+        created { answers }
       end
 
       def calculations_created
@@ -44,7 +44,7 @@ module Wikirate
       end
 
       def answer_updated
-        updated { answer }
+        updated { answers }
       end
 
       def answer_community_verified
@@ -60,7 +60,7 @@ module Wikirate
           ::Answer.verification_index symbol
         end
 
-        answer.joins("join cards on left_id = answer_id")
+        answers.joins("join cards on left_id = answer_id")
                .where("right_id = #{:checked_by.card_id}")
                .where("cards.updated_at > #{period_ago}")
                .where(verification: verification_indexes)
@@ -81,11 +81,11 @@ module Wikirate
       private
 
       def answer_by_route symbol
-        answer.where route: Answer.route_index(symbol)
+        answers.where route: Answer.route_index(symbol)
       end
 
       def answer_by_verification symbol
-        answer.where verification: ::Answer.verification_index(symbol)
+        answers.where verification: ::Answer.verification_index(symbol)
       end
 
       def contributors

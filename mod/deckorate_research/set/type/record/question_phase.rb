@@ -99,8 +99,8 @@ format :html do
     Card.new type: :answer, name: [card.record_name, year.to_s]
   end
 
-  def answer
-    @answer ||= card.record_card.answer_card.search
+  def answers
+    @answers ||= card.record_card.answer_card.search
                      .each_with_object({}) do |answer, hash|
       hash[answer.year.to_i] = answer
     end

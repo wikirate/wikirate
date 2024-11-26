@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Type::Metric::Answers do
       Card["Joe User+researched number 1"]
         .update! name: "Joe User+invented number"
 
-      answer = Card["Joe User+invented number"].answer.first
+      answer = Card["Joe User+invented number"].answers.first
       expect(answer.metric.title_id.cardname).to eq "invented number"
     end
   end

@@ -18,7 +18,7 @@ format :html do
       # inputs: { count: card.dependee_answers.count },
       # NOTE: the inputs count is super slow on complicated answer, like
       # https://wikirate.org/Apparel_Research_Group+ESG_Disclosure_Rate+Adidas_AG+2020
-      # The problem is that it has to traverse the answer via the calculators in
+      # The problem is that it has to traverse the answers via the calculators in
       # order to make sure it handles funky formulas correctly, and that takes a long
       # time when there are thousands of inputs.
       relationship: { count: relationship_count, label: "Relationships" }

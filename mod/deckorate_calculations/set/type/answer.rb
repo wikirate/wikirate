@@ -7,12 +7,12 @@ def direct_dependee_answers
 end
 
 def direct_dependee_map
-  when_dependee_applicable { metric_card.calculator.answer_for company, year }
+  when_dependee_applicable { metric_card.calculator.answers_for company, year }
 end
 
 def dependee_answers
-  direct_dependee_answers.tap do |answer|
-    answer << answer.map(&:dependee_answers)
+  direct_dependee_answers.tap do |answers|
+    answers << answer.map(&:dependee_answers)
     answer.flatten!.uniq!
   end
 end
@@ -39,8 +39,8 @@ end
 
 def depender_answers
   [].tap do |answer|
-    each_depender_answer do |answer|
-      answer << answer
+    each_depender_answer do |answers|
+      answers << answer
     end
   end
 end

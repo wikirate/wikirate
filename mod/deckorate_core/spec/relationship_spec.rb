@@ -114,7 +114,7 @@ RSpec.describe Relationship do
       expect do
         update relation_name,
                name: "Commons+Supplied by+Google LLC+1977+Los Pollos Hermanos"
-      end.to raise_error(ActiveRecord::AnswerInvalid)
+      end.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "updates year" do

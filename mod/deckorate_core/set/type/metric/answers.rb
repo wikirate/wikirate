@@ -1,5 +1,5 @@
 # @return [Answer::ActiveRecord_Relation]
-def answer args={}
+def answers args={}
   args[:metric_id] = id
   normalize_company_arg :company_id, args
   ::Answer.where args
@@ -7,12 +7,12 @@ end
 
 # @return [Answer]
 def latest_answer company
-  answer(company: company, latest: true).take
+  answers(company: company, latest: true).take
 end
 
 # @return [Array] of Integers
 def company_ids args={}
-  answer(args).distinct.pluck :company_id
+  answers(args).distinct.pluck :company_id
 end
 
 # @return [Array] of Cards
@@ -22,7 +22,7 @@ end
 
 # @return [Array] of Integers
 def answer_ids args={}
-  answer(args).pluck :id
+  answers(args).pluck :id
 end
 
 def answer_for company, year

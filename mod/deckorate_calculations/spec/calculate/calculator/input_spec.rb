@@ -104,7 +104,7 @@ RSpec.describe Calculate::Calculator::Input do
 
   describe "#answers_for" do
     def answers_for *args
-      input(input_array).answesr_for(*args)
+      input(input_array).answers_for(*args)
     end
 
     context "with single metric" do

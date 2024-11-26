@@ -39,7 +39,7 @@ class Card
       # EXPERIMENTAL. used by fashionchecker but otherwise not public
       # TODO: extend company_answer api to include this
       #
-      # This is ultimately a company restriction, limiting the answer to the
+      # This is ultimately a company restriction, limiting the answers to the
       # companies related to another by a given relation metric
       #
       # will also need to support year and value constraints

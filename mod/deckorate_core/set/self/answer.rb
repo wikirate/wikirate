@@ -10,7 +10,7 @@ def count_label
   "Data points"
 end
 
-# recount answer when answer is created or deleted
+# recount answers when answer is created or deleted
 recount_trigger :type, :answer, on: %i[create delete] do |_changed_card|
   :answer.card
 end

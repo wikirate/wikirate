@@ -3,7 +3,7 @@ event :standardize_unknown_value, :prepare_to_validate do
 end
 
 event :no_empty_value, :validate, on: :save do
-  errors.add :content, "empty answer are not allowed" unless content.present?
+  errors.add :content, "empty answers are not allowed" unless content.present?
 end
 
 event :no_left_name_change, :prepare_to_validate, on: :update, changed: :name do

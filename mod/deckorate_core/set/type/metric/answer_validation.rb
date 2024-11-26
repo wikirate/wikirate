@@ -13,7 +13,7 @@ def validate_all_categorical_values
 end
 
 def validate_all_numeric_values
-  bad_answer = metric_card.answer.find do |answer|
+  bad_answer = metric_card.answers.find do |answer|
     !valid_numeric_value? answer.value
   end
   t :answer_validation_error_message, bad_answer: bad_answer.value if bad_answer.present?

@@ -12,7 +12,7 @@ RSpec.describe Card::Set::Type::Metric::Events do
       end
 
       it "updates metric names in lookup table" do
-        expect(newcard.answer.first.metric_name).to eq(newname)
+        expect(newcard.answers.first.metric_name).to eq(newname)
       end
 
       it "updates metric title ids in lookup table" do
@@ -24,12 +24,12 @@ RSpec.describe Card::Set::Type::Metric::Events do
       end
 
       it "translates record_id in lookup table to current record name" do
-        expect(newcard.answer.first.record_name)
+        expect(newcard.answers.first.record_name)
           .to match(Regexp.new(Regexp.quote(newname)))
       end
 
       it "doesn't add or lose answer" do
-        expect(newcard.answer.size).to eq(8)
+        expect(newcard.answers.size).to eq(8)
       end
     end
   end
