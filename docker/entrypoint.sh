@@ -7,6 +7,6 @@ if [[ $PASSENGER_MEMCACHED == "true" ]]; then
   rm -f /etc/service/memcached/down
 fi
 
-envsubst < /home/app/wikirate/docker/nginx.conf > /etc/nginx/sites-enabled/nginx.conf
+envsubst < /home/app/decko/docker/nginx.conf > /etc/nginx/sites-enabled/nginx.conf
 
 /sbin/my_init
