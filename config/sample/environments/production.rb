@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-Wikirate::Application.configure do
+Decko::Deck.configure do
   # Settings specified here will take precedence over those in
   # config/application.rb
 
