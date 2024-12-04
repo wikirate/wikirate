@@ -4,4 +4,4 @@
 
 require File.expand_path("../config/application", __FILE__)
 
-Wikirate::Application.load_tasks
+Decko::Deck.load_tasks
