@@ -1,5 +1,5 @@
 
 Cardio.config.card_count = :flag
-# Wikirate::Application.configure do |config|
+# Decko::Deck.configure do |config|
 #
 # end
