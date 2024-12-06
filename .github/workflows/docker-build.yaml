@@ -35,6 +35,6 @@ jobs:
         uses: docker/build-push-action@v6.9.0
         with:
           push: true
-          file: docker/Dockerfile
+          file: vendor/decko/docker/repos/decko-k8s.dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
