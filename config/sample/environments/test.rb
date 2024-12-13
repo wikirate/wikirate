@@ -1,5 +1,5 @@
 
-Wikirate::Application.configure do
+Decko::Deck.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # # TODO: - add back the next one

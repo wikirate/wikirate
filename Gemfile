@@ -45,8 +45,6 @@ else
   path "./mod" do
     gem "card-mod-deckorate_search"
   end
-
-  gem "decko-cap", path: "./vendor/decko-cap", group: :development
   # gem "card-mod-wikirate_shared", path: "./vendor/wikirateproject/mod/wikirate_shared"
 end
 

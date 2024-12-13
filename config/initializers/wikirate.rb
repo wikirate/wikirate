@@ -10,7 +10,7 @@ Cardio::Railtie.config.tap do |config|
   config.extra_seed_tables = %w[answers card_counts metrics relationships]
 end
 
-Wikirate::Application.configure do
+Decko::Deck.configure do
   # (needed so setup finds wr schema)
   config.paths.add "db", with: "db"
 end
