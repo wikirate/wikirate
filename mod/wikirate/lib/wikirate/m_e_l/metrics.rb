@@ -27,7 +27,9 @@ module Wikirate
 
       def metric_designers_mixed
         metrics_by_type(:formula, :rating, :score, :descendant).select do |metric|
-          metric.dependee_metrics.find { |m| m.metric_designer_id != metric.designer_id }
+          metric.direct_dependee_metrics.find do |m|
+            m.metric_designer_id != metric.designer_id
+          end
         end
       end
 
