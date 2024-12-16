@@ -12,7 +12,7 @@ end
 
 format :csv do
   view :header do
-    [["DATA SET", "METRICS", "COMPANIES", "ANSWERS",
+    [["DATASET", "METRICS", "COMPANIES", "ANSWERS",
       # "USERS",
       "COMMUNITY-ASSESSED", "DESIGNER-ASSESSED", "CREATED AT"]]
   end
