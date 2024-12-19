@@ -56,7 +56,8 @@ module Wikirate
       end
 
       def answers_updated
-        updated { answers }
+        answers.where("updated_at > #{period_ago} && updated_at <> created_at")
+               .where.not editor_id: team_ids
       end
 
       def answers_community_verified

@@ -23,6 +23,18 @@ module Wikirate
 
       private
 
+      def team_ids
+        @team_ids ||= Card::Set::Self::WikirateTeam.member_ids
+      end
+
+      def steward_ids
+        @steward_ids ||= (
+          Card::Set::Self::Steward.always_ids +
+            Metric.pluck("distinct designer_id") +
+            Card.search(referred_to_by: { right: :steward }, return: :id)
+        ).uniq
+      end
+
       def contributors field="creator_id"
         yield.select(field).distinct
       end

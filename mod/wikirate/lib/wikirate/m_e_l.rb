@@ -7,6 +7,8 @@ module Wikirate
     extend Datasets
     extend Flags
     extend Contributors
+    extend Relationships
+    extend Helper
 
     class << self
       PERIOD = "1 month".freeze
@@ -59,17 +61,31 @@ module Wikirate
         datasets_category_incomplete: "Datasets majority incomplete",
         attributions_created: "Attributions created",
         research_groups_created: "Research groups created",
-        research_groups_created_stewards: "Research groups created by stewards",
+        research_groups_created_stewards: "Research groups created by stewards"
       }.freeze
 
       NO_COUNT_REGEX = /^flags_(wrong|other)|datasets_category/
 
-      def titles
-        COLUMNS.values
+      def attributions_created
+        created { cards_of_type :attribution }
+      end
+
+      def research_groups_created
+        created { research_groups }
+      end
+
+      def research_groups_created_stewards
+        created_stewards { research_groups }
       end
 
       def record
         puts csv_content
+      end
+
+      private
+
+      def titles
+        COLUMNS.values
       end
 
       def csv_content
@@ -90,87 +106,12 @@ module Wikirate
         end
       end
 
-      def relationships
-        Relationship
-      end
-
-      def relationships_created
-        created { relationships }
-      end
-
-      def relationships_created_team
-        created_team { relationships }
-      end
-
-      def relationships_created_others
-        created_others { relationships }
-      end
-
-      def attributions_created
-        created { cards_of_type :attribution }
-      end
-
-      def research_groups_created
-        created { research_groups }
-      end
-
-      def research_groups_created_stewards
-        created_stewards { research_groups }
-      end
-
-      private
-
-      def cards_of_type codename
-        cards.where type_id: codename.card_id
-      end
-
       def research_groups
         cards_of_type :research_group
       end
 
-      def cards
-        Card.where trash: false
-      end
-
-      def created
-        yield.where "created_at > #{period_ago}"
-      end
-
-      def team_ids
-        @team_ids ||= Card::Set::Self::WikirateTeam.member_ids
-      end
-
-      def steward_ids
-        @steward_ids ||= (
-          Card::Set::Self::Steward.always_ids +
-            Metric.pluck("distinct designer_id") +
-            Card.search(referred_to_by: { right: :steward }, return: :id)
-        ).uniq
-      end
-
-      def created_team &block
-        created(&block).where creator_id: team_ids
-      end
-
-      def created_others &block
-        created(&block).where.not creator_id: team_ids
-      end
-
-      def created_stewards &block
-        created(&block).where creator_id: steward_ids
-      end
-
-      def updated
-        yield.where("updated_at > #{period_ago} && updated_at <> created_at")
-             .where.not editor_id: team_ids
-      end
-
       def period_ago
         "now() - INTERVAL #{PERIOD}"
-      end
-
-      def cql_count cql
-        Card.search cql.merge(return: :count)
       end
     end
   end
