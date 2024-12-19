@@ -23,7 +23,7 @@ module Wikirate
       private
 
       def datasets
-        cards.where type_id: :dataset.card_id
+        cards_of_type :dataset
       end
 
       def dataset_completion
