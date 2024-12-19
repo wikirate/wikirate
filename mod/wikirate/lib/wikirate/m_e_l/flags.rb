@@ -4,7 +4,7 @@ module Wikirate
     # Monitoring, Evaluation, and Learning
     module Flags
       def flags_created
-        created { cards.where type_id: :flag.card_id }
+        created_others { cards_of_type :flag }
       end
 
       def flags_closed
@@ -12,6 +12,7 @@ module Wikirate
              .where(right_id: :status.card_id,
                     db_content: :closed)
              .where("flag.type_id = #{:flag.card_id}")
+             .where.not("cards.updater_id in (?)", team_ids)
              .where("cards.updated_at > #{period_ago}")
       end
 

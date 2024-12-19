@@ -7,6 +7,14 @@ module Wikirate
         created { metrics }
       end
 
+      def metrics_created_team
+        created_team { metrics }
+      end
+
+      def metrics_created_others
+        created_others { metrics }
+      end
+
       def metrics_researched_created
         created { metrics_by_type :researched }
       end
