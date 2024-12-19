@@ -20,7 +20,7 @@ module Wikirate
       end
 
       def api
-        answer_by_route :api
+        answers_by_route :api
       end
 
       def answers_created
@@ -40,19 +40,19 @@ module Wikirate
       end
 
       def calculations_created
-        created { answer_by_route :calculation }
+        created { answers_by_route :calculation }
       end
 
       def import_created
-        created { answer_by_route :import }
+        created { answers_by_route :import }
       end
 
       def direct_created
-        created { answer_by_route :direct }
+        created { answers_by_route :direct }
       end
 
       def api_created
-        created { answer_by_route :api }
+        created { answers_by_route :api }
       end
 
       def answers_updated
@@ -60,11 +60,11 @@ module Wikirate
       end
 
       def answers_community_verified
-        answer_by_verification :community_verified
+        answers_by_verification :community_verified
       end
 
       def answers_steward_verified
-        answer_by_verification :steward_verified
+        answers_by_verification :steward_verified
       end
 
       def answers_checked
@@ -79,34 +79,18 @@ module Wikirate
                .where(verification: verification_indexes)
       end
 
-      def contributors_direct
-        contributors { direct }
-      end
-
-      def contributors_import
-        contributors { import }
-      end
-
-      def contributors_api
-        contributors { api }
-      end
-
       private
 
       def researched_answers
-        answers.where "route <> #{Answers.route_index :calculation}"
+        answers.where "route <> #{Answer.route_index :calculation}"
       end
 
-      def answer_by_route symbol
+      def answers_by_route symbol
         answers.where route: Answer.route_index(symbol)
       end
 
-      def answer_by_verification symbol
+      def answers_by_verification symbol
         answers.where verification: ::Answer.verification_index(symbol)
-      end
-
-      def contributors
-        yield.select("creator_id").distinct
       end
     end
   end

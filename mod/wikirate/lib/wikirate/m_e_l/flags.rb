@@ -12,7 +12,7 @@ module Wikirate
              .where(right_id: :status.card_id,
                     db_content: :closed)
              .where("flag.type_id = #{:flag.card_id}")
-             .where.not("cards.update_id in (?)", team_ids)
+             .where.not("cards.updater_id in (?)", team_ids)
              .where("cards.updated_at > #{period_ago}")
       end
 

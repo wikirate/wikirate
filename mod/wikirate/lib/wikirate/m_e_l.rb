@@ -6,6 +6,7 @@ module Wikirate
     extend Answers
     extend Datasets
     extend Flags
+    extend Contributors
 
     class << self
       PERIOD = "1 month".freeze
@@ -35,7 +36,7 @@ module Wikirate
         contributors_direct: "Contributors direct",
         contributors_import: "Contributors import",
         contributors_api: "Contributors API",
-          stewards_who_researched: "Stewards who researched",
+        stewards_who_researched: "Stewards who researched",
         flags_created: "Flags created",
         flags_wrong_value: "Flagged wrong value",
         flags_wrong_company: "Flagged wrong company",
@@ -51,23 +52,23 @@ module Wikirate
         metric_designers_new: "Metric designers new",
         metric_designers_mixed: "Metrics mixed designers",
         datasets_created: "Datasets created",
-          datasets_created_stewards: "Datasets created by stewards",
-        datasets_complete: "Datasets complete",
-        datasets_almost: "Datasets almost complete",
-        datasets_majority: "Datasets majority complete",
-        datasets_incomplete: "Datasets majority incomplete",
+        datasets_created_stewards: "Datasets created by stewards",
+        datasets_category_complete: "Datasets complete",
+        datasets_category_almost: "Datasets almost complete",
+        datasets_category_majority: "Datasets majority complete",
+        datasets_category_incomplete: "Datasets majority incomplete",
         attributions_created: "Attributions created",
         research_groups_created: "Research groups created",
-          research_groups_created_stewards: "Research groups created by stewards",
+        research_groups_created_stewards: "Research groups created by stewards",
       }.freeze
 
-      NO_COUNT_REGEX = /^flags_(wrong|other)|dataset/
+      NO_COUNT_REGEX = /^flags_(wrong|other)|datasets_category/
 
       def titles
         COLUMNS.values
       end
 
-      def dump
+      def record
         puts csv_content
       end
 
@@ -82,6 +83,7 @@ module Wikirate
       def measure
         COLUMNS.each_with_object({}) do |(key, column), hash|
           Card::Cache.reset_temp
+          # puts "measure #{key}"
           response = send key
           response = response.count unless key.match? NO_COUNT_REGEX
           hash[column] = response
@@ -112,13 +114,17 @@ module Wikirate
         created { research_groups }
       end
 
+      def research_groups_created_stewards
+        created_stewards { research_groups }
+      end
+
       private
 
       def cards_of_type codename
         cards.where type_id: codename.card_id
       end
 
-      def researched_groups
+      def research_groups
         cards_of_type :research_group
       end
 
@@ -136,7 +142,7 @@ module Wikirate
 
       def steward_ids
         @steward_ids ||= (
-          Card::Set::Self::Stewards.always_ids +
+          Card::Set::Self::Steward.always_ids +
             Metric.pluck("distinct designer_id") +
             Card.search(referred_to_by: { right: :steward }, return: :id)
         ).uniq
@@ -148,6 +154,10 @@ module Wikirate
 
       def created_others &block
         created(&block).where.not creator_id: team_ids
+      end
+
+      def created_stewards &block
+        created(&block).where creator_id: steward_ids
       end
 
       def updated
