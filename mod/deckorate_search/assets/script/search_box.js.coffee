@@ -46,7 +46,7 @@ $.extend decko.searchBox.prototype,
     @box.attr "placeholder",
       "Search for " +
         if type == ""
-          "companies, data sets, and more..."
+          "companies, datasets, and more..."
         else
            type
 
