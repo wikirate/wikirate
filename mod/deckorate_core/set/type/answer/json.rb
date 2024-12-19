@@ -11,8 +11,8 @@ format :json do
   end
 
   def molecule
-    atom.merge sources: field_nest(:source, view: :items),
-               checked_by: field_nest(:checked_by, view: :items)
+    super.merge sources: field_nest(:source, view: :items),
+                checked_by: field_nest(:checked_by, view: :items)
   end
 
   def item_cards

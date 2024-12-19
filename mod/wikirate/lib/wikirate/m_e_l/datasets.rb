@@ -11,11 +11,15 @@ module Wikirate
       }.freeze
 
       def datasets_created
-        created { datasets }.count
+        created { datasets }
+      end
+
+      def datasets_created_stewards
+        created_stewards { datasets }
       end
 
       COMPLETION_CATEGORY.each_key do |category|
-        define_method "datasets_#{category}" do
+        define_method "datasets_category_#{category}" do
           dataset_completion[category].to_i
         end
       end
@@ -23,7 +27,7 @@ module Wikirate
       private
 
       def datasets
-        cards.where type_id: :dataset.card_id
+        cards_of_type :dataset
       end
 
       def dataset_completion
