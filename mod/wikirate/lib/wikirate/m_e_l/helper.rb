@@ -1,5 +1,5 @@
 module Wikirate
-  module MEL
+  class MEL
     # Helper methods in support of tracking details for
     # Monitoring, Evaluation, and Learning
     module Helper
