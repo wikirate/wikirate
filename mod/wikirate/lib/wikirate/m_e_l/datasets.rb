@@ -1,5 +1,5 @@
 module Wikirate
-  module MEL
+  class MEL
     # dataset methods in support of tracking details for
     # Monitoring, Evaluation, and Learning
     module Datasets
