@@ -101,7 +101,10 @@ format :json do
   def complete_or_match_search *args
     return super(**args.first) unless os_search?
 
-    cardnames_from_os_results autocomplete_options
+    results = cardnames_from_os_results autocomplete_options
+    return results if results.present?
+
+    cardnames_from_os_results identifier_options
   end
 
   def go_to_exact_match? exact
@@ -121,6 +124,11 @@ format :json do
       &.dig("suggest", "autocomplete")
       &.first&.dig "options"
   end
+
+  def identifier_options
+
+  end
+
 
   # suggest_query
   def suggestion_query
