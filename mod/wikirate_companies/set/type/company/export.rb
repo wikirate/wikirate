@@ -12,7 +12,7 @@ format :json do
     data = format_odyssey_answer(odyssey_lookup_search(:answer, options))
     {
       name: card.name,
-      os_id: card.oar_id,
+      os_id: card.fetch(:oar_id)&.content,
       identifiers: {
         wikirate_id: card.id
       },

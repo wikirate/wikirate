@@ -22,6 +22,14 @@
 - :name: Data
   :codename: wikirate_data
 
+- :name: Wikirate MEL
+  :codename: wikirate_mel
+  :fields:
+    :self:
+      :fields:
+        :read:
+          - :wikirate_team
+
 - blurbs # be rake card:sow -- -o -c '{"type":"Blurb"}' -t :title,uri,body,icon
 - blurblists
 
