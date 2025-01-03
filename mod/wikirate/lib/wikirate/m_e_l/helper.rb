@@ -3,6 +3,37 @@ module Wikirate
     # Helper methods in support of tracking details for
     # Monitoring, Evaluation, and Learning
     module Helper
+      private
+
+      def file_card
+        @file_card ||= :wikirate_mel.card.fetch :file, new: { type: :file }
+      end
+
+      def csv_content headers: false
+        m = measure
+        CSV.generate do |csv|
+          csv << m.keys if headers
+          csv << m.values
+        end
+      end
+
+      def full_content
+        if file_card.new?
+          csv_content headers: true
+        else
+          file_card.file.read + csv_content
+        end
+      end
+
+      def tmp_file
+        f = Tempfile.new "mel.csv"
+        f.write full_content
+        f.close
+        yield f
+      ensure
+        f.unlink
+      end
+
       def cards
         Card.where trash: false
       end
@@ -25,6 +56,14 @@ module Wikirate
 
       def created_stewards &block
         created(&block).where creator_id: steward_ids
+      end
+
+      def research_groups
+        cards_of_type :research_group
+      end
+
+      def period_ago
+        "now() - INTERVAL #{@period}"
       end
     end
   end
