@@ -47,15 +47,15 @@ module Wikirate
       end
 
       def created_team &block
-        created(&block).where creator_id: team_ids
+        created(&block).where "creator_id in (?)", team_ids
       end
 
       def created_others &block
-        created(&block).where.not creator_id: team_ids
+        created(&block).where.not "creator_id in (?)", team_ids
       end
 
       def created_stewards &block
-        created(&block).where creator_id: steward_ids
+        created(&block).where "creator_id in (?)", steward_ids
       end
 
       def research_groups
