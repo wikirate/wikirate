@@ -19,7 +19,7 @@ module ExportSearch
   end
 
   def export_type
-    @export_type ||= params[:type]&.to_sym || :answer
+    @export_type ||= params[:export_type]&.to_sym || :answer
   end
 
   def count_with_params
