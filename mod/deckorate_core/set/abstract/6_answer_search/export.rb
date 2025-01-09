@@ -33,15 +33,19 @@ module ExportSearch
   private
 
   def export_relation query=nil
-    if export_type == :answer
+    case export_type
+    when :answer
       lookup_relation
+    when :relationship
+      answer_subclause = ::Answer.select(:answer_id).where(query.lookup_conditions).to_sql
+      ::Relationship.where "answer_id in (#{answer_subclause})"
     else
       clean_relation(query).select(export_id_field).distinct.reorder export_id_field
     end
   end
 
   def export_id_field
-    @export_id_field ||= export_type == :metric ? :metric_id : :company_id
+    @export_id_field ||= "#{export_type}_id".to_sym
   end
 end
 
