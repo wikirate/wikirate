@@ -37,8 +37,8 @@ module ExportSearch
     when :answer
       lookup_relation
     when :relationship
-      answer_subclause = ::Answer.select(:answer_id).where(query.lookup_conditions).to_sql
-      ::Relationship.where "answer_id in (#{answer_subclause})"
+      subclause = ::Answer.select(:answer_id).where query.lookup_conditions
+      ::Relationship.where answer_id: subclause
     else
       clean_relation(query).select(export_id_field).distinct.reorder export_id_field
     end
