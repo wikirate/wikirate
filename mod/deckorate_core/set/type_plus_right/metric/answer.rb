@@ -89,19 +89,14 @@ format do
 end
 
 format :html do
-  view :export_links, cache: :never do
-    if metric_card.relation?
-      wrap_with :div, class: "export-links py-2" do
-        [wrap_export_links("Answer", export_format_links),
-         wrap_export_links("Relationship", relationship_export_links)]
-      end
-    else
-      super()
-    end
-  end
-
   before :core do
     voo.items[:hide] = :metric_thumbnail
+  end
+
+  def export_types
+    super.dup.tap do |types|
+      types[:Relationships] = :relationship if metric_card.relation?
+    end
   end
 
   def show_metric_count?
