@@ -35,7 +35,7 @@ class Calculate
       end
 
       def integers restraint
-        Array.wrap(restraint).compact.map(&:to_i)
+        Array.wrap(restraint).compact.map(&:to_i).uniq
       end
     end
   end
