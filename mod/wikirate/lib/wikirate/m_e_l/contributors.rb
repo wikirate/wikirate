@@ -4,15 +4,15 @@ module Wikirate
     # Monitoring, Evaluation, and Learning
     module Contributors
       def contributors_direct
-        contributors { direct }
+        contributors { direct_created }
       end
 
       def contributors_import
-        contributors { import }
+        contributors { import_created }
       end
 
       def contributors_api
-        contributors { api }
+        contributors { api_created }
       end
 
       def stewards_who_researched
