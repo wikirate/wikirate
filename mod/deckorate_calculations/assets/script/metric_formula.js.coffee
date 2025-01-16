@@ -51,6 +51,7 @@ class decko.FormulaEditor
     view: "input_lists"
     format: "json"
     card:
+      name: @ed.data("metricName")
       type: ":metric"
       fields:
         ":variables": variables
