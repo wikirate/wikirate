@@ -78,8 +78,8 @@ module Wikirate
     def record
       Card::Auth.as_bot do
         tmp_file do |file|
-          card.file = file
-          card.save!
+          file_card.file = file
+          file_card.save!
         end
       end
     end
@@ -89,36 +89,6 @@ module Wikirate
     end
 
     private
-
-    def full_content
-      if card.new?
-        csv_content headers: true
-      else
-        card.file.read + csv_content
-      end
-    end
-
-    def tmp_file
-      f = Tempfile.new "mel.csv"
-      f.write full_content
-      f.close
-      yield f
-    ensure
-      f.unlink
-    end
-
-
-    def card
-      @card ||= :wikirate_mel.card.fetch :file, new: { type: :file }
-    end
-
-    def csv_content headers: false
-      m = measure
-      CSV.generate do |csv|
-        csv << m.keys if headers
-        csv << m.values
-      end
-    end
 
     def measure
       COLUMNS.each_with_object(metadata) do |(key, column), hash|
@@ -132,14 +102,6 @@ module Wikirate
 
     def metadata
       { "Date": Date.today.to_s, "Period" => @period }
-    end
-
-    def research_groups
-      cards_of_type :research_group
-    end
-
-    def period_ago
-      "now() - INTERVAL #{@period}"
     end
   end
 end
