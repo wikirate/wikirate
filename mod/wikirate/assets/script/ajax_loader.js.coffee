@@ -33,8 +33,20 @@ loader = (target, relative = false) ->
 
 ajaxLoader =
   head: '#ajax_loader'
-  child: '.loader- anime'
+  child: '.loader-anime'
 
 
 jObj = (ele) ->
   if typeof val == 'string' then $(ele) else ele
+
+$ ->
+  $('body').on 'show.bs.tab', 'a', (e) ->
+#    console.log "show tab"
+    tab_content = $(this).closest(".tab-panel").children ".tab-content"
+    loader(tab_content, true).prepend()
+
+
+#  $('body').on 'shown.bs.tab', 'a', (e) ->
+#    console.log "shown tab"
+#    tc = $(this).closest(".tab-panel").children(".tab-content")
+#    loader(tc).remove()
