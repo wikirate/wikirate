@@ -28,13 +28,17 @@ format do
     return super unless os_search?
 
     results = os_search_returning_cards
-    return results unless results.blank?
+    results.presents? ? results : identifier_search
+  end
 
+  private
+
+  def identifier_search
     identifier_options.map { |result| os_result_card(result) }
   end
 
   def identifier_options
-    card.os_search(index:"companies", body: { query: identifier_query })
+    card.os_search(index: "companies", body: { query: identifier_query })
       &.dig("hits", "hits")
   end
 
