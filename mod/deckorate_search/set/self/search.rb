@@ -24,7 +24,31 @@ format do
   end
 
   def search_with_params
-    os_search? ? os_search_returning_cards : super
+    requiring_keyword { os_search? ? os_search_with_params : super }
+  end
+
+  private
+
+  def os_search_with_params
+    results = os_search_returning_cards
+    results.present? ? results : identifier_search
+  end
+
+  def identifier_search
+    identifier_options.map { |result| os_result_card(result) }
+  end
+
+  def identifier_options
+    card.os_search(index: "companies", body: { query: identifier_query })
+      &.dig("hits", "hits")
+  end
+
+  def identifier_query
+    { term: { company_identifiers: search_keyword } }
+  end
+
+  def requiring_keyword
+    search_keyword.present? ? yield : []
   end
 end
 
@@ -101,7 +125,10 @@ format :json do
   def complete_or_match_search *args
     return super(**args.first) unless os_search?
 
-    cardnames_from_os_results autocomplete_options
+    results = cardnames_from_os_results { autocomplete_options }
+    return results if results.present?
+
+    cardnames_from_os_results { identifier_options }
   end
 
   def go_to_exact_match? exact
@@ -110,10 +137,10 @@ format :json do
 
   private
 
-  def cardnames_from_os_results results
-    return [] unless search_keyword.present?
-
-    results.map { |result| os_result_card(result)&.cardname }.compact
+  def cardnames_from_os_results
+    requiring_keyword do
+      yield.map { |result| os_result_card(result)&.cardname }.compact
+    end
   end
 
   def autocomplete_options
