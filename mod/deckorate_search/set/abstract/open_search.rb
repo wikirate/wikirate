@@ -86,9 +86,6 @@ format do
     Cardio.config.open_search_index
   end
 
-  # Currently this query is shared by autocomplete and the main results.
-  # Can separate by assigning different query methods to #search_with_params
-  # and #complete_or_match_search
   def os_query
     { minimum_should_match: 1 }.tap do |bool|
       os_type_filter { bool }
