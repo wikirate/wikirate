@@ -24,11 +24,12 @@ format do
   end
 
   def search_with_params
-    return [] unless search_keyword.present?
-    return super unless os_search?
+    requiring_keyword do
+      return super unless os_search?
 
-    results = os_search_returning_cards
-    results.presents? ? results : identifier_search
+      results = os_search_returning_cards
+      results.present? ? results : identifier_search
+    end
   end
 
   private
@@ -44,6 +45,10 @@ format do
 
   def identifier_query
     { term: { company_identifiers: search_keyword } }
+  end
+
+  def requiring_keyword
+    search_keyword.present? ? yield : []
   end
 end
 
@@ -133,9 +138,9 @@ format :json do
   private
 
   def cardnames_from_os_results
-    return [] unless search_keyword.present?
-
-    yield.map { |result| os_result_card(result)&.cardname }.compact
+    requiring_keyword do
+      yield.map { |result| os_result_card(result)&.cardname }.compact
+    end
   end
 
   def autocomplete_options
