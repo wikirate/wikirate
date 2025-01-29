@@ -43,10 +43,6 @@ PATH
     card-mod-lookup (0.4)
       card
       card-mod-filter
-    card-mod-new_relic (0.3)
-      card
-      decko
-      newrelic_rpm
     card-mod-pdfjs (0.3)
       card
     card-mod-social (0.3)
@@ -950,7 +946,6 @@ DEPENDENCIES
   card-mod-graphql!
   card-mod-lookup!
   card-mod-monkey!
-  card-mod-new_relic!
   card-mod-pdfjs!
   card-mod-social!
   card-mod-solid_cache!
@@ -970,6 +965,7 @@ DEPENDENCIES
   link_thumbnailer
   mysql2 (> 0.4)
   net-imap (= 0.4.17)
+  newrelic_rpm
   open_uri_redirections
   pdfkit
   pivotal-tracker
