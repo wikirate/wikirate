@@ -24,15 +24,15 @@ format do
   end
 
   def search_with_params
-    requiring_keyword do
-      return super unless os_search?
-
-      results = os_search_returning_cards
-      results.present? ? results : identifier_search
-    end
+    requiring_keyword { os_search? ? os_search_with_params : super }
   end
 
   private
+
+  def os_search_with_params
+    results = os_search_returning_cards
+    results.present? ? results : identifier_search
+  end
 
   def identifier_search
     identifier_options.map { |result| os_result_card(result) }
