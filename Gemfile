@@ -30,7 +30,7 @@ else
     gem "card-mod-lookup"
     gem "card-mod-social"
     # gem "card-mod-logger"
-    # gem "card-mod-new_relic"
+    gem "card-mod-new_relic"
     gem "card-mod-pdfjs"
     gem "card-mod-solid_cache"
     gem "card-mod-thumbnail"
@@ -72,7 +72,6 @@ gem "wkhtmltopdf-binary"             # converting HTML to PDF
 
 # MISCELLANEOUS
 gem "company-mapping"                # Vasso's gem, written for WikiRate
-gem "newrelic_rpm"
 gem "puma", "~>5.6"                  # local webserver (6.x broke semaphore )
 gem "rack-attack"                    # protection from bad clients
 gem "rack-cors"                      # support for Cross-Origin Resource Sharing (CORS)
