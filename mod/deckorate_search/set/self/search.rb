@@ -24,12 +24,12 @@ format do
   end
 
   def search_with_params
-    requiring_keyword { os_search? ? os_search_with_params : super }
+    requiring_keyword { os_search? ? matches_or_identifiers : super }
   end
 
   private
 
-  def os_search_with_params
+  def matches_or_identifiers
     results = os_search_returning_cards
     results.present? ? results : identifier_search
   end
