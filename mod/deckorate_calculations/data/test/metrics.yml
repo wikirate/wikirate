@@ -169,11 +169,11 @@
         }
       ]
     :formula: m1 * 2
+
 - :name:
-    - Commons
-    - Industry
+    - :commons
+    - :industry
   :type: :metric
-  :codename: commons_industry
   :fields:
     :value_type: Multi-Category
     :hybrid: '1'
@@ -183,10 +183,9 @@
     :research_policy: Community Assessed
 
 - :name:
-    - Core
-    - Headquarters Location
+    - :core
+    - :headquarters_location
   :type: :metric
-  :codename: core_headquarters_location
   :fields:
     :value_type: Category
     :metric_type: Formula
@@ -555,10 +554,9 @@
   :codename: company_category
 
 - :name:
-    - Commons
+    - :commons
     - :company_category
   :type: :metric
-  :codename: commons_company_category
   :fields:
     :value_type: Multi-Category
     :metric_type: Formula
@@ -593,7 +591,7 @@
       Europe and Central Asia
 
 - :name:
-    - Core
+    - :core
     - :country
   :type: :metric
   :fields:
