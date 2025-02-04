@@ -3,11 +3,11 @@ class Card
   class CompanyFilterCql < DeckorateFilterCql
     class << self
       def country_condition
-        answer_condition :countries, :core_country
+        answer_condition :countries, %i[core country]
       end
 
       def category_condition
-        answer_condition :categories, :commons_company_category
+        answer_condition :categories, %i[commons company_category]
       end
 
       def company_answer_condition table, constraint
