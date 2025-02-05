@@ -1,0 +1,11 @@
+.email-footer.text-center.my-5
+  .d-flex.justify-content-center
+    - social_media_links.each do |social, url|
+      .p-2
+        = link_to font_awesome_icon_tag(social.downcase, brand:true),
+                          href: url, title: social, target: "_social"
+  %p.my-2.fs-6
+    Wikirate is an open data platform powered by its community and
+    %a{ href: "https://wikirate-intl.org" }
+      Wikirate International e.V.
+

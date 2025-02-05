@@ -9,8 +9,10 @@
   :type: :research_group
 - :name: Commons
   :type: :research_group
+  :codename: :commons
 - :name: Core
   :type: :research_group
+  :codename: :core
 
 - :name:
     - Clean_Clothes_Campaign
