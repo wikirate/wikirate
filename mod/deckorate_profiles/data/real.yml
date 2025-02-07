@@ -14,6 +14,13 @@
 - :name: Projects Organized
   :codename: projects_organized
 
+- :name: Commons
+  :type: :research_group
+  :codename: :commons
+- :name: Core
+  :type: :research_group
+  :codename: :core
+
 - :name:
     - :research_group
     - :researcher

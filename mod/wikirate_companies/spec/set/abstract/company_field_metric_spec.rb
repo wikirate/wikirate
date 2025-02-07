@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::Abstract::CompanyFieldMetric do
   def card_subject
-    Card[:core_headquarters_location]
+    %i[core headquarters_location].card
   end
 
   def google_llc_hq_lookup

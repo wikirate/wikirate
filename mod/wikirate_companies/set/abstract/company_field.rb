@@ -11,8 +11,9 @@ def metric_code
 end
 
 def metric_card
+  return if Array.wrap(metric_code).find { |mc| !Codename.exist? mc }
   # conditional needed for seeding.
-  Card[metric_code] if Codename.exist? metric_code
+  metric_code.card
 end
 
 def answer_company_id
