@@ -64,7 +64,7 @@ module Wikirate
     NO_COUNT_REGEX = /^flags_(wrong|other)|datasets_category/
 
     def attributions_created
-      created { cards_of_type :attribution }
+      created { cards_of_type :reference }
     end
 
     def research_groups_created
