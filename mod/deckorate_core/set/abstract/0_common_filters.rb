@@ -16,7 +16,7 @@ format :html do
                       published: :radio
 
   def filter_company_category_options
-    :commons_company_category.card.value_options_card.options_hash
+    %i[commons company_category].card.value_options_card.options_hash
   end
 
   def filter_year_options
@@ -42,7 +42,7 @@ format :html do
   end
 
   def filter_country_options
-    :core_country.card.value_options_card.item_names
+    %i[core country].card.value_options_card.item_names
   end
 
   def filter_company_options

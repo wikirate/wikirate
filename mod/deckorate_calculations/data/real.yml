@@ -33,6 +33,13 @@
   :type: :metric_type_type
   :codename: descendant
 
+- :name: Headquarters Location
+  :codename: headquarters_location
+  :type: :metric_title
+- :name: Industry
+  :codename: industry
+  :type: :metric_title
+
 # override rstar rule
 - :name:
     - :metric

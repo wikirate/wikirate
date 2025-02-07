@@ -1,3 +1,9 @@
+# note, abstracted this set because self/account_links/account_buttons.rb is
+# interpreted as the self set for account_links+account_buttons. but we can't just put it
+# in account_links.rb because of the super() call.
+#
+# we might not need this anymore, because we're not still doing bookmarks?
+
 format :html do
   def bookmark_count
     @bookmark_count ||= Card::Bookmark.current_ids.size
