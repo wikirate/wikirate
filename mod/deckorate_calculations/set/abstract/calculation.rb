@@ -7,7 +7,11 @@ def calculator variant=:standard
                        formula: formula,
                        normalizer: ::Answer.method(:value_to_lookup),
                        years: year_card.item_names,
-                       companies: company_group_card.company_ids
+                       companies: calculator_company_ids
+end
+
+def calculator_company_ids
+  company_group_card.try(:company_ids) || []
 end
 
 # update all answers of this metric and the answers of all metrics that

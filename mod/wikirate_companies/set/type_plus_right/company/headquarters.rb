@@ -25,7 +25,7 @@ def oc_code
 end
 
 def metric_code
-  :core_headquarters_location
+  %i[core headquarters_location]
 end
 
 format :json do
