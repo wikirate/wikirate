@@ -9,15 +9,15 @@ format do
       Dear {{_|name}},
 
       You are now officially a member of the global Wikirate community.
-      We collaboratively collect, analyze and share open data on company 
+      We collaboratively collect, analyze and share open data on company
       commitments, actions and impacts on people and the planet.
 
       To help you get started, here are some useful links:
 
-      - Account and settings 
+      - Account and settings
          [https://wikirate.org/Manage_Your_Account#edit_your_public_profile]:
           Upload a profile picture and edit your account.
-        
+
       - Topics [https://wikirate.org/topics],
         Companies [http://wikirate.org/companies],
         Metrics [https://wikirate.org/metrics], and
@@ -34,7 +34,7 @@ format do
           Find answers to most of your questions.
 
       If you get stuck or have any questions, send us a note at info@wikirate.org.
-  
+
       We can’t wait to hear from you,
       - The Wikirate Team
 
