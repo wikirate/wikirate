@@ -1,0 +1,43 @@
+.p-2
+  = nest :email_header, view: :core
+  %h2 Welcome to Wikirate!
+  %p
+    Dear {{_|name}},
+  %p
+    You are now officially a member of the global Wikirate community.
+    We collaboratively collect, analyze and share open data on company commitments,
+    actions and impacts on people and the planet.
+  %p To help you get started, here are some useful links:
+  %ul
+    %li
+      %p
+        %a{href: "https://wikirate.org/Manage_Your_Account#edit_your_public_profile"} Account and settings:
+        upload a profile picture and edit your account
+    %li
+      %p
+        %a{href: "https://wikirate.org/topics"} Topics,
+        %a{href: "http://wikirate.org/companies"} Companies,
+        %a{href: "https://wikirate.org/metrics"} Metrics,
+        and
+        %a{href: "https://wikirate.org/datasets"} Datasets:
+        browse the data through different lenses
+    %li
+      %p
+        %a{href: "https://wikirate.org/Project"} Projects:
+        find your way into the data research
+    %li
+      %p
+        %a{href: "https://wikirate.org/guides"} Guides:
+        do deep dives on key features
+    %li
+      %p
+        %a{href: "https://wikirate.org/Frequently_Asked_Questions"} FAQs:
+        find answers to most of your questions
+  %p
+    If you get stuck or have any questions, send us a note at
+    %a{href: "mailto:info@wikirate.org"} info@wikirate.org.
+  %p We can’t wait to hear from you,
+  %p The Wikirate Team
+
+  .py-3
+    = nest :email_footer, view: :core

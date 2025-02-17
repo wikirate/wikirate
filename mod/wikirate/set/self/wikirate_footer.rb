@@ -6,8 +6,6 @@ LEGAL_CODENAMES = %i[policy privacy_policy terms_of_use].freeze
 format :html do
   view :core, template: :haml, cache: :deep
 
-  view :email_footer, template: :haml, cache: :deep
-
   def footer_legal_link_list
     LEGAL_CODENAMES.map do |codename|
       link_to_card codename
