@@ -23,7 +23,7 @@ format do
         Metrics [https://wikirate.org/metrics], and
         Datasets: [https://wikirate.org/datasets]:
           Browse the data through different lenses.
-  
+
       - Projects [https://wikirate.org/Project]:
           Find your way into the data research.
 
