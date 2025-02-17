@@ -1,0 +1,5 @@
+---
+- :name: email header
+  :codename: email_header
+- :name: email footer
+  :codename: email_footer
