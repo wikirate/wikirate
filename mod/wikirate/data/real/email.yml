@@ -1,5 +1,12 @@
 ---
 - :name: email header
   :codename: email_header
+  :conflict: override
+  :fields:
+    :logo:
+      :type: :image
+      :image: email_logo.svg
+      :storage_type: :coded
 - :name: email footer
+  :conflict: override
   :codename: email_footer
