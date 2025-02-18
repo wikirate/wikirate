@@ -8,9 +8,9 @@ format do
 
       Someone – you, we hope – asked to reset your password.  Please use the following
       link to update your account details:
-      
-      {{_|reset_password_url}}  
-      
+
+      {{_|reset_password_url}}
+
       Link will remain valid for {{_|reset_password_days}} days.
     MESSAGE
   end
