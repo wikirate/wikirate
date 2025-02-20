@@ -233,3 +233,9 @@ button.pointer-item-delete.btn.btn-outline-secondary {
 .select2-dropdown .thumbnail-title {
   flex-direction: column
 }
+
+.LTYPE_RTYPE-email_template-rich_text {
+  a, a:visited {
+    text-decoration: none !important;
+  }
+}
