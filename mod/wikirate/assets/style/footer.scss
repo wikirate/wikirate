@@ -7,6 +7,13 @@ $social-colors: (
   "instagram": #FF0069
 ) !default;
 
+#footer-social-media-links {
+  i {
+    font-size: 1.2em;
+    color: $blue;
+  }
+}
+
 #wikirate-footer {
   h2 {
     font-size: 1em;
@@ -49,7 +56,6 @@ $social-colors: (
   #footer-social-media-links {
     i {
       font-size: 1.5em;
-      color: $blue;
     }
   }
 }

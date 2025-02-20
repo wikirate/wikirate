@@ -1,5 +1,5 @@
-.email-footer.text-center.my-5
-  .d-flex.justify-content-center
+#email-footer.text-center
+  #footer-social-media-links.d-flex.justify-content-center
     - social_media_links.each do |social, url|
       .p-2
         = link_to font_awesome_icon_tag(social.downcase, brand:true),
