@@ -11,3 +11,13 @@
   :type: :image
   :image: email_logo.svg
   :storage_type: :coded
+- :name:
+    - :verification_email
+    - :subject
+  :conflict: override
+  :content: Activate your Wikirate account
+- :name:
+    - :password_reset_email
+    - :subject
+  :conflict: override
+  :content: Reset your Wikirate password

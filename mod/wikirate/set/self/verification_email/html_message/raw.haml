@@ -1,12 +1,11 @@
-.p-2
+.p-2.text-center
   = nest :email_header, view: :core
   .py-3
-    %h3 Thank you for signing up with Wikirate!
-    %p
-      Please
-      %a{href: "{{_|verify_url}}"} follow this link
-      to verify this email address and activate your account.
-    %p
-      %em Link will remain valid for {{_|verify_days}} days.
+    .p-1
+      We're glad that you're here.
+    .p-1
+      %a{href: "{{_|verify_url}}"} Activate your account.
+    .p-1
+      (The link will remain valid for {{_|verify_days}} days.)
   .py-3
     = nest :email_footer, view: :core
