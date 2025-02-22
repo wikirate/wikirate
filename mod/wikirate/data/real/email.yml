@@ -43,8 +43,8 @@
     .p-2 {
       padding: .5rem !important;
     }
-    a {
-      color: $purple;
+    a, a:visited, a:hover, a:focus {
+      color: $purple !important;
       text-decoration: none;
     }
     h4 {
