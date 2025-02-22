@@ -5255,3 +5255,483 @@ card_acts_876:
   actor_id: 1
   acted_at: 2025-02-18 16:06:39.000000000 Z
   ip_address:
+card_acts_877:
+  id: 106585
+  card_id: 288
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:41.000000000 Z
+  ip_address:
+card_acts_878:
+  id: 106586
+  card_id: 356
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:42.000000000 Z
+  ip_address:
+card_acts_879:
+  id: 106587
+  card_id: 444
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:42.000000000 Z
+  ip_address:
+card_acts_880:
+  id: 106588
+  card_id: 495
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:46.000000000 Z
+  ip_address:
+card_acts_881:
+  id: 106589
+  card_id: 496
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:46.000000000 Z
+  ip_address:
+card_acts_882:
+  id: 106590
+  card_id: 519
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:46.000000000 Z
+  ip_address:
+card_acts_883:
+  id: 106591
+  card_id: 496
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:46.000000000 Z
+  ip_address:
+card_acts_884:
+  id: 106592
+  card_id: 1494
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:47.000000000 Z
+  ip_address:
+card_acts_885:
+  id: 106593
+  card_id: 653
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:47.000000000 Z
+  ip_address:
+card_acts_886:
+  id: 106594
+  card_id: 495
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:47.000000000 Z
+  ip_address:
+card_acts_887:
+  id: 106595
+  card_id: 519
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:47.000000000 Z
+  ip_address:
+card_acts_888:
+  id: 106596
+  card_id: 3853
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:55.000000000 Z
+  ip_address:
+card_acts_889:
+  id: 106597
+  card_id: 356
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:56.000000000 Z
+  ip_address:
+card_acts_890:
+  id: 106598
+  card_id: 3853
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:56.000000000 Z
+  ip_address:
+card_acts_891:
+  id: 106599
+  card_id: 444
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:56.000000000 Z
+  ip_address:
+card_acts_892:
+  id: 106600
+  card_id: 256
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:59.000000000 Z
+  ip_address:
+card_acts_893:
+  id: 106601
+  card_id: 261
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:59.000000000 Z
+  ip_address:
+card_acts_894:
+  id: 106602
+  card_id: 288
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:59.000000000 Z
+  ip_address:
+card_acts_895:
+  id: 106603
+  card_id: 653
+  actor_id: 1
+  acted_at: 2025-02-20 22:32:59.000000000 Z
+  ip_address:
+card_acts_896:
+  id: 106604
+  card_id: 3987
+  actor_id: 1
+  acted_at: 2025-02-20 22:33:00.000000000 Z
+  ip_address:
+card_acts_897:
+  id: 106605
+  card_id: 4023
+  actor_id: 1
+  acted_at: 2025-02-20 22:33:00.000000000 Z
+  ip_address:
+card_acts_898:
+  id: 106606
+  card_id: 3987
+  actor_id: 1
+  acted_at: 2025-02-20 22:33:00.000000000 Z
+  ip_address:
+card_acts_899:
+  id: 106607
+  card_id: 305
+  actor_id: 1
+  acted_at: 2025-02-20 22:33:00.000000000 Z
+  ip_address:
+card_acts_900:
+  id: 106608
+  card_id: 326
+  actor_id: 1
+  acted_at: 2025-02-20 22:33:00.000000000 Z
+  ip_address:
+card_acts_901:
+  id: 106609
+  card_id: 4156
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:38.000000000 Z
+  ip_address:
+card_acts_902:
+  id: 106610
+  card_id: 254
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:38.000000000 Z
+  ip_address:
+card_acts_903:
+  id: 106611
+  card_id: 259
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:38.000000000 Z
+  ip_address:
+card_acts_904:
+  id: 106612
+  card_id: 288
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:38.000000000 Z
+  ip_address:
+card_acts_905:
+  id: 106613
+  card_id: 356
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:39.000000000 Z
+  ip_address:
+card_acts_906:
+  id: 106614
+  card_id: 444
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:40.000000000 Z
+  ip_address:
+card_acts_907:
+  id: 106615
+  card_id: 495
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:43.000000000 Z
+  ip_address:
+card_acts_908:
+  id: 106616
+  card_id: 496
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:43.000000000 Z
+  ip_address:
+card_acts_909:
+  id: 106617
+  card_id: 519
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:44.000000000 Z
+  ip_address:
+card_acts_910:
+  id: 106618
+  card_id: 496
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:44.000000000 Z
+  ip_address:
+card_acts_911:
+  id: 106619
+  card_id: 1494
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:44.000000000 Z
+  ip_address:
+card_acts_912:
+  id: 106620
+  card_id: 653
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:45.000000000 Z
+  ip_address:
+card_acts_913:
+  id: 106621
+  card_id: 495
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:45.000000000 Z
+  ip_address:
+card_acts_914:
+  id: 106622
+  card_id: 519
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:45.000000000 Z
+  ip_address:
+card_acts_915:
+  id: 106623
+  card_id: 3853
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:58.000000000 Z
+  ip_address:
+card_acts_916:
+  id: 106624
+  card_id: 356
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:58.000000000 Z
+  ip_address:
+card_acts_917:
+  id: 106625
+  card_id: 3853
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:58.000000000 Z
+  ip_address:
+card_acts_918:
+  id: 106626
+  card_id: 444
+  actor_id: 1
+  acted_at: 2025-02-22 21:35:59.000000000 Z
+  ip_address:
+card_acts_919:
+  id: 106627
+  card_id: 4155
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:01.000000000 Z
+  ip_address:
+card_acts_920:
+  id: 106628
+  card_id: 256
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:02.000000000 Z
+  ip_address:
+card_acts_921:
+  id: 106629
+  card_id: 261
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:02.000000000 Z
+  ip_address:
+card_acts_922:
+  id: 106630
+  card_id: 4156
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:07.000000000 Z
+  ip_address:
+card_acts_923:
+  id: 106631
+  card_id: 288
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:07.000000000 Z
+  ip_address:
+card_acts_924:
+  id: 106632
+  card_id: 653
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:07.000000000 Z
+  ip_address:
+card_acts_925:
+  id: 106633
+  card_id: 3987
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:08.000000000 Z
+  ip_address:
+card_acts_926:
+  id: 106634
+  card_id: 4023
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:08.000000000 Z
+  ip_address:
+card_acts_927:
+  id: 106635
+  card_id: 3987
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:08.000000000 Z
+  ip_address:
+card_acts_928:
+  id: 106636
+  card_id: 305
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:08.000000000 Z
+  ip_address:
+card_acts_929:
+  id: 106637
+  card_id: 326
+  actor_id: 1
+  acted_at: 2025-02-22 21:36:08.000000000 Z
+  ip_address:
+card_acts_930:
+  id: 106638
+  card_id: 254
+  actor_id: 1
+  acted_at: 2025-02-22 22:05:54.000000000 Z
+  ip_address:
+card_acts_931:
+  id: 106639
+  card_id: 259
+  actor_id: 1
+  acted_at: 2025-02-22 22:05:54.000000000 Z
+  ip_address:
+card_acts_932:
+  id: 106640
+  card_id: 288
+  actor_id: 1
+  acted_at: 2025-02-22 22:05:54.000000000 Z
+  ip_address:
+card_acts_933:
+  id: 106641
+  card_id: 356
+  actor_id: 1
+  acted_at: 2025-02-22 22:05:55.000000000 Z
+  ip_address:
+card_acts_934:
+  id: 106642
+  card_id: 444
+  actor_id: 1
+  acted_at: 2025-02-22 22:05:56.000000000 Z
+  ip_address:
+card_acts_935:
+  id: 106643
+  card_id: 495
+  actor_id: 1
+  acted_at: 2025-02-22 22:05:59.000000000 Z
+  ip_address:
+card_acts_936:
+  id: 106644
+  card_id: 496
+  actor_id: 1
+  acted_at: 2025-02-22 22:05:59.000000000 Z
+  ip_address:
+card_acts_937:
+  id: 106645
+  card_id: 519
+  actor_id: 1
+  acted_at: 2025-02-22 22:05:59.000000000 Z
+  ip_address:
+card_acts_938:
+  id: 106646
+  card_id: 496
+  actor_id: 1
+  acted_at: 2025-02-22 22:05:59.000000000 Z
+  ip_address:
+card_acts_939:
+  id: 106647
+  card_id: 1494
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:00.000000000 Z
+  ip_address:
+card_acts_940:
+  id: 106648
+  card_id: 653
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:00.000000000 Z
+  ip_address:
+card_acts_941:
+  id: 106649
+  card_id: 495
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:00.000000000 Z
+  ip_address:
+card_acts_942:
+  id: 106650
+  card_id: 519
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:00.000000000 Z
+  ip_address:
+card_acts_943:
+  id: 106651
+  card_id: 3853
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:10.000000000 Z
+  ip_address:
+card_acts_944:
+  id: 106652
+  card_id: 356
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:11.000000000 Z
+  ip_address:
+card_acts_945:
+  id: 106653
+  card_id: 3853
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:12.000000000 Z
+  ip_address:
+card_acts_946:
+  id: 106654
+  card_id: 444
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:12.000000000 Z
+  ip_address:
+card_acts_947:
+  id: 106655
+  card_id: 256
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:17.000000000 Z
+  ip_address:
+card_acts_948:
+  id: 106656
+  card_id: 261
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:18.000000000 Z
+  ip_address:
+card_acts_949:
+  id: 106657
+  card_id: 4156
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:25.000000000 Z
+  ip_address:
+card_acts_950:
+  id: 106658
+  card_id: 288
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:26.000000000 Z
+  ip_address:
+card_acts_951:
+  id: 106659
+  card_id: 653
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:26.000000000 Z
+  ip_address:
+card_acts_952:
+  id: 106660
+  card_id: 3987
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:27.000000000 Z
+  ip_address:
+card_acts_953:
+  id: 106661
+  card_id: 4023
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:27.000000000 Z
+  ip_address:
+card_acts_954:
+  id: 106662
+  card_id: 3987
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:27.000000000 Z
+  ip_address:
+card_acts_955:
+  id: 106663
+  card_id: 305
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:28.000000000 Z
+  ip_address:
+card_acts_956:
+  id: 106664
+  card_id: 326
+  actor_id: 1
+  acted_at: 2025-02-22 22:06:28.000000000 Z
+  ip_address:

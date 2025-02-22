@@ -1,13 +1,11 @@
-.p-2
+.p-2.text-center
   = nest :email_header, view: :core
   .py-3
-    %h3 Password reset for Wikirate
-    %p Someone – you, we hope – asked to reset your password.
-    %p
-      Please
-      %a{href: "/{{_|reset_password_url}}"} follow this link
-      to update your account details.
-    %p
-      %em Link will remain valid for {{_|reset_password_days}} days.
+    .p-1
+      Someone, we hope you, asked to reset your password.
+    .p-1
+      %a{href: "/{{_|reset_password_url}}"} Reset your password.
+    .p-1
+      (Link will remain valid for {{_|reset_password_days}} days.)
   .py-3
     = nest :email_footer, view: :core
