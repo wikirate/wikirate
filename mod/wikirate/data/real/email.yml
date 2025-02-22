@@ -9,7 +9,7 @@
     - :email_header
     - :logo
   :type: :image
-  :image: email_logo.svg
+  :image: email_logo.png
   :storage_type: :coded
 - :name:
     - :verification_email
@@ -21,3 +21,68 @@
     - :subject
   :conflict: override
   :content: Reset your Wikirate password
+- :name: "email stylesheet"
+  :content: |
+    $blue: #2D2374 !default;
+    $purple: #7164D0 !default;
+  
+    .d0-email-body {
+      font-family: "Open Sans", Roboto, sans-serif;
+      line-height: 1.55;
+      font-size: 1rem;
+    }
+    .d-flex {
+      display: flex !important;
+    }
+    .justify-content-center {
+      justify-content: center !important;
+    }
+    .text-center {
+      text-align: center !important;
+    }
+    .p-2 {
+      padding: .5rem !important;
+    }
+    a {
+      color: $purple;
+      text-decoration: none;
+    }
+    h4 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: $blue;
+    }
+    img {
+      max-width: 100%;
+    }
+    .mt-3, .my-3 {
+      margin-top: 1rem;
+    }
+    .mb-3, .my-3 {
+      margin-bottom: 1rem;
+    }
+    .fs-5 {
+      font-size: 1.25rem;
+    }
+    .flex-column {
+      flex-direction: column
+    }
+    .align-items-center {
+      align-items: center
+    }
+    .my-2 {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .py-3 {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .px-2 {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+    .p-1 {
+      padding: 0.25rem;
+    }    
+
