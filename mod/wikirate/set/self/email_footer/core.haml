@@ -1,10 +1,9 @@
 #email-footer.text-center
-  #footer-social-media-links.d-flex.justify-content-center
-    - social_media_links.each do |social, url|
-      .px-2
-        %a{ href: url, title: social, target: "_social" }
-          %img{ src: card_url("/mod/wikirate/fa-images/#{social.downcase}-brands.png"),
-                alt: social }
+  - social_media_links.each do |social, url|
+    %span.px-2
+      %a{ href: url, title: social, target: "_social" }
+        %img{ src: card_url("/mod/wikirate/fa-images/#{social.downcase}-brands.png"),
+              alt: social }
 
   .my-2.fs-6
     Wikirate is an open data platform powered by its community and
