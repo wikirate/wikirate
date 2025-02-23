@@ -4,14 +4,11 @@ include_set Abstract::VirtualSet
 format do
   view :raw, unknown: true do
     <<~MESSAGE
-      Password reset for Wikirate
+      Someone, we hope you, asked to reset your password.
 
-      Someone – you, we hope – asked to reset your password.  Please use the following
-      link to update your account details:
+      Reset your password: {{_|reset_password_url}}
 
-      {{_|reset_password_url}}
-
-      Link will remain valid for {{_|reset_password_days}} days.
+      (Link will remain valid for {{_|reset_password_days}} days.)
     MESSAGE
   end
 end

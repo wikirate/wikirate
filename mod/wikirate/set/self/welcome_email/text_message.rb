@@ -6,7 +6,7 @@ format do
     <<~MESSAGE
       Welcome to Wikirate!
 
-      Dear {{_|name}},
+      Dear {{_left|name}},
 
       You are now officially a member of the global Wikirate community.
       We collaboratively collect, analyze and share open data on company
