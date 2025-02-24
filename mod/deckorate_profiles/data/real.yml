@@ -17,9 +17,12 @@
 - :name: Commons
   :type: :research_group
   :codename: :commons
+  :conflict: override
 - :name: Core
   :type: :research_group
   :codename: :core
+  :conflict: override
+
 
 - :name:
     - :research_group
