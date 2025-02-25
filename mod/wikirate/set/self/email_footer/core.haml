@@ -1,11 +1,12 @@
 #email-footer.text-center
-  - social_media_links.each do |social, url|
-    %span.px-2
-      %a{ href: url, title: social, target: "_social" }
-        %img{ src: card_url("/mod/wikirate/fa-images/#{social.downcase}-brands.png"),
-              alt: social }
+  .email-social-media
+    - social_media_links.each do |social, url|
+      %span.px-2
+        %a{ href: url, title: social, target: "_social" }
+          %img{ src: card_url("/mod/wikirate/fa-images/#{social.downcase}-brands.png"),
+                alt: social }
 
-  .my-2.fs-6
+  .email-footer-text
     Wikirate is an open data platform powered by its community and
     %a{ href: "https://wikirate-intl.org" }
       Wikirate International e.V.
