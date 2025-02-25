@@ -27,9 +27,18 @@
     $purple: #7164D0 !default;
   
     .d0-email-body {
-      font-family: "Open Sans", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial, sans-serif;;
       line-height: 1.55;
       font-size: 1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .email-logo-claim {
+      font-size: 1rem; 
+      margin-top: 0.2rem;
+    }
+    .email-footer-text {
+      font-size: 0.8rem;
     }
     .text-center {
       text-align: center !important;
@@ -58,8 +67,7 @@
     .fs-5 {
       font-size: 1.25rem;
     }
-    .my-2 {
-      margin-top: 0.5rem;
+    .mb-2 {
       margin-bottom: 0.5rem;
     }
     .py-3 {
