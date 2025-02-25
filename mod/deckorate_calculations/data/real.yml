@@ -36,9 +36,11 @@
 - :name: Headquarters Location
   :codename: headquarters_location
   :type: :metric_title
+  :conflict: override
 - :name: Industry
   :codename: industry
   :type: :metric_title
+  :conflict: override
 
 # override rstar rule
 - :name:
