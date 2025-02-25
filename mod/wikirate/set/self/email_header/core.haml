@@ -1,4 +1,5 @@
 #email-header.text-center.mb-3
-  %a{ href: "/", style: "display: inline-block; max-width: 90px" }
-    = field_nest :logo, view: :core, size: :medium
-  %p.mt-3.fs-5 Let's make companies better, together.
+  .email-logo
+    %a{ href: "/", style: "display: inline-block; max-width: 90px" }
+      = field_nest :logo, view: :core, size: :medium
+  .email-logo-claim Let's make companies better, together.
