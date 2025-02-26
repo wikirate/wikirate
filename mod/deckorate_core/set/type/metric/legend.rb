@@ -12,17 +12,6 @@ format do
 
   def value_legend
     card.unit.present? ? card.unit : ""
-
-    # if card.unit.present?
-    #   card.unit
-    # elsif card.range.present?
-    #   card.range.to_s
-    # elsif card.categorical?
-    #   ""
-    #   # category_legend
-    # else
-    #   ""
-    # end
   end
 
   # maybe following should be view of :value_options card?
