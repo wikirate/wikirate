@@ -3,7 +3,7 @@
     - social_media_links.each do |social, url|
       %span.px-2
         %a{ href: url, title: social, target: "_social" }
-          %img{ src: card_url("/mod/wikirate/fa-images/#{social.downcase}-brands.png"),
+          %img{ src: card_url("/mod/wikirate/fa-images/fa-#{social.downcase}.png"),
                 alt: social }
 
   .email-footer-text
