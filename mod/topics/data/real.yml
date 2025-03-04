@@ -20,20 +20,25 @@
 - :name: Environment
   :type: :topic
   :codename: environment
-  :conflict: override
   :fields:
     :topic_framework: Wikirate ESG Topics
 
 - :name: Social
   :type: :topic
   :codename: social
-  :conflict: override
   :fields:
     :topic_framework: Wikirate ESG Topics
 
 - :name: Governance
   :type: :topic
   :codename: governance
-  :conflict: override
   :fields:
     :topic_framework: Wikirate ESG Topics
+
+- :name:
+    - :esg_topics
+    - :category
+  :content:
+    - :environment
+    - :social
+    - :governance
