@@ -26,4 +26,31 @@ RSpec.describe Card::Set::Type::Topic do
     expect(html).to eq(render_card(:link, type_id: Card::TopicID,
                                           name: "non-existing-card"))
   end
+
+  describe "event#validate_topic_category" do
+    it "adds an error if top category is not allowed in framework" do
+      expect { create_topic! "new topic", "Force", :esg_topics.cardname }
+        .to raise_error(ActiveRecord::RecordInvalid, /top category must be one of/)
+    end
+
+    it "does not apply if topic has no framework" do
+      expect { create_topic! "new topic", "Force", nil }.not_to raise_error
+    end
+
+    it "does not raise error if category is acceptable" do
+      expect { create_topic! "new topic", "Environment", :esg_topics.cardname }
+        .not_to raise_error
+    end
+  end
+
+  def create_topic! name, category, framework
+    Card::Auth.as "joe admin" do
+      Card.create! name: name,
+                   type: :topic,
+                   fields: {
+                     category: category,
+                     topic_framework: framework,
+                   }
+    end
+  end
 end

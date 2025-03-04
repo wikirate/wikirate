@@ -8,5 +8,7 @@
         = nest card.value_card, view: :pretty
         %span.text-muted.small{ title: card.format(:text).render_legend }
           = render_legend
+    .verification-level.ms-2.fs-6
+      = render_verification
   .text-muted.ms-2
     = nest card.year, view: :in_calendar
