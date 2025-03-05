@@ -49,7 +49,7 @@ RSpec.describe Card::Set::Type::Topic do
                    type: :topic,
                    fields: {
                      category: category,
-                     topic_framework: framework,
+                     topic_framework: framework
                    }
     end
   end
