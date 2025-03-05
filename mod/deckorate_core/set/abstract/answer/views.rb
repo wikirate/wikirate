@@ -38,8 +38,6 @@ format :html do
     "Not Researched"
   end
 
-  view :research_option, perms: :none, template: :haml
-
   view :breadcrumb, unknown: true, template: :haml
 
   view :comments do
