@@ -53,6 +53,8 @@ format :html do
     end
   end
 
+  view :research_option, perms: :none, template: :haml
+
   view :verification, template: :haml
 
   view :read_form_with_button, wrap: :slot, template: :haml
