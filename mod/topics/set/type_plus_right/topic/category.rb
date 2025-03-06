@@ -35,7 +35,7 @@ def add_categories_to_topic_referers
 end
 
 def topic_referers
-  Card.search right: :topic, refer_to: left.id
+  Card.search right: :topic, refer_to: left.name
 end
 
 def check_category_permissions
