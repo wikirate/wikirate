@@ -19,11 +19,13 @@
   :type: :topic
   :fields:
     :topic_framework: Wikirate ESG Topics
+    :category: Social
 
 - :name: Energy
   :type: :topic
   :fields:
     :topic_framework: Wikirate ESG Topics
+    :category: Environment
 
 - :name: Featured
   :codename: featured

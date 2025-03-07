@@ -1,6 +1,16 @@
 format :html do
+  view :mini_badge do
+    card.name.to_s[0]
+  end
+
+  view :category_badge do
+    return "" unless card.restricted_top_categories?
+
+    nest card.top_category, view: :mini_badge
+  end
+
   view :bar_left do
-    render_thumbnail
+    render_thumbnail + render_category_badge
   end
 
   view :bar_middle do
