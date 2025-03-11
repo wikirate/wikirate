@@ -13,23 +13,27 @@ card_accessor :subtopic, type: :search_type
 card_accessor :dataset, type: :search_type
 card_accessor :metric, type: :search_type
 
-event :validate_topic_category, :validate, when: :restricted_top_categories? do
-  return if top_category.in? allowed_top_categories
+event :validate_category, :validate, when: :restricted_topic_families? do
+  return if topic_family.in? allowed_topic_families
 
-  top_cats = allowed_top_categories.to_sentence last_word_connector: ", or "
-  errors.add :content, "top category must be one of #{top_cats}"
+  top_cats = allowed_topic_families.to_sentence last_word_connector: ", or "
+  errors.add :content, "category must be in one of these families #{top_cats}"
 end
+
+# event :assign_topic_family do
+#
+# end
 
 def search_content_field_codes
   [:general_overview]
 end
 
-def top_category
+def topic_family
   recursive_categories.last || name
 end
 
-def restricted_top_categories?
-  allowed_top_categories.present?
+def restricted_topic_families?
+  allowed_topic_families.present?
 end
 
 def recursive_categories
@@ -40,10 +44,10 @@ end
 
 private
 
-def allowed_top_categories
-  @allowed_top_categories ||= determine_allowed_top_categories
+def allowed_topic_families
+  @allowed_topic_families ||= determine_allowed_topic_families
 end
 
-def determine_allowed_top_categories
+def determine_allowed_topic_families
   topic_framework_card(true)&.first_card&.category_card&.item_names || []
 end
