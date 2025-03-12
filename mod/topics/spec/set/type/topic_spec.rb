@@ -1,4 +1,6 @@
 RSpec.describe Card::Set::Type::Topic do
+  include_context "topic creation"
+
   def card_subject
     Card["Force"]
   end
@@ -27,10 +29,11 @@ RSpec.describe Card::Set::Type::Topic do
                                           name: "non-existing-card"))
   end
 
-  describe "event#validate_topic_category" do
-    it "adds an error if top category is not allowed in framework" do
+  describe "event#assign_topic_family" do
+    it "adds an error if topic family is not allowed in framework" do
       expect { create_topic! "new topic", "Force", :esg_topics.cardname }
-        .to raise_error(ActiveRecord::RecordInvalid, /top category must be one of/)
+        .to raise_error(ActiveRecord::RecordInvalid,
+                        /category must be in one of these families/)
     end
 
     it "does not apply if topic has no framework" do
@@ -40,17 +43,7 @@ RSpec.describe Card::Set::Type::Topic do
     it "does not raise error if category is acceptable" do
       expect { create_topic! "new topic", "Environment", :esg_topics.cardname }
         .not_to raise_error
-    end
-  end
-
-  def create_topic! name, category, framework
-    Card::Auth.as "joe admin" do
-      Card.create! name: name,
-                   type: :topic,
-                   fields: {
-                     category: category,
-                     topic_framework: framework
-                   }
+      expect("new topic".card.topic_family_card.content).to eq("Environment")
     end
   end
 end

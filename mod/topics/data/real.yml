@@ -7,6 +7,8 @@
 - :name: Topic Framework
   :codename: topic_framework
   :type: :cardtype
+- :name: Topic Family
+  :codename: :topic_family
 
 # TODO: get rid of this!
 - :name: Overview
