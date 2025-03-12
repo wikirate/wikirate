@@ -30,6 +30,10 @@ def topic_families?
   allowed_topic_families.present?
 end
 
+def family_framework
+  topic_framework.card if topic_families?
+end
+
 def recursive_categories
   return [] unless (cat = category_card.first_card)
 

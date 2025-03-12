@@ -10,14 +10,12 @@ end
 
 event :update_metric_topic_framework, :integrate, changed: :content do
   changed_frameworks.each do |framework|
-    left.fetch(framework).refresh_families
+    left.fetch(framework, new: {}).refresh_families
   end
 end
 
 def changed_frameworks
-  change_item_cards.map do |topic|
-    topic.framework if topic_families?
-  end.compact.uniq
+  changed_item_cards.map(&:family_framework).compact.uniq
 end
 
 recount_trigger :type_plus_right, :metric, :topic do |changed_card|
