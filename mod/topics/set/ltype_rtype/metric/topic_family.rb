@@ -1,1 +1,0 @@
-assign_type :pointer
