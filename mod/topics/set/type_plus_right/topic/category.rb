@@ -1,4 +1,15 @@
 
+delegate :topic_families?, :determine_topic_family, to: :topic
+
+def topic
+  left
+end
+
+event :assign_topic_family, :prepare_to_validate, when: :topic_families? do
+  family = determine_topic_family
+  left.field :topic_family, content: family
+end
+
 event :inherit_category_topics, :prepare_to_store, on: :save do
   add_categories_to_topic_referers
 end
