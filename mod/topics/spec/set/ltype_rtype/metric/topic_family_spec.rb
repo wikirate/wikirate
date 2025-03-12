@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Ltype::Rtype::Topic::TopicFamily do
+RSpec.describe Card::Set::LtypeRtype::Metric::TopicFamily do
   include_context "topic creation"
   describe "event#:update_metric_topic_families" do
     it "updates <metric>+<topic framework> card" do
