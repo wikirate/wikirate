@@ -1,4 +1,4 @@
-RSpec.shared_context "topic creation" do
+RSpec.shared_context "when creating topics" do
   def create_topic! name, category, framework
     Card::Auth.as "joe admin" do
       Card.create! name: name,

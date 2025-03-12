@@ -1,5 +1,5 @@
 RSpec.describe Card::Set::Type::Topic do
-  include_context "topic creation"
+  include_context "when creating topics"
 
   def card_subject
     Card["Force"]
