@@ -18,14 +18,14 @@
 - :name: Animal Welfare
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :category: Social
+    :topic_framework: Star Wars Topic
+    :category: Force
 
 - :name: Energy
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :category: Environment
+    :topic_framework: Star Wars Topic
+    :category: Force
 
 - :name: Featured
   :codename: featured
@@ -34,6 +34,13 @@
     - :topic
     - :featured
   :type: :list
+  :content:
+    - Force
+    - Taming
+
+- :name:
+    - Star Wars Topics
+    - :category
   :content:
     - Force
     - Taming
