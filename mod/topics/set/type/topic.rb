@@ -8,28 +8,26 @@ include_set Abstract::SearchContentFields
 card_accessor :image, type: :image
 card_accessor :category, type: :pointer
 card_accessor :topic_framework, type: :pointer
+card_accessor :topic_family, type: :pointer
 
 card_accessor :subtopic, type: :search_type
 card_accessor :dataset, type: :search_type
 card_accessor :metric, type: :search_type
 
-event :validate_topic_category, :validate, when: :restricted_top_categories? do
-  return if top_category.in? allowed_top_categories
+event :validate_topic_family, :validate, when: :topic_families? do
+  family = determine_topic_family
+  return if family.in? allowed_topic_families
 
-  top_cats = allowed_top_categories.to_sentence last_word_connector: ", or "
-  errors.add :content, "top category must be one of #{top_cats}"
+  families = allowed_topic_families.to_sentence last_word_connector: ", or "
+  errors.add :content, "category must be in one of these families #{families}"
 end
 
 def search_content_field_codes
   [:general_overview]
 end
 
-def top_category
-  recursive_categories.last || name
-end
-
-def restricted_top_categories?
-  allowed_top_categories.present?
+def topic_families?
+  allowed_topic_families.present?
 end
 
 def recursive_categories
@@ -38,12 +36,13 @@ def recursive_categories
   [cat.name] + cat.recursive_categories
 end
 
-private
-
-def allowed_top_categories
-  @allowed_top_categories ||= determine_allowed_top_categories
+def determine_topic_family
+  recursive_categories.last || name
 end
 
-def determine_allowed_top_categories
-  topic_framework_card(true)&.first_card&.category_card&.item_names || []
+private
+
+def allowed_topic_families
+  @allowed_topic_families ||=
+    topic_framework_card(true)&.first_card&.category_card&.item_names || []
 end

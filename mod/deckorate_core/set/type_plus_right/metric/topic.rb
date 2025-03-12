@@ -8,6 +8,18 @@ def ok_item_types
   :topic
 end
 
+event :update_metric_topic_framework, :integrate, changed: :content do
+  changed_frameworks.each do |framework|
+    left.fetch(framework).refresh_families
+  end
+end
+
+def changed_frameworks
+  change_item_cards.map do |topic|
+    topic.framework if topic_families?
+  end.compact.uniq
+end
+
 recount_trigger :type_plus_right, :metric, :topic do |changed_card|
   changed_card unless changed_card&.left&.trash
 end
