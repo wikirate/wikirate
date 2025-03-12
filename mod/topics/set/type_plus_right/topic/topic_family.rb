@@ -11,10 +11,10 @@ end
 def refresh_topic_family
   family = topic.determine_topic_family
 
-  if family.nil?
-    delete if real?
-  else
+  if family.present?
     update content: family
+  elsif real?
+    delete
   end
 end
 

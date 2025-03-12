@@ -23,8 +23,8 @@ end
 def refresh_families
   if family_ids.present?
     update content: family_ids
-  else
-    delete if real?
+  elsif real?
+    delete
   end
 end
 
@@ -40,4 +40,3 @@ end
 def topics
   @topics ||= metric.topic_card.item_cards_by_framework topic_framework.id
 end
-
