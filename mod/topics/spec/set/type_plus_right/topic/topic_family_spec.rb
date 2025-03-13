@@ -1,6 +1,7 @@
 RSpec.describe Card::Set::TypePlusRight::Topic::TopicFamily do
   describe "#refresh_topic_family" do
     let(:topic) { "Energy".card }
+
     it "gets triggered by category change and updates family", with_user: "Joe Admin" do
       # category is Force
       expect(topic.topic_family.cardname).to eq("Force")
@@ -20,7 +21,8 @@ RSpec.describe Card::Set::TypePlusRight::Topic::TopicFamily do
   #   let(:framework) { "Star Wars Topics".card }
   #   let(:metric_plus_framework ) { metric.fetch framework, new: {} }
   #
-  #   it "triggers update of <metric>+<topic framework families>", with_user: "Joe Admin" do
+  #   it "triggers update of <metric>+<topic framework families>",
+  #    with_user: "Joe Admin" do
   #     # metric_plus_framework.refresh_families
   #     # FIXME: above would not be necessary if framework were correctly assigned during
   #     # seeding.
