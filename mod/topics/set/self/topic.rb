@@ -3,12 +3,12 @@ include_set Abstract::SearchViews
 include_set Abstract::TopicSearch
 include_set Abstract::FluidLayout
 
-def esg_codenames
-  %i[environment social governance]
+def featured_list
+  %i[esg_topics category].card
 end
 
 def cql_content
-  { type: :topic, id: esg_codenames.map(&:card_id).unshift("not in") }
+  { type: :topic, id: ["not in"] + featured_list.item_ids }
 end
 
 format do

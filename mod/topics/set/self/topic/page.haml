@@ -5,9 +5,7 @@
     .w-lg-75.lead
       = field_nest :description
 %section.featured-container-container-fluid.bg-light
-  .container.py-5.card-list-box
-    - card.esg_codenames.each do |topic|
-      .item-box
-        = nest topic, view: :box
+  .container.py-5
+    = nest card.featured_list, view: :core, items: { view: :box }
 .container.py-5
   = render_filtered_content
