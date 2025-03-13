@@ -20,8 +20,8 @@ def refresh_topic_family
   end
 end
 
-event :update_metric_topic_families, :integrate, changed: :content do
-  left.metric_card.item_cards.each do |metric|
-    metric.fetch(topic.topic_framework, new: {}).refresh_families
-  end
-end
+# event :update_metric_topic_families, :integrate, changed: :content do
+#   left.metric_card.item_cards.each do |metric|
+#     metric.fetch(topic.topic_framework, new: {}).refresh_families
+#   end
+# end
