@@ -33,7 +33,7 @@ private
 def family_ids
   return unless topics.present?
 
-  Card.search referred_to_by: { left: topics.map(&:id), right: :topic_family },
+  Card.search referred_to_by: { left: [:in] + topics.map(&:id), right: :topic_family },
               return: :id
 end
 
