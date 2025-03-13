@@ -525,7 +525,7 @@ GEM
       activesupport (>= 6.1)
     graphiql-rails (1.10.4)
       railties
-    graphql (1.12.24)
+    graphql (1.12.25)
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt

@@ -5,11 +5,11 @@ def topic
   left
 end
 
-event :assign_topic_family, :integrate, when: :topic_families? do
+event :assign_topic_family, :integrate, changed: :content, when: :topic_families? do
   topic.topic_family_card.refresh_topic_family
 end
 
-event :inherit_category_topics, :prepare_to_store, on: :save do
+event :inherit_category_topics, :prepare_to_store, changed: :content, on: :save do
   add_categories_to_topic_referers
 end
 
