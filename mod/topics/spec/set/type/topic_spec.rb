@@ -43,7 +43,7 @@ RSpec.describe Card::Set::Type::Topic do
     it "does not raise error if category is acceptable" do
       expect { create_topic! "new topic", "Environment", :esg_topics.cardname }
         .not_to raise_error
-      expect("new topic".card.topic_family_card.content).to eq("Environment")
+      expect("new topic".card.topic_family_card.first_name).to eq("Environment")
     end
   end
 end
