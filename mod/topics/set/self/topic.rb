@@ -8,11 +8,11 @@ class << self
     :esg_topics
 
     # one a gem we can replace with the following
-    #Cardio.config.featured_topic_framework
+    # Cardio.config.featured_topic_framework
   end
 
   def family_list
-    featured_framework&.card.category_card
+    featured_framework&.card&.category_card
   end
 
   def family_names
