@@ -22,7 +22,8 @@ format :html do
   end
 
   view :box_bottom do
-    count_badges :answer, :company
+    [field_nest(:topic, view: :mini_badges)] +
+      count_badges(:answer, :company)
   end
 
   # thumbnails

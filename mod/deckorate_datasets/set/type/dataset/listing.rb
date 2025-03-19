@@ -18,7 +18,9 @@ format :html do
   end
 
   view :bar_bottom do
-    [render_details_tab_left, render_details_tab_right]
+    [field_nest(:topic, view: :mini_badges),
+     render_details_tab_left,
+     render_details_tab_right]
   end
 
   view :box_middle do
@@ -30,7 +32,8 @@ format :html do
   end
 
   def thumbnail_subtitle
-    field_nest :year, view: :one_line_content, items: { view: :name }, unknown: :blank
+    field_nest(:year, view: :one_line_content, items: { view: :name }, unknown: :blank) +
+      field_nest(:topic, view: :mini_badges)
   end
 
   def data_subset_detail
