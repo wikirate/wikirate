@@ -75,7 +75,12 @@ class Card
           "SELECT referee_id FROM card_references " \
           "USE INDEX (card_references_referer_id_index) " \
           "WHERE referer_id = #{referer_id}"
-        @conditions << "#{field} in (#{reference_subquery})"
+        restrict_by_subquery field, reference_subquery
+      end
+
+      # TODO: move to a more general spot
+      def restrict_by_subquery field, subquery
+        @conditions << "#{filter_table field}.#{field} IN (#{subquery})"
       end
 
       def dataset_year_restriction dataset
