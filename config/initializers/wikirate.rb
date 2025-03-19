@@ -8,6 +8,8 @@ Cardio::Railtie.config.tap do |config|
 
   config.seed_mods.unshift :wikirate
   config.extra_seed_tables = %w[answers card_counts metrics relationships]
+
+  config.anonymous_cookies = false
 end
 
 Decko::Deck.configure do

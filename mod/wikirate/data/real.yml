@@ -1,6 +1,7 @@
 ---
 - featured
 - style
+- email
 
 - :name: Blurb
   :codename: blurb
