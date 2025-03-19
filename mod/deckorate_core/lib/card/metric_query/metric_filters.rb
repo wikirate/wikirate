@@ -69,8 +69,18 @@ class Card
 
       # also used by metric_filters.rb
       def dataset_restriction field, codename, dataset
-        restrict_by_cql "metric_#{field}", field,
-                        referred_to_by: "#{dataset}+#{codename.cardname}"
+        return (@empty_result = true) unless (referer_id = [dataset, codename].card_id)
+
+        reference_subquery =
+          "SELECT referee_id FROM card_references " \
+          "USE INDEX (card_references_referer_id_index) " \
+          "WHERE referer_id = #{referer_id}"
+        restrict_by_subquery field, reference_subquery
+      end
+
+      # TODO: move to a more general spot
+      def restrict_by_subquery field, subquery
+        @conditions << "#{filter_table field}.#{field} IN (#{subquery})"
       end
 
       def dataset_year_restriction dataset

@@ -1,7 +1,7 @@
 RSpec.describe Card::SourceImportItem do
   include Cardio::ImportItemSpecHelper
 
-  TEST_URL = "https://decko.org/Home.txt".freeze
+  TEST_URL = "https://decko.org/:home.txt".freeze
 
   let :default_item_hash do
     {
