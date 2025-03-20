@@ -40,6 +40,7 @@
 - :name:
     - :esg_topics
     - :category
+  :type: list
   :content:
     - :environment
     - :social
