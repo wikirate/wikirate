@@ -1,7 +1,5 @@
 format :html do
-  view :mini_badge do
-    card.name.to_s[0]
-  end
+  view :mini_badge, template: :haml
 
   view :category_badge do
     return "" unless card.topic_families?

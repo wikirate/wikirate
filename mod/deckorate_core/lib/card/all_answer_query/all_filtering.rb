@@ -41,11 +41,17 @@ class Card
       end
 
       def restrict_by_cql _suffix, col, cql
-        return super unless (partner_column = partner_field_map[col])
+        return super unless partner_field_map[col]
 
         cql.reverse_merge! return: :id, limit: 0
+        restrict_by_subquery col, Card::Query.new(cql).sql
+      end
+
+      def restrict_by_subquery col, subquery
+        return super unless (partner_column = partner_field_map[col])
+
         @card_conditions <<
-          "#{partner}.#{partner_column} IN (#{Card::Query.new(cql).sql})"
+          "#{partner}.#{partner_column} IN (#{subquery})"
       end
 
       def add_card_condition condition, value

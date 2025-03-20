@@ -1,3 +1,5 @@
+assign_type :list
+
 def topic_framework
   left
 end
