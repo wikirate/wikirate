@@ -21,6 +21,8 @@ end
 recount_trigger :type, :answer do |changed_card|
   dataset_answer_cards changed_card
 end
+# FIXME: if a name change involving metric, company, or year takes an answer OUT
+# of a dataset, we may be missing that.
 
 # ...or when metric or answer is (un)published
 %i[metric answer].each do |type|
