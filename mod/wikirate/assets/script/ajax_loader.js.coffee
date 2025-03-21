@@ -7,33 +7,34 @@
 #    $(this).slot().loading()
 
 jQuery.fn.extend
-  slotReloading: ()->
-    loader(this).prepend()
-
-  slotLoadingComplete: ()->
-    loader(this).remove()
+  startLoading: (relative=false) -> loader(this, relative).prepend()
+  stopLoading: (relative=false) -> loader(this, relative).remove()
 
 loader = (target, relative = false) ->
   target = jObj target
   aloader = ajaxLoader
+
   isLoading: -> @child().exists()
-  add: ->
-    return if @isLoading()
-    target.append($(aloader.head).html())
-    @child().addClass("relative") if relative
-  prepend: ->
-    return if @isLoading()
-    target.prepend($(aloader.head).html())
-    @child().addClass("relative") if relative
+
+  add: -> @start "append"
+
+  prepend: -> @start "prepend"
+
   remove: ->
     target.children(".loader-anime").remove()
     @child().removeClass("relative") if relative
+
   child: ->
     target.find(aloader.child)
 
+  start: (fnctn) ->
+    return if @isLoading()
+    target[fnctn] $(aloader.head).html()
+    @child().addClass("relative") if relative
+
 ajaxLoader =
   head: '#ajax_loader'
-  child: '.loader- anime'
+  child: '.loader-anime'
 
 
 jObj = (ele) ->
