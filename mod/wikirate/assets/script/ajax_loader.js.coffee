@@ -7,33 +7,30 @@
 #    $(this).slot().loading()
 
 jQuery.fn.extend
-  slotReloading: ()->
-    console.log "prepend loader called"
-    loader(this).prepend()
-
-  slotLoadingComplete: ()->
-    loader(this).remove()
+  startLoading: (relative=false) -> loader(this, relative).prepend()
+  stopLoading: (relative=false) -> loader(this, relative).remove()
 
 loader = (target, relative = false) ->
   target = jObj target
   aloader = ajaxLoader
+
   isLoading: -> @child().exists()
-  add: ->
-    console.log "add loader called"
-    return if @isLoading()
-    target.append($(aloader.head).html())
-    @child().addClass("relative") if relative
-  prepend: ->
-    console.log "prepend loader called"
-    return if @isLoading()
-    target.prepend($(aloader.head).html())
-    @child().addClass("relative") if relative
+
+  add: -> @start "append"
+
+  prepend: -> @start "prepend"
+
   remove: ->
-    console.log "remove loader called"
     target.children(".loader-anime").remove()
     @child().removeClass("relative") if relative
+
   child: ->
     target.find(aloader.child)
+
+  start: (fnctn) ->
+    return if @isLoading()
+    target[fnctn] $(aloader.head).html()
+    @child().addClass("relative") if relative
 
 ajaxLoader =
   head: '#ajax_loader'
@@ -42,16 +39,3 @@ ajaxLoader =
 
 jObj = (ele) ->
   if typeof val == 'string' then $(ele) else ele
-
-$ ->
-  $('body').on 'show.bs.tab', 'a', (e) ->
-#    console.log "show tab"
-    #tab_content = $(this).closest(".tab-panel").children ".tab-content"
-
-    # loader(tab_content, true).prepend()
-
-
-#  $('body').on 'shown.bs.tab', 'a', (e) ->
-#    console.log "shown tab"
-#    tc = $(this).closest(".tab-panel").children(".tab-content")
-#    loader(tc).remove()
