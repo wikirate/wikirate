@@ -8,6 +8,7 @@
 
 jQuery.fn.extend
   slotReloading: ()->
+    console.log "prepend loader called"
     loader(this).prepend()
 
   slotLoadingComplete: ()->
@@ -18,14 +19,17 @@ loader = (target, relative = false) ->
   aloader = ajaxLoader
   isLoading: -> @child().exists()
   add: ->
+    console.log "add loader called"
     return if @isLoading()
     target.append($(aloader.head).html())
     @child().addClass("relative") if relative
   prepend: ->
+    console.log "prepend loader called"
     return if @isLoading()
     target.prepend($(aloader.head).html())
     @child().addClass("relative") if relative
   remove: ->
+    console.log "remove loader called"
     target.children(".loader-anime").remove()
     @child().removeClass("relative") if relative
   child: ->
@@ -42,8 +46,9 @@ jObj = (ele) ->
 $ ->
   $('body').on 'show.bs.tab', 'a', (e) ->
 #    console.log "show tab"
-    tab_content = $(this).closest(".tab-panel").children ".tab-content"
-    loader(tab_content, true).prepend()
+    #tab_content = $(this).closest(".tab-panel").children ".tab-content"
+
+    # loader(tab_content, true).prepend()
 
 
 #  $('body').on 'shown.bs.tab', 'a', (e) ->
