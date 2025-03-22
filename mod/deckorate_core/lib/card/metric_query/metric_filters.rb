@@ -69,12 +69,20 @@ class Card
 
       # also used by metric_filters.rb
       def dataset_restriction field, codename, dataset
-        return (@empty_result = true) unless (referer_id = [dataset, codename].card_id)
+        return (@empty_result = true) unless (referer = [dataset, codename].card)
 
+        if referer.count > 200
+          dataset_subquery_restriction field, referer.id
+        else
+          filter field, referer.item_ids
+        end
+      end
+
+      def dataset_subquery_restriction field, referer_id
         reference_subquery =
           "SELECT referee_id FROM card_references " \
-          "USE INDEX (card_references_referer_id_index) " \
-          "WHERE referer_id = #{referer_id}"
+            "USE INDEX (card_references_referer_id_index) " \
+            "WHERE referer_id = #{referer_id}"
         restrict_by_subquery field, reference_subquery
       end
 
