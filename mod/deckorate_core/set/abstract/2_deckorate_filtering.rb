@@ -51,13 +51,6 @@ format :html do
     labeled_badge count_with_params, card.item_type_name.vary(:plural)
   end
 
-  def quick_filter_item hash, filter_key
-    icon = hash.delete :icon
-    super.tap do |item|
-      item[:icon] = icon || icon_tag(filter_key)
-    end
-  end
-
   def export_link_path_args format
     super.merge filter_and_sort_hash
   end
