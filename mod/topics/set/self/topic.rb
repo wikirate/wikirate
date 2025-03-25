@@ -40,4 +40,10 @@ end
 
 format :html do
   view :page, template: :haml
+
+  def quick_filter_list
+    card.family_list.item_cards.map do |topic|
+      { topic: topic.name, icon: icon_tag(topic.codename) }
+    end
+  end
 end
