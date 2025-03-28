@@ -30,8 +30,8 @@ def take_snapshot tfile
 end
 
 def each_snapshot_row &block
-  each_snapshot_header_row &block
-  each_snapshot_answer_row &block
+  each_snapshot_header_row(&block)
+  each_snapshot_answer_row(&block)
 end
 
 def each_snapshot_header_row
