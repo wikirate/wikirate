@@ -1,6 +1,14 @@
 format :html do
+  view :mini_badge, template: :haml
+
+  view :category_badge do
+    return "" unless card.topic_families?
+
+    nest card.topic_family, view: :mini_badge
+  end
+
   view :bar_left do
-    render_thumbnail
+    render_thumbnail + render_category_badge
   end
 
   view :bar_middle do
