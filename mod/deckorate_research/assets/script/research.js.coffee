@@ -110,7 +110,7 @@ $(document).ready ->
     $("._methodology-button").click()
 
   $("body").on "click", "._metric_arrow_button", (e) ->
-    $(this).slot().slotReloading()
+    $(this).slot().startLoading()
 
 closeSourceModal = (el)->
   bootstrap.Modal.getInstance(el.closest("._modal-slot")).hide()
