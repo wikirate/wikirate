@@ -5,8 +5,6 @@ event :store_attribution_snapshot, :integrate_with_delay,
     file_card.file = tfile
     file_card.save!
   end
-rescue => e
-  "woot"
 end
 
 format :csv do
