@@ -1,7 +1,7 @@
 RSpec.describe Card::Set::Type::Answer do
-  describe "#each_reference_dump_row" do
+  describe "#each_snapshot_row" do
     let :yielded_answers do
-      [].tap { |rows| card_subject.each_reference_dump_row { |row| rows << row } }
+      [].tap { |rows| card_subject.each_snapshot_row { |row| rows << row } }
     end
 
     context "when answer is researched" do
