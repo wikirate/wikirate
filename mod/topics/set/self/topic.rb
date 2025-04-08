@@ -12,11 +12,11 @@ class << self
   end
 
   def family_list
-    featured_framework&.card&.category_card
+    @family_list ||= featured_framework&.card&.category_card
   end
 
   def family_names
-    family_list.item_names
+    @family_names ||= family_list.item_names
   end
 end
 
@@ -40,10 +40,4 @@ end
 
 format :html do
   view :page, template: :haml
-
-  def quick_filter_list
-    card.family_list.item_cards.map do |topic|
-      { topic: topic.name, icon: icon_tag(topic.codename) }
-    end
-  end
 end

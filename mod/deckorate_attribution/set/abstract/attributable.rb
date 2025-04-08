@@ -117,11 +117,3 @@ format :html do
     "licensed under #{link_to license_text, href: license_url, target: '_blank'}"
   end
 end
-
-format :csv do
-  view :reference_dump_core do
-    [].tap do |rows|
-      card.each_reference_dump_row { |answer| rows << answer.csv_line(true) }
-    end
-  end
-end
