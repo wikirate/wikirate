@@ -125,7 +125,6 @@ format :html do
   end
 
   def quick_filter_list
-    []
     topic_family_quick_filters
     # bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
   end
