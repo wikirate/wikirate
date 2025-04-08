@@ -22,9 +22,9 @@ event :add_categories, :prepare_to_store, changed: :content do
 end
 
 format :html do
-  view :mini_badges, unknown: :blank do
+  view :icon_badges, unknown: :blank do
     card.featured.map do |topic|
-      nest topic, view: :mini_badge
+      nest topic, view: :icon_badge
     end
   end
 

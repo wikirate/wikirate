@@ -2,12 +2,7 @@
 format :html do
   bar_cols 7, 5
 
-  view :bar_left do
-    voo.size = :medium
-    # filterable({ dataset: card.name, status: :all }, class: "w-100") do
-    render_thumbnail
-    # end
-  end
+  view :bar_left, template: :haml
 
   # view :bar_middle do
   #   field_nest :topic
@@ -18,7 +13,7 @@ format :html do
   end
 
   view :bar_bottom do
-    [field_nest(:topic, view: :mini_badges),
+    [field_nest(:topic, view: :icon_badges),
      render_details_tab_left,
      render_details_tab_right]
   end
@@ -33,7 +28,7 @@ format :html do
 
   def thumbnail_subtitle
     field_nest(:year, view: :one_line_content, items: { view: :name }, unknown: :blank) +
-      field_nest(:topic, view: :mini_badges)
+      field_nest(:topic, view: :icon_badges)
   end
 
   def data_subset_detail

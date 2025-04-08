@@ -10,7 +10,7 @@ def attribution_authors
   end
 end
 
-def each_reference_dump_row &block
+def each_snapshot_row &block
   calc = calculated?
   ::Answer.where(metric_id: id).in_batches do |answers|
     answers.each do |answer|

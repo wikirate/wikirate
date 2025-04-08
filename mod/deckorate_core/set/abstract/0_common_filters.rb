@@ -56,4 +56,14 @@ format :html do
       "Either"           => "all"
     }
   end
+
+  def topic_family_quick_filters
+    Card::Set::Self::Topic.family_list.item_cards.map do |topic|
+      {
+        topic: topic.name,
+        icon: icon_tag(topic.codename),
+        class: "quick-filter-topic-#{topic.codename}"
+      }
+    end
+  end
 end
