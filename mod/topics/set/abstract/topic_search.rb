@@ -34,7 +34,7 @@ end
 
 format :html do
   def quick_filter_list
-    card.family_list.item_cards.map do |topic|
+    Card::Set::Self::Topic.family_list.item_cards.map do |topic|
       {
         topic_family: topic.name,
         icon: icon_tag(topic.codename),
