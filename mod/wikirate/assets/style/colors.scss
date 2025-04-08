@@ -264,6 +264,50 @@ $lightMap: (
   //}
 }
 
+
+$topicFamilyMap: (
+        environment: $teal,
+        social: $red,
+        governance: $purple
+);
+
+
+@each $family, $color in $topicFamilyMap {
+  $lightColor: map-get($lightMap, $color);
+
+  .bg-#{$family} {
+    background-color: $color !important;
+    color: $white !important;
+  }
+
+  .bg-#{$family}-outline {
+    color: $color !important;
+    background-color: $white !important;
+    border: 1px solid $color;
+
+  }
+
+  .bg-#{$family}-light {
+    color: $color !important;
+    background-color: $lightColor;
+  }
+
+  .btn-secondary.quick-filter-topic-#{$family} {
+    color: $color !important;
+    background-color: $lightColor;
+    border-color: $lightColor;
+  }
+
+  .SELF-#{$family}.box {
+    .box-middle, .box-middle i {
+      color: $color !important;
+      background-color: $lightColor;
+    }
+  }
+}
+
+
+
 .LTYPE_RTYPE-topic-company {
   @include barbox($topic-color)
 }
