@@ -27,8 +27,7 @@ format :html do
   end
 
   def thumbnail_subtitle
-    field_nest(:year, view: :one_line_content, items: { view: :name }, unknown: :blank) +
-      field_nest(:topic, view: :icon_badges)
+    field_nest(:year, view: :one_line_content, items: { view: :name }, unknown: :blank)
   end
 
   def data_subset_detail
