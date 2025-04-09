@@ -37,6 +37,7 @@ def ensure_topic topicname, category=nil
   args = {
     name: topicname,
     type: :topic,
+    conflict: :override,
     fields: { topic_framework: "Wikirate ESG Topics" }
   }
   args[:fields][:category] = category if category.present?
