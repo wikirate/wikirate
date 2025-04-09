@@ -25,9 +25,9 @@ format do
 end
 
 format :html do
-  def quick_filter_list
-    bookmark_quick_filter
-  end
+  # def quick_filter_list
+  #   bookmark_quick_filter
+  # end
 
   def bookmark_quick_filter
     return [] unless my_bookmarks?
