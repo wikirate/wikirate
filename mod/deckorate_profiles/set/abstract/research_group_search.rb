@@ -33,9 +33,9 @@ format do
     { name: "" }
   end
 end
-
-format :html do
-  def quick_filter_list
-    bookmark_quick_filter + topic_quick_filters
-  end
-end
+#
+# format :html do
+#   def quick_filter_list
+#     bookmark_quick_filter + topic_quick_filters
+#   end
+# end
