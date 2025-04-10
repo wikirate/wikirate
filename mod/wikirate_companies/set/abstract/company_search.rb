@@ -50,7 +50,7 @@ format :html do
     "answer"
   end
 
-  def quick_filter_list
-    bookmark_quick_filter + company_group_quick_filters + dataset_quick_filters
-  end
+  # def quick_filter_list
+  #   bookmark_quick_filter + company_group_quick_filters + dataset_quick_filters
+  # end
 end
