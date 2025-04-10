@@ -22,11 +22,7 @@ event :add_categories, :prepare_to_store, changed: :content do
 end
 
 format :html do
-  view :icon_badges, unknown: :blank do
-    card.featured.map do |topic|
-      nest topic, view: :icon_badge
-    end
-  end
+  view :icon_badges, unknown: :blank, cache: :deep, template: :haml
 
   def default_limit
     50

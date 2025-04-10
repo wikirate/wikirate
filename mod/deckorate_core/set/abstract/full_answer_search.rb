@@ -20,10 +20,10 @@ format :html do
     "#{designer_sort_link}#{title_sort_link}"
   end
 
-  def quick_filter_list
-    @quick_filter_list ||=
-      bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
-  end
+  # def quick_filter_list
+  #   @quick_filter_list ||=
+  #     bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
+  # end
 
   # def default_sort_option
   #   :metric_title
