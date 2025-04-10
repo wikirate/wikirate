@@ -4,7 +4,7 @@ require "colorize"
 user = Rails.env.development? ? "Joe Admin" : "Ethan McCutchen"
 Card::Auth.signin user
 
-CSVFILE = File.expand_path "data/2025-02-27-topics.csv", __dir__
+CSVFILE = File.expand_path "data/2025-04-10-topics.csv", __dir__
 FRAMEWORK = "Wikirate ESG Topics"
 
 def topics_tree
@@ -34,6 +34,7 @@ def import_topic_tree
 end
 
 def ensure_topic topicname, category=nil
+  puts "ensuring #{topicname}"
   args = {
     name: topicname,
     type: :topic,
@@ -56,4 +57,24 @@ def puts_topics_tree
   end
 end
 
+def delete_source_topic_taggings
+  Card.search(left: { type: :source }, right: :topic).each &:delete!
+end
+
+def delete_all_topics
+  Card.search type: :topic do |topic|
+    delete_topic topic
+  end
+end
+
+def delete_topic topic
+  puts "deleting #{topic.name}".blue
+  topic.delete!
+rescue => e
+  puts "failed to delete #{topic.name}: #{e.message}".red
+end
+
+delete_source_topic_taggings
+delete_all_topics
+puts_topics_tree
 import_topic_tree
