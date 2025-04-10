@@ -57,24 +57,28 @@ def puts_topics_tree
   end
 end
 
-def delete_source_topic_taggings
-  Card.search(left: { type: :source }, right: :topic).each &:delete!
+def delete_topic_taggings
+  %i[source metric database research_group].each do |type|
+    Card.search left: { type: type }, right: :topic do |tagging|
+      delete_noisily tagging
+    end
+  end
 end
 
 def delete_all_topics
   Card.search type: :topic do |topic|
-    delete_topic topic
+    delete_noisily topic
   end
 end
 
-def delete_topic topic
+def delete_noisily topic
   puts "deleting #{topic.name}".blue
   topic.delete!
 rescue => e
   puts "failed to delete #{topic.name}: #{e.message}".red
 end
 
-delete_source_topic_taggings
+delete_topic_taggings
 delete_all_topics
 puts_topics_tree
 import_topic_tree
