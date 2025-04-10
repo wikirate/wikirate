@@ -14,7 +14,7 @@ card_accessor :subtopic, type: :search_type
 card_accessor :dataset, type: :search_type
 card_accessor :metric, type: :search_type
 
-event :validate_topic_family, :validate, when: :topic_families? do
+event :validate_topic_family, :validate, on: :save, when: :topic_families? do
   family = determine_topic_family
   return if family.in? allowed_topic_families
 

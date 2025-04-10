@@ -20,8 +20,8 @@ def self.metric_fields_for_topics topic_list
   topic_list.map { |item_name| Card.fetch item_name.to_name.field(:metric) }
 end
 
-format :html do
-  def quick_filter_list
-    bookmark_quick_filter
-  end
-end
+# format :html do
+#   def quick_filter_list
+#     bookmark_quick_filter
+#   end
+# end
