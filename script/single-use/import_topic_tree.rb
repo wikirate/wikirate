@@ -58,11 +58,12 @@ def puts_topics_tree
 end
 
 def delete_topic_taggings
-  %i[source metric database research_group].each do |type|
-    Card.search left: { type: type }, right: :topic do |tagging|
-      delete_noisily tagging
-    end
+  # %i[source metric dataset research_group rich_text yearly_value].each do |type|
+  # Card.search left: { type: type }, right: :topic do |tagging|
+  Card.search right: :topic do |tagging|
+    delete_noisily tagging
   end
+  # end
 end
 
 def delete_all_topics
@@ -71,15 +72,17 @@ def delete_all_topics
   end
 end
 
-def delete_noisily topic
-  puts "deleting #{topic.name}".blue
-  topic.delete!
+def delete_noisily card
+  puts "deleting #{card.name}".blue
+  card.delete!
 rescue => e
-  puts "failed to delete #{topic.name}: #{e.message}".red
+  puts "failed to delete #{card.name}: #{e.message}".red
 end
 
 def change_type_of_metric_titles
   Card.search type: :topic, left_plus: [{}, { type: :metric }] do |topic|
+    next if topic.codename
+
     topic.update! type: :metric_title
   end
 end
