@@ -78,7 +78,14 @@ rescue => e
   puts "failed to delete #{topic.name}: #{e.message}".red
 end
 
+def change_type_of_metric_titles
+  Card.search type: :topic, left_plus: [{}, { type: :metric }] do |topic|
+    topic.update! type: :metric_title
+  end
+end
+
 delete_topic_taggings
+change_type_of_metric_titles
 delete_all_topics
 puts_topics_tree
 import_topic_tree

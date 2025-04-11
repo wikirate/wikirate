@@ -331,22 +331,6 @@ $topicFamilyMap: (
   }
 }
 
-//.quick-filter {
-//  padding-bottom: 0.5rem;
-//  a {
-//    @include coloredTag;
-//    max-width: 15em;
-//    overflow: hidden;
-//    text-overflow: ellipsis;
-//    white-space: nowrap;
-//    background: $gray-600;
-//    cursor: default;
-//    &.active {
-//      color: $white;
-//      cursor: pointer;
-//    }
-//  }
-//}
 
 @include hoverTag(topic, $topic-color);
 @include hoverTag(company, $company-color);
