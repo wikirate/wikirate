@@ -1,11 +1,4 @@
 
-def track_page!
-  hit = ::Staccato::Pageview.new tracker, tracker_options
-  hit.add_custom_dimension 1, profile_type
-  # the following is a bit of hack, because staccato doesn't yet support content groups
-  hit.custom_dimensions.merge! tracker_content_groups
-  hit.track!
-end
 
 def track_page_from_server?
   tracker && response_format.in?(%i[csv json]) && !internal_api_request?
@@ -20,8 +13,27 @@ def format_content_group
   # request_var("HTTP_SEC_FETCH_MODE") == "navigate" ||
 end
 
+def tracker_event_parameters
+  super.merge(
+    profile_type: profile_type,
+    user_type: user_type
+  )
+end
+
 def profile_type
   Auth.current&.profile_type_card&.first_name
+end
+
+def user_type
+  if Auth.always_ok?
+    "admin"
+  elsif Self::WikirateTeam.member?
+    "team"
+  elsif Auth.signed_in?
+    "registered"
+  else
+    "anonymous"
+  end
 end
 
 def response_format
