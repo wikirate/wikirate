@@ -48,6 +48,10 @@ def count
   item_names.size
 end
 
+def delistable?
+  false
+end
+
 format :html do
   def default_item_view
     :name
