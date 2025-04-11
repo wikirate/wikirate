@@ -1,6 +1,7 @@
 
 
 def track_page_from_server?
+  return false
   tracker && response_format.in?(%i[csv json]) && !internal_api_request?
 end
 
