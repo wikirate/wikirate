@@ -47,6 +47,12 @@ event :silence_metric_deletions, :initialize, on: :delete do
   @silent_change = true
 end
 
+event :disallow_deletion_via_title, :validate, on: :delete do
+  return unless supercard&.id == metric_title_id
+
+  errors.add :metric_title, "cannot delete metric via title"
+end
+
 event :delete_answers, :prepare_to_validate, on: :update, trigger: :required do
   if Card::Auth.always_ok? # TODO: come up with better permissions scheme for this!
     answer.each { |answer_card| delete_as_subcard answer_card }

@@ -4,7 +4,8 @@ def topic
   left
 end
 
-event :update_topic_family_within_framework, :integrate, changed: :content do
+event :update_topic_family_within_framework, :integrate,
+      on: :save, changed: :content do
   topic.topic_family_card.refresh_topic_family
 end
 
