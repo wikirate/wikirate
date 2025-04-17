@@ -26,9 +26,9 @@ https://cookieconsent.orestbida.com/advanced/ui-customization.html
   --cc-btn-secondary-bg: #{$secondary};
   --cc-btn-secondary-color: #{$white};
   --cc-btn-secondary-border-color: #{$secondary};
-  --cc-btn-secondary-hover-bg: #{$gray-600};
+  --cc-btn-secondary-hover-bg: #{$gray-700};
   --cc-btn-secondary-hover-color: #{$white};
-  --cc-btn-secondary-hover-border-color: #{$gray-600};
+  --cc-btn-secondary-hover-border-color: #{$gray-700};
 
   /** Also make toggles the same color as the button **/
   --cc-toggle-on-bg: var(--cc-btn-primary-bg);
