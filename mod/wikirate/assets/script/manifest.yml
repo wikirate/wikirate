@@ -1,12 +1,9 @@
-#remote:
-#  items:
-#    - src: https://unpkg.com/vue@3/dist/vue.global.js
-
 wikirate:
   items:
     - alert_banner.js.coffee
     - anime.min.js
     - output.js.coffee
+    - signup.js.coffee
     - wikirate_common.js.coffee
     - ajax_loader.js.coffee
     - ../../vendor/slick/slick/slick.min.js
