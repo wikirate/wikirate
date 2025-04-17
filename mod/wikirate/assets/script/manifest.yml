@@ -1,7 +1,3 @@
-#remote:
-#  items:
-#    - src: https://unpkg.com/vue@3/dist/vue.global.js
-
 wikirate:
   items:
     - alert_banner.js.coffee
