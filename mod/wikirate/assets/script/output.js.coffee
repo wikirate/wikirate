@@ -3,7 +3,7 @@
 # This is implemented narrowly and will only work on the impacts page, but the
 # pattern could be improved to be more reusable and to use AJAX
 
-$(document).ready ->
+$ ->
   # add new output type filter
   $("body").on "click", "._output-filter-option", (e) ->
     e.preventDefault()

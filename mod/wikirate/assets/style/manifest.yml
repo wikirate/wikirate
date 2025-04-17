@@ -10,6 +10,7 @@ wikirate:
     - navbar.scss
     - misc.scss
     - signin.scss
+    - cookie-consent.scss
     - wikirate-icon.css
     - ../../vendor/slick/slick/slick.scss
     - ../../vendor/slick/slick/slick-theme.scss
