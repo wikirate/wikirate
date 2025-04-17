@@ -20,12 +20,14 @@ https://cookieconsent.orestbida.com/advanced/ui-customization.html
   --cc-btn-primary-color: #{$white};
   --cc-btn-primary-border-color: #{$primary};
   --cc-btn-primary-hover-bg: #{$purple-600};
+  --cc-btn-primary-hover-color: #{$white};
   --cc-btn-primary-hover-border-color: #{$purple-600};
 
   --cc-btn-secondary-bg: #{$secondary};
   --cc-btn-secondary-color: #{$white};
   --cc-btn-secondary-border-color: #{$secondary};
   --cc-btn-secondary-hover-bg: #{$gray-600};
+  --cc-btn-secondary-hover-color: #{$white};
   --cc-btn-secondary-hover-border-color: #{$gray-600};
 
   /** Also make toggles the same color as the button **/
