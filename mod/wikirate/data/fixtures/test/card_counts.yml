@@ -1031,3 +1031,39 @@ card_counts_172:
   right_id: 709
   value: 2
   flag: 0
+card_counts_173:
+  id: 173
+  left_id: 3272
+  right_id: 621
+  value: 0
+  flag: 0
+card_counts_174:
+  id: 174
+  left_id: 3819
+  right_id: 621
+  value: 0
+  flag: 0
+card_counts_175:
+  id: 175
+  left_id: 3867
+  right_id: 621
+  value: 0
+  flag: 0
+card_counts_176:
+  id: 176
+  left_id: 3871
+  right_id: 621
+  value: 0
+  flag: 0
+card_counts_177:
+  id: 177
+  left_id: 3871
+  right_id: 711
+  value: 0
+  flag: 0
+card_counts_178:
+  id: 178
+  left_id: 3871
+  right_id: 709
+  value: 0
+  flag: 0

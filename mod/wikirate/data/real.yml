@@ -171,6 +171,10 @@
 - :name: Terms of Use
   :codename: terms_of_use
 
+- :name: Impressum
+  :codename: impressum
+  :conflict: override
+
 - :name: Disclaimers
   :codename: disclaimers
 
