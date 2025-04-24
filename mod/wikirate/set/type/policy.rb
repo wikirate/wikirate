@@ -1,4 +1,4 @@
-include_set Abstract::Jumbotron
+# include_set Abstract::Jumbotron
 
 format :html do
   view :page do
