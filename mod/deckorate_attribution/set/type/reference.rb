@@ -96,7 +96,7 @@ format :html do
     [
       :subject,
       [:adaptation, title: "Adaptation"],
-      [:party, title: "Person or Organization"],
+      [:party, title: t(:deckorate_attribution_party_label)],
       [:wikirate_title, title: "Title"],
       [:url, title: "URL"]
     ]

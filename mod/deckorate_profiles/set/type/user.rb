@@ -20,7 +20,7 @@ format :html do
 
   def tab_list
     %i[details research_group bookmarks contributions activity].tap do |list|
-      list << :simple_account if simple_account_tab?
+      list << :profile_account if profile_account_tab?
     end
   end
 
@@ -32,11 +32,14 @@ format :html do
     end
   end
 
-  view :simple_account_tab do
-    [
-      field_nest(:account_settings),
-      field_nest(:account, view: :api_key, items: { view: :content })
-    ]
+  view :profile_account_tab do
+    class_up "nav", "nav-fill"
+
+    tabs "Login Details" => field_nest(:account, view: :content),
+         "Roles" => field_nest(:roles, view: :content),
+         "Notifications" => field_nest(:follow, view: :content),
+         "API Key" => field_nest(:account, view: :api_key),
+         "Closure" => field_nest(:account, view: :closure)
   end
 
   view :research_group_tab do
@@ -62,7 +65,7 @@ format :html do
     "Researcher"
   end
 
-  def simple_account_tab?
+  def profile_account_tab?
     card.current_account? || card.account&.ok?(:read)
   end
 
@@ -70,7 +73,7 @@ format :html do
     {
       contributions: { count: nil, label: "Contributions" },
       activity: { count: nil, label: "Activity" },
-      simple_account: { count: nil, label: "Account" }
+      profile_account: { count: nil, label: "Account" }
     }
   end
 
