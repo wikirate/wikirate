@@ -15,7 +15,7 @@ format :html do
   delegate :badge_count, to: :card
 
   before :content_formgroups do
-    voo.edit_structure = [:image, "+about me", :discussion]
+    voo.edit_structure = [:image, :discussion]
   end
 
   def tab_list
@@ -27,7 +27,6 @@ format :html do
   view :details_tab do
     wrap_with :div, class: "profile-data" do
       [
-        field_nest("+about me", view: :titled, title: "About me"),
         field_nest(:discussion, view: :titled, show: :comment_box)
       ]
     end
