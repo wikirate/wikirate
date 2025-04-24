@@ -1,29 +1,20 @@
-.form-group
-  %label{ for: "terms-of-use-radios"}
-    %span.card-title Terms of Use
-    .help-text.help-block
-      Do you agree to our
-      = link_to_card("Terms of Use", nil, target: "_policy") + "?"
-  #terms-of-use-radios
-    %ul.pointer-radio-list
-      - %w[yes no].each do |val|
-        %li.pointer-radio.radio.form-check
-          %input._terms-checkbox.pointer-radio-button.form-check-input{ type: "radio",
-                                                                        name: "terms_of_use",
-                                                                        value: val,
-                                                                        id: "terms-#{val}",
-                                                                        checked: (val == "no") }
-          %label.form-check-label{ for: "#terms-yes" }
-            = val.capitalize
+.form-check.pt-1
+  %input#_terms-checkbox.form-check-input{ type: "checkbox" }
+  %label.form-check-label.small{ for: "_terms-checkbox" }
+    I agree to the
+    = link_to_card :terms_of_use, nil, target: "_policy"
+    and
+    = link_to_card(:privacy_policy, nil, target: "_policy") + "."
 
-.py-4.small.text-center
-  By clicking "Sign up" you agree to our
-  // #
-  = link_to_card("Privacy Policy", nil, target: "_policy") + "."
-  //# + ", and"
-  //# link_to_card("Cookie Policy", nil, target: "_policy")
+.form-check.py-1
+  %input#_newsletter-checkbox.form-check-input{ type: "checkbox" }
+  %input#_newsletter_hidden{ type: "hidden",
+                             value: "No",
+                             name: "card[subcards][+newsletter][content]" }
+  %label.form-check-label.small{ for: "_newsletter-checkbox" }
+    Keep me posted about Wikirate news.
 
-.py-2
+.py-3
   = standard_create_button text: "Sign up", disabled: true, id: "_signup-button"
 .py-2.text-center
   = link_to_card :signin, "Already a Wikirate member? Log in"
