@@ -499,7 +499,7 @@ GEM
     excon (1.2.5)
       logger
     execjs (2.10.0)
-    faraday (2.13.0)
+    faraday (2.13.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -569,7 +569,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     iso8601 (0.13.0)
-    json (2.11.1)
+    json (2.11.3)
     jwt (2.10.1)
       base64
     kaminari (1.2.2)
@@ -986,4 +986,4 @@ DEPENDENCIES
   wkhtmltopdf-binary
 
 BUNDLED WITH
-   2.5.23
+   2.6.8

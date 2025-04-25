@@ -1,7 +1,5 @@
-include_set Abstract::Jumbotron
-
 format :html do
-  view :page do
-    render_core
+  view :titled do
+    render_content
   end
 end
