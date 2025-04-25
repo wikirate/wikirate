@@ -1,7 +1,7 @@
 format :html do
-  view :bar_left do
-    render_thumbnail
-  end
+  view :icon_badge, template: :haml
+  view :name_badge, template: :haml
+  view :bar_left, template: :haml
 
   view :bar_middle do
     result_middle { count_badges :research_group, :dataset }
@@ -21,5 +21,21 @@ format :html do
 
   view :box_bottom do
     count_badges :metric, :dataset
+  end
+
+  view :category_name_badge do
+    nest_family :name_badge
+  end
+
+  view :category_icon_badge do
+    nest_family :icon_badge
+  end
+
+  private
+
+  def nest_family view
+    return "" unless card.topic_families?
+
+    nest card.topic_family, view: view
   end
 end

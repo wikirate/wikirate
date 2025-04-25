@@ -1,4 +1,6 @@
 RSpec.describe Card::Set::Type::Topic do
+  include_context "when creating topics"
+
   def card_subject
     Card["Force"]
   end
@@ -25,5 +27,23 @@ RSpec.describe Card::Set::Type::Topic do
     html = render_card :unknown, type_id: Card::TopicID, name: "non-existing-card"
     expect(html).to eq(render_card(:link, type_id: Card::TopicID,
                                           name: "non-existing-card"))
+  end
+
+  describe "event#assign_topic_family" do
+    it "adds an error if topic family is not allowed in framework" do
+      expect { create_topic! "new topic", "Force", :esg_topics.cardname }
+        .to raise_error(ActiveRecord::RecordInvalid,
+                        /category must be in one of these families/)
+    end
+
+    it "does not apply if topic has no framework" do
+      expect { create_topic! "new topic", "Force", nil }.not_to raise_error
+    end
+
+    it "does not raise error if category is acceptable" do
+      expect { create_topic! "new topic", "Environment", :esg_topics.cardname }
+        .not_to raise_error
+      expect("new topic".card.topic_family_card.first_name).to eq("Environment")
+    end
   end
 end

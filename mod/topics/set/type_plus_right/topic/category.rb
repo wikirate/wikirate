@@ -1,5 +1,16 @@
 
-event :inherit_category_topics, :prepare_to_store, on: :save do
+delegate :topic_families?, :determine_topic_family, to: :topic
+
+def topic
+  left
+end
+
+event :assign_topic_family, :integrate,
+      on: :save, changed: :content, when: :topic_families? do
+  topic.topic_family_card.refresh_topic_family
+end
+
+event :inherit_category_topics, :prepare_to_store, changed: :content, on: :save do
   add_categories_to_topic_referers
 end
 
@@ -35,7 +46,7 @@ def add_categories_to_topic_referers
 end
 
 def topic_referers
-  Card.search right: :topic, refer_to: left.id
+  Card.search right: :topic, refer_to: left.name
 end
 
 def check_category_permissions

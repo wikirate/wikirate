@@ -103,13 +103,12 @@
 
 - :name: newsletter
   :codename: newsletter
-  :conflict: :override
   :fields:
     :right:
       :fields:
         :default:
           :type: :pointer
-          :content: "No"
+          :content: "Yes"
         :content_options:
           :type: :list
           :content:
@@ -117,8 +116,6 @@
             - "No"
         :input_type: radio
         :help: Do you want to receive our monthly community newsletter?
-
-
 
 - :name: Profile Type
   :codename: profile_type

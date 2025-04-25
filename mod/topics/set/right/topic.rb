@@ -3,6 +3,15 @@ def ok_item_types
   [:topic]
 end
 
+# def item_cards_by_framework framework
+#   # TODO: optimize
+#   item_cards.select { |topic| topic.topic_framework_card.first_id == framework.card_id }
+# end
+
+def featured
+  item_names & Card::Set::Self::Topic.family_names
+end
+
 # when you add a topic to something, automatically also add the topic's categories
 # NOTE: deleting does not delete
 event :add_categories, :prepare_to_store, changed: :content do
@@ -13,6 +22,8 @@ event :add_categories, :prepare_to_store, changed: :content do
 end
 
 format :html do
+  view :icon_badges, unknown: :blank, cache: :deep, template: :haml
+
   def default_limit
     50
   end

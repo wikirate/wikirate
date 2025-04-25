@@ -48,7 +48,10 @@ basket[:icons][:material].merge!(
   sort_ascending: :keyboard_arrow_up,
   sort_descending: :keyboard_arrow_down,
   help: :help,
-  signup: :rocket
+  signup: :rocket,
+  environment: :spa,
+  social: :volunteer_activism,
+  governance: :assured_workload
 )
 
 basket[:icons][:font_awesome].merge!(

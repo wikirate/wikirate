@@ -127,7 +127,7 @@ $score-colors: (
       color: #fff;
     }
   }
-  @include quickFilterTag($type, $color)
+  //@include quickFilterTag($type, $color)
 }
 
 @mixin coloredTag {
@@ -264,6 +264,50 @@ $lightMap: (
   //}
 }
 
+
+$topicFamilyMap: (
+        environment: $teal,
+        social: $red,
+        governance: $purple
+);
+
+
+@each $family, $color in $topicFamilyMap {
+  $lightColor: map-get($lightMap, $color);
+
+  .bg-#{$family} {
+    background-color: $color !important;
+    color: $white !important;
+  }
+
+  .bg-#{$family}-outline {
+    color: $color !important;
+    background-color: $white !important;
+    border: 1px solid $color;
+
+  }
+
+  .bg-#{$family}-light {
+    color: $color !important;
+    background-color: $lightColor;
+  }
+
+  .btn-secondary.quick-filter-topic-#{$family} {
+    color: $color !important;
+    background-color: $lightColor;
+    border-color: $lightColor;
+  }
+
+  .SELF-#{$family}.box {
+    .box-middle, .box-middle i {
+      color: $color !important;
+      background-color: $lightColor;
+    }
+  }
+}
+
+
+
 .LTYPE_RTYPE-topic-company {
   @include barbox($topic-color)
 }
@@ -287,22 +331,6 @@ $lightMap: (
   }
 }
 
-.quick-filter {
-  padding-bottom: 0.5rem;
-  a {
-    @include coloredTag;
-    max-width: 15em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    background: $gray-600;
-    cursor: default;
-    &.active {
-      color: $white;
-      cursor: pointer;
-    }
-  }
-}
 
 @include hoverTag(topic, $topic-color);
 @include hoverTag(company, $company-color);
@@ -312,9 +340,9 @@ $lightMap: (
 @include hoverTag(metric, $metric-color);
 @include hoverTag(project, $project-color);
 
-@each $sdg, $color in $score-colors {
-  @include quickFilterTag($sdg, $color);
-}
+//@each $sdg, $color in $score-colors {
+//  @include quickFilterTag($sdg, $color);
+//}
 
 .sdg-quick-filters {
   .sdg-label > a {

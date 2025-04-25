@@ -1,7 +1,5 @@
 format :html do
-  view :bar_left do
-    render :thumbnail
-  end
+  view :bar_left, template: :haml
 
   view :bar_right do
     [count_badges(:company, :answer, :reference), render_bookmark]
@@ -22,7 +20,8 @@ format :html do
   end
 
   view :box_bottom do
-    count_badges :answer, :company
+    [field_nest(:topic, view: :icon_badges)] +
+      count_badges(:answer, :company)
   end
 
   # thumbnails
