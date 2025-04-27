@@ -90,5 +90,6 @@ end
 delete_topic_taggings
 change_type_of_metric_titles
 delete_all_topics
+Cardio::Utils.empty_trash
 puts_topics_tree
 import_topic_tree
