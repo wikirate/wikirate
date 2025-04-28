@@ -12,6 +12,6 @@ format :html do
   end
 
   # view :variable_metrics do
-  #   listing card.item_names, view: :formula_thumbnail
+  #   listing_list card.item_names, view: :formula_thumbnail
   # end
 end
