@@ -3,4 +3,3 @@ require "colorize"
 
 user = Rails.env.development? ? "Joe Admin" : "Ethan McCutchen"
 Card::Auth.signin user
-
