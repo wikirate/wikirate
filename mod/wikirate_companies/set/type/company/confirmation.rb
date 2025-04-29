@@ -27,7 +27,7 @@ format :json do
   view :confirmation_required do
     {
       message: confirmation_message,
-      potential_duplicates: listing(potential_duplicates, view: :atom)
+      potential_duplicates: listing_list(potential_duplicates, view: :atom)
     }
   end
 end
