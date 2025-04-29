@@ -1,6 +1,7 @@
 include_set Abstract::CachedCount
 include_set Abstract::CompanySearch
 include_set Abstract::OpenSearch
+include_set Abstract::ExportAll
 
 recount_trigger :type, :company, on: [:create, :delete] do |_changed_card|
   Card[:company]
@@ -45,23 +46,5 @@ format :html do
 
   def import_suggestions_search
     os_search_returning_cards
-  end
-end
-
-format :json do
-  view :all do
-    voo.show! :all_item_cards
-    render_molecule
-  end
-
-  view :items do
-    return super() unless voo.show? :all_item_cards
-
-    [].tap do |items|
-      Card.where(type_id: card.id, trash: false).find_each do |card|
-        card.include_set_modules
-        items << listing(card, view: voo_items_view || :atom)
-      end
-    end
   end
 end
