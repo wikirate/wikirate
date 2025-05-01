@@ -101,7 +101,7 @@ RSpec.describe Card::AnswerQuery::Sorting do
       let(:metric_name) { "Jedi+deadliness" }
 
       it "sorts numerically" do
-        expect(sort_by(:value))
+        expect(sort_by(:numeric_value))
           .to eq(["Samsung+1977",
                   "Slate Rock and Gravel Company+2005",
                   "Los Pollos Hermanos+1977",
@@ -114,7 +114,7 @@ RSpec.describe Card::AnswerQuery::Sorting do
       let(:metric_name) { "Jedi+Victims by Employees" }
 
       it "sorts numerically" do
-        expect(sort_by(:value))
+        expect(sort_by(:numeric_value))
           .to eq(with_year(["Samsung",
                             "Slate Rock and Gravel Company",
                             "Monster Inc",

@@ -1,6 +1,6 @@
 GROUP_SELECT = { answer_count: "count(distinct(answers.id))",
                  year: "max(answers.year)",
-                 value: "max(answers.value)",
+                 # value: "max(answers.value)",
                  year_count: "count(distinct(answers.year))" }.freeze
 
 GROUP_SELECT_KEYS = {
@@ -38,6 +38,7 @@ format :html do
   def grouped_result
     with_paging do
       search_with_params.map do |result|
+        result["value"] ||= result["numeric_value"]
         result[:name] = grouped_result_name result
         branching_results(result) { haml(:"grouped_#{current_group}", result) }
       end
@@ -78,9 +79,21 @@ format :html do
   def group_by_query
     group_by = select_fields = group_by_fields_string
     GROUP_SELECT_KEYS[current_group].each do |key|
-      select_fields += ", #{GROUP_SELECT[key]} AS #{key}"
+      select_fields += ", #{group_select_field key}"
     end
     clean_relation.select(select_fields).group group_by
+  end
+
+  def group_select_field key
+    if key == :value
+      grouped_value_select_field
+    else
+      "#{GROUP_SELECT[key]} AS #{key}"
+    end
+  end
+
+  def grouped_value_select_field
+    "max(answers.#{value_field}) AS #{value_field}"
   end
 
   def branching_results result
@@ -91,7 +104,7 @@ format :html do
   end
 
   def record_sample_answer metric_id, company_id, year, value
-    if sort_param == "value"
+    if sort_param&.match? "value"
       latest_answer_with_value metric_id, company_id, value
     else
       Card.fetch [metric_id, company_id, year.to_s], new: {}
