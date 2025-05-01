@@ -47,8 +47,12 @@ def metric_card
   @metric_card ||= left
 end
 
+def value_field
+  numeric? || relation? ? :numeric_value : :value
+end
+
 format do
-  delegate :metric_card, to: :card
+  delegate :metric_card, :value_field, to: :card
 
   def export_title
     [metric_card.metric_title, :answer].cardname.url_key
@@ -70,7 +74,7 @@ format do
   def simple_sort
     {
       company_name: 8,
-      value: 2,
+      value_field => 2,
       year: 2
     }
   end
@@ -78,7 +82,7 @@ format do
   def record_sort
     {
       company_name: 8,
-      value: 2,
+      value_field => 2,
       year: 2
     }
   end
