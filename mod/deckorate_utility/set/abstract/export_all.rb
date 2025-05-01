@@ -1,7 +1,8 @@
 format :json do
   view :all, perms: :export_all_ok? do
     voo.show! :all_item_cards
-    render_molecule
+    voo.hide! :paging
+    show :molecule, {}
   end
 
   view :items do
@@ -17,5 +18,9 @@ format :json do
 
   def export_all_ok?
     Auth.always_ok?
+  end
+
+  def show_paging?
+    voo.show? :paging
   end
 end

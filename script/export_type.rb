@@ -14,11 +14,11 @@ def type_card
 end
 
 def json
-  type_card.format(:json).render_all.to_s
+  type_card.format(:json).render_all
 end
 
 def tmp_file
-  f = Tempfile.new "deckorate_export.json"
+  f = Tempfile.new ["export", ".json"]
   f.write json
   f.close
   yield f
