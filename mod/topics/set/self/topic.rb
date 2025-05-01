@@ -4,7 +4,6 @@ include_set Abstract::TopicSearch
 include_set Abstract::FluidLayout
 include_set Abstract::ExportAll
 
-
 class << self
   def featured_framework
     :esg_topics
