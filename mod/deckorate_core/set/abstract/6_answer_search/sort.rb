@@ -64,7 +64,7 @@ format do
   def value_field
     :value
   end
-  
+
   # def default_sort_dir sort_by
   #   sort_by == :value ? default_value_sort_dir : super
   # end

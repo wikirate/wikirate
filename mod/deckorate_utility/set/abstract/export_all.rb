@@ -9,7 +9,7 @@ format :json do
     return super() unless voo.show? :all_item_cards
 
     [].tap do |items|
-      Card.where(type_id: card.id, trash: false).find_each do |card|
+      Card.where(type_id: card.id, trash: false).find_each(batch_size: 500) do |card|
         card.include_set_modules
         items << listing(card, view: voo_items_view || :atom)
       end
