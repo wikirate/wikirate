@@ -29,16 +29,6 @@ format :json do
   view :detailed do
     render_molecule items: { view: :molecule }
   end
-
-  def page_details obj
-    super.tap { |hash| cache_url hash }
-  end
-
-  def cache_url hash
-    return unless ENV["CACHE_JSON"]
-
-    hash[:url] = "/cached/#{card.name.url_key}.json"
-  end
 end
 
 format :html do
