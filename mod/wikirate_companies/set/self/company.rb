@@ -1,6 +1,7 @@
 include_set Abstract::CachedCount
 include_set Abstract::CompanySearch
 include_set Abstract::OpenSearch
+include_set Abstract::ExportAll
 
 recount_trigger :type, :company, on: [:create, :delete] do |_changed_card|
   Card[:company]
