@@ -17,6 +17,7 @@ format do
     metric_title: "Metric",
     answer_count: "Data points",
     value: "Data point",
+    numeric_value: "Data point",
     year_count: "Years",
     year: "Year"
   }.freeze
@@ -42,7 +43,7 @@ format do
     {
       company_name: 4,
       metric_title: 4,
-      value: 2,
+      value_field => 2,
       year: 2
     }
   end
@@ -51,7 +52,7 @@ format do
     {
       company_name: 4,
       metric_title: 4,
-      value: 2,
+      value_field => 2,
       year: 2
     }
   end
@@ -60,11 +61,13 @@ format do
     { grouping => 8, answer_count: 2, year_count: 2 }
   end
 
-  def default_sort_dir sort_by
-    return super unless sort_by == :value
-
-    :default_value_sort_dir
+  def value_field
+    :value
   end
+
+  # def default_sort_dir sort_by
+  #   sort_by == :value ? default_value_sort_dir : super
+  # end
 
   def default_desc_sort_dir
     ::Set.new %i[updated_at metric_bookmarkers value year answer_count year_count]

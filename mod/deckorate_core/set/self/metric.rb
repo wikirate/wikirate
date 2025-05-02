@@ -2,6 +2,7 @@ include_set Abstract::CachedCount
 include_set Abstract::MetricSearch
 include_set Abstract::FeaturedBoxes
 include_set Abstract::OpenSearch
+include_set Abstract::ExportAll
 
 recount_trigger :type, :metric, on: [:create, :delete] do |_changed_card|
   Card[:metric]
