@@ -13,6 +13,7 @@ class Calculate
 
   def prepare
     # stash the following
+    shared_attributes
     old_company_ids
     expirables
     overridden_hash
@@ -87,8 +88,14 @@ class Calculate
   end
 
   def insert_calculations calcs
-    attribs = calcs.map { |calc| calc.answer_attributes.merge metric_id: metric.id }
+    attribs = calcs.map { |calc| calc.answer_attributes.merge shared_attributes }
     attribs.each_slice(5000) { |slice| Answer.insert_all slice }
+  end
+
+  def shared_attributes
+    @shared_attributes ||= { metric_id: metric.id }.tap do |attribs|
+      attribs[:unpublished] = true if metric.unpublished?
+    end
   end
 
   def update_overridden_calculations overridden
