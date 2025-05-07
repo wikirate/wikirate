@@ -1,3 +1,5 @@
+include_set Abstract::LazyTree
+
 format :html do
   view :icon_badge, template: :haml
   view :name_badge, template: :haml
@@ -29,6 +31,14 @@ format :html do
 
   view :category_icon_badge do
     nest_family :icon_badge
+  end
+
+  view :tree_item do
+    tree_item render_title, body: render_tree_body
+  end
+
+  view :tree_body do
+    field_nest :subtopic, view: :core, items: { view: :tree_item}
   end
 
   private

@@ -33,6 +33,12 @@ format :html do
   end
 
   def input_type
-    :multiselect
+    :topic_tree
+  end
+
+  def topic_tree_input
+    raw(Set::Self::Topic.family_list.item_cards.map do |topic|
+      nest topic, view: :tree_item
+    end.join)
   end
 end
