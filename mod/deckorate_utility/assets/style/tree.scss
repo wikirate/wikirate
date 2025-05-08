@@ -1,6 +1,8 @@
-//
-// Base styles
-//
+$tree-button-padding: .3rem !default;
+$tree-body-padding: 0.5rem 0rem 0.5rem 2rem !default
+$tree-leaf-padding: 0.2em 1em !default;
+$tree-button-active-bg: $bar-body-hover-color !default;
+$tree-border-color: $gray-200 !default;
 
 .tree-button:before,
 .accordion-button::after {
@@ -10,11 +12,6 @@
   font-size: 1.5em;
   height: 1em;
 }
-
-$tree-button-padding: .3rem !default;
-$tree-body-padding: 0.5rem 0rem 0.5rem 2rem !default
-$tree-button-active-bg: $bar-body-hover-color !default;
-$tree-border-color: $gray-200 !default;
 
 .tree-button {
   position: relative;
@@ -49,7 +46,7 @@ $tree-border-color: $gray-200 !default;
     flex-shrink: 0;
     width: $accordion-icon-width;
     height: $accordion-icon-width;
-    margin-right: auto;
+    margin-right: 1rem;
     // content: "\E5CC"; // chevron-right
 
     background-image: escape-svg($accordion-button-icon);
@@ -70,6 +67,9 @@ $tree-border-color: $gray-200 !default;
     border-color: $tree-border-color;
     outline: 0;
     box-shadow: $accordion-button-focus-box-shadow;
+  }
+  .card-title {
+    margin-bottom: 0;
   }
 }
 
@@ -112,7 +112,6 @@ $tree-border-color: $gray-200 !default;
 .tree-body {
   padding: $tree-body-padding;
 }
-
 
 // Flush tree items
 //

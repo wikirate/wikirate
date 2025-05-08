@@ -21,3 +21,21 @@
     padding: 0;
   }
 }
+
+.topic-tree-input {
+  .card-title {
+    padding: $tree-leaf-padding;
+    @include border-radius($btn-border-radius);
+    display: inline-block;
+    margin: 0.1em 0;
+  }
+
+  .tree-body {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .tree-button {
+    padding: 0
+  }
+}
