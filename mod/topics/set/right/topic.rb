@@ -33,6 +33,10 @@ format :html do
   end
 
   def input_type
-    :multiselect
+    :topic_tree
+  end
+
+  def topic_tree_input
+    haml :topic_tree_input
   end
 end

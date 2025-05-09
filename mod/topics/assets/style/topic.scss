@@ -21,3 +21,27 @@
     padding: 0;
   }
 }
+
+.topic-tree-input {
+  .card-title {
+    padding: $tree-leaf-padding;
+    @include border-radius(0.3rem);
+    display: inline-block;
+    margin: 0.1em 0;
+    font-size: 1rem;
+    line-height: 1.3rem;
+  }
+
+  .tree-body {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .tree-button {
+    padding: 0
+  }
+
+  .tree-leaf {
+    margin-left: 2em;
+  }
+}
