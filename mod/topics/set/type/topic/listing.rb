@@ -1,3 +1,5 @@
+include_set Abstract::LazyTree
+
 format :html do
   view :icon_badge, template: :haml
   view :name_badge, template: :haml
@@ -29,6 +31,24 @@ format :html do
 
   view :category_icon_badge do
     nest_family :icon_badge
+  end
+
+  view :tree_item do
+    if card.subtopic_card.count.positive?
+      tree_item render_title, body: render_tree_body, data: { treeval: card.name }
+    else
+      render_tree_leaf
+    end
+  end
+
+  view :tree_body do
+    field_nest :subtopic, view: :core, items: { view: :tree_item }
+  end
+
+  view :tree_leaf do
+    content_tag :div, class: "tree-leaf", data: { treeval: card.name } do
+      render_title
+    end
   end
 
   private
