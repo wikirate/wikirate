@@ -1,0 +1,3 @@
+.topic-tree
+  - Card::Set::Self::Topic.family_list.item_cards.each do |topic|
+    = nest topic, view: :tree_item
