@@ -8,7 +8,7 @@ def simple_field_names
 end
 
 def simple_field_cards
-  simple_field_names.map { |field| fetch field }.compact
+  Card.search left: name, right: [:in] + simple_field_names
 end
 
 format :html do
