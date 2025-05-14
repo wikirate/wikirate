@@ -3,14 +3,12 @@ format :html do
   def basic_table_properties
     # designer:       "Designed by",
     # metric_type:    "Metric Type",
-    { topic: "Topics",
-      unpublished:    "Unpublished" }.merge applicability_properties
+    { unpublished:    "Unpublished" }.merge applicability_properties
   end
 
   # all metrics have these properties in their editor
   def basic_edit_properties
     { question:       "Question",
-      topic: "Topics",
       about:          "About",
       methodology:    "Methodology",
       unpublished:    "Unpublished" }.merge applicability_properties
