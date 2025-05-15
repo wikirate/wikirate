@@ -10,7 +10,7 @@ RSpec.describe Card::Set::Type::Company::Export do
                                id: company.id,
                                url: "http://wikirate.org/Samsung.json",
                                type: "Company",
-                               "alias" => [],
+                               "alias" => nil,
                                "headquarters" => nil,
                                "open_corporates_id" => nil,
                                "sec_cik" => nil,
@@ -30,9 +30,9 @@ RSpec.describe Card::Set::Type::Company::Export do
             url: "http://wikirate.org/Samsung.json",
             type: a_hash_including(name: "Company"),
             "wikipedia" => a_hash_including(name: "Samsung+Wikipedia"),
-            "open_corporates_id" => a_hash_including(id: nil),
-            "alias" => a_hash_including(id: nil),
-            "headquarters" => a_hash_including(id: nil),
+            "open_corporates_id" => nil,
+            "alias" => nil,
+            "headquarters" => nil,
             answers_url: "http://wikirate.org/Samsung+Answer.json"
           )
       end

@@ -38,11 +38,17 @@ format :json do
   private
 
   def add_fields_to_hash hash, view=:atom
+    card.simple_field_cards # prepopulate
     card.simple_field_names.each do |fld|
       key = fld.underscore.parameterize.underscore
-      # first underscore addresses camelcase. parameterize addresses spaces
-      hash[key] = field_nest fld, view: view
+      hash[key] = field_val_from_cache fld, view
     end
+  end
+
+  def field_val_from_cache field, view
+    return unless Card.cache.temp.exist? card.cardname.field_name(field).key
+
+    field_nest field, view: view
   end
 
   def odyssey_lookup_search codename, options
