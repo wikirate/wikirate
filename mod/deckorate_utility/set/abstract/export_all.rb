@@ -6,7 +6,7 @@ format :json do
   end
 
   view :items do
-    return super() unless voo.show? :all_item_cards
+    return super() unless voo.explicit_show? :all_item_cards
 
     [].tap do |items|
       Card.where(type_id: card.id, trash: false).find_each(batch_size: 500) do |card|

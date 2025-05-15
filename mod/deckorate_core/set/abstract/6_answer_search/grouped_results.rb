@@ -105,14 +105,14 @@ format :html do
 
   def record_sample_answer metric_id, company_id, year, value
     if sort_param&.match? "value"
-      latest_answer_with_value metric_id, company_id, value
+      latest_answer_with_value metric_id, company_id, sort_param, value
     else
       Card.fetch [metric_id, company_id, year.to_s], new: {}
     end
   end
 
-  def latest_answer_with_value metric_id, company_id, value
-    ::Answer.where(metric_id: metric_id, company_id: company_id, value: value)
+  def latest_answer_with_value metric_id, company_id, value_field, value
+    ::Answer.where(metric_id: metric_id, company_id: company_id, value_field => value)
             .order(year: :desc).take.card
   end
 end
