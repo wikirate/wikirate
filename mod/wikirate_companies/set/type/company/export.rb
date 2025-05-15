@@ -45,11 +45,11 @@ format :json do
     end
   end
 
-    def field_val_from_cache field, view
-      return unless Card.cache.temp.exist? card.cardname.field_name(field).key
+  def field_val_from_cache field, view
+    return unless Card.cache.temp.exist? card.cardname.field_name(field).key
 
-      field_nest field, view: view
-    end
+    field_nest field, view: view
+  end
 
   def odyssey_lookup_search codename, options
     query_hash = card.fetch(codename).query_hash.merge(options[:filter])
