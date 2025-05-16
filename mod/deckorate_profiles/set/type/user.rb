@@ -19,16 +19,8 @@ format :html do
   end
 
   def tab_list
-    %i[details research_group bookmarks contributions activity].tap do |list|
+    %i[research_group bookmarks contributions activity].tap do |list|
       list << :profile_account if profile_account_tab?
-    end
-  end
-
-  view :details_tab do
-    wrap_with :div, class: "profile-data" do
-      [
-        field_nest(:discussion, view: :titled, show: :comment_box)
-      ]
     end
   end
 
