@@ -31,9 +31,9 @@ format :html do
     super.merge answer: { label: "Companies", count: card.company_card.cached_count }
   end
 
-  view :topic_tab do
-    field_nest :topic
-  end
+  # view :topic_tab do
+  #   field_nest :topic
+  # end
 
   view :answer_tab do
     field_nest :answer, view: :filtered_content

@@ -1,5 +1,7 @@
 include_set Abstract::LazyTree
 
+MAX_OTHER_ANSWERS = 5
+
 # The answer that a calculated answer depends on
 # @return [Array] array of Answer objects
 def direct_dependee_answers
@@ -72,12 +74,26 @@ format :html do
 
   def answer_tree_item metric, detail, other_answers=[]
     expandable = card.calculated? && other_answers.empty?
-    value = render_concise +
-            output { other_answers.map { |a| nest a.card, view: :concise } }
+    value = answer_tree_answer(other_answers) { render_concise }
 
     wrap_answer_tree_item expandable do
       metric.card.format.metric_tree_item_title detail: detail, answer: value
     end
+  end
+
+  def answer_tree_answer other_answers
+    return yield unless other_answers.any?
+
+    output do
+      other_answers[0..MAX_OTHER_ANSWERS]
+        .map { |a| nest a.card, view: :concise }
+        .unshift(yield)
+        .push(answer_tree_remainder_answers(other_answers.size))
+    end
+  end
+
+  def answer_tree_remainder_answers num_other_answers
+    num_other_answers > 5 ? "and #{num_other_answers - 5} more..." : nil
   end
 
   def wrap_answer_tree_item expandable, &block
