@@ -23,14 +23,12 @@ format do
   end
 
   def os_term_match
-    super.tap do |bool|
-      if filtered_headquarters.present?
-        bool ||= yield
-        bool[:filter] = {
-          "match_phrase_prefix": { "headquarters": filtered_headquarters }
-        }
-      end
-    end
+    super
+    return unless filtered_headquarters.present?
+
+    yield[:filter] = {
+      "match_phrase_prefix": { "headquarters": filtered_headquarters }
+    }
   end
 end
 
