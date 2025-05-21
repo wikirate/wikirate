@@ -22,13 +22,10 @@ format do
     @filtered_headquarters ||= params.dig :filter, :headquarters
   end
 
-  def os_term_match
-    super
-    return unless filtered_headquarters.present?
+  def os_filter
+    return super unless filtered_headquarters.present?
 
-    yield[:filter] = {
-      "match_phrase_prefix": { "headquarters": filtered_headquarters }
-    }
+    { "term": { "headquarters": filtered_headquarters } }
   end
 end
 
