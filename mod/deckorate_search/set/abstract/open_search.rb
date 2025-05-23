@@ -87,10 +87,11 @@ format do
   end
 
   def os_query
-    { minimum_should_match: 1 }.tap do |bool|
-      os_type_filter { bool }
-      os_term_match { bool }
-    end
+    {
+      minimum_should_match: 1,
+      filter: os_filter,
+      should: os_should
+    }
   end
 
   # # interprets Open Search results, finding ids and fetching cards with those ids
@@ -99,18 +100,18 @@ format do
   # end
 
   # constructs the keyword matching "should" clause for the os_query
-  def os_term_match
+  def os_should
     return unless search_keyword.present?
 
-    yield[:should] = [{ match: { name: search_keyword } },
-                      { match_phrase_prefix: { name: search_keyword } }]
+    [{ match: { name: search_keyword } },
+     { match_phrase_prefix: { name: search_keyword } }]
   end
 
   # constructs the type filtering clause for the os_query
-  def os_type_filter
+  def os_filter
     return unless os_type_param.present?
 
-    yield[:filter] = { term: { type_id: os_type_param.card_id } }
+    { term: { type_id: os_type_param.card_id } }
   end
 
   def os_ensure_exact_match cardlist
