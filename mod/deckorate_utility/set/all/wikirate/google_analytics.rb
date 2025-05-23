@@ -1,10 +1,4 @@
 
-
-def track_page_from_server?
-  return false
-  # tracker && response_format.in?(%i[csv json]) && !internal_api_request?
-end
-
 def tracker_content_groups
   { cg1: type_name, cg2: format_content_group }
 end
@@ -14,9 +8,9 @@ def format_content_group
   # request_var("HTTP_SEC_FETCH_MODE") == "navigate" ||
 end
 
-def tracker_event_parameters
+def api_tracker_event_params
   super.merge(
-    profile_type: profile_type,
+    profile_type: profile_type.to_s,
     user_type: user_type
   )
 end

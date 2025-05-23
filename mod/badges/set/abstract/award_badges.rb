@@ -23,7 +23,7 @@ end
 
 # don't award badges during imports or API calls
 def awardable_act?
-  !(import_act? || Card::Auth.api_act?)
+  !(import_act? || Card::Auth.api_request?)
 end
 
 # @return badge name if count equals its threshold

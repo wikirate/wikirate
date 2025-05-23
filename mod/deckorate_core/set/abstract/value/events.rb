@@ -32,7 +32,7 @@ event :mark_action, before: :finalize_action, changed: :content do
   action_mark =
     if import_act?
       @current_action.comment = "imported"
-    elsif Card::Auth.api_act?
+    elsif Card::Auth.api_request?
       @current_action.comment = "api"
     end
   @current_action.comment = action_mark if action_mark

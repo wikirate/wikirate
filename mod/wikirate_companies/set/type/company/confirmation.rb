@@ -3,7 +3,7 @@ event :require_confirmation, :validate, on: :create, when: :require_confirmation
 end
 
 def require_confirmation?
-  Card::Auth.api_act? && !Env.params[:confirmed]
+  Card::Auth.api_request? && !Env.params[:confirmed]
 end
 
 format do
