@@ -8,11 +8,8 @@ delegate :unpublished?, :published?, :calculated?, to: :metric_card
 assign_type :toggle
 
 event :toggle_answer_publication, :finalize, changed: :content do
-  if content == "1"
-    unpublish_all_answers
-  else
-    publish_unflagged_answers
-  end
+  method = content == "1" ? :unpublish_all_answers : :publish_unflagged_answers
+  metrics.each { |m| m.send method }
 end
 
 # unpublishing a metric means unpublishing all calculations that depend on that metric
@@ -33,21 +30,6 @@ def publish_inputs?
   published? && calculated? && !metric_card.trash
 end
 
-def answers
-  ::Answer.where metric_id: left_id
-end
-
-def unpublish_all_answers
-  answers.update_all unpublished: true
-end
-
-def publish_unflagged_answers
-  answers.where(
-    "NOT EXISTS (
-      SELECT * from cards
-      WHERE left_id = answers.answer_id
-      AND right_id = #{:unpublished.card_id}
-      AND db_content= '1'
-    )"
-  ).update_all unpublished: false
+def metrics
+  [metric_card, metric_card.try(:inverse_card)].compact
 end
