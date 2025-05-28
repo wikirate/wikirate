@@ -3,7 +3,7 @@ require "uri"
 
 # for now, no notifications on acts using API key
 def silent_change?
-  Card::Auth.api_act? || super
+  Card::Auth.api_request? || super
 end
 
 def as_wikirate_team?

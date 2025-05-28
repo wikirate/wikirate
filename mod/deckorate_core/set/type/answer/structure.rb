@@ -39,7 +39,7 @@ format :html do
     relative_history
   end
 
-  view :answer_tab do
+  view :record_tab do
     nest record_card.answer_card, view: :filtered_content
   end
 
