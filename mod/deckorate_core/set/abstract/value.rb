@@ -41,7 +41,7 @@ def current_route_symbol
 
   if import_act?
     :import
-  elsif Card::Auth.api_act?
+  elsif Card::Auth.api_request?
     :api
   else
     :direct
