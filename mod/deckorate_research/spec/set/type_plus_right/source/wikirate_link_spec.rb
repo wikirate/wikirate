@@ -2,7 +2,8 @@
 
 RSpec.describe Card::Set::TypePlusRight::Source::WikirateLink do
   PDF_URL = "https://brendanzagaeski.appspot.com/minimal.pdf".freeze
-  HTML_URL = "https://www.york.ac.uk/teaching/cws/wws/webpage1.html".freeze
+  HTML_URL =
+    "https://www.cs.unc.edu/~jbs/resources/www/page_prep/intro-html/dummy.html".freeze
 
   it "imports pdf link" do
     page = create_source PDF_URL
