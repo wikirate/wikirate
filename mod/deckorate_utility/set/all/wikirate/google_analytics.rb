@@ -1,13 +1,4 @@
 
-def tracker_content_groups
-  { cg1: type_name, cg2: format_content_group }
-end
-
-def format_content_group
-  response_format == :csv ? "CSV" : "JSON"
-  # request_var("HTTP_SEC_FETCH_MODE") == "navigate" ||
-end
-
 def api_tracker_event_params
   super.merge(
     profile_type: profile_type.to_s,
@@ -29,10 +20,6 @@ def user_type
   else
     "anonymous"
   end
-end
-
-def response_format
-  Env.controller&.response_format
 end
 
 def request_var variable
