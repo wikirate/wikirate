@@ -19,6 +19,10 @@ format :html do
     %i[commons company_category].card.value_options_card.options_hash
   end
 
+  def filter_company_category_closer_value val
+    filter_company_category_options.invert[val]
+  end
+
   def filter_year_options
     type_options(:year, "desc").each_with_object("Latest" => "latest") do |v, h|
       h[v] = v
