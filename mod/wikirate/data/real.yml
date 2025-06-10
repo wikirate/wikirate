@@ -35,11 +35,9 @@
 - blurblists
 
 - :name: Publication
-  :conflict: :override
   :codename: publication
 
 - :name: Case Study
-  :conflict: :override
   :codename: case_study
 
 - :name: Use Case
@@ -119,7 +117,6 @@
 
 - :name: Profile Type
   :codename: profile_type
-  :conflict: override
   :fields:
     :right:
       :fields:
@@ -170,16 +167,12 @@
 
 - :name: Impressum
   :codename: impressum
-  :conflict: override
 
 - :name: Disclaimers
   :codename: disclaimers
 
 - :name: Notice and Take Down Procedure
   :codename: notice_and_take_down
-
-- :name: Licensing
-  :codename: licensing
 
 - :name:
     - :policy
@@ -230,4 +223,3 @@
 
 - :name: Attribution Guide
   :codename: attribution_guide
-  :conflict: override
