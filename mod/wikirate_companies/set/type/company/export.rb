@@ -107,8 +107,21 @@ format :csv do
   end
 
   def identifiers
-    CompanyIdentifier.names.map do |field_name|
-      field_nest field_name, view: :content
+    map_identifier_cards do |card|
+      nest card, view: :content if card
+    end
+  end
+
+  def map_identifier_cards
+    names = CompanyIdentifier.names
+    id_cards = identifier_cards names
+    names.map { |name| yield id_cards[name] }
+  end
+
+  def identifier_cards names
+    Card.search(left: card.id, right_id: names.map(&:card_id).unshift(:in))
+        .each_with_object({}) do |card, hash|
+      hash[card.name.right_name] = card
     end
   end
 
