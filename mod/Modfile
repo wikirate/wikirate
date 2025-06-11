@@ -1,11 +1,7 @@
 # see DeckoRate mod planning spreadsheet: https://docs.google.com/spreadsheets/d/1SeQYpC8nIRNkkkX0nDxZOrKavgTn7n_LJBeloEBZj8o/edit#gid=0
 
 # clean and move to card-mods
-mod "posts"
 mod "guides"
-
-# TODO: refactor away
-mod "conversation" # upgrade discussions/comments
 
 # TODO: move out wikirate-specific code
 mod "wikirate_shared", path: "./vendor/wikirateproject/mod/wikirate_shared"

@@ -10,3 +10,7 @@
   :type: :image
   :storage_type: :coded
   :image: wikirat/image.jpg
+
+- :name: License
+  :codename: license
+
