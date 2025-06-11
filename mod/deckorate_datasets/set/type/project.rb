@@ -55,8 +55,7 @@ format :html do
   view :details_tab_left do
     [
       nest(card.dataset_card, view: :overall_progress_box),
-      field_nest(:description, view: :titled),
-      field_nest(:conversation, view: :titled)
+      field_nest(:description, view: :titled)
     ]
   end
 

@@ -46,9 +46,3 @@
   :user: Joe User
   :fields:
     :discussion: comment
-- :name: discuss conversation project 2
-  :user: Joe User
-  :type: :conversation
-  :fields:
-    :project: conversation project
-    :discussion: comment
