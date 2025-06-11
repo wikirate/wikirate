@@ -99,8 +99,7 @@ format :html do
 
   view :details_tab_left do
     [
-      field_nest(:description, view: :titled),
-      field_nest(:conversation, items: { view: :link })
+      field_nest(:description, view: :titled)
     ]
   end
 
