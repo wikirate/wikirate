@@ -6,11 +6,8 @@ format :html do
   end
 
   def basic_edit_properties
-    { topic: "Topics" }.merge permissioned_edit_properties, super
-  end
-
-  def permissioned_edit_properties
-    if
+    { topic: "Topics",
+      license: "License" }.merge super
   end
 
   def edit_properties
