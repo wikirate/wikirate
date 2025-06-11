@@ -1,4 +1,4 @@
-  include_set Abstract::CqlSearch
+include_set Abstract::CqlSearch
 include_set Abstract::SearchViews
 include_set Abstract::DeckorateFiltering
 include_set Abstract::BookmarkFiltering
