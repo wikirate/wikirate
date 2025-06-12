@@ -37,7 +37,7 @@ format :html do
         labeled_field(:license, :name, title: "License"),
         labeled_field(:topic, :link, title: "Topics"),
         labeled_field(:year, :name, title: "Years", unknown: :blank, separator: ", "),
-        labeled_field(:project, :thumbnail, title: "Projects"),
+        labeled_field(:project, :thumbnail, title: "Projects")
       ]
     end
   end
