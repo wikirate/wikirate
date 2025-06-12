@@ -1,10 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-require File.expand_path "../../../config/environment", __FILE__
-require "colorize"
-
-user = Rails.env.development? ? "Joe Admin" : "Ethan McCutchen"
-Card::Auth.signin user
+require File.expand_path "../../script_helper.rb", __FILE__
 
 API_USERS = [
   "Vasiliki Gkatziaki",

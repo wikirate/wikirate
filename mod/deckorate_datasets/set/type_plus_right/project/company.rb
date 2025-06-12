@@ -1,6 +1,7 @@
-include_set Type::SearchType
 include_set Abstract::ProjectList
 include_set Abstract::CompanySearch
+
+assign_type :search_type
 
 def cql_content
   {

@@ -43,6 +43,10 @@ event :ensure_two_parts, :validate, on: :save, changed: :name do
   errors.add :name, "at least two parts are required" if name.parts.size < 2
 end
 
+event :ensure_license, :validate, on: :create do
+  field :license, content: Right::License::LICENSES.first
+end
+
 event :silence_metric_deletions, :initialize, on: :delete do
   @silent_change = true
 end
