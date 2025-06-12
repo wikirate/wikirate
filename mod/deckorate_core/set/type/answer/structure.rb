@@ -68,7 +68,14 @@ format :html do
   end
 
   def read_field_configs
-    flag_field_configs + special_field_configs + [discussion_field_config]
+    license_field_configs +
+      flag_field_configs +
+      special_field_configs +
+      [discussion_field_config]
+  end
+
+  def license_field_configs
+    [[card.license_card, title: "License"]]
   end
 
   def special_field_configs

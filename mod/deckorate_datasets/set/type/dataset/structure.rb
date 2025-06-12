@@ -34,6 +34,7 @@ format :html do
   view :details_tab_right do
     labeled_fields do
       [
+        labeled_field(:license, :name, title: "License"),
         labeled_field(:topic, :link, title: "Topics"),
         labeled_field(:year, :name, title: "Years", unknown: :blank, separator: ", "),
         labeled_field(:project, :thumbnail, title: "Projects")
