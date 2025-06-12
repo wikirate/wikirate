@@ -1,12 +1,8 @@
-require File.expand_path "../../../config/environment", __FILE__
-
-Card::Auth.signin "Ethan McCutchen"
-Card::Auth.as_bot # needed in test env where Ethan is not a user
+require File.expand_path "../../script_helper.rb", __FILE__
 
 codename = :open_corporates
 company_name = "OpenCorporates"
 identifier_name = "OpenCorporates ID"
-
 
 puts "updating inverse storage"
 Card.search(right: :inverse).each &:save!
