@@ -7,6 +7,8 @@ attr_writer :answer
 card_accessor :checked_by, type: :list
 card_accessor :source, type: :list
 
+delegate :license_card, to: :metric_card
+
 event :delete_answer_lookup, :finalize, on: :delete do
   ::Answer.delete_for_card id
 end
