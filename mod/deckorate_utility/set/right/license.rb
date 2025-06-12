@@ -22,8 +22,7 @@ def options_hash
    "CC BY-NC 4.0",
    "CC BY-NC-SA 4.0",
    "CC BY-ND 4.0",
-   "CC BY-ND-SA 4.0"
-  ].each_with_object({}) do |name, hash|
+   "CC BY-ND-SA 4.0"].each_with_object({}) do |name, hash|
     hash[name] = name
   end
 end
