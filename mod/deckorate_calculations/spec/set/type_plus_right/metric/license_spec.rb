@@ -4,6 +4,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::License do
   let(:score) { researched.fetch "Joe User" }
   # this rating depends on all the above metrics
   let(:rating) { "Jedi+darkness rating".card }
+  let(:dataset) { "Evil Dataset".card }
 
   let(:nc_license) { "CC BY-NC 4.0" }
   let(:sa_license) { "CC BY-SA 4.0" }
@@ -21,6 +22,11 @@ RSpec.describe Card::Set::TypePlusRight::Metric::License do
       other_researched.license_card.update! content: sa_license
 
       expect(rating.license).to eq nc_sa_license
+    end
+
+    it "updates dataset licesnse" do
+      other_researched.license_card.update! content: sa_license
+      expect(dataset.license).to eq sa_license
     end
   end
 end
