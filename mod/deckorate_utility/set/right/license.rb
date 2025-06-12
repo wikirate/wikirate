@@ -63,7 +63,7 @@ format :html do
   end
 
   view :core do
-    "#{license_link} #{subformat(card.metric_card).attribution_link}"
+    "#{license_link} #{subformat(card.left).attribution_link}"
   end
 
   view :attribution do

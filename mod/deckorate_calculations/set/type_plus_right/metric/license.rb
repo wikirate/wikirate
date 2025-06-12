@@ -31,5 +31,3 @@ def cascade_dataset_licenses
     dataset.license_card.infer!
   end
 end
-
-

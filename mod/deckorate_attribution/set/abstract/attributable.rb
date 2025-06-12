@@ -38,16 +38,6 @@ format do
   view :att_license do
     nest card.license_card, view: :attribution
   end
-
-  private
-
-  def license_url
-
-  end
-
-  def license_text
-    card.license
-  end
 end
 
 format :html do
