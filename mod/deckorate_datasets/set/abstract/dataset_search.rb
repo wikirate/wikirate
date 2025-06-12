@@ -25,7 +25,7 @@ format do
   end
 
   def filter_map
-    %i[name topic bookmark]
+    %i[name topic bookmark license]
   end
 
   def default_filter_hash

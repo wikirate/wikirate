@@ -1,11 +1,5 @@
-require File.expand_path "../../../config/environment", __FILE__
+require File.expand_path "../../script_helper.rb", __FILE__
 require "json"
-require "colorize"
-
-Card::Auth.signin "Ethan McCutchen"
-Card::Auth.as_bot
-
-Cardio.config.perform_deliveries = false
 
 # migrate old check requests to flags
 module ChecksToFlags

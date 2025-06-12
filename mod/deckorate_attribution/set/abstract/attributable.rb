@@ -36,17 +36,7 @@ format do
   end
 
   view :att_license do
-    "licensed under #{license_text} <#{license_url}>"
-  end
-
-  private
-
-  def license_url
-    "https://creativecommons.org/licenses/by/4.0"
-  end
-
-  def license_text
-    "CC BY 4.0"
+    nest card.license_card, view: :attribution
   end
 end
 
@@ -111,9 +101,5 @@ format :html do
         author_name
       end
     end.to_sentence
-  end
-
-  view :att_license do
-    "licensed under #{link_to license_text, href: license_url, target: '_blank'}"
   end
 end

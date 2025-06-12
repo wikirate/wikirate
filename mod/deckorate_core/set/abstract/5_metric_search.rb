@@ -36,7 +36,7 @@ format do
   end
 
   def shared_metric_filter_map
-    %i[topic designer metric_type value_type research_policy bookmark]
+    %i[topic designer metric_type value_type research_policy bookmark license]
   end
 
   # answer searches have different handling of published and dataset filters

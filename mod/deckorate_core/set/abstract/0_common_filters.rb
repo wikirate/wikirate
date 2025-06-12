@@ -13,7 +13,8 @@ format :html do
                       company_keyword: :text,
                       country: :multiselect,
                       company: :multiselect,
-                      published: :radio
+                      published: :radio,
+                      license: :check
 
   def filter_company_category_options
     %i[commons company_category].card.value_options_card.options_hash
@@ -59,6 +60,10 @@ format :html do
       "Unpublished only" => "false",
       "Either"           => "all"
     }
+  end
+
+  def filter_license_options
+    Right::License::LICENSES
   end
 
   def topic_family_quick_filters
