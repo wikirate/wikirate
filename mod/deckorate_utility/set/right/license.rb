@@ -42,8 +42,31 @@ def compatible licenses
   license + " 4.0"
 end
 
+format do
+  def url
+    dir = card.content.gsub(/(CC|4.0)/, "").strip.downcase
+    "https://creativecommons.org/licenses/#{dir}/4.0"
+  end
+
+  view :attribution do
+    "licensed under #{card.content} <#{url}>"
+  end
+end
+
 format :html do
   def input_type
     :select
+  end
+
+  def license_link
+    link_to card.content, href: url, target: "_blank"
+  end
+
+  view :core do
+    "#{license_link} #{subformat(card.metric_card).attribution_link}"
+  end
+
+  view :attribution do
+    "licensed under #{license_link}"
   end
 end

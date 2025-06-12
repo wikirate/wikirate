@@ -2,12 +2,12 @@ include_set Abstract::DesignerPermissions
 
 format :html do
   def basic_table_properties
-    { topic: "Topics" }.merge super
+    super.merge topic: "Topics"
   end
 
   def basic_edit_properties
-    { topic: "Topics",
-      license: "License" }.merge super
+    { license: "License",
+      topic: "Topics" }.merge super
   end
 
   def edit_properties
