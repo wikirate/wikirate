@@ -1,14 +1,7 @@
-require File.expand_path "../../../config/environment", __FILE__
+require File.expand_path "../../script_helper.rb", __FILE__
 require "json"
-require "colorize"
-
-Card::Auth.signin "Ethan McCutchen"
-Card::Auth.as_bot
-
-Cardio.config.perform_deliveries = false
 
 include Card::Model::SaveHelper
-
 
 NEST_REGEXP = /^\s*(?<variable>\w+)\s*=\s*(?<nest>\{\{[^}]*\}\})\s*$/
 

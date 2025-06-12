@@ -5,6 +5,10 @@ class Card
       add_to_cql :right_plus, refer_to(:topic, topic)
     end
 
+    def license_cql license
+      add_to_cql :right_plus, [:license.card_id, in: Array.wrap(license)]
+    end
+
     # @param value [Symbol] :bookmark or :nobookmark
     # @return cql to find cards that the signed in user has (or has not) bookmarked
     def bookmark_cql value

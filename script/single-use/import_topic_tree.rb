@@ -1,8 +1,4 @@
-require File.expand_path "../../../config/environment", __FILE__
-require "colorize"
-
-user = Rails.env.development? ? "Joe Admin" : "Ethan McCutchen"
-Card::Auth.signin user
+require File.expand_path "../../script_helper.rb", __FILE__
 
 CSVFILE = File.expand_path "data/2025-04-10-topics.csv", __dir__
 FRAMEWORK = "Wikirate ESG Topics"
