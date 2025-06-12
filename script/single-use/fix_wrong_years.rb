@@ -1,6 +1,4 @@
-require File.expand_path "../../../config/environment", __FILE__
-
-Card::Auth.signin "Ethan McCutchen"
+require File.expand_path "../../script_helper.rb", __FILE__
 
 require "csv"
 

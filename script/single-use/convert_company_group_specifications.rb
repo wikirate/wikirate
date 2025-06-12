@@ -1,11 +1,9 @@
 # -*- encoding : utf-8 -*-
 
-require File.expand_path "../../../config/environment", __FILE__
+require File.expand_path "../../script_helper.rb", __FILE__
+
 require "json"
 require "csv"
-require "colorize"
-
-Card::Auth.signin "Ethan McCutchen"
 
 def already_converted? spec
   spec.content.first == "["

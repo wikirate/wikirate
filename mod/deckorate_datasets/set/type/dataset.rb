@@ -9,6 +9,7 @@ card_reader :parent, type: :pointer
 card_reader :data_subset, type: :search_type
 card_reader :topic, type: :list
 card_reader :answer, type: :search
+card_accessor :license
 
 format :html do
   def breadcrumb_items

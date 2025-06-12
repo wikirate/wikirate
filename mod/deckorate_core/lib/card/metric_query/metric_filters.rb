@@ -21,6 +21,13 @@ class Card
         restrict_by_cql :title, "title_id", name: [:match, value]
       end
 
+      def filter_by_license value
+        restrict_by_cql :license, :metric_id,
+                        right: :license,
+                        in: Array.wrap(value),
+                        return: :left_id
+      end
+
       def filter_by_metric value
         filter :metric_id, Array.wrap(value).map(&:card_id)
       end
