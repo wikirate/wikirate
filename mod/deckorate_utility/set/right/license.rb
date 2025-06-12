@@ -9,11 +9,11 @@ def content
 end
 
 def ok_to_update?
-  Auth.stewards_all?
+  Auth.current.stewards_all?
 end
 
 def ok_to_create?
-  Auth.stewards_all?
+  Auth.current.stewards_all?
 end
 
 def options_hash
