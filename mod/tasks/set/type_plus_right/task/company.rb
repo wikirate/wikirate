@@ -1,6 +1,7 @@
-include_set Type::SearchType
 include_set Abstract::CompanySearch
 include_set Abstract::TaskFilter
+
+assign_type :search_type
 
 format do
   def default_sort_option

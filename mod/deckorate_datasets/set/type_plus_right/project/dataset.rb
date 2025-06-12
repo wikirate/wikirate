@@ -1,4 +1,4 @@
-include_set Type::Pointer
+assign_type :pointer
 
 def ok_item_types
   :dataset
