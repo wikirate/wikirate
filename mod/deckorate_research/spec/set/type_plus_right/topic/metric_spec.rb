@@ -1,12 +1,12 @@
 # -*- encoding : utf-8 -*-
 
 RSpec.describe Card::Set::TypePlusRight::Topic::Metric do
-  it_behaves_like "cached count", "Force+metric", 1, 1 do
+  it_behaves_like "cached count", "Taming+metric", 2, 1 do
     let :add_one do
-      Card.fetch(["Joe User+researched number 2", :topic], new: {}).add_item! "Force"
+      Card.fetch(["Joe_User+small_single", :topic], new: {}).add_item! "Taming"
     end
     let :delete_one do
-      Card["Jedi+disturbances in the Force", :topic].drop_item! "Force"
+      Card["Joe User+researched number 3", :topic].drop_item! "Taming"
     end
   end
 end

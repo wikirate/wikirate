@@ -30,6 +30,7 @@ def family_list
 end
 
 def cql_content
+  # exclude top-level topics
   { type: :topic, id: ["not in"] + family_list.item_ids }
 end
 
