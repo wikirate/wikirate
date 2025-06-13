@@ -28,7 +28,6 @@ def infer
   update content: topics.flatten.uniq
 end
 
-
 private
 
 def cascade_calculated_topics
