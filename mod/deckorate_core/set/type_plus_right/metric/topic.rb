@@ -18,6 +18,14 @@ def ok_item_types
   :topic
 end
 
+def ok_to_update?
+  metric_card.researched? && super
+end
+
+def ok_to_create?
+  metric_card.researched? && super
+end
+
 # used by calculated metrics to infer license from its inputs
 def infer
   return false unless metric_card.calculated?
