@@ -1,10 +1,9 @@
 format :html do
   # all metrics show these properties in their properties table
   def basic_table_properties
-    # designer:       "Designed by",
-    # metric_type:    "Metric Type",
-    { unpublished:    "Unpublished",
-      license: "License" }.merge applicability_properties
+    { unpublished: "Unpublished",
+      license:     "License",
+      topic:       "Topics" }.merge applicability_properties
   end
 
   # all metrics have these properties in their editor
