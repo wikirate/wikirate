@@ -3,7 +3,7 @@ format :html do
   def basic_table_properties
     { unpublished: "Unpublished",
       license:     "License",
-      topic:       "Topics"}.merge applicability_properties
+      topic:       "Topics" }.merge applicability_properties
   end
 
   # all metrics have these properties in their editor
