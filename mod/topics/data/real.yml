@@ -10,6 +10,10 @@
 - :name: Topic Family
   :codename: topic_family
 
+- :name: Category
+  :type: :pointer
+  :codename: category
+
 # TODO: get rid of this!
 - :name: Overview
   :codename: general_overview
