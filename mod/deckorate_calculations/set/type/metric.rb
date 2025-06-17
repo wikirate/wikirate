@@ -115,7 +115,11 @@ end
 
 format :html do
   view :calculation_tab do
-    [calculations_list, haml(:new_calculation_links)]
+    if card.license_card.nonderivative?
+      "Calculated metrics are not allowed for metrics with a non-derivative license"
+    else
+      [calculations_list, haml(:new_calculation_links)]
+    end
   end
 
   def tab_options

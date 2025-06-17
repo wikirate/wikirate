@@ -27,6 +27,9 @@
 - :name: URL
   :codename: url
 
+- :name: Body
+  :codename: body
+
 - :name: party
   :codename: party
 
