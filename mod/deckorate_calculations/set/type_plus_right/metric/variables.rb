@@ -25,7 +25,7 @@ include_set Abstract::IdList
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CalcTrigger
 
-delegate :metric_type_codename, :score?, :rating?, to: :metric_card
+delegate :metric_type_codename, :score?, :rating?, :license_card, to: :metric_card
 
 event :validate_variables, :validate, on: :save, changed: :content do
   item_ids.each do |card_id|
@@ -115,7 +115,7 @@ format :data do
 end
 
 format :html do
-  delegate :metric_type_codename, :score?, :rating?, to: :card
+  delegate :metric_type_codename, :score?, :rating?, :license_card, to: :card
 
   view :core do
     [render_algorithm, metric_tree].compact
@@ -157,9 +157,9 @@ format :html do
 
   def filter_items_default_filter
     super.tap do |hash|
-      hash.merge! metric_keyword: "",
-                  license: metric_card.license_card.nonderivative_licenses
-      hash.merge! metric_type: %w[Score Rating], name: "" if rating?
+      hash[:metric_keyword] = ""
+      hash[:license] = license_card.nonderivative_licenses
+      hash[:metric_type] = %w[Score Rating] if rating?
     end
   end
 
