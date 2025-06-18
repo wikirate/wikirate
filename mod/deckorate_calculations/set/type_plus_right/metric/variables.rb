@@ -1,8 +1,10 @@
 # Metric variables (+:variable fields on metric cards) are lists of hashes stored
 # as JSON
 #
+#
+#
 # Each item hash can have the following keys:
-#  # All metric types
+#  # All applicable metric types
 #  - metric:         # required. stored as id prefixed by tilde
 #
 #  # Ratings only
@@ -23,12 +25,17 @@ include_set Abstract::IdList
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::CalcTrigger
 
-delegate :metric_type_codename, :score?, :rating?, to: :metric_card
+delegate :metric_type_codename, :score?, :rating?, :license_card, to: :metric_card
 
 event :validate_variables, :validate, on: :save, changed: :content do
   item_ids.each do |card_id|
-    errors.add "unknown id: #{card_id}" unless (card = card_id.card)
-    errors.add "not a metric: #{card.name}" unless card.type_id == MetricID
+    if !(card = card_id.card)
+      errors.add :content, "unknown id: #{card_id}"
+    elsif card.type_id != MetricID
+      errors.add :content, "not a metric: #{card.name}"
+    elsif card.license_card.nonderivative?
+      errors.add :content, "Non-Derivative metric: #{card.name}"
+    end
   end
 end
 
@@ -108,7 +115,7 @@ format :data do
 end
 
 format :html do
-  delegate :metric_type_codename, :score?, :rating?, to: :card
+  delegate :metric_type_codename, :score?, :rating?, :license_card, to: :card
 
   view :core do
     [render_algorithm, metric_tree].compact
@@ -150,7 +157,9 @@ format :html do
 
   def filter_items_default_filter
     super.tap do |hash|
-      hash.merge! metric_type: %w[Score Rating], name: "" if rating?
+      hash[:metric_keyword] = ""
+      hash[:license] = license_card.nonderivative_licenses
+      hash[:metric_type] = %w[Score Rating] if rating?
     end
   end
 
