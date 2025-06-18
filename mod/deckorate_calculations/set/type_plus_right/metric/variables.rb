@@ -157,7 +157,8 @@ format :html do
 
   def filter_items_default_filter
     super.tap do |hash|
-      hash[:license] = Right::License::LICENSES.select { |l| !l.match?(/ND/)}
+      hash.merge! metric_keyword: "",
+                  license: metric_card.license_card.nonderivative_licenses
       hash.merge! metric_type: %w[Score Rating], name: "" if rating?
     end
   end

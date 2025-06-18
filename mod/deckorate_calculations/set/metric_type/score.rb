@@ -10,7 +10,7 @@ event :validate_score_name, :validate, changed: :name, on: :save do
     errors.add :name, "#{scoree} is not a metric"
   elsif !scorer_card&.type_id.in? [UserID, ResearchGroupID]
     errors.add :name, "Invalid Scorer: #{scorer}; must be a User or Research Group"
-  elsif scoree_card&.license_card.nonderivative?
+  elsif scoree_card&.license_card&.nonderivative?
     errors.add :name, "Cannot score non-derivative metric"
   end
 end

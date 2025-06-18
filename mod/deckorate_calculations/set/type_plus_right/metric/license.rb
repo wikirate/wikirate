@@ -24,10 +24,6 @@ def ok_to_delete?
   metric_card&.steward?
 end
 
-def nonderivative?
-  content.match?(/ND/)
-end
-
 private
 
 def cascade_calculated_metric_licenses
