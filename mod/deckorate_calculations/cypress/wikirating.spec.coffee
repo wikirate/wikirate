@@ -21,7 +21,7 @@ describe 'edit Rating', ->
       .find(".card-menu > a.edit-link").click(force: true)
     cy.contains("a", "Add Metric", timeout: 15000)
       .click()
-    cy.get("._filter-container [name='filter[name]']")
+    cy.get("._filter-container [name='filter[metric_keyword]']")
       .type("dead{enter}")
     cy.wait 300
     cy.get("input[name='Jedi+deadliness+Joe Camel']")
