@@ -7,7 +7,7 @@ format :html do
 
   define_filter_types dataset: :multiselect,
                       year: :check,
-                      topic: :multiselect,
+                      topic: :topic,
                       company_category: :check,
                       company_group: :multiselect,
                       company_keyword: :text,
@@ -64,6 +64,11 @@ format :html do
 
   def filter_license_options
     Right::License::LICENSES
+  end
+
+  def topic_filter field, config
+    value = filter_param(field) || config[:default]
+    haml :topic_filter, field: field, value: value
   end
 
   def topic_family_quick_filters
