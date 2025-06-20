@@ -44,7 +44,7 @@ event :ensure_two_parts, :validate, on: :save, changed: :name do
 end
 
 event :ensure_license, :validate, on: :create do
-  field :license, content: Right::License::LICENSES.first unless field? :license
+  field :license, content: Right::License::LICENSES.first
 end
 
 event :silence_metric_deletions, :initialize, on: :delete do
