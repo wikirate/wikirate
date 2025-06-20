@@ -80,4 +80,8 @@ format :html do
       }
     end
   end
+
+  def filter_value_array? category
+    category.to_sym == :topic ? true : super
+  end
 end
