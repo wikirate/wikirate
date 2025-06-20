@@ -7,6 +7,12 @@ event :cascade_license, :finalize, changed: :content do
   end
 end
 
+event :validate_license, :validate, changed: :content do
+  return unless nonderivative? && metric_card.direct_depender_metrics.present?
+
+  errors.add :content, "Cannot apply non-derivative license; metric has derivatives"
+end
+
 # used by calculated metrics to infer license from its inputs
 def infer
   return false unless metric_card.calculated?

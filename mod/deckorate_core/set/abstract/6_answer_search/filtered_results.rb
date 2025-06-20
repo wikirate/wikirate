@@ -78,7 +78,7 @@ format :html do
 
   def answer_page_link
     link_to_card :answer,
-                 "View all answers #{icon_tag :east}",
+                 "View all datapoints #{icon_tag :east}",
                  path: { filter: answer_page_filters }
   end
 
