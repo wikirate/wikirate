@@ -40,7 +40,7 @@ selectedVals = (el) ->
    $(el).find(".card-title.#{onClass}").map( -> valFor this )
 
 toggleLeaf = (leaf, perc) ->
-  leaf.find("> .card-title").toggleClass onClass
+  leaf.find("> .card-title, > h2 .card-title").toggleClass onClass
   percolate leaf if perc
 
 percolate = (item) ->
@@ -59,6 +59,4 @@ populateTree = (input, topics, perc) ->
     node = input.find("[data-treeval='#{topic}']")
     toggleLeaf node, perc
 
-    # seems like below should be collapse("show"), but I couldn't get that to work
-    # efm
-    node.find("> .tree-header .tree-button").trigger("click")
+    node.parents(".tree-collapse").collapse("show")

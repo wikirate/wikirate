@@ -27,7 +27,7 @@ end
 # So adding the creator_id to the steward list broke a bunch of verification tests
 # When there's time, we should update the tests and get rid of this. --efm
 def creator_steward_id
-  creator_id unless creator_id == Card::WagnBotID
+  creator_id unless creator_id == Card::DeckoBotID
 end
 
 def ok_as_steward?

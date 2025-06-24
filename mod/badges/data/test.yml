@@ -136,7 +136,7 @@
   :type: :list
   :content: Metric Bookmarker
 - :name:
-  - :wagn_bot
+  - :decko_bot
   - :answer
   - :badges_earned
   :type: :list
