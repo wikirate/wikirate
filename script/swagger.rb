@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + "/../config/environment"
 require "decko/swagger"
-Card::Auth.signin Card::WagnBotID
+Card::Auth.signin Card::DeckoBotID
 
 yaml_dir = File.dirname(__FILE__) + "/swagger"
 swag = Decko::Swagger.new yaml_dir
