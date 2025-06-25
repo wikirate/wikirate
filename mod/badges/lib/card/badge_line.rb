@@ -56,7 +56,7 @@ class Card
 
     def count_valued_actions user_id=nil
       user_id ||= Card::Auth.current_id
-      return 0 unless user_id != Card::WagnBotID && (cql = count_cql user_id)
+      return 0 unless user_id != Card::DeckoBotID && (cql = count_cql user_id)
       Card.search cql
     end
 
