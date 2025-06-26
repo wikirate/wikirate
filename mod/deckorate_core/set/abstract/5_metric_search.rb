@@ -46,6 +46,7 @@ format do
                                        label: "Metric Keyword",
                                        open: true
     end << :dataset
+    [{ key: :topic, open: true }]
   end
 
   def sort_options

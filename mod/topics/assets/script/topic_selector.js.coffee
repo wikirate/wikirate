@@ -23,10 +23,37 @@ $ ->
     toggleLeaf $(this), true
 
   $("body").on "click", "#{filterSelector} .tree-leaf", (_e) ->
-    el = $(this)
-    toggleLeaf el, false
-    updateHiddenFilterInputs el
-    el.closest("form").submit()
+    filterByTopic $(this)
+
+  $("body").on "click",  "#{filterSelector} .tree-button .card-title", (_e) ->
+#    debugger
+    item = $(this).closest ".tree-item"
+    filterByTopic item
+    item.data "card-title-click", true
+
+  $("body").on "click",  "#{filterSelector} .tree-button", (_e) ->
+    item = $(this).closest ".tree-item"
+    if item.data "card-title-click"
+      item.data "card-title-click", false
+    else
+      item.data "no-collapse", false
+      $($(this).data("bs-target")).collapse "toggle"
+
+  $("body").on "hide.bs.collapse", "#{filterSelector} .tree-collapse", (e)->
+    item = $(this).closest ".tree-item"
+    if item.data "no-collapse"
+      e.preventDefault()
+    else
+      e.stopPropagation()
+
+  $("body").on "show.bs.collapse", "#{filterSelector} .tree-collapse", (e)->
+    item = $(this).closest ".tree-item"
+    item.data "no-collapse", true
+
+filterByTopic = (el) ->
+  toggleLeaf el, false
+  updateHiddenFilterInputs el
+  el.closest("form").submit()
 
 updateHiddenFilterInputs = (el) ->
   filter = el.closest filterSelector
