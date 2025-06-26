@@ -18,6 +18,8 @@ decko.slot.ready (slot) ->
     vals = treeFilter.find(hiddenSelector + " input").map -> $(this).val()
     populateTree treeFilter, vals, false
 
+    treeFilter.find(".tree-item").data "no-collapse", true
+
 $ ->
   $("body").on "click", "#{inputSelector} .tree-leaf", (_e) ->
     toggleLeaf $(this), true
@@ -25,30 +27,58 @@ $ ->
   $("body").on "click", "#{filterSelector} .tree-leaf", (_e) ->
     filterByTopic $(this)
 
+
+  # NOTE: the following four event listeners are a somewhat hacky solution for the
+  # topics filter
+
+  # Context:
+  #  - the default tree behavior is to expand/collapse whenever anyone clicks on the
+  #    topic name, which is within the "tree-button". This is how the tree works in
+  #    the topic editor, which uses the same tree as the topic filter
+  #  - However, in the filter context, we want clicks on the topic name to turn the
+  #    filter on and off and NOT trigger the expand/collapse. (Instead we leave the
+  #    expand/collapse to the arrow icon)
+  #  - bootstrap's event listener appears to happen  before jQuery's "on" event
+  #    handling, so I was unable, despite many attempts, to intercept the click event
+  #    in the jQuery on events BEFORE bootstrap's expand/collapse had already happened.
+  #  - conversely in the bootstrap events, I was not able to get any information about
+  #    original click do determine whether it was on the topic name (.card-title).
+  #  - EITHER of these solutions would be nice. Intercepting the click at the button, or
+  #    having information about the button click at the time of hide.bs.collapse.
+  #  - Alas, without that, I had to implement the following, which, in short, turns
+  #    the collapse functionality off with "no-collapse" on the tree-item. Then if a click
+  #    on the button outside of the title happens, the no-collapse is turned off and
+  #    the collapse is retriggered, and then we reset again.
+
   $("body").on "click",  "#{filterSelector} .tree-button .card-title", (_e) ->
-#    debugger
-    item = $(this).closest ".tree-item"
+    item = treeItem this
     filterByTopic item
     item.data "card-title-click", true
 
   $("body").on "click",  "#{filterSelector} .tree-button", (_e) ->
-    item = $(this).closest ".tree-item"
+    item = treeItem this
     if item.data "card-title-click"
       item.data "card-title-click", false
     else
       item.data "no-collapse", false
       $($(this).data("bs-target")).collapse "toggle"
 
-  $("body").on "hide.bs.collapse", "#{filterSelector} .tree-collapse", (e)->
-    item = $(this).closest ".tree-item"
-    if item.data "no-collapse"
-      e.preventDefault()
-    else
-      e.stopPropagation()
+  $("body").on "hide.bs.collapse", "#{filterSelector} .tree-collapse", (event)->
+    handleFilterCollapse this, event
 
-  $("body").on "show.bs.collapse", "#{filterSelector} .tree-collapse", (e)->
-    item = $(this).closest ".tree-item"
+  $("body").on "show.bs.collapse", "#{filterSelector} .tree-collapse", (event)->
+    handleFilterCollapse this, event
+
+treeItem = (el) ->
+  $(el).closest ".tree-item"
+
+handleFilterCollapse = (el, event) ->
+  item = treeItem el
+  if item.data "no-collapse"
+    event.preventDefault()
+  else
     item.data "no-collapse", true
+    event.stopPropagation()
 
 filterByTopic = (el) ->
   toggleLeaf el, false
