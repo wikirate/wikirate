@@ -65,10 +65,6 @@ format do
     :value
   end
 
-  # def default_sort_dir sort_by
-  #   sort_by == :value ? default_value_sort_dir : super
-  # end
-
   def default_desc_sort_dir
     ::Set.new %i[updated_at metric_bookmarkers value year answer_count year_count]
   end
