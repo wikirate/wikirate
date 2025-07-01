@@ -1,13 +1,13 @@
 ---
 metrics_001:
   id: 1
-  metric_id: 856
-  designer_id: 831
-  title_id: 729
+  metric_id: 843
+  designer_id: 818
+  title_id: 716
   scorer_id:
-  metric_type_id: 718
-  value_type_id: 740
-  policy_id: 725
+  metric_type_id: 705
+  value_type_id: 727
+  policy_id: 712
   unit: ''
   hybrid: 0
   unpublished: 0
