@@ -53,6 +53,7 @@
 .answer-result-items {
   .tree-button {
     padding: 0;
+    overflow: auto;
     > div {
       margin-left: 1rem;
     }
