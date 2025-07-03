@@ -54,6 +54,7 @@
   .tree-button {
     padding: 0;
     > div {
+      overflow: auto;
       margin-left: 1rem;
     }
   }
