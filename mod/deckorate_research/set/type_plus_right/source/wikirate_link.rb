@@ -13,7 +13,7 @@ rescue URI::Error => e
   errors.add :link, "invalid URI: #{content}, #{e.message}"
 end
 
-FIELD_CODENAME = { title: :wikirate_title, description: :description }.freeze
+# FIELD_CODENAME = { title: :wikirate_title, description: :description }.freeze
 
 event :add_source_file, :integrate_with_delay, on: :create, when: :no_file? do
   Card.create name: name.left_name.field(:file), type: :file, remote_file_url: content
