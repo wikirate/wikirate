@@ -1,8 +1,9 @@
 EXPORT_LIMIT_OPTIONS = [50, 100, 500, 1000, 5000].freeze
 
+# supports requiring signins for CSV and JSON downloads
 module ExportPermissions
   def ok? task
-    if task == :read && !Auth.signed_in? && !Auth.always_ok?
+    if task == :read && !Auth.signed_in? && !Auth.always_ok? # the always_ok is for as_bot
       card.deny_because "Must be signed in"
     else
       super
