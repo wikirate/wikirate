@@ -15,7 +15,7 @@ format :json do
     {}
   end
 
-  view :answer_list, cache: :never do
+  view :answer_list, cache: :never, perms: :none do
     chart_query.lookup_relation.map(&:compact_json)
   end
 

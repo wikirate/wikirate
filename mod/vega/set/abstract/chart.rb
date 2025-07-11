@@ -34,7 +34,7 @@ end
 
 format :json do
   # views requested by ajax to load chart
-  view :vega, cache: :never do
+  view :vega, cache: :never, perms: :none do
     vega.render
   end
 

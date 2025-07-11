@@ -52,7 +52,7 @@ end
 format :json do
   include ExportSearch
 
-  view :compact, cache: :never do
+  view :compact, cache: :never, perms: :none do
     each_answer_with_hash do |answer, hash|
       hash[:companies][answer.company_id] ||= answer.company_name
       hash[:metrics][answer.metric_id] ||= answer.metric_name
@@ -60,18 +60,18 @@ format :json do
     end
   end
 
-  view :company_list, cache: :never do
+  view :company_list, cache: :never, perms: :none do
     list_of_hashes = map_unique(:company_id) { |id| { id: id, name: id.cardname } }
     list_of_hashes.sort_by { |h| h[:name] }
   end
 
-  view :metric_list, cache: :never do
+  view :metric_list, cache: :never, perms: :none do
     map_unique :metric_id, :metric_type_id do |id, type_id|
       { id: id, name: id.card.metric_title, metric_type: type_id.cardname }
     end
   end
 
-  view :answer_list, cache: :never do
+  view :answer_list, cache: :never, perms: :none do
     lookup_relation.map(&:compact_json)
   end
 
@@ -79,7 +79,7 @@ format :json do
     lookup_relation.map { |a| a.compact_json.merge key: a.name.url_key }
   end
 
-  view :type_lists, cache: :never do
+  view :type_lists, cache: :never, perms: :none do
     {
       companies: render_company_list,
       metrics: render_metric_list,
@@ -87,19 +87,19 @@ format :json do
     }
   end
 
-  view :metric_type_counts, cache: :never do
+  view :metric_type_counts, cache: :never, perms: :none do
     grouped_counts :metric_type_id
   end
 
-  view :value_type_counts, cache: :never do
+  view :value_type_counts, cache: :never, perms: :none do
     grouped_counts :value_type_id
   end
 
-  view :verification_counts, cache: :never do
+  view :verification_counts, cache: :never, perms: :none do
     grouped_counts :verification
   end
 
-  view :route_counts, cache: :never do
+  view :route_counts, cache: :never, perms: :none do
     grouped_counts :route
   end
 
