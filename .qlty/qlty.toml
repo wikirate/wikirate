@@ -40,6 +40,13 @@ exclude_patterns = [
   "**/templates/**",
   "**/testdata/**",
   "**/vendor/**",
+  "mod/*/{data/files,public,vendor}/**",
+  "mod/*/data/{transform,schema}/**",
+  "mod/**/lib/javascript/**/*.js",
+  "mod/**/*.min.css",
+  "test/**",
+  "script/single-use/**",
+  "mod/deckorate_research/assets/script/jpages.js"
 ]
 
 test_patterns = [
