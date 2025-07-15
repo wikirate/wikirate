@@ -115,4 +115,10 @@ format do
 
     !AnswerQuery.all_answer_query?(filter_hash.symbolize_keys)
   end
+
+  private
+
+  def valid_sort_options
+    SORT_OPTIONS
+  end
 end
