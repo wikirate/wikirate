@@ -74,14 +74,6 @@ format do
     SECONDARY_SORT
   end
 
-  def sort_by_from_param
-    super.tap do |sort_by|
-      if sort_by && !SORT_OPTIONS.include?(sort_by)
-        raise Error::UserError, "Invalid Sort Param: #{sort_by}"
-      end
-    end
-  end
-
   def default_sort_option
     if current_group == :none
       default_ungrouped_sort_option
