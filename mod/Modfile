@@ -10,6 +10,7 @@ mod "deckorate_utility"
 ## DeckoRate mods
 mod "deckorate_layout"
 
+mod "topics" # TODO: extract generalizable stuff. distribute remainder in dr mods
 
 mod "deckorate_core"
 mod "deckorate_research"
@@ -23,7 +24,6 @@ mod "deckorate_attribution"
 mod "deckorate_profiles"
 # mod "deckorate_relationships" # TODO
 # mod "deckorate" # (wrapper) # TODO
-mod "wikirate_topics"
 
 ## WikiRate mods
 mod "wikirate_companies"

@@ -4,9 +4,9 @@ RSpec.describe Card::Set::TypePlusRight::Topic::TopicFamily do
 
     it "gets triggered by category change and updates family", with_user: "Joe Admin" do
       # category is Force
-      expect(topic.topic_family.cardname).to eq("Force")
-      topic.category_card.update! content: "Taming"
-      expect(topic.topic_family.cardname).to eq("Taming")
+      expect(topic.topic_family.cardname).to eq(%i[esg_topic environment].cardname)
+      topic.category_card.update! content: %i[esg_topic social].cardname
+      expect(topic.topic_family.cardname).to eq(%i[esg_topic social].cardname)
     end
 
     # category lingers when deleted
@@ -26,11 +26,11 @@ RSpec.describe Card::Set::TypePlusRight::Topic::TopicFamily do
   #     # metric_plus_framework.refresh_families
   #     # FIXME: above would not be necessary if framework were correctly assigned during
   #     # seeding.
-  #     expect(metric_plus_framework.first_name).to eq("Taming")
+  #     expect(metric_plus_framework.first_name).to eq(%i[esg_topic social].cardname)
   #     metric.topic_card.update! content: "Energy"
-  #     expect(metric_plus_framework.refresh.item_names).to eq(["Force"])
-  #     "Energy".card.category_card.update! content: "Taming"
-  #     expect(metric_plus_framework.refresh(true).item_names).to include("Taming")
+  #     expect(metric_plus_framework.refresh.item_names).to eq([%i[esg_topic environment].cardname])
+  #     "Energy".card.category_card.update! content: %i[esg_topic social].cardname
+  #     expect(metric_plus_framework.refresh(true).item_names).to include(%i[esg_topic social].cardname)
   #   end
   # end
 end

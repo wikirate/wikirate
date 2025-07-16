@@ -1,1085 +1,1063 @@
-#---
-#- :name: Star Wars Topics
-#  :type: :topic_framework
-#- :name: Force
-#  :type: :topic
-#  :fields:
-#    :topic_framework:
-#      :type: :pointer
-#      :content: Star Wars Topics
-#    :about: A Jedi uses the Force for knowledge and defense, never for attack.
-#- :name: Taming
-#  :type: :topic
-#  :fields:
-#    :topic_framework: Star Wars Topic
-#    :about: What a cute animal
-#- :name: Animal Welfare
-#  :type: :topic
-#  :fields:
-#    :topic_framework: Star Wars Topic
-#    :category: Force
-#- :name: Energy
-#  :type: :topic
-#  :fields:
-#    :topic_framework: Wikirate ESG Topics
-#    :topic_family: Environment
-#    :category: Environment
-#- :name: Featured
-#  :codename: featured
-#- :name:
-#  - :topic
-#  - :featured
-#  :type: :list
-#  :content:
-#  - Force
-#  - Taming
-#- :name:
-#  - Star Wars Topics
-#  - :category
-#  :content:
-#  - Force
-#  - Taming
-- :name: Air Pollution
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Pollution
-- :name: AI Ethics & Governance
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Digital Responsibility
-- :name: Algorithmic Bias & Fairness
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Digital Responsibility
-- :name: Annual Reporting
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Transparency
-- :name: Anti-Discrimination Measures
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Biodiversity
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Environment
-- :name: Biodiversity Agreements
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Biodiversity
-- :name: Biodiversity Impact Assessment
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Biodiversity
-- :name: Board Composition & Independence
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Corporate Governance
-- :name: Board Diversity
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Bribery & Corruption Prevention
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Business Ethics
-- :name: Business Ethics
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Governance
-- :name: Carbon Footprint of Supply Chain
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Climate Change
-- :name: Child Labor
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Human Rights
-- :name: Circular Economy
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Environment
-- :name: Circular Economy Strategies
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Circular Economy
-- :name: Circular Supply Chains
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Circular Economy
-- :name: Clean and Renewable Energy
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Energy
-- :name: Climate Change
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Environment
-- :name: Climate Change Policy
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Climate Change
-- :name: Climate Risk Management
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Risk Management
-- :name: Climate Targets & Transition Plans
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Climate Change
-- :name: Code of Ethics
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Corporate Governance
-- :name: Collective Bargaining
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Labor Rights & Working Conditions
-- :name: Community Education Initiatives
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Education & Training
-- :name: Community Engagement Programs
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Community Impact
-- :name: Community Impact
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Social
-- :name: Community Impact & Support Programs
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Just Transition
-- :name: Compliance and Corrective Action
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Business Ethics
-- :name: Conflict-Affected Areas
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Human Rights
-- :name: Conservation
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Biodiversity
-- :name: Consumer Grievance Mechanisms
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Consumer Rights
-- :name: Consumer Rights
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Social
-- :name: Corporate Governance
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Governance
-- :name: Corporate Governance Structure
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Corporate Governance
-- :name: Corporate Tax Transparency
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Financial Governance
-- :name: Country-by-Country Reporting
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Tax Transparency
-- :name: Crisis Response & Resilience
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Risk Management
-- :name: Cybersecurity Risk
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Risk Management
-- :name: Cybersecurity Risk & Resilience
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Digital Responsibility
-- :name: Data Ethics
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Consumer Rights
-- :name: Data Protection & Privacy
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Digital Responsibility
-- :name: Deforestation
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Biodiversity
-- :name: Desertification
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Land Use & Degradation
-- :name: Digital Responsibility
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Governance
-- :name: Digital Rights
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Digital Responsibility
-- :name: Disability Inclusion
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Discrimination and Harassment
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Diversity, Equity & Inclusion (DEI)
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Social
-- :name: Education & Training
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Social
-- :name: Effective Tax Rate Disclosure
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Tax Transparency
-- :name: Electronic Waste (E-Waste)
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Waste
-- :name: Emergency Preparedness
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Health & Safety
-- :name: Employee Training & Development
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Education & Training
-- :name: Employment Contracts
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Labor Rights & Working Conditions
-- :name: Energy Intensity
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Energy
-- :name: Energy Management & Efficiency
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Energy
-- :name: Energy Sourcing
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Energy
-- :name: Enterprise Risk Management
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Risk Management
+---
 - :name: Environment
   :type: :topic
   :codename: :environment
   :fields:
     :topic_framework: Wikirate ESG Topics
     :topic_family: Environment
-- :name: Equity in Climate Policies
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Just Transition
-- :name: ESG Integration into Business Strategy
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Sustainability Strategy
-- :name: ESG Risk Integration
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Risk Management
-- :name: Ethical Use of Technology
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Digital Responsibility
-- :name: Ethnic & Racial Equity
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Executive Pay & Bonuses
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Financial Governance
-- :name: Fair Marketing & Consumer Information
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Consumer Rights
-- :name: Financial Governance
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Governance
-- :name: Food Waste
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Sustainable Agriculture
-- :name: Forced Labor
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Human Rights
-- :name: Freedom of Association
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Labor Rights & Working Conditions
-- :name: Fuel Consumption
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Energy
-- :name: Gender Equality
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: General Waste
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Waste
-- :name: Genetically Modified Organisms (GMO)
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Sustainable Agriculture
-- :name: Governance
-  :type: :topic
-  :codename: :governance
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-- :name: Greenhouse Gas (GHG) Emissions
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Climate Change
-- :name: Grievance Mechanisms
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Human Rights
-- :name: Habitat Protection
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Biodiversity
-- :name: Hazardous Waste
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Waste
-- :name: Health Risk Assessments
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Health & Safety
-- :name: Health & Safety
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Social
-- :name: Human Rights
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Social
-- :name: Human Rights Due Diligence
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Human Rights
-- :name: Impact on Local Communities
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Community Impact
-- :name: Inclusion in Transition Planning
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Just Transition
-- :name: Inclusion Policies
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Indigenous Peoples Rights
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Human Rights
-- :name: Industrial Emissions
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Pollution
-- :name: Integrated Reporting
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Transparency
-- :name: Job Security
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Labor Rights & Working Conditions
-- :name: Just Transition
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Social
-- :name: Knowledge Sharing
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Education & Training
-- :name: Labor Rights & Working Conditions
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Social
-- :name: Land Conversion for Agriculture
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Land Use & Degradation
-- :name: Land Degradation
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Land Use & Degradation
-- :name: Land Rehabilitation & Restoration
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Land Use & Degradation
-- :name: Land Use
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Biodiversity
-- :name: Land Use & Degradation
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Environment
-- :name: LGBT Inclusion
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Lobbying Expenditures
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Lobbying & Political Engagement
-- :name: Lobbying & Political Engagement
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Governance
-- :name: Local Sourcing
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Sustainable Supply Chains
-- :name: Materiality Assessment
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Sustainability Strategy
-- :name: Material Recovery & Reuse
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Circular Economy
-- :name: Mental Health Policies
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Health & Safety
-- :name: Migrant Worker Protections
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Human Rights
-- :name: Mining Impacts on Land
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Land Use & Degradation
-- :name: Modern Slavery
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Human Rights
-- :name: Monoculture
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Sustainable Agriculture
-- :name: Nature-based Solutions
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Biodiversity
-- :name: Noise Pollution
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Pollution
-- :name: Non-compliance and Sanctions
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Business Ethics
-- :name: Occupational Health & Safety
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Health & Safety
-- :name: Organic and Sustainable Products
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Sustainable Agriculture
-- :name: Parental Policies
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Labor Rights & Working Conditions
-- :name: Pay Equity Analysis
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Personal Protective Equipment
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Health & Safety
-- :name: Philanthropy
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Community Impact
-- :name: Policy Influence Strategies
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Lobbying & Political Engagement
-- :name: Political Contributions
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Lobbying & Political Engagement
-- :name: Pollution
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Environment
-- :name: Product Lifecycle Management
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Circular Economy
-- :name: Product Safety
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Consumer Rights
-- :name: Public ESG Commitments
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Transparency
-- :name: Recycled Materials
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Circular Economy
-- :name: Recycled Products
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Circular Economy
-- :name: Reputational Risk
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Risk Management
-- :name: Reskilling & Workforce Transition
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Just Transition
-- :name: Risk Management
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Governance
-- :name: Safety Training
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Health & Safety
 - :name: Social
   :type: :topic
   :codename: :social
   :fields:
     :topic_framework: Wikirate ESG Topics
     :topic_family: Social
-- :name: Social Dialogue & Stakeholder Engagement
+- :name: Governance
   :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Just Transition
-- :name: Social Investment
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Community Impact
-- :name: Soil Contamination
-  :type: :topic
-  :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Pollution
-- :name: Stakeholder Accountability
-  :type: :topic
+  :codename: :governance
   :fields:
     :topic_framework: Wikirate ESG Topics
     :topic_family: Governance
-    :category: Corporate Governance
-- :name: Student Engagement
+- :name:
+  - :esg_topics
+  - :environment
+  :type: :topic
+- :name:
+  - :esg_topics
+  - Biodiversity
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Education & Training
-- :name: Supplier Audits & Monitoring
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - Biodiversity Agreements
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Sustainable Supply Chains
-- :name: Supplier Code of Conduct
+    :category: Wikirate ESG Topics+Biodiversity
+- :name:
+  - :esg_topics
+  - Conservation
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Sustainable Supply Chains
-- :name: Supplier Diversity
+    :category: Wikirate ESG Topics+Biodiversity
+- :name:
+  - :esg_topics
+  - Deforestation
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Supply Chain Risk
+    :category: Wikirate ESG Topics+Biodiversity
+- :name:
+  - :esg_topics
+  - Sustainable Forestry
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Risk Management
-- :name: Supply Chain Transparency
+    :category: Wikirate ESG Topics+Biodiversity
+- :name:
+  - :esg_topics
+  - Land Use
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Transparency
-- :name: Sustainability & ESG Reporting
+    :category: Wikirate ESG Topics+Biodiversity
+- :name:
+  - :esg_topics
+  - Habitat Protection
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Transparency
-- :name: Sustainability Goals & Targets
+    :category: Wikirate ESG Topics+Biodiversity
+- :name:
+  - :esg_topics
+  - Biodiversity Impact Assessment
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Sustainability Strategy
-- :name: Sustainability Governance & Oversight
+    :category: Wikirate ESG Topics+Biodiversity
+- :name:
+  - :esg_topics
+  - Nature-based Solutions
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Sustainability Strategy
-- :name: Sustainability Reporting
+    :category: Wikirate ESG Topics+Biodiversity
+- :name:
+  - :esg_topics
+  - Circular Economy
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Transparency
-- :name: Sustainability Strategy
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - Recycled Materials
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Governance
-- :name: Sustainable Agriculture
+    :category: Wikirate ESG Topics+Circular Economy
+- :name:
+  - :esg_topics
+  - Recycled Products
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Environment
-- :name: Sustainable Forestry
+    :category: Wikirate ESG Topics+Circular Economy
+- :name:
+  - :esg_topics
+  - Circular Economy Strategies
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Biodiversity
-- :name: Sustainable Investment
+    :category: Wikirate ESG Topics+Circular Economy
+- :name:
+  - :esg_topics
+  - Product Lifecycle Management
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Financial Governance
-- :name: Sustainable Materials
+    :category: Wikirate ESG Topics+Circular Economy
+- :name:
+  - :esg_topics
+  - Material Recovery & Reuse
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Sustainable Supply Chains
-- :name: Sustainable Supply Chains
+    :category: Wikirate ESG Topics+Circular Economy
+- :name:
+  - :esg_topics
+  - Circular Supply Chains
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Environment
-- :name: Tax Avoidance Practices
+    :category: Wikirate ESG Topics+Circular Economy
+- :name:
+  - :esg_topics
+  - Climate Change
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Tax Transparency
-- :name: Tax Policy & Strategy
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - Climate Change Policy
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Tax Transparency
-- :name: Tax Transparency
+    :category: Wikirate ESG Topics+Climate Change
+- :name:
+  - :esg_topics
+  - Greenhouse Gas (GHG) Emissions
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Governance
-- :name: Temporary Work
+    :category: Wikirate ESG Topics+Climate Change
+- :name:
+  - :esg_topics
+  - Carbon Footprint of Supply Chain
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Labor Rights & Working Conditions
-- :name: Termination & Dismissal Practices
+    :category: Wikirate ESG Topics+Climate Change
+- :name:
+  - :esg_topics
+  - Use of Carbon Offsets
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Labor Rights & Working Conditions
-- :name: Transparency
+    :category: Wikirate ESG Topics+Climate Change
+- :name:
+  - :esg_topics
+  - Climate Targets & Transition Plans
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Governance
-- :name: Urban Development Impact
+    :category: Wikirate ESG Topics+Climate Change
+- :name:
+  - :esg_topics
+  - Energy
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Land Use & Degradation
-- :name: Use of Carbon Offsets
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - Clean and Renewable Energy
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Climate Change
-- :name: Wage Transparency
+    :category: Wikirate ESG Topics+Energy
+- :name:
+  - :esg_topics
+  - Energy Intensity
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Labor Rights & Working Conditions
-- :name: Waste
+    :category: Wikirate ESG Topics+Energy
+- :name:
+  - :esg_topics
+  - Energy Management & Efficiency
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Environment
-- :name: Wastewater Discharge
+    :category: Wikirate ESG Topics+Energy
+- :name:
+  - :esg_topics
+  - Energy Sourcing
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Water
-- :name: Waste Management & Disposal Practices
+    :category: Wikirate ESG Topics+Energy
+- :name:
+  - :esg_topics
+  - Fuel Consumption
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Waste
-- :name: Water
+    :category: Wikirate ESG Topics+Energy
+- :name:
+  - :esg_topics
+  - Sustainable Agriculture
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Environment
-- :name: Water Conservation
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - Genetically Modified Organisms (GMO)
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Water
-- :name: Water Management
+    :category: Wikirate ESG Topics+Sustainable Agriculture
+- :name:
+  - :esg_topics
+  - Food Waste
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Water
-- :name: Water Pollution & Effluents
+    :category: Wikirate ESG Topics+Sustainable Agriculture
+- :name:
+  - :esg_topics
+  - Monoculture
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Water
-- :name: Water Risk & Scarcity Exposure
+    :category: Wikirate ESG Topics+Sustainable Agriculture
+- :name:
+  - :esg_topics
+  - Organic and Sustainable Products
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Water
-- :name: Water Usage
+    :category: Wikirate ESG Topics+Sustainable Agriculture
+- :name:
+  - :esg_topics
+  - Sustainable Supply Chains
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Environment
-    :category: Water
-- :name: Whistleblowing Mechanisms
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - Sustainable Materials
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Governance
-    :category: Business Ethics
-- :name: Workforce Diversity
+    :category: Wikirate ESG Topics+Sustainable Supply Chains
+- :name:
+  - :esg_topics
+  - Local Sourcing
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Diversity, Equity & Inclusion (DEI)
-- :name: Working Hours
+    :category: Wikirate ESG Topics+Sustainable Supply Chains
+- :name:
+  - :esg_topics
+  - Supplier Code of Conduct
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Labor Rights & Working Conditions
-- :name: Workplace Accidents
+    :category: Wikirate ESG Topics+Sustainable Supply Chains
+- :name:
+  - :esg_topics
+  - Supplier Audits & Monitoring
   :type: :topic
   :fields:
-    :topic_framework: Wikirate ESG Topics
-    :topic_family: Social
-    :category: Health & Safety
+    :category: Wikirate ESG Topics+Sustainable Supply Chains
+- :name:
+  - :esg_topics
+  - Waste
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - General Waste
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Waste
+- :name:
+  - :esg_topics
+  - Hazardous Waste
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Waste
+- :name:
+  - :esg_topics
+  - Electronic Waste (E-Waste)
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Waste
+- :name:
+  - :esg_topics
+  - Waste Management & Disposal Practices
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Waste
+- :name:
+  - :esg_topics
+  - Water
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - Water Conservation
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Water
+- :name:
+  - :esg_topics
+  - Water Management
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Water
+- :name:
+  - :esg_topics
+  - Water Pollution & Effluents
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Water
+- :name:
+  - :esg_topics
+  - Water Usage
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Water
+- :name:
+  - :esg_topics
+  - Water Risk & Scarcity Exposure
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Water
+- :name:
+  - :esg_topics
+  - Wastewater Discharge
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Water
+- :name:
+  - :esg_topics
+  - Pollution
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - Air Pollution
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Pollution
+- :name:
+  - :esg_topics
+  - Soil Contamination
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Pollution
+- :name:
+  - :esg_topics
+  - Noise Pollution
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Pollution
+- :name:
+  - :esg_topics
+  - Industrial Emissions
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Pollution
+- :name:
+  - :esg_topics
+  - Land Use & Degradation
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Environment
+- :name:
+  - :esg_topics
+  - Land Degradation
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Land Use & Degradation
+- :name:
+  - :esg_topics
+  - Desertification
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Land Use & Degradation
+- :name:
+  - :esg_topics
+  - Land Conversion for Agriculture
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Land Use & Degradation
+- :name:
+  - :esg_topics
+  - Mining Impacts on Land
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Land Use & Degradation
+- :name:
+  - :esg_topics
+  - Land Rehabilitation & Restoration
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Land Use & Degradation
+- :name:
+  - :esg_topics
+  - Urban Development Impact
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Land Use & Degradation
+- :name:
+  - :esg_topics
+  - :governance
+  :type: :topic
+- :name:
+  - :esg_topics
+  - Corporate Governance
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Governance
+- :name:
+  - :esg_topics
+  - Corporate Governance Structure
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Corporate Governance
+- :name:
+  - :esg_topics
+  - Board Composition & Independence
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Corporate Governance
+- :name:
+  - :esg_topics
+  - Stakeholder Accountability
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Corporate Governance
+- :name:
+  - :esg_topics
+  - Code of Ethics
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Corporate Governance
+- :name:
+  - :esg_topics
+  - Business Ethics
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Governance
+- :name:
+  - :esg_topics
+  - Bribery & Corruption Prevention
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Business Ethics
+- :name:
+  - :esg_topics
+  - Compliance and Corrective Action
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Business Ethics
+- :name:
+  - :esg_topics
+  - Non-compliance and Sanctions
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Business Ethics
+- :name:
+  - :esg_topics
+  - Whistleblowing Mechanisms
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Business Ethics
+- :name:
+  - :esg_topics
+  - Risk Management
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Governance
+- :name:
+  - :esg_topics
+  - Enterprise Risk Management
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Risk Management
+- :name:
+  - :esg_topics
+  - ESG Risk Integration
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Risk Management
+- :name:
+  - :esg_topics
+  - Climate Risk Management
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Risk Management
+- :name:
+  - :esg_topics
+  - Cybersecurity Risk
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Risk Management
+- :name:
+  - :esg_topics
+  - Reputational Risk
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Risk Management
+- :name:
+  - :esg_topics
+  - Supply Chain Risk
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Risk Management
+- :name:
+  - :esg_topics
+  - Crisis Response & Resilience
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Risk Management
+- :name:
+  - :esg_topics
+  - Financial Governance
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Governance
+- :name:
+  - :esg_topics
+  - Executive Pay & Bonuses
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Financial Governance
+- :name:
+  - :esg_topics
+  - Corporate Tax Transparency
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Financial Governance
+- :name:
+  - :esg_topics
+  - Sustainable Investment
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Financial Governance
+- :name:
+  - :esg_topics
+  - Transparency
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Governance
+- :name:
+  - :esg_topics
+  - Sustainability & ESG Reporting
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Transparency
+- :name:
+  - :esg_topics
+  - Sustainability Reporting
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Transparency
+- :name:
+  - :esg_topics
+  - Integrated Reporting
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Transparency
+- :name:
+  - :esg_topics
+  - Public ESG Commitments
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Transparency
+- :name:
+  - :esg_topics
+  - Annual Reporting
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Transparency
+- :name:
+  - :esg_topics
+  - Supply Chain Transparency
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Transparency
+- :name:
+  - :esg_topics
+  - Lobbying & Political Engagement
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Governance
+- :name:
+  - :esg_topics
+  - Lobbying Expenditures
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Lobbying & Political Engagement
+- :name:
+  - :esg_topics
+  - Political Contributions
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Lobbying & Political Engagement
+- :name:
+  - :esg_topics
+  - Policy Influence Strategies
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Lobbying & Political Engagement
+- :name:
+  - :esg_topics
+  - Tax Transparency
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Governance
+- :name:
+  - :esg_topics
+  - Country-by-Country Reporting
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Tax Transparency
+- :name:
+  - :esg_topics
+  - Effective Tax Rate Disclosure
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Tax Transparency
+- :name:
+  - :esg_topics
+  - Tax Avoidance Practices
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Tax Transparency
+- :name:
+  - :esg_topics
+  - Tax Policy & Strategy
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Tax Transparency
+- :name:
+  - :esg_topics
+  - Sustainability Strategy
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Governance
+- :name:
+  - :esg_topics
+  - ESG Integration into Business Strategy
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Sustainability Strategy
+- :name:
+  - :esg_topics
+  - Materiality Assessment
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Sustainability Strategy
+- :name:
+  - :esg_topics
+  - Sustainability Governance & Oversight
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Sustainability Strategy
+- :name:
+  - :esg_topics
+  - Sustainability Goals & Targets
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Sustainability Strategy
+- :name:
+  - :esg_topics
+  - Digital Responsibility
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Governance
+- :name:
+  - :esg_topics
+  - Data Protection & Privacy
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Digital Responsibility
+- :name:
+  - :esg_topics
+  - Digital Rights
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Digital Responsibility
+- :name:
+  - :esg_topics
+  - Ethical Use of Technology
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Digital Responsibility
+- :name:
+  - :esg_topics
+  - AI Ethics & Governance
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Digital Responsibility
+- :name:
+  - :esg_topics
+  - Algorithmic Bias & Fairness
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Digital Responsibility
+- :name:
+  - :esg_topics
+  - Cybersecurity Risk & Resilience
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Digital Responsibility
+- :name:
+  - :esg_topics
+  - :social
+  :type: :topic
+- :name:
+  - :esg_topics
+  - Community Impact
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Social
+- :name:
+  - :esg_topics
+  - Impact on Local Communities
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Community Impact
+- :name:
+  - :esg_topics
+  - Philanthropy
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Community Impact
+- :name:
+  - :esg_topics
+  - Social Investment
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Community Impact
+- :name:
+  - :esg_topics
+  - Community Engagement Programs
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Community Impact
+- :name:
+  - :esg_topics
+  - Consumer Rights
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Social
+- :name:
+  - :esg_topics
+  - Fair Marketing & Consumer Information
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Consumer Rights
+- :name:
+  - :esg_topics
+  - Product Safety
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Consumer Rights
+- :name:
+  - :esg_topics
+  - Data Ethics
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Consumer Rights
+- :name:
+  - :esg_topics
+  - Consumer Grievance Mechanisms
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Consumer Rights
+- :name:
+  - :esg_topics
+  - Education & Training
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Social
+- :name:
+  - :esg_topics
+  - Employee Training & Development
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Education & Training
+- :name:
+  - :esg_topics
+  - Student Engagement
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Education & Training
+- :name:
+  - :esg_topics
+  - Community Education Initiatives
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Education & Training
+- :name:
+  - :esg_topics
+  - Knowledge Sharing
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Education & Training
+- :name:
+  - :esg_topics
+  - Human Rights
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Social
+- :name:
+  - :esg_topics
+  - Child Labor
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Human Rights
+- :name:
+  - :esg_topics
+  - Modern Slavery
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Human Rights
+- :name:
+  - :esg_topics
+  - Forced Labor
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Human Rights
+- :name:
+  - :esg_topics
+  - Indigenous Peoples Rights
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Human Rights
+- :name:
+  - :esg_topics
+  - Human Rights Due Diligence
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Human Rights
+- :name:
+  - :esg_topics
+  - Grievance Mechanisms
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Human Rights
+- :name:
+  - :esg_topics
+  - Conflict-Affected Areas
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Human Rights
+- :name:
+  - :esg_topics
+  - Migrant Worker Protections
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Human Rights
+- :name:
+  - :esg_topics
+  - Labor Rights & Working Conditions
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Social
+- :name:
+  - :esg_topics
+  - Freedom of Association
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Labor Rights & Working Conditions
+- :name:
+  - :esg_topics
+  - Collective Bargaining
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Labor Rights & Working Conditions
+- :name:
+  - :esg_topics
+  - Working Hours
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Labor Rights & Working Conditions
+- :name:
+  - :esg_topics
+  - Employment Contracts
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Labor Rights & Working Conditions
+- :name:
+  - :esg_topics
+  - Job Security
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Labor Rights & Working Conditions
+- :name:
+  - :esg_topics
+  - Termination & Dismissal Practices
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Labor Rights & Working Conditions
+- :name:
+  - :esg_topics
+  - Temporary Work
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Labor Rights & Working Conditions
+- :name:
+  - :esg_topics
+  - Parental Policies
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Labor Rights & Working Conditions
+- :name:
+  - :esg_topics
+  - Wage Transparency
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Labor Rights & Working Conditions
+- :name:
+  - :esg_topics
+  - Health & Safety
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Social
+- :name:
+  - :esg_topics
+  - Occupational Health & Safety
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Health & Safety
+- :name:
+  - :esg_topics
+  - Workplace Accidents
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Health & Safety
+- :name:
+  - :esg_topics
+  - Safety Training
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Health & Safety
+- :name:
+  - :esg_topics
+  - Mental Health Policies
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Health & Safety
+- :name:
+  - :esg_topics
+  - Emergency Preparedness
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Health & Safety
+- :name:
+  - :esg_topics
+  - Personal Protective Equipment
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Health & Safety
+- :name:
+  - :esg_topics
+  - Health Risk Assessments
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Health & Safety
+- :name:
+  - :esg_topics
+  - Diversity, Equity & Inclusion (DEI)
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Social
+- :name:
+  - :esg_topics
+  - Workforce Diversity
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Gender Equality
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Inclusion Policies
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Anti-Discrimination Measures
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Discrimination and Harassment
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - LGBT Inclusion
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Disability Inclusion
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Pay Equity Analysis
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Supplier Diversity
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Board Diversity
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Ethnic & Racial Equity
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Diversity, Equity & Inclusion (DEI)
+- :name:
+  - :esg_topics
+  - Just Transition
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Social
+- :name:
+  - :esg_topics
+  - Social Dialogue & Stakeholder Engagement
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Just Transition
+- :name:
+  - :esg_topics
+  - Reskilling & Workforce Transition
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Just Transition
+- :name:
+  - :esg_topics
+  - Community Impact & Support Programs
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Just Transition
+- :name:
+  - :esg_topics
+  - Equity in Climate Policies
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Just Transition
+- :name:
+  - :esg_topics
+  - Inclusion in Transition Planning
+  :type: :topic
+  :fields:
+    :category: Wikirate ESG Topics+Just Transition

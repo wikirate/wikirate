@@ -32,12 +32,11 @@ end
 def ensure_topic topicname, category=nil
   puts "ensuring #{topicname}"
   args = {
-    name: topicname,
+    name: "#{FRAMEWORK}+#{topicname}",
     type: :topic,
     conflict: :override,
-    fields: { topic_framework: "Wikirate ESG Topics" }
   }
-  args[:fields][:category] = category if category.present?
+  args[:fields] = { category: "#{FRAMEWORK}+#{category}" } if category.present?
   Card.ensure! args
 end
 
