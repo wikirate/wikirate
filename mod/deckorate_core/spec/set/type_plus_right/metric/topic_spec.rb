@@ -6,7 +6,7 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Topic do
       Card["Jedi+disturbances in the force+topics"].add_item! "Animal Welfare"
     end
     let :delete_one do
-      Card["Jedi+disturbances in the force+topics"].drop_item! "Force"
+      Card["Jedi+disturbances in the force+topics"].drop_item! %i[esg_topics environment].cardname
     end
   end
 end
