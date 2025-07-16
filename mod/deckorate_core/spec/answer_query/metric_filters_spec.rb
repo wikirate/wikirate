@@ -8,7 +8,7 @@ RSpec.describe Card::AnswerQuery::MetricFilters do
 
     describe "#filter_by_metric_keyword" do
       it "finds exact match" do
-        expect(search(metric_keyword: %i[esg_topics environment].cardname))
+        expect(search(metric_keyword: "Force"))
           .to eq with_year(["disturbances in the Force",
                             "disturbances in the Force"], 2001)
       end
