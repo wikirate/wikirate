@@ -79,8 +79,8 @@ RSpec.describe Card::MetricImportItem do
     it "handles multi-value fields" do
       item = validate
       expect(field(item, :topic))
-        .to eq(content: [%i[esg_topic environment],
-                         %i[esg_topic social]].map(&:cardname))
+        .to eq(content: [%i[esg_topics environment],
+                         %i[esg_topics social]].map(&:cardname))
     end
   end
 

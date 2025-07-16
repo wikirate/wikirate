@@ -8,8 +8,8 @@ RSpec.describe Card::Set::Right::Topic do
       # metric updated with topic "Energy"
       metric_topic.add_item! "Energy"
 
-      # ... so metric should now be tagged with %i[esg_topic environment].cardname
-      expect(metric_topic.item_names).to include(%i[esg_topic environment].cardname)
+      # ... so metric should now be tagged with %i[esg_topics environment].cardname
+      expect(metric_topic.item_names).to include(%i[esg_topics environment].cardname)
     end
   end
 end
