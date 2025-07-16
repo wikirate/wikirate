@@ -72,7 +72,7 @@ format :html do
   end
 
   def topic_family_quick_filters
-    Card::Set::Self::Topic.family_list.item_cards.map do |topic|
+    Card::Set::Self::Topic.family_cards.map do |topic|
       {
         topic: topic.name,
         icon: icon_tag(topic.codename),

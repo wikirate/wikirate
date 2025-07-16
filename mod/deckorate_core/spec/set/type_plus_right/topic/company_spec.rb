@@ -1,16 +1,16 @@
 # -*- encoding : utf-8 -*-
 
 # RSpec.describe Card::Set::TypePlusRight::Topic::Company do
-#   it_behaves_like "cached count", ["Taming", :company], 4, 1 do
+#   it_behaves_like "cached count", [%i[esg_topics social].cardname, :company], 4, 1 do
 #     let :add_one do
-#       Card.fetch("Joe User+RM+topics", new: {}).add_item! "Taming"
+#       Card.fetch("Joe User+RM+topics", new: {}).add_item! %i[esg_topics social].cardname
 #     end
 #     let :delete_one do
-#       Card["Joe User+researched number 3+topics"].drop_item! "Taming"
+#       Card["Joe User+researched number 3+topics"].drop_item! %i[esg_topics social].cardname
 #     end
 #   end
 #
-#   it_behaves_like "cached count", ["Force", :company], 4, 1 do
+#   it_behaves_like "cached count", [%i[esg_topics environment].cardname, :company], 4, 1 do
 #     let :add_one do
 #       create_answers "Jedi+disturbances in the Force", true do
 #         Samsung "1977" => "no"

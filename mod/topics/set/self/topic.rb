@@ -8,7 +8,7 @@ class << self
   def featured_framework
     :esg_topics
 
-    # one a gem we can replace with the following
+    # once a gem we can replace with the following
     # Cardio.config.featured_topic_framework
   end
 
@@ -17,21 +17,26 @@ class << self
   end
 
   def family_names
-    @family_names ||= family_list.item_names
+    @family_names ||= family_list.item_names.map do |title|
+      [featured_framework, title].cardname
+    end
+  end
+
+  def family_cards
+    @family_cards ||= family_names.map(&:card)
+  end
+
+  def family_ids
+    @family_id ||= family_names.map(&:card_id)
   end
 end
 
-def featured_framework
-  Self::Topic.featured_framework
-end
-
-def family_list
-  Self::Topic.family_list
-end
+delegate :featured_framework, :family_cards, :family_list, :family_ids,
+         to: Self::Topic
 
 def cql_content
   # exclude top-level topics
-  { type: :topic, id: ["not in"] + family_list.item_ids }
+  { type: :topic, id: ["not in"] + family_ids }
 end
 
 format do

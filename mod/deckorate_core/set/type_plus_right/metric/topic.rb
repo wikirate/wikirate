@@ -7,6 +7,7 @@ delegate :ok_to_delete?, to: :metric_card
 event :cascade_topics, :finalize, changed: :content do
   Auth.as_bot do
     cascade_calculated_topics
+    cascade_dataset_topics
   end
 end
 
@@ -41,5 +42,11 @@ private
 def cascade_calculated_topics
   metric_card.direct_depender_metrics.each do |metric|
     metric.topic_card.infer
+  end
+end
+
+def cascade_dataset_topics
+  metric_card.dataset_card.item_cards.each do |dataset|
+    dataset.topic_card.infer
   end
 end
