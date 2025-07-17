@@ -17,26 +17,15 @@ class << self
   end
 
   def family_names
-    @family_names ||= family_list.item_names.map do |title|
-      [featured_framework, title].cardname
-    end
-  end
-
-  def family_cards
-    @family_cards ||= family_names.map(&:card)
-  end
-
-  def family_ids
-    @family_id ||= family_names.map(&:card_id)
+    @family_names ||= family_list.item_names
   end
 end
 
-delegate :featured_framework, :family_cards, :family_list, :family_ids,
-         to: Self::Topic
+delegate :featured_framework, :family_names, to: Self::Topic
 
 def cql_content
   # exclude top-level topics
-  { type: :topic, id: ["not in"] + family_ids }
+  { type: :topic, id: ["not in"] + family_list.item_ids }
 end
 
 format do

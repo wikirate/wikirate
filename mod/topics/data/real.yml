@@ -60,6 +60,6 @@
     - :category
   :type: list
   :content:
-    - :environment
-    - :social
-    - :governance
+    - "_left+Environment"
+    - "_left+Social"
+    - "_left+Governance"
