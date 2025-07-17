@@ -35,10 +35,11 @@ end
 format :html do
   def quick_filter_list
     Card::Set::Self::Topic.family_list.item_cards.map do |topic|
+      topic_codename = topic.right&.codename
       {
-        topic_family: topic.name,
-        icon: icon_tag(topic.codename),
-        class: "quick-filter-topic-#{topic.codename}"
+        topic_family: topic.name.right,
+        icon: icon_tag(topic_codename),
+        class: "quick-filter-topic-#{topic_codename}"
       }
     end
   end
@@ -63,7 +64,7 @@ end
 # FilterCql class for topic filtering
 class TopicFilterCql < DeckorateFilterCql
   def topic_framework_cql framework
-    add_to_cql :right_plus, refer_to(:topic_framework, framework)
+    add_to_cql :left, framework
   end
 
   def topic_family_cql family
