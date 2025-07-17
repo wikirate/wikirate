@@ -13,7 +13,6 @@
   :codename: topic_title
   :type: :cardtype
 
-
 - :name: Category
   :type: :pointer
   :codename: category
