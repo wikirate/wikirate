@@ -10,19 +10,19 @@ describe "filtering on company pages", ->
 #    # go to topic tab
 #    cy.contains("Topics").click()
 #
-#    # "Taming" topic present before filtering
-#    cy.contains("Taming")
+#    # "Wikirate ESG Topics+Social" topic present before filtering
+#    cy.contains("Wikirate ESG Topics+Social")
 #    cy.get("._filter-container [name='filter[name]']")
 #      .type("forc")
 #
 #    # Topic is now filtered out
-#    cy.should "not.contain", "Taming"
+#    cy.should "not.contain", "Wikirate ESG Topics+Social"
 #
 #    # url bar is NOT updated with filter
 #    cy.location("search").should "not.contain", "filter"
 #
 #    # click on a topic
-#    cy.contains("Force").click()
+#    cy.contains("Wikirate ESG Topics+Environment").click()
 
 
 #
