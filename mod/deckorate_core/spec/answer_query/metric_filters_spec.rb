@@ -75,7 +75,7 @@ RSpec.describe Card::AnswerQuery::MetricFilters do
     end
 
     specify "#filter_by_topic" do
-      expect(search(topic: "Force")).to eq ["disturbances in the Force+2001"]
+      expect(search(topic: %i[esg_topics environment].cardname)).to eq ["disturbances in the Force+2001"]
     end
 
     describe "#filter_by_bookmarkht6" do

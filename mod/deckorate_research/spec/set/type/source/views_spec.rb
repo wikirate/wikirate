@@ -58,7 +58,7 @@ RSpec.describe Card::Set::Type::Source::Views do
         # "Operation timed out" for the following url
         # "https://www.sample-videos.com/text/Sample-text-file-10kb.txt"
         @existing_source = create_source @url, fields: { "Company" => "Death Star",
-                                                         "Topic" => "Taming" }
+                                                         "Topic" => %i[esg_topics social].cardname }
         @result = @existing_source.format._render_preview
       end
       it "wraps plain text in a <pre> tag" do

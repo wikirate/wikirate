@@ -47,6 +47,5 @@ end
 private
 
 def allowed_topic_families
-  @allowed_topic_families ||=
-    topic_framework_card(true)&.first_card&.category_card&.item_names || []
+  @allowed_topic_families ||= left&.category_card&.item_names || []
 end
