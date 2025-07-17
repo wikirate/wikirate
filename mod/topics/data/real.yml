@@ -22,7 +22,6 @@
 - :name: Overview
   :codename: general_overview
 
-
 - :name: Wikirate ESG Topics
   :type: :topic_framework
   :codename: esg_topics
@@ -39,6 +38,14 @@
   :type: :topic_title
   :codename: :governance
 
+- :name:
+    - :esg_topics
+    - :category
+  :type: list
+  :content:
+    - "_left+Environment"
+    - "_left+Social"
+    - "_left+Governance"
 
 - :name:
     - :esg_topics
@@ -50,16 +57,9 @@
     - :social
   :type: :topic
 
-- :name: Governance
+- :name:
     - :esg_topics
     - :governance
   :type: :topic
 
-- :name:
-    - :esg_topics
-    - :category
-  :type: list
-  :content:
-    - "_left+Environment"
-    - "_left+Social"
-    - "_left+Governance"
+

@@ -1,6 +1,6 @@
 RSpec.describe Card::Set::TypePlusRight::Topic::TopicFamily do
   describe "#refresh_topic_family" do
-    let(:topic) { "Energy".card }
+    let(:topic) { [:esg_topics, "Energy"].card }
 
     it "gets triggered by category change and updates family", with_user: "Joe Admin" do
       # category is Force

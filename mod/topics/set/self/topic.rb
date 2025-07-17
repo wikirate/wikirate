@@ -21,7 +21,7 @@ class << self
   end
 end
 
-delegate :featured_framework, :family_names, to: Self::Topic
+delegate :featured_framework, :family_list, :family_names, to: Self::Topic
 
 def cql_content
   # exclude top-level topics
