@@ -43,6 +43,10 @@ event :variables_content_prep, :prepare_to_validate, on: :save do
   self.content = content # trigger standardization
 end
 
+event :re_infer_calculated_topics, :finalize, on: :save do
+  left.topic_card.infer
+end
+
 def standardize_content content
   # make sure we have a list of hashes
   items = content_to_hash_list content

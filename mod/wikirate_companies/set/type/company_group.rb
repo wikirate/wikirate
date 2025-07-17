@@ -37,11 +37,15 @@ format :html do
   end
 
   def tab_list
-    %i[details company]
+    %i[details company metric]
   end
 
   view :company_tab do
     field_nest :company, view: :filtered_content
+  end
+
+  view :metric_tab do
+    field_nest :metric, view: :filtered_content
   end
 
   view :details_tab_left do

@@ -8,7 +8,7 @@ class << self
   def featured_framework
     :esg_topics
 
-    # one a gem we can replace with the following
+    # once a gem we can replace with the following
     # Cardio.config.featured_topic_framework
   end
 
@@ -21,13 +21,7 @@ class << self
   end
 end
 
-def featured_framework
-  Self::Topic.featured_framework
-end
-
-def family_list
-  Self::Topic.family_list
-end
+delegate :featured_framework, :family_names, to: Self::Topic
 
 def cql_content
   # exclude top-level topics
