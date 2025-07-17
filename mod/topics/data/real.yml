@@ -9,6 +9,10 @@
   :type: :cardtype
 - :name: Topic Family
   :codename: topic_family
+- :name: Topic Title
+  :codename: topic_title
+  :type: :cardtype
+
 
 - :name: Category
   :type: :pointer
@@ -18,34 +22,44 @@
 - :name: Overview
   :codename: general_overview
 
-
 - :name: Wikirate ESG Topics
   :type: :topic_framework
   :codename: esg_topics
 
 - :name: Environment
-  :type: :topic
-  :codename: environment
-  :fields:
-    :topic_framework: Wikirate ESG Topics
+  :type: :topic_title
+  :codename: :environment
 
 - :name: Social
-  :type: :topic
-  :codename: social
-  :fields:
-    :topic_framework: Wikirate ESG Topics
+  :type: :topic_title
+  :codename: :social
 
 - :name: Governance
-  :type: :topic
-  :codename: governance
-  :fields:
-    :topic_framework: Wikirate ESG Topics
+  :type: :topic_title
+  :codename: :governance
 
 - :name:
     - :esg_topics
     - :category
   :type: list
   :content:
+    - "_left+Environment"
+    - "_left+Social"
+    - "_left+Governance"
+
+- :name:
+    - :esg_topics
     - :environment
+  :type: :topic
+
+- :name:
+    - :esg_topics
     - :social
+  :type: :topic
+
+- :name:
+    - :esg_topics
     - :governance
+  :type: :topic
+
+
