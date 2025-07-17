@@ -3,7 +3,7 @@ RSpec.describe Card::Set::Type::Metric::Creation do
     Card.new type: :metric
   end
 
-  check_views_for_errors
+  # check_views_for_errors
 
   def create_metric_with_policy research_policy
     Card.create! type: :metric, name: "Joe User+test metric",

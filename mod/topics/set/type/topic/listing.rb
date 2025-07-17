@@ -34,6 +34,8 @@ format :html do
   end
 
   view :tree_item do
+    add_name_context card.name.left
+    voo.joint = " "
     if card.subtopic_card.count.positive?
       tree_item render_title, body: render_tree_body, data: { treeval: card.name }
     else
