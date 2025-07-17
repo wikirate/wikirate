@@ -1,7 +1,7 @@
 require File.expand_path "../../script_helper.rb", __FILE__
 
 CSVFILE = File.expand_path "data/2025-04-10-topics.csv", __dir__
-FRAMEWORK = "Wikirate ESG Topics"
+FRAMEWORK = "GRI"
 
 def topics_tree
   rows.each_with_object({}) do |row, h|
