@@ -14,7 +14,7 @@ RSpec.describe Card::MetricQuery do
   end
 
   example "topic filter" do
-    expect(run(topic: "Taming").map(&:name).sort)
+    expect(run(topic: %i[esg_topics social].cardname).map(&:name).sort)
       .to eq(["Fred+dinosaurlabor", "Joe User+researched number 3"])
   end
 
