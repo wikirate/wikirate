@@ -30,7 +30,7 @@ format :html do
   end
 
   view :details_tab_right do
-    field_nest :subtopic, view: :titled, title: "Subtopics", items: { view: :bar }
+    field_nest :subtopic, view: :titled, title: "Subtopics", items: { view: :closed }
   end
 
   view :unknown do
@@ -39,5 +39,9 @@ format :html do
 
   def default_item_view
     :bar
+  end
+
+  def details_tab_cols
+    [5, 7]
   end
 end

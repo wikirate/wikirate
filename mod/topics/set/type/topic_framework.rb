@@ -5,7 +5,7 @@ format :html do
   view :titled_content do
     [
       field_nest(:description),
-      field_nest(:category),
+      field_nest(:category, items: { view: :closed }),
       field_nest(:topic, view: :filtered_content)
     ]
   end

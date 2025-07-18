@@ -22,4 +22,8 @@ format :html do
   end
 
   view :details_tab, template: :haml
+
+  def details_tab_cols
+    [8, 4]
+  end
 end
