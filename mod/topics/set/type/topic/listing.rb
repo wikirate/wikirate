@@ -34,6 +34,8 @@ format :html do
   end
 
   view :tree_item do
+    add_name_context card.name.left
+    voo.joint = " "
     if card.subtopic_card.count.positive?
       tree_item render_title, body: render_tree_body, data: { treeval: card.name }
     else
@@ -49,6 +51,17 @@ format :html do
     content_tag :div, class: "tree-leaf", data: { treeval: card.name } do
       render_title
     end
+  end
+
+  %i[title_link icon_badge name_badge link].each do |view|
+    before view do
+      voo.joint = " "
+      add_name_context card.name.left
+    end
+  end
+
+  def topic_codename
+    @topic_codename ||= card.right&.codename
   end
 
   private
