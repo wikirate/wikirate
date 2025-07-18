@@ -20,7 +20,7 @@ module Deckorate
     end
 
     def sample_topic
-      "Force".card
+      %i[esg_topics environment].cardname.card
     end
 
     def sample_metrics num=1, args={}

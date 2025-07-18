@@ -89,7 +89,7 @@ end
 # note: includes Formula, Rating, and Descendants but not Score metrics
 def formula_metrics
   @formula_metrics ||=
-    Card.search type: :metric, right_plus: [:variables, { refer_to: id }]
+    id ? (Card.search type: :metric, right_plus: [:variables, { refer_to: id }]) : []
 end
 
 def update_latest company_id=nil
