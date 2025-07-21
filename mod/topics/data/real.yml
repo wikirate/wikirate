@@ -21,10 +21,16 @@
 - :name: Overview
   :codename: general_overview
 
-
 - :name: Wikirate ESG Topics
   :type: :topic_framework
   :codename: esg_topics
+  :fields:
+    :category:
+      :type: list
+      :content:
+        - "_left+Environment"
+        - "_left+Social"
+        - "_left+Governance"
 
 - :name: GRI
   :type: :topic_framework
