@@ -29,11 +29,4 @@
 - :name: GRI
   :type: :topic_framework
 
-- :name:
-    - :esg_topics
-    - :category
-  :type: list
-  :content:
-    - "_left+Environment"
-    - "_left+Social"
-    - "_left+Governance"
+- gri_topics
