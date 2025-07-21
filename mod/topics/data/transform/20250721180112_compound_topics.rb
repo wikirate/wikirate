@@ -17,14 +17,37 @@ class CompoundTopics < Cardio::Migration::Transform
   end
 
   def update_topic topic
-    return if (oldname = topic.name).compound?
+    return if topic.name.compound?
 
     framepoint = topic.topic_framework_card
-    return no_framework(oldname) unless (framework = framepoint.firstname).present?
+    return no_framework(oldname) unless (framework = framepoint.first_name).present?
 
-    topic.update! name: [framework, oldname].cardname
-    oldname.card.update! type: :topic_title
+    rename_topic topic, framework
+
     framepoint.delete!
+  end
+
+  def rename_topic topic, framework
+    oldname = topic.name
+    handling_name_conflicts oldname do
+      topic.update! name: [framework, oldname].cardname
+      oldname.card.update! type: :topic_title
+    end
+  end
+
+  def handling_name_conflicts oldname
+    @conflicts = Card.search right: oldname
+    rename_conflicts "#{oldname} - placeholder"
+    yield
+    rename_conflicts oldname
+  end
+
+  def rename_conflicts field_name
+    return unless @conflicts.present?
+
+    @conflicts.each do |c|
+      c.update! name: [c.name.left, field_name].cardname
+    end
   end
 
   def no_framework oldname
