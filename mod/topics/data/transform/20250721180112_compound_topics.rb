@@ -37,17 +37,22 @@ class CompoundTopics < Cardio::Migration::Transform
 
   def handling_name_conflicts oldname
     @conflicts = Card.search right: oldname
-    rename_conflicts "#{oldname} - placeholder"
+    rename_conflicts oldname, :add
     yield
-    rename_conflicts oldname
+    rename_conflicts oldname, :delete
   end
 
-  def rename_conflicts field_name
+  def rename_conflicts oldname, action
     return unless @conflicts.present?
 
+    placeholder = Card.create! name: "#{oldname} - placeholder", type: :topic_title
+    fieldname = action == :add ? placeholder.name : oldname
+
     @conflicts.each do |c|
-      c.update! name: [c.name.left, field_name].cardname
+      c.update! name: [c.name.left, fieldname].cardname
     end
+
+    placeholder.delete!
   end
 
   def no_framework oldname
