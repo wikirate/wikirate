@@ -29,7 +29,7 @@ end
 
 event :ensure_title, :validate, on: :save, changed: :name do
   case Card.fetch_type_id(metric_title)
-  when MetricTitleID, ReportTypeID
+  when MetricTitleID, ReportTypeID, TopicTitleID
     return
   when nil
     subcard metric_title, type_id: MetricTitleID

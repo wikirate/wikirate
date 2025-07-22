@@ -32,7 +32,7 @@ RSpec.describe Card::Set::Type::Topic do
   describe "event#assign_topic_family" do
     it "adds an error if topic family is not allowed in framework" do
       expect { create_topic! [:esg_topics, "new topic"].cardname,
-                             "GRI+GRI 2 - General Disclosures", nil }
+                             "Test Topics+updated topic", nil }
         .to raise_error(ActiveRecord::RecordInvalid,
                         /category must be in one of these families/)
     end
