@@ -6,6 +6,7 @@ FIELDS_TO_UPDATE = %i[topic topic_framework category]
 def run
   clean_up_frameworks
   pausing_esg_families do
+    puts "updating topics".blue
     Card.search type: :topic do |topic|
       update_topic topic
     end
@@ -15,6 +16,7 @@ def run
 end
 
 def clean_up_frameworks
+  puts "clean up frameworks".blue
   Card.search(type: :topic_framework) do |framework|
     next if framework.codename.present? || framework.name == "GRI"
 
@@ -23,15 +25,23 @@ def clean_up_frameworks
 end
 
 def update_field_cards
+  puts "updating field cards".blue
+
   field_cards = Card.search right: { name: FIELDS_TO_UPDATE.clone.unshift(:in) }
   add_framework_to_items field_cards
 end
 
 def add_framework_to_items list
   list.each do |card|
-    card.update! content: (card.item_names.map do |i|
-      i.simple? ? [:esg_topics, i].cardname : i
-    end)
+    content = items_with_framework(card)
+    puts "#{card.name}: #{content}".yellow
+    card.update! content: content
+  end
+end
+
+def items_with_framework card
+  card.item_names.map do |i|
+    i.simple? ? [:esg_topics, i].cardname : i
   end
 end
 
