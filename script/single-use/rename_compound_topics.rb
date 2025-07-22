@@ -10,7 +10,6 @@ def run
   end
 end
 
-
 # get rid of old framework cards and topic framework field cards
 def clean_up_frameworks
   Card.search type: :topic_framework do |framework|
@@ -22,11 +21,17 @@ end
 # resaving will convert content to ids because those classes now contain
 # the Abstract::ItemId class
 def convert_topic_lists_to_item_ids
-  Card.search(right: { name: %i[in topic category] }).each(&:save!)
+  Card.where("right_id in (?)", %i[topic category].map(&:card_id))
+      .where(trash: false).find_each do |list|
+    list.include_set_modules
+    puts "converting: #{list.name}".green
+    list.save!
+  end
 end
 
 def update_topics
-  Card.search type: :topic do |topic|
+  Card.where(type_id: :topic.card_id, trash: false).find_each do |topic|
+    topic.include_set_modules
     rename_topic topic if topic.name.simple?
   end
 end
