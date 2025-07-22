@@ -1,79 +1,43 @@
 # -*- encoding : utf-8 -*-
 require File.expand_path "../../script_helper.rb", __FILE__
 
-FIELDS_TO_UPDATE = %i[topic topic_framework category]
-
 def run
-  clean_up_frameworks
-  pausing_esg_families do
-    puts "updating topics".blue
-    Card.search type: :topic do |topic|
-      update_topic topic
-    end
-    update_field_cards
-    update_clear_references
+  %i[clean_up_frameworks
+     convert_topic_lists_to_item_ids
+     update_topics].each do |action|
+    puts "current action: #{action}".blue
+    send action
   end
 end
 
+
+# get rid of old framework cards and topic framework field cards
 def clean_up_frameworks
-  puts "clean up frameworks".blue
-  Card.search(type: :topic_framework) do |framework|
-    next if framework.codename.present? || framework.name == "GRI"
+  Card.search type: :topic_framework do |framework|
+    framework.delete! unless framework.codename.present? || framework.name == "GRI"
+  end
+  Card.search(right: :topic_framework).each(&:delete!)
+end
 
-    framework.delete!
+# resaving will convert content to ids because those classes now contain
+# the Abstract::ItemId class
+def convert_topic_lists_to_item_ids
+  Card.search(right: { name: %i[in topic category] }).each(&:save!)
+end
+
+def update_topics
+  Card.search type: :topic do |topic|
+    rename_topic topic if topic.name.simple?
   end
 end
 
-def update_field_cards
-  puts "updating field cards".blue
-
-  field_cards = Card.search right: { name: FIELDS_TO_UPDATE.clone.unshift(:in) }
-  add_framework_to_items field_cards
-end
-
-def add_framework_to_items list
-  list.each do |card|
-    content = items_with_framework(card)
-    puts "#{card.name}: #{content}".yellow
-    card.update! content: content
-  end
-end
-
-def items_with_framework card
-  card.item_names.map do |i|
-    i.simple? ? [:esg_topics, i].cardname : i
-  end
-end
-
-def update_clear_references
-
-end
-
-def pausing_esg_families
-  cat = :esg_topics.card.category_card
-  oldname = cat.name
-  cat.update! name: [:esg_topics, "*placeholder"].cardname if cat.real?
-  yield
-  cat.update! name: oldname
-end
-
-def update_topic topic
-  return if topic.name.compound?
-
-  puts "updating topic #{topic.name}".green
-
-  framepoint = topic.topic_framework_card
-  return no_framework(topic.name) unless (framework = framepoint.first_name).present?
-
-  rename_topic topic, framework
-
-  framepoint.delete!
-end
-
-def rename_topic topic, framework
+def rename_topic topic
   oldname = topic.name
+  puts "renaming topic #{oldname}".green
+
   handling_name_conflicts oldname do
-    topic.update! name: [framework, oldname].cardname
+    topic.update! name: [:esg_topics, oldname].cardname,
+                  skip: :update_referer_content
     oldname.card.update! type: :topic_title
   end
 end
