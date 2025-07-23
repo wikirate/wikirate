@@ -39,7 +39,7 @@ card_counts_007:
   id: 7
   left_id: 1485
   right_id: 702
-  value: 1
+  value: 4
   flag: 0
 card_counts_008:
   id: 8
@@ -777,7 +777,7 @@ card_counts_130:
   id: 130
   left_id: 4504
   right_id: 643
-  value: 0
+  value: 1
   flag: 0
 card_counts_131:
   id: 131
@@ -1125,7 +1125,7 @@ card_counts_188:
   id: 188
   left_id: 4857
   right_id: 643
-  value: 0
+  value: 1
   flag: 0
 card_counts_189:
   id: 189
@@ -1137,5 +1137,11 @@ card_counts_190:
   id: 190
   left_id: 4649
   right_id: 607
+  value: 1
+  flag: 0
+card_counts_191:
+  id: 191
+  left_id: 4489
+  right_id: 643
   value: 1
   flag: 0
