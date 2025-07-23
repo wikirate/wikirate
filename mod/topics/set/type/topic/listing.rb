@@ -60,8 +60,8 @@ format :html do
     end
   end
 
-  def topic_codename
-    @topic_codename ||= card.right&.codename
+  def topic_key
+    @topic_key ||= card.name.right_key
   end
 
   private
