@@ -14,7 +14,7 @@ def refresh_topic_family
   family = topic.determine_topic_family
 
   if family.present?
-    update content: family
+    update content: [family]
   elsif real?
     delete
   end
