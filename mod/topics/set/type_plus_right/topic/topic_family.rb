@@ -6,8 +6,8 @@ delegate :determine_topic_family, :allowed_topic_families, :topic_families?, to:
 
 event :validate_topic_family, :validate,
       on: :save, changed: :content, when: :topic_families? do
-  self.content = [determine_topic_family]
-  return if content.in? allowed_topic_families
+
+  return true if first_id.in? allowed_topic_families
 
   errors.add :content,
              "category must be in one of these families: " +

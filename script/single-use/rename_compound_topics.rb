@@ -4,7 +4,9 @@ require File.expand_path "../../script_helper.rb", __FILE__
 def run
   %i[clean_up_frameworks
      convert_topic_lists_to_item_ids
-     update_topics].each do |action|
+     update_topics
+
+    ].each do |action|
     puts "current action: #{action}".blue
     send action
   end

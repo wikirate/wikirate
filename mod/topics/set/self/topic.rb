@@ -20,8 +20,11 @@ end
 delegate :featured_framework, :family_list, to: Self::Topic
 
 def cql_content
-  # exclude top-level topics
-  { type: :topic, id: ["not in"] + family_list.item_ids }
+  { type: :topic }.tap do |cql|
+    # exclude top-level topics
+    excluded_ids = family_list.item_ids
+    cql[:id] =  ["not in"] + excluded_ids if excluded_ids.present?
+  end
 end
 
 format do

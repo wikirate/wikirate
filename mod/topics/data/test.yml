@@ -2,7 +2,6 @@
 - :name: GRI
   :type: :topic_framework
 
-
 - :name: Wikirate ESG Topics
   :type: :topic_framework
   :codename: esg_topics
@@ -40,6 +39,15 @@
     - :esg_topics
     - :governance
   :type: :topic
+
+- :name:
+    - :esg_topics
+    - :category
+  :type: list
+  :content:
+    - "Wikirate ESG Topics+Environment"
+    - "Wikirate ESG Topics+Social"
+    - "Wikirate ESG Topics+Governance"
 
 - esg_topics
 - gri_topics

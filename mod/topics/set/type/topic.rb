@@ -14,11 +14,7 @@ card_accessor :subtopic, type: :search_type
 card_accessor :dataset, type: :search_type
 card_accessor :metric, type: :search_type
 
-require_field :topic_family, when: :topic_families?
-
-event :ensure_topic_family, :validate, on: :save, when: :topic_families? do
-  subcard topic_family_card
-end
+# require_field :topic_family, when: :topic_families?
 
 def search_content_field_codes
   [:general_overview]
@@ -41,8 +37,6 @@ end
 def determine_topic_family
   recursive_categories.last || id
 end
-
-private
 
 def allowed_topic_families
   # @allowed_topic_families ||=

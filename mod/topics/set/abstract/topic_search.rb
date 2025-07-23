@@ -35,11 +35,11 @@ end
 format :html do
   def quick_filter_list
     Card::Set::Self::Topic.family_list.item_cards.map do |topic|
-      topic_codename = topic.right&.codename
+      topic_key = topic.right&.codename
       {
         topic_family: topic.name.right,
-        icon: icon_tag(topic_codename),
-        class: "quick-filter-topic-#{topic_codename}"
+        icon: icon_tag(topic_key),
+        class: "quick-filter-topic-#{topic_key}"
       }
     end
   end
