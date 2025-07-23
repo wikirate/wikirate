@@ -13,15 +13,11 @@ class << self
   end
 
   def family_list
-    @family_list ||= featured_framework&.card&.category_card
-  end
-
-  def family_names
-    @family_names ||= family_list.item_names
+    featured_framework&.card&.category_card
   end
 end
 
-delegate :featured_framework, :family_list, :family_names, to: Self::Topic
+delegate :featured_framework, :family_list, to: Self::Topic
 
 def cql_content
   # exclude top-level topics

@@ -57,7 +57,7 @@ format :html do
   end
 
   def filter_topic_family_options
-    Card::Set::Self::Topic.family_names
+    Card::Set::Self::Topic.family_list.item_names
   end
 end
 
