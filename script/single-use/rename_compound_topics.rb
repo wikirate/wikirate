@@ -22,6 +22,7 @@ end
 # the Abstract::ItemId class
 def convert_topic_lists_to_item_ids
   Card.where("right_id in (?)", %i[topic category].map(&:card_id))
+      .where("not REGEXP_LIKE(db_content, '^[\~0-9\n]*$')")
       .where(trash: false).find_each do |list|
     list.include_set_modules
     puts "converting: #{list.name}".green

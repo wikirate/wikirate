@@ -14,15 +14,10 @@ card_accessor :subtopic, type: :search_type
 card_accessor :dataset, type: :search_type
 card_accessor :metric, type: :search_type
 
-event :validate_topic_family, :validate, on: :save, when: :topic_families? do
-  family = determine_topic_family
-  return if family.in? allowed_topic_families
+require_field :topic_family, when: :topic_families?
 
-
-  errors.add :content,
-             "category must be in one of these families: " +
-             (allowed_topic_families.map(&:cardname)
-                                    .to_sentence last_word_connector: ", or ")
+event :ensure_topic_family, :validate, on: :save, when: :topic_families? do
+  subcard topic_family_card
 end
 
 def search_content_field_codes
