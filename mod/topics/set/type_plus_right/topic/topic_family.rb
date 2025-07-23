@@ -2,7 +2,7 @@ include_set Abstract::IdList
 
 assign_type :pointer
 
-delegate :determine_topic_family, :allowed_topic_families, to: :topic
+delegate :determine_topic_family, :allowed_topic_families, :topic_families?, to: :topic
 
 event :validate_topic_family, :validate,
       on: :save, changed: :content, when: :topic_families? do
