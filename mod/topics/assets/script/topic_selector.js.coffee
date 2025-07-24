@@ -1,6 +1,6 @@
 
 onClass = "bg-topic"
-inputSelector = "._topic-tree-input"
+inputSelector = "._topic-tree-input, ._framework-tree-input"
 filterSelector = "._topic-tree-filter"
 hiddenSelector = "._topic-tree-hidden"
 
