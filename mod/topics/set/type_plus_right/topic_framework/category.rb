@@ -1,3 +1,4 @@
+include_set Abstract::IdList
 assign_type :list
 
 def topic_framework
