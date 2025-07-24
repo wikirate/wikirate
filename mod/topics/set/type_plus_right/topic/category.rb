@@ -7,7 +7,7 @@ def topic
   left
 end
 
-event :assign_topic_family, :int,
+event :assign_topic_family, :integration,
       on: :save, changed: :content, when: :topic_families? do
   topic.topic_family_card.refresh_topic_family
 end
