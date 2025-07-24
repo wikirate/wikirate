@@ -1,23 +1,37 @@
 ---
-- :name: updated topic
+- :name: Test Topics
+  :type: :topic_framework
+- :name:
+    - Test Topics
+    - updated topic
   :type: :topic
   :user: Joe Admin
-- :name: discussed topic
+- :name:
+    - Test Topics
+    - discussed topic
   :type: :topic
   :user: Joe Admin
-- :name: bookmarked topic
+- :name:
+    - Test Topics
+    - bookmarked topic
   :type: :topic
   :user: Joe Admin
 
-- :name: created topic
+- :name:
+    - Test Topics
+    - created topic
   :type: :topic
   :content: updated
   :user: Joe User
-- :name: updated topic
+- :name:
+    - Test Topics
+    - updated topic
   :content: updated
   :user: Joe User
   :conflict: override
-- :name: discussed topic
+- :name:
+    - Test Topics
+    - discussed topic
   :user: Joe User
   :conflict: override
   :fields:
@@ -30,4 +44,4 @@
     - :bookmarks
   :content:
     - Jedi+disturbances in the Force
-    - bookmarked topic
+    - Test Topics+bookmarked topic
