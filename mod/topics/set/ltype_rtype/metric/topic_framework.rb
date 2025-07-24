@@ -20,13 +20,7 @@
 #   false
 # end
 #
-# def refresh_families
-#   if family_ids.present?
-#     update content: family_ids
-#   elsif real?
-#     delete
-#   end
-# end
+
 #
 # private
 #

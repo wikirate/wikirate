@@ -53,15 +53,12 @@ format :html do
     end
   end
 
-  %i[title_link icon_badge name_badge link].each do |view|
-    before view do
-      voo.joint = " "
-      add_name_context card.name.left
-    end
+  def standard_title
+    card.name.right
   end
 
-  def topic_codename
-    @topic_codename ||= card.right&.codename
+  def topic_key
+    @topic_key ||= card.name.right_key
   end
 
   private
