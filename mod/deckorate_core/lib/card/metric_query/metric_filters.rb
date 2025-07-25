@@ -9,6 +9,13 @@ class Card
         )
       end
 
+      def filter_by_topic_framework value
+        restrict_by_cql(
+          :topic, :metric_id,
+          right: :topic_framework, refer_to: ["in", value].flatten, return: :left_id
+        )
+      end
+
       def filter_by_dataset value
         dataset_restriction :metric_id, :metric, value
       end

@@ -1,3 +1,5 @@
+include_set Abstract::IdList
+assign_type :pointer
 
 delegate :topic_families?, :determine_topic_family, to: :topic
 

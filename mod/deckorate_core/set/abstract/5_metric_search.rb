@@ -42,9 +42,12 @@ format do
   # answer searches have different handling of published and dataset filters
   def filter_map
     filtering_by_published do
-      shared_metric_filter_map.unshift key: :metric_keyword,
+      shared_metric_filter_map.unshift(key: :metric_keyword,
                                        label: "Metric Keyword",
-                                       open: true
+                                       open: true)
+                              .insert 2,
+                                      key: :topic_framework,
+                                      label: "Framework Mapping"
     end << :dataset
   end
 

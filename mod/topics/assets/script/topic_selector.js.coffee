@@ -1,12 +1,11 @@
 
 onClass = "bg-topic"
-inputSelector = "._topic-tree-input"
-filterSelector = "._topic-tree-filter"
-hiddenSelector = "._topic-tree-hidden"
+inputSelector  = "._topic-tree-input,  ._framework-tree-input"
+filterSelector = "._topic-tree-filter, ._framework-tree-filter"
+hiddenSelector = "._topic-tree-hidden, ._framework-tree-hidden"
 
 $.extend decko.editors.content,
   "#{inputSelector}": -> decko.pointerContent selectedVals(this)
-
 
 $.extend decko.editors.init,
   "#{inputSelector}": ->
