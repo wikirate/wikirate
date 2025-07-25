@@ -45,3 +45,11 @@
     margin-left: 2em;
   }
 }
+
+.close-filter-topic_framework {
+  max-width: 20em;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}

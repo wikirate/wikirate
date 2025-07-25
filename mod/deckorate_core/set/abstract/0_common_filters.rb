@@ -8,6 +8,7 @@ format :html do
   define_filter_types dataset: :multiselect,
                       year: :check,
                       topic: :topic,
+                      topic_framework: :topic_framework,
                       company_category: :check,
                       company_group: :multiselect,
                       company_keyword: :text,
@@ -80,6 +81,15 @@ format :html do
         class: "quick-filter-topic-#{topic_key}"
       }
     end
+  end
+
+  def topic_framework_filter field, config
+    value = filter_param(field) || config[:default]
+    haml :framework_filter, field: field, value: value
+  end
+
+  def filter_topic_framework_label
+    "Mapping"
   end
 
   def filter_value_array? category
