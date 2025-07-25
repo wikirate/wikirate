@@ -3,7 +3,8 @@ include_set Abstract::DesignerPermissions
 format :html do
   def basic_edit_properties
     { license: "License",
-      topic: "Topics" }.merge super
+      topic: "Topics",
+      topic_framework: "Framework Mappings" }.merge super
   end
 
   def edit_properties
