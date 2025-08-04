@@ -3,7 +3,9 @@ include_set Abstract::Tabs
 
 assign_type :file
 
-EXCEL_MIME_TYPES = %w[
+SPREADSHEET_MIME_TYPES = %w[
+  text/csv
+  application/csv
   application/vnd.ms-excel
   application/msexcel
   application/x-msexcel
@@ -15,18 +17,19 @@ EXCEL_MIME_TYPES = %w[
   application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
 ].freeze
 
-CSV_MIME_TYPES = %w[
-  text/csv
-  application/csv
-].freeze
-
-ACCEPTED_MIME_TYPES = (%w[
+ACCEPTED_MIME_TYPES = (SPREADSHEET_MIME_TYPES + %w[
   text/plain
   text/html
   application/pdf
-] + EXCEL_MIME_TYPES + CSV_MIME_TYPES).freeze
+  application/xml
+  text/xml
+  application/xhtml+xml
+  application/json
+  application/ld+json
+  text/json
+  text/x-json
+]).freeze
 
-SPREADSHEET_TYPES = (EXCEL_MIME_TYPES + CSV_MIME_TYPES).freeze
 
 def file_changed?
   !db_content_before_act.empty?
