@@ -1,7 +1,7 @@
-
-= field_nest :description
-.pt-4
-  = field_nest :category, view: :titled, items: { view: :closed }, title: "Tree"
-.pt-4
-  = render_header title: "Search"
-  = field_nest :topic, view: :filtered_content
+.topic-framework-content
+  = field_nest :description
+  .pt-4
+    = field_nest :category, view: :titled, items: { view: :closed }, title: "Tree"
+  .pt-4
+    = render_header title: "Search", hide: :menu
+    = field_nest :topic, view: :filtered_content
