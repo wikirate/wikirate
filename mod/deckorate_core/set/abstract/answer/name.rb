@@ -24,7 +24,7 @@ event :validate_answer_name, :validate, on: :save, changed: :name do
 end
 
 def compose_name?
-  name_part_types.any? { |part| field(part)&.content&.present? }
+  name_part_types.any? { |part| subfield? part }
 end
 
 private
