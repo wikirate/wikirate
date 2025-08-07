@@ -3,5 +3,5 @@ def virtual?
 end
 
 def cql_content
-  { type: :topic, right_plus: [:category, { refer_to: name.left }] }
+  { type: :topic, right_plus: [:category, { refer_to: name.left }], limit: 100 }
 end

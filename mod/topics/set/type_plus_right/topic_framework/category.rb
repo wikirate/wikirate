@@ -10,3 +10,9 @@ event :apply_family_restriction, :finalize, changed: :content do
     topic.topic_family_card.refresh_topic_family
   end
 end
+
+format :html do
+  def default_limit
+    50
+  end
+end
