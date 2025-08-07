@@ -5,6 +5,10 @@ def cql_content
 end
 
 format :html do
+  def default_limit
+    50
+  end
+
   def default_item_view
     :box
   end

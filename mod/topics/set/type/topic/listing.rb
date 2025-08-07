@@ -37,7 +37,7 @@ format :html do
     add_name_context card.name.left
     voo.joint = " "
     if subtopics?
-      tree_item render_title, body: render_tree_body, data: { treeval: card.name }
+      tree_item render_title, body: render_tree_body, data: { treeval: "~#{card.id}" }
     else
       render_tree_leaf
     end
@@ -48,7 +48,7 @@ format :html do
   end
 
   view :tree_leaf do
-    content_tag :div, class: "tree-leaf", data: { treeval: card.name } do
+    content_tag :div, class: "tree-leaf", data: { treeval: "~#{card.id}" } do
       render_title
     end
   end

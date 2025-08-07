@@ -1,8 +1,8 @@
 
 onClass = "bg-topic"
-inputSelector  = "._topic-tree-input,  ._framework-tree-input"
-filterSelector = "._topic-tree-filter, ._framework-tree-filter"
-hiddenSelector = "._topic-tree-hidden, ._framework-tree-hidden"
+inputSelector  = "._tree-input"
+filterSelector = "._tree-filter"
+hiddenSelector = "._tree-hidden"
 
 $.extend decko.editors.content,
   "#{inputSelector}": -> decko.pointerContent selectedVals(this)
@@ -20,8 +20,8 @@ decko.slot.ready (slot) ->
     treeFilter.find(".tree-item").data "no-collapse", true
 
 $ ->
-  $("body").on "click", "#{inputSelector} .tree-leaf", (_e) ->
-    toggleLeaf $(this), true
+  $("body").on "click", "#{inputSelector} .tree-button, #{inputSelector} .tree-leaf", (_e) ->
+    toggleTopic $(this), true
 
   $("body").on "click", "#{filterSelector} .tree-leaf", (_e) ->
     filterByTopic $(this)
@@ -80,7 +80,7 @@ handleFilterCollapse = (el, event) ->
     event.stopPropagation()
 
 filterByTopic = (el) ->
-  toggleLeaf el, false
+  toggleTopic el, false
   updateHiddenFilterInputs el
   el.closest("form").submit()
 
@@ -95,17 +95,21 @@ updateHiddenFilterInputs = (el) ->
 selectedVals = (el) ->
    $(el).find(".card-title.#{onClass}").map( -> valFor this )
 
-toggleLeaf = (leaf, perc) ->
-  leaf.find("> .card-title, > h2 .card-title").toggleClass onClass
-  percolate leaf if perc
+toggleTopic = (holder, perc) ->
+  holder.find("> .card-title, > h2 .card-title").toggleClass onClass
+  if perc
+    percolate holder
+    if holder.hasClass("tree-button") && holder.find(".#{onClass}").length == 0
+      holder.closest(".tree-item").find(".tree-body .#{onClass}").removeClass onClass
 
 percolate = (item) ->
   parentItem = item.closest ".tree-item"
+  parentItem = parentItem.closest "tree-item" if item.hasClass "tree-button"
   return unless parentItem.length
 
-  hasSelected = parentItem.find(".tree-body .#{onClass}").length > 0
-  parentItem.find("> .tree-header .card-title").toggleClass onClass, hasSelected
-  percolate parentItem.parent()
+  if parentItem.find(".tree-body .#{onClass}").length > 0
+    parentItem.find("> .tree-header .card-title").addClass onClass
+    percolate parentItem.parent()
 
 valFor = (el) ->
   $(el).closest("[data-treeval]").data "treeval"
@@ -113,6 +117,7 @@ valFor = (el) ->
 populateTree = (input, topics, perc) ->
   for topic in topics
     node = input.find("[data-treeval='#{topic}']")
-    toggleLeaf node, perc
+    toggleTopic node, perc
 
-    node.parents(".tree-collapse").collapse("show")
+    node.find("> .tree-collapse").collapse "show"
+    node.parents(".tree-collapse").collapse "show"

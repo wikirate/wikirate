@@ -11,7 +11,7 @@ format :html do
   end
 
   view :tree_item do
-    tree_item render_title, body: render_tree_body, data: { treeval: card.name }
+    tree_item render_title, body: render_tree_body, data: { treeval: "~#{card.id}" }
   end
 
   view :tree_body do
