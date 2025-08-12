@@ -72,3 +72,54 @@ format :csv do
     field_nest :answer, view: :titled
   end
 end
+
+format :jsonld do
+  view :molecule do
+    company_jsonld(atom)
+  end
+
+  private
+
+  def company_jsonld(a)
+    {
+      "@context" => "#{request.base_url}/context/#{card.type}.jsonld",
+      "@id"      => path(mark: card.name, format: nil),
+      "@type"    => card.type,
+
+      "name"     => a[:name] || a["name"],
+      "alias"    => a[:alias] || a["alias"],
+      "logo"     => a[:image] || a["image"],
+      "country"  => a[:headquarters] || a["headquarters"],
+
+      # identifiers (map 1:1 from atom)
+      "lei"                         => a[:legal_entity_identifier] || a["legal_entity_identifier"],
+      "isin"                        => a[:international_securities_identification_number] || a["international_securities_identification_number"],
+      "open_corporates_id"          => a[:open_corporates_id] || a["open_corporates_id"],
+      "wikidata_id"                 => a[:wikidata_id] || a["wikidata_id"],
+      "australian_business_number"  => a[:australian_business_number] || a["australian_business_number"],
+      "australian_company_number"   => a[:australian_company_number] || a["australian_company_number"],
+      "os_id"                       => a[:open_supply_id] || a["open_supply_id"],
+      "uk_company_number"           => a[:uk_company_number] || a["uk_company_number"],
+      "cik"                         => a[:sec_central_index_key] || a["sec_central_index_key"],
+
+      # outbound equivalences
+      "same_as" => same_as_from_atom(a)
+    }.compact
+  end
+
+  def same_as_from_atom(a)
+    website = a[:website] || a["website"]
+    wiki    = a[:wikipedia] || a["wikipedia"]
+    lei    = a[:legal_entity_identifier] || a["legal_entity_identifier"]
+    oc      = a[:open_corporates_id] || a["open_corporates_id"]
+    wd      = a[:wikidata_id] || a["wikidata_id"]
+
+    links = []
+    links << website if website.present?
+    links << "https://en.wikipedia.org/wiki/#{wiki}" if wiki.present?
+    # links << "https://opencorporates.com/companies/#{oc}" if oc.present?
+    links << "https://search.gleif.org/#/record/#{lei}" if lei.present?
+    links << "https://www.wikidata.org/wiki/#{wd}" if wd.present?
+    links.empty? ? nil : links
+  end
+end
