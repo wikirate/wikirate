@@ -36,5 +36,5 @@ end
 format :html do
   view :page, template: :haml
 
-  view :topic_tree, cache: :always, template: :haml
+  view :topic_tree, cache: :deep, template: :haml
 end
