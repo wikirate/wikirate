@@ -21,47 +21,47 @@
 - :name: Overview
   :codename: general_overview
 
-- :name: GRI
-  :type: :topic_framework
-
-- gri_topics
-
-- :name:
-    - GRI
-    - :category
-  :content:
-    - GRI+GRI 2 - General Disclosures
-    - GRI+GRI 3 - Material Topics
-    - GRI+GRI 101 - Biodiversity 2024
-    - GRI+GRI 201 - Economic Performance
-    - GRI+GRI 202 - Market Presence
-    - GRI+GRI 203 - Indirect Economic Impacts
-    - GRI+GRI 204 - Procurement Practices
-    - GRI+GRI 205 - Anti-corruption
-    - GRI+GRI 206 - Anti-competitive Behavior
-    - GRI+GRI 207 - Tax
-    - GRI+GRI 301 - Materials
-    - GRI+GRI 302 - Energy
-    - GRI+GRI 303 - Water and Effluents
-    - GRI+GRI 304 - Biodiversity 2016
-    - GRI+GRI 305 - Emissions
-    - GRI+GRI 306 - Effluents and Waste 2016
-    - GRI+GRI 306 - Waste 2020
-    - GRI+GRI 308 - Supplier Environmental Assessment
-    - GRI+GRI 401 - Employment
-    - GRI+GRI 402 - Labor or Management Relations
-    - GRI+GRI 403 - Occupational Health and Safety
-    - GRI+GRI 404 - Training and Education
-    - GRI+GRI 405 - Diversity and Equal Opportunity
-    - GRI+GRI 406 - Non-discrimination
-    - GRI+GRI 407 - Freedom of Association and Collective Bargaining
-    - GRI+GRI 408 - Child Labor
-    - GRI+GRI 409 - Forced or Compulsory Labor
-    - GRI+GRI 410 - Security Practices
-    - GRI+GRI 411 - Rights of Indigenous Peoples
-    - GRI+GRI 413 - Local Communities
-    - GRI+GRI 414 - Supplier Social Assessment
-    - GRI+GRI 415 - Public Policy
-    - GRI+GRI 416 - Customer Health and Safety
-    - GRI+GRI 417 - Marketing and Labeling
-    - GRI+GRI 418 - Customer Privacy
+#- :name: GRI
+#  :type: :topic_framework
+#
+#- gri_topics
+#
+#- :name:
+#    - GRI
+#    - :category
+#  :content:
+#    - GRI+GRI 2 - General Disclosures
+#    - GRI+GRI 3 - Material Topics
+#    - GRI+GRI 101 - Biodiversity 2024
+#    - GRI+GRI 201 - Economic Performance
+#    - GRI+GRI 202 - Market Presence
+#    - GRI+GRI 203 - Indirect Economic Impacts
+#    - GRI+GRI 204 - Procurement Practices
+#    - GRI+GRI 205 - Anti-corruption
+#    - GRI+GRI 206 - Anti-competitive Behavior
+#    - GRI+GRI 207 - Tax
+#    - GRI+GRI 301 - Materials
+#    - GRI+GRI 302 - Energy
+#    - GRI+GRI 303 - Water and Effluents
+#    - GRI+GRI 304 - Biodiversity 2016
+#    - GRI+GRI 305 - Emissions
+#    - GRI+GRI 306 - Effluents and Waste 2016
+#    - GRI+GRI 306 - Waste 2020
+#    - GRI+GRI 308 - Supplier Environmental Assessment
+#    - GRI+GRI 401 - Employment
+#    - GRI+GRI 402 - Labor or Management Relations
+#    - GRI+GRI 403 - Occupational Health and Safety
+#    - GRI+GRI 404 - Training and Education
+#    - GRI+GRI 405 - Diversity and Equal Opportunity
+#    - GRI+GRI 406 - Non-discrimination
+#    - GRI+GRI 407 - Freedom of Association and Collective Bargaining
+#    - GRI+GRI 408 - Child Labor
+#    - GRI+GRI 409 - Forced or Compulsory Labor
+#    - GRI+GRI 410 - Security Practices
+#    - GRI+GRI 411 - Rights of Indigenous Peoples
+#    - GRI+GRI 413 - Local Communities
+#    - GRI+GRI 414 - Supplier Social Assessment
+#    - GRI+GRI 415 - Public Policy
+#    - GRI+GRI 416 - Customer Health and Safety
+#    - GRI+GRI 417 - Marketing and Labeling
+#    - GRI+GRI 418 - Customer Privacy
