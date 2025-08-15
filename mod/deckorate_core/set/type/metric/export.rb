@@ -108,3 +108,65 @@ format :csv do
     card.send("#{column}_card").item_names.join ";"
   end
 end
+
+format :jsonld do
+  def molecule
+    metric_jsonld(atom)
+  end
+
+  private
+
+    def metric_jsonld(a)
+    {
+      "@context" => "#{request.base_url}/context/#{card.type}.jsonld",
+      "@id"      => path(mark: card.name, format: nil),
+      "@type"    => card.type,
+
+      "name"     => a[:name] || a["name"],
+      "title"    => a[:title] || a["title"],
+      "designer" => "#{request.base_url}/#{a[:designer] || a["designer"]}",
+      "question"  => a[:headquarters] || a["headquarters"],  
+
+      "metric_type"                 => a[:metric_type] || a["metric_type"],
+      "research_policy"             => a[:research_policy] || a["research_policy"],
+      "about"                       => ActionView::Base.full_sanitizer.sanitize(a[:about] || a["about"]),
+      "methodology"                 => ActionView::Base.full_sanitizer.sanitize(a[:methodology] || a["methodology"]),
+      "topics"                      => get_topics(a[:topics] || a["topics"]),
+      "calculations"                => get_elements(a[:calculations] || a["calculations"]),
+      "variables"                   => get_variables,
+      "report_type"                 => a[:report_type] || a["report_type"],
+      "value_type"                 => a[:value_type] || a["value_type"],
+      "value_options"               => get_elements(card.value_options),
+      "value_range"                 => a[:value_range] || a["value_range"],
+      "unit" => a[:unit] || a["unit"],
+      "formula" => get_formula,
+      "license" => license_url
+    }.compact
+  end
+
+  def license_url
+    dir = card.license.gsub(/(CC|4.0)/, "").strip.downcase
+    "https://creativecommons.org/licenses/#{dir}/4.0"
+  end
+
+  def get_variables
+    variables = card.direct_dependee_metrics.map do |metric|
+      path mark: metric, format: :json
+    end
+    variables&.any? ? variables : nil
+  end
+
+  def get_topics topics
+    topics&.any? ? topics.map { |path| path(mark: path, format: nil) } : nil
+  end
+
+  def get_formula
+    formula = card.formula
+    formula.empty? ? nil : formula
+  end
+
+  def get_elements subcard
+    subcard&.any? ? subcard : nil
+  end
+  
+end
