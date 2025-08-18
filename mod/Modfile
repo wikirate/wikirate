@@ -10,7 +10,7 @@ mod "deckorate_utility"
 ## DeckoRate mods
 mod "deckorate_layout"
 
-mod "topics" # TODO: extract generalizable stuff. distribute remainder in dr mods
+mod "topics"
 
 mod "deckorate_core"
 mod "deckorate_research"
