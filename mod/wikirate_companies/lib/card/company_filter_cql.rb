@@ -109,11 +109,13 @@ class Card
 
         def category_value_clause
           if @metric.multi_categorical?
-            # see comment in value_filters.rb
-            ::Answer.sanitize_sql_for_conditions(
-              ["FIND_IN_SET(?, REPLACE(#{@table}.value, ', ', ','))",
-               Array.wrap(@value)]
-            )
+            Array.wrap(@value).map do |val|
+              # see comment in value_filters.rb
+              sql = ::Answer.sanitize_sql_for_conditions(
+                ["FIND_IN_SET(?, REPLACE(#{@table}.value, ', ', ','))", val]
+              )
+              "(#{sql})"
+            end.join " OR "
           else
             safe_clause "value in (?)", @value
           end

@@ -37,6 +37,15 @@
   :fields:
     :discussion: comment
 
+- :name:
+    - Test Topics
+    - category
+  :content:
+    - Test Topics+created topic
+    - Test Topics+updated topic
+    - Test Topics+discussed topic
+    - Test Topics+bookmarked topic
+
 # FIXME: use card[add]
 # (and get rid of Jedi+disturbances in the Force)
 - :name:
