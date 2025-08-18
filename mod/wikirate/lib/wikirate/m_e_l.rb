@@ -11,7 +11,7 @@ module Wikirate
     include Helper
 
     COLUMNS = {
-      answers: "Answers Total",
+      answers: "Answers total",
       calculations: "Answers total calculated",
       import: "Answers total import",
       direct: "Answers total direct",
