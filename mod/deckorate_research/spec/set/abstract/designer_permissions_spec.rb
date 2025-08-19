@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Abstract::DesignerPermissions do
+RSpec.describe Card::Set::Abstract::StewardPermissions do
   let(:metric_name) { "Joe User+researched number 3" }
   let(:metric) { metric_name.card }
   let(:answer) { "#{metric_name}+Samsung+2014".card }

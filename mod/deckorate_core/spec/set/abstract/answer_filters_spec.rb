@@ -34,7 +34,7 @@ describe Card::Set::Abstract::AnswerFilters do
         specify do
           is_expected.to have_tag("div.filter-radio-list") do
             with_check_option self, "radio", "Community Assessed"
-            with_check_option self, "radio", "Designer Assessed"
+            with_check_option self, "radio", "Steward Assessed"
           end
         end
       end
@@ -74,7 +74,7 @@ describe Card::Set::Abstract::AnswerFilters do
         specify do
           is_expected.to have_tag(:select, with: { name: "filter[research_policy]" }) do
             with_option "Community Assessed", "Community Assessed"
-            with_option "Designer Assessed", "Designer Assessed"
+            with_option "Steward Assessed", "Steward Assessed"
           end
         end
       end

@@ -65,7 +65,7 @@
 - :name: Report Type
   :type: :cardtype
   :codename: report_type
-- :name: Designer Assessed
+- :name: Steward Assessed
   :type: :research_policy
 - :name: Community Assessed
   :type: :research_policy

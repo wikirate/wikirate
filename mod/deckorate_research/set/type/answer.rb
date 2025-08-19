@@ -1,5 +1,5 @@
 # couldn't get this to work by adding it to abstract answer :(
-include_set Abstract::DesignerPermissions
+include_set Abstract::StewardPermissions
 
 card_accessor :flag
 

@@ -2,8 +2,8 @@ def researchable?
   researched? || hybrid?
 end
 
-def designer_assessed?
-  research_policy&.casecmp("designer assessed")&.zero?
+def steward_assessed?
+  research_policy&.casecmp("steward assessed")&.zero?
 end
 
 def steward?
@@ -17,7 +17,7 @@ end
 def steward_ids
   @steward_ids ||= [
     Self::Steward.always_ids,
-    steward_card&.item_ids,
+    stewarded_card&.item_ids,
     metric_designer_id,
     creator_steward_id
   ].flatten.compact.uniq
@@ -31,7 +31,7 @@ def creator_steward_id
 end
 
 def ok_as_steward?
-  designer_assessed? ? steward? : true
+  steward_assessed? ? steward? : true
 end
 
 def ok_to_update?

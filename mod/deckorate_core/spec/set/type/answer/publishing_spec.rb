@@ -24,7 +24,7 @@ RSpec.describe Card::Set::Type::Answer::Publishing do
       end
 
       it "grants access to stewards" do
-        answer.metric_card.steward_card.update! content: "Joe User"
+        answer.metric_card.stewarded_card.update! content: "Joe User"
         expect(answer).to be_ok(:read)
       end
     end

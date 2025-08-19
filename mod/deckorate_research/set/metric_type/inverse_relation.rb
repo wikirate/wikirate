@@ -14,7 +14,7 @@ def inverse?
   true
 end
 
-def check_designer_permissions action
+def check_steward_permissions action
   action == :create ? true : super
 end
 

@@ -1,4 +1,4 @@
-include_set Abstract::DesignerPermissions
+include_set Abstract::StewardPermissions
 
 format :html do
   def basic_edit_properties

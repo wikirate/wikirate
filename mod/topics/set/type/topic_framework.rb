@@ -1,7 +1,12 @@
 include_set Abstract::LazyTree
+include_set Abstract::Stewardable
 
 card_accessor :topic, type: :search_type
 card_accessor :category
+
+def featured?
+  codename && codename == Self::Topic.featured_framework
+end
 
 format :html do
   view :titled_content, template: :haml

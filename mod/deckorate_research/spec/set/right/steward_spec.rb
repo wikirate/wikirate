@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::Metric::Steward do
+RSpec.describe Card::Set::Right::Steward do
   let(:metric) { Card["Jedi+deadliness"] }
   let(:metric_2) { Card["Jedi+disturbances in the Force"] }
   let(:researched_card) { Card["Jedi+deadliness+Death_Star+1977"] }
@@ -15,14 +15,14 @@ RSpec.describe Card::Set::TypePlusRight::Metric::Steward do
     end
 
     it "updates researched (not wikirating) when one metric steward updated" do
-      metric.steward_card.update! content: "Decko Bot"
+      metric.stewarded_card.update! content: "Decko Bot"
       expect(researched_card.answer.verification).to eq(level(:steward_verified))
       expect(wikirating_card.answer.verification).to eq(level(:unverified))
     end
 
     it "updates researched and wikirating when all metric stewards updated" do
-      metric.steward_card.update! content: "Decko Bot"
-      metric_2.steward_card.update! content: "Decko Bot"
+      metric.stewarded_card.update! content: "Decko Bot"
+      metric_2.stewarded_card.update! content: "Decko Bot"
       expect(researched_card.answer.verification).to eq(level(:steward_verified))
       expect(wikirating_card.answer.verification).to eq(level(:steward_verified))
     end

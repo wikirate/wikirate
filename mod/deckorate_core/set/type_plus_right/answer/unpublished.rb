@@ -1,6 +1,6 @@
 include_set Abstract::MetricChild, generation: 3
 include_set Abstract::LookupField
-include_set Abstract::DesignerPermissions
+include_set Abstract::StewardPermissions
 include_set Abstract::PublishableField
 
 event :update_calculated_unpublished, :finalize, changed: :content do

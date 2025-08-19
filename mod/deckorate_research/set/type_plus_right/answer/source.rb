@@ -1,5 +1,5 @@
 include_set Abstract::MetricChild, generation: 3
-include_set Abstract::DesignerPermissions
+include_set Abstract::StewardPermissions
 include_set Abstract::LookupField
 include_set Abstract::PublishableField
 include_set Abstract::Citation

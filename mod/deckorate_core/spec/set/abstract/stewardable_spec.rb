@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Abstract::Stewardable do
+RSpec.describe Card::Set::Abstract::Stewarder do
   let(:user) { Card["Joe User"] }
   let(:metric) { Card["Jedi+deadliness"] }
 
@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Abstract::Stewardable do
     end
 
     it "finds explicitly stewarded metrics" do
-      metric.steward_card.update! content: user.name
+      metric.stewarded_card.update! content: user.name
       expect(user.stewarded_metric_ids).to include(metric.id)
     end
   end

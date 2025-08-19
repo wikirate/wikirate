@@ -14,9 +14,9 @@ RSpec.describe Card::Set::Type::Metric::Creation do
                  }
   end
 
-  context "when Designer Assessed" do
+  context "when Steward Assessed" do
     it "can be deleted by creator" do
-      expect { create_metric_with_policy("Designer Assessed").delete! }.not_to raise_error
+      expect { create_metric_with_policy("Steward Assessed").delete! }.not_to raise_error
     end
   end
 
