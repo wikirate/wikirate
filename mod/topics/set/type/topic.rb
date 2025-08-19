@@ -4,6 +4,7 @@ include_set Abstract::Bookmarkable
 include_set Abstract::Delist
 include_set Abstract::CachedTypeOptions
 include_set Abstract::SearchContentFields
+include_set Abstract::StewardPermissions
 
 card_accessor :image, type: :image
 card_accessor :category, type: :pointer
@@ -25,6 +26,10 @@ end
 
 def framework_card
   left
+end
+
+def stewarded_card
+  framework_card
 end
 
 def recursive_categories
