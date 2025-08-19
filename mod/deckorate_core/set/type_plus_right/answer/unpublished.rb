@@ -9,3 +9,7 @@ event :update_calculated_unpublished, :finalize, changed: :content do
 
   lookup_card.each_depender_answer { |answer| answer.refresh :unpublished }
 end
+
+def stewarded_card
+  metric_card
+end

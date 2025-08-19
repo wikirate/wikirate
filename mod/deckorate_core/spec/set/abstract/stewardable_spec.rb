@@ -8,7 +8,7 @@ RSpec.describe Card::Set::Abstract::Stewarder do
     end
 
     it "finds explicitly stewarded metrics" do
-      metric.stewarded_card.update! content: user.name
+      metric.steward_card.update! content: user.name
       expect(user.stewarded_metric_ids).to include(metric.id)
     end
   end

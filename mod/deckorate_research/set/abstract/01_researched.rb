@@ -1,5 +1,9 @@
 include_set Abstract::StewardPermissions
 
+def stewarded_card
+  self
+end
+
 format :html do
   def basic_edit_properties
     { license: "License",

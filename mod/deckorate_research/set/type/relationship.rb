@@ -46,6 +46,10 @@ def lookup_class
   ::Relationship
 end
 
+def stewarded_card
+  metric_card
+end
+
 def related_company
   name.tag
 end

@@ -17,7 +17,7 @@ end
 def steward_ids
   @steward_ids ||= [
     Self::Steward.always_ids,
-    stewarded_card&.item_ids,
+    steward_card&.item_ids,
     metric_designer_id,
     creator_steward_id
   ].flatten.compact.uniq

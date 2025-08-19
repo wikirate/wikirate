@@ -33,3 +33,8 @@ end
 def relationship_count_value?
   metric_card.relation?
 end
+
+def stewarded_card
+  metric_card
+end
+

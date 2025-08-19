@@ -15,3 +15,8 @@ end
 def company_names
   [company_name]
 end
+
+def stewarded_card
+  metric_card
+end
+
