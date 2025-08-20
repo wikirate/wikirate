@@ -62,11 +62,11 @@
     "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Report_Type.json",
     "content": "Corporate Social Responsibility Report"
   },
-  "research_policy": {
+  "assessment": {
     "id": 826619,
-    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Research Policy",
+    "name": "Global Reporting Initiative+Direct greenhouse gas (GHG) emissions (Scope 1), GRI 305-1-a (formerly G4-EN15-a)+Assessment",
     "type": "Pointer",
-    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Research_Policy.json",
+    "url": "https://wikirate.org/Global_Reporting_Initiative+Direct_greenhouse_gas_GHG_emissions_Scope_1_GRI_305_1_a_formerly_G4_EN15_a+Assessment.json",
     "content": "Community Assessed"
   },
   "unit": {

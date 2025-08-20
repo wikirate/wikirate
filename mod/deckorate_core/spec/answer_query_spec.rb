@@ -23,7 +23,7 @@ RSpec.describe Card::AnswerQuery do
         Timecop.freeze(Deckorate::HAPPY_BIRTHDAY) do
           expect(
             search(year: "1992", topic: %i[esg_topics environment].cardname, bookmark: :bookmark, updated: :month,
-                   dataset: "Evil Dataset", research_policy: "Community Assessed",
+                   dataset: "Evil Dataset", assessment: "Community Assessed",
                    name: "in the", metric_type: "Researched")
           ).to eq(with_year("disturbances in the Force", 1992))
         end

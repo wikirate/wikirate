@@ -25,7 +25,7 @@ researchableFromContent = (scope) ->
 
 vizResearchProps = (scope, show_or_hide) ->
   if scope.find(".RIGHT-hybrid")[0]
-    $.each ["research_policy", "report_type", "about", "methodology", "steward"], (_i, prop) ->
+    $.each ["assessment", "report_type", "about", "methodology", "steward"], (_i, prop) ->
       rowForProp(scope, prop).toggle show_or_hide
 
 propScope = (context) ->

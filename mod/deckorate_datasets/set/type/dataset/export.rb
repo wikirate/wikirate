@@ -4,7 +4,7 @@ include_set Abstract::Export
 def num_policies
   count = { designer: 0, community: 0 }
   metric_card.item_cards.each do |metric|
-    policy = metric.try :research_policy
+    policy = metric.try :assessment
     tally_policy policy, count if policy
   end
   [count[:designer], count[:community]]

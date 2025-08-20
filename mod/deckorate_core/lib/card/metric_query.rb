@@ -5,7 +5,7 @@ class Card
       designer: :designer_id,
       title: :title_id,
       scorer: :scorer_id,
-      research_policy: :policy_id,
+      assessment: :policy_id,
       metric_type: :metric_type_id,
       value_type: :value_type_id
     }.freeze

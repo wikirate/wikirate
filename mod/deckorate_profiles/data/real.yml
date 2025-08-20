@@ -2,9 +2,9 @@
 - :name: Research Group
   :type: :cardtype
   :codename: research_group
-- :name: Research Policy
+- :name: Assessment
   :type: :cardtype
-  :codename: research_policy
+  :codename: assessment
 - :name: activity
   :codename: activity
 - :name: report search

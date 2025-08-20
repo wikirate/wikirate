@@ -19,7 +19,7 @@ class Metric < Cardio::Record
   end
 
   def fetch_policy_id
-    card.research_policy_card&.first_id
+    card.assessment_card&.first_id
   end
 
   def fetch_unit
