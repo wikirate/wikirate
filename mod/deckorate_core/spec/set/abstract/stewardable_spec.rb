@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::Abstract::Stewardable do
+RSpec.describe Card::Set::Abstract::Stewarder do
   let(:user) { Card["Joe User"] }
   let(:metric) { Card["Jedi+deadliness"] }
 

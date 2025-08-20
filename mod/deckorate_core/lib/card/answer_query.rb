@@ -11,7 +11,7 @@ class Card
     include OutlierFilter
 
     self.card_id_map = {
-      research_policy: :policy_id,
+      assessment: :policy_id,
       metric_type: :metric_type_id,
       designer: :designer_id,
       value_type: :value_type_id

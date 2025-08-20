@@ -27,7 +27,7 @@ metric_molecule_view:
       "$ref": "#/components/schemas/atom_view"
     report_type:
       "$ref": "#/components/schemas/atom_view"
-    research_policy:
+    assessment:
       "$ref": "#/components/schemas/atom_view"
     unit:
       "$ref": "#/components/schemas/atom_view"

@@ -40,7 +40,7 @@ end
 def fetch_optional_subcards
   {
     company: Card.new(type: :company).simple_field_names,
-    metric: %w[question about methodology unit topics value_options research_policy
+    metric: %w[question about methodology unit topics value_options assessment
                report_type],
     answer: %w[comment unpublished],
     relationship: %w[comment unpublished],

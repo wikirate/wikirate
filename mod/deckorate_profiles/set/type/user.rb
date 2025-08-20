@@ -1,6 +1,6 @@
 include_set Abstract::DeckorateTabbed
 include_set Abstract::Thumbnail
-include_set Abstract::Stewardable
+include_set Abstract::Stewarder
 include_set Abstract::ProfileType
 
 # include_set Abstract::Bookmarker

@@ -1,10 +1,16 @@
 include_set Abstract::IdList
+include_set Abstract::StewardPermissions
+
 assign_type :pointer
 
 delegate :topic_families?, :determine_topic_family, to: :topic
 
 def topic
   left
+end
+
+def stewarded_card
+  topic.framework_card
 end
 
 event :assign_topic_family, :integrate,

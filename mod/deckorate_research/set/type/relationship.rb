@@ -2,7 +2,7 @@
 
 include_set Abstract::MetricChild, generation: 3
 include_set Abstract::Answer
-include_set Abstract::DesignerPermissions
+include_set Abstract::StewardPermissions
 include_set Abstract::Lookup
 include_set Abstract::LookupEvents
 
@@ -44,6 +44,10 @@ end
 
 def lookup_class
   ::Relationship
+end
+
+def stewarded_card
+  metric_card
 end
 
 def related_company

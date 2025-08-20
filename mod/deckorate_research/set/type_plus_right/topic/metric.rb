@@ -3,7 +3,8 @@ include_set Abstract::CachedCount
 include_set Abstract::MetricSearch
 
 def query_hash
-  { topic: left_id }
+  key = left.framework_card.featured? ? :topic : :topic_framework
+  { key => left_id }
 end
 
 # trigger recount when metric's topic list is edited
@@ -19,9 +20,3 @@ end
 def self.metric_fields_for_topics topic_list
   topic_list.map { |item_name| Card.fetch item_name.to_name.field(:metric) }
 end
-
-# format :html do
-#   def quick_filter_list
-#     bookmark_quick_filter
-#   end
-# end
