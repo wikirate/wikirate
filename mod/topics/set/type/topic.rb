@@ -4,10 +4,10 @@ include_set Abstract::Bookmarkable
 include_set Abstract::Delist
 include_set Abstract::CachedTypeOptions
 include_set Abstract::SearchContentFields
+include_set Abstract::StewardPermissions
 
 card_accessor :image, type: :image
 card_accessor :category, type: :pointer
-card_accessor :topic_framework, type: :pointer
 card_accessor :topic_family, type: :pointer
 
 card_accessor :subtopic, type: :search_type
@@ -24,8 +24,12 @@ def topic_families?
   allowed_topic_families.present?
 end
 
-def family_framework
-  topic_framework.card if topic_families?
+def framework_card
+  left
+end
+
+def stewarded_card
+  framework_card
 end
 
 def recursive_categories

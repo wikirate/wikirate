@@ -1,4 +1,4 @@
-RSpec.describe Card::Set::TypePlusRight::Metric::Steward do
+RSpec.describe Card::Set::Right::Steward do
   let(:metric) { Card["Jedi+deadliness"] }
   let(:metric_2) { Card["Jedi+disturbances in the Force"] }
   let(:researched_card) { Card["Jedi+deadliness+Death_Star+1977"] }

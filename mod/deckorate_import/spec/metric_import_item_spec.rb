@@ -24,7 +24,7 @@ RSpec.describe Card::MetricImportItem do
       value_type: "Category",
 
       value_options: "A;B;C",
-      research_policy: "Community Assessed",
+      assessment: "Community Assessed",
       # supports "community", "designer", or full name, eg "Community Assessed"
       report_type: nil
     }

@@ -10,7 +10,7 @@ module GraphQL
       field :value_options, [String], null: true
       field :about, String, null: true
       field :methodology, String, null: true
-      field :research_policy, String, null: true
+      field :assessment, String, null: true
       field :unit, String, null: true
       field :range, String, null: true
       field :formula, String, null: true

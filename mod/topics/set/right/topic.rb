@@ -6,11 +6,6 @@ def ok_item_types
   [:topic]
 end
 
-# def item_cards_by_framework framework
-#   # TODO: optimize
-#   item_cards.select { |topic| topic.topic_framework_card.first_id == framework.card_id }
-# end
-
 def featured
   item_names & Card::Set::Self::Topic.family_list.item_names
 end

@@ -6,7 +6,9 @@ format :html do
   end
 
   def tab_list
-    %i[details metric dataset research_group]
+    %i[details metric].tap do |list|
+      list << :dataset if card.framework_card.featured?
+    end
   end
 
   def tab_options
