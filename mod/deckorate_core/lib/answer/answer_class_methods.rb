@@ -48,6 +48,8 @@ class Answer
 
     # convert value from lookup table to
     def value_from_lookup string, type
+      return if string.nil?
+
       type == :multi_category ? string.split(value_joint) : string
     end
 
