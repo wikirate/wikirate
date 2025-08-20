@@ -5,7 +5,7 @@ include_set Abstract::SingleItem
 include_set Abstract::LookupField
 
 def ok_item_types
-  :research_policy
+  :assessment
 end
 
 def lookup_columns

@@ -31,7 +31,7 @@ class Card
 
       value_options: { optional: true, separator: ";" },
       report_type: { map: true, optional: true, separator: ";" },
-      research_policy: { map: true, separator: ";" },
+      assessment: { map: true, separator: ";" },
 
       year: { optional: true, separator: ";" },
       company_group: { optional: true, separator: ";" }

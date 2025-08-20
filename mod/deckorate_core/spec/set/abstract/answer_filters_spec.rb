@@ -28,8 +28,8 @@ describe Card::Set::Abstract::AnswerFilters do
         end
       end
 
-      describe "research_policy filter" do
-        let(:filter_type) { :research_policy }
+      describe "assessment filter" do
+        let(:filter_type) { :assessment }
 
         specify do
           is_expected.to have_tag("div.filter-radio-list") do
@@ -68,11 +68,11 @@ describe Card::Set::Abstract::AnswerFilters do
         end
       end
 
-      describe "research_policy filter" do
-        let(:filter_type) { :research_policy }
+      describe "assessment filter" do
+        let(:filter_type) { :assessment }
 
         specify do
-          is_expected.to have_tag(:select, with: { name: "filter[research_policy]" }) do
+          is_expected.to have_tag(:select, with: { name: "filter[assessment]" }) do
             with_option "Community Assessed", "Community Assessed"
             with_option "Steward Assessed", "Steward Assessed"
           end

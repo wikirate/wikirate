@@ -5,12 +5,12 @@ RSpec.describe Card::Set::Type::Metric::Creation do
 
   # check_views_for_errors
 
-  def create_metric_with_policy research_policy
+  def create_metric_with_policy assessment
     Card.create! type: :metric, name: "Joe User+test metric",
                  fields: {
                    metric_type: :researched.cardname,
                    value_type: "Number",
-                   research_policy: research_policy
+                   assessment: assessment
                  }
   end
 

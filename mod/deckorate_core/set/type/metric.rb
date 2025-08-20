@@ -24,7 +24,7 @@ card_accessor :report_type, type: :list
 card_accessor :score, type: :search_type
 card_accessor :topic, type: :list
 card_accessor :topic_framework, type: :list
-card_accessor :research_policy, type: :pointer, default_content: "Community Assessed"
+card_accessor :assessment, type: :pointer, default_content: "Community Assessed"
 card_accessor :relationship, type: :search_type
 card_accessor :company, type: :search_type
 

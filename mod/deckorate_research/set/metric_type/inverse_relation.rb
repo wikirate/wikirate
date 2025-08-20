@@ -1,6 +1,6 @@
 include_set Abstract::Relation
 
-%i[topic value_type unpublished year company_group research_policy report_type
+%i[topic value_type unpublished year company_group assessment report_type
    steward about methodology unit range value_options].each do |property|
   delegate property, to: :inverse_card
   delegate "#{property}_card", to: :inverse_card

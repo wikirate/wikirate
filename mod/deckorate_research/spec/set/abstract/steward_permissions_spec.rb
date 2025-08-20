@@ -59,7 +59,7 @@ RSpec.describe Card::Set::Abstract::StewardPermissions do
     end
   end
 
-  test_field_permissions :metric, %i[value_type research_policy unit range value_options
+  test_field_permissions :metric, %i[value_type assessment unit range value_options
                                      report_type question about methodology]
   test_field_permissions :answer, %i[value source]
 end

@@ -3,7 +3,7 @@ include_set Abstract::Stewardable
 
 card_accessor :topic, type: :search_type
 card_accessor :category
-card_accessor :research_policy
+card_accessor :assessment
 card_accessor :description
 
 def featured?
@@ -12,7 +12,7 @@ end
 
 format :html do
   def edit_fields
-    %i[description steward research_policy category]
+    %i[description steward assessment category]
   end
 
   view :titled_content, template: :haml

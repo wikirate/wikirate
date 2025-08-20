@@ -5,7 +5,7 @@ def stewarded_card
 end
 
 def steward_assessed?
-  research_policy&.casecmp("steward assessed")&.zero?
+  assessment&.casecmp("steward assessed")&.zero?
 end
 
 def ok_as_steward?

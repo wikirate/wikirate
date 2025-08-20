@@ -6,7 +6,7 @@ module Deckorate
       VALID_FIELDS =
         ::Set.new(
           %i[metric_type formula value_type hybrid variables value_options rubric
-             research_policy topic unit report_type inverse_title]
+             assessment topic unit report_type inverse_title]
         ).freeze
       ALIAS_FIELDS = {
         type: :metric_type, topic: :topic, inverse: :inverse_title
@@ -38,7 +38,7 @@ module Deckorate
       #   formula is a hash then it defaults to 'Category'
       # @option opts [Array] :value_options the options that you can choose of
       #   for a metric value
-      # @option opts [Array, String] :research_policy research policy
+      # @option opts [Array, String] :assessment assessment
       #   (designer or community assessed)
       # @option opts [Array, String] :topic tag with topics
       # @option opts [String] :unit

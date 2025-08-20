@@ -25,8 +25,8 @@ RSpec.describe Card::AnswerQuery::MetricFilters do
     end
 
     context "with MetricQuery field" do
-      specify "research policy" do
-        expect(search(research_policy: "Steward Assessed")).to eq ["dinosaurlabor+2010"]
+      specify "assessment" do
+        expect(search(assessment: "Steward Assessed")).to eq ["dinosaurlabor+2010"]
       end
 
       context "when metric type" do
