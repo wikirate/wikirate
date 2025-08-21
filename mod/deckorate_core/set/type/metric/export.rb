@@ -82,7 +82,7 @@ format :csv do
 
   view :row do
     basic = cell_values(Abstract::MetricSearch::BASIC_COLUMNS)
-            .unshift card_url("~#{card.id}")
+            .unshift card_url(card.id_string)
     return basic unless detailed?
 
     basic + cell_values(Abstract::MetricSearch::DETAILED_COLUMNS)

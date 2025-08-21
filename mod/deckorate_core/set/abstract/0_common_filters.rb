@@ -72,11 +72,16 @@ format :html do
     haml :topic_filter, field: field, value: value
   end
 
+  def filter_topic_closer_value val
+    val.cardname.right
+  end
+
   def topic_family_quick_filters
     Card::Set::Self::Topic.family_list.item_cards.map do |topic|
       topic_key = topic.right&.codename
       {
-        topic: topic.name.right,
+        topic: topic.id_string,
+        text: topic.name.right,
         icon: icon_tag(topic_key),
         class: "quick-filter-topic-#{topic_key}"
       }
