@@ -20,7 +20,7 @@ format do
   end
 
   def filter_map
-    %i[name topic_family topic_framework bookmark]
+    %i[name topic_framework bookmark]
   end
 
   def default_filter_hash
@@ -64,11 +64,15 @@ end
 # FilterCql class for topic filtering
 class TopicFilterCql < DeckorateFilterCql
   def topic_framework_cql framework
-    add_to_cql :left, framework
+    add_to_cql :left, framework.clone.unshift(:in)
   end
 
   def topic_family_cql family
     add_to_cql :right_plus, refer_to(:topic_family, family)
+  end
+
+  def name_cql title
+    add_to_cql :right, name: [:match, title]
   end
 
   # def metric_cql metric
