@@ -36,7 +36,7 @@ format do
   end
 
   def shared_metric_filter_map
-    %i[topic designer metric_type value_type assessment bookmark license]
+    %i[topic topic_framework designer metric_type value_type assessment bookmark license]
   end
 
   # answer searches have different handling of published and dataset filters
@@ -45,9 +45,6 @@ format do
       shared_metric_filter_map.unshift(key: :metric_keyword,
                                        label: "Metric Keyword",
                                        open: true)
-                              .insert 2,
-                                      key: :topic_framework,
-                                      label: "Framework Mapping"
     end << :dataset
   end
 

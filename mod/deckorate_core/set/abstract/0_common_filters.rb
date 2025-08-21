@@ -93,8 +93,16 @@ format :html do
     haml :framework_filter, field: field, value: value
   end
 
+  def filter_topic_framework_closer_label val
+    val.cardname.left
+  end
+
+  def filter_topic_framework_closer_value val
+    val.cardname.right
+  end
+
   def filter_topic_framework_label
-    "Mapping"
+    "Framework Mapping"
   end
 
   def filter_value_array? category
