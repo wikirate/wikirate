@@ -1,4 +1,5 @@
 include_set Abstract::IdList
+include_set Abstract::StewardPermissions
 
 assign_type :pointer
 
@@ -21,6 +22,10 @@ end
 
 def topic
   left
+end
+
+def stewarded_card
+  topic.framework_card
 end
 
 def refresh_topic_family

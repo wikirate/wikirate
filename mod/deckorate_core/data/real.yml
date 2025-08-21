@@ -59,16 +59,16 @@
 - :name: Company Group
   :type: :cardtype
   :codename: company_group
-- :name: Research Policy
+- :name: Assessment
   :type: :cardtype
-  :codename: research_policy
+  :codename: assessment
 - :name: Report Type
   :type: :cardtype
   :codename: report_type
-- :name: Designer Assessed
-  :type: :research_policy
+- :name: Steward Assessed
+  :type: :assessment
 - :name: Community Assessed
-  :type: :research_policy
+  :type: :assessment
 - :name: Headquarters
   :codename: headquarters
 - :name: OpenCorporates Jurisdiction key

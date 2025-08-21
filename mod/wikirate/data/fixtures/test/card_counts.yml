@@ -19,7 +19,7 @@ card_counts_003:
   flag: 0
 card_counts_004:
   id: 4
-  left_id: 1486
+  left_id: 1485
   right_id: 702
   value: 2
   flag: 0
@@ -37,7 +37,7 @@ card_counts_006:
   flag: 0
 card_counts_007:
   id: 7
-  left_id: 1485
+  left_id: 1484
   right_id: 702
   value: 1
   flag: 0
@@ -115,7 +115,7 @@ card_counts_019:
   flag: 0
 card_counts_020:
   id: 20
-  left_id: 1485
+  left_id: 1484
   right_id: 752
   value: 3
   flag: 0
@@ -991,7 +991,7 @@ card_counts_165:
   flag: 0
 card_counts_166:
   id: 166
-  left_id: 1485
+  left_id: 1484
   right_id: 791
   value: 1
   flag: 0
@@ -1075,7 +1075,7 @@ card_counts_179:
   flag: 0
 card_counts_180:
   id: 180
-  left_id: 4688
+  left_id: 4693
   right_id: 700
   value: 3
   flag: 0
@@ -1087,7 +1087,7 @@ card_counts_181:
   flag: 0
 card_counts_182:
   id: 182
-  left_id: 4691
+  left_id: 4696
   right_id: 700
   value: 1
   flag: 0
@@ -1111,19 +1111,19 @@ card_counts_185:
   flag: 0
 card_counts_186:
   id: 186
-  left_id: 4860
+  left_id: 4865
   right_id: 697
   value: 4
   flag: 0
 card_counts_187:
   id: 187
-  left_id: 4860
+  left_id: 4865
   right_id: 700
   value: 2
   flag: 0
 card_counts_188:
   id: 188
-  left_id: 4860
+  left_id: 4865
   right_id: 643
   value: 0
   flag: 0
