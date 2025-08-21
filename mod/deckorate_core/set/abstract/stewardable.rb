@@ -4,6 +4,7 @@ def stewarded_card
   self
 end
 
+# FIXME - use codename!
 def steward_assessed?
   assessment&.casecmp("steward assessed")&.zero?
 end
