@@ -10,10 +10,10 @@ RSpec.describe Card::Set::Abstract::TopicSearch do
 
     context "with name argument" do
       before { filter_args name: "Animal Rights" }
-      it { is_expected.to eq(name: ["match", "Animal Rights"]) }
+      it { is_expected.to eq(right: { name: [:match, "Animal Rights"] }) }
     end
 
-    context "with framewok argument" do
+    context "with framework argument" do
       before { filter_args topic_framework: "Star Wars Topics" }
       it { is_expected.to eq(left: "Star Wars Topics") }
     end

@@ -1,4 +1,5 @@
 include_set Abstract::IdList
+include_set Abstract::StewardedTopicTags
 
 assign_type :list
 
@@ -10,7 +11,7 @@ def featured
   item_names & Card::Set::Self::Topic.family_list.item_names
 end
 
-# when you add a topic to something, automatically also add the topic's categories
+  # when you add a topic to something, automatically also add the topic's categories
 # NOTE: deleting does not delete
 event :add_categories, :prepare_to_store, changed: :content, on: :save do
   return unless is_a? Abstract::List

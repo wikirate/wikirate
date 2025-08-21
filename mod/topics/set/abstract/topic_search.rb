@@ -64,7 +64,8 @@ end
 # FilterCql class for topic filtering
 class TopicFilterCql < DeckorateFilterCql
   def topic_framework_cql framework
-    add_to_cql :left, framework.clone.unshift(:in)
+    val = framework.is_a?(Array) ? framework.clone.unshift(:in) : framework
+    add_to_cql :left, val
   end
 
   def topic_family_cql family

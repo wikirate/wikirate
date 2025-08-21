@@ -1051,7 +1051,7 @@ card_counts_175:
   flag: 0
 card_counts_176:
   id: 176
-  left_id: 4643
+  left_id: 4645
   right_id: 607
   value: 1
   flag: 0
@@ -1075,7 +1075,7 @@ card_counts_179:
   flag: 0
 card_counts_180:
   id: 180
-  left_id: 4684
+  left_id: 4686
   right_id: 690
   value: 3
   flag: 0
@@ -1087,7 +1087,7 @@ card_counts_181:
   flag: 0
 card_counts_182:
   id: 182
-  left_id: 4687
+  left_id: 4689
   right_id: 690
   value: 1
   flag: 0
@@ -1111,19 +1111,19 @@ card_counts_185:
   flag: 0
 card_counts_186:
   id: 186
-  left_id: 4856
+  left_id: 4858
   right_id: 687
   value: 4
   flag: 0
 card_counts_187:
   id: 187
-  left_id: 4856
+  left_id: 4858
   right_id: 690
   value: 2
   flag: 0
 card_counts_188:
   id: 188
-  left_id: 4856
+  left_id: 4858
   right_id: 643
   value: 0
   flag: 0
