@@ -11,7 +11,7 @@ class Card
 
       PARTNER_CQL_FILTERS = {
         company: ::Set.new(%i[project country]),
-        metric: ::Set.new(%i[project designer metric_type research_policy bookmark])
+        metric: ::Set.new(%i[project designer metric_type assessment bookmark])
       }.freeze
 
       # TEMPORARY HACK.  replace with metric lookup

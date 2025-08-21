@@ -7,6 +7,7 @@ include_set Abstract::Bookmarkable
 include_set Abstract::Delist
 include_set Abstract::Lookup
 include_set Abstract::Publishable
+include_set Abstract::Stewardable
 
 card_accessor :metric_type, type: :pointer, default_content: "Researched"
 card_accessor :about
@@ -21,10 +22,9 @@ card_accessor :hybrid, type: :toggle
 card_accessor :question, type: :plain_text
 card_accessor :report_type, type: :list
 card_accessor :score, type: :search_type
-card_accessor :steward, type: :pointer
 card_accessor :topic, type: :list
 card_accessor :topic_framework, type: :list
-card_accessor :research_policy, type: :pointer, default_content: "Community Assessed"
+card_accessor :assessment, type: :pointer, default_content: "Community Assessed"
 card_accessor :relationship, type: :search_type
 card_accessor :company, type: :search_type
 

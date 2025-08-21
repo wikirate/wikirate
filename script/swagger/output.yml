@@ -546,7 +546,7 @@ components:
         - **metric_type:** name of "metric type" card (Researched, Relationship, Formula,
           Rating, Score, or Descendant)
         - **topic:** topic card name(s). restrict to metrics with topic
-        - **research policy:** name of research policy card
+        - **assessment:** name of assessment card
 
         {metric}+Answer only:
         - **company_name:** string to match (or exact name in quotes)
@@ -764,7 +764,7 @@ components:
             type: string
         report_type:
           type: string
-        research_policy:
+        assessment:
           type: string
         unit:
           type: string

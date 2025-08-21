@@ -33,7 +33,7 @@ RSpec.describe Card::Set::Type::Reference do
     end
   end
 
-  context "when metric is designer assessed." do
+  context "when metric is steward assessed." do
     let(:reference_number) { 3 }
 
     it "does not include community credit in Rich Text." do

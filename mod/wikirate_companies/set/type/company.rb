@@ -4,7 +4,7 @@ include_set Abstract::Media
 include_set Abstract::Delist
 include_set Abstract::AccountHolder
 include_set Abstract::Bookmarker
-include_set Abstract::Stewardable
+include_set Abstract::Stewarder
 include_set Abstract::DeckorateTabbed
 
 include_set Abstract::Bookmarkable

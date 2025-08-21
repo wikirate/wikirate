@@ -23,7 +23,7 @@ format :html do
   end
 
   def research_properties
-    { research_policy: "Research Policy",
+    { assessment: "Assessment",
       report_type:     "Report Type",
       steward:         "Steward" }
   end

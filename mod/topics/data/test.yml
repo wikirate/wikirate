@@ -1,7 +1,4 @@
 ---
-- :name: GRI
-  :type: :topic_framework
-
 - :name: Wikirate ESG Topics
   :type: :topic_framework
   :codename: esg_topics
