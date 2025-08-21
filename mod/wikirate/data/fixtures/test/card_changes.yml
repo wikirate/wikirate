@@ -31,11 +31,11 @@ card_changes_006:
   value: '179'
 card_changes_007:
   id: 7
-  card_action_id: 1491
+  card_action_id: 1479
   field: 2
   value: |-
-    ~1175
-    ~1314
+    ~1163
+    ~1302
 card_changes_008:
   id: 8
   card_action_id: 243
@@ -68,12 +68,12 @@ card_changes_013:
   value: '179'
 card_changes_014:
   id: 14
-  card_action_id: 1493
+  card_action_id: 1481
   field: 2
   value: |-
-    ~1175
-    ~1181
-    ~1314
+    ~1163
+    ~1169
+    ~1302
 card_changes_015:
   id: 15
   card_action_id: 249
@@ -106,262 +106,262 @@ card_changes_020:
   value: '179'
 card_changes_021:
   id: 21
-  card_action_id: 1495
+  card_action_id: 1483
   field: 2
-  value: "~1175"
+  value: "~1163"
 card_changes_022:
   id: 22
-  card_action_id: 972
+  card_action_id: 962
   field: 0
   value:
 card_changes_023:
   id: 23
-  card_action_id: 972
+  card_action_id: 962
   field: 1
   value: '43'
 card_changes_024:
   id: 24
-  card_action_id: 972
+  card_action_id: 962
   field: 2
   value: Activate your Wikirate account
 card_changes_025:
   id: 25
-  card_action_id: 972
+  card_action_id: 962
   field: 3
   value: f
 card_changes_026:
   id: 26
-  card_action_id: 972
+  card_action_id: 962
   field: 4
   value: '254'
 card_changes_027:
   id: 27
-  card_action_id: 972
+  card_action_id: 962
   field: 5
   value: '167'
 card_changes_028:
   id: 28
-  card_action_id: 1511
+  card_action_id: 1499
   field: 2
   value: verification link for {{:title|core}}
 card_changes_029:
   id: 29
-  card_action_id: 973
+  card_action_id: 963
   field: 0
   value:
 card_changes_030:
   id: 30
-  card_action_id: 973
+  card_action_id: 963
   field: 1
   value: '43'
 card_changes_031:
   id: 31
-  card_action_id: 973
+  card_action_id: 963
   field: 2
   value: Reset your Wikirate password
 card_changes_032:
   id: 32
-  card_action_id: 973
+  card_action_id: 963
   field: 3
   value: f
 card_changes_033:
   id: 33
-  card_action_id: 973
+  card_action_id: 963
   field: 4
   value: '259'
 card_changes_034:
   id: 34
-  card_action_id: 973
+  card_action_id: 963
   field: 5
   value: '167'
 card_changes_035:
   id: 35
-  card_action_id: 1513
+  card_action_id: 1501
   field: 2
   value: reset password for {{:title|core}}
 card_changes_036:
   id: 36
-  card_action_id: 1514
+  card_action_id: 1502
   field: 0
   value: First
 card_changes_037:
   id: 37
-  card_action_id: 1514
+  card_action_id: 1502
   field: 1
   value: '2'
 card_changes_038:
   id: 38
-  card_action_id: 1514
+  card_action_id: 1502
   field: 2
   value: egg
 card_changes_039:
   id: 39
-  card_action_id: 1514
+  card_action_id: 1502
   field: 3
   value: f
 card_changes_040:
   id: 40
-  card_action_id: 1514
+  card_action_id: 1502
   field: 4
   value:
 card_changes_041:
   id: 41
-  card_action_id: 1514
+  card_action_id: 1502
   field: 5
   value:
 card_changes_042:
   id: 42
-  card_action_id: 1515
+  card_action_id: 1503
   field: 2
   value: chicken
 card_changes_043:
   id: 43
-  card_action_id: 1516
+  card_action_id: 1504
   field: 2
   value: chick
 card_changes_044:
   id: 44
-  card_action_id: 1231
+  card_action_id: 1221
   field: 0
   value: "*logo"
 card_changes_045:
   id: 45
-  card_action_id: 1231
+  card_action_id: 1221
   field: 1
   value: '284'
 card_changes_046:
   id: 46
-  card_action_id: 1231
+  card_action_id: 1221
   field: 2
   value: ":logo/wikirate.png"
 card_changes_047:
   id: 47
-  card_action_id: 1231
+  card_action_id: 1221
   field: 3
   value: f
 card_changes_048:
   id: 48
-  card_action_id: 1231
+  card_action_id: 1221
   field: 4
   value:
 card_changes_049:
   id: 49
-  card_action_id: 1231
+  card_action_id: 1221
   field: 5
   value:
 card_changes_050:
   id: 50
-  card_action_id: 1517
+  card_action_id: 1505
   field: 2
   value: ":logo/carrierwave.svg"
 card_changes_051:
   id: 51
-  card_action_id: 898
+  card_action_id: 888
   field: 0
   value: Parent
 card_changes_052:
   id: 52
-  card_action_id: 898
+  card_action_id: 888
   field: 1
   value: '2'
 card_changes_053:
   id: 53
-  card_action_id: 898
+  card_action_id: 888
   field: 2
   value: ''
 card_changes_054:
   id: 54
-  card_action_id: 898
+  card_action_id: 888
   field: 3
   value: f
 card_changes_055:
   id: 55
-  card_action_id: 898
+  card_action_id: 888
   field: 4
   value:
 card_changes_056:
   id: 56
-  card_action_id: 898
+  card_action_id: 888
   field: 5
   value:
 card_changes_057:
   id: 57
-  card_action_id: 1518
+  card_action_id: 1506
   field: 0
   value: parent
 card_changes_058:
   id: 58
-  card_action_id: 968
+  card_action_id: 958
   field: 0
   value:
 card_changes_059:
   id: 59
-  card_action_id: 968
+  card_action_id: 958
   field: 1
   value: '56'
 card_changes_060:
   id: 60
-  card_action_id: 968
+  card_action_id: 958
   field: 2
   value: wikirate skin
 card_changes_061:
   id: 61
-  card_action_id: 968
+  card_action_id: 958
   field: 3
   value: f
 card_changes_062:
   id: 62
-  card_action_id: 968
+  card_action_id: 958
   field: 4
   value: '7'
 card_changes_063:
   id: 63
-  card_action_id: 968
+  card_action_id: 958
   field: 5
   value: '349'
 card_changes_064:
   id: 64
-  card_action_id: 1519
+  card_action_id: 1507
   field: 1
   value: '4'
 card_changes_065:
   id: 65
-  card_action_id: 1519
+  card_action_id: 1507
   field: 2
   value: yeti skin
 card_changes_066:
   id: 66
-  card_action_id: 1576
+  card_action_id: 1564
   field: 0
   value:
 card_changes_067:
   id: 67
-  card_action_id: 1576
+  card_action_id: 1564
   field: 1
   value: '2'
 card_changes_068:
   id: 68
-  card_action_id: 1576
+  card_action_id: 1564
   field: 2
   value: ''
 card_changes_069:
   id: 69
-  card_action_id: 1576
+  card_action_id: 1564
   field: 3
   value: f
 card_changes_070:
   id: 70
-  card_action_id: 1576
+  card_action_id: 1564
   field: 4
-  value: '1395'
+  value: '1383'
 card_changes_071:
   id: 71
-  card_action_id: 1576
+  card_action_id: 1564
   field: 5
-  value: '1396'
+  value: '1384'
 card_changes_072:
   id: 72
-  card_action_id: 1579
+  card_action_id: 1567
   field: 2
   value: zoom in
 card_changes_073:
@@ -396,7 +396,7 @@ card_changes_078:
   value: '494'
 card_changes_079:
   id: 79
-  card_action_id: 1659
+  card_action_id: 1647
   field: 2
   value: Default Layout
 card_changes_080:
@@ -433,29 +433,29 @@ card_changes_085:
   value:
 card_changes_086:
   id: 86
-  card_action_id: 1660
+  card_action_id: 1648
   field: 2
   value: "[[:recent|Recent Changes]]"
 card_changes_087:
   id: 87
-  card_action_id: 1667
+  card_action_id: 1655
   field: 2
   value: |-
     [[:getting_started_links|Getting started]]
     [[:recent|Recent Changes]]
 card_changes_088:
   id: 88
-  card_action_id: 1257
+  card_action_id: 1247
   field: 0
   value: Wikirate Policies
 card_changes_089:
   id: 89
-  card_action_id: 1257
+  card_action_id: 1247
   field: 1
   value: '3'
 card_changes_090:
   id: 90
-  card_action_id: 1257
+  card_action_id: 1247
   field: 2
   value: |
     {{+:description|content}}
@@ -463,436 +463,285 @@ card_changes_090:
     {{+:type+:by_name|content}}
 card_changes_091:
   id: 91
-  card_action_id: 1257
+  card_action_id: 1247
   field: 3
   value: f
 card_changes_092:
   id: 92
-  card_action_id: 1257
+  card_action_id: 1247
   field: 4
   value:
 card_changes_093:
   id: 93
-  card_action_id: 1257
+  card_action_id: 1247
   field: 5
   value:
 card_changes_094:
   id: 94
-  card_action_id: 1673
+  card_action_id: 1661
   field: 0
   value: Policy
 card_changes_095:
   id: 95
-  card_action_id: 1674
+  card_action_id: 1662
   field: 2
   value: deckorate_layout
 card_changes_096:
   id: 96
-  card_action_id: 755
+  card_action_id: 1665
   field: 0
   value:
 card_changes_097:
   id: 97
-  card_action_id: 755
+  card_action_id: 1665
   field: 1
   value: '4'
 card_changes_098:
   id: 98
-  card_action_id: 755
+  card_action_id: 1665
   field: 2
-  value: |-
-    Environment
-    Social
-    Governance
+  value: ''
 card_changes_099:
   id: 99
-  card_action_id: 755
+  card_action_id: 1665
   field: 3
   value: f
 card_changes_100:
   id: 100
-  card_action_id: 755
+  card_action_id: 1665
   field: 4
-  value: '649'
+  value: '1471'
 card_changes_101:
   id: 101
-  card_action_id: 755
+  card_action_id: 1665
   field: 5
-  value: '647'
+  value: '648'
 card_changes_102:
   id: 102
-  card_action_id: 1677
+  card_action_id: 1672
   field: 2
-  value: ''
+  value: |-
+    ~1476
+    ~1477
+    ~1478
 card_changes_103:
   id: 103
-  card_action_id: 746
+  card_action_id: 4622
   field: 0
-  value: Environment
+  value:
 card_changes_104:
   id: 104
-  card_action_id: 746
+  card_action_id: 4622
   field: 1
-  value: '643'
+  value: '4'
 card_changes_105:
   id: 105
-  card_action_id: 746
+  card_action_id: 4622
   field: 2
-  value: ''
+  value: |-
+    Slate_Rock_and_Gravel_Company
+    Monster_Inc
+    Death_Star
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
+    Sony_Corporation
+    Apple_Inc
+    Google LLC
 card_changes_106:
   id: 106
-  card_action_id: 746
+  card_action_id: 4622
   field: 3
   value: f
 card_changes_107:
   id: 107
-  card_action_id: 746
+  card_action_id: 4622
   field: 4
-  value:
+  value: '4045'
 card_changes_108:
   id: 108
-  card_action_id: 746
+  card_action_id: 4622
   field: 5
-  value:
+  value: '690'
 card_changes_109:
   id: 109
-  card_action_id: 1678
-  field: 1
-  value: '1483'
+  card_action_id: 4676
+  field: 2
+  value: |-
+    Slate_Rock_and_Gravel_Company
+    Monster_Inc
+    Death_Star
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
+    Sony_Corporation
+    Apple_Inc
+    Google LLC
+    Death Star
 card_changes_110:
   id: 110
-  card_action_id: 749
-  field: 0
-  value: Social
+  card_action_id: 4696
+  field: 2
+  value: |-
+    Slate_Rock_and_Gravel_Company
+    Monster_Inc
+    Death_Star
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
+    Sony_Corporation
+    Apple_Inc
+    Google LLC
+    Death Star
+    Monster Inc
 card_changes_111:
   id: 111
-  card_action_id: 749
-  field: 1
-  value: '643'
+  card_action_id: 4708
+  field: 2
+  value: |-
+    Slate_Rock_and_Gravel_Company
+    Monster_Inc
+    Death_Star
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
+    Sony_Corporation
+    Apple_Inc
+    Google LLC
+    Death Star
+    Monster Inc
+    Sony Corporation
 card_changes_112:
   id: 112
-  card_action_id: 749
+  card_action_id: 4762
   field: 2
-  value: ''
+  value: |-
+    Slate_Rock_and_Gravel_Company
+    Monster_Inc
+    Death_Star
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
+    Sony_Corporation
+    Apple_Inc
+    Google LLC
+    Death Star
+    Monster Inc
+    Sony Corporation
+    Apple Inc.
 card_changes_113:
   id: 113
-  card_action_id: 749
-  field: 3
-  value: f
+  card_action_id: 4856
+  field: 2
+  value: |-
+    Slate_Rock_and_Gravel_Company
+    Monster_Inc
+    Death_Star
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
+    Sony_Corporation
+    Apple_Inc
+    Google LLC
+    Death Star
+    Monster Inc
+    Sony Corporation
+    Apple Inc.
+    Slate Rock and Gravel Company
 card_changes_114:
   id: 114
-  card_action_id: 749
-  field: 4
-  value:
+  card_action_id: 4867
+  field: 2
+  value: |-
+    Slate_Rock_and_Gravel_Company
+    Monster_Inc
+    Death_Star
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
+    Sony_Corporation
+    Apple_Inc
+    Google LLC
+    Death Star
+    Monster Inc
+    Sony Corporation
+    Apple Inc.
+    Slate Rock and Gravel Company
+    Los Pollos Hermanos
 card_changes_115:
   id: 115
-  card_action_id: 749
-  field: 5
+  card_action_id: 4649
+  field: 0
   value:
 card_changes_116:
   id: 116
-  card_action_id: 1679
+  card_action_id: 4649
   field: 1
-  value: '1483'
+  value: '4'
 card_changes_117:
   id: 117
-  card_action_id: 752
-  field: 0
-  value: Governance
+  card_action_id: 4649
+  field: 2
+  value: |-
+    Death Star
+    Monster_Inc
+    Slate_Rock_and_Gravel_Company
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
 card_changes_118:
   id: 118
-  card_action_id: 752
-  field: 1
-  value: '643'
+  card_action_id: 4649
+  field: 3
+  value: f
 card_changes_119:
   id: 119
-  card_action_id: 752
-  field: 2
-  value: ''
+  card_action_id: 4649
+  field: 4
+  value: '4068'
 card_changes_120:
   id: 120
-  card_action_id: 752
-  field: 3
-  value: f
+  card_action_id: 4649
+  field: 5
+  value: '690'
 card_changes_121:
   id: 121
-  card_action_id: 752
-  field: 4
-  value:
+  card_action_id: 4888
+  field: 2
+  value: |-
+    Death Star
+    Monster_Inc
+    Slate_Rock_and_Gravel_Company
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
+    Slate Rock and Gravel Company
 card_changes_122:
   id: 122
-  card_action_id: 752
-  field: 5
-  value:
+  card_action_id: 4906
+  field: 2
+  value: |-
+    Death Star
+    Monster_Inc
+    Slate_Rock_and_Gravel_Company
+    SPECTRE
+    Los_Pollos_Hermanos
+    Samsung
+    Slate Rock and Gravel Company
+    Los Pollos Hermanos
 card_changes_123:
   id: 123
-  card_action_id: 1680
-  field: 1
-  value: '1483'
+  card_action_id: 4652
+  field: 0
+  value:
 card_changes_124:
   id: 124
-  card_action_id: 1684
-  field: 2
-  value: |-
-    ~1484
-    ~1485
-    ~1486
+  card_action_id: 4652
+  field: 1
+  value: '4'
 card_changes_125:
   id: 125
-  card_action_id: 805
-  field: 0
-  value: Research Policy
-card_changes_126:
-  id: 126
-  card_action_id: 805
-  field: 1
-  value: '3'
-card_changes_127:
-  id: 127
-  card_action_id: 805
-  field: 2
-  value: |
-    {{+:description|content}}
-    {{_|add_button}}{{_|configure_button}}
-    {{+:type+:by_name|content}}
-card_changes_128:
-  id: 128
-  card_action_id: 805
-  field: 3
-  value: f
-card_changes_129:
-  id: 129
-  card_action_id: 805
-  field: 4
-  value:
-card_changes_130:
-  id: 130
-  card_action_id: 805
-  field: 5
-  value:
-card_changes_131:
-  id: 131
-  card_action_id: 2373
-  field: 0
-  value: Assessment
-card_changes_132:
-  id: 132
-  card_action_id: 4636
-  field: 0
-  value:
-card_changes_133:
-  id: 133
-  card_action_id: 4636
-  field: 1
-  value: '4'
-card_changes_134:
-  id: 134
-  card_action_id: 4636
-  field: 2
-  value: |-
-    Slate_Rock_and_Gravel_Company
-    Monster_Inc
-    Death_Star
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-    Sony_Corporation
-    Apple_Inc
-    Google LLC
-card_changes_135:
-  id: 135
-  card_action_id: 4636
-  field: 3
-  value: f
-card_changes_136:
-  id: 136
-  card_action_id: 4636
-  field: 4
-  value: '4054'
-card_changes_137:
-  id: 137
-  card_action_id: 4636
-  field: 5
-  value: '700'
-card_changes_138:
-  id: 138
-  card_action_id: 4690
-  field: 2
-  value: |-
-    Slate_Rock_and_Gravel_Company
-    Monster_Inc
-    Death_Star
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-    Sony_Corporation
-    Apple_Inc
-    Google LLC
-    Death Star
-card_changes_139:
-  id: 139
-  card_action_id: 4710
-  field: 2
-  value: |-
-    Slate_Rock_and_Gravel_Company
-    Monster_Inc
-    Death_Star
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-    Sony_Corporation
-    Apple_Inc
-    Google LLC
-    Death Star
-    Monster Inc
-card_changes_140:
-  id: 140
-  card_action_id: 4722
-  field: 2
-  value: |-
-    Slate_Rock_and_Gravel_Company
-    Monster_Inc
-    Death_Star
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-    Sony_Corporation
-    Apple_Inc
-    Google LLC
-    Death Star
-    Monster Inc
-    Sony Corporation
-card_changes_141:
-  id: 141
-  card_action_id: 4776
-  field: 2
-  value: |-
-    Slate_Rock_and_Gravel_Company
-    Monster_Inc
-    Death_Star
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-    Sony_Corporation
-    Apple_Inc
-    Google LLC
-    Death Star
-    Monster Inc
-    Sony Corporation
-    Apple Inc.
-card_changes_142:
-  id: 142
-  card_action_id: 4870
-  field: 2
-  value: |-
-    Slate_Rock_and_Gravel_Company
-    Monster_Inc
-    Death_Star
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-    Sony_Corporation
-    Apple_Inc
-    Google LLC
-    Death Star
-    Monster Inc
-    Sony Corporation
-    Apple Inc.
-    Slate Rock and Gravel Company
-card_changes_143:
-  id: 143
-  card_action_id: 4881
-  field: 2
-  value: |-
-    Slate_Rock_and_Gravel_Company
-    Monster_Inc
-    Death_Star
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-    Sony_Corporation
-    Apple_Inc
-    Google LLC
-    Death Star
-    Monster Inc
-    Sony Corporation
-    Apple Inc.
-    Slate Rock and Gravel Company
-    Los Pollos Hermanos
-card_changes_144:
-  id: 144
-  card_action_id: 4663
-  field: 0
-  value:
-card_changes_145:
-  id: 145
-  card_action_id: 4663
-  field: 1
-  value: '4'
-card_changes_146:
-  id: 146
-  card_action_id: 4663
-  field: 2
-  value: |-
-    Death Star
-    Monster_Inc
-    Slate_Rock_and_Gravel_Company
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-card_changes_147:
-  id: 147
-  card_action_id: 4663
-  field: 3
-  value: f
-card_changes_148:
-  id: 148
-  card_action_id: 4663
-  field: 4
-  value: '4077'
-card_changes_149:
-  id: 149
-  card_action_id: 4663
-  field: 5
-  value: '700'
-card_changes_150:
-  id: 150
-  card_action_id: 4902
-  field: 2
-  value: |-
-    Death Star
-    Monster_Inc
-    Slate_Rock_and_Gravel_Company
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-    Slate Rock and Gravel Company
-card_changes_151:
-  id: 151
-  card_action_id: 4920
-  field: 2
-  value: |-
-    Death Star
-    Monster_Inc
-    Slate_Rock_and_Gravel_Company
-    SPECTRE
-    Los_Pollos_Hermanos
-    Samsung
-    Slate Rock and Gravel Company
-    Los Pollos Hermanos
-card_changes_152:
-  id: 152
-  card_action_id: 4666
-  field: 0
-  value:
-card_changes_153:
-  id: 153
-  card_action_id: 4666
-  field: 1
-  value: '4'
-card_changes_154:
-  id: 154
-  card_action_id: 4666
+  card_action_id: 4652
   field: 2
   value: |-
     1977
@@ -903,24 +752,24 @@ card_changes_154:
     2004
     2005
     2008
-card_changes_155:
-  id: 155
-  card_action_id: 4666
+card_changes_126:
+  id: 126
+  card_action_id: 4652
   field: 3
   value: f
-card_changes_156:
-  id: 156
-  card_action_id: 4666
+card_changes_127:
+  id: 127
+  card_action_id: 4652
   field: 4
-  value: '4077'
-card_changes_157:
-  id: 157
-  card_action_id: 4666
+  value: '4068'
+card_changes_128:
+  id: 128
+  card_action_id: 4652
   field: 5
-  value: '699'
-card_changes_158:
-  id: 158
-  card_action_id: 4985
+  value: '689'
+card_changes_129:
+  id: 129
+  card_action_id: 4971
   field: 2
   value: |-
     1977
@@ -932,9 +781,9 @@ card_changes_158:
     2005
     2008
     2006
-card_changes_159:
-  id: 159
-  card_action_id: 4991
+card_changes_130:
+  id: 130
+  card_action_id: 4977
   field: 2
   value: |-
     Death Star
@@ -946,19 +795,19 @@ card_changes_159:
     Slate Rock and Gravel Company
     Los Pollos Hermanos
     Monster Inc
-card_changes_160:
-  id: 160
-  card_action_id: 956
+card_changes_131:
+  id: 131
+  card_action_id: 946
   field: 0
   value:
-card_changes_161:
-  id: 161
-  card_action_id: 956
+card_changes_132:
+  id: 132
+  card_action_id: 946
   field: 1
   value: '4'
-card_changes_162:
-  id: 162
-  card_action_id: 956
+card_changes_133:
+  id: 133
+  card_action_id: 946
   field: 2
   value: |-
     Afghanistan
@@ -1212,24 +1061,24 @@ card_changes_162:
     Zambia
     Zimbabwe
     Åland Islands
-card_changes_163:
-  id: 163
-  card_action_id: 956
+card_changes_134:
+  id: 134
+  card_action_id: 946
   field: 3
   value: f
-card_changes_164:
-  id: 164
-  card_action_id: 956
+card_changes_135:
+  id: 135
+  card_action_id: 946
   field: 4
-  value: '843'
-card_changes_165:
-  id: 165
-  card_action_id: 956
+  value: '833'
+card_changes_136:
+  id: 136
+  card_action_id: 946
   field: 5
-  value: '734'
-card_changes_166:
-  id: 166
-  card_action_id: 5260
+  value: '724'
+card_changes_137:
+  id: 137
+  card_action_id: 5246
   field: 2
   value: |-
     Afghanistan
@@ -1476,299 +1325,299 @@ card_changes_166:
     Yemen
     Zambia
     Zimbabwe
-card_changes_167:
-  id: 167
-  card_action_id: 5271
+card_changes_138:
+  id: 138
+  card_action_id: 5257
   field: 0
   value: Parent
+card_changes_139:
+  id: 139
+  card_action_id: 4448
+  field: 0
+  value:
+card_changes_140:
+  id: 140
+  card_action_id: 4448
+  field: 1
+  value: '2'
+card_changes_141:
+  id: 141
+  card_action_id: 4448
+  field: 2
+  value: unchanged
+card_changes_142:
+  id: 142
+  card_action_id: 4448
+  field: 3
+  value: f
+card_changes_143:
+  id: 143
+  card_action_id: 4448
+  field: 4
+  value: '3885'
+card_changes_144:
+  id: 144
+  card_action_id: 4448
+  field: 5
+  value: '729'
+card_changes_145:
+  id: 145
+  card_action_id: 5311
+  field: 2
+  value: changed
+card_changes_146:
+  id: 146
+  card_action_id: 4735
+  field: 0
+  value:
+card_changes_147:
+  id: 147
+  card_action_id: 4735
+  field: 1
+  value: '712'
+card_changes_148:
+  id: 148
+  card_action_id: 4735
+  field: 2
+  value: '1'
+card_changes_149:
+  id: 149
+  card_action_id: 4735
+  field: 3
+  value: f
+card_changes_150:
+  id: 150
+  card_action_id: 4735
+  field: 4
+  value: '4140'
+card_changes_151:
+  id: 151
+  card_action_id: 4735
+  field: 5
+  value: '693'
+card_changes_152:
+  id: 152
+  card_action_id: 5312
+  field: 2
+  value: '4'
+card_changes_153:
+  id: 153
+  card_action_id: 4727
+  field: 0
+  value:
+card_changes_154:
+  id: 154
+  card_action_id: 4727
+  field: 1
+  value: '712'
+card_changes_155:
+  id: 155
+  card_action_id: 4727
+  field: 2
+  value: '8'
+card_changes_156:
+  id: 156
+  card_action_id: 4727
+  field: 3
+  value: f
+card_changes_157:
+  id: 157
+  card_action_id: 4727
+  field: 4
+  value: '4134'
+card_changes_158:
+  id: 158
+  card_action_id: 4727
+  field: 5
+  value: '693'
+card_changes_159:
+  id: 159
+  card_action_id: 5313
+  field: 2
+  value: '5'
+card_changes_160:
+  id: 160
+  card_action_id: 4731
+  field: 0
+  value:
+card_changes_161:
+  id: 161
+  card_action_id: 4731
+  field: 1
+  value: '712'
+card_changes_162:
+  id: 162
+  card_action_id: 4731
+  field: 2
+  value: '9'
+card_changes_163:
+  id: 163
+  card_action_id: 4731
+  field: 3
+  value: f
+card_changes_164:
+  id: 164
+  card_action_id: 4731
+  field: 4
+  value: '4137'
+card_changes_165:
+  id: 165
+  card_action_id: 4731
+  field: 5
+  value: '693'
+card_changes_166:
+  id: 166
+  card_action_id: 5316
+  field: 2
+  value: '5'
+card_changes_167:
+  id: 167
+  card_action_id: 5318
+  field: 2
+  value: '6'
 card_changes_168:
   id: 168
-  card_action_id: 4462
+  card_action_id: 5322
   field: 0
   value:
 card_changes_169:
   id: 169
-  card_action_id: 4462
+  card_action_id: 5322
   field: 1
-  value: '2'
+  value: '643'
 card_changes_170:
   id: 170
-  card_action_id: 4462
+  card_action_id: 5322
   field: 2
-  value: unchanged
+  value: ''
 card_changes_171:
   id: 171
-  card_action_id: 4462
+  card_action_id: 5322
   field: 3
   value: f
 card_changes_172:
   id: 172
-  card_action_id: 4462
+  card_action_id: 5322
   field: 4
-  value: '3894'
+  value: '4637'
 card_changes_173:
   id: 173
-  card_action_id: 4462
+  card_action_id: 5322
   field: 5
-  value: '739'
+  value: '4638'
 card_changes_174:
   id: 174
-  card_action_id: 5325
+  card_action_id: 5330
   field: 2
-  value: changed
+  value: updated
 card_changes_175:
   id: 175
-  card_action_id: 4749
+  card_action_id: 5334
   field: 0
-  value:
+  value: updated project
 card_changes_176:
   id: 176
-  card_action_id: 4749
+  card_action_id: 5334
   field: 1
-  value: '722'
+  value: '783'
 card_changes_177:
   id: 177
-  card_action_id: 4749
+  card_action_id: 5334
   field: 2
-  value: '1'
+  value: ''
 card_changes_178:
   id: 178
-  card_action_id: 4749
+  card_action_id: 5334
   field: 3
   value: f
 card_changes_179:
   id: 179
-  card_action_id: 4749
+  card_action_id: 5334
   field: 4
-  value: '4149'
+  value:
 card_changes_180:
   id: 180
-  card_action_id: 4749
+  card_action_id: 5334
   field: 5
-  value: '703'
+  value:
 card_changes_181:
   id: 181
-  card_action_id: 5326
+  card_action_id: 5356
   field: 2
-  value: '4'
+  value: updated
 card_changes_182:
   id: 182
-  card_action_id: 4741
+  card_action_id: 5359
   field: 0
-  value:
+  value: updated company
 card_changes_183:
   id: 183
-  card_action_id: 4741
+  card_action_id: 5359
   field: 1
-  value: '722'
+  value: '690'
 card_changes_184:
   id: 184
-  card_action_id: 4741
+  card_action_id: 5359
   field: 2
-  value: '8'
+  value: ''
 card_changes_185:
   id: 185
-  card_action_id: 4741
+  card_action_id: 5359
   field: 3
   value: f
 card_changes_186:
   id: 186
-  card_action_id: 4741
+  card_action_id: 5359
   field: 4
-  value: '4143'
+  value:
 card_changes_187:
   id: 187
-  card_action_id: 4741
+  card_action_id: 5359
   field: 5
-  value: '703'
+  value:
 card_changes_188:
   id: 188
-  card_action_id: 5327
+  card_action_id: 5365
   field: 2
-  value: '5'
+  value: updated
 card_changes_189:
   id: 189
-  card_action_id: 4745
+  card_action_id: 5368
   field: 0
-  value:
+  value: updated research group
 card_changes_190:
   id: 190
-  card_action_id: 4745
+  card_action_id: 5368
   field: 1
-  value: '722'
+  value: '802'
 card_changes_191:
   id: 191
-  card_action_id: 4745
+  card_action_id: 5368
   field: 2
-  value: '9'
+  value: ''
 card_changes_192:
   id: 192
-  card_action_id: 4745
+  card_action_id: 5368
   field: 3
   value: f
 card_changes_193:
   id: 193
-  card_action_id: 4745
+  card_action_id: 5368
   field: 4
-  value: '4146'
+  value:
 card_changes_194:
   id: 194
-  card_action_id: 4745
+  card_action_id: 5368
   field: 5
-  value: '703'
+  value:
 card_changes_195:
   id: 195
-  card_action_id: 5330
+  card_action_id: 5372
   field: 2
-  value: '5'
+  value: updated
 card_changes_196:
   id: 196
-  card_action_id: 5332
-  field: 2
-  value: '6'
-card_changes_197:
-  id: 197
-  card_action_id: 5336
-  field: 0
-  value:
-card_changes_198:
-  id: 198
-  card_action_id: 5336
-  field: 1
-  value: '643'
-card_changes_199:
-  id: 199
-  card_action_id: 5336
-  field: 2
-  value: ''
-card_changes_200:
-  id: 200
-  card_action_id: 5336
-  field: 3
-  value: f
-card_changes_201:
-  id: 201
-  card_action_id: 5336
-  field: 4
-  value: '4646'
-card_changes_202:
-  id: 202
-  card_action_id: 5336
-  field: 5
-  value: '4647'
-card_changes_203:
-  id: 203
-  card_action_id: 5344
-  field: 2
-  value: updated
-card_changes_204:
-  id: 204
-  card_action_id: 5348
-  field: 0
-  value: updated project
-card_changes_205:
-  id: 205
-  card_action_id: 5348
-  field: 1
-  value: '793'
-card_changes_206:
-  id: 206
-  card_action_id: 5348
-  field: 2
-  value: ''
-card_changes_207:
-  id: 207
-  card_action_id: 5348
-  field: 3
-  value: f
-card_changes_208:
-  id: 208
-  card_action_id: 5348
-  field: 4
-  value:
-card_changes_209:
-  id: 209
-  card_action_id: 5348
-  field: 5
-  value:
-card_changes_210:
-  id: 210
-  card_action_id: 5370
-  field: 2
-  value: updated
-card_changes_211:
-  id: 211
-  card_action_id: 5373
-  field: 0
-  value: updated company
-card_changes_212:
-  id: 212
-  card_action_id: 5373
-  field: 1
-  value: '700'
-card_changes_213:
-  id: 213
-  card_action_id: 5373
-  field: 2
-  value: ''
-card_changes_214:
-  id: 214
-  card_action_id: 5373
-  field: 3
-  value: f
-card_changes_215:
-  id: 215
-  card_action_id: 5373
-  field: 4
-  value:
-card_changes_216:
-  id: 216
-  card_action_id: 5373
-  field: 5
-  value:
-card_changes_217:
-  id: 217
-  card_action_id: 5379
-  field: 2
-  value: updated
-card_changes_218:
-  id: 218
-  card_action_id: 5382
-  field: 0
-  value: updated research group
-card_changes_219:
-  id: 219
-  card_action_id: 5382
-  field: 1
-  value: '812'
-card_changes_220:
-  id: 220
-  card_action_id: 5382
-  field: 2
-  value: ''
-card_changes_221:
-  id: 221
-  card_action_id: 5382
-  field: 3
-  value: f
-card_changes_222:
-  id: 222
-  card_action_id: 5382
-  field: 4
-  value:
-card_changes_223:
-  id: 223
-  card_action_id: 5382
-  field: 5
-  value:
-card_changes_224:
-  id: 224
-  card_action_id: 5386
-  field: 2
-  value: updated
-card_changes_225:
-  id: 225
-  card_action_id: 5390
+  card_action_id: 5376
   field: 2
   value: |-
     Afghanistan
@@ -2022,74 +1871,74 @@ card_changes_225:
     Zambia
     Zimbabwe
     Åland Islands
-card_changes_226:
-  id: 226
-  card_action_id: 5409
+card_changes_197:
+  id: 197
+  card_action_id: 5395
   field: 1
   value: '56'
-card_changes_227:
-  id: 227
-  card_action_id: 5409
+card_changes_198:
+  id: 198
+  card_action_id: 5395
   field: 2
   value: wikirate skin
-card_changes_228:
-  id: 228
-  card_action_id: 5410
+card_changes_199:
+  id: 199
+  card_action_id: 5396
   field: 2
   value: Activate your Wikirate account
-card_changes_229:
-  id: 229
-  card_action_id: 5411
+card_changes_200:
+  id: 200
+  card_action_id: 5397
   field: 2
   value: Reset your Wikirate password
-card_changes_230:
-  id: 230
-  card_action_id: 5412
+card_changes_201:
+  id: 201
+  card_action_id: 5398
   field: 2
   value: ":logo/wikirate.png"
-card_changes_231:
-  id: 231
-  card_action_id: 5413
+card_changes_202:
+  id: 202
+  card_action_id: 5399
   field: 0
   value: Wikirate Policies
-card_changes_232:
-  id: 232
-  card_action_id: 1258
+card_changes_203:
+  id: 203
+  card_action_id: 1248
   field: 0
   value: Community Guidelines
-card_changes_233:
-  id: 233
-  card_action_id: 1258
+card_changes_204:
+  id: 204
+  card_action_id: 1248
   field: 1
   value: '2'
-card_changes_234:
-  id: 234
-  card_action_id: 1258
+card_changes_205:
+  id: 205
+  card_action_id: 1248
   field: 2
   value: ''
-card_changes_235:
-  id: 235
-  card_action_id: 1258
+card_changes_206:
+  id: 206
+  card_action_id: 1248
   field: 3
   value: f
-card_changes_236:
-  id: 236
-  card_action_id: 1258
+card_changes_207:
+  id: 207
+  card_action_id: 1248
   field: 4
   value:
-card_changes_237:
-  id: 237
-  card_action_id: 1258
+card_changes_208:
+  id: 208
+  card_action_id: 1248
   field: 5
   value:
-card_changes_238:
-  id: 238
-  card_action_id: 5580
+card_changes_209:
+  id: 209
+  card_action_id: 5566
   field: 1
   value: '637'
-card_changes_239:
-  id: 239
-  card_action_id: 5580
+card_changes_210:
+  id: 210
+  card_action_id: 5566
   field: 2
   value: "<p style=\"font-size: 14px;\">Welcome to the Wikirate Community!</p>\r\n<p
     style=\"font-size: 14px;\">We are people who seek to create clarity through evidence.
@@ -2187,39 +2036,39 @@ card_changes_239:
     in March 2023, and will be reviewed periodically. The guidelines have been adapted
     with modifications from Mozilla Community Participation Guidelines <a href=\"https://www.mozilla.org/en-US/about/governance/policies/participation/\"
     style=\"transition-duration: 0.08s; transition-property: all;\">Version 3.1</a></em></p>"
-card_changes_240:
-  id: 240
-  card_action_id: 960
+card_changes_211:
+  id: 211
+  card_action_id: 950
   field: 0
   value:
-card_changes_241:
-  id: 241
-  card_action_id: 960
+card_changes_212:
+  id: 212
+  card_action_id: 950
   field: 1
   value: '4'
-card_changes_242:
-  id: 242
-  card_action_id: 960
+card_changes_213:
+  id: 213
+  card_action_id: 950
   field: 2
   value: ''
-card_changes_243:
-  id: 243
-  card_action_id: 960
+card_changes_214:
+  id: 214
+  card_action_id: 950
   field: 3
   value: f
-card_changes_244:
-  id: 244
-  card_action_id: 960
+card_changes_215:
+  id: 215
+  card_action_id: 950
   field: 4
-  value: '741'
-card_changes_245:
-  id: 245
-  card_action_id: 960
+  value: '731'
+card_changes_216:
+  id: 216
+  card_action_id: 950
   field: 5
   value: '639'
-card_changes_246:
-  id: 246
-  card_action_id: 5596
+card_changes_217:
+  id: 217
+  card_action_id: 5582
   field: 2
   value: |-
     Jedi
@@ -2228,200 +2077,200 @@ card_changes_246:
     Core
     ISIC
     Clean Clothes Campaign
-card_changes_247:
-  id: 247
-  card_action_id: 961
+card_changes_218:
+  id: 218
+  card_action_id: 951
   field: 0
   value:
-card_changes_248:
-  id: 248
-  card_action_id: 961
+card_changes_219:
+  id: 219
+  card_action_id: 951
   field: 1
   value: '4'
-card_changes_249:
-  id: 249
-  card_action_id: 961
+card_changes_220:
+  id: 220
+  card_action_id: 951
   field: 2
   value: ''
-card_changes_250:
-  id: 250
-  card_action_id: 961
+card_changes_221:
+  id: 221
+  card_action_id: 951
   field: 3
   value: f
-card_changes_251:
-  id: 251
-  card_action_id: 961
+card_changes_222:
+  id: 222
+  card_action_id: 951
   field: 4
-  value: '695'
-card_changes_252:
-  id: 252
-  card_action_id: 961
+  value: '685'
+card_changes_223:
+  id: 223
+  card_action_id: 951
   field: 5
   value: '639'
-card_changes_253:
-  id: 253
-  card_action_id: 5597
+card_changes_224:
+  id: 224
+  card_action_id: 5583
   field: 2
   value: |-
     Jedi
     Joe User
-card_changes_254:
-  id: 254
-  card_action_id: 959
+card_changes_225:
+  id: 225
+  card_action_id: 949
   field: 0
   value:
-card_changes_255:
-  id: 255
-  card_action_id: 959
+card_changes_226:
+  id: 226
+  card_action_id: 949
   field: 1
   value: '4'
-card_changes_256:
-  id: 256
-  card_action_id: 959
+card_changes_227:
+  id: 227
+  card_action_id: 949
   field: 2
   value: ''
-card_changes_257:
-  id: 257
-  card_action_id: 959
+card_changes_228:
+  id: 228
+  card_action_id: 949
   field: 3
   value: f
-card_changes_258:
-  id: 258
-  card_action_id: 959
+card_changes_229:
+  id: 229
+  card_action_id: 949
   field: 4
   value: '205'
-card_changes_259:
-  id: 259
-  card_action_id: 959
+card_changes_230:
+  id: 230
+  card_action_id: 949
   field: 5
   value: '639'
-card_changes_260:
-  id: 260
-  card_action_id: 5598
+card_changes_231:
+  id: 231
+  card_action_id: 5584
   field: 2
   value: |-
     Joe User
     Joe Camel
-card_changes_261:
-  id: 261
-  card_action_id: 962
+card_changes_232:
+  id: 232
+  card_action_id: 952
   field: 0
   value:
-card_changes_262:
-  id: 262
-  card_action_id: 962
+card_changes_233:
+  id: 233
+  card_action_id: 952
   field: 1
   value: '4'
-card_changes_263:
-  id: 263
-  card_action_id: 962
+card_changes_234:
+  id: 234
+  card_action_id: 952
   field: 2
   value: ''
-card_changes_264:
-  id: 264
-  card_action_id: 962
+card_changes_235:
+  id: 235
+  card_action_id: 952
   field: 3
   value: f
-card_changes_265:
-  id: 265
-  card_action_id: 962
+card_changes_236:
+  id: 236
+  card_action_id: 952
   field: 4
-  value: '702'
-card_changes_266:
-  id: 266
-  card_action_id: 962
+  value: '692'
+card_changes_237:
+  id: 237
+  card_action_id: 952
   field: 5
   value: '639'
-card_changes_267:
-  id: 267
-  card_action_id: 5599
+card_changes_238:
+  id: 238
+  card_action_id: 5585
   field: 2
   value: |-
     Jedi+deadliness
     Jedi+friendliness
-card_changes_268:
-  id: 268
-  card_action_id: 5438
+card_changes_239:
+  id: 239
+  card_action_id: 5424
   field: 0
   value:
-card_changes_269:
-  id: 269
-  card_action_id: 5438
+card_changes_240:
+  id: 240
+  card_action_id: 5424
   field: 1
   value: '449'
-card_changes_270:
-  id: 270
-  card_action_id: 5438
+card_changes_241:
+  id: 241
+  card_action_id: 5424
   field: 2
   value: '2021-09-20'
-card_changes_271:
-  id: 271
-  card_action_id: 5438
+card_changes_242:
+  id: 242
+  card_action_id: 5424
   field: 3
   value: f
-card_changes_272:
-  id: 272
-  card_action_id: 5438
+card_changes_243:
+  id: 243
+  card_action_id: 5424
   field: 4
-  value: '4723'
-card_changes_273:
-  id: 273
-  card_action_id: 5438
+  value: '4714'
+card_changes_244:
+  id: 244
+  card_action_id: 5424
   field: 5
   value: '449'
-card_changes_274:
-  id: 274
-  card_action_id: 5617
+card_changes_245:
+  id: 245
+  card_action_id: 5603
   field: 2
   value: '2020'
-card_changes_275:
-  id: 275
-  card_action_id: 5439
+card_changes_246:
+  id: 246
+  card_action_id: 5425
   field: 0
   value:
-card_changes_276:
-  id: 276
-  card_action_id: 5439
+card_changes_247:
+  id: 247
+  card_action_id: 5425
   field: 1
   value: '56'
-card_changes_277:
-  id: 277
-  card_action_id: 5439
+card_changes_248:
+  id: 248
+  card_action_id: 5425
   field: 2
   value: Clean Clothes Campaign
-card_changes_278:
-  id: 278
-  card_action_id: 5439
+card_changes_249:
+  id: 249
+  card_action_id: 5425
   field: 3
   value: f
-card_changes_279:
-  id: 279
-  card_action_id: 5439
+card_changes_250:
+  id: 250
+  card_action_id: 5425
   field: 4
-  value: '4723'
-card_changes_280:
-  id: 280
-  card_action_id: 5439
+  value: '4714'
+card_changes_251:
+  id: 251
+  card_action_id: 5425
   field: 5
-  value: '700'
-card_changes_281:
-  id: 281
-  card_action_id: 5619
+  value: '690'
+card_changes_252:
+  id: 252
+  card_action_id: 5605
   field: 2
   value: Death Star
-card_changes_282:
-  id: 282
-  card_action_id: 5435
+card_changes_253:
+  id: 253
+  card_action_id: 5421
   field: 0
   value:
-card_changes_283:
-  id: 283
-  card_action_id: 5435
+card_changes_254:
+  id: 254
+  card_action_id: 5421
   field: 1
   value: '2'
-card_changes_284:
-  id: 284
-  card_action_id: 5435
+card_changes_255:
+  id: 255
+  card_action_id: 5421
   field: 2
   value: "<p>Fashion Checker is a data tool that connects the dots between brand commitments
     on living wages and the reality for workers on the ground.</p>\r\n<p>The project
@@ -2434,237 +2283,27 @@ card_changes_284:
     paying workers a living wage in the future.</p>\r\n<p>The tool also pulls in data
     on the company’s supply chain including gender breakdowns of workers, the actual
     to minimum wage pay gap and collective bargaining agreements.</p>"
-card_changes_285:
-  id: 285
-  card_action_id: 5435
+card_changes_256:
+  id: 256
+  card_action_id: 5421
   field: 3
   value: f
-card_changes_286:
-  id: 286
-  card_action_id: 5435
+card_changes_257:
+  id: 257
+  card_action_id: 5421
   field: 4
-  value: '4723'
-card_changes_287:
-  id: 287
-  card_action_id: 5435
+  value: '4714'
+card_changes_258:
+  id: 258
+  card_action_id: 5421
   field: 5
   value: '12'
-card_changes_288:
-  id: 288
-  card_action_id: 5620
+card_changes_259:
+  id: 259
+  card_action_id: 5606
   field: 2
   value: |
     <p>Fashion Checker is a data tool that connects the dots between brand commitments on living wages and the reality for workers on the ground.</p>
     <p>The project is coordinated by <a href="https://cleanclothes.org/">Clean Clothes Campaign</a> in partnership with <a href="https://semcon.com/">Semcon</a>, <a href="https://wageindicator.org/">WageIndicator</a> and <a href="/">Wikirate</a>. The campaign seeks to make brands accountable for their promises on living wages and invites the public in to explore the data.</p>
     <p>Through the tool you can explore how companies score on currently paying their workers a living wage, the transparency of their supply chain and their commitments to paying workers a living wage in the future.</p>
     <p>The tool also pulls in data on the company’s supply chain including gender breakdowns of workers, the actual to minimum wage pay gap and collective bargaining agreements.</p>
-card_changes_289:
-  id: 289
-  card_action_id: 1350
-  field: 0
-  value:
-card_changes_290:
-  id: 290
-  card_action_id: 1350
-  field: 1
-  value: '4'
-card_changes_291:
-  id: 291
-  card_action_id: 1350
-  field: 2
-  value: |-
-    mod: format+*script
-    mod: list+*script
-    mod: search+*script
-    mod: rules+*script
-    mod: edit+*script
-    mod: account+*script
-    mod: carrierwave+*script
-    mod: ace editor+*script
-    mod: bar and box+*script
-    mod: bootstrap+*script
-    mod: filter+*script
-    mod: tabs+*script
-    mod: csv import+*script
-    mod: deckorate search+*script
-    mod: follow+*script
-    mod: layout+*script
-    mod: recaptcha+*script
-    mod: tinymce editor+*script
-    mod: wikirate shared+*script
-    mod: deckorate utility+*script
-    mod: topics+*script
-    mod: deckorate core+*script
-    mod: deckorate research+*script
-    mod: deckorate calculations+*script
-    mod: deckorate attribution+*script
-    mod: wikirate companies+*script
-    mod: wikirate+*script
-    mod: tasks+*script
-    mod: vega+*script
-    mod: ticket+*script
-card_changes_292:
-  id: 292
-  card_action_id: 1350
-  field: 3
-  value: f
-card_changes_293:
-  id: 293
-  card_action_id: 1350
-  field: 4
-  value: '7'
-card_changes_294:
-  id: 294
-  card_action_id: 1350
-  field: 5
-  value: '302'
-card_changes_295:
-  id: 295
-  card_action_id: 5631
-  field: 2
-  value: |-
-    mod: format+*script
-    mod: list+*script
-    mod: search+*script
-    mod: rules+*script
-    mod: edit+*script
-    mod: account+*script
-    mod: carrierwave+*script
-    mod: ace editor+*script
-    mod: bar and box+*script
-    mod: bootstrap+*script
-    mod: filter+*script
-    mod: tabs+*script
-    mod: csv import+*script
-    mod: deckorate search+*script
-    mod: follow+*script
-    mod: layout+*script
-    mod: recaptcha+*script
-    mod: tinymce editor+*script
-    mod: wikirate shared+*script
-    mod: deckorate utility+*script
-    mod: topics+*script
-    mod: deckorate core+*script
-    mod: deckorate research+*script
-    mod: deckorate calculations+*script
-    mod: deckorate attribution+*script
-    mod: wikirate companies+*script
-    mod: wikirate+*script
-    mod: tasks+*script
-    mod: vega+*script
-card_changes_296:
-  id: 296
-  card_action_id: 1351
-  field: 0
-  value: 'style: mods'
-card_changes_297:
-  id: 297
-  card_action_id: 1351
-  field: 1
-  value: '4'
-card_changes_298:
-  id: 298
-  card_action_id: 1351
-  field: 2
-  value: |-
-    mod: format+*style
-    mod: list+*style
-    mod: permissions+*style
-    mod: help+*style
-    mod: search+*style
-    mod: rules+*style
-    mod: edit+*style
-    mod: account+*style
-    mod: history+*style
-    mod: carrierwave+*style
-    mod: api key+*style
-    mod: style+*style
-    mod: bar and box+*style
-    mod: bootstrap+*style
-    mod: filter+*style
-    mod: bookmarks+*style
-    mod: comment+*style
-    mod: csv import+*style
-    mod: deckorate search+*style
-    mod: follow+*style
-    mod: layout+*style
-    mod: tinymce editor+*style
-    mod: flag+*style
-    mod: thumbnail+*style
-    mod: guides+*style
-    mod: wikirate shared+*style
-    mod: deckorate utility+*style
-    mod: deckorate layout+*style
-    mod: topics+*style
-    mod: deckorate core+*style
-    mod: deckorate research+*style
-    mod: deckorate calculations+*style
-    mod: deckorate datasets+*style
-    mod: deckorate attribution+*style
-    mod: deckorate profiles+*style
-    mod: wikirate companies+*style
-    mod: wikirate+*style
-    mod: badges+*style
-    mod: tasks+*style
-    mod: vega+*style
-    mod: ticket+*style
-card_changes_299:
-  id: 299
-  card_action_id: 1351
-  field: 3
-  value: f
-card_changes_300:
-  id: 300
-  card_action_id: 1351
-  field: 4
-  value:
-card_changes_301:
-  id: 301
-  card_action_id: 1351
-  field: 5
-  value:
-card_changes_302:
-  id: 302
-  card_action_id: 5632
-  field: 2
-  value: |-
-    mod: format+*style
-    mod: list+*style
-    mod: permissions+*style
-    mod: help+*style
-    mod: search+*style
-    mod: rules+*style
-    mod: edit+*style
-    mod: account+*style
-    mod: history+*style
-    mod: carrierwave+*style
-    mod: api key+*style
-    mod: style+*style
-    mod: bar and box+*style
-    mod: bootstrap+*style
-    mod: filter+*style
-    mod: bookmarks+*style
-    mod: comment+*style
-    mod: csv import+*style
-    mod: deckorate search+*style
-    mod: follow+*style
-    mod: layout+*style
-    mod: tinymce editor+*style
-    mod: flag+*style
-    mod: thumbnail+*style
-    mod: guides+*style
-    mod: wikirate shared+*style
-    mod: deckorate utility+*style
-    mod: deckorate layout+*style
-    mod: topics+*style
-    mod: deckorate core+*style
-    mod: deckorate research+*style
-    mod: deckorate calculations+*style
-    mod: deckorate datasets+*style
-    mod: deckorate attribution+*style
-    mod: deckorate profiles+*style
-    mod: wikirate companies+*style
-    mod: wikirate+*style
-    mod: badges+*style
-    mod: tasks+*style
-    mod: vega+*style

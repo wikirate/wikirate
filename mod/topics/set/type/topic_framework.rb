@@ -2,8 +2,8 @@ include_set Abstract::LazyTree
 include_set Abstract::Stewardable
 
 card_accessor :topic, type: :search_type
-card_accessor :category
-card_accessor :assessment
+card_accessor :assessment, type: :pointer
+card_accessor :category, type: :list
 card_accessor :description
 
 def featured?
