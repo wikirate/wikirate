@@ -1,11 +1,15 @@
 ---
 - :name: Test Topics
   :type: :topic_framework
+  :fields:
+    :assessment: Steward Assessed
+    :steward: Joe User
 - :name:
     - Test Topics
     - updated topic
   :type: :topic
   :user: Joe Admin
+
 - :name:
     - Test Topics
     - discussed topic

@@ -32,4 +32,6 @@ def check_steward_permissions action
   return true if !stewarded_card || stewarded_card.ok_as_steward?
 
   deny_because "Only stewards can #{action} this on steward-assessed #{stewarded_type}s"
+rescue
+  binding.pry
 end
