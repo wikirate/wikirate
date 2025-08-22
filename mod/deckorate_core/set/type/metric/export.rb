@@ -1,6 +1,6 @@
 NESTED_FIELD_CODENAMES = %i[
   question metric_type about methodology value_type value_options report_type
-  research_policy unit range hybrid topic score formula rubric variables
+  assessment unit range hybrid topic score formula rubric variables
 ].freeze
 
 COUNT_FIELD_CODENAMES = %i[answer bookmarkers dataset company].freeze
@@ -72,7 +72,7 @@ format :csv do
   COLUMN_METHODS = {
     topic: :semicolon_separated_values,
     report_type: :semicolon_separated_values,
-    research_policy: :semicolon_separated_values,
+    assessment: :semicolon_separated_values,
     value_options: :semicolon_separated_values
   }.freeze
 
@@ -82,7 +82,7 @@ format :csv do
 
   view :row do
     basic = cell_values(Abstract::MetricSearch::BASIC_COLUMNS)
-            .unshift card_url("~#{card.id}")
+            .unshift card_url(card.id_string)
     return basic unless detailed?
 
     basic + cell_values(Abstract::MetricSearch::DETAILED_COLUMNS)

@@ -156,6 +156,7 @@ $colorMap: (
   answer: $record-color,
   company: $company-color,
   topic: $topic-color,
+  topic_framework: $topic-framework-color,
   source: $source-color,
   project: $project-color,
   research_group: $research-group-color,
@@ -298,7 +299,7 @@ $topicFamilyMap: (
     border-color: $lightColor;
   }
 
-  .SELF-#{$family}.box {
+  .SELF-wikirate_esg_topic-#{$family}.box {
     .box-middle, .box-middle i {
       color: $color !important;
       background-color: $lightColor;
@@ -322,7 +323,7 @@ $topicFamilyMap: (
 
 // Topic and company tags
 
-.RIGHT-topic, .RIGHT-company, .RIGHT-company_group {
+.RIGHT-topic, .RIGHT-topic_framework, .RIGHT-company, .RIGHT-company_group {
   &.d0-card-content .item-link {
     display: inline;
     > a {
@@ -334,7 +335,7 @@ $topicFamilyMap: (
 
 @include hoverTag(topic, $topic-color);
 @include hoverTag(company, $company-color);
-@include hoverTag(topic, $topic-color);
+@include hoverTag(topic_framework, $topic-framework-color);
 @include hoverTag(company, $company-color);
 @include hoverTag(company_group, $company-group-color);
 @include hoverTag(metric, $metric-color);

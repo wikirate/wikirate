@@ -8,30 +8,23 @@ class << self
   def featured_framework
     :esg_topics
 
-    # one a gem we can replace with the following
+    # once a gem we can replace with the following
     # Cardio.config.featured_topic_framework
   end
 
   def family_list
-    @family_list ||= featured_framework&.card&.category_card
-  end
-
-  def family_names
-    @family_names ||= family_list.item_names
+    featured_framework&.card&.category_card
   end
 end
 
-def featured_framework
-  Self::Topic.featured_framework
-end
-
-def family_list
-  Self::Topic.family_list
-end
+delegate :featured_framework, :family_list, to: Self::Topic
 
 def cql_content
-  # exclude top-level topics
-  { type: :topic, id: ["not in"] + family_list.item_ids }
+  { type: :topic }.tap do |cql|
+    # exclude top-level topics
+    excluded_ids = family_list.item_ids
+    cql[:id] = ["not in"] + excluded_ids if excluded_ids.present?
+  end
 end
 
 format do

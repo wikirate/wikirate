@@ -111,8 +111,8 @@
   :fields:
     :value_type: Number
     :metric_type: Researched
-    :research_policy: Designer Assessed
-    :topic: Taming
+    :assessment: Steward Assessed
+    :topic: Wikirate ESG Topics+Social
 - :name:
     - Joe User
     - researched number 2
@@ -175,8 +175,8 @@
     :value_options: |-
       yes
       no
-    :research_policy: Designer Assessed
-    :topic: Taming
+    :assessment: Steward Assessed
+    :topic: Wikirate ESG Topics+Social
 - :name:
     - Jedi
     - disturbances in the Force
@@ -187,8 +187,8 @@
     :value_options: |-
       yes
       no
-    :research_policy: Community Assessed
-    :topic: Force
+    :assessment: Community Assessed
+    :topic: Wikirate ESG Topics+Environment
 - :name:
     - Commons
     - Has Brands
@@ -227,7 +227,7 @@
   :fields:
     :value_type: Multi-Category
     :metric_type: Researched
-    :research_policy: Designer Assessed
+    :assessment: Steward Assessed
 
 # comment separate from metric bc made by Joe User
 - :name:

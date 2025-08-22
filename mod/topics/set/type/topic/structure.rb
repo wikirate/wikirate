@@ -6,7 +6,9 @@ format :html do
   end
 
   def tab_list
-    %i[details metric dataset research_group]
+    %i[details metric].tap do |list|
+      list << :dataset if card.framework_card.featured?
+    end
   end
 
   def tab_options
@@ -30,7 +32,7 @@ format :html do
   end
 
   view :details_tab_right do
-    field_nest :subtopic, view: :titled, title: "Subtopics", items: { view: :bar }
+    field_nest :subtopic, view: :titled, title: "Subtopics", items: { view: :closed }
   end
 
   view :unknown do
@@ -39,5 +41,9 @@ format :html do
 
   def default_item_view
     :bar
+  end
+
+  def details_tab_cols
+    [5, 7]
   end
 end

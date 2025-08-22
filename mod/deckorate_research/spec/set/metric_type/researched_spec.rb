@@ -99,7 +99,7 @@ RSpec.describe Card::Set::MetricType::Researched do
         have_tag("div.labeled-fields") do
           with_tag "div.RIGHT-topic" do
             with_tag "div.label", text: /Topics/
-            with_tag "div.labeled-content", text: /Force/
+            with_tag "div.labeled-content", text: /Environment/
           end
           with_tag("div.RIGHT-value_type") do
             with_tag "div.label", text: /Value Type/

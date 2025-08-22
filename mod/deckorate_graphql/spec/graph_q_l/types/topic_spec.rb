@@ -13,7 +13,7 @@ RSpec.describe GraphQL::Types::Topic do
     GRAPHQL
   end
 
-  let(:topic_name) { "Force" }
+  let(:topic_name) { %i[esg_topics environment].cardname }
 
   describe "topic: datasets field" do
     it "returns datasets linked with the topic" do

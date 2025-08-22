@@ -8,6 +8,7 @@ format :html do
   define_filter_types dataset: :multiselect,
                       year: :check,
                       topic: :topic,
+                      topic_framework: :topic_framework,
                       company_category: :check,
                       company_group: :multiselect,
                       company_keyword: :text,
@@ -71,14 +72,37 @@ format :html do
     haml :topic_filter, field: field, value: value
   end
 
+  def filter_topic_closer_value val
+    val.cardname.right
+  end
+
   def topic_family_quick_filters
     Card::Set::Self::Topic.family_list.item_cards.map do |topic|
+      topic_key = topic.right&.codename
       {
-        topic: topic.name,
-        icon: icon_tag(topic.codename),
-        class: "quick-filter-topic-#{topic.codename}"
+        topic: topic.id_string,
+        text: topic.name.right,
+        icon: icon_tag(topic_key),
+        class: "quick-filter-topic-#{topic_key}"
       }
     end
+  end
+
+  def topic_framework_filter field, config
+    value = filter_param(field) || config[:default]
+    haml :framework_filter, field: field, value: value
+  end
+
+  def filter_topic_framework_closer_label val
+    val.cardname.left
+  end
+
+  def filter_topic_framework_closer_value val
+    val.cardname.right
+  end
+
+  def filter_topic_framework_label
+    "Framework Mapping"
   end
 
   def filter_value_array? category

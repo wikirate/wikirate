@@ -33,7 +33,7 @@ class Answer
 
     # TODO: store first_source_id as lookup field
     def source_page_url
-      card_url "~#{first_source_card.id}" if first_source_card
+      card_url first_source_card.id_string if first_source_card
     end
 
     def compact_json

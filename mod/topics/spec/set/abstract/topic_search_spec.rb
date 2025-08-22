@@ -8,22 +8,14 @@ RSpec.describe Card::Set::Abstract::TopicSearch do
   describe "filter_cql" do
     subject { format.filter_cql_from_params }
 
-    def cql args
-      args # merge type_id: Card::TopicID
-    end
-
     context "with name argument" do
       before { filter_args name: "Animal Rights" }
-      it { is_expected.to eq cql(name: ["match", "Animal Rights"]) }
+      it { is_expected.to eq(right: { name: [:match, "Animal Rights"] }) }
     end
 
-    context "with framewok argument" do
+    context "with framework argument" do
       before { filter_args topic_framework: "Star Wars Topics" }
-      it do
-        is_expected
-          .to eq(cql(right_plus: [:topic_framework.card_id,
-                                  { refer_to: "Star Wars Topics" }]))
-      end
+      it { is_expected.to eq(left: "Star Wars Topics") }
     end
 
     # context "with company argument" do

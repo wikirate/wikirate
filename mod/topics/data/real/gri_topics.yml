@@ -1,0 +1,5508 @@
+---
+- :name:
+  - GRI
+  - GRI 2 - General Disclosures
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-1 Organizational Details
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-1-a Legal name
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-1 Organizational Details
+- :name:
+  - GRI
+  - 2-1-b Nature of ownership, legal form
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-1 Organizational Details
+- :name:
+  - GRI
+  - 2-1-c Location of headquarters
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-1 Organizational Details
+- :name:
+  - GRI
+  - 2-1-d Countries of operation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-1 Organizational Details
+- :name:
+  - GRI
+  - 2-2 Entities included in the organization's sustainability reporting
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-2-a Entities included in sustainability reporting
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-2 Entities included in the organization's sustainability reporting
+- :name:
+  - GRI
+  - 2-2-b Audited financial statements and differences with sustainability reporting
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-2 Entities included in the organization's sustainability reporting
+- :name:
+  - GRI
+  - 2-2-c Consolidation approach and organizational structure
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-2 Entities included in the organization's sustainability reporting
+- :name:
+  - GRI
+  - 2-2-c-i Adjustments for minority interests
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-2 Entities included in the organization's sustainability reporting
+- :name:
+  - GRI
+  - 2-2-c-ii Treatment of mergers, acquisitions, disposals
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-2 Entities included in the organization's sustainability reporting
+- :name:
+  - GRI
+  - 2-2-c-iii Differences in consolidation across disclosures and topics
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-2 Entities included in the organization's sustainability reporting
+- :name:
+  - GRI
+  - 2-3 Reporting period, frequency and contact point
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-3-a Sustainability reporting period and frequency
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-3 Reporting period, frequency and contact point
+- :name:
+  - GRI
+  - 2-3-b Financial reporting period and alignment with sustainability reporting
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-3 Reporting period, frequency and contact point
+- :name:
+  - GRI
+  - 2-3-c Publication date of report
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-3 Reporting period, frequency and contact point
+- :name:
+  - GRI
+  - 2-3-d Contact point for report questions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-3 Reporting period, frequency and contact point
+- :name:
+  - GRI
+  - 2-4 Restatements of information
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-4-a Restatements from previous periods
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-4 Restatements of information
+- :name:
+  - GRI
+  - 2-4-a-i Reasons for restatements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-4 Restatements of information
+- :name:
+  - GRI
+  - 2-4-a-ii Effects of restatements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-4 Restatements of information
+- :name:
+  - GRI
+  - 2-5 External assurance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-5-a External assurance policy and governance body involvement
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-5 External assurance
+- :name:
+  - GRI
+  - 2-5-b External assurance details
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-5 External assurance
+- :name:
+  - GRI
+  - 2-5-b-i Assurance report links or references
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-5 External assurance
+- :name:
+  - GRI
+  - 2-5-b-ii What was assured, standards used, level and limitations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-5 External assurance
+- :name:
+  - GRI
+  - 2-5-b-iii Relationship with assurance provider
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-5 External assurance
+- :name:
+  - GRI
+  - 2-6 Activities, value chain and other business relationships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-6-a Sectors of activity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-6 Activities, value chain and other business relationships
+- :name:
+  - GRI
+  - 2-6-b Value chain overview
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-6 Activities, value chain and other business relationships
+- :name:
+  - GRI
+  - 2-6-b-i Activities, products, services, and markets served
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-6 Activities, value chain and other business relationships
+- :name:
+  - GRI
+  - 2-6-b-ii Supply chain
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-6 Activities, value chain and other business relationships
+- :name:
+  - GRI
+  - 2-6-b-iii Downstream entities and activities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-6 Activities, value chain and other business relationships
+- :name:
+  - GRI
+  - 2-6-c Other business relationships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-6 Activities, value chain and other business relationships
+- :name:
+  - GRI
+  - 2-6-d Significant changes to 2-6-a, b, or c
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-6 Activities, value chain and other business relationships
+- :name:
+  - GRI
+  - 2-7 Employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-7 Workforce breakdown by gender and region
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-a Total number of employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-b-i Permanent employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-b-ii Temporary employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-b-iii Non-guaranteed hours employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-b-iv Full-time employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-b-v Part-time employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-c Methodologies and assumptions for employee data
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-c-i Reporting method and explanation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-c-ii Timing of reported data and explanation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-d Context for understanding employee data
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-7-e Fluctuations in employee numbers
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-7 Employees
+- :name:
+  - GRI
+  - 2-8 Workers who are not employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-8-a Workers not employed but controlled by organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-8 Workers who are not employees
+- :name:
+  - GRI
+  - 2-8-a-i Common types and contractual relationships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-8 Workers who are not employees
+- :name:
+  - GRI
+  - 2-8-a-ii Types of work performed
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-8 Workers who are not employees
+- :name:
+  - GRI
+  - 2-8-b Methodologies and assumptions for non-employee workers
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-8 Workers who are not employees
+- :name:
+  - GRI
+  - 2-8-b-i Reporting method and explanation for non-employee workers
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-8 Workers who are not employees
+- :name:
+  - GRI
+  - 2-8-b-ii Timing of reported data for non-employee workers
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-8 Workers who are not employees
+- :name:
+  - GRI
+  - 2-8-c Fluctuations in non-employee worker numbers
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-8 Workers who are not employees
+- :name:
+  - GRI
+  - 2-9 Governance structure and composition
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-9-a Governance structure and committees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - 2-9-b Committees overseeing impact management
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - '2-9-c-i Governance body composition: executive/non-executive'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - '2-9-c-ii Governance body composition: independence'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - '2-9-c-iii Governance body composition: tenure'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - '2-9-c-iv Governance body composition: other positions and commitments'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - '2-9-c-v Governance body composition: gender'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - '2-9-c-vi Governance body composition: under-represented groups'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - '2-9-c-vii Governance body composition: competencies related to impacts'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - '2-9-c-viii Governance body composition: stakeholder representation'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-9 Governance structure and composition
+- :name:
+  - GRI
+  - 2-10 Nomination and selection of the highest governance body
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-10-a Nomination and selection process
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-10 Nomination and selection of the highest governance body
+- :name:
+  - GRI
+  - 2-10-b Criteria for nomination and selection
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-10 Nomination and selection of the highest governance body
+- :name:
+  - GRI
+  - 2-10-b-i Stakeholder views in selection process
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-10 Nomination and selection of the highest governance body
+- :name:
+  - GRI
+  - 2-10-b-ii Consideration of diversity in selection
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-10 Nomination and selection of the highest governance body
+- :name:
+  - GRI
+  - 2-10-b-iii Consideration of independence in selection
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-10 Nomination and selection of the highest governance body
+- :name:
+  - GRI
+  - 2-10-b-iv Consideration of impact-related competencies in selection
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-10 Nomination and selection of the highest governance body
+- :name:
+  - GRI
+  - 2-11 Chair of the highest governance body
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-11-a Chair of governance body as senior executive?
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-11 Chair of the highest governance body
+- :name:
+  - GRI
+  - 2-11-b Explanation if chair is a senior executive
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-11 Chair of the highest governance body
+- :name:
+  - GRI
+  - 2-12 Role of the highest governance body in overseeing the management of impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-12-a Role of governance body and executives in sustainability strategy
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-12 Role of the highest governance body in overseeing the management
+      of impacts
+- :name:
+  - GRI
+  - 2-12-b Oversight of due diligence and impact processes
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-12 Role of the highest governance body in overseeing the management
+      of impacts
+- :name:
+  - GRI
+  - 2-12-b-i Stakeholder engagement in due diligence
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-12 Role of the highest governance body in overseeing the management
+      of impacts
+- :name:
+  - GRI
+  - 2-12-b-ii Use of due diligence outcomes
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-12 Role of the highest governance body in overseeing the management
+      of impacts
+- :name:
+  - GRI
+  - 2-12-c Governance review of impact processes and frequency
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-12 Role of the highest governance body in overseeing the management
+      of impacts
+- :name:
+  - GRI
+  - 2-13 Delegation of responsibility for managing impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-13-a Delegation of impact management
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-13 Delegation of responsibility for managing impacts
+- :name:
+  - GRI
+  - 2-13-a-i Appointment of senior executives for impact management
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-13 Delegation of responsibility for managing impacts
+- :name:
+  - GRI
+  - 2-13-a-ii Delegation to other employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-13 Delegation of responsibility for managing impacts
+- :name:
+  - GRI
+  - 2-13-b Reporting back to governance body on impacts and frequency
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-13 Delegation of responsibility for managing impacts
+- :name:
+  - GRI
+  - 2-14 Role of the highest governance body in sustainability reporting
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-14-a Governance body review of reported information
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-14 Role of the highest governance body in sustainability reporting
+- :name:
+  - GRI
+  - 2-14-b Explanation if governance body does not review
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-14 Role of the highest governance body in sustainability reporting
+- :name:
+  - GRI
+  - 2-15 Conflicts of interest
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-15-a Conflict of interest prevention and mitigation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-15 Conflicts of interest
+- :name:
+  - GRI
+  - 2-15-b Disclosure of conflicts of interest
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-15 Conflicts of interest
+- :name:
+  - GRI
+  - 2-15-b-i Cross-board membership conflicts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-15 Conflicts of interest
+- :name:
+  - GRI
+  - 2-15-b-ii Cross-shareholding conflicts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-15 Conflicts of interest
+- :name:
+  - GRI
+  - 2-15-b-iii Controlling shareholder conflicts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-15 Conflicts of interest
+- :name:
+  - GRI
+  - 2-15-b-iv Related party conflicts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-15 Conflicts of interest
+- :name:
+  - GRI
+  - 2-16 Communication of critical concerns
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-16-a Communication of critical concerns
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-16 Communication of critical concerns
+- :name:
+  - GRI
+  - 2-16-b Total and nature of critical concerns reported
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-16 Communication of critical concerns
+- :name:
+  - GRI
+  - 2-17 Collective knowledge of the highest governance body
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-17-a Capacity-building for governance body on sustainability
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-17 Collective knowledge of the highest governance body
+- :name:
+  - GRI
+  - 2-18 Evaluation of the performance of the highest governance body
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-18-a Evaluation of governance body performance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-18 Evaluation of the performance of the highest governance body
+- :name:
+  - GRI
+  - 2-18-b Independence and frequency of evaluations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-18 Evaluation of the performance of the highest governance body
+- :name:
+  - GRI
+  - 2-18-c Actions taken based on evaluations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-18 Evaluation of the performance of the highest governance body
+- :name:
+  - GRI
+  - 2-19 Remuneration policies
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-19-a Remuneration policies and authority
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-19 Remuneration policies
+- :name:
+  - GRI
+  - 2-19-a-i Fixed and variable pay
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-19 Remuneration policies
+- :name:
+  - GRI
+  - 2-19-a-ii Sign-on and recruitment bonuses
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-19 Remuneration policies
+- :name:
+  - GRI
+  - 2-19-a-iii Termination payments
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-19 Remuneration policies
+- :name:
+  - GRI
+  - 2-19-a-iv Clawbacks
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-19 Remuneration policies
+- :name:
+  - GRI
+  - 2-19-a-v Retirement benefits
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-19 Remuneration policies
+- :name:
+  - GRI
+  - 2-19-b Link between remuneration policies and performance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-19 Remuneration policies
+- :name:
+  - GRI
+  - 2-20 Process to determine remuneration
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-20-a Remuneration determination process
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-20 Process to determine remuneration
+- :name:
+  - GRI
+  - 2-20-a-i Oversight of remuneration process
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-20 Process to determine remuneration
+- :name:
+  - GRI
+  - 2-20-a-ii Stakeholder input on remuneration
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-20 Process to determine remuneration
+- :name:
+  - GRI
+  - 2-20-a-iii Involvement and independence of consultants
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-20 Process to determine remuneration
+- :name:
+  - GRI
+  - 2-20-b Voting results on remuneration
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-20 Process to determine remuneration
+- :name:
+  - GRI
+  - 2-21 Annual total compensation ratio
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-21-a Pay ratio (highest paid to median)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-21 Annual total compensation ratio
+- :name:
+  - GRI
+  - 2-21-b Pay increase ratio (highest paid to median)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-21 Annual total compensation ratio
+- :name:
+  - GRI
+  - 2-21-c Context for pay ratios
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-21 Annual total compensation ratio
+- :name:
+  - GRI
+  - 2-22 Statement on sustainable development strategy
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-22-a Statement on sustainable development strategy
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-22 Statement on sustainable development strategy
+- :name:
+  - GRI
+  - 2-23 Policy commitments
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-23-a Responsible business conduct policy
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-a-i Referenced intergovernmental instruments
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-a-ii Due diligence requirements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-a-iii Precautionary principle inclusion
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-a-iv Respect for human rights
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-b Human rights policy commitment
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-b-i Covered human rights
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-b-ii Focus on vulnerable groups
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-c Availability and links to policy commitments
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-d Approval level for commitments
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-e Applicability across activities and relationships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-23-f Communication of commitments
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-23 Policy commitments
+- :name:
+  - GRI
+  - 2-24 Embedding policy commitments
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-24-a Embedding of policy commitments
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-24 Embedding policy commitments
+- :name:
+  - GRI
+  - 2-24-a-i Allocation of responsibilities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-24 Embedding policy commitments
+- :name:
+  - GRI
+  - 2-24-a-ii Integration into strategy and operations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-24 Embedding policy commitments
+- :name:
+  - GRI
+  - 2-24-a-iii Implementation via business relationships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-24 Embedding policy commitments
+- :name:
+  - GRI
+  - 2-24-a-iv Training for implementation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-24 Embedding policy commitments
+- :name:
+  - GRI
+  - 2-25 Processes to remediate negative impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-25-a Remediation commitments
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-25 Processes to remediate negative impacts
+- :name:
+  - GRI
+  - 2-25-b Grievance mechanisms
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-25 Processes to remediate negative impacts
+- :name:
+  - GRI
+  - 2-25-c Other remediation processes
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-25 Processes to remediate negative impacts
+- :name:
+  - GRI
+  - 2-25-d Stakeholder involvement in grievance design
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-25 Processes to remediate negative impacts
+- :name:
+  - GRI
+  - 2-25-e Effectiveness tracking and examples
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-25 Processes to remediate negative impacts
+- :name:
+  - GRI
+  - 2-26 Mechanisms for seeking advice and raising concerns
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-26-a-i Mechanisms for seeking advice on responsible conduct
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-26 Mechanisms for seeking advice and raising concerns
+- :name:
+  - GRI
+  - 2-26-a-ii Mechanisms for raising concerns
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-26 Mechanisms for seeking advice and raising concerns
+- :name:
+  - GRI
+  - 2-27 Compliance with laws and regulations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-27-a Significant non-compliance cases
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-27 Compliance with laws and regulations
+- :name:
+  - GRI
+  - 2-27-a-i Cases with fines
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-27 Compliance with laws and regulations
+- :name:
+  - GRI
+  - 2-27-a-ii Cases with non-monetary sanctions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-27 Compliance with laws and regulations
+- :name:
+  - GRI
+  - 2-27-b Fines for non-compliance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-27 Compliance with laws and regulations
+- :name:
+  - GRI
+  - 2-27-b-i Fines from current period non-compliance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-27 Compliance with laws and regulations
+- :name:
+  - GRI
+  - 2-27-b-ii Fines from prior period non-compliance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-27 Compliance with laws and regulations
+- :name:
+  - GRI
+  - 2-27-c Description of non-compliance cases
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-27 Compliance with laws and regulations
+- :name:
+  - GRI
+  - 2-27-d Methodology for determining significance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-27 Compliance with laws and regulations
+- :name:
+  - GRI
+  - 2-28 Membership associations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-28-a Significant association memberships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-28 Membership associations
+- :name:
+  - GRI
+  - 2-29 Approach to stakeholder engagement
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-29-a Stakeholder engagement approach
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-29 Approach to stakeholder engagement
+- :name:
+  - GRI
+  - 2-29-a-i Stakeholder categories and selection
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-29 Approach to stakeholder engagement
+- :name:
+  - GRI
+  - 2-29-a-ii Purpose of engagement
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-29 Approach to stakeholder engagement
+- :name:
+  - GRI
+  - 2-29-a-iii Ensuring meaningful engagement
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-29 Approach to stakeholder engagement
+- :name:
+  - GRI
+  - 2-30 Collective bargaining agreements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+GRI 2 - General Disclosures
+- :name:
+  - GRI
+  - 2-30-a Collective bargaining coverage
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-30 Collective bargaining agreements
+- :name:
+  - GRI
+  - 2-30-b Use of collective bargaining to determine conditions for uncovered employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 2 - General Disclosures
+    :category: GRI+2-30 Collective bargaining agreements
+- :name:
+  - GRI
+  - GRI 3 - Material Topics
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+- :name:
+  - GRI
+  - 3-1 Process to determine material topics
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+GRI 3 - Material Topics
+- :name:
+  - GRI
+  - 3-1-a Process to determine material topics
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-1 Process to determine material topics
+- :name:
+  - GRI
+  - 3-1-a-i Process for identifying impacts across activities and business relationships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-1 Process to determine material topics
+- :name:
+  - GRI
+  - 3-1-a-ii Process for prioritizing impacts based on significance for reporting
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-1 Process to determine material topics
+- :name:
+  - GRI
+  - '3-1-b: Stakeholders and experts whose views have informed the process of determining
+    material topics'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-1 Process to determine material topics
+- :name:
+  - GRI
+  - 3-2 List of material topics (Sector agnostic)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+GRI 3 - Material Topics
+- :name:
+  - GRI
+  - '3-2-a: List of applicable disclosures'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-2 List of material topics (Sector agnostic)
+- :name:
+  - GRI
+  - 3-3 Management of material topics
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+GRI 3 - Material Topics
+- :name:
+  - GRI
+  - 3-3-a Describe the actual and potential, negative and positive impacts on the
+    economy, environment and people, including impacts on their human rights
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-b Is the organisation involved with those negative impacts through its activities
+    or via its business relationships, and describe the relevant activities or relationships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-c Describe the policies or commitments regarding the material topic
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-d-i Actions to prevent or mitigate potential negative impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-d-ii Actions to address actual negative impacts, including remediation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-d-iii Actions to manage actual and potential positive impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-e-i Processes used to track the effectiveness of the actions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-e-ii Goals, targets and indicators used to evaluate progress
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-e-iii Effectiveness of the actions, including progress toward the goals and
+    targets
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-e-iv Lessons learned and how these have been incorporated into operational
+    policies and procedures
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - 3-3-f Describe how engagement with stakeholders has informed the actions taken
+    (3-3-d) and how it has informed whether the actions have been effective (3-3-e)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 3 - Material Topics
+    :category: GRI+3-3 Management of material topics
+- :name:
+  - GRI
+  - GRI 101 - Biodiversity 2024
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+- :name:
+  - GRI
+  - 101-1 Policies to halt and reverse biodiversity loss
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+GRI 101 - Biodiversity 2024
+- :name:
+  - GRI
+  - 101-1-a Policies & commitments to halt and reverse biodiversity loss (informed
+    by Kunming-Montreal GBF 2030 Targets / 2050 Goals)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-1 Policies to halt and reverse biodiversity loss
+- :name:
+  - GRI
+  - 101-1-b Scope of those policies & commitments own operations and business relationships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-1 Policies to halt and reverse biodiversity loss
+- :name:
+  - GRI
+  - 101-1-c Biodiversity goals, targets, base year and indicators for tracking progress
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-1 Policies to halt and reverse biodiversity loss
+- :name:
+  - GRI
+  - 101-2 Management of biodiversity impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+GRI 101 - Biodiversity 2024
+- :name:
+  - GRI
+  - 101-2-a-i Actions taken to avoid negative impacts on biodiversity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-a-ii Actions taken to minimize negative impacts on biodiversity that were
+    not avoided
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-a-iii Restoration and rehabilitation actions undertaken for affected ecosystems,
+    their goals, and how stakeholders are engaged throughout the process.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-a-iv Actions taken to offset residual negative impacts on biodiversity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-a-v Transformative actions taken and additional conservation actions implemented
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-b-i Size in hectares of the area under restoration or rehabilitation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-b-ii Size in hectares of the area restored or rehabilitated
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-c-i Goals of biodiversity offset
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-c-ii Geographic location of biodiverisity offset
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-c-iii Principles of good offset practice applied and how they are met
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-c-iv Third-party certification or verification of the offset whether it
+    exists and how it is carried out
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-d Sites with the most significant biodiversity impacts that have a biodiversity
+    management plan, and the reasons why other high-impact sites lack one.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-e Ways in which biodiversity-management actions enhance synergies with climate-change
+    measures and reduce trade-offs between them.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-2-f Actions taken to manage impacts on biodiversity avoid and minimize negative
+    impacts and maximize positive impacts for stakeholders
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-2 Management of biodiversity impacts
+- :name:
+  - GRI
+  - 101-3 Access and benefit-sharing
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+GRI 101 - Biodiversity 2024
+- :name:
+  - GRI
+  - 101-3-a Process to ensure compliance with access and benefit-sharing regulations
+    and measures
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-3 Access and benefit-sharing
+- :name:
+  - GRI
+  - 101-3-b Voluntary actions taken to advance access and benefit-sharing that are
+    additional to legal obligations or when there are no regulations and measures
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-3 Access and benefit-sharing
+- :name:
+  - GRI
+  - 101-4 Identification of biodiversity impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+GRI 101 - Biodiversity 2024
+- :name:
+  - GRI
+  - 101-4-a Method used to identify which sites, products, and services in the supply
+    chain have the most significant actual and potential impacts on biodiversity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-4 Identification of biodiversity impacts
+- :name:
+  - GRI
+  - 101-5 Locations with biodiversity impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+GRI 101 - Biodiversity 2024
+- :name:
+  - GRI
+  - 101-5-a Sites with the most significant biodiversity impacts, identified location
+    and size (hectares).
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-5 Locations with biodiversity impacts
+- :name:
+  - GRI
+  - 101-5-b Whether each site lies in or near an ecologically sensitive area and,
+    if so, the type of area and the site’s distance from it.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-5 Locations with biodiversity impacts
+- :name:
+  - GRI
+  - 101-5-c Activities taken place at each site
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-5 Locations with biodiversity impacts
+- :name:
+  - GRI
+  - 101-5-d Biodiversity impacts of supply-chain products/services and the countries
+    or jurisdictions where their activities occur
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-5 Locations with biodiversity impacts
+- :name:
+  - GRI
+  - 101-6 Direct drivers of biodiversity loss
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+GRI 101 - Biodiversity 2024
+- :name:
+  - GRI
+  - 101-6-a Land and sea use change
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-6-a-i Size (hectares) of natural ecosystems converted since the cut-off/reference
+    date, the date itself, and the ecosystem type before and after conversion.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-6-a-ii Land and sea area converted (hectares) from one intensively used or
+    modified ecosystem to another during the reporting period, specifying the ecosystem
+    types before and after conversion.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-6-b Exploitation of natural resources
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-6-b-i Harvest of wild species - species types, quantities, and their extinction-risk
+    levels.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-6-b-ii Water withdrawal and consumption volumes.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-6-c Pollutants generated - type and quantity.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-6-d Invasive alien species introduced and the pathways through which they
+    are or may be introduced.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-6-e Direct biodiversity-driver data for those supply-chain products/services,
+    by country or jurisdiction
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-6-f Standards, methodologies, and assumptions used to compile the data.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-6 Direct drivers of biodiversity loss
+- :name:
+  - GRI
+  - 101-7 Changes to the state of biodiversity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+GRI 101 - Biodiversity 2024
+- :name:
+  - GRI
+  - 101-7-a Sites with the most significant impacts on biodiversity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-7 Changes to the state of biodiversity
+- :name:
+  - GRI
+  - 101-7-a-i Type of affected or potentially affected ecosystem for the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-7 Changes to the state of biodiversity
+- :name:
+  - GRI
+  - 101-7-a-ii Ecosystem size in hectares for the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-7 Changes to the state of biodiversity
+- :name:
+  - GRI
+  - '101-7-a-iii Significant biodiversity sites: Ecosystem condition - base year and
+    current period'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-7 Changes to the state of biodiversity
+- :name:
+  - GRI
+  - 101-7-b Data-compilation context - standards, methods, assumptions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-7 Changes to the state of biodiversity
+- :name:
+  - GRI
+  - 101-8 Ecosystem services
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+GRI 101 - Biodiversity 2024
+- :name:
+  - GRI
+  - 101-8-a Sites with the most significant biodiversity impacts, and the ecosystem
+    services and beneficiaries affected.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-8 Ecosystem services
+- :name:
+  - GRI
+  - 101-8-b How Organization’s activities are or could affect ecosystem services and
+    beneficiaries
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 101 - Biodiversity 2024
+    :category: GRI+101-8 Ecosystem services
+- :name:
+  - GRI
+  - GRI 201 - Economic Performance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+- :name:
+  - GRI
+  - 201-1 Direct economic value generated and distributed
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+GRI 201 - Economic Performance
+- :name:
+  - GRI
+  - 201-1-a Basis (accruals or cash) for reporting direct economic value generated
+    and distributed, and justification if cash basis is used.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-1 Direct economic value generated and distributed
+- :name:
+  - GRI
+  - '201-1-a-i Direct economic value generated: revenues'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-1 Direct economic value generated and distributed
+- :name:
+  - GRI
+  - '201-1-a-ii Economic value distributed: operating costs, employee wages and benefits,
+    payments to providers of capital, payments to government by country, and community
+    investments'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-1 Direct economic value generated and distributed
+- :name:
+  - GRI
+  - '201-1-a-iii Economic value retained: "direct economic value generated" less "economic
+    value distributed"'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-1 Direct economic value generated and distributed
+- :name:
+  - GRI
+  - 201-1-b Geographic level used (country, region, or market) and the criteria for
+    defining significance.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-1 Direct economic value generated and distributed
+- :name:
+  - GRI
+  - 201-2 Financial implications and other risks and opportunities due to climate
+    change
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+GRI 201 - Economic Performance
+- :name:
+  - GRI
+  - 201-2-a Climate-related risks and opportunities that could materially affect operations,
+    revenue, or expenditure
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-2 Financial implications and other risks and opportunities
+      due to climate change
+- :name:
+  - GRI
+  - 201-2-a-i Risk or opportunity, classified as physical, regulatory, or other
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-2 Financial implications and other risks and opportunities
+      due to climate change
+- :name:
+  - GRI
+  - 201-2-a-ii Associated impact of the risk or opportunity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-2 Financial implications and other risks and opportunities
+      due to climate change
+- :name:
+  - GRI
+  - 201-2-a-iii Financial implications of the risk or opportunity before action is
+    taken
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-2 Financial implications and other risks and opportunities
+      due to climate change
+- :name:
+  - GRI
+  - 201-2-a-iv Methods used to manage the risk or opportunity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-2 Financial implications and other risks and opportunities
+      due to climate change
+- :name:
+  - GRI
+  - 201-2-a-v Costs of actions taken to manage the risk or opportunity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-2 Financial implications and other risks and opportunities
+      due to climate change
+- :name:
+  - GRI
+  - 201-2-2.2 System to quantify financial implications / revenue projections and
+    the plans & timeline for developing that system.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-2 Financial implications and other risks and opportunities
+      due to climate change
+- :name:
+  - GRI
+  - 201-3 Defined benefit plan obligations and other retirement plans
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+GRI 201 - Economic Performance
+- :name:
+  - GRI
+  - 201-3-a Estimated plan liabilities covered by the organization’s general resources
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-3 Defined benefit plan obligations and other retirement plans
+- :name:
+  - GRI
+  - 201-3-b Separate fund in place to meet pension liabilities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-3 Defined benefit plan obligations and other retirement plans
+- :name:
+  - GRI
+  - 201-3-b-i Extent to which the scheme’s liabilities are estimated to be covered
+    by the assets that have been set aside to meet them
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-3 Defined benefit plan obligations and other retirement plans
+- :name:
+  - GRI
+  - 201-3-b-ii Basis on which that estimate has been arrived at
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-3 Defined benefit plan obligations and other retirement plans
+- :name:
+  - GRI
+  - 201-3-b-iii When that estimate was made
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-3 Defined benefit plan obligations and other retirement plans
+- :name:
+  - GRI
+  - 201-3-c Strategy and timeline to achieve full coverage of unfunded pension liabilities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-3 Defined benefit plan obligations and other retirement plans
+- :name:
+  - GRI
+  - 201-3-d Employee and employer pension-contribution rates (percentage of salary)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-3 Defined benefit plan obligations and other retirement plans
+- :name:
+  - GRI
+  - 201-3-e Level of participation in retirement plans
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-3 Defined benefit plan obligations and other retirement plans
+- :name:
+  - GRI
+  - 201-4 Financial assistance received from government
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+GRI 201 - Economic Performance
+- :name:
+  - GRI
+  - 201-4-a-i Monetary value of tax relief and tax credits received from any government
+    during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - 201-4-a-ii Monetary value of subsidies received from any government during the
+    reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - 201-4-a-iii Monetary value of investment grants, research and development grants,
+    and other relevant types of grant received from any government during the reporting
+    period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - 201-4-a-iv Monetary value of awards received from any government during the reporting
+    period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - 201-4-a-v Monetary value of royalty holidays received from any government during
+    the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - 201-4-a-vi Monetary value of financial assistance from Export Credit Agencies
+    (ECAs) received during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - 201-4-a-vii Monetary value of financial incentives received from any government
+    during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - 201-4-a-viii Monetary value of other financial benefits received or receivable
+    from any government for any operation during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - 201-4-b Countries or jurisdictions where government financial assistance is received
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - 201-4-c Presence and extent of government ownership in the shareholding structure
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 201 - Economic Performance
+    :category: GRI+201-4 Financial assistance received from government
+- :name:
+  - GRI
+  - GRI 202 - Market Presence
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+- :name:
+  - GRI
+  - 202-1 Ratios of standard entry level wage by gender compared to local minimum
+    wage
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+GRI 202 - Market Presence
+- :name:
+  - GRI
+  - 202-1-a Entry-level-to-minimum wage ratio (by gender and key location) and whether
+    a significant share earn minimum wage.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+202-1 Ratios of standard entry level wage by gender compared to
+      local minimum wage
+- :name:
+  - GRI
+  - 202-1-b Minimum-wage coverage of non-employee workers and steps taken to verify
+    they are paid above it.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+202-1 Ratios of standard entry level wage by gender compared to
+      local minimum wage
+- :name:
+  - GRI
+  - 202-1-c Local minimum-wage availability or variability (by gender) and the reference
+    wage used where multiple minima apply.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+202-1 Ratios of standard entry level wage by gender compared to
+      local minimum wage
+- :name:
+  - GRI
+  - 202-1-d Definition used for "significant locations of operation"
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+202-1 Ratios of standard entry level wage by gender compared to
+      local minimum wage
+- :name:
+  - GRI
+  - 202-2 Proportion of senior management hired from the local community
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+GRI 202 - Market Presence
+- :name:
+  - GRI
+  - 202-2-a Percentage of senior management hired from the local community at each
+    significant location of operation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+202-2 Proportion of senior management hired from the local community
+- :name:
+  - GRI
+  - 202-2-b Definition of "senior management"
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+202-2 Proportion of senior management hired from the local community
+- :name:
+  - GRI
+  - 202-2-c Geographic definition of "local"
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+202-2 Proportion of senior management hired from the local community
+- :name:
+  - GRI
+  - 202-2-d Definition of "significant locations of operation"
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 202 - Market Presence
+    :category: GRI+202-2 Proportion of senior management hired from the local community
+- :name:
+  - GRI
+  - GRI 203 - Indirect Economic Impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 203 - Indirect Economic Impacts
+- :name:
+  - GRI
+  - 203-1 Infrastructure investments and services supported
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 203 - Indirect Economic Impacts
+    :category: GRI+GRI 203 - Indirect Economic Impacts
+- :name:
+  - GRI
+  - 203-1-a Development extent of significant infrastructure investments and services
+    supported
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 203 - Indirect Economic Impacts
+    :category: GRI+203-1 Infrastructure investments and services supported
+- :name:
+  - GRI
+  - 203-1-b Current or expected impacts on communities and local economies
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 203 - Indirect Economic Impacts
+    :category: GRI+203-1 Infrastructure investments and services supported
+- :name:
+  - GRI
+  - 203-1-c Nature of the investments and services (commercial, in-kind, or pro bono)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 203 - Indirect Economic Impacts
+    :category: GRI+203-1 Infrastructure investments and services supported
+- :name:
+  - GRI
+  - 203-2 Significant indirect economic impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 203 - Indirect Economic Impacts
+    :category: GRI+GRI 203 - Indirect Economic Impacts
+- :name:
+  - GRI
+  - 203-2-a Examples of significant identified indirect economic impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 203 - Indirect Economic Impacts
+    :category: GRI+203-2 Significant indirect economic impacts
+- :name:
+  - GRI
+  - 203-2-b Significance of the indirect economic impacts in the context of external
+    benchmarks and stakeholder priorities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 203 - Indirect Economic Impacts
+    :category: GRI+203-2 Significant indirect economic impacts
+- :name:
+  - GRI
+  - GRI 204 - Procurement Practices
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 204 - Procurement Practices
+- :name:
+  - GRI
+  - 204-1 Proportion of spending on local suppliers
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 204 - Procurement Practices
+    :category: GRI+GRI 204 - Procurement Practices
+- :name:
+  - GRI
+  - 204-1-a Percentage of the procurement budget used for significant locations of
+    operation that is spent on suppliers local to that operation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 204 - Procurement Practices
+    :category: GRI+204-1 Proportion of spending on local suppliers
+- :name:
+  - GRI
+  - 204-1-b Geographical definition of "local"
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 204 - Procurement Practices
+    :category: GRI+204-1 Proportion of spending on local suppliers
+- :name:
+  - GRI
+  - 204-1-c Definition used for 'significant locations of operation'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 204 - Procurement Practices
+    :category: GRI+204-1 Proportion of spending on local suppliers
+- :name:
+  - GRI
+  - GRI 205 - Anti-corruption
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+- :name:
+  - GRI
+  - 205-1 Operations assessed for risks related to corruption
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+GRI 205 - Anti-corruption
+- :name:
+  - GRI
+  - 205-1-a Operations assessed for corruption risk - total number and percentage
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-1 Operations assessed for risks related to corruption
+- :name:
+  - GRI
+  - 205-1-b Significant risks related to corruption identified through the risk assessment
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-1 Operations assessed for risks related to corruption
+- :name:
+  - GRI
+  - 205-2 Communication and training about anti-corruption policies and procedures
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+GRI 205 - Anti-corruption
+- :name:
+  - GRI
+  - 205-2-a Governance-body members reached with anti-corruption policies - total
+    number and percentage, by region
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-2 Communication and training about anti-corruption policies
+      and procedures
+- :name:
+  - GRI
+  - 205-2-b Employees reached with anti-corruption policies - total number and percentage,
+    by employee category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-2 Communication and training about anti-corruption policies
+      and procedures
+- :name:
+  - GRI
+  - 205-2-c Business partners reached with anti-corruption policies - total number,
+    percentage, and communication method, by partner type
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-2 Communication and training about anti-corruption policies
+      and procedures
+- :name:
+  - GRI
+  - 205-2-d Governance-body members trained on anti-corruption - total number and
+    percentage
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-2 Communication and training about anti-corruption policies
+      and procedures
+- :name:
+  - GRI
+  - 205-2-e Employees trained on anti-corruption - total number and percentage
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-2 Communication and training about anti-corruption policies
+      and procedures
+- :name:
+  - GRI
+  - 205-3 Confirmed incidents of corruption and actions taken
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+GRI 205 - Anti-corruption
+- :name:
+  - GRI
+  - 205-3-a Confirmed corruption incidents - total number and nature
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-3 Confirmed incidents of corruption and actions taken
+- :name:
+  - GRI
+  - 205-3-b Employees dismissed or disciplined for confirmed corruption - number of
+    incidents
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-3 Confirmed incidents of corruption and actions taken
+- :name:
+  - GRI
+  - 205-3-c Business-partner contracts terminated or not renewed due to confirmed
+    corruption - number of incidents
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-3 Confirmed incidents of corruption and actions taken
+- :name:
+  - GRI
+  - 205-3-d Public corruption cases against the organisation or its employees - and
+    their outcomes
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 205 - Anti-corruption
+    :category: GRI+205-3 Confirmed incidents of corruption and actions taken
+- :name:
+  - GRI
+  - GRI 206 - Anti-competitive Behavior
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 206 - Anti-competitive Behavior
+- :name:
+  - GRI
+  - 206-1 Legal actions for anti-competitive behavior, anti-trust, and monopoly practices
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 206 - Anti-competitive Behavior
+    :category: GRI+GRI 206 - Anti-competitive Behavior
+- :name:
+  - GRI
+  - 206-1-a Legal actions for anti-competitive behaviour, anti-trust, or monopoly
+    violations involving the organisation - number pending/completed in the reporting
+    period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 206 - Anti-competitive Behavior
+    :category: GRI+206-1 Legal actions for anti-competitive behavior, anti-trust,
+      and monopoly practices
+- :name:
+  - GRI
+  - 206-1-b Main outcomes of completed legal actions, including any decisions or judgements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 206 - Anti-competitive Behavior
+    :category: GRI+206-1 Legal actions for anti-competitive behavior, anti-trust,
+      and monopoly practices
+- :name:
+  - GRI
+  - GRI 207 - Tax
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+- :name:
+  - GRI
+  - 207-1 Approach to tax
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+GRI 207 - Tax
+- :name:
+  - GRI
+  - 207-1-a Approach to tax - strategy, governance oversight, and alignment with business
+    and compliance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-1 Approach to tax
+- :name:
+  - GRI
+  - 207-1-a-i Presence of a tax strategy
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-1 Approach to tax
+- :name:
+  - GRI
+  - 207-1-a-i Link to this strategy if publicly available
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-1 Approach to tax
+- :name:
+  - GRI
+  - 207-1-a-ii Governance body/executive position that reviews and approves the tax
+    strategy, and its review frequency
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-1 Approach to tax
+- :name:
+  - GRI
+  - 207-1-a-iii Approach to regulatory compliance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-1 Approach to tax
+- :name:
+  - GRI
+  - 207-1-a-iv Approach to tax is linked to the business and sustainable development
+    strategies of the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-1 Approach to tax
+- :name:
+  - GRI
+  - 207-2 Tax governance, control, and risk management
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+GRI 207 - Tax
+- :name:
+  - GRI
+  - 207-2-a Tax governance and control framework
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-2 Tax governance, control, and risk management
+- :name:
+  - GRI
+  - 207-2-a-i Governance body/executive position accountable for compliance with the
+    tax strategy
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-2 Tax governance, control, and risk management
+- :name:
+  - GRI
+  - 207-2-a-ii How the approach to tax is embedded within the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-2 Tax governance, control, and risk management
+- :name:
+  - GRI
+  - 207-2-a-iii Approach to tax risks, including how risks are identified, managed,
+    and monitored
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-2 Tax governance, control, and risk management
+- :name:
+  - GRI
+  - 207-2-a-iv How compliance with the tax governance and control framework is evaluated
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-2 Tax governance, control, and risk management
+- :name:
+  - GRI
+  - 207-2-b Mechanisms to raise concerns about the organization's business conduct
+    and integrity in relation to tax
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-2 Tax governance, control, and risk management
+- :name:
+  - GRI
+  - 207-2-c Assurance process for tax disclosures and reference to any external assurance
+    reports or statements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-2 Tax governance, control, and risk management
+- :name:
+  - GRI
+  - 207-3 Stakeholder engagement and management of concerns related to tax
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+GRI 207 - Tax
+- :name:
+  - GRI
+  - 207-3-a Approach to stakeholder engagement and management of stakeholder concerns
+    related to tax
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-3 Stakeholder engagement and management of concerns related
+      to tax
+- :name:
+  - GRI
+  - 207-3-a-i Approach to engagement with tax authorities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-3 Stakeholder engagement and management of concerns related
+      to tax
+- :name:
+  - GRI
+  - 207-3-a-ii Approach to public policy advocacy on tax
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-3 Stakeholder engagement and management of concerns related
+      to tax
+- :name:
+  - GRI
+  - 207-3-a-iii Processes for collecting and considering the views and concerns of
+    stakeholders, including external stakeholders
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-3 Stakeholder engagement and management of concerns related
+      to tax
+- :name:
+  - GRI
+  - 207-4 Country-by-country reporting
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+GRI 207 - Tax
+- :name:
+  - GRI
+  - 207-4-a Tax jurisdictions where all consolidated entities are tax resident
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b Country-by-country tax and economic data per jurisdiction
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-i Names of the resident entities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-ii Primary activities of the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-iii Number of employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-iii Basis of calculation of the number of employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-iv Revenues from third-party sales
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-v Revenues from intra-group transactions with other tax jurisdictions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-vi Profit/loss before tax
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-vii Tangible assets other than cash and cash equivalents
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-viii Corporate income tax paid on a cash basis
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-ix Corporate income tax accrued on profit/loss
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-b-x Reasons for the gap between accrued income tax and the amount calculated
+    at the statutory rate
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-c Time period covered by the information reported in Disclosure 207-4
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - 207-4-2.2.1 Explanation of any mismatch between 207-4-b(iv, vi–viii) data and
+    the audited consolidated financial statements or public filings
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 207 - Tax
+    :category: GRI+207-4 Country-by-country reporting
+- :name:
+  - GRI
+  - GRI 301 - Materials
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 301 - Materials
+- :name:
+  - GRI
+  - 301-1 Materials used by weight or volume
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 301 - Materials
+    :category: GRI+GRI 301 - Materials
+- :name:
+  - GRI
+  - 301-1-a Materials used to produce and package primary products and services -
+    resource type, total weight, and total volume
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 301 - Materials
+    :category: GRI+301-1 Materials used by weight or volume
+- :name:
+  - GRI
+  - 301-2 Recycled input materials used
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 301 - Materials
+    :category: GRI+GRI 301 - Materials
+- :name:
+  - GRI
+  - 301-2-a Percentage of recycled input materials used to manufacture primary products
+    and services
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 301 - Materials
+    :category: GRI+301-2 Recycled input materials used
+- :name:
+  - GRI
+  - 301-3 Reclaimed products and their packaging materials
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 301 - Materials
+    :category: GRI+GRI 301 - Materials
+- :name:
+  - GRI
+  - 301-3-a Percentage of products and packaging materials reclaimed, by product category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 301 - Materials
+    :category: GRI+301-3 Reclaimed products and their packaging materials
+- :name:
+  - GRI
+  - 301-3-b Data collection methods
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 301 - Materials
+    :category: GRI+301-3 Reclaimed products and their packaging materials
+- :name:
+  - GRI
+  - GRI 302 - Energy
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+- :name:
+  - GRI
+  - 302-1 Energy consumption within the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+GRI 302 - Energy
+- :name:
+  - GRI
+  - 302-1-a Fuel consumption from non-renewable sources - total amount and fuel types
+    used
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-b Fuel consumption from renewable sources - total amount and fuel types
+    used
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-c-i Electricity consumption
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-c-ii Heating consumption
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-c-iii Cooling consumption
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-c-iv Steam consumption
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-d-i Electricity sold
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-d-ii Heating sold
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-d-iii Cooling sold
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-d-iv Steam sold
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-e Energy consumption within the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-f Standards, methodologies, assumptions, and/or calculation tools used to
+    calculate energy consumption within the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-1-g Source of the conversion factors used to calculate energy consumption
+    within the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-1 Energy consumption within the organization
+- :name:
+  - GRI
+  - 302-2 Energy consumption outside of the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+GRI 302 - Energy
+- :name:
+  - GRI
+  - 302-2-a Energy consumption outside of the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-2 Energy consumption outside of the organization
+- :name:
+  - GRI
+  - 302-2-b Standards, methodologies, assumptions, and/or calculation tools used to
+    calculate consumption outside the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-2 Energy consumption outside of the organization
+- :name:
+  - GRI
+  - 302-2-c Source of the conversion factors used to calculate energy consumption
+    outside the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-2 Energy consumption outside of the organization
+- :name:
+  - GRI
+  - 302-3 Energy intensity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+GRI 302 - Energy
+- :name:
+  - GRI
+  - 302-3-a Energy intensity ratio for the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-3 Energy intensity
+- :name:
+  - GRI
+  - 302-3-a:Unit for energy intensity ratio
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-3 Energy intensity
+- :name:
+  - GRI
+  - 302-3-b Organization-specific metric (the denominator) chosen to calculate the
+    energy intensity ratio
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-3 Energy intensity
+- :name:
+  - GRI
+  - 302-3-c Types of energy included in the intensity ratio (fuel, electricity, heating,
+    cooling, steam, or all)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-3 Energy intensity
+- :name:
+  - GRI
+  - 302-3-d Whether the energy-intensity ratio includes energy consumed inside the
+    organization, outside it, or both
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-3 Energy intensity
+- :name:
+  - GRI
+  - 302-4 Reduction of energy consumption
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+GRI 302 - Energy
+- :name:
+  - GRI
+  - 302-4-a Amount of reductions in energy consumption achieved as a direct result
+    of conservation and efficiency initiatives
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-4 Reduction of energy consumption
+- :name:
+  - GRI
+  - 302-4-b Types of energy included in the reductions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-4 Reduction of energy consumption
+- :name:
+  - GRI
+  - 302-4-c Basis for calculating reductions in the organisation’s own energy use,
+    and the rationale for that basis
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-4 Reduction of energy consumption
+- :name:
+  - GRI
+  - 302-4-d Standards, methodologies, assumptions, and/or calculation tools used to
+    calculate energy-consumption reductions within the organization
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-4 Reduction of energy consumption
+- :name:
+  - GRI
+  - 302-4-2.7.2 Whether energy reductions are measured, estimated, or modeled - and
+    the methods used for any estimates or models
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-4 Reduction of energy consumption
+- :name:
+  - GRI
+  - 302-5 Reductions in energy requirements of products and services
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+GRI 302 - Energy
+- :name:
+  - GRI
+  - 302-5-a Reductions in energy requirements of sold products and services achieved
+    during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-5 Reductions in energy requirements of products and services
+- :name:
+  - GRI
+  - 302-5-b Basis for calculating reductions in customers' energy requirements for
+    the organisation's products / services, and the rationale for that basis
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-5 Reductions in energy requirements of products and services
+- :name:
+  - GRI
+  - 302-5-c Standards, methodologies, assumptions, and calculation tools used to calculate
+    reductions in the energy required by the organisation's products and services
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 302 - Energy
+    :category: GRI+302-5 Reductions in energy requirements of products and services
+- :name:
+  - GRI
+  - GRI 303 - Water and Effluents
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+- :name:
+  - GRI
+  - 303-1 Interactions with water as a shared resource
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+GRI 303 - Water and Effluents
+- :name:
+  - GRI
+  - 303-1-a Organization's interaction with water - where and how water is withdrawn,
+    consumed, and discharged, and the water-related impacts caused, contributed to,
+    or linked to its operations and value chain.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-1 Interactions with water as a shared resource
+- :name:
+  - GRI
+  - 303-1-b Approach to identify water-related impacts, including the scope of assessments,
+    their timeframe, and any tools or methodologies used
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-1 Interactions with water as a shared resource
+- :name:
+  - GRI
+  - 303-1-c Approach to addressing water-related impacts, including collaboration
+    with stakeholders, and engagement with suppliers or customers with significant
+    water impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-1 Interactions with water as a shared resource
+- :name:
+  - GRI
+  - 303-1-d Process for setting water-related goals and targets, and how they align
+    with public policy and local water-stress context
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-1 Interactions with water as a shared resource
+- :name:
+  - GRI
+  - 303-2 Management of water discharge-related impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+GRI 303 - Water and Effluents
+- :name:
+  - GRI
+  - 303-2-a Minimum standards for effluent discharge quality and how they were determined
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-2 Management of water discharge-related impacts
+- :name:
+  - GRI
+  - 303-2-a-i How standards for facilities operating in locations with no local discharge
+    requirements were determined
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-2 Management of water discharge-related impacts
+- :name:
+  - GRI
+  - 303-2-a-i Internally developed water quality standards or guidelines
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-2 Management of water discharge-related impacts
+- :name:
+  - GRI
+  - 303-2-a-iii Sector-specific standards considered
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-2 Management of water discharge-related impacts
+- :name:
+  - GRI
+  - 303-2-a-iv Whether the profile of the receiving waterbody was considered
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-2 Management of water discharge-related impacts
+- :name:
+  - GRI
+  - 303-3 Water withdrawal
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+GRI 303 - Water and Effluents
+- :name:
+  - GRI
+  - 303-3-a Water withdrawal from all areas, broken down by source
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-3 Water withdrawal
+- :name:
+  - GRI
+  - 303-3-c Water withdrawal from all areas from each of the sources by category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-3 Water withdrawal
+- :name:
+  - GRI
+  - 303-3-b Water withdrawal from water-stressed areas, broken down by source
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-3 Water withdrawal
+- :name:
+  - GRI
+  - 303-3-b-v Third-party water withdrawal from all areas with water stress by the
+    withdrawal sources
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-3 Water withdrawal
+- :name:
+  - GRI
+  - 303-3-c Water withdrawal from all areas with water stress from each of the sources
+    by category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-3 Water withdrawal
+- :name:
+  - GRI
+  - 303-3-d Contextual information necessary to understand how the data have been
+    compiled
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-3 Water withdrawal
+- :name:
+  - GRI
+  - 303-4 Water discharge
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+GRI 303 - Water and Effluents
+- :name:
+  - GRI
+  - 303-4-a Water discharge to all areas, broken down by type of destination
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-4 Water discharge
+- :name:
+  - GRI
+  - 303-4-a-iv Third-party water sent for use to other organizations - if applicable
+    and total volume
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-4 Water discharge
+- :name:
+  - GRI
+  - 303-4-b Water discharge to all areas by category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-4 Water discharge
+- :name:
+  - GRI
+  - 303-4-c Water discharge to water-stressed areas, broken down by category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-4 Water discharge
+- :name:
+  - GRI
+  - 303-4-d Priority substances of concern for which discharges are treated
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-4 Water discharge
+- :name:
+  - GRI
+  - 303-4-d-i Basis for defining priority substances of concern - including standards,
+    authoritative lists, or criteria used
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-4 Water discharge
+- :name:
+  - GRI
+  - 303-4-d-ii Approach for setting discharge limits for priority substances of concern
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-4 Water discharge
+- :name:
+  - GRI
+  - 303-4-d-iii Incidents of non-compliance with discharge limits
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-4 Water discharge
+- :name:
+  - GRI
+  - 303-4-e Contextual information necessary to understand how the data have been
+    compiled
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-4 Water discharge
+- :name:
+  - GRI
+  - 303-5 Water consumption
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+GRI 303 - Water and Effluents
+- :name:
+  - GRI
+  - 303-5-a Water consumption from all areas
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-5 Water consumption
+- :name:
+  - GRI
+  - 303-5-b Water consumption from all areas with water stress
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-5 Water consumption
+- :name:
+  - GRI
+  - 303-5-c Change in water storage, if water storage has been identified as having
+    a significant water-related impact
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-5 Water consumption
+- :name:
+  - GRI
+  - 303-5-d Contextual information necessary to understand how the data have been
+    compiled
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 303 - Water and Effluents
+    :category: GRI+303-5 Water consumption
+- :name:
+  - GRI
+  - GRI 304 - Biodiversity 2016
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+- :name:
+  - GRI
+  - 304-1 Operational sites owned, leased, managed in, or adjacent to, protected areas
+    and areas of high biodiversity value outside protected areas
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+GRI 304 - Biodiversity 2016
+- :name:
+  - GRI
+  - 304-1-a Operational sites owned, leased, managed in, or adjacent to, protected
+    areas and areas of high biodiversity value outside protected areas
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-1 Operational sites owned, leased, managed in, or adjacent
+      to, protected areas and areas of high biodiversity value outside protected areas
+- :name:
+  - GRI
+  - 304-1-a-i Geographic location
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-1 Operational sites owned, leased, managed in, or adjacent
+      to, protected areas and areas of high biodiversity value outside protected areas
+- :name:
+  - GRI
+  - 304-1-a-ii Subsurface and underground land that may be owned, leased, or managed
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-1 Operational sites owned, leased, managed in, or adjacent
+      to, protected areas and areas of high biodiversity value outside protected areas
+- :name:
+  - GRI
+  - 304-1-a-iii Position in relation to the protected area or the high biodiversity
+    value area outside protected areas
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-1 Operational sites owned, leased, managed in, or adjacent
+      to, protected areas and areas of high biodiversity value outside protected areas
+- :name:
+  - GRI
+  - 304-1-a-iv Type of operation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-1 Operational sites owned, leased, managed in, or adjacent
+      to, protected areas and areas of high biodiversity value outside protected areas
+- :name:
+  - GRI
+  - 304-1-a-v Size of operational site
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-1 Operational sites owned, leased, managed in, or adjacent
+      to, protected areas and areas of high biodiversity value outside protected areas
+- :name:
+  - GRI
+  - 304-1-a-vi Biodiversity value characterized by the attribute of the protected
+    area or area of high biodiversity value outside the protected area
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-1 Operational sites owned, leased, managed in, or adjacent
+      to, protected areas and areas of high biodiversity value outside protected areas
+- :name:
+  - GRI
+  - 304-1-a-vii Biodiversity value characterized by listing of protected status
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-1 Operational sites owned, leased, managed in, or adjacent
+      to, protected areas and areas of high biodiversity value outside protected areas
+- :name:
+  - GRI
+  - 304-2 Significant impacts of activities, products and services on biodiversity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+GRI 304 - Biodiversity 2016
+- :name:
+  - GRI
+  - 304-2-a-i Nature of significant direct and indirect impacts on biodiversity with
+    reference to construction or use of manufacturing plants, mines, and transport
+    infrastructure
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-2-a-ii Nature of significant direct and indirect impacts on biodiversity with
+    reference to pollution
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-2-a-iii Nature of significant direct and indirect impacts on biodiversity
+    with reference to introduction of invasive species, pests, and pathogens
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-2-a-iv Nature of significant direct and indirect impacts on biodiversity with
+    reference to reduction of species
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-2-a-v Nature of significant direct and indirect impacts on biodiversity with
+    reference to habitat conversion
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-2-a-vi Nature of significant direct and indirect impacts on biodiversity with
+    reference to changes in ecological processes outside the natural range of variation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-2-b-i Significant direct and indirect positive and negative impacts with reference
+    to species affected
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-2-b-ii Significant direct and indirect positive and negative impacts with
+    reference to extent of areas impacted
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-2-b-iii Significant direct and indirect positive and negative impacts with
+    reference to duration of impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-2-b-iv Significant direct and indirect positive and negative impacts with
+    reversibility or irreversibility of the impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-2 Significant impacts of activities, products and services
+      on biodiversity
+- :name:
+  - GRI
+  - 304-3 Habitats protected or restored
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+GRI 304 - Biodiversity 2016
+- :name:
+  - GRI
+  - 304-3-a Habitat areas protected or restored - size, location, and whether restoration
+    success was validated by external professionals
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-3 Habitats protected or restored
+- :name:
+  - GRI
+  - 304-3-b Partnerships with third parties to protect or restore off-site habitats
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-3 Habitats protected or restored
+- :name:
+  - GRI
+  - 304-3-c Status of each area based on its condition at the close of the reporting
+    period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-3 Habitats protected or restored
+- :name:
+  - GRI
+  - 304-3-d Standards, methodologies, and assumptions used for habitat restoration
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-3 Habitats protected or restored
+- :name:
+  - GRI
+  - 304-4 IUCN Red List species and national conservation list species with habitats
+    in areas affected by operations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+GRI 304 - Biodiversity 2016
+- :name:
+  - GRI
+  - 304-4-a IUCN Red List and nationally listed species with habitats in areas affected
+    by the organization - total number and extinction risk level
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 304 - Biodiversity 2016
+    :category: GRI+304-4 IUCN Red List species and national conservation list species
+      with habitats in areas affected by operations
+- :name:
+  - GRI
+  - GRI 305 - Emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+- :name:
+  - GRI
+  - 305-1 Direct (Scope 1) GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+GRI 305 - Emissions
+- :name:
+  - GRI
+  - 305-1.2 Use of offsets to meet GHG emissions targets - whether used, type, and
+    amount
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - '305-1.2: Criteria or scheme of which offsets are part'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-a Gross direct (Scope 1) GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-b Gases included in the calculation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-c Biogenic CO2 emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-d Start & end date for the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-d-i Rationale for choosing the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-d-ii Emissions in the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-d-iii Context for any significant changes in emissions that triggered recalculations
+    of base year emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-e Source of emission factors and global warming potential (GWP) rates, or
+    reference to their source
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-f Consolidation approach for emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-1-g Standards, methodologies, assumptions, and/or calculation tools used to
+    calculate direct (Scope 1) GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-1 Direct (Scope 1) GHG emissions
+- :name:
+  - GRI
+  - 305-2 Energy indirect (Scope 2) GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+GRI 305 - Emissions
+- :name:
+  - GRI
+  - 305-2-a Gross location-based energy indirect (Scope 2) GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-2-b Applicability and total amount of gross market-based energy indirect (Scope
+    2) GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-2-c Gases included in the calculation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-2-d Start and end date for the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-2-d-i Rationale for choosing the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-2-d-ii Emissions in the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-2-d-iii Context for any significant changes in emissions that triggered recalculations
+    of base year emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-2-e Source of emission factors and global warming potential (GWP) rates, or
+    reference to their source
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-2-f Consolidation approach for emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-2-g Standards, methodologies, assumptions, and/or calculation tools used to
+    calculate Scope 2 GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-2 Energy indirect (Scope 2) GHG emissions
+- :name:
+  - GRI
+  - 305-3 Other indirect (Scope 3) GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+GRI 305 - Emissions
+- :name:
+  - GRI
+  - 305-3-a Gross other indirect (Scope 3) GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-3 Other indirect (Scope 3) GHG emissions
+- :name:
+  - GRI
+  - 305-3-b Gases included in the calculation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-3 Other indirect (Scope 3) GHG emissions
+- :name:
+  - GRI
+  - 305-3-c Biogenic CO2 emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-3 Other indirect (Scope 3) GHG emissions
+- :name:
+  - GRI
+  - 305-3-d Other indirect (Scope 3) GHG emissions categories and activities included
+    in the calculation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-3 Other indirect (Scope 3) GHG emissions
+- :name:
+  - GRI
+  - 305-3-e-i Rrationale for choosing the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-3 Other indirect (Scope 3) GHG emissions
+- :name:
+  - GRI
+  - 305-3-e-ii Emissions in the base year
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-3 Other indirect (Scope 3) GHG emissions
+- :name:
+  - GRI
+  - 305-3-e-iii Context for any significant changes in emissions that triggered recalculations
+    of base year emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-3 Other indirect (Scope 3) GHG emissions
+- :name:
+  - GRI
+  - 305-3-f Source of emission factors and global warming potential (GWP) rates, or
+    reference to their source
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-3 Other indirect (Scope 3) GHG emissions
+- :name:
+  - GRI
+  - 305-3-g Standards, methodologies, assumptions, and/or calculation tools used to
+    calculate indirect (Score 3) GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-3 Other indirect (Scope 3) GHG emissions
+- :name:
+  - GRI
+  - 305-4 GHG emissions intensity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+GRI 305 - Emissions
+- :name:
+  - GRI
+  - 305-4-a GHG emissions intensity ratio and its unit of measurement
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-4 GHG emissions intensity
+- :name:
+  - GRI
+  - 305-4-b Organization-specific metric (the denominator) chosen to calculate the
+    GHG emissions intensity ratio
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-4 GHG emissions intensity
+- :name:
+  - GRI
+  - 305-4-c Types of GHG emissions included in the GHG emissions intensity ratio
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-4 GHG emissions intensity
+- :name:
+  - GRI
+  - 305-5 Reduction of GHG emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+GRI 305 - Emissions
+- :name:
+  - GRI
+  - 305-5-a GHG emissions reductions from initiatives and offsets
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-5 Reduction of GHG emissions
+- :name:
+  - GRI
+  - 305-5-b Gases included in the calculation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-5 Reduction of GHG emissions
+- :name:
+  - GRI
+  - 305-5-c Base year or baseline for GHG reductions - start and end dates, baseline
+    used, and rationale for selection
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-5 Reduction of GHG emissions
+- :name:
+  - GRI
+  - 305-5-d Types of GHG emissions for which reductions are reported
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-5 Reduction of GHG emissions
+- :name:
+  - GRI
+  - 305-5-e Standards, methodologies, assumptions, and/or calculation tools used to
+    calculate GHG reductions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-5 Reduction of GHG emissions
+- :name:
+  - GRI
+  - 305-6 Emissions of ozone-depleting substances (ODS)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+GRI 305 - Emissions
+- :name:
+  - GRI
+  - 305-6-a Production, imports, and exports of ozone-depleting substances (ODS)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-6 Emissions of ozone-depleting substances (ODS)
+- :name:
+  - GRI
+  - 305-6-b Substances included in the calculation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-6 Emissions of ozone-depleting substances (ODS)
+- :name:
+  - GRI
+  - 305-6-c Source of the emission factors used
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-6 Emissions of ozone-depleting substances (ODS)
+- :name:
+  - GRI
+  - 305-6-d Standards, methodologies, assumptions, and/or calculation tools used to
+    calculate ozone-depleting substances
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-6 Emissions of ozone-depleting substances (ODS)
+- :name:
+  - GRI
+  - 305-7 Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant air emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+GRI 305 - Emissions
+- :name:
+  - GRI
+  - 305-7-a Significant air emissions by category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-7 Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant
+      air emissions
+- :name:
+  - GRI
+  - 305-7-b Source of the emission factors used
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-7 Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant
+      air emissions
+- :name:
+  - GRI
+  - 305-7-c Standards, methodologies, assumptions, and/or calculation tools used to
+    calculate significant air emissions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-7 Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant
+      air emissions
+- :name:
+  - GRI
+  - 305-7-2.13.4 Basis on which figures were estimated, if estimations are used due
+    to a lack of default figures
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 305 - Emissions
+    :category: GRI+305-7 Nitrogen oxides (NOx), sulfur oxides (SOx), and other significant
+      air emissions
+- :name:
+  - GRI
+  - GRI 306 - Effluents and Waste 2016
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Effluents and Waste 2016
+- :name:
+  - GRI
+  - 306-3 Significant spills
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Effluents and Waste 2016
+    :category: GRI+GRI 306 - Effluents and Waste 2016
+- :name:
+  - GRI
+  - 306-3-a Recorded significant spills
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Effluents and Waste 2016
+    :category: GRI+306-3 Significant spills
+- :name:
+  - GRI
+  - 306-3-b Spill that was reported in the organization's financial statements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Effluents and Waste 2016
+    :category: GRI+306-3 Significant spills
+- :name:
+  - GRI
+  - 306-3-b-i Location of spill
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Effluents and Waste 2016
+    :category: GRI+306-3 Significant spills
+- :name:
+  - GRI
+  - 306-3-b-ii Volume of spill
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Effluents and Waste 2016
+    :category: GRI+306-3 Significant spills
+- :name:
+  - GRI
+  - 306-3-b-iii Material of spill
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Effluents and Waste 2016
+    :category: GRI+306-3 Significant spills
+- :name:
+  - GRI
+  - 306-3-b-iii Other material of spill
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Effluents and Waste 2016
+    :category: GRI+306-3 Significant spills
+- :name:
+  - GRI
+  - 306-3-c Impacts of significant spills
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Effluents and Waste 2016
+    :category: GRI+306-3 Significant spills
+- :name:
+  - GRI
+  - GRI 306 - Waste 2020
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+- :name:
+  - GRI
+  - 306-1 Waste generation and significant waste-related impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+GRI 306 - Waste 2020
+- :name:
+  - GRI
+  - 306-1-a-i Inputs, activities, and outputs that lead or could lead to significant
+    actual or potential waste-related impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-1 Waste generation and significant waste-related impacts
+- :name:
+  - GRI
+  - 306-1-a-ii Whether significant waste-related impacts arise from the organization's
+    own activities or from upstream/downstream value chain operations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-1 Waste generation and significant waste-related impacts
+- :name:
+  - GRI
+  - 306-2 Management of significant waste-related impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+GRI 306 - Waste 2020
+- :name:
+  - GRI
+  - 306-2-a Actions to prevent waste generation and manage significant waste-related
+    impacts across the organization and its value chain, including circularity measures
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-2 Management of significant waste-related impacts
+- :name:
+  - GRI
+  - 306-2-b Third-party waste management - whether used, and how compliance with contractual
+    or legal obligations is verified
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-2 Management of significant waste-related impacts
+- :name:
+  - GRI
+  - 306-2-c Processes used to collect and monitor waste-related data
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-2 Management of significant waste-related impacts
+- :name:
+  - GRI
+  - 306-3 Waste generated
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+GRI 306 - Waste 2020
+- :name:
+  - GRI
+  - 306-3-a Total weight and composition of waste generated, by category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-3 Waste generated
+- :name:
+  - GRI
+  - 306-3-b Contextual information necessary to understand the data and how the data
+    has been compiled
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-3 Waste generated
+- :name:
+  - GRI
+  - 306-4 Waste diverted from disposal
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+GRI 306 - Waste 2020
+- :name:
+  - GRI
+  - 306-4-a Total weight and composition of waste diverted from disposal, by category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - 306-4-b Total weight of hazardous waste diverted from disposal
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - '306-4-b-i Weight of hazardous waste diverted from disposal by recovery operation:
+    Preparation for reuse'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - '306-4-b-ii Weight of hazardous waste diverted from disposal by recovery operation:
+    Recycling'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - '306-4-b-iii Weight of hazardous waste diverted from disposal by recovery operation:
+    Other recovery operations'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - 306-4-c Total weight of non-hazardous waste diverted from disposal
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - '306-4-c-i Weight of non-hazardous waste diverted from disposal by recovery operation:
+    Preparation for reuse'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - '306-4-c-ii Weight of non-hazardous waste diverted from disposal by recovery operation:
+    Recycling'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - '306-4-c-iii Weight of non-hazardous waste diverted from disposal by recovery
+    operation: Other recovery operations'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - 306-4-d-i Weight of hazardous and non-hazardous waste diverted from disposal through
+    onsite recovery operations (reuse, recycling, and other methods), by type of operation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - 306-4-d-ii Weight of hazardous and non-hazardous waste diverted from disposal
+    through offsite recovery operations (reuse, recycling, and other methods), by
+    type of operation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - 306-4-e Contextual information necessary to understand the data and how the data
+    has been compiled
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-4 Waste diverted from disposal
+- :name:
+  - GRI
+  - 306-5 Waste directed to disposal
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+GRI 306 - Waste 2020
+- :name:
+  - GRI
+  - 306-5-a Total weight and composition of waste directed to disposal, by category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - 306-5-b Total weight of hazardous waste directed to disposal
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - '306-5-b-i Weight of hazardous waste directed to disposal: Incineration (with
+    energy recovery)'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - '306-5-b-ii Weight of hazardous waste directed to disposal by disposal operations:
+    Incineration (without energy recovery)'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - '306-5-b-iii Weight of hazardous waste directed to disposal by disposal operations:
+    Landfilling'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - '306-5-b-iv Weight of hazardous waste directed to disposal by disposal operations:
+    Other disposal operations'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - 306-5-c Total weight of non-hazardous waste directed to disposal
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - '306-5-c-i Weight of non-hazardous waste directed to disposal by disposal operations:
+    Incineration (with energy recovery)'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - '306-5-c-ii Weight of non-hazardous waste directed to disposal by disposal operations:
+    Incineration (without energy recovery)'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - '306-5-c-iii Weight of non-hazardous waste directed to disposal by disposal operations:
+    Landfilling'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - '306-5-c-iv Weight of non-hazardous waste directed to disposal by disposal operations:
+    Other disposal operations'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - 306-5-d-i Weight of hazardous and non-hazardous waste directed to disposal through
+    onsite operations (incineration with/without energy recovery, landfilling, and
+    other methods), by type of operation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - 306-5-d-ii Weight of hazardous and non-hazardous waste directed to disposal through
+    offsite operations (incineration with/without energy recovery, landfilling, and
+    other methods), by type of operation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - 306-5-e Contextual information necessary to understand the data and how the data
+    has been compiled.
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 306 - Waste 2020
+    :category: GRI+306-5 Waste directed to disposal
+- :name:
+  - GRI
+  - GRI 308 - Supplier Environmental Assessment
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 308 - Supplier Environmental Assessment
+- :name:
+  - GRI
+  - 308-1 New suppliers that were screened using environmental criteria
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 308 - Supplier Environmental Assessment
+    :category: GRI+GRI 308 - Supplier Environmental Assessment
+- :name:
+  - GRI
+  - 308-1-a Percentage of new suppliers that were screened using environmental criteria
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 308 - Supplier Environmental Assessment
+    :category: GRI+308-1 New suppliers that were screened using environmental criteria
+- :name:
+  - GRI
+  - 308-2 Negative environmental impacts in the supply chain and actions taken
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 308 - Supplier Environmental Assessment
+    :category: GRI+GRI 308 - Supplier Environmental Assessment
+- :name:
+  - GRI
+  - 308-2-a Suppliers assessed for environmental impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 308 - Supplier Environmental Assessment
+    :category: GRI+308-2 Negative environmental impacts in the supply chain and actions
+      taken
+- :name:
+  - GRI
+  - 308-2-b Suppliers identified as having significant actual and potential negative
+    environmental impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 308 - Supplier Environmental Assessment
+    :category: GRI+308-2 Negative environmental impacts in the supply chain and actions
+      taken
+- :name:
+  - GRI
+  - 308-2-c Significant actual and potential negative environmental impacts identified
+    in the supply chain
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 308 - Supplier Environmental Assessment
+    :category: GRI+308-2 Negative environmental impacts in the supply chain and actions
+      taken
+- :name:
+  - GRI
+  - 308-2-d Percentage of suppliers identified as having significant actual and potential
+    negative environmental impacts with which improvements were agreed upon as a result
+    of the assessment
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 308 - Supplier Environmental Assessment
+    :category: GRI+308-2 Negative environmental impacts in the supply chain and actions
+      taken
+- :name:
+  - GRI
+  - 308-2-e Suppliers with significant environmental impacts - percentage of relationships
+    terminated due to assessment, and reasons for termination
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 308 - Supplier Environmental Assessment
+    :category: GRI+308-2 Negative environmental impacts in the supply chain and actions
+      taken
+- :name:
+  - GRI
+  - GRI 401 - Employment
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+- :name:
+  - GRI
+  - 401-1 New employee hires and employee turnover
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+GRI 401 - Employment
+- :name:
+  - GRI
+  - 401-1-a Number and rate of new employee hires during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+401-1 New employee hires and employee turnover
+- :name:
+  - GRI
+  - 401-1-b Number and rate of employee turnover during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+401-1 New employee hires and employee turnover
+- :name:
+  - GRI
+  - 401-2 Benefits provided to full-time employees that are not provided to temporary
+    or part-time employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+GRI 401 - Employment
+- :name:
+  - GRI
+  - 401‑2‑a Standard benefits offered to full-time employees but not to temporary
+    or part-time employees, by significant locations of operation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+401-2 Benefits provided to full-time employees that are not provided
+      to temporary or part-time employees
+- :name:
+  - GRI
+  - 401-2-a-vii Other benefit
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+401-2 Benefits provided to full-time employees that are not provided
+      to temporary or part-time employees
+- :name:
+  - GRI
+  - 401-3 Parental leave
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+GRI 401 - Employment
+- :name:
+  - GRI
+  - 401-3-a Number of employees that were entitled to parental leave, by gender
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+401-3 Parental leave
+- :name:
+  - GRI
+  - 401-3-b Number of employees that took parental leave, by gender
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+401-3 Parental leave
+- :name:
+  - GRI
+  - 401-3-c Number of employees that returned to work in the reporting period after
+    parental leave ended, by gender
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+401-3 Parental leave
+- :name:
+  - GRI
+  - 401-3-d Number of employees that returned to work after parental leave ended that
+    were still employed 12 months after their return to work, by gender
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+401-3 Parental leave
+- :name:
+  - GRI
+  - 401-3-e Return-to-work and retention rates for employees who took parental leave,
+    by gender
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 401 - Employment
+    :category: GRI+401-3 Parental leave
+- :name:
+  - GRI
+  - GRI 402 - Labor or Management Relations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 402 - Labor or Management Relations
+- :name:
+  - GRI
+  - 402-1 Minimum notice periods regarding operational changes
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 402 - Labor or Management Relations
+    :category: GRI+GRI 402 - Labor or Management Relations
+- :name:
+  - GRI
+  - 402-1-a Minimum notice period (in weeks) typically provided to employees and their
+    representatives before significant operational changes
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 402 - Labor or Management Relations
+    :category: GRI+402-1 Minimum notice periods regarding operational changes
+- :name:
+  - GRI
+  - 402-1-b Specified notice periods and consultation provisions in collective bargaining
+    agreements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 402 - Labor or Management Relations
+    :category: GRI+402-1 Minimum notice periods regarding operational changes
+- :name:
+  - GRI
+  - GRI 403 - Occupational Health and Safety
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-1 Occupational health and safety management system
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-1-a Occupational health and safety management system implementation for employees
+    and non-employees working under the organization’s control
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-1 Occupational health and safety management system
+- :name:
+  - GRI
+  - 403-1-a-i Legal basis for implementing the occupational health and safety system,
+    with list of applicable requirements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-1 Occupational health and safety management system
+- :name:
+  - GRI
+  - 403-1-a-ii Implementation based on recognized risk or management system standards
+    and list of used standards
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-1 Occupational health and safety management system
+- :name:
+  - GRI
+  - 403-1-b Scope of workers, activities, and workplaces covered by the occupational
+    health and safety system, and reasons for any exclusions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-1 Occupational health and safety management system
+- :name:
+  - GRI
+  - 403-2 Hazard identification, risk assessment, and incident investigation
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-2-a Processes to identify and assess work-related hazards and risks, routine
+    and non-routine, and application of the hierarchy of controls to eliminate or
+    minimize them
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-2 Hazard identification, risk assessment, and incident investigation
+- :name:
+  - GRI
+  - 403-2-a-i How the organization ensures the quality of these processes, including
+    the competency of persons who carry them out
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-2 Hazard identification, risk assessment, and incident investigation
+- :name:
+  - GRI
+  - 403-2-a-ii How the results of these processes are used to evaluate and continually
+    improve the occupational health and safety management system
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-2 Hazard identification, risk assessment, and incident investigation
+- :name:
+  - GRI
+  - 403-2-b Processes for workers to report work-related hazards and protections against
+    reprisals for reporting
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-2 Hazard identification, risk assessment, and incident investigation
+- :name:
+  - GRI
+  - 403-2-c Policies and protections for workers who remove themselves from unsafe
+    work situations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-2 Hazard identification, risk assessment, and incident investigation
+- :name:
+  - GRI
+  - 403-2-d Processes for investigating work-related incidents, assessing related
+    hazards and risks, determining corrective actions using the hierarchy of controls,
+    and identifying needed improvements to the health and safety system
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-2 Hazard identification, risk assessment, and incident investigation
+- :name:
+  - GRI
+  - 403-3 Occupational health services
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-3-a Occupational health services' role in hazard identification and risk reduction,
+    including service quality and worker access assurance
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-3 Occupational health services
+- :name:
+  - GRI
+  - 403-4 Worker participation, consultation, and communication on occupational health
+    and safety
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-4-a Worker participation, consultation, and access to information in the occupational
+    health and safety management system
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-4 Worker participation, consultation, and communication on
+      occupational health and safety
+- :name:
+  - GRI
+  - 403-4-b Formal joint health and safety committees - existence, responsibilities,
+    authority, meeting frequency, and worker representation gaps
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-4 Worker participation, consultation, and communication on
+      occupational health and safety
+- :name:
+  - GRI
+  - 403-5 Worker training on occupational health and safety
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-5-a Occupational health and safety training provided to employees and non-employees,
+    including general and hazard-specific training
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-5 Worker training on occupational health and safety
+- :name:
+  - GRI
+  - 403-6 Promotion of worker health
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-6-a Access to non-occupational medical and healthcare services for employees
+    and non-employees, and the scope of services provided
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-6 Promotion of worker health
+- :name:
+  - GRI
+  - 403-6-b Voluntary health promotion services for non-work-related health risks
+    and how worker access is facilitated
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-6 Promotion of worker health
+- :name:
+  - GRI
+  - 403-7 Prevention and mitigation of occupational health and safety impacts directly
+    linked by business relationships
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-7-a Approach to preventing or mitigating significant occupational health and
+    safety impacts linked to business relationships, including related hazards and
+    risks
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-7 Prevention and mitigation of occupational health and safety
+      impacts directly linked by business relationships
+- :name:
+  - GRI
+  - 403-8 Workers covered by an occupational health and safety management system
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-8-a Implementation of an occupational health and safety management system
+    - legal basis, standards used, number and percentage of workers covered
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-8 Workers covered by an occupational health and safety management
+      system
+- :name:
+  - GRI
+  - 403-8-b Exclusions from occupational health and safety disclosure - types of workers
+    excluded and reasons for exclusion
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-8 Workers covered by an occupational health and safety management
+      system
+- :name:
+  - GRI
+  - 403-8-c Contextual information necessary to understand how the data have been
+    compiled
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-8 Workers covered by an occupational health and safety management
+      system
+- :name:
+  - GRI
+  - 403-9 Work-related injuries
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-9-a Worker-relate injuries among employees and workers
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-a-i Number and rate of fatalities as a result of work-related injury
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-a-ii Number and rate of high-consequence work-related injuries (excluding
+    fatalities)
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-a-iii Number and rate of recordable work-related injuries
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - '403-9-a-iii Recordable work-related injuries: number and rate'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-a-iv Main types of work-related injury
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-a-v Number of hours worked
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-c Work-related hazards with risk of high-consequence injury
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-c-iIdentification process for high-consequence work-related hazards
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-c-ii High-consequence hazards linked to actual injuries during the reporting
+    period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-c-iii Actions taken or underway to eliminate work-related hazards that pose
+    a risk of high-consequence injury and minimize risks using the hierarchy of controls
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-d Actions taken or underway to eliminate other work-related hazards and
+    minimize risks using the hierarchy of controls
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-e Basis of calculation of rates
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - '403-9-f Exclusion of workers from disclosure: who and why'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-9-g Contextual information necessary to understand how the data have been
+    compiled, such as any standards, methodologies, and assumptions used
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-9 Work-related injuries
+- :name:
+  - GRI
+  - 403-10 Work-related ill health
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+GRI 403 - Occupational Health and Safety
+- :name:
+  - GRI
+  - 403-10-a-i Number of fatalities as a result of work-related ill health
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-10 Work-related ill health
+- :name:
+  - GRI
+  - 403-10-a-ii Number of cases of recordable work-related ill health
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-10 Work-related ill health
+- :name:
+  - GRI
+  - 403-10-a-iii Types of work-related ill health
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-10 Work-related ill health
+- :name:
+  - GRI
+  - 403-10-c Work-related hazards that pose a risk of ill health
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-10 Work-related ill health
+- :name:
+  - GRI
+  - 403-10-c-i Process for identifying work-related hazards that pose a risk of ill
+    health
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-10 Work-related ill health
+- :name:
+  - GRI
+  - 403-10-c-ii Work-related hazards that pose a risk of ill health that have caused
+    or contributed to cases of ill health during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-10 Work-related ill health
+- :name:
+  - GRI
+  - 403-10-c-iii Actions taken or underway to eliminate work-related hazards that
+    pose a risk of ill health and minimize risks using the hierarchy of controls
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-10 Work-related ill health
+- :name:
+  - GRI
+  - '403-10-d Exclusion of workers from work-related ill health disclosure: who and
+    why'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-10 Work-related ill health
+- :name:
+  - GRI
+  - 403-10-e Contextual information necessary to understand how the data have been
+    compiled, such as any standards, methodologies, and assumptions used
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 403 - Occupational Health and Safety
+    :category: GRI+403-10 Work-related ill health
+- :name:
+  - GRI
+  - GRI 404 - Training and Education
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 404 - Training and Education
+- :name:
+  - GRI
+  - 404-1 Average hours of training per year per employee
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 404 - Training and Education
+    :category: GRI+GRI 404 - Training and Education
+- :name:
+  - GRI
+  - 404-1-a Average hours of training per year per employee category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 404 - Training and Education
+    :category: GRI+404-1 Average hours of training per year per employee
+- :name:
+  - GRI
+  - 404-2 Programs for upgrading employee skills and transition assistance programs
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 404 - Training and Education
+    :category: GRI+GRI 404 - Training and Education
+- :name:
+  - GRI
+  - 404-2-a Type and scope of programs implemented and assistance provided to upgrade
+    employee skills
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 404 - Training and Education
+    :category: GRI+404-2 Programs for upgrading employee skills and transition assistance
+      programs
+- :name:
+  - GRI
+  - 404-2-b Transition assistance programs provided to facilitate continued employability
+    and the management of career endings resulting from retirement or termination
+    of employment
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 404 - Training and Education
+    :category: GRI+404-2 Programs for upgrading employee skills and transition assistance
+      programs
+- :name:
+  - GRI
+  - 404-3 Percentage of employees receiving regular performance and career development
+    reviews
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 404 - Training and Education
+    :category: GRI+GRI 404 - Training and Education
+- :name:
+  - GRI
+  - 404-3-a Performance and career development reviews by gender and employee category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 404 - Training and Education
+    :category: GRI+404-3 Percentage of employees receiving regular performance and
+      career development reviews
+- :name:
+  - GRI
+  - GRI 405 - Diversity and Equal Opportunity
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 405 - Diversity and Equal Opportunity
+- :name:
+  - GRI
+  - 405-1 Diversity of governance bodies and employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 405 - Diversity and Equal Opportunity
+    :category: GRI+GRI 405 - Diversity and Equal Opportunity
+- :name:
+  - GRI
+  - 405-1-a Diversity of governance bodies and employees by age, gender, and other
+    indicators
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 405 - Diversity and Equal Opportunity
+    :category: GRI+405-1 Diversity of governance bodies and employees
+- :name:
+  - GRI
+  - 405-1-b Representation of social and minority groups in governance bodies and
+    among employees
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 405 - Diversity and Equal Opportunity
+    :category: GRI+405-1 Diversity of governance bodies and employees
+- :name:
+  - GRI
+  - 405-2 Ratio of basic salary and remuneration of women to men
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 405 - Diversity and Equal Opportunity
+    :category: GRI+GRI 405 - Diversity and Equal Opportunity
+- :name:
+  - GRI
+  - 405-2-a Ratio of basic salary and remuneration by employee category and location
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 405 - Diversity and Equal Opportunity
+    :category: GRI+405-2 Ratio of basic salary and remuneration of women to men
+- :name:
+  - GRI
+  - 405-2-a Gender pay and remuneration ratios by employee category and location
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 405 - Diversity and Equal Opportunity
+    :category: GRI+405-2 Ratio of basic salary and remuneration of women to men
+- :name:
+  - GRI
+  - 405-2-b Definition used for 'significant locations of operation'
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 405 - Diversity and Equal Opportunity
+    :category: GRI+405-2 Ratio of basic salary and remuneration of women to men
+- :name:
+  - GRI
+  - GRI 406 - Non-discrimination
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 406 - Non-discrimination
+- :name:
+  - GRI
+  - 406-1 Incidents of discrimination and corrective actions taken
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 406 - Non-discrimination
+    :category: GRI+GRI 406 - Non-discrimination
+- :name:
+  - GRI
+  - 406-1-a Number of incidents of discrimination during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 406 - Non-discrimination
+    :category: GRI+406-1 Incidents of discrimination and corrective actions taken
+- :name:
+  - GRI
+  - 406-1-b Status of incidents of discrimination and actions taken
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 406 - Non-discrimination
+    :category: GRI+406-1 Incidents of discrimination and corrective actions taken
+- :name:
+  - GRI
+  - GRI 407 - Freedom of Association and Collective Bargaining
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 407 - Freedom of Association and Collective Bargaining
+- :name:
+  - GRI
+  - 407-1 Operations and suppliers in which the right to freedom of association and
+    collective bargaining may be at risk
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 407 - Freedom of Association and Collective Bargaining
+    :category: GRI+GRI 407 - Freedom of Association and Collective Bargaining
+- :name:
+  - GRI
+  - 407-1-a Operations and suppliers with risks to freedom of association and collective
+    bargaining, by type or geographic area
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 407 - Freedom of Association and Collective Bargaining
+    :category: GRI+407-1 Operations and suppliers in which the right to freedom of
+      association and collective bargaining may be at risk
+- :name:
+  - GRI
+  - 407-1-b Measures taken in the reporting period intended to support rights to exercise
+    freedom of association and collective bargaining
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 407 - Freedom of Association and Collective Bargaining
+    :category: GRI+407-1 Operations and suppliers in which the right to freedom of
+      association and collective bargaining may be at risk
+- :name:
+  - GRI
+  - GRI 408 - Child Labor
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 408 - Child Labor
+- :name:
+  - GRI
+  - 408-1 Operations and suppliers at significant risk for incidents of child labor
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 408 - Child Labor
+    :category: GRI+GRI 408 - Child Labor
+- :name:
+  - GRI
+  - 408-1-a-i Operations and suppliers at significant risk for incidents of child
+    labor
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 408 - Child Labor
+    :category: GRI+408-1 Operations and suppliers at significant risk for incidents
+      of child labor
+- :name:
+  - GRI
+  - 408-1-a-ii Operations and suppliers at significant risk of young workers being
+    exposed to hazardous work
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 408 - Child Labor
+    :category: GRI+408-1 Operations and suppliers at significant risk for incidents
+      of child labor
+- :name:
+  - GRI
+  - 408-1-b-i Operations considered to have significant risk for incidents of child
+    labor either in terms of type of operation, or countries or geographic areas with
+    operations considered at risk
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 408 - Child Labor
+    :category: GRI+408-1 Operations and suppliers at significant risk for incidents
+      of child labor
+- :name:
+  - GRI
+  - 408-1-b-ii Suppliers considered to have significant risk for incidents of child
+    labor either in terms of type of supplier, or countries or geographic areas with
+    suppliers considered at risk
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 408 - Child Labor
+    :category: GRI+408-1 Operations and suppliers at significant risk for incidents
+      of child labor
+- :name:
+  - GRI
+  - 408-1-c Measures taken in the reporting period intended to contribute to the effective
+    abolition of child labor
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 408 - Child Labor
+    :category: GRI+408-1 Operations and suppliers at significant risk for incidents
+      of child labor
+- :name:
+  - GRI
+  - GRI 409 - Forced or Compulsory Labor
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 409 - Forced or Compulsory Labor
+- :name:
+  - GRI
+  - 409-1 Operations and suppliers at significant risk for incidents of forced or
+    compulsory labor
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 409 - Forced or Compulsory Labor
+    :category: GRI+GRI 409 - Forced or Compulsory Labor
+- :name:
+  - GRI
+  - 409-1-a Operations and suppliers at significant risk for incidents of forced or
+    compulsory labor
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 409 - Forced or Compulsory Labor
+    :category: GRI+409-1 Operations and suppliers at significant risk for incidents
+      of forced or compulsory labor
+- :name:
+  - GRI
+  - 409-1-b Measures taken in the reporting period intended to contribute to the elimination
+    of all forms of forced or compulsory labor
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 409 - Forced or Compulsory Labor
+    :category: GRI+409-1 Operations and suppliers at significant risk for incidents
+      of forced or compulsory labor
+- :name:
+  - GRI
+  - GRI 410 - Security Practices
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 410 - Security Practices
+- :name:
+  - GRI
+  - 410-1 Security personnel trained in human rights policies or procedures
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 410 - Security Practices
+    :category: GRI+GRI 410 - Security Practices
+- :name:
+  - GRI
+  - 410-1-a Percentage of security personnel who have received formal training in
+    the organization’s human rights policies or specific procedures and their application
+    to security
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 410 - Security Practices
+    :category: GRI+410-1 Security personnel trained in human rights policies or procedures
+- :name:
+  - GRI
+  - 410-1-b Human rights training requirements for third-party security providers
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 410 - Security Practices
+    :category: GRI+410-1 Security personnel trained in human rights policies or procedures
+- :name:
+  - GRI
+  - GRI 411 - Rights of Indigenous Peoples
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 411 - Rights of Indigenous Peoples
+- :name:
+  - GRI
+  - 411-1 Incidents of violations involving rights of indigenous peoples
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 411 - Rights of Indigenous Peoples
+    :category: GRI+GRI 411 - Rights of Indigenous Peoples
+- :name:
+  - GRI
+  - 411-1-a Number of identified incidents of violations involving the rights of indigenous
+    peoples during the reporting period
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 411 - Rights of Indigenous Peoples
+    :category: GRI+411-1 Incidents of violations involving rights of indigenous peoples
+- :name:
+  - GRI
+  - 411-1-b Status of the incidents of violations involving the rights of indigenous
+    peoples and actions taken
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 411 - Rights of Indigenous Peoples
+    :category: GRI+411-1 Incidents of violations involving rights of indigenous peoples
+- :name:
+  - GRI
+  - GRI 413 - Local Communities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 413 - Local Communities
+- :name:
+  - GRI
+  - 413-1 Operations with local community engagement, impact assessments, and development
+    programs
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 413 - Local Communities
+    :category: GRI+GRI 413 - Local Communities
+- :name:
+  - GRI
+  - 413-1-a Percentage of operations with implemented local community engagement,
+    impact assessments, and/or development programs
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 413 - Local Communities
+    :category: GRI+413-1 Operations with local community engagement, impact assessments,
+      and development programs
+- :name:
+  - GRI
+  - 413-2 Operations with significant actual and potential negative impacts on local
+    communities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 413 - Local Communities
+    :category: GRI+GRI 413 - Local Communities
+- :name:
+  - GRI
+  - 413-2-a Operations with significant actual and potential negative impacts on local
+    communities
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 413 - Local Communities
+    :category: GRI+413-2 Operations with significant actual and potential negative
+      impacts on local communities
+- :name:
+  - GRI
+  - 413-2-a-i Location of operations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 413 - Local Communities
+    :category: GRI+413-2 Operations with significant actual and potential negative
+      impacts on local communities
+- :name:
+  - GRI
+  - 413-2-a-ii Significant actual and potential negative impacts of operations
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 413 - Local Communities
+    :category: GRI+413-2 Operations with significant actual and potential negative
+      impacts on local communities
+- :name:
+  - GRI
+  - GRI 414 - Supplier Social Assessment
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 414 - Supplier Social Assessment
+- :name:
+  - GRI
+  - 414-1 New suppliers that were screened using social criteria
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 414 - Supplier Social Assessment
+    :category: GRI+GRI 414 - Supplier Social Assessment
+- :name:
+  - GRI
+  - 414-1-a Percentage of new suppliers that were screened using social criteria
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 414 - Supplier Social Assessment
+    :category: GRI+414-1 New suppliers that were screened using social criteria
+- :name:
+  - GRI
+  - 414-2 Negative social impacts in the supply chain and actions taken
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 414 - Supplier Social Assessment
+    :category: GRI+GRI 414 - Supplier Social Assessment
+- :name:
+  - GRI
+  - 414-2-a Number of suppliers assessed for social impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 414 - Supplier Social Assessment
+    :category: GRI+414-2 Negative social impacts in the supply chain and actions taken
+- :name:
+  - GRI
+  - 414-2-b Number of suppliers identified as having significant actual and potential
+    negative social impacts
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 414 - Supplier Social Assessment
+    :category: GRI+414-2 Negative social impacts in the supply chain and actions taken
+- :name:
+  - GRI
+  - 414-2-c Significant actual and potential negative social impacts identified in
+    the supply chain
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 414 - Supplier Social Assessment
+    :category: GRI+414-2 Negative social impacts in the supply chain and actions taken
+- :name:
+  - GRI
+  - 414-2-d Percentage of suppliers identified as having significant actual and potential
+    negative social impacts with which improvements were agreed upon as a result of
+    assessment
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 414 - Supplier Social Assessment
+    :category: GRI+414-2 Negative social impacts in the supply chain and actions taken
+- :name:
+  - GRI
+  - 414-2-e Supplier relationships terminated due to significant social impacts and
+    reasons for termination
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 414 - Supplier Social Assessment
+    :category: GRI+414-2 Negative social impacts in the supply chain and actions taken
+- :name:
+  - GRI
+  - GRI 415 - Public Policy
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 415 - Public Policy
+- :name:
+  - GRI
+  - 415-1 Political contributions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 415 - Public Policy
+    :category: GRI+GRI 415 - Public Policy
+- :name:
+  - GRI
+  - 415-1-a Political contributions by country, recipient, and total monetary value
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 415 - Public Policy
+    :category: GRI+415-1 Political contributions
+- :name:
+  - GRI
+  - 415-1-b Estimation method for monetary value of in-kind political contributions
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 415 - Public Policy
+    :category: GRI+415-1 Political contributions
+- :name:
+  - GRI
+  - GRI 416 - Customer Health and Safety
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 416 - Customer Health and Safety
+- :name:
+  - GRI
+  - 416-1 Assessment of the health and safety impacts of product and service categories
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 416 - Customer Health and Safety
+    :category: GRI+GRI 416 - Customer Health and Safety
+- :name:
+  - GRI
+  - 416-1-a Percentage of significant product and service categories for which health
+    and safety impacts are assessed for improvement
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 416 - Customer Health and Safety
+    :category: GRI+416-1 Assessment of the health and safety impacts of product and
+      service categories
+- :name:
+  - GRI
+  - 416-2 Incidents of non-compliance concerning the health and safety impacts of
+    products and services
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 416 - Customer Health and Safety
+    :category: GRI+GRI 416 - Customer Health and Safety
+- :name:
+  - GRI
+  - 416-2-a Incidents of non-compliance related to product and service health and
+    safety
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 416 - Customer Health and Safety
+    :category: GRI+416-2 Incidents of non-compliance concerning the health and safety
+      impacts of products and services
+- :name:
+  - GRI
+  - 416-2-b Statement that the organization has not identified any non-compliance
+    with regulations and/or voluntary codes, if applicable
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 416 - Customer Health and Safety
+    :category: GRI+416-2 Incidents of non-compliance concerning the health and safety
+      impacts of products and services
+- :name:
+  - GRI
+  - 416-2-2.1.3 Incidents of non-compliance that relate to events in periods prior
+    to the reporting period, if applicable
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 416 - Customer Health and Safety
+    :category: GRI+416-2 Incidents of non-compliance concerning the health and safety
+      impacts of products and services
+- :name:
+  - GRI
+  - GRI 417 - Marketing and Labeling
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+- :name:
+  - GRI
+  - 417-1 Requirements for product and service information and labeling
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+GRI 417 - Marketing and Labeling
+- :name:
+  - GRI
+  - 417-1-a-i Requirement to disclose sourcing of components in product and service
+    labeling
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-1 Requirements for product and service information and labeling
+- :name:
+  - GRI
+  - 417-1-a-ii Requirement to disclose content with potential environmental or social
+    impacts in labeling
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-1 Requirements for product and service information and labeling
+- :name:
+  - GRI
+  - 417-1-a-iii Requirement to disclose safe use information in product and service
+    labeling
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-1 Requirements for product and service information and labeling
+- :name:
+  - GRI
+  - 417-1-a-iv Requirement to disclose disposal and related environmental or social
+    impacts in labeling
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-1 Requirements for product and service information and labeling
+- :name:
+  - GRI
+  - 417-1-a-v Other required product and service information and explanation of labeling
+    procedures
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-1 Requirements for product and service information and labeling
+- :name:
+  - GRI
+  - 417-1-b Percentage of significant product or service categories covered by and
+    assessed for compliance with procedures for product and service information and
+    labeling
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-1 Requirements for product and service information and labeling
+- :name:
+  - GRI
+  - 417-2 Incidents of non-compliance concerning product and service information and
+    labeling
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+GRI 417 - Marketing and Labeling
+- :name:
+  - GRI
+  - 417-2-a Incidents of non-compliance with product and service information and labeling
+    requirements
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-2 Incidents of non-compliance concerning product and service
+      information and labeling
+- :name:
+  - GRI
+  - 417-2-b Brief statement that the organization has not identified any non-compliance
+    with regulations and/or voluntary codes, if applicable
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-2 Incidents of non-compliance concerning product and service
+      information and labeling
+- :name:
+  - GRI
+  - 417-2-2.1.2 Incidents of non-compliance that relate to events in periods prior
+    to the reporting period, if applicable
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-2 Incidents of non-compliance concerning product and service
+      information and labeling
+- :name:
+  - GRI
+  - 417-3 Incidents of non-compliance concerning marketing communications
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+GRI 417 - Marketing and Labeling
+- :name:
+  - GRI
+  - 417-3-a Incidents of non-compliance with marketing communications regulations
+    and codes
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-3 Incidents of non-compliance concerning marketing communications
+- :name:
+  - GRI
+  - 417-3-b Statement that the organization has not identified any non-compliance
+    with regulations and/or voluntary codes, if applicable
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-3 Incidents of non-compliance concerning marketing communications
+- :name:
+  - GRI
+  - 417-3-2.2.2 Incidents of non-compliance that relate to events in periods prior
+    to the reporting period, if applicable
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 417 - Marketing and Labeling
+    :category: GRI+417-3 Incidents of non-compliance concerning marketing communications
+- :name:
+  - GRI
+  - GRI 418 - Customer Privacy
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 418 - Customer Privacy
+- :name:
+  - GRI
+  - 418-1 Substantiated complaints concerning breaches of customer privacy and losses
+    of customer data
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 418 - Customer Privacy
+    :category: GRI+GRI 418 - Customer Privacy
+- :name:
+  - GRI
+  - 418-1-a Substantiated complaints regarding breaches of customer privacy, by category
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 418 - Customer Privacy
+    :category: GRI+418-1 Substantiated complaints concerning breaches of customer
+      privacy and losses of customer data
+- :name:
+  - GRI
+  - 418-1-c Statement that the organization has not identified any substantiated complaints,
+    if applicable
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 418 - Customer Privacy
+    :category: GRI+418-1 Substantiated complaints concerning breaches of customer
+      privacy and losses of customer data
+- :name:
+  - GRI
+  - 418-1-2.1 Customer privacy breaches related to prior reporting periods
+  :type: :topic
+  :fields:
+    :topic_family: GRI+GRI 418 - Customer Privacy
+    :category: GRI+418-1 Substantiated complaints concerning breaches of customer
+      privacy and losses of customer data

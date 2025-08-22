@@ -1,9 +1,10 @@
 format :html do
   # all metrics show these properties in their properties table
   def basic_table_properties
-    { unpublished: "Unpublished",
-      license:     "License",
-      topic:       "Topics" }.merge applicability_properties
+    { unpublished:     "Unpublished",
+      license:         "License",
+      topic:           "Topics",
+      topic_framework: "Framework Mappings" }.merge applicability_properties
   end
 
   # all metrics have these properties in their editor
@@ -22,7 +23,7 @@ format :html do
   end
 
   def research_properties
-    { research_policy: "Research Policy",
+    { assessment: "Assessment",
       report_type:     "Report Type",
       steward:         "Steward" }
   end
@@ -69,6 +70,10 @@ format :html do
 
   def topic_property title
     labeled_field :topic, :link, title: title
+  end
+
+  def topic_framework_property title
+    labeled_field :topic_framework, :link, title: title
   end
 
   def unpublished_property title

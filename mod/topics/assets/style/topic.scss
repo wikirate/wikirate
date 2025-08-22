@@ -22,7 +22,7 @@
   }
 }
 
-.topic-tree {
+.topic-tree, .framework-tree {
   .card-title {
     padding: $tree-leaf-padding;
     @include border-radius(0.3rem);
@@ -44,4 +44,12 @@
   .tree-leaf {
     margin-left: 2em;
   }
+}
+
+.close-filter-topic_framework {
+  max-width: 20em;
+  text-overflow: ellipsis;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
 }

@@ -1,0 +1,6 @@
+.framework-tree-filter._tree-filter
+  = nest :topic_framework, view: :framework_tree
+  - hidden_name = filter_input_name field, multi: true
+  ._tree-hidden.d-inline{ data: { hidden_name: hidden_name } }
+    - Array.wrap(value).each do |v|
+      = hidden_field_tag hidden_name, v

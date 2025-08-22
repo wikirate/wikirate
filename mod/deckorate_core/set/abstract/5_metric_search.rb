@@ -36,15 +36,15 @@ format do
   end
 
   def shared_metric_filter_map
-    %i[topic designer metric_type value_type research_policy bookmark license]
+    %i[topic topic_framework designer metric_type value_type assessment bookmark license]
   end
 
   # answer searches have different handling of published and dataset filters
   def filter_map
     filtering_by_published do
-      shared_metric_filter_map.unshift key: :metric_keyword,
+      shared_metric_filter_map.unshift(key: :metric_keyword,
                                        label: "Metric Keyword",
-                                       open: true
+                                       open: true)
     end << :dataset
   end
 
@@ -75,7 +75,7 @@ format :html do
   METRIC_FILTER_TYPES = {
     metric: :multiselect,
     metric_keyword: :text,
-    research_policy: :radio,
+    assessment: :radio,
     metric_type: :check,
     designer: :multiselect,
     value_type: :check
@@ -105,8 +105,8 @@ format :html do
       .map(&:cardname)
   end
 
-  def filter_research_policy_options
-    type_options :research_policy
+  def filter_assessment_options
+    type_options :assessment
   end
 
   def filter_value_type_options
@@ -131,7 +131,7 @@ format :html do
 end
 
 BASIC_COLUMNS = %i[question metric_type metric_designer metric_title
-                   value_type value_options unit research_policy].freeze
+                   value_type value_options unit assessment].freeze
 
 DETAILED_COLUMNS = %i[about methodology topic unpublished scorer formula
                       range hybrid inverse_title report_type year company_group].freeze

@@ -1,5 +1,6 @@
+- cols = details_tab_cols
 .row.mt-3.mb-5.details-tab-row
-  .col-md-8.col-12.pe-4.details-tab-left
+  .col-12.pe-4.details-tab-left{ class: "col-md-#{cols[0]}" }
     = render_details_tab_left
-  .col-md-4.col-12.ps-4.details-tab-right
+  .col-12.ps-4.details-tab-right{ class: "col-md-#{cols[1]}" }
     = render_details_tab_right

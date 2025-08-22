@@ -1,10 +1,18 @@
 require File.expand_path "../../script_helper.rb", __FILE__
 
-CSVFILE = File.expand_path "data/2025-04-10-topics.csv", __dir__
-FRAMEWORK = "Wikirate ESG Topics"
+if ARGV.size < 2
+  echo "Usage: ruby ./script/single-use/import_topic_tree FRAMEWORK DATA_FILE_NAME"
+  exit
+end
+
+FRAMEWORK = ARGV[0]
+CSVFILE = File.expand_path "data/#{ARGV[1]}", __dir__
+# see data dir for examples
+# expects title row and three levels of topics (should change that)
+
 
 def topics_tree
-  rows.each_with_object({}) do |row, h|
+  @topics_tree ||= rows.each_with_object({}) do |row, h|
     t1, t2, t3 = row.map(&:last)
 
     h[t1] ||= {}
@@ -32,13 +40,29 @@ end
 def ensure_topic topicname, category=nil
   puts "ensuring #{topicname}"
   args = {
-    name: topicname,
+    name: fullname(topicname),
     type: :topic,
     conflict: :override,
-    fields: { topic_framework: "Wikirate ESG Topics" }
   }
-  args[:fields][:category] = category if category.present?
+  args[:fields] = { category: fullname(category) } if category.present?
   Card.ensure! args
+end
+
+def ensure_topic_framework
+  Card.ensure! type: :topic_framework,
+               name: FRAMEWORK,
+               conflict: :override,
+               fields:{
+                 category: framework_categories
+               }
+end
+
+def framework_categories
+  topics_tree.keys.map { |title| fullname title }
+end
+
+def fullname title
+  [FRAMEWORK, title].cardname
 end
 
 def puts_topics_tree
@@ -83,9 +107,10 @@ def change_type_of_metric_titles
   end
 end
 
-delete_topic_taggings
-change_type_of_metric_titles
-delete_all_topics
-Cardio::Utils.empty_trash
+# delete_topic_taggings
+# change_type_of_metric_titles
+# delete_all_topics
+# Cardio::Utils.empty_trash
 puts_topics_tree
+ensure_topic_framework
 import_topic_tree

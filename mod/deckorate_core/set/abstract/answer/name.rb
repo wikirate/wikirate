@@ -1,7 +1,3 @@
-def name_part_types
-  %w[metric company year]
-end
-
 # this is a bit of a hack.
 # Since we don't add renamed children to the act any more, we
 # have to trigger the value validation manually
@@ -15,7 +11,7 @@ event :run_value_events_on_name_change, :validate, changed: :name, on: :update d
 end
 
 # on creation, we attempt to compose a valid name
-event :set_answer_name, :prepare_to_validate, on: :create, when: :invalid_answer_name? do
+event :set_answer_name, :prepare_to_validate, on: :save, when: :compose_name? do
   self.name = compose_name
 end
 
@@ -23,16 +19,35 @@ event :auto_add_company, after: :set_answer_name, on: :create, trigger: :require
   add_company name_part("company") unless valid_company?
 end
 
-event :interpret_year_change, :prepare_to_validate, on: :update, when: :year_updated? do
-  self.name = compose_name
-end
-
-def year_updated?
-  field(:year)&.item_names&.size&.positive?
-end
-
 event :validate_answer_name, :validate, on: :save, changed: :name do
   validate_name_parts
+end
+
+def compose_name?
+  name_part_types.any? { |part| subfield? part }
+end
+
+private
+
+def name_part_types
+  %w[metric company year]
+end
+
+def compose_name
+  Card::Name[name_part_types.map { |type| name_part type }]
+end
+
+def name_part type
+  name_part_from_field(type) || name_part_from_name(type)
+end
+
+def name_part_from_name type
+  send type
+end
+
+def name_part_from_field type
+  part = drop_field(type)&.content
+  part if part.present?
 end
 
 def add_company company
@@ -42,18 +57,6 @@ def add_company company
   else
     Card.create type: CompanyID, name: company
   end
-end
-
-def invalid_answer_name?
-  !valid_answer_name?
-end
-
-def valid_answer_name?
-  name.parts.size >= (name_part_types.size + 1) && valid_name_parts?
-end
-
-def valid_name_parts?
-  name_part_types.all? { |type| send "valid_#{type}?" }
 end
 
 # TODO: confirm that there are no _extra_ parts
@@ -78,21 +81,4 @@ end
 
 def valid_year?
   year_card&.type_id == Card::YearID
-end
-
-def compose_name
-  Card::Name[name_part_types.map { |type| name_part type }]
-end
-
-def name_part type
-  name_part_from_field(type) || name_part_from_name(type)
-end
-
-def name_part_from_name type
-  send type
-end
-
-def name_part_from_field type
-  part = drop_field(type)&.content
-  part if part.present?
 end

@@ -53,7 +53,7 @@ RSpec.describe Card::AllAnswerQuery do
 
       specify "and policy and year" do
         expect(search(status: :all,
-                      research_policy: "Designer Assessed",
+                      assessment: "Steward Assessed",
                       year: "2001"))
           .to eq ["dinosaurlabor+2001", "Industry Class+2001", "researched number 3+2001"]
       end
@@ -105,7 +105,7 @@ RSpec.describe Card::AllAnswerQuery do
 
       specify "and policy and year" do
         expect(search(status: :none,
-                      research_policy: "Designer Assessed",
+                      assessment: "Steward Assessed",
                       year: "2001"))
           .to eq ["dinosaurlabor+2001", "Industry Class+2001", "researched number 3+2001"]
       end

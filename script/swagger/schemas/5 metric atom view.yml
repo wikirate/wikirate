@@ -47,7 +47,7 @@ metric_atom_view:
     report_type:
       type: string
       example: "Corporate Social Responsibility Report"
-    research_policy:
+    assessment:
       type: string
       example:
         "Community Assessed"

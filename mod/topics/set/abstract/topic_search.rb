@@ -20,7 +20,7 @@ format do
   end
 
   def filter_map
-    %i[name topic_family topic_framework bookmark]
+    %i[name topic_framework bookmark]
   end
 
   def default_filter_hash
@@ -35,10 +35,11 @@ end
 format :html do
   def quick_filter_list
     Card::Set::Self::Topic.family_list.item_cards.map do |topic|
+      topic_key = topic.right&.codename
       {
-        topic_family: topic.name,
-        icon: icon_tag(topic.codename),
-        class: "quick-filter-topic-#{topic.codename}"
+        topic_family: topic.name.right,
+        icon: icon_tag(topic_key),
+        class: "quick-filter-topic-#{topic_key}"
       }
     end
   end
@@ -56,18 +57,23 @@ format :html do
   end
 
   def filter_topic_family_options
-    Card::Set::Self::Topic.family_names
+    Card::Set::Self::Topic.family_list.item_names
   end
 end
 
 # FilterCql class for topic filtering
 class TopicFilterCql < DeckorateFilterCql
   def topic_framework_cql framework
-    add_to_cql :right_plus, refer_to(:topic_framework, framework)
+    val = framework.is_a?(Array) ? framework.clone.unshift(:in) : framework
+    add_to_cql :left, val
   end
 
   def topic_family_cql family
     add_to_cql :right_plus, refer_to(:topic_family, family)
+  end
+
+  def name_cql title
+    add_to_cql :right, name: [:match, title]
   end
 
   # def metric_cql metric

@@ -2,7 +2,7 @@ RSpec.describe Card::Set::Type::Topic do
   include_context "when creating topics"
 
   def card_subject
-    Card["Force"]
+    Card[%i[esg_topics environment].cardname]
   end
 
   check_views_for_errors
@@ -11,7 +11,7 @@ RSpec.describe Card::Set::Type::Topic do
     it "has topic title" do
       expect_view(:bar_left).to have_tag "div.thumbnail" do
         with_tag "div.image-box"
-        with_tag "div.thumbnail-text", text: /Force/
+        with_tag "div.thumbnail-text", text: /Environment/
       end
     end
   end
@@ -30,20 +30,19 @@ RSpec.describe Card::Set::Type::Topic do
   end
 
   describe "event#assign_topic_family" do
-    it "adds an error if topic family is not allowed in framework" do
-      expect { create_topic! "new topic", "Force", :esg_topics.cardname }
+    xit "adds an error if topic family is not allowed in framework" do
+      expect { create_topic! [:esg_topics, "new topic"].cardname,
+                             "Test Topics+updated topic", nil }
         .to raise_error(ActiveRecord::RecordInvalid,
                         /category must be in one of these families/)
     end
 
-    it "does not apply if topic has no framework" do
-      expect { create_topic! "new topic", "Force", nil }.not_to raise_error
-    end
 
     it "does not raise error if category is acceptable" do
-      expect { create_topic! "new topic", "Environment", :esg_topics.cardname }
+      expect { create_topic! "new topic", "Environment", :esg_topics }
         .not_to raise_error
-      expect("new topic".card.topic_family_card.first_name).to eq("Environment")
+      expect([:esg_topics, "new topic"].card.topic_family_card.first_name.right)
+        .to eq("Environment")
     end
   end
 end

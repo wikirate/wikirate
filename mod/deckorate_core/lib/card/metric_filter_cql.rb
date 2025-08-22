@@ -30,8 +30,8 @@ class Card
       add_to_cql :right_plus, refer_to(:value_type, value_type)
     end
 
-    def research_policy_cql policy
-      add_to_cql :right_plus, refer_to(:research_policy, policy)
+    def assessment_cql policy
+      add_to_cql :right_plus, refer_to(:assessment, policy)
     end
   end
 end

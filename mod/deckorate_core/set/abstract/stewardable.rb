@@ -1,25 +1,43 @@
-# NOTE: this can probably be added into AccountHolder once all abstract sets are preloaded
+card_accessor :steward, type: :pointer
 
-def stewards_any?
-  stewards_all? || designed_metric_ids.any? || assigned_steward_metric_ids.any?
+def stewarded_card
+  self
 end
 
-def stewards_all?
-  Auth.always_ok? || id&.in?(Set::Self::WikirateTeam.member_ids)
+# FIXME - use codename!
+def steward_assessed?
+  assessment&.casecmp("steward assessed")&.zero?
 end
 
-# note: does NOT return all metrics for Wikirate team members
-def stewarded_metric_ids
-  return unless real?
-
-  @stewarded_metric_ids ||= (designed_metric_ids + assigned_steward_metric_ids).uniq
+def ok_as_steward?
+  steward_assessed? ? steward? : true
 end
 
-def designed_metric_ids
-  @designed_metric_ids ||= ::Metric.where(designer_id: id).pluck :metric_id
+def ok_to_update?
+  steward?
 end
 
-def assigned_steward_metric_ids
-  @assigned_steward_metric_ids ||=
-    Card.search type: :metric, return: :id, right_plus: [:steward, { refer_to: id }]
+def ok_to_delete?
+  steward?
+end
+
+def steward?
+  Auth.as_id.in?(steward_ids) || Auth.always_ok?
+end
+
+def steward_ids
+  @steward_ids ||= steward_id_lists.flatten.compact.uniq
+end
+
+private
+
+def steward_id_lists
+  [Self::Steward.always_ids, steward_card&.item_ids, creator_steward_id]
+end
+
+# HACK.  our verification testing assumed that DeckoBot was not a steward.
+# So adding the creator_id to the steward list broke a bunch of verification tests
+# When there's time, we should update the tests and get rid of this. --efm
+def creator_steward_id
+  creator_id unless creator_id == Card::DeckoBotID
 end

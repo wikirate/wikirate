@@ -1,11 +1,14 @@
 include_set Abstract::TopicSearch
 
 def cql_content
-  { type: :topic,
-    right_plus: [:topic_framework, { refer_to: left_id }] }
+  { type: :topic, left: left_id }
 end
 
 format :html do
+  def default_limit
+    50
+  end
+
   def default_item_view
     :box
   end

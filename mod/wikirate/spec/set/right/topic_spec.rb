@@ -2,7 +2,7 @@
 
 RSpec.describe Card::Set::Right::Topic do
   let :invalid_topic_tagging do
-    Card.create! name: "Lefty+Topic", content: "[[zzz]]\n[[xxx]]", type: :pointer
+    Card.create! name: "Lefty+Topic", content: "[[A]]\n[[B]]", type: :pointer
   end
 
   it "only allows existing topics" do

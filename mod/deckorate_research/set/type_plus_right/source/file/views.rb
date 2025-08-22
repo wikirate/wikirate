@@ -23,10 +23,10 @@ format :html do
 
   def preview_type
     case card.file.content_type
-    when "text/plain"       then :text
-    when "application/pdf"  then :pdf
-    when *SPREADSHEET_TYPES then :spreadsheet
-    else                         :unknown
+    when "text/plain"            then :text
+    when "application/pdf"       then :pdf
+    when *SPREADSHEET_MIME_TYPES then :spreadsheet
+    else                              :unknown
     end
   end
 

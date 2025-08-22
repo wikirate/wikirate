@@ -434,7 +434,7 @@
         }
     :question: What is the company's industry "class" (or classes) according to the
       International Standard Industrial Classification (ISIC)?
-    :research_policy: Community Assessed
+    :assessment: Community Assessed
 
 
 - :name:
@@ -696,7 +696,7 @@
         }
     :question: What is the company's industry "group" (or groups) according to the
       International Standard Industrial Classification (ISIC)?
-    :research_policy: Community Assessed
+    :assessment: Community Assessed
 
 
 - :name:
@@ -812,7 +812,7 @@
         }
     :question: What is the company's industry "division" (or divisions) according
       to the International Standard Industrial Classification (ISIC)?
-    :research_policy: Community Assessed
+    :assessment: Community Assessed
 
 
 
@@ -889,4 +889,4 @@
         }
     :question: What is the company's industry "section" (or sections) according to
       the International Standard Industrial Classification (ISIC)?
-    :research_policy: Community Assessed
+    :assessment: Community Assessed

@@ -1,47 +1,49 @@
 ---
-- :name: Star Wars Topics
+- :name: Wikirate ESG Topics
   :type: :topic_framework
-
-- :name: Force
-  :type: :topic
+  :codename: esg_topics
   :fields:
-    :topic_framework:
-      :type: :pointer
-      :content: Star Wars Topics
-    :about: A Jedi uses the Force for knowledge and defense, never for attack.
+    :category:
+      :type: list
+      :content:
+        - "_left+Environment"
+        - "_left+Social"
+        - "_left+Governance"
 
-- :name: Taming
-  :type: :topic
-  :fields:
-    :topic_framework: Star Wars Topic
-    :about: What a cute animal
+- :name: Environment
+  :type: :topic_title
+  :codename: :environment
 
-- :name: Animal Welfare
-  :type: :topic
-  :fields:
-    :topic_framework: Star Wars Topic
-    :category: Force
+- :name: Social
+  :type: :topic_title
+  :codename: :social
 
-- :name: Energy
-  :type: :topic
-  :fields:
-    :topic_framework: Star Wars Topic
-    :category: Force
-
-- :name: Featured
-  :codename: featured
+- :name: Governance
+  :type: :topic_title
+  :codename: :governance
 
 - :name:
-    - :topic
-    - :featured
-  :type: :list
-  :content:
-    - Force
-    - Taming
+    - :esg_topics
+    - :environment
+  :type: :topic
 
 - :name:
-    - Star Wars Topics
+    - :esg_topics
+    - :social
+  :type: :topic
+
+- :name:
+    - :esg_topics
+    - :governance
+  :type: :topic
+
+- :name:
+    - :esg_topics
     - :category
+  :type: list
   :content:
-    - Force
-    - Taming
+    - "Wikirate ESG Topics+Environment"
+    - "Wikirate ESG Topics+Social"
+    - "Wikirate ESG Topics+Governance"
+
+- esg_topics

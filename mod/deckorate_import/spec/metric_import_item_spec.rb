@@ -12,7 +12,7 @@ RSpec.describe Card::MetricImportItem do
       metric_designer: "Joe User", # TODO: map when we support multi-type mapping
       metric_title: "Policities",
 
-      topic: "Force; Taming",
+      topic: "Wikirate ESG Topics+Environment; Wikirate ESG Topics+Social",
       # TODO: map when we support (optional) multi-value mapping
 
       # Rich-Text fields
@@ -24,7 +24,7 @@ RSpec.describe Card::MetricImportItem do
       value_type: "Category",
 
       value_options: "A;B;C",
-      research_policy: "Community Assessed",
+      assessment: "Community Assessed",
       # supports "community", "designer", or full name, eg "Community Assessed"
       report_type: nil
     }
@@ -78,7 +78,9 @@ RSpec.describe Card::MetricImportItem do
 
     it "handles multi-value fields" do
       item = validate
-      expect(field(item, :topic)).to eq(content: %w[Force Taming])
+      expect(field(item, :topic))
+        .to eq(content: [%i[esg_topics environment],
+                         %i[esg_topics social]].map(&:cardname))
     end
   end
 

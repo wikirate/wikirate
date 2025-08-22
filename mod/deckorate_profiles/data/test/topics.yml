@@ -1,27 +1,54 @@
 ---
-- :name: updated topic
-  :type: :topic
-  :user: Joe Admin
-- :name: discussed topic
-  :type: :topic
-  :user: Joe Admin
-- :name: bookmarked topic
+- :name: Test Topics
+  :type: :topic_framework
+  :fields:
+    :assessment: Steward Assessed
+    :steward: Joe User
+- :name:
+    - Test Topics
+    - updated topic
   :type: :topic
   :user: Joe Admin
 
-- :name: created topic
+- :name:
+    - Test Topics
+    - discussed topic
+  :type: :topic
+  :user: Joe Admin
+- :name:
+    - Test Topics
+    - bookmarked topic
+  :type: :topic
+  :user: Joe Admin
+
+- :name:
+    - Test Topics
+    - created topic
   :type: :topic
   :content: updated
   :user: Joe User
-- :name: updated topic
+- :name:
+    - Test Topics
+    - updated topic
   :content: updated
   :user: Joe User
   :conflict: override
-- :name: discussed topic
+- :name:
+    - Test Topics
+    - discussed topic
   :user: Joe User
   :conflict: override
   :fields:
     :discussion: comment
+
+- :name:
+    - Test Topics
+    - category
+  :content:
+    - Test Topics+created topic
+    - Test Topics+updated topic
+    - Test Topics+discussed topic
+    - Test Topics+bookmarked topic
 
 # FIXME: use card[add]
 # (and get rid of Jedi+disturbances in the Force)
@@ -30,4 +57,4 @@
     - :bookmarks
   :content:
     - Jedi+disturbances in the Force
-    - bookmarked topic
+    - Test Topics+bookmarked topic
