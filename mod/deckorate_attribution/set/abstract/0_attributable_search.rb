@@ -1,10 +1,7 @@
 format :html do
-  def confirm_export
-    :attribution_alert.card.content
-    nil
-  end
-
   view :export_button, cache: :deep do
+    return super() unless export_ok?
+
     wrap_with :div, class: "_attributable-export" do
       [super(), render_attribution_alert]
     end
