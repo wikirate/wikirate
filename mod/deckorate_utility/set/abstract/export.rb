@@ -1,27 +1,42 @@
 EXPORT_LIMIT_OPTIONS = [50, 100, 500, 1000, 5000].freeze
 
+# supports requiring signins for CSV and JSON downloads
+module ExportPermissions
+  def ok? task
+    if task == :read && !Auth.signed_in? && !Auth.always_ok? # the always_ok is for as_bot
+      card.deny_because "Must be signed in"
+    else
+      super
+    end
+  end
+end
+
 format do
   def export_filename
     "Wikirate-#{export_timestamp}-#{export_title}"
   end
-
-  def default_limit
-    Auth.signed_in? ? 5000 : 500
-  end
+  #
+  # def default_limit
+  #   Auth.signed_in? ? 5000 : 500
+  # end
 end
 
 format :csv do
+  include ExportPermissions
+
   view :header do
     with_metadata { [render_titles] }
   end
 
   # for override
-  view :titles do
+  view :titles, perms: :none do
     %w[Link Name ID]
   end
 end
 
 format :json do
+  include ExportPermissions
+
   view :titled do
     render_molecule
   end
@@ -55,7 +70,7 @@ format :html do
   def export_limit_options
     options = EXPORT_LIMIT_OPTIONS.map { |num|  export_limit_option_label num }
     options_for_select options,
-                       disabled: export_limit_options_disabled,
+                       # disabled: export_limit_options_disabled,
                        selected: default_export_limit
   end
 
@@ -86,7 +101,7 @@ format :html do
     ["up to #{num}", num]
   end
 
-  def export_limit_options_disabled
-    Auth.signed_in? ? [] : [1000, 5000]
-  end
+  # def export_limit_options_disabled
+  #   Auth.signed_in? ? [] : [1000, 5000]
+  # end
 end

@@ -15,12 +15,12 @@ format :html do
 end
 
 format :json do
-  view :metadata do
+  view :metadata, perms: :none do
     url = Card::Env.params[:url] || ""
     MetaData.new(url).to_json
   end
 
-  view :check_iframable do
+  view :check_iframable, perms: :none do
     user_agent = request ? request.env["HTTP_USER_AGENT"] : nil
     { result: iframable?(params[:url], user_agent) }
   end
