@@ -1,5 +1,5 @@
 format :html do
-  view :export_button, cache: :deep do
+  view :export_button do
     return super() unless export_ok?
 
     wrap_with :div, class: "_attributable-export" do
