@@ -1,7 +1,8 @@
 - if export_formats.present?
   .btn-group
-    %a._export-button.btn.btn-primary{ href: default_export_link_path,
-                                      "data-confirm": confirm_export }
+    %a._export-button.btn.btn-primary{default_export_link_args}
+
+      //  }
       //#, download: export_filename
       // handled in header, but still might be nice to have if testing issues can
       // be resolved
