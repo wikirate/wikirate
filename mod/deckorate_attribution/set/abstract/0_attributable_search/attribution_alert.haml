@@ -1,13 +1,12 @@
-.d-none
-  ._attribution-alert.modal-body
-    .d-flex
-      = icon_tag :attribution
-      .d-flex.ms-auto.flex-column
-        .fw-bold.align-items-center
-          %span
-            = nest [:attribution_alert, :title], view: :core
-        %p.pt-2
-          = nest [:attribution_alert, :body], view: :core
-      .ms-auto.small.text-decoration-underline.align-items-center
-        %a.link{:href => path(mark: :attribution_guide), target: "_guide"}
-          How to attribute
+._attribution-alert.modal-body
+  .d-flex
+    = icon_tag :attribution
+    .fw-bold.align-items-center.ms-1
+      %span
+        = nest [:attribution_alert, :title], view: :core
+  %p.pt-2
+    = nest [:attribution_alert, :body], view: :core
+    = render :attribution_alert_detail
+  .ms-auto.small.text-decoration-underline.align-items-center
+    %a.link{:href => path(mark: :attribution_guide), target: "_guide"}
+      How to attribute

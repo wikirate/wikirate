@@ -1,0 +1,15 @@
+- noncom_des = noncommercial_designers
+- if noncom_des.present?
+  .mt-2
+    Additionally, the export includes metrics with non-commercial licenses. To use the
+    data, you must seek permission from the metrics' designers:
+
+  .my-2
+    - noncom_des.map do |designer|
+      .row.mt-2.p-2.border.border-secondary
+        .designer-attribution-thumbnail.col-10
+          = nest designer, view: :thumbnail
+        .designer-attribution-email.col-2
+          - email = designer.card.fetch(:email)&.content
+          - if email.present?
+            %a{ href: "mailto: email" } email
