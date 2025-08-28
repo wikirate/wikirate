@@ -1,4 +1,4 @@
-.d-none
+.d-block.bg-primary
   ._attribution-alert.modal-body
     .d-flex
       = icon_tag :attribution
@@ -8,6 +8,7 @@
             = nest [:attribution_alert, :title], view: :core
         %p.pt-2
           = nest [:attribution_alert, :body], view: :core
+          = render :attribution_alert_detail
       .ms-auto.small.text-decoration-underline.align-items-center
         %a.link{:href => path(mark: :attribution_guide), target: "_guide"}
           How to attribute

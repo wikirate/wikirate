@@ -11,4 +11,9 @@ format :html do
   end
 
   view :attribution_alert, template: :haml, cache: :yes
+
+  view :attribution_alert_detail do
+    "from AttributionSearch (blah)"
+  end
+
 end
