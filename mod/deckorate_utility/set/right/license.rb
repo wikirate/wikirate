@@ -37,6 +37,16 @@ def nonderivative_licenses
   LICENSES.select { |l| !l.match?(/ND/) }
 end
 
+def noncommercial?
+  content.match?(/NC/)
+end
+
+def noncommercial_licenses
+  LICENSES.select { |l| !l.match?(/NC/) }
+end
+
+
+
 # find the most permissive license that is compatible with the input licenses
 def compatible licenses
   bits = licenses.map { |license| license.split(/[-\s]/) }.flatten.uniq.join " "

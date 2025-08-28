@@ -37,10 +37,4 @@
     .btn.btn-outline-secondary{ "data-bs-toggle": "collapse",
                                 "data-bs-target": ".export_panel-view"}
       Cancel
-    - if export_ok?
-      %button._export-button.btn.btn-primary{ type: :submit, form: "export-form" }
-        Export
-    - else
-      %a._export-button.btn.btn-primary{denied_export_link_args}
-        Export
-
+    = render_export_form_button
