@@ -70,10 +70,10 @@ blocks:
           commands:
             - be decko rspec -s -- --format RspecJunitFormatter --out junit.xml --format documentation
       epilogue:
-        on_pass:
-          commands:
-            #- ./cc-test-reporter format-coverage --output "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" -t simplecov
-            #- aws s3 cp "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" $S3_PATH
+#        on_pass:
+#          commands:
+#            #- ./cc-test-reporter format-coverage --output "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" -t simplecov
+#            #- aws s3 cp "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" $S3_PATH
         always:
           commands:
             - test-results publish junit.xml
