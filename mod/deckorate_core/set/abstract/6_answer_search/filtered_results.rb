@@ -33,7 +33,7 @@ format do
   end
 
   def clean_relation qry=nil
-    (qry || query).lookup_relation.unscope :select
+    (qry || query).lookup_relation.unscope(:select).unscope(:order)
   end
 end
 

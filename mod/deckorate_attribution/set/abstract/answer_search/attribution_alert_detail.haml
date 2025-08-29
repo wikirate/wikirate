@@ -1,0 +1,21 @@
+- noncom_des = noncommercial_designers
+- if noncom_des.present?
+  %h6.mt-4.d-flex.align-items-center
+    = icon_tag :business_center
+    .ms-1 Not for commercial use
+  %p
+    Additionally, the export includes metrics with non-commercial licenses.
+    If you are a commercial user, you must obtain permission from the metrics' designers
+    before using the data.
+
+  .p-4
+    - noncom_des.map do |designer|
+      .row.p-2.border.border-light
+        .designer-attribution-thumbnail.col-9
+          = nest designer, view: :thumbnail
+        .designer-attribution-email.col-3
+          - email = designer.card.fetch(:email)&.content
+          - if email.present?
+            %a.text-nowrap{ href: "mailto: email" }
+              = icon_tag :mail
+              %span.ms-1 Email now

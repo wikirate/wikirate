@@ -47,9 +47,10 @@ format :json do
 end
 
 format :html do
-  view :export_panel, template: :haml, wrap: :slot
-  view :export_button, cache: :yes, template: :haml, denial: :blank
+  view :export_panel, cache: :deep, template: :haml, wrap: :slot
+  view :export_button, cache: :never, template: :haml, denial: :blank
   view :export_limit, cache: :never, template: :haml
+  view :export_form_button, cache: :never, template: :haml
 
   view :export_hidden_tags, cache: :never do
     hidden_tags filter_and_sort_hash, nil, form: "export-form"

@@ -1,0 +1,6 @@
+- if export_ok?
+  %button._export-button.btn.btn-primary{ type: :submit, form: "export-form" }
+    Export
+- else
+  %a._export-button.btn.btn-primary{denied_export_link_args}
+    Export
