@@ -1,10 +1,9 @@
 ._attribution-alert.modal-body
-  .d-flex
+  %h6.d-flex.align-items-center
     = icon_tag :attribution
-    .fw-bold.align-items-center.ms-1
-      %span
-        = nest [:attribution_alert, :title], view: :core
-  %p.pt-2
+    .ms-1
+      = nest [:attribution_alert, :title], view: :core
+  %p
     = nest [:attribution_alert, :body], view: :core
     = render :attribution_alert_detail
   .ms-auto.small.text-decoration-underline.align-items-center
