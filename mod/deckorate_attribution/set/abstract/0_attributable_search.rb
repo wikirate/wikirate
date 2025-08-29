@@ -13,7 +13,7 @@ format :html do
     end
   end
 
-  view :attribution_alert, template: :haml, cache: :yes, wrap: :slot
+  view :attribution_alert, template: :haml, cache: :yes, wrap: { modal: { size: :large } }
 
   # for override
   view(:attribution_alert_detail) { "" }
