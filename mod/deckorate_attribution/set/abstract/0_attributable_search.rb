@@ -4,7 +4,6 @@ format :html do
 
     wrap_with :div, class: "_attributable-export" do
       [super(), card_stub(view: :attribution_alert,
-                          layout: :modal,
                           slot: { hide: :pop_out_modal_link },
                           filter: filter_hash_from_params)]
     end
