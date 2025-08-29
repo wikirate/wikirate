@@ -29,8 +29,8 @@ global_job_config:
       - alias be='bundle exec'
 
       # INSTALL CODE CLIMATE REPORTER
-      - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-      - chmod +x ./cc-test-reporter
+      # - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+      # - chmod +x ./cc-test-reporter
 
       # TWEAK ENVIRONMENTAL VARIABLES
       # ...that are too complex for the env_vars config.
@@ -57,7 +57,7 @@ blocks:
           - cache store gems-$GLCHECK vendor/bundle
           - cache store gems-baseline vendor/bundle
           - cache store bundle-config .bundle
-          - ./cc-test-reporter before-build
+          #- ./cc-test-reporter before-build
 
           # - nvm use 12.18.2
           - be decko setup
@@ -72,8 +72,8 @@ blocks:
       epilogue:
         on_pass:
           commands:
-            - ./cc-test-reporter format-coverage --output "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" -t simplecov
-            - aws s3 cp "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" $S3_PATH
+            #- ./cc-test-reporter format-coverage --output "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" -t simplecov
+            #- aws s3 cp "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" $S3_PATH
         always:
           commands:
             - test-results publish junit.xml
@@ -106,8 +106,8 @@ blocks:
         always:
           commands:
             - test-results publish /home/semaphore/reports/*.xml
-            - ./cc-test-reporter format-coverage --output "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" -t simplecov
-            - aws s3 cp "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" $S3_PATH
+            # - ./cc-test-reporter format-coverage --output "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" -t simplecov
+            #- aws s3 cp "coverage/codeclimate.$SEMAPHORE_JOB_ID.json" $S3_PATH
 
   # NOTE: the code climate reporting cannot be handled in after_pipeline, because
   # after_pipeline does not make secrets available - efm 2022-10-12
@@ -117,8 +117,8 @@ blocks:
         - name: CodeClimate Coverage
           commands:
             - aws s3 sync $S3_PATH coverage/
-            - ./cc-test-reporter sum-coverage --output - --parts $(ls -1 coverage/ | wc -l) coverage/codeclimate.*.json > coverage/codeclimate.json
-            - ./cc-test-reporter upload-coverage
+            #- ./cc-test-reporter sum-coverage --output - --parts $(ls -1 coverage/ | wc -l) coverage/codeclimate.*.json > coverage/codeclimate.json
+            #- ./cc-test-reporter upload-coverage
 
 after_pipeline:
   task:
