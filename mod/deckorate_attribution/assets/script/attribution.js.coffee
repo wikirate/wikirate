@@ -1,6 +1,6 @@
 
 $(document).ready ->
   $("body").on "click", "._export-button", (e)->
-    alert = $(this).closest("._attributable-export").find("._attribution-alert")
-    alert.showAsModal alert.slot() if alert[0]
-
+    s = $(this).closest("._attributable-export").find ".card-slot-stub"
+    s.slotReload s.data("stubUrl")
+    s.removeClass "card-slot-stub"
