@@ -4,5 +4,5 @@ def other_frameworks
 end
 
 format :html do
-  view :framework_tree, cache: :deep, template: :haml
+  view :framework_tree, cache: :force, template: :haml
 end
