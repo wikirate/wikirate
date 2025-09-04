@@ -18,10 +18,17 @@ end
 def calculation_types
   %i[rating formula descendant]
 end
-# </OVERRIDES>
 
-# format do
-#   def value_legend
-#     "0-10"
-#   end
-# end
+format :html do
+  def edit_properties
+    { benchmark: "Benchmark" }.merge super
+  end
+
+  def table_properties
+    super.merge benchmark: "Benchmark"
+  end
+
+  def benchmark_property title
+    labeled_field :benchmark, nil, title: title
+  end
+end

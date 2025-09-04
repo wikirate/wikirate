@@ -16,11 +16,11 @@ format :html do
   before(:filtered_content) { voo.items[:view] = :box }
 
   def featured_label
-    @featured_label ||= :rating.cardname.vary(:plural).downcase
+    @featured_label ||= :benchmark.cardname.vary(:plural).downcase
   end
 
   def featured_link_path
-    path filter: { metric_type: :rating.cardname }
+    path filter: { benchmark: "1" }
   end
 end
 

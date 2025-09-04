@@ -54,6 +54,11 @@ class Card
           end
       end
 
+      def filter_by_benchmark value
+        restrict_by_cql :benchmark, :metric_id,
+                        right: :benchmark, eq: value, return: :left_id
+      end
+
       private
 
       # Wikirate team members are stewards of all metrics

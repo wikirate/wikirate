@@ -457,7 +457,7 @@ answers_019:
   record_id: 4155
   year: 1977
   value: '77'
-  numeric_value: !ruby/object:BigDecimal 18:0.77e2
+  numeric_value: !ruby/object:BigDecimal 9:0.77e2
   updated_at: 2025-08-21 20:31:24.000000000 Z
   imported:
   latest: 1
@@ -482,7 +482,7 @@ answers_020:
   record_id: 4159
   year: 2015
   value: '15'
-  numeric_value: !ruby/object:BigDecimal 18:0.15e2
+  numeric_value: !ruby/object:BigDecimal 9:0.15e2
   updated_at: 2025-08-21 20:31:24.000000000 Z
   imported:
   latest: 1
@@ -507,7 +507,7 @@ answers_021:
   record_id: 4159
   year: 2014
   value: '14'
-  numeric_value: !ruby/object:BigDecimal 18:0.14e2
+  numeric_value: !ruby/object:BigDecimal 9:0.14e2
   updated_at: 2025-08-21 20:31:25.000000000 Z
   imported:
   latest: 0
@@ -532,7 +532,7 @@ answers_022:
   record_id: 4159
   year: 2013
   value: '13'
-  numeric_value: !ruby/object:BigDecimal 18:0.13e2
+  numeric_value: !ruby/object:BigDecimal 9:0.13e2
   updated_at: 2025-08-21 20:31:25.000000000 Z
   imported:
   latest: 0
@@ -557,7 +557,7 @@ answers_023:
   record_id: 4159
   year: 2012
   value: '12'
-  numeric_value: !ruby/object:BigDecimal 18:0.12e2
+  numeric_value: !ruby/object:BigDecimal 9:0.12e2
   updated_at: 2025-08-21 20:31:26.000000000 Z
   imported:
   latest: 0
@@ -582,7 +582,7 @@ answers_024:
   record_id: 4159
   year: 2011
   value: '11'
-  numeric_value: !ruby/object:BigDecimal 18:0.11e2
+  numeric_value: !ruby/object:BigDecimal 9:0.11e2
   updated_at: 2025-08-21 20:31:26.000000000 Z
   imported:
   latest: 0
@@ -607,7 +607,7 @@ answers_025:
   record_id: 4159
   year: 2010
   value: '10'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:31:26.000000000 Z
   imported:
   latest: 0
@@ -682,7 +682,7 @@ answers_028:
   record_id: 4159
   year: 2000
   value: '0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:31:28.000000000 Z
   imported:
   latest: 0
@@ -707,7 +707,7 @@ answers_029:
   record_id: 4187
   year: 2014
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:28.000000000 Z
   imported:
   latest: 0
@@ -732,7 +732,7 @@ answers_030:
   record_id: 4187
   year: 2015
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:29.000000000 Z
   imported:
   latest: 1
@@ -757,7 +757,7 @@ answers_031:
   record_id: 4194
   year: 2014
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:29.000000000 Z
   imported:
   latest: 1
@@ -782,7 +782,7 @@ answers_032:
   record_id: 4198
   year: 2015
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:30.000000000 Z
   imported:
   latest: 1
@@ -807,7 +807,7 @@ answers_033:
   record_id: 4198
   year: 2014
   value: '5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e1
   updated_at: 2025-08-21 20:31:30.000000000 Z
   imported:
   latest: 0
@@ -832,7 +832,7 @@ answers_034:
   record_id: 4205
   year: 2002
   value: '100'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  numeric_value: !ruby/object:BigDecimal 9:0.1e3
   updated_at: 2025-08-21 20:31:31.000000000 Z
   imported:
   latest: 0
@@ -857,7 +857,7 @@ answers_035:
   record_id: 4205
   year: 2015
   value: '100'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  numeric_value: !ruby/object:BigDecimal 9:0.1e3
   updated_at: 2025-08-21 20:31:31.000000000 Z
   imported:
   latest: 1
@@ -882,7 +882,7 @@ answers_036:
   record_id: 4212
   year: 1977
   value: '5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e1
   updated_at: 2025-08-21 20:31:31.000000000 Z
   imported:
   latest: 1
@@ -907,7 +907,7 @@ answers_037:
   record_id: 4216
   year: 2014
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:32.000000000 Z
   imported:
   latest: 1
@@ -932,7 +932,7 @@ answers_038:
   record_id: 4220
   year: 2015
   value: '5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e1
   updated_at: 2025-08-21 20:31:32.000000000 Z
   imported:
   latest: 1
@@ -957,7 +957,7 @@ answers_039:
   record_id: 4220
   year: 2014
   value: '10'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:31:33.000000000 Z
   imported:
   latest: 0
@@ -1007,7 +1007,7 @@ answers_041:
   record_id: 4231
   year: 1977
   value: "-0.01"
-  numeric_value: !ruby/object:BigDecimal 18:-0.1e-1
+  numeric_value: !ruby/object:BigDecimal 9:-0.1e-1
   updated_at: 2025-08-21 20:31:34.000000000 Z
   imported:
   latest: 1
@@ -1032,7 +1032,7 @@ answers_042:
   record_id: 4235
   year: 1977
   value: '0.001'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e-2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e-2
   updated_at: 2025-08-21 20:31:34.000000000 Z
   imported:
   latest: 1
@@ -1057,7 +1057,7 @@ answers_043:
   record_id: 4239
   year: 1977
   value: '0.002'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e-2
+  numeric_value: !ruby/object:BigDecimal 9:0.2e-2
   updated_at: 2025-08-21 20:31:34.000000000 Z
   imported:
   latest: 1
@@ -1082,7 +1082,7 @@ answers_044:
   record_id: 4243
   year: 1977
   value: '0.31'
-  numeric_value: !ruby/object:BigDecimal 18:0.31e0
+  numeric_value: !ruby/object:BigDecimal 9:0.31e0
   updated_at: 2025-08-21 20:31:35.000000000 Z
   imported:
   latest: 1
@@ -1157,7 +1157,7 @@ answers_047:
   record_id: 4255
   year: 2005
   value: '10'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:31:36.000000000 Z
   imported:
   latest: 1
@@ -1182,7 +1182,7 @@ answers_048:
   record_id: 4255
   year: 2004
   value: '9'
-  numeric_value: !ruby/object:BigDecimal 18:0.9e1
+  numeric_value: !ruby/object:BigDecimal 9:0.9e1
   updated_at: 2025-08-21 20:31:36.000000000 Z
   imported:
   latest: 0
@@ -1207,7 +1207,7 @@ answers_049:
   record_id: 4255
   year: 2003
   value: '8'
-  numeric_value: !ruby/object:BigDecimal 18:0.8e1
+  numeric_value: !ruby/object:BigDecimal 9:0.8e1
   updated_at: 2025-08-21 20:31:37.000000000 Z
   imported:
   latest: 0
@@ -1232,7 +1232,7 @@ answers_050:
   record_id: 4255
   year: 1977
   value: '20'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e2
+  numeric_value: !ruby/object:BigDecimal 9:0.2e2
   updated_at: 2025-08-21 20:31:37.000000000 Z
   imported:
   latest: 0
@@ -1257,7 +1257,7 @@ answers_051:
   record_id: 4268
   year: 1977
   value: '40'
-  numeric_value: !ruby/object:BigDecimal 18:0.4e2
+  numeric_value: !ruby/object:BigDecimal 9:0.4e2
   updated_at: 2025-08-21 20:31:38.000000000 Z
   imported:
   latest: 1
@@ -1282,7 +1282,7 @@ answers_052:
   record_id: 4272
   year: 1977
   value: '50'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e2
+  numeric_value: !ruby/object:BigDecimal 9:0.5e2
   updated_at: 2025-08-21 20:31:39.000000000 Z
   imported:
   latest: 1
@@ -1307,7 +1307,7 @@ answers_053:
   record_id: 4276
   year: 1977
   value: '100'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  numeric_value: !ruby/object:BigDecimal 9:0.1e3
   updated_at: 2025-08-21 20:31:39.000000000 Z
   imported:
   latest: 1
@@ -1332,7 +1332,7 @@ answers_054:
   record_id: 4280
   year: 1977
   value: '200'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e3
+  numeric_value: !ruby/object:BigDecimal 9:0.2e3
   updated_at: 2025-08-21 20:31:40.000000000 Z
   imported:
   latest: 1
@@ -1757,7 +1757,7 @@ answers_071:
   record_id: 4338
   year: 2000
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:52.000000000 Z
   imported:
   latest: 1
@@ -1782,7 +1782,7 @@ answers_072:
   record_id: 4344
   year: 2000
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:48.000000000 Z
   imported:
   latest: 1
@@ -1807,7 +1807,7 @@ answers_073:
   record_id: 4347
   year: 1977
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:49.000000000 Z
   imported:
   latest: 1
@@ -1832,7 +1832,7 @@ answers_074:
   record_id: 4353
   year: 1977
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:51.000000000 Z
   imported:
   latest: 0
@@ -1857,7 +1857,7 @@ answers_075:
   record_id: 4356
   year: 1977
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:50.000000000 Z
   imported:
   latest: 1
@@ -1882,7 +1882,7 @@ answers_076:
   record_id: 4362
   year: 1977
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:50.000000000 Z
   imported:
   latest: 1
@@ -1907,7 +1907,7 @@ answers_077:
   record_id: 4338
   year: 1977
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:51.000000000 Z
   imported:
   latest: 0
@@ -1932,7 +1932,7 @@ answers_078:
   record_id: 4353
   year: 2000
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:52.000000000 Z
   imported:
   latest: 1
@@ -1957,7 +1957,7 @@ answers_079:
   record_id: 4375
   year: 1977
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:54.000000000 Z
   imported:
   latest: 1
@@ -1982,7 +1982,7 @@ answers_080:
   record_id: 4381
   year: 1977
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:55.000000000 Z
   imported:
   latest: 1
@@ -2007,7 +2007,7 @@ answers_081:
   record_id: 4387
   year: 1977
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:54.000000000 Z
   imported:
   latest: 1
@@ -2032,7 +2032,7 @@ answers_082:
   record_id: 4390
   year: 1977
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:55.000000000 Z
   imported:
   latest: 1
@@ -2057,7 +2057,7 @@ answers_083:
   record_id:
   year: 2014
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2082,7 +2082,7 @@ answers_084:
   record_id:
   year: 2014
   value: '5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e1
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2107,7 +2107,7 @@ answers_085:
   record_id:
   year: 2015
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2132,7 +2132,7 @@ answers_086:
   record_id:
   year: 2015
   value: '100'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  numeric_value: !ruby/object:BigDecimal 9:0.1e3
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2157,7 +2157,7 @@ answers_087:
   record_id:
   year: 1977
   value: '5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e1
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2182,7 +2182,7 @@ answers_088:
   record_id:
   year: 2002
   value: '100'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  numeric_value: !ruby/object:BigDecimal 9:0.1e3
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2207,7 +2207,7 @@ answers_089:
   record_id:
   year: 1977
   value: '77'
-  numeric_value: !ruby/object:BigDecimal 18:0.77e2
+  numeric_value: !ruby/object:BigDecimal 9:0.77e2
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2232,7 +2232,7 @@ answers_090:
   record_id:
   year: 2000
   value: '0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2307,7 +2307,7 @@ answers_093:
   record_id:
   year: 2010
   value: '10'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2332,7 +2332,7 @@ answers_094:
   record_id:
   year: 2011
   value: '11'
-  numeric_value: !ruby/object:BigDecimal 18:0.11e2
+  numeric_value: !ruby/object:BigDecimal 9:0.11e2
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2357,7 +2357,7 @@ answers_095:
   record_id:
   year: 2012
   value: '12'
-  numeric_value: !ruby/object:BigDecimal 18:0.12e2
+  numeric_value: !ruby/object:BigDecimal 9:0.12e2
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2382,7 +2382,7 @@ answers_096:
   record_id:
   year: 2013
   value: '13'
-  numeric_value: !ruby/object:BigDecimal 18:0.13e2
+  numeric_value: !ruby/object:BigDecimal 9:0.13e2
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2407,7 +2407,7 @@ answers_097:
   record_id:
   year: 2014
   value: '14'
-  numeric_value: !ruby/object:BigDecimal 18:0.14e2
+  numeric_value: !ruby/object:BigDecimal 9:0.14e2
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2432,7 +2432,7 @@ answers_098:
   record_id:
   year: 2014
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2457,7 +2457,7 @@ answers_099:
   record_id:
   year: 2014
   value: '10'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2482,7 +2482,7 @@ answers_100:
   record_id:
   year: 2015
   value: '15'
-  numeric_value: !ruby/object:BigDecimal 18:0.15e2
+  numeric_value: !ruby/object:BigDecimal 9:0.15e2
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2507,7 +2507,7 @@ answers_101:
   record_id:
   year: 2015
   value: '5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e1
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2532,7 +2532,7 @@ answers_102:
   record_id:
   year: 2014
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2557,7 +2557,7 @@ answers_103:
   record_id:
   year: 2014
   value: '5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e1
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2582,7 +2582,7 @@ answers_104:
   record_id:
   year: 2015
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2607,7 +2607,7 @@ answers_105:
   record_id:
   year: 2015
   value: '100'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  numeric_value: !ruby/object:BigDecimal 9:0.1e3
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 1
@@ -2632,7 +2632,7 @@ answers_106:
   record_id: 4582
   year: 1977
   value: '1000'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e4
+  numeric_value: !ruby/object:BigDecimal 9:0.1e4
   updated_at: 2025-08-21 20:32:09.000000000 Z
   imported:
   latest: 1
@@ -2657,7 +2657,7 @@ answers_107:
   record_id:
   year: 2002
   value: '100'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  numeric_value: !ruby/object:BigDecimal 9:0.1e3
   updated_at: 2025-08-21 20:31:59.000000000 Z
   imported:
   latest: 0
@@ -2682,7 +2682,7 @@ answers_108:
   record_id:
   year: 1977
   value: '10.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 0
@@ -2707,7 +2707,7 @@ answers_109:
   record_id:
   year: 1977
   value: '0.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 0
@@ -2732,7 +2732,7 @@ answers_110:
   record_id:
   year: 1977
   value: '0.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 0
@@ -2757,7 +2757,7 @@ answers_111:
   record_id:
   year: 1990
   value: '10.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 0
@@ -2782,7 +2782,7 @@ answers_112:
   record_id:
   year: 1991
   value: '10.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 0
@@ -2807,7 +2807,7 @@ answers_113:
   record_id:
   year: 1992
   value: '10.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 0
@@ -2832,7 +2832,7 @@ answers_114:
   record_id:
   year: 2000
   value: '10.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 0
@@ -2857,7 +2857,7 @@ answers_115:
   record_id:
   year: 2000
   value: '10.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 1
@@ -2882,7 +2882,7 @@ answers_116:
   record_id:
   year: 2000
   value: '0.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 1
@@ -2907,7 +2907,7 @@ answers_117:
   record_id:
   year: 2001
   value: '10.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 1
@@ -2932,7 +2932,7 @@ answers_118:
   record_id:
   year: 2005
   value: '0.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 0
@@ -2957,7 +2957,7 @@ answers_119:
   record_id:
   year: 2006
   value: '0.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:32:00.000000000 Z
   imported:
   latest: 1
@@ -2982,7 +2982,7 @@ answers_120:
   record_id:
   year: 1977
   value: '5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e1
   updated_at: 2025-08-21 20:32:01.000000000 Z
   imported:
   latest: 1
@@ -3007,7 +3007,7 @@ answers_121:
   record_id:
   year: 1977
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:32:01.000000000 Z
   imported:
   latest: 0
@@ -3032,7 +3032,7 @@ answers_122:
   record_id:
   year: 1977
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:32:01.000000000 Z
   imported:
   latest: 1
@@ -3107,7 +3107,7 @@ answers_125:
   record_id:
   year: 2003
   value: '0.4'
-  numeric_value: !ruby/object:BigDecimal 18:0.4e0
+  numeric_value: !ruby/object:BigDecimal 9:0.4e0
   updated_at: 2025-08-21 20:32:01.000000000 Z
   imported:
   latest: 0
@@ -3132,7 +3132,7 @@ answers_126:
   record_id:
   year: 2004
   value: '0.45'
-  numeric_value: !ruby/object:BigDecimal 18:0.45e0
+  numeric_value: !ruby/object:BigDecimal 9:0.45e0
   updated_at: 2025-08-21 20:32:01.000000000 Z
   imported:
   latest: 0
@@ -3157,7 +3157,7 @@ answers_127:
   record_id:
   year: 2005
   value: '0.5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e0
+  numeric_value: !ruby/object:BigDecimal 9:0.5e0
   updated_at: 2025-08-21 20:32:01.000000000 Z
   imported:
   latest: 1
@@ -3182,7 +3182,7 @@ answers_128:
   record_id:
   year: 1977
   value: '10'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:32:02.000000000 Z
   imported:
   latest: 1
@@ -3207,7 +3207,7 @@ answers_129:
   record_id:
   year: 1977
   value: '2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e1
   updated_at: 2025-08-21 20:32:02.000000000 Z
   imported:
   latest: 0
@@ -3232,7 +3232,7 @@ answers_130:
   record_id:
   year: 1977
   value: '4'
-  numeric_value: !ruby/object:BigDecimal 18:0.4e1
+  numeric_value: !ruby/object:BigDecimal 9:0.4e1
   updated_at: 2025-08-21 20:32:02.000000000 Z
   imported:
   latest: 1
@@ -3257,7 +3257,7 @@ answers_131:
   record_id:
   year: 1977
   value: '5'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e1
   updated_at: 2025-08-21 20:32:02.000000000 Z
   imported:
   latest: 1
@@ -3307,7 +3307,7 @@ answers_133:
   record_id:
   year: 2003
   value: '0.8'
-  numeric_value: !ruby/object:BigDecimal 18:0.8e0
+  numeric_value: !ruby/object:BigDecimal 9:0.8e0
   updated_at: 2025-08-21 20:32:02.000000000 Z
   imported:
   latest: 0
@@ -3332,7 +3332,7 @@ answers_134:
   record_id:
   year: 2004
   value: '0.9'
-  numeric_value: !ruby/object:BigDecimal 18:0.9e0
+  numeric_value: !ruby/object:BigDecimal 9:0.9e0
   updated_at: 2025-08-21 20:32:02.000000000 Z
   imported:
   latest: 0
@@ -3357,7 +3357,7 @@ answers_135:
   record_id:
   year: 2005
   value: '1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e1
   updated_at: 2025-08-21 20:32:02.000000000 Z
   imported:
   latest: 1
@@ -3382,7 +3382,7 @@ answers_136:
   record_id:
   year: 1977
   value: '10.0'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e2
+  numeric_value: !ruby/object:BigDecimal 9:0.1e2
   updated_at: 2025-08-21 20:32:02.000000000 Z
   imported:
   latest: 1
@@ -3432,7 +3432,7 @@ answers_138:
   record_id:
   year: 2005
   value: '0.6'
-  numeric_value: !ruby/object:BigDecimal 18:0.6e0
+  numeric_value: !ruby/object:BigDecimal 9:0.6e0
   updated_at: 2025-08-21 20:32:02.000000000 Z
   imported:
   latest: 1
@@ -3457,7 +3457,7 @@ answers_139:
   record_id:
   year: 1977
   value: '97'
-  numeric_value: !ruby/object:BigDecimal 18:0.97e2
+  numeric_value: !ruby/object:BigDecimal 9:0.97e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 1
@@ -3482,7 +3482,7 @@ answers_140:
   record_id:
   year: 2000
   value: '20'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e2
+  numeric_value: !ruby/object:BigDecimal 9:0.2e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 0
@@ -3507,7 +3507,7 @@ answers_141:
   record_id:
   year: 2001
   value: '30'
-  numeric_value: !ruby/object:BigDecimal 18:0.3e2
+  numeric_value: !ruby/object:BigDecimal 9:0.3e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 0
@@ -3532,7 +3532,7 @@ answers_142:
   record_id:
   year: 2002
   value: '30'
-  numeric_value: !ruby/object:BigDecimal 18:0.3e2
+  numeric_value: !ruby/object:BigDecimal 9:0.3e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 0
@@ -3557,7 +3557,7 @@ answers_143:
   record_id:
   year: 2010
   value: '30'
-  numeric_value: !ruby/object:BigDecimal 18:0.3e2
+  numeric_value: !ruby/object:BigDecimal 9:0.3e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 0
@@ -3582,7 +3582,7 @@ answers_144:
   record_id:
   year: 2011
   value: '31'
-  numeric_value: !ruby/object:BigDecimal 18:0.31e2
+  numeric_value: !ruby/object:BigDecimal 9:0.31e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 0
@@ -3607,7 +3607,7 @@ answers_145:
   record_id:
   year: 2012
   value: '32'
-  numeric_value: !ruby/object:BigDecimal 18:0.32e2
+  numeric_value: !ruby/object:BigDecimal 9:0.32e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 0
@@ -3632,7 +3632,7 @@ answers_146:
   record_id:
   year: 2013
   value: '33'
-  numeric_value: !ruby/object:BigDecimal 18:0.33e2
+  numeric_value: !ruby/object:BigDecimal 9:0.33e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 0
@@ -3657,7 +3657,7 @@ answers_147:
   record_id:
   year: 2014
   value: '34'
-  numeric_value: !ruby/object:BigDecimal 18:0.34e2
+  numeric_value: !ruby/object:BigDecimal 9:0.34e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 0
@@ -3682,7 +3682,7 @@ answers_148:
   record_id:
   year: 2015
   value: '35'
-  numeric_value: !ruby/object:BigDecimal 18:0.35e2
+  numeric_value: !ruby/object:BigDecimal 9:0.35e2
   updated_at: 2025-08-21 20:32:03.000000000 Z
   imported:
   latest: 1
@@ -3707,7 +3707,7 @@ answers_149:
   record_id:
   year: 2005
   value: '19'
-  numeric_value: !ruby/object:BigDecimal 18:0.19e2
+  numeric_value: !ruby/object:BigDecimal 9:0.19e2
   updated_at: 2025-08-21 20:32:04.000000000 Z
   imported:
   latest: 1
@@ -3732,7 +3732,7 @@ answers_150:
   record_id:
   year: 2004
   value: '17'
-  numeric_value: !ruby/object:BigDecimal 18:0.17e2
+  numeric_value: !ruby/object:BigDecimal 9:0.17e2
   updated_at: 2025-08-21 20:32:04.000000000 Z
   imported:
   latest: 0
@@ -3757,7 +3757,7 @@ answers_151:
   record_id:
   year: 2005
   value: '27'
-  numeric_value: !ruby/object:BigDecimal 18:0.27e2
+  numeric_value: !ruby/object:BigDecimal 9:0.27e2
   updated_at: 2025-08-21 20:32:05.000000000 Z
   imported:
   latest: 1
@@ -3782,7 +3782,7 @@ answers_152:
   record_id:
   year: 1977
   value: '0.01'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e-1
+  numeric_value: !ruby/object:BigDecimal 9:0.1e-1
   updated_at: 2025-08-21 20:32:06.000000000 Z
   imported:
   latest: 1
@@ -3807,7 +3807,7 @@ answers_153:
   record_id:
   year: 1977
   value: '0.05'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e-1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e-1
   updated_at: 2025-08-21 20:32:06.000000000 Z
   imported:
   latest: 0
@@ -3832,7 +3832,7 @@ answers_154:
   record_id:
   year: 1977
   value: '0.025'
-  numeric_value: !ruby/object:BigDecimal 18:0.25e-1
+  numeric_value: !ruby/object:BigDecimal 9:0.25e-1
   updated_at: 2025-08-21 20:32:06.000000000 Z
   imported:
   latest: 1
@@ -3857,7 +3857,7 @@ answers_155:
   record_id:
   year: 1977
   value: '0.02'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e-1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e-1
   updated_at: 2025-08-21 20:32:06.000000000 Z
   imported:
   latest: 1
@@ -3907,7 +3907,7 @@ answers_157:
   record_id: 4578
   year: 2003
   value: '100'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e3
+  numeric_value: !ruby/object:BigDecimal 9:0.1e3
   updated_at: 2025-08-21 20:32:08.000000000 Z
   imported:
   latest: 0
@@ -3932,7 +3932,7 @@ answers_158:
   record_id:
   year: 2004
   value: '0.1111111111111111'
-  numeric_value: !ruby/object:BigDecimal 18:0.11111e0
+  numeric_value: !ruby/object:BigDecimal 9:0.11111e0
   updated_at: 2025-08-21 20:32:06.000000000 Z
   imported:
   latest: 0
@@ -3957,7 +3957,7 @@ answers_159:
   record_id:
   year: 2005
   value: '0.1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e0
+  numeric_value: !ruby/object:BigDecimal 9:0.1e0
   updated_at: 2025-08-21 20:32:06.000000000 Z
   imported:
   latest: 1
@@ -3982,7 +3982,7 @@ answers_160:
   record_id:
   year: 1977
   value: '0.02'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e-1
+  numeric_value: !ruby/object:BigDecimal 9:0.2e-1
   updated_at: 2025-08-21 20:32:06.000000000 Z
   imported:
   latest: 1
@@ -4007,7 +4007,7 @@ answers_161:
   record_id:
   year: 1977
   value: '0.05'
-  numeric_value: !ruby/object:BigDecimal 18:0.5e-1
+  numeric_value: !ruby/object:BigDecimal 9:0.5e-1
   updated_at: 2025-08-21 20:32:06.000000000 Z
   imported:
   latest: 1
@@ -4032,7 +4032,7 @@ answers_162:
   record_id:
   year: 1977
   value: '0.04'
-  numeric_value: !ruby/object:BigDecimal 18:0.4e-1
+  numeric_value: !ruby/object:BigDecimal 9:0.4e-1
   updated_at: 2025-08-21 20:32:06.000000000 Z
   imported:
   latest: 1
@@ -4082,7 +4082,7 @@ answers_164:
   record_id:
   year: 1977
   value: '0.1'
-  numeric_value: !ruby/object:BigDecimal 18:0.1e0
+  numeric_value: !ruby/object:BigDecimal 9:0.1e0
   updated_at: 2025-08-21 20:32:09.000000000 Z
   imported:
   latest: 0
@@ -4107,7 +4107,7 @@ answers_165:
   record_id:
   year: 2003
   value: '200'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e3
+  numeric_value: !ruby/object:BigDecimal 9:0.2e3
   updated_at: 2025-08-21 20:32:09.000000000 Z
   imported:
   latest: 0
@@ -4132,7 +4132,7 @@ answers_166:
   record_id:
   year: 2004
   value: '0.2222222222222222'
-  numeric_value: !ruby/object:BigDecimal 18:0.22222e0
+  numeric_value: !ruby/object:BigDecimal 9:0.22222e0
   updated_at: 2025-08-21 20:32:09.000000000 Z
   imported:
   latest: 0
@@ -4157,7 +4157,7 @@ answers_167:
   record_id:
   year: 2005
   value: '0.2'
-  numeric_value: !ruby/object:BigDecimal 18:0.2e0
+  numeric_value: !ruby/object:BigDecimal 9:0.2e0
   updated_at: 2025-08-21 20:32:09.000000000 Z
   imported:
   latest: 1
@@ -4307,7 +4307,7 @@ answers_173:
   record_id:
   year: 1991
   value: '0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:32:30.000000000 Z
   imported:
   latest: 0
@@ -4332,7 +4332,7 @@ answers_174:
   record_id:
   year: 1992
   value: '0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:32:30.000000000 Z
   imported:
   latest: 0
@@ -4357,7 +4357,7 @@ answers_175:
   record_id:
   year: 2001
   value: '0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:32:30.000000000 Z
   imported:
   latest: 1
@@ -4382,7 +4382,7 @@ answers_176:
   record_id:
   year: 2006
   value: '0'
-  numeric_value: !ruby/object:BigDecimal 18:0.0
+  numeric_value: !ruby/object:BigDecimal 9:0.0
   updated_at: 2025-08-21 20:32:30.000000000 Z
   imported:
   latest: 1

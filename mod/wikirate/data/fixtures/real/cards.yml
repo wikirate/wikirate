@@ -4970,7 +4970,7 @@ cards_254:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-07-01 17:29:51.000000000 Z
+  updated_at: 2025-09-04 19:20:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -4979,7 +4979,7 @@ cards_254:
   trash: 0
   type_id: 153
   db_content: ''
-  search_content:
+  search_content: ''
 cards_255:
   id: 255
   name:
@@ -4989,7 +4989,7 @@ cards_255:
   right_id: 158
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-07-01 17:29:51.000000000 Z
+  updated_at: 2025-09-04 19:20:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -4998,7 +4998,7 @@ cards_255:
   trash: 0
   type_id: 4
   db_content: Decko Bot
-  search_content:
+  search_content: Decko Bot
 cards_256:
   id: 256
   name:
@@ -5008,7 +5008,7 @@ cards_256:
   right_id: 167
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-08-21 18:56:27.000000000 Z
+  updated_at: 2025-09-04 19:20:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5027,7 +5027,7 @@ cards_257:
   right_id: 171
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-07-01 17:29:51.000000000 Z
+  updated_at: 2025-09-04 19:20:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5044,7 +5044,9 @@ cards_257:
       </p>
       <p><em>Link will remain valid for {{_|verify_days}} days.</em></p>
     </div>
-  search_content:
+  search_content: "\n  Thank you for signing up with {{:title|core}}!\n  \n    Please
+    follow this link\n    to verify this email address and activate your account.\n
+    \ \n  Link will remain valid for {{_|verify_days}} days.\n"
 cards_258:
   id: 258
   name:
@@ -5054,7 +5056,7 @@ cards_258:
   right_id: 172
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-07-01 17:29:51.000000000 Z
+  updated_at: 2025-09-04 19:20:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5069,7 +5071,13 @@ cards_258:
 
     {{_|verify_url}}
     (Link will remain valid for {{_|verify_days}} days.)
-  search_content:
+  search_content: |
+    Thank you for signing up with {{:title|core}}!
+
+    Please follow the link below to verify this email address and activate your account.
+
+    {{_|verify_url}}
+    (Link will remain valid for {{_|verify_days}} days.)
 cards_259:
   id: 259
   name: password reset email
@@ -5079,7 +5087,7 @@ cards_259:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-07-01 17:29:51.000000000 Z
+  updated_at: 2025-09-04 19:20:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -5088,7 +5096,7 @@ cards_259:
   trash: 0
   type_id: 153
   db_content: ''
-  search_content:
+  search_content: ''
 cards_260:
   id: 260
   name:
@@ -5098,7 +5106,7 @@ cards_260:
   right_id: 158
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-07-01 17:29:51.000000000 Z
+  updated_at: 2025-09-04 19:20:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5107,7 +5115,7 @@ cards_260:
   trash: 0
   type_id: 4
   db_content: Decko Bot
-  search_content:
+  search_content: Decko Bot
 cards_261:
   id: 261
   name:
@@ -5117,7 +5125,7 @@ cards_261:
   right_id: 167
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-08-21 18:56:27.000000000 Z
+  updated_at: 2025-09-04 19:20:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5136,7 +5144,7 @@ cards_262:
   right_id: 172
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-07-01 17:29:51.000000000 Z
+  updated_at: 2025-09-04 19:20:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5148,7 +5156,10 @@ cards_262:
     – asked to reset your password.  Please follow this link...\n\n  {{_|reset_password_url}}\n
     \ \n...to update your account details.\n\n\n(Link will remain valid for {{_|reset_password_days}}
     days.)\n\n"
-  search_content:
+  search_content: "** Password reset for {{:title|core}} **\n\nSomeone – you, we hope
+    – asked to reset your password.  Please follow this link...\n\n  {{_|reset_password_url}}\n
+    \ \n...to update your account details.\n\n\n(Link will remain valid for {{_|reset_password_days}}
+    days.)\n\n"
 cards_263:
   id: 263
   name:
@@ -5158,7 +5169,7 @@ cards_263:
   right_id: 171
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-07-01 17:29:51.000000000 Z
+  updated_at: 2025-09-04 19:20:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5171,7 +5182,10 @@ cards_263:
     <a href=\"{{_|reset_password_url}}\">follow this link</a> to update your account
     details.</p>\n  \n  <p><em>Link will remain valid for {{_|reset_password_days}}
     days.</em></p>\n</div>\n\n"
-  search_content:
+  search_content: "\n Password reset for {{:title|core}}\n  \n  Someone – you, we
+    hope – asked to reset your password.\n  \n  Please follow this link to update
+    your account details.\n  \n  Link will remain valid for {{_|reset_password_days}}
+    days.\n\n\n"
 cards_264:
   id: 264
   name: signup alert email
@@ -5664,7 +5678,7 @@ cards_288:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:29:55.000000000 Z
-  updated_at: 2025-08-21 18:57:01.000000000 Z
+  updated_at: 2025-09-04 19:21:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -5683,7 +5697,7 @@ cards_289:
   right_id: 27
   current_revision_id:
   created_at: 2025-07-01 17:29:55.000000000 Z
-  updated_at: 2025-07-01 17:29:55.000000000 Z
+  updated_at: 2025-09-04 19:20:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5692,7 +5706,7 @@ cards_289:
   trash: 0
   type_id: 5
   db_content: ''
-  search_content:
+  search_content: ''
 cards_290:
   id: 290
   name:
@@ -5702,7 +5716,7 @@ cards_290:
   right_id: 9
   current_revision_id:
   created_at: 2025-07-01 17:29:55.000000000 Z
-  updated_at: 2025-07-01 17:29:55.000000000 Z
+  updated_at: 2025-09-04 19:20:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5711,7 +5725,7 @@ cards_290:
   trash: 0
   type_id: 4
   db_content: Anyone
-  search_content:
+  search_content: Anyone
 cards_291:
   id: 291
   name: Decko logo
@@ -6142,7 +6156,7 @@ cards_307:
   right_id: 299
   current_revision_id:
   created_at: 2025-07-01 17:29:59.000000000 Z
-  updated_at: 2025-08-21 18:57:53.000000000 Z
+  updated_at: 2025-09-04 19:21:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -6151,7 +6165,7 @@ cards_307:
   trash: 0
   type_id: 282
   db_content: ":all+:script+:asset_output/wikirate.js"
-  search_content: "~307/1755802672.js"
+  search_content: "~307/1757013672.js"
 cards_308:
   id: 308
   name: JavaScript
@@ -7240,7 +7254,7 @@ cards_358:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:30:05.000000000 Z
-  updated_at: 2025-08-21 18:56:04.000000000 Z
+  updated_at: 2025-09-04 19:20:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -8915,7 +8929,7 @@ cards_446:
   right_id: 349
   current_revision_id:
   created_at: 2025-07-01 17:31:34.000000000 Z
-  updated_at: 2025-08-21 18:56:25.000000000 Z
+  updated_at: 2025-09-04 19:20:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8934,7 +8948,7 @@ cards_447:
   right_id: 299
   current_revision_id:
   created_at: 2025-07-01 17:31:34.000000000 Z
-  updated_at: 2025-08-21 18:57:53.000000000 Z
+  updated_at: 2025-09-04 19:21:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8943,7 +8957,7 @@ cards_447:
   trash: 0
   type_id: 282
   db_content: ":all+:style+:asset_output/wikirate.css"
-  search_content: "~447/1755802672.css"
+  search_content: "~447/1757013672.css"
 cards_448:
   id: 448
   name: discussion
@@ -9647,7 +9661,7 @@ cards_483:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:42.000000000 Z
-  updated_at: 2025-08-21 18:57:48.000000000 Z
+  updated_at: 2025-09-04 19:20:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -9656,31 +9670,31 @@ cards_483:
   trash: 0
   type_id: 2
   db_content: |-
+    *autoname
+    *style
+    *layout
     *script
     *input type
     *default
     *delete
     *read
-    *autoname
-    *style
     *create
     *update
     *content options
-    *layout
     *structure
     *captcha
   search_content: |-
+    *autoname
+    *style
+    *layout
     *script
     *input type
     *default
     *delete
     *read
-    *autoname
-    *style
     *create
     *update
     *content options
-    *layout
     *structure
     *captcha
 cards_484:
@@ -9942,7 +9956,7 @@ cards_497:
   right_id: 494
   current_revision_id:
   created_at: 2025-07-01 17:31:44.000000000 Z
-  updated_at: 2025-08-21 18:55:11.000000000 Z
+  updated_at: 2025-09-04 19:20:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -9961,7 +9975,7 @@ cards_498:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:44.000000000 Z
-  updated_at: 2025-08-21 18:55:00.000000000 Z
+  updated_at: 2025-09-04 19:20:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -9984,7 +9998,7 @@ cards_499:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:44.000000000 Z
-  updated_at: 2025-08-21 18:57:01.000000000 Z
+  updated_at: 2025-09-04 19:21:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -10201,7 +10215,7 @@ cards_509:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:46.000000000 Z
-  updated_at: 2025-08-21 18:57:01.000000000 Z
+  updated_at: 2025-09-04 19:21:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10225,7 +10239,7 @@ cards_510:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:47.000000000 Z
-  updated_at: 2025-08-21 18:57:01.000000000 Z
+  updated_at: 2025-09-04 19:21:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10249,7 +10263,7 @@ cards_511:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:47.000000000 Z
-  updated_at: 2025-08-21 18:57:01.000000000 Z
+  updated_at: 2025-09-04 19:21:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10273,7 +10287,7 @@ cards_512:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:48.000000000 Z
-  updated_at: 2025-08-21 18:57:01.000000000 Z
+  updated_at: 2025-09-04 19:21:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10298,7 +10312,7 @@ cards_513:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:48.000000000 Z
-  updated_at: 2025-08-21 18:57:01.000000000 Z
+  updated_at: 2025-09-04 19:21:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10467,7 +10481,7 @@ cards_521:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:51.000000000 Z
-  updated_at: 2025-08-21 18:57:05.000000000 Z
+  updated_at: 2025-09-04 19:20:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10490,7 +10504,7 @@ cards_522:
   right_id: 27
   current_revision_id:
   created_at: 2025-07-01 17:31:51.000000000 Z
-  updated_at: 2025-07-01 17:31:51.000000000 Z
+  updated_at: 2025-09-04 19:20:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -10499,7 +10513,7 @@ cards_522:
   trash: 0
   type_id: 5
   db_content: ''
-  search_content:
+  search_content: ''
 cards_523:
   id: 523
   name:
@@ -10509,7 +10523,7 @@ cards_523:
   right_id: 494
   current_revision_id:
   created_at: 2025-07-01 17:31:51.000000000 Z
-  updated_at: 2025-07-01 17:31:51.000000000 Z
+  updated_at: 2025-09-04 19:20:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -10518,7 +10532,7 @@ cards_523:
   trash: 0
   type_id: 56
   db_content: Home Layout
-  search_content:
+  search_content: Home Layout
 cards_524:
   id: 524
   name: "*home"
@@ -12839,7 +12853,7 @@ cards_636:
   right_id:
   current_revision_id:
   created_at: 2025-08-21 18:55:08.000000000 Z
-  updated_at: 2025-08-21 18:57:06.000000000 Z
+  updated_at: 2025-09-04 19:21:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18031,7 +18045,7 @@ cards_849:
   right_id: 17
   current_revision_id:
   created_at: 2025-08-21 18:56:31.000000000 Z
-  updated_at: 2025-08-21 18:56:31.000000000 Z
+  updated_at: 2025-09-04 19:20:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18039,7 +18053,7 @@ cards_849:
   references_expired:
   trash: 0
   type_id: 43
-  db_content: Blurb 0050
+  db_content: Blurb 0001
   search_content: Blurb 0001
 cards_850:
   id: 851
@@ -24265,6 +24279,25 @@ cards_1161:
   references_expired:
   trash: 0
   type_id: 15
+  db_content: ''
+  search_content: ''
+cards_1162:
+  id: 1163
+  name: Benchmark
+  key: benchmark
+  codename: benchmark
+  left_id:
+  right_id:
+  current_revision_id:
+  created_at: 2025-09-04 19:20:55.000000000 Z
+  updated_at: 2025-09-04 19:20:55.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 2
   db_content: ''
   search_content: ''
 ...
