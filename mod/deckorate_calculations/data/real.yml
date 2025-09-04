@@ -19,6 +19,8 @@
   :codename: rubric
 - :name: Input Answer
   :codename: input_answer
+- :name: Benchmark
+  :codename: benchmark
 
 - :name: Formula
   :type: :metric_type_type
