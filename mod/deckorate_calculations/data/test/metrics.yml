@@ -67,6 +67,7 @@
   :fields:
     :value_type: Number
     :metric_type: Rating
+    :benchmark: "1"
     :variables: |-
       [ 
         { 

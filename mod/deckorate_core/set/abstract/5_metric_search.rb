@@ -36,7 +36,11 @@ format do
   end
 
   def shared_metric_filter_map
-    %i[topic topic_framework designer metric_type value_type assessment bookmark license]
+    %i[topic topic_framework
+       designer
+       metric_type benchmark value_type
+       assessment
+       bookmark license]
   end
 
   # answer searches have different handling of published and dataset filters
@@ -46,6 +50,14 @@ format do
                                        label: "Metric Keyword",
                                        open: true)
     end << :dataset
+  end
+
+  def filter_map
+    [:benchmark]
+  end
+
+  def filter_benchmark_closer_value val
+    val == "1" ? "Yes" : "No"
   end
 
   def sort_options
@@ -103,6 +115,14 @@ format :html do
   def filter_metric_type_options
     %i[researched relation inverse_relation formula rating score descendant]
       .map(&:cardname)
+  end
+
+  def filter_benchmark_options
+    { "Yes" => 1, "No" => 0 }
+  end
+
+  def filter_benchmark_type
+    :radio
   end
 
   def filter_assessment_options
