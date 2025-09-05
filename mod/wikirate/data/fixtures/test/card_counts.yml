@@ -1127,3 +1127,9 @@ card_counts_188:
   right_id: 643
   value: 0
   flag: 0
+card_counts_189:
+  id: 189
+  left_id: 833
+  right_id: 643
+  value: 0
+  flag: 0
