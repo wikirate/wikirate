@@ -147,7 +147,7 @@ format :html do
 
   def benchmark_quick_filter
     {
-      benchmark: "Yes",
+      benchmark: "1",
       text: :benchmark.cardname.vary(:plural),
       icon: icon_tag(:benchmark),
       separator: true
