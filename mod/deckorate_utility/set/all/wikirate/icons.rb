@@ -51,7 +51,8 @@ basket[:icons][:material].merge!(
   signup: :rocket,
   environment: :spa,
   social: :volunteer_activism,
-  governance: :assured_workload
+  governance: :assured_workload,
+  benchmark: :straighten
 )
 
 basket[:icons][:font_awesome].merge!(

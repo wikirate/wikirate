@@ -141,8 +141,18 @@ format :html do
   end
 
   def quick_filter_list
-    topic_family_quick_filters
+    topic_family_quick_filters + [benchmark_quick_filter]
     # bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
+  end
+
+  def benchmark_quick_filter
+    {
+      benchmark: "Yes",
+      text: :benchmark.cardname.vary(:plural),
+      icon: icon_tag(:benchmark),
+      separator: true
+      #      class: "quick-filter-benchmark"
+    }
   end
 end
 
