@@ -20,4 +20,8 @@ format :html do
   def featured_link_path
     path
   end
+
+  def featured_card_boxes
+    nest card.featured_card, :flex_centered_boxes
+  end
 end

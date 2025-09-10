@@ -2,6 +2,7 @@ include_set Abstract::DeckorateTabbed
 include_set Abstract::Thumbnail
 include_set Abstract::Table
 include_set Abstract::Bookmarkable
+include_set Abstract::Designer
 
 card_accessor :organizer, type: :list
 card_accessor :researcher, type: :list

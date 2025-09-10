@@ -1,4 +1,4 @@
-include_set Abstract::MetricSearch
+include_set Abstract::AnswerSearch
 include_set Abstract::SearchCachedCount
 
 def query_hash

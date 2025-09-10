@@ -29,6 +29,14 @@ format :html do
   def featured_link_path
     path filter: { benchmark: "1" }
   end
+
+  def featured_card_boxes
+    voo.explicit_show?(:top_designers) ? render_top_designers : super
+  end
+
+  view :top_designers do
+    nest :designer, view: :flex_centered_boxes, items: { view: :designer_box }
+  end
 end
 
 format :json do
