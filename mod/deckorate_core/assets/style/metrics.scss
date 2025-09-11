@@ -22,6 +22,13 @@
       // margin-left: 0.2em;
     }
   }
+  &.bar .bar-right {
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    .labeled-badge {
+      flex-wrap: wrap;
+    }
+  }
 }
 
 .modal-body .LTYPE_RTYPE-metric-company .timeline {

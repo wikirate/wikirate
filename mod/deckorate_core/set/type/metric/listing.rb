@@ -1,4 +1,7 @@
 format :html do
+  bar_cols 8, 4
+  mini_bar_cols 8, 4
+
   view :bar_left, template: :haml
 
   view :bar_right do

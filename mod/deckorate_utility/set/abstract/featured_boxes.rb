@@ -22,6 +22,6 @@ format :html do
   end
 
   def featured_card_boxes
-    nest card.featured_card, :flex_centered_boxes
+    nest card.featured_card, view: :flex_centered_boxes
   end
 end
