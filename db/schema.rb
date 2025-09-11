@@ -35,7 +35,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_11_172846) do
     t.boolean "unpublished"
     t.integer "open_flags"
     t.integer "route", limit: 1
-    t.boolean "benchmark"
     t.index ["answer_id"], name: "answer_id_index", unique: true
     t.index ["company_id"], name: "company_id_index"
     t.index ["metric_id", "company_id", "year"], name: "index_answers_on_metric_id_and_company_id_and_year", unique: true
@@ -177,40 +176,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_11_172846) do
     t.index ["scorer_id"], name: "metrics_scorer_id_index"
     t.index ["title_id"], name: "metrics_title_id_index"
     t.index ["value_type_id"], name: "metrics_value_type_id_index"
-  end
-
-  create_table "records", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "record_id"
-    t.integer "metric_id", null: false
-    t.integer "company_id", null: false
-    t.integer "record_log_id"
-    t.integer "year", null: false
-    t.string "value", limit: 1024
-    t.decimal "numeric_value", precision: 30, scale: 5
-    t.datetime "updated_at", precision: nil
-    t.boolean "imported"
-    t.boolean "latest"
-    t.string "checkers"
-    t.integer "creator_id", null: false
-    t.integer "editor_id"
-    t.datetime "created_at", precision: nil
-    t.string "overridden_value"
-    t.boolean "calculating"
-    t.integer "source_count"
-    t.string "source_url", limit: 1024
-    t.string "comments", limit: 1024
-    t.integer "verification"
-    t.boolean "unpublished"
-    t.integer "open_flags"
-    t.integer "route", limit: 1
-    t.index ["company_id"], name: "company_id_index"
-    t.index ["metric_id", "company_id", "year"], name: "index_records_on_metric_id_and_company_id_and_year", unique: true
-    t.index ["metric_id", "company_id"], name: "index_records_on_metric_id_and_company_id"
-    t.index ["metric_id"], name: "metric_id_index"
-    t.index ["numeric_value"], name: "numeric_value_index"
-    t.index ["record_id"], name: "record_id_index", unique: true
-    t.index ["record_log_id"], name: "record_log_id_index"
-    t.index ["value"], name: "value_index", length: 100
   end
 
   create_table "relationships", id: :integer, charset: "utf8mb3", force: :cascade do |t|
