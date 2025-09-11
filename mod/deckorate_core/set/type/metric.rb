@@ -27,6 +27,8 @@ card_accessor :topic_framework, type: :list
 card_accessor :assessment, type: :pointer, default_content: "Community Assessed"
 card_accessor :relationship, type: :search_type
 card_accessor :company, type: :search_type
+card_accessor :license
+card_accessor :benchmark
 
 # applicability
 card_accessor :year, type: :list

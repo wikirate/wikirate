@@ -55,8 +55,8 @@ class Card
       end
 
       def filter_by_benchmark value
-        restrict_by_cql :benchmark, :metric_id,
-                        right: :benchmark, eq: value, return: :left_id
+        operator = value == "1" ? "=" : "!="
+        @conditions << "metrics.benchmark #{operator} 1"
       end
 
       private

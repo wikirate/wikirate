@@ -5008,7 +5008,7 @@ cards_256:
   right_id: 167
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-09-04 19:20:59.000000000 Z
+  updated_at: 2025-09-11 17:38:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5125,7 +5125,7 @@ cards_261:
   right_id: 167
   current_revision_id:
   created_at: 2025-07-01 17:29:51.000000000 Z
-  updated_at: 2025-09-04 19:20:59.000000000 Z
+  updated_at: 2025-09-11 17:38:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5678,7 +5678,7 @@ cards_288:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:29:55.000000000 Z
-  updated_at: 2025-09-04 19:21:01.000000000 Z
+  updated_at: 2025-09-11 17:38:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -6079,7 +6079,7 @@ cards_306:
   right_id: 302
   current_revision_id:
   created_at: 2025-07-01 17:29:59.000000000 Z
-  updated_at: 2025-08-21 18:57:43.000000000 Z
+  updated_at: 2025-09-11 17:38:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -6117,6 +6117,7 @@ cards_306:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
+    mod: ticket+*script
   search_content: |-
     mod: format+*script
     mod: list+*script
@@ -6147,6 +6148,7 @@ cards_306:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
+    mod: ticket+*script
 cards_307:
   id: 307
   name:
@@ -6156,7 +6158,7 @@ cards_307:
   right_id: 299
   current_revision_id:
   created_at: 2025-07-01 17:29:59.000000000 Z
-  updated_at: 2025-09-04 19:21:16.000000000 Z
+  updated_at: 2025-09-11 17:39:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -6165,7 +6167,7 @@ cards_307:
   trash: 0
   type_id: 282
   db_content: ":all+:script+:asset_output/wikirate.js"
-  search_content: "~307/1757013672.js"
+  search_content: "~307/1757612342.js"
 cards_308:
   id: 308
   name: JavaScript
@@ -6585,7 +6587,7 @@ cards_328:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:30:01.000000000 Z
-  updated_at: 2025-08-21 18:57:48.000000000 Z
+  updated_at: 2025-09-11 17:38:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -6634,6 +6636,7 @@ cards_328:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
+    mod: ticket+*style
   search_content: |-
     mod: format+*style
     mod: list+*style
@@ -6675,6 +6678,7 @@ cards_328:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
+    mod: ticket+*style
 cards_329:
   id: 329
   name: Local style folder group
@@ -7254,7 +7258,7 @@ cards_358:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:30:05.000000000 Z
-  updated_at: 2025-09-04 19:20:55.000000000 Z
+  updated_at: 2025-09-11 17:38:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -8929,7 +8933,7 @@ cards_446:
   right_id: 349
   current_revision_id:
   created_at: 2025-07-01 17:31:34.000000000 Z
-  updated_at: 2025-09-04 19:20:56.000000000 Z
+  updated_at: 2025-09-11 17:38:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8948,7 +8952,7 @@ cards_447:
   right_id: 299
   current_revision_id:
   created_at: 2025-07-01 17:31:34.000000000 Z
-  updated_at: 2025-09-04 19:21:16.000000000 Z
+  updated_at: 2025-09-11 17:39:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8957,7 +8961,7 @@ cards_447:
   trash: 0
   type_id: 282
   db_content: ":all+:style+:asset_output/wikirate.css"
-  search_content: "~447/1757013672.css"
+  search_content: "~447/1757612342.css"
 cards_448:
   id: 448
   name: discussion
@@ -9661,7 +9665,7 @@ cards_483:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:42.000000000 Z
-  updated_at: 2025-09-04 19:20:59.000000000 Z
+  updated_at: 2025-09-11 17:38:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -9670,10 +9674,10 @@ cards_483:
   trash: 0
   type_id: 2
   db_content: |-
-    *autoname
+    *script
     *style
     *layout
-    *script
+    *autoname
     *input type
     *default
     *delete
@@ -9684,10 +9688,10 @@ cards_483:
     *structure
     *captcha
   search_content: |-
-    *autoname
+    *script
     *style
     *layout
-    *script
+    *autoname
     *input type
     *default
     *delete
@@ -9956,7 +9960,7 @@ cards_497:
   right_id: 494
   current_revision_id:
   created_at: 2025-07-01 17:31:44.000000000 Z
-  updated_at: 2025-09-04 19:20:53.000000000 Z
+  updated_at: 2025-09-11 17:38:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -9975,7 +9979,7 @@ cards_498:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:44.000000000 Z
-  updated_at: 2025-09-04 19:20:53.000000000 Z
+  updated_at: 2025-09-11 17:38:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -9998,7 +10002,7 @@ cards_499:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:44.000000000 Z
-  updated_at: 2025-09-04 19:21:01.000000000 Z
+  updated_at: 2025-09-11 17:38:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -10215,7 +10219,7 @@ cards_509:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:46.000000000 Z
-  updated_at: 2025-09-04 19:21:01.000000000 Z
+  updated_at: 2025-09-11 17:38:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10239,7 +10243,7 @@ cards_510:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:47.000000000 Z
-  updated_at: 2025-09-04 19:21:01.000000000 Z
+  updated_at: 2025-09-11 17:38:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10263,7 +10267,7 @@ cards_511:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:47.000000000 Z
-  updated_at: 2025-09-04 19:21:01.000000000 Z
+  updated_at: 2025-09-11 17:38:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10287,7 +10291,7 @@ cards_512:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:48.000000000 Z
-  updated_at: 2025-09-04 19:21:01.000000000 Z
+  updated_at: 2025-09-11 17:38:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10312,7 +10316,7 @@ cards_513:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:48.000000000 Z
-  updated_at: 2025-09-04 19:21:01.000000000 Z
+  updated_at: 2025-09-11 17:38:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10481,7 +10485,7 @@ cards_521:
   right_id:
   current_revision_id:
   created_at: 2025-07-01 17:31:51.000000000 Z
-  updated_at: 2025-09-04 19:20:53.000000000 Z
+  updated_at: 2025-09-11 17:38:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12853,7 +12857,7 @@ cards_636:
   right_id:
   current_revision_id:
   created_at: 2025-08-21 18:55:08.000000000 Z
-  updated_at: 2025-09-04 19:21:01.000000000 Z
+  updated_at: 2025-09-11 17:38:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14896,14 +14900,14 @@ cards_730:
   right_id:
   current_revision_id:
   created_at: 2025-08-21 18:55:45.000000000 Z
-  updated_at: 2025-08-21 18:55:45.000000000 Z
+  updated_at: 2025-09-11 17:38:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
   read_rule_id: 10
   references_expired:
   trash: 0
-  type_id: 2
+  type_id: 98
   db_content: ''
   search_content: ''
 cards_731:
@@ -24298,6 +24302,44 @@ cards_1162:
   references_expired:
   trash: 0
   type_id: 2
+  db_content: ''
+  search_content: ''
+cards_1163:
+  id: 1164
+  name:
+  key:
+  codename:
+  left_id: 1162
+  right_id: 302
+  current_revision_id:
+  created_at: 2025-09-11 17:38:36.000000000 Z
+  updated_at: 2025-09-11 17:38:36.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_1164:
+  id: 1165
+  name:
+  key:
+  codename:
+  left_id: 1162
+  right_id: 349
+  current_revision_id:
+  created_at: 2025-09-11 17:38:37.000000000 Z
+  updated_at: 2025-09-11 17:38:37.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  references_expired:
+  trash: 0
+  type_id: 4
   db_content: ''
   search_content: ''
 ...
