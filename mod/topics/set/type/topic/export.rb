@@ -15,9 +15,11 @@ format :jsonld do
       "@id": path(mark: card.name),
       "@type": card.type,
       "name": card.name.parents[1],
+      "description": card.fetch("Overview")&.content,
+      "inScheme": path(mark: card.name.left), 
       "parent": get_parent,
       "children": get_children
-    }
+    }.compact
   end
 
   private
