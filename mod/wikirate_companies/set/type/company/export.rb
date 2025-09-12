@@ -89,7 +89,7 @@ format :jsonld do
       "name"     => a[:name] || a["name"],
       "alias"    => a[:alias] || a["alias"],
       "logo"     => a[:image] || a["image"],
-      "country"  => a[:headquarters] || a["headquarters"],
+      "country"  => get_country,
 
       # identifiers (map 1:1 from atom)
       "lei"                         => a[:legal_entity_identifier] || a["legal_entity_identifier"],
@@ -107,6 +107,10 @@ format :jsonld do
     }.compact
   end
 
+  def get_country
+    Card.fetch(card.headquarters)&.country
+  end
+
   def same_as_from_atom(a)
     website = a[:website] || a["website"]
     wiki    = a[:wikipedia] || a["wikipedia"]
@@ -117,7 +121,7 @@ format :jsonld do
     links = []
     links << website if website.present?
     links << "https://en.wikipedia.org/wiki/#{wiki}" if wiki.present?
-    # links << "https://opencorporates.com/companies/#{oc}" if oc.present?
+    links << "https://opencorporates.com/companies/#{Card.fetch(card.headquarters)&.oc_jurisdiction_key}/#{oc}" if oc.present?
     links << "https://search.gleif.org/#/record/#{lei}" if lei.present?
     links << "https://www.wikidata.org/wiki/#{wd}" if wd.present?
     links.empty? ? nil : links
