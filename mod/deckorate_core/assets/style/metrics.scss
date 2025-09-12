@@ -22,13 +22,6 @@
       // margin-left: 0.2em;
     }
   }
-  &.bar .bar-right {
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    .labeled-badge {
-      flex-wrap: wrap;
-    }
-  }
 }
 
 .modal-body .LTYPE_RTYPE-metric-company .timeline {
@@ -38,6 +31,17 @@
   width: 100%;
 }
 
+
+.TYPE-research_group, .TYPE-dataset, .TYPE-source, .TYPE-metric,
+.TYPE-project, .TYPE-company {
+  &.bar .bar-right {
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    .labeled-badge {
+      flex-wrap: wrap;
+    }
+  }
+}
 
 // @include media-breakpoint-down(sm) {
 //   .RIGHT-Xvote_count.content-view {

@@ -44,4 +44,8 @@ format :html do
   view :box_bottom do
     count_badges :metric, :answer
   end
+
+  view :designer_box_bottom do
+    count_badges :metrics_designed, :answers_designed
+  end
 end

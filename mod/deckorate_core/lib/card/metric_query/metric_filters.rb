@@ -56,7 +56,7 @@ class Card
 
       def filter_by_benchmark value
         operator = value == "1" ? "=" : "!="
-        @conditions << "metrics.benchmark #{operator} 1"
+        filter :benchmark, "1", operator
       end
 
       private

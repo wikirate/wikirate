@@ -35,7 +35,7 @@ format :html do
   end
 
   view :top_designers do
-    nest :designer, view: :flex_centered_boxes, items: { view: :designer_box }
+    nest %i[designer featured], view: :flex_centered_boxes, items: { view: :designer_box }
   end
 end
 
