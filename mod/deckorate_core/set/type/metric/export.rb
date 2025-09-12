@@ -110,6 +110,7 @@ format :csv do
 end
 
 format :jsonld do
+  
   def molecule
     metric_jsonld(atom)
   end
@@ -122,7 +123,6 @@ format :jsonld do
       "@id"      => path(mark: card.name, format: nil),
       "@type"    => card.type,
 
-      "name"     => a[:name] || a["name"],
       "title"    => a[:title] || a["title"],
       "designer" => "#{request.base_url}/#{a[:designer] || a["designer"]}",
       "question"  => a[:headquarters] || a["headquarters"],  
@@ -146,7 +146,7 @@ format :jsonld do
 
   def license_url
     dir = card.license.gsub(/(CC|4.0)/, "").strip.downcase
-    "https://creativecommons.org/licenses/#{dir}/4.0"
+    "https://creativecommons.org/licenses/#{dir}/4.0/"
   end
 
   def get_variables
