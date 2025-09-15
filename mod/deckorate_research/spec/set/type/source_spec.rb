@@ -46,7 +46,8 @@ RSpec.describe Card::Set::Type::Source do
     describe "with a file link" do
       context "when pointing to a file" do
         it "downloads it and saves as a file source" do
-          pdf_url = "http://wikirate.s3.amazonaws.com/files/175839/12677809.pdf"
+          pdf_url =
+            "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"
           # "http://wikirate.org/Page-000003962+File.pdf"
           sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
@@ -57,19 +58,7 @@ RSpec.describe Card::Set::Type::Source do
           expect(Card.exist?("#{sourcepage.name}+description")).to eq(false)
           expect(File.exist?(source_file.file.path)).to be true
         end
-
-        it "handles this special url and saves as a file source" do
-          pdf_url =
-            "https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"
-            # I replaced the following url because it took 18min on semaphore to process
-            # "https://www.unglobalcompact.org/system/attachments/9862/"\
-            #        "original/Sinopec_2010_Sustainable_Development_Report.pdf?"\
-            #        "1302508855"
-          sourcepage = create_source pdf_url
-          expect(sourcepage.errors).to be_empty
-          expect(sourcepage.fetch(:file)).not_to be_nil
-          # expect(sourcepage.fetch(:wikirate_link)).to be_nil
-        end
+        
         # FIXME: I don't entirely understand what the following is supposed to test,
         # but the url appears to be broken.  -efm
         xit "handles file behind cloudfront" do
