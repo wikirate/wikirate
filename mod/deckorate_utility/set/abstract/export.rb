@@ -47,6 +47,10 @@ format :json do
 end
 
 format :html do
+  def export_ok?
+    Card::Auth.signed_in?
+  end
+
   view :export_panel, cache: :deep, template: :haml, wrap: :slot
   view :export_button, cache: :never, template: :haml, denial: :blank
   view :export_limit, cache: :never, template: :haml
