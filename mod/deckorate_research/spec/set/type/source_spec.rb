@@ -46,8 +46,7 @@ RSpec.describe Card::Set::Type::Source do
     describe "with a file link" do
       context "when pointing to a file" do
         it "downloads it and saves as a file source" do
-          pdf_url = "http://wikirate.s3.amazonaws.com/files/175839/12677809.pdf"
-          # "http://wikirate.org/Page-000003962+File.pdf"
+          pdf_url = "https://brendanzagaeski.appspot.com/minimal.pdf"
           sourcepage = create_source pdf_url
           expect(sourcepage.errors).to be_empty
           source_file = sourcepage.fetch(:file)
