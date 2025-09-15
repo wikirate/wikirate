@@ -9,6 +9,7 @@ include_set Abstract::DeckorateTabbed
 
 include_set Abstract::Bookmarkable
 include_set Abstract::SearchContentFields
+include_set Abstract::Designer
 
 card_accessor :alias, type: :list
 card_accessor :answer, type: :search_type

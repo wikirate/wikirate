@@ -8,7 +8,7 @@ def ok_item_types
 end
 
 def featured
-  item_names & Card::Set::Self::Topic.family_list.item_names
+  Card::Set::Self::Topic.family_list.item_names & item_names
 end
 
   # when you add a topic to something, automatically also add the topic's categories

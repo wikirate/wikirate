@@ -52,10 +52,6 @@ format do
     end << :dataset
   end
 
-  def filter_map
-    [:benchmark]
-  end
-
   def filter_benchmark_closer_value val
     val == "1" ? "Yes" : "No"
   end
@@ -145,8 +141,18 @@ format :html do
   end
 
   def quick_filter_list
-    topic_family_quick_filters
+    topic_family_quick_filters + [benchmark_quick_filter]
     # bookmark_quick_filter + topic_quick_filters + dataset_quick_filters
+  end
+
+  def benchmark_quick_filter
+    {
+      benchmark: "1",
+      text: :benchmark.cardname.vary(:plural),
+      icon: icon_tag(:benchmark),
+      separator: true
+      #      class: "quick-filter-benchmark"
+    }
   end
 end
 

@@ -1,21 +1,40 @@
-# include_set Abstract::Search
-# include_set Abstract::SearchViews
+include_set Abstract::Items
+
+assign_type :search
 
 def count
   ::Metric.select(:designer_id).distinct.count
 end
 
-def count_label
-  "Metric designers"
+def search _args={}
+  ::Metric.select(:designer_id, "count(*) as count")
+        .group(:designer_id)
+        .order("count desc")
+        .limit(limit).map do |m|
+    m.designer_id.card
+  end
 end
 
-def designers_by_count
-  ::Metric.connection.exec_query(
-    "select designer_id, count(*) as count from metrics
-     group by designer_id order by count desc"
-  ).rows
+def paging_params
+  {}
 end
 
-format :html do
-  view :core, template: :haml
+def cql_hash
+  {}
 end
+
+def limit
+  10
+end
+
+format do
+  delegate :limit, to: :card
+
+  def filter_and_sort_cql
+    {}
+  end
+end
+
+# format :html do
+#   view :core, template: :haml
+# end

@@ -29,4 +29,8 @@ class Metric < Cardio::Record
   def fetch_hybrid
     card.hybrid_card&.checked?
   end
+
+  def fetch_benchmark
+    card.benchmark_card.checked?
+  end
 end

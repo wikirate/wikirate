@@ -10,7 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_15_190243) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_11_172846) do
+  create_table "answers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
+    t.integer "answer_id"
+    t.integer "metric_id", null: false
+    t.integer "company_id", null: false
+    t.integer "record_id"
+    t.integer "year", null: false
+    t.string "value", limit: 1024
+    t.decimal "numeric_value", precision: 30, scale: 5
+    t.datetime "updated_at", precision: nil
+    t.boolean "imported"
+    t.boolean "latest"
+    t.string "checkers"
+    t.integer "creator_id", null: false
+    t.integer "editor_id"
+    t.datetime "created_at", precision: nil
+    t.string "overridden_value"
+    t.boolean "calculating"
+    t.integer "source_count"
+    t.string "source_url", limit: 1024
+    t.string "comments", limit: 1024
+    t.integer "verification"
+    t.boolean "unpublished"
+    t.integer "open_flags"
+    t.integer "route", limit: 1
+    t.index ["answer_id"], name: "answer_id_index", unique: true
+    t.index ["company_id"], name: "company_id_index"
+    t.index ["metric_id", "company_id", "year"], name: "index_answers_on_metric_id_and_company_id_and_year", unique: true
+    t.index ["metric_id", "company_id"], name: "index_answers_on_metric_id_and_company_id"
+    t.index ["metric_id"], name: "metric_id_index"
+    t.index ["numeric_value"], name: "numeric_value_index"
+    t.index ["record_id"], name: "record_id_index"
+    t.index ["value"], name: "value_index", length: 100
+  end
+
   create_table "card_actions", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "card_id"
     t.integer "card_act_id"
@@ -134,6 +168,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_190243) do
     t.string "unit"
     t.boolean "hybrid"
     t.boolean "unpublished"
+    t.boolean "benchmark"
     t.index ["designer_id"], name: "metrics_designer_id_index"
     t.index ["metric_id"], name: "metrics_metric_id_index", unique: true
     t.index ["metric_type_id"], name: "metrics_metric_type_id_index"
@@ -141,40 +176,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_190243) do
     t.index ["scorer_id"], name: "metrics_scorer_id_index"
     t.index ["title_id"], name: "metrics_title_id_index"
     t.index ["value_type_id"], name: "metrics_value_type_id_index"
-  end
-
-  create_table "answers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.integer "answer_id"
-    t.integer "metric_id", null: false
-    t.integer "company_id", null: false
-    t.integer "record_id"
-    t.integer "year", null: false
-    t.string "value", limit: 1024
-    t.decimal "numeric_value", precision: 30, scale: 5
-    t.datetime "updated_at", precision: nil
-    t.boolean "imported"
-    t.boolean "latest"
-    t.string "checkers"
-    t.integer "creator_id", null: false
-    t.integer "editor_id"
-    t.datetime "created_at", precision: nil
-    t.string "overridden_value"
-    t.boolean "calculating"
-    t.integer "source_count"
-    t.string "source_url", limit: 1024
-    t.string "comments", limit: 1024
-    t.integer "verification"
-    t.boolean "unpublished"
-    t.integer "open_flags"
-    t.integer "route", limit: 1
-    t.index ["company_id"], name: "company_id_index"
-    t.index ["metric_id", "company_id", "year"], name: "index_answers_on_metric_id_and_company_id_and_year", unique: true
-    t.index ["metric_id", "company_id"], name: "index_answers_on_metric_id_and_company_id"
-    t.index ["metric_id"], name: "metric_id_index"
-    t.index ["numeric_value"], name: "numeric_value_index"
-    t.index ["answer_id"], name: "answer_id_index", unique: true
-    t.index ["record_id"], name: "record_id_index"
-    t.index ["value"], name: "value_index", length: 100
   end
 
   create_table "relationships", id: :integer, charset: "utf8mb3", force: :cascade do |t|
@@ -196,10 +197,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_15_190243) do
     t.integer "editor_id"
     t.datetime "created_at", precision: nil
     t.integer "creator_id"
+    t.index ["answer_id"], name: "answer_id_index"
     t.index ["metric_id", "subject_company_id", "object_company_id", "year"], name: "relationship_component_cards_index", unique: true
     t.index ["metric_id"], name: "metric_id_index"
     t.index ["object_company_id"], name: "object_company_id_index"
-    t.index ["answer_id"], name: "answer_id_index"
     t.index ["record_id"], name: "record_id_index"
     t.index ["relationship_id"], name: "relationship_id_index", unique: true
     t.index ["subject_company_id"], name: "subject_company_id_index"

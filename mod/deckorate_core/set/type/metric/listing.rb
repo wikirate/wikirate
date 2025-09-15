@@ -1,4 +1,7 @@
 format :html do
+  bar_cols 8, 4
+  mini_bar_cols 8, 4
+
   view :bar_left, template: :haml
 
   view :bar_right do
@@ -21,7 +24,7 @@ format :html do
 
   view :box_bottom do
     [field_nest(:topic, view: :icon_badges)] +
-      count_badges(:answer, :company)
+      count_badges(:company, :answer)
   end
 
   # thumbnails

@@ -2,6 +2,7 @@ include_set Abstract::DeckorateTabbed
 include_set Abstract::Thumbnail
 include_set Abstract::Stewarder
 include_set Abstract::ProfileType
+include_set Abstract::Designer
 
 # include_set Abstract::Bookmarker
 
@@ -51,6 +52,10 @@ format :html do
 
   view :activity_tab, cache: :never do
     field_nest :activity
+  end
+
+  view :box_middle do
+    field_nest :image, view: :core, size: :medium
   end
 
   def type_link_label

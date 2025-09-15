@@ -58,7 +58,7 @@ RSpec.describe Card::Set::Type::Source do
           expect(Card.exist?("#{sourcepage.name}+description")).to eq(false)
           expect(File.exist?(source_file.file.path)).to be true
         end
-        
+
         # FIXME: I don't entirely understand what the following is supposed to test,
         # but the url appears to be broken.  -efm
         xit "handles file behind cloudfront" do

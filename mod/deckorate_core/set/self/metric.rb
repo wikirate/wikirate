@@ -3,6 +3,7 @@ include_set Abstract::MetricSearch
 include_set Abstract::FeaturedBoxes
 include_set Abstract::OpenSearch
 include_set Abstract::ExportAll
+include_set Abstract::FluidLayout
 
 recount_trigger :type, :metric, on: [:create, :delete] do |_changed_card|
   Card[:metric]
@@ -13,7 +14,13 @@ def count
 end
 
 format :html do
-  before(:filtered_content) { voo.items[:view] = :box }
+  view :page, template: :haml, wrap: :slot
+
+  def edit_fields
+    %i[description featured]
+  end
+
+  # before(:filtered_content) { voo.items[:view] = :box }
 
   def featured_label
     @featured_label ||= :benchmark.cardname.vary(:plural).downcase
@@ -21,6 +28,14 @@ format :html do
 
   def featured_link_path
     path filter: { benchmark: "1" }
+  end
+
+  def featured_card_boxes
+    voo.explicit_show?(:top_designers) ? render_top_designers : super
+  end
+
+  view :top_designers do
+    nest %i[designer featured], view: :flex_centered_boxes, items: { view: :designer_box }
   end
 end
 
