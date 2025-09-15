@@ -87,7 +87,7 @@ format :html do
 end
 
 format :json do
-  view :option_list do
+  view :option_list, perms: :none do
     card.options_hash_with_unknown.map.with_object([]) do |(name, key), array|
       array << { name: name, key: key }
     end

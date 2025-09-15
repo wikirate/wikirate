@@ -118,7 +118,7 @@ format :html do
 end
 
 format :json do
-  view :search_box_complete, cache: :never do
+  view :search_box_complete, cache: :never, perms: :none do
     search_box_items :goto_items, :search_item
   end
 
