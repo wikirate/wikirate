@@ -1,10 +1,7 @@
 format :html do
-  def confirm_export
-    :attribution_alert.card.content
-    nil
-  end
+  view :export_button do
+    return super() unless export_ok?
 
-  view :export_button, cache: :deep do
     wrap_with :div, class: "_attributable-export" do
       [super(), card_stub(view: :attribution_alert,
                           slot: { hide: :pop_out_modal_link },
