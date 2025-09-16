@@ -586,35 +586,7 @@ components:
           type: string
         question:
           type: string
-
-    "answer":
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 566034
-        name:
-          type: string
-          example: PayScale+CEO to Worker pay+Apple Inc.
-        url:
-          type: string
-          example: "https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json"
-        html_url:
-          type: string
-          example: "https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc"
-        type:
-          type: string
-          example: Answer
-        items:
-          description: answer
-          type: array
-          items:
-            $ref: '#/components/schemas/answer'
-        ancestors:
-          type: array
-          items:
-            $ref: '#/components/schemas/atom_view'
-    "answer":
+    answer:
       type: object
       properties:
         id:
