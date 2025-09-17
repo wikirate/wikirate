@@ -2,8 +2,9 @@ format :json do
   def atom
     lookup = card.answer
     super.tap do |atom|
+      atom.delete :content
       atom[:metric] = lookup.metric_name
-      %i[company year value comments].each do |key|
+      %i[company year value source comments].each do |key|
         atom[key] = lookup.send key
       end
       atom[:answer_url] = path mark: card.name.left, format: :json

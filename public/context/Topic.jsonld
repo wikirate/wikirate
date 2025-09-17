@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "wr": "https://wikirate.org/ontology/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "schema": "https://schema.org/",
+
+    "Topic": "wr:Topic",
+    "TopicScheme": "skos:ConceptScheme",
+
+    "name": "skos:prefLabel",
+    "description": "skos:definition",
+
+    "inScheme": { "@id": "skos:inScheme", "@type": "@id" },
+    "parent":   { "@id": "skos:broader",  "@type": "@id" },
+    "children": { "@id": "skos:narrower", "@type": "@id", "@container": "@set" }
+  }
+}
