@@ -1,4 +1,4 @@
-nucleus_view:
+nucleus view:
   type: object
   properties:
     id:
