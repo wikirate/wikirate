@@ -1,12 +1,15 @@
 ---
 openapi: 3.0.0
 info:
-  description: |-
-    API to access Wikirate's data. To get the JSON responses as described below, you can (1) set the http access header to `application/json` in your request, (2) append `.json` to the request urls, or (3) add `format=json` to the query params.
-
-      Wikirate is built with Decko, and is thus constructed from _cards_. Everything in Decko is a card, including images, accounts, searches, fields, etc. So every request for a webpage on Wikirate.org or via its REST API is for a _card_.
-
-      The documentation below is divided into generic Decko card documentation (under `Decko`) and more Wikirate-specific cardtypes (under `Wikirate`).
+  description: "API to access Wikirate's data. To get the JSON responses as described
+    below, you can:\n\n  1. set the http access header to `application/json` in your
+    request\n  2. append `.json` to your request urls, or \n  3. add `format=json`
+    to your query params.\n\n  Wikirate is built with Decko, and is thus constructed
+    from _cards_. Everything \n  in Decko is a card, including images, accounts, searches,
+    fields, etc. So every \n  request for a webpage on Wikirate.org or via its REST
+    API is for a _card_.\n\n  The documentation below is divided into generic Decko
+    card documentation \n  (under `Decko`) and more Wikirate-specific cardtypes (under
+    `Wikirate`)."
   version: 0.20.3
   title: Wikirate API
   contact:
@@ -116,7 +119,7 @@ paths:
                     type: string
                     example: https://Wikirate.org/Company.json
                   type:
-                    "$ref": "#/components/schemas/nucleus%20view"
+                    "$ref": "#/components/schemas/nucleus_view"
                   codename:
                     type: string
                     example: company
@@ -163,7 +166,7 @@ paths:
                     type: string
                     example: https://Wikirate.org/Apple_Inc.json
                   type:
-                    "$ref": "#/components/schemas/nucleus%20view"
+                    "$ref": "#/components/schemas/nucleus_view"
                   wikipedia:
                     type: string
                     example: Apple_Inc
@@ -235,7 +238,7 @@ paths:
                     type: string
                     example: https://Wikirate.org/Metric
                   type:
-                    "$ref": "#/components/schemas/nucleus%20view"
+                    "$ref": "#/components/schemas/nucleus_view"
                   codename:
                     type: string
                     example: metric
@@ -284,8 +287,8 @@ paths:
       tags:
       - Wikirate
       summary: A answer for a metric/company
-      description: A answer contains all of a company's answer to a given metric
-        (for all years). Answers are included under `items`.
+      description: A answer contains all of a company's answer to a given metric (for
+        all years). Answers are included under `items`.
       operationId: read13
       parameters:
       - "$ref": "#/components/parameters/metric"
@@ -318,8 +321,8 @@ paths:
       - Wikirate
       summary: A answer for a metric/company/year
       description: A answer includes a value and various bits of metadata, including
-        sources, discussions, and verification. For relation metrics, it also
-        includes details about related companies under `items`
+        sources, discussions, and verification. For relation metrics, it also includes
+        details about related companies under `items`
       operationId: read14
       parameters:
       - "$ref": "#/components/parameters/metric"
@@ -338,7 +341,7 @@ paths:
       - Wikirate
       summary: company-to-company relationship
       description: Relationship metrics ask questions about relationships between
-        companies. Each answer to these metrics is comprised of one or more relationships,
+        companies. Each answer for these metrics is comprised of one or more relationships,
         each describing how two specific companies relate
       operationId: read15
       parameters:
@@ -369,7 +372,7 @@ paths:
       tags:
       - Wikirate
       summary: create an Answer card
-      description: Create a new answer for a specified metric, company, and year.
+      description: Create a new answer to a specified metric, company, and year.
       parameters:
       - "$ref": "#/components/parameters/answer_name"
       - "$ref": "#/components/parameters/answer_subcards"
@@ -528,7 +531,7 @@ components:
       in: query
       required: false
       description: |-
-        Same filter options as GUI in RubyOnRails hash parameter style,
+        Same filter options as UI in RubyOnRails hash parameter style,
         eg `filter[status]=known`.
 
         - **status:** all, exists (researched), known, unknown, or none (not researched)
@@ -543,7 +546,7 @@ components:
         {company}+Answer only:
         - **metric_name:** string to match (or exact name in quotes)
         - **metric_id:** numerical_id
-        - **metric_type:** name of "metric type" card (Researched, Relationship, Formula,
+        - **metric_type:** name of "metric type" card (Researched, Relation, Formula,
           Rating, Score, or Descendant)
         - **topic:** topic card name(s). restrict to metrics with topic
         - **assessment:** name of assessment card
@@ -573,7 +576,7 @@ components:
       name: card[subcards]
       in: query
       description: |-
-        A answer can have several subcards, including:
+        An answer can have several subcards, including:
 
         - **+:value**: the answer value
         - **+:source**: (required) list of source card names separated by line breaks.  All answer
@@ -618,7 +621,7 @@ components:
         type: object
         example: card[subcards][+link]=http://mysource.com/mysourcepage.html
   schemas:
-    nucleus view:
+    nucleus_view:
       name: nucleus view
       type: object
       properties:
@@ -633,7 +636,7 @@ components:
           type: string
         codename:
           type: string
-    atom view:
+    atom_view:
       name: atom view
       type: object
       properties:
@@ -650,7 +653,7 @@ components:
           type: string
         content:
           type: string
-    molecule view:
+    molecule_view:
       type: object
       properties:
         id:
@@ -660,7 +663,7 @@ components:
         url:
           type: string
         type:
-          "$ref": "#/components/schemas/nucleus%20view"
+          "$ref": "#/components/schemas/nucleus_view"
         codename:
           type: string
         content:
@@ -670,7 +673,7 @@ components:
         items:
           type: array
           items:
-            "$ref": "#/components/schemas/atom%20view"
+            "$ref": "#/components/schemas/atom_view"
         links:
           type: array
           items:
@@ -678,8 +681,8 @@ components:
         ancestors:
           type: array
           items:
-            "$ref": "#/components/schemas/atom%20view"
-    errors view:
+            "$ref": "#/components/schemas/atom_view"
+    errors_view:
       type: object
       properties:
         error_status:
@@ -749,7 +752,7 @@ components:
         ancestors:
           type: array
           items:
-            "$ref": "#/components/schemas/atom%20view"
+            "$ref": "#/components/schemas/atom_view"
         metric_type:
           type: string
           example: Researched
@@ -774,33 +777,6 @@ components:
           type: string
         question:
           type: string
-    answer:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 566034
-        name:
-          type: string
-          example: PayScale+CEO to Worker pay+Apple Inc.
-        url:
-          type: string
-          example: https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json
-        html_url:
-          type: string
-          example: https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc
-        type:
-          type: string
-          example: Answer
-        items:
-          description: answer
-          type: array
-          items:
-            "$ref": "#/components/schemas/answer"
-        ancestors:
-          type: array
-          items:
-            "$ref": "#/components/schemas/atom%20view"
     answer:
       type: object
       properties:
@@ -835,20 +811,20 @@ components:
           type: string
           example: https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json
         items:
-          description: If the metric is a relation metric then all relationships
-            to other companies for the given company are listed here.
+          description: If the metric is a relation metric then all relationships to
+            other companies for the given company are listed here.
           type: array
           items:
             "$ref": "#/components/schemas/relationship"
         ancestors:
           type: array
           items:
-            "$ref": "#/components/schemas/atom%20view"
+            "$ref": "#/components/schemas/atom_view"
     relationship:
       type: object
       properties:
         id:
-          type: string
+          type: integer
           example: 3316841
         name:
           type: string
@@ -872,7 +848,7 @@ components:
           type: string
           example: Tier 1 Supplier
         import:
-          type: string
+          type: boolean
           example: false
         comments:
           type: string
@@ -882,19 +858,19 @@ components:
         object_company:
           "$ref": "#/components/schemas/company_atom"
   responses:
-    200:
+    '200':
       description: Card data. Defaults to molecule view.
       content:
         application/json:
           schema:
-            "$ref": "#/components/schemas/molecule%20view"
-    404:
+            "$ref": "#/components/schemas/molecule_view"
+    '404':
       description: Could not find the card requested.
       content:
         application/json:
           schema:
-            "$ref": "#/components/schemas/errors%20view"
-    302:
+            "$ref": "#/components/schemas/errors_view"
+    '302':
       description: |-
         Successful non-idempotent requests redirect to idempotent GET
         requests.

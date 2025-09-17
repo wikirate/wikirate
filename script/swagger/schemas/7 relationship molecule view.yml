@@ -2,7 +2,7 @@ relationship_molecule_view:
   type: object
   properties:
     id:
-      type: string
+      type: integer
       example: 3316841
     name:
       type: string
