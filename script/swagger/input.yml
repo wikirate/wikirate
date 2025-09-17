@@ -53,7 +53,7 @@ paths:
                     type: string
                     example: https://Wikirate.org/Company.json
                   type:
-                    $ref: '#/components/schemas/nucleus%20view'
+                    $ref: '#/components/schemas/nucleus_view'
                   codename:
                     type: string
                     example: company
@@ -100,7 +100,7 @@ paths:
                     type: string
                     example: https://Wikirate.org/Apple_Inc.json
                   type:
-                    $ref: '#/components/schemas/nucleus%20view'
+                    $ref: '#/components/schemas/nucleus_view'
                   wikipedia:
                     type: string
                     example: Apple_Inc
@@ -172,7 +172,7 @@ paths:
                     type: string
                     example: https://Wikirate.org/Metric
                   type:
-                    $ref: '#/components/schemas/nucleus%20view'
+                    $ref: '#/components/schemas/nucleus_view'
                   codename:
                     type: string
                     example: metric
@@ -539,7 +539,7 @@ components:
       properties:
         id:
           type: integer
-          example: 565926,
+          example: 565926
         name:
           type: string
           example: PayScale+CEO to Worker pay
@@ -561,7 +561,7 @@ components:
         ancestors:
           type: array
           items:
-            $ref: '#/components/schemas/atom%20view'
+            $ref: '#/components/schemas/atom_view'
         metric_type:
           type: string
           example: Researched
@@ -586,35 +586,7 @@ components:
           type: string
         question:
           type: string
-
-    "answer":
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 566034
-        name:
-          type: string
-          example: PayScale+CEO to Worker pay+Apple Inc.
-        url:
-          type: string
-          example: "https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc.json"
-        html_url:
-          type: string
-          example: "https://Wikirate.org/PayScale+CEO_to_Worker_pay+Apple_Inc"
-        type:
-          type: string
-          example: Answer
-        items:
-          description: answer
-          type: array
-          items:
-            $ref: '#/components/schemas/answer'
-        ancestors:
-          type: array
-          items:
-            $ref: '#/components/schemas/atom%20view'
-    "answer":
+    answer:
       type: object
       properties:
         id:
@@ -655,13 +627,13 @@ components:
         ancestors:
           type: array
           items:
-            $ref: '#/components/schemas/atom%20view'
+            $ref: '#/components/schemas/atom_view'
 
     "relationship":
       type: object
       properties:
         id:
-          type: string
+          type: integer
           example: 3316841
         name:
           type: string
@@ -685,7 +657,7 @@ components:
           type: string
           example: "Tier 1 Supplier"
         import:
-          type: string
+          type: boolean
           example: false
         comments:
           type: string
