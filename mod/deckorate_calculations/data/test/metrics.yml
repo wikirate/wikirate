@@ -67,6 +67,7 @@
   :fields:
     :value_type: Number
     :metric_type: Rating
+    :benchmark: "1"
     :variables: |-
       [ 
         { 
@@ -180,7 +181,7 @@
     :metric_type: Formula
     # :formula: "[[ISIC+Industry Section]]"
     :question: What are the company's industry or industries?
-    :research_policy: Community Assessed
+    :assessment: Community Assessed
 
 - :name:
     - :core

@@ -18,7 +18,7 @@ basket[:icons][:material].merge!(
   year: :calendar_today,
   contributions: :power,
   community_assessed: :lock_open,
-  designer_assessed: :lock,
+  steward_assessed: :lock,
   dashboard: :speed,
   task: :task,
   badge: :emoji_events,
@@ -51,7 +51,8 @@ basket[:icons][:material].merge!(
   signup: :rocket,
   environment: :spa,
   social: :volunteer_activism,
-  governance: :assured_workload
+  governance: :assured_workload,
+  benchmark: :straighten
 )
 
 basket[:icons][:font_awesome].merge!(
@@ -67,7 +68,7 @@ basket[:icons][:font_awesome].merge!(
   year: "calendar-alt",
   contributions: :plug,
   community_assessed: :unlock,
-  designer_assessed: :lock,
+  steward_assessed: :lock,
   dashboard: "tachometer-alt",
   task: :tasks,
   badge: :certificate,

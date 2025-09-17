@@ -54,6 +54,11 @@ class Card
           end
       end
 
+      def filter_by_benchmark value
+        operator = value == "1" ? "=" : "!="
+        filter :benchmark, "1", operator
+      end
+
       private
 
       # Wikirate team members are stewards of all metrics

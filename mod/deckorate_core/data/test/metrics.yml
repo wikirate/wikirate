@@ -111,7 +111,7 @@
   :fields:
     :value_type: Number
     :metric_type: Researched
-    :research_policy: Designer Assessed
+    :assessment: Steward Assessed
     :topic: Wikirate ESG Topics+Social
 - :name:
     - Joe User
@@ -175,7 +175,7 @@
     :value_options: |-
       yes
       no
-    :research_policy: Designer Assessed
+    :assessment: Steward Assessed
     :topic: Wikirate ESG Topics+Social
 - :name:
     - Jedi
@@ -187,7 +187,7 @@
     :value_options: |-
       yes
       no
-    :research_policy: Community Assessed
+    :assessment: Community Assessed
     :topic: Wikirate ESG Topics+Environment
 - :name:
     - Commons
@@ -227,7 +227,7 @@
   :fields:
     :value_type: Multi-Category
     :metric_type: Researched
-    :research_policy: Designer Assessed
+    :assessment: Steward Assessed
 
 # comment separate from metric bc made by Joe User
 - :name:

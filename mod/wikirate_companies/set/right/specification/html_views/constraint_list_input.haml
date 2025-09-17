@@ -2,7 +2,7 @@
   %ul.pointer-list-editor
     - constraints.each do |constraint|
       - constraint ||= {}
-      - metric = constraint[:metric_id].to_i.card
+      - metric = constraint[:metric_id]&.to_i&.card
       %li.pointer-li.mb-1
         .input-group
           ._constraint-editor.constraint-editor.col-11

@@ -23,7 +23,7 @@ def cql_content
   { type: :topic }.tap do |cql|
     # exclude top-level topics
     excluded_ids = family_list.item_ids
-    cql[:id] =  ["not in"] + excluded_ids if excluded_ids.present?
+    cql[:id] = ["not in"] + excluded_ids if excluded_ids.present?
   end
 end
 
@@ -36,5 +36,5 @@ end
 format :html do
   view :page, template: :haml
 
-  view :topic_tree, cache: :deep, template: :haml
+  view :topic_tree, cache: :force, template: :haml
 end

@@ -32,6 +32,17 @@
 }
 
 
+.TYPE-research_group, .TYPE-dataset, .TYPE-source, .TYPE-metric,
+.TYPE-project, .TYPE-company {
+  &.bar .bar-right {
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    .labeled-badge {
+      flex-wrap: wrap;
+    }
+  }
+}
+
 // @include media-breakpoint-down(sm) {
 //   .RIGHT-Xvote_count.content-view {
 //     display: none;

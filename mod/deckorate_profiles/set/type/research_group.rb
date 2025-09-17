@@ -2,6 +2,7 @@ include_set Abstract::DeckorateTabbed
 include_set Abstract::Thumbnail
 include_set Abstract::Table
 include_set Abstract::Bookmarkable
+include_set Abstract::Designer
 
 card_accessor :organizer, type: :list
 card_accessor :researcher, type: :list
@@ -34,7 +35,7 @@ format :html do
     voo.edit_structure = [
       :image,
       :organizer,
-      :topic,
+      # :topic,
       :description
     ]
   end
@@ -45,9 +46,9 @@ format :html do
     labeled_field :organizer, :thumbnail, title: "Group Organizer"
   end
 
-  def topic_detail
-    labeled_field :topic, :link, title: "Topics"
-  end
+  # def topic_detail
+  #   labeled_field :topic, :link, title: "Topics"
+  # end
 
   def thumbnail_subtitle
     field_nest :organizer, view: :credit
@@ -74,7 +75,7 @@ format :html do
   end
 
   view :bar_middle do
-    result_middle { field_nest :topic, items: { view: :link } }
+    "" # result_middle { field_nest :topic, items: { view: :link } }
   end
 
   view :bar_right do
@@ -104,6 +105,7 @@ format :html do
   end
 
   view :details_tab_right do
-    labeled_fields { [organizer_detail, topic_detail] }
+    # labeled_fields { [organizer_detail, topic_detail] }
+    labeled_fields { [organizer_detail] }
   end
 end

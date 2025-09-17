@@ -4,11 +4,12 @@ include_set Abstract::Media
 include_set Abstract::Delist
 include_set Abstract::AccountHolder
 include_set Abstract::Bookmarker
-include_set Abstract::Stewardable
+include_set Abstract::Stewarder
 include_set Abstract::DeckorateTabbed
 
 include_set Abstract::Bookmarkable
 include_set Abstract::SearchContentFields
+include_set Abstract::Designer
 
 card_accessor :alias, type: :list
 card_accessor :answer, type: :search_type

@@ -26,7 +26,7 @@ format :html do
   end
 
   view :bar_right do
-    [count_badges(:answer, :metric), render_bookmark]
+    [count_badges(:metric, :answer), render_bookmark]
   end
 
   view :bar_middle do
@@ -42,6 +42,10 @@ format :html do
   end
 
   view :box_bottom do
-    count_badges :answer, :metric
+    count_badges :metric, :answer
+  end
+
+  view :designer_box_bottom do
+    count_badges :metrics_designed, :answers_designed
   end
 end

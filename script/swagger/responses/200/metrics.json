@@ -27,7 +27,7 @@
         "Unknown"
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": " tonnes CO2 equivalent",
       "range": null,
       "hybrid": "no",
@@ -91,7 +91,7 @@
         "Unknown"
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "USD",
       "range": null,
       "hybrid": "no",
@@ -138,7 +138,7 @@
 
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "tonnes CO2 equivalent",
       "range": null,
       "hybrid": "no",
@@ -199,7 +199,7 @@
         "No"
       ],
       "report_type": "Communication on Progress",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": null,
       "range": null,
       "hybrid": "no",
@@ -242,7 +242,7 @@
         "Unknown"
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "Gigajoules",
       "range": null,
       "hybrid": "no",
@@ -303,7 +303,7 @@
 
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "employees",
       "range": null,
       "hybrid": "no",
@@ -363,7 +363,7 @@
         "Unknown"
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "employees",
       "range": null,
       "hybrid": "no",
@@ -414,7 +414,7 @@
 
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "employees",
       "range": null,
       "hybrid": "no",
@@ -456,7 +456,7 @@
         "No - neither"
       ],
       "report_type": "Modern Slavery Statement",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": null,
       "range": null,
       "hybrid": "no",
@@ -510,7 +510,7 @@
 
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "female employees",
       "range": null,
       "hybrid": "no",
@@ -566,7 +566,7 @@
         "Unknown"
       ],
       "report_type": null,
-      "research_policy": "Designer Assessed",
+      "assessment": "Steward Assessed",
       "unit": "tonnes",
       "range": null,
       "hybrid": "no",
@@ -609,7 +609,7 @@
         "Unknown"
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "tonnes",
       "range": null,
       "hybrid": "no",
@@ -658,7 +658,7 @@
 
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "USD",
       "range": null,
       "hybrid": "no",
@@ -711,7 +711,7 @@
         "Unknown"
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "tonnes",
       "range": null,
       "hybrid": "no",
@@ -764,7 +764,7 @@
 
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "tonnes CO2 equivalent",
       "range": null,
       "hybrid": "no",
@@ -823,7 +823,7 @@
         "Unknown"
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "m3",
       "range": null,
       "hybrid": "no",
@@ -874,7 +874,7 @@
         "Unknown"
       ],
       "report_type": null,
-      "research_policy": "Designer Assessed",
+      "assessment": "Steward Assessed",
       "unit": ":1",
       "range": ":1",
       "hybrid": "no",
@@ -915,7 +915,7 @@
         "Unknown"
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "Gigajoules",
       "range": null,
       "hybrid": "no",
@@ -974,7 +974,7 @@
 
       ],
       "report_type": "Gender Pay Gap Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "%",
       "range": null,
       "hybrid": "no",
@@ -1019,7 +1019,7 @@
         "Unknown"
       ],
       "report_type": "Corporate Social Responsibility Report",
-      "research_policy": "Community Assessed",
+      "assessment": "Community Assessed",
       "unit": "cubic metres",
       "range": null,
       "hybrid": "no",

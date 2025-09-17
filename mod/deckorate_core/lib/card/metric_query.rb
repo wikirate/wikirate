@@ -5,12 +5,12 @@ class Card
       designer: :designer_id,
       title: :title_id,
       scorer: :scorer_id,
-      research_policy: :policy_id,
+      assessment: :policy_id,
       metric_type: :metric_type_id,
       value_type: :value_type_id
     }.freeze
     self.card_id_filters = ::Set.new(card_id_map.keys).freeze
-    self.simple_filters = ::Set.new(card_id_map.values << :metric_id).freeze
+    self.simple_filters = ::Set.new(card_id_map.values + %i[metric_id benchmark]).freeze
 
     SORT_BY_COUNT = { company: :company,
                       answer: :answer,

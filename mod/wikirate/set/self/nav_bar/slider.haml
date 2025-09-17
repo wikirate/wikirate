@@ -20,7 +20,9 @@
                  { breakpoint: "576",  settings: { slidesToShow: 1 } }
                ]}.to_json
       } }
-      = nest %i[cardtype featured], items: { view: :thumbnail, variant: :plural }
+      = nest %i[cardtype featured],
+             items: { view: :thumbnail, variant: :plural },
+             hide: :paging
 
   .d-flex.align-items-center.ps-3.col-2.col-md-1.justify-content-end
     %a.wr-next.wr-arrow

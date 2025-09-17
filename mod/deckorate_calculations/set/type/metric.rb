@@ -4,7 +4,6 @@
 card_accessor :variables, type: :json # Formula, Ratings, and Descendants (not Scores)
 card_accessor :rubric, type: :json # Scores (of categorical metrics)
 card_accessor :formula, type: :coffee_script # Formula and non-categorical Scores
-card_accessor :license
 
 event :recalculate_answers, delay: true, priority: 5 do
   calculate_answers

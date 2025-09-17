@@ -2,7 +2,7 @@ name: Build and publish Docker image
 
 on:
   push:
-    branches: [ main, staging, production, topics ]
+    branches: [ main, staging, production, bench ]
 
 jobs:
   build-and-push-image:
@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v5.0.0
 
       - name: Log in to the Container registry
         uses: docker/login-action@v3.5.0

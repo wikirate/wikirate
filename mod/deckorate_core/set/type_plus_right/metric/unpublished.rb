@@ -1,6 +1,6 @@
 include_set Abstract::MetricChild, generation: 1
 include_set Abstract::LookupField
-include_set Abstract::DesignerPermissions
+include_set Abstract::StewardPermissions
 include_set Abstract::PublishableField
 
 delegate :unpublished?, :published?, :calculated?, to: :metric_card

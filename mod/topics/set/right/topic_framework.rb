@@ -1,4 +1,5 @@
 include_set Abstract::IdList
+include_set Abstract::StewardedTopicTags
 
 assign_type :list
 

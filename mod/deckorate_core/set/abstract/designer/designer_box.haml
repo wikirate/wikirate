@@ -1,0 +1,9 @@
+- box_classes = css_classes classy("box"), card.safe_set_keys
+.card._card-link.nodblclick{ class: box_classes, data: wrap_data }
+  .card-header.text-center{class: classy("box-top")}
+    = render :designer_box_top
+    = render :menu
+  .card-body{class: classy("box-middle")}
+    = render :box_middle
+  .card-footer.text-center{class: classy("box-bottom")}
+    = render :designer_box_bottom

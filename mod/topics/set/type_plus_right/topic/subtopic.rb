@@ -1,7 +1,5 @@
-def virtual?
-  new?
-end
+include_set Abstract::VirtualSearch,
+            cql_content: { type: :topic,
+                           right_plus: [:category, { refer_to: "_left" }],
+                           limit: 100 }
 
-def cql_content
-  { type: :topic, right_plus: [:category, { refer_to: name.left }], limit: 100 }
-end

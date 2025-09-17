@@ -23,6 +23,7 @@
   :codename: range
 - :name: Designer
   :codename: designer
+  :type: :search_type
 
 - :name:
     - :metric_type

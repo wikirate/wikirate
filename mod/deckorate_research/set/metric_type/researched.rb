@@ -9,24 +9,24 @@ def researched?
   true
 end
 
-def research_policy
-  @research_policy ||= research_policy_card&.first_name&.downcase
+def assessment
+  @assessment ||= assessment_card&.first_name&.downcase
 end
 
 format :html do
-  delegate :research_policy, to: :card
+  delegate :assessment, to: :card
 
   def metric_type_details
-    "Research #{research_policy_icon_link}"
+    "Research #{assessment_icon_link}"
   end
 
-  def research_policy_icon
-    icon_tag research_policy.tr(" ", "_").to_sym
+  def assessment_icon
+    icon_tag assessment.tr(" ", "_").to_sym
   end
 
-  def research_policy_icon_link
-    return unless research_policy
+  def assessment_icon_link
+    return unless assessment
 
-    link_to_card research_policy, research_policy_icon, title: research_policy
+    link_to_card assessment, assessment_icon, title: assessment
   end
 end

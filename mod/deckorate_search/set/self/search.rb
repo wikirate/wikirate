@@ -50,6 +50,10 @@ format do
   def requiring_keyword
     search_keyword.present? ? yield : []
   end
+
+  def valid_sort_param key
+    key
+  end
 end
 
 format :html do

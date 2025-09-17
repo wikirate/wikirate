@@ -4,6 +4,8 @@ icon_basket = basket[:icons][:wikirate] = %i[
 ].each_with_object({}) { |key, hash| hash[key] = key }
 
 icon_basket[:data_subset] = :dataset
+icon_basket[:metrics_designed] = :metric
+icon_basket[:answers_designed] = :answer
 
 format :html do
   def wikirate_icon_tag icon, _opts={}

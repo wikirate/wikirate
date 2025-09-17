@@ -11,7 +11,7 @@
         = nest_item sample_answer, view: :bar_middle
       .bar-right.col-2
         = nest_item sample_answer, view: :markers
-        .latest-and-count.d-flex.align-items-center
+        .latest-and-count.d-flex.align-items-center{ title: "#{answer_count} years have datapoints" }
           .TYPE-year.color-on-hover
             = sample_answer.year
           .ps-1

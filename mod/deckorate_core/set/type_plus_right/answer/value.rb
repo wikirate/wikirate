@@ -1,5 +1,5 @@
 include_set Abstract::MetricChild, generation: 3
-include_set Abstract::DesignerPermissions
+include_set Abstract::StewardPermissions
 include_set Abstract::PublishableField
 include_set Abstract::LookupField
 
@@ -33,3 +33,8 @@ end
 def relationship_count_value?
   metric_card.relation?
 end
+
+def stewarded_card
+  metric_card
+end
+

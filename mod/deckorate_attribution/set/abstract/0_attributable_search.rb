@@ -6,9 +6,14 @@ format :html do
 
   view :export_button, cache: :deep do
     wrap_with :div, class: "_attributable-export" do
-      [super(), render_attribution_alert]
+      [super(), card_stub(view: :attribution_alert,
+                          slot: { hide: :pop_out_modal_link },
+                          filter: filter_hash_from_params)]
     end
   end
 
-  view :attribution_alert, template: :haml, cache: :yes
+  view :attribution_alert, template: :haml, cache: :yes, wrap: { modal: { size: :large } }
+
+  # for override
+  view(:attribution_alert_detail) { "" }
 end
