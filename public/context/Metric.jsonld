@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "wr": "https://wikirate.org/ontology/",
+    "schema": "https://schema.org/",
+
+    "Metric": "wr:Metric",
+
+    "designer": { "@id": "schema:creator", "@type": "@id" },
+    "title": "schema:headline",
+
+    "question": "wr:metricQuestion",
+    "about": "schema:description",
+    "methodology": "schema:measurementTechnique",
+    "formula": "wr:formula",
+
+    "metric_type": "wr:metricType",
+    "value_type": "wr:valueType",
+    "value_options": { "@id": "wr:valueOption", "@container": "@set" },
+    "value_range": "schema:text",
+    "unit": "schema:unitText",
+    "report_type": "wr:reportType",
+    "research_policy": "wr:researchPolicy",
+    "topics": { "@id": "wr:aboutTopic", "@type": "@id", "@container": "@set" },
+    "variables": { "@id": "wr:hasInput", "@type": "@id", "@container": "@set" },
+    "calculations": { "@id": "wr:isInput", "@type": "@id", "@container": "@set" },
+    "license": "schema:license"
+  }
+}

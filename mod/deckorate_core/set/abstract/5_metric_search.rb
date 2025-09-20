@@ -5,6 +5,7 @@ include_set Abstract::LookupSearch
 include_set Abstract::SearchViews
 include_set Abstract::DetailedExport
 include_set Abstract::BarBoxToggle
+include_set Abstract::JsonldSupported
 
 def bookmark_type
   :metric

@@ -1,6 +1,7 @@
 include_set Abstract::CqlSearch
 include_set Abstract::SearchViews
 include_set Abstract::BookmarkFiltering
+include_set Abstract::JsonldSupported
 
 def item_type_id
   TopicID
