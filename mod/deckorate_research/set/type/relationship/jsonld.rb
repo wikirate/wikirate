@@ -6,11 +6,11 @@ format :jsonld do
 
   private
 
-    def answer_jsonld  
+    def answer_jsonld
         metric = card.metric_card
         print ("Metric Cars: #{metric}")
         {
-            "@context" => "#{request.base_url}/context/#{card.type}.jsonld",
+            "@context" => context,
             "@id"      => path(mark: card.name, format: nil),
             "@type"    => card.type,
             "name" => card.name,
@@ -21,24 +21,9 @@ format :jsonld do
             "value" => get_value(metric),
             "unit" => metric.unit.presence,
             "year" => card.year,
-            "source" => get_sources, 
+            "source" => get_sources,
             "license" => license_url(metric)
 
         }.compact
     end
-
-    def license_url metric
-        dir = metric.license.gsub(/(CC|4.0)/, "").strip.downcase
-        "https://creativecommons.org/licenses/#{dir}/4.0/"
-    end
-
-    def get_value(metric)
-        metric.value_type == "Multi-Category" ? card.value&.split(", ") : card.value
-    end
-
-    def get_sources
-        sources = card.source&.split("\n") || []
-        sources&.any? ? sources.map { |source| path(mark: source, format: nil) } : nil
-    end
-
 end
