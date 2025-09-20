@@ -8,6 +8,7 @@ include_set Abstract::Delist
 include_set Abstract::Lookup
 include_set Abstract::Publishable
 include_set Abstract::Stewardable
+include_set Abstract::JsonldSupported
 
 card_accessor :metric_type, type: :pointer, default_content: "Researched"
 card_accessor :about
