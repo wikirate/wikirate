@@ -138,7 +138,7 @@ format :jsonld do
       "value_type"                 => a[:value_type],
       "value_options"               => card.value_options.presence,
       "value_range"                 => a[:value_range],
-      "unit" => a[:unit],
+      "unit" => get_unit(card),
       "formula" => get_formula,
       "license" => license_url(card)
     }.compact
