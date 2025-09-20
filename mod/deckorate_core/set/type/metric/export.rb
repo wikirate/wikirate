@@ -110,50 +110,45 @@ format :csv do
 end
 
 format :jsonld do
-  
+
   def molecule
-    metric_jsonld(atom)
+    metric_jsonld(atom.symbolize_keys!)
   end
 
   private
 
     def metric_jsonld(a)
     {
-      "@context" => "#{request.base_url}/context/#{card.type}.jsonld",
+      "@context" => context,
       "@id"      => path(mark: card.name, format: nil),
       "@type"    => card.type,
 
-      "title"    => a[:title] || a["title"],
-      "designer" => "#{request.base_url}/#{a[:designer] || a["designer"]}",
-      "question"  => a[:headquarters] || a["headquarters"],  
+      "title"    => a[:title],
+      "designer" => "#{request.base_url}/#{a[:designer]}",
+      "question"  => a[:headquarters],
 
-      "metric_type"                 => a[:metric_type] || a["metric_type"],
-      "research_policy"             => a[:research_policy] || a["research_policy"],
-      "about"                       => ActionView::Base.full_sanitizer.sanitize(a[:about] || a["about"]),
-      "methodology"                 => ActionView::Base.full_sanitizer.sanitize(a[:methodology] || a["methodology"]),
-      "topics"                      => get_topics(a[:topics] || a["topics"]),
-      "calculations"                => get_elements(a[:calculations] || a["calculations"]),
+      "metric_type"                 => a[:metric_type],
+      "research_policy"             => a[:research_policy],
+      "about"                       => sanitize_html(a[:about]),
+      "methodology"                 => sanitize_html(a[:methodology]),
+      "topics"                      => get_topics(a[:topics]),
+      "calculations"                => a[:calculations].presence,
       "variables"                   => get_variables,
-      "report_type"                 => a[:report_type] || a["report_type"],
-      "value_type"                 => a[:value_type] || a["value_type"],
-      "value_options"               => get_elements(card.value_options),
-      "value_range"                 => a[:value_range] || a["value_range"],
-      "unit" => a[:unit] || a["unit"],
+      "report_type"                 => a[:report_type],
+      "value_type"                 => a[:value_type],
+      "value_options"               => card.value_options.presence,
+      "value_range"                 => a[:value_range],
+      "unit" => a[:unit],
       "formula" => get_formula,
-      "license" => license_url
+      "license" => license_url(card)
     }.compact
-  end
-
-  def license_url
-    dir = card.license.gsub(/(CC|4.0)/, "").strip.downcase
-    "https://creativecommons.org/licenses/#{dir}/4.0/"
   end
 
   def get_variables
     variables = card.direct_dependee_metrics.map do |metric|
       path mark: metric, format: :json
     end
-    variables&.any? ? variables : nil
+    variables.presence
   end
 
   def get_topics topics
@@ -162,11 +157,6 @@ format :jsonld do
 
   def get_formula
     formula = card.formula
-    formula.empty? ? nil : formula
+    formula.presence
   end
-
-  def get_elements subcard
-    subcard&.any? ? subcard : nil
-  end
-  
 end
