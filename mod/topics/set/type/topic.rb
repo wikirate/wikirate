@@ -5,6 +5,7 @@ include_set Abstract::Delist
 include_set Abstract::CachedTypeOptions
 include_set Abstract::SearchContentFields
 include_set Abstract::StewardPermissions
+include_set Abstract::JsonldSupported
 
 card_accessor :image, type: :image
 card_accessor :category, type: :pointer
