@@ -10,9 +10,9 @@ format :jsonld do
         metric = card.metric_card
         {
             "@context" => context,
-            "@id"      => path(mark: card.name, format: nil),
-            "@type"    => card.type,
-            "name"     => card.name,
+            "@id" => resource_iri,
+            "@type" => card.type,
+            "name" => card.name,
             "company" => path(mark: card.company),
             "metric" => path(mark: card.metric),
             "value" => get_value(metric),

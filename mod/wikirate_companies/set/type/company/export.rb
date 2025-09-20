@@ -83,7 +83,7 @@ format :jsonld do
   def company_jsonld(a)
     {
       "@context" => context,
-      "@id" => path(mark: card.name, format: nil),
+      "@id" => resource_iri,
       "@type" => card.type,
 
       "name" => a[:name],

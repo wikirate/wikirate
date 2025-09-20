@@ -9,9 +9,9 @@ format :jsonld do
     def source_jsonld
         {
             "@context" => context,
-            "@id"      => path(mark: card.name, format: nil),
-            "@type"    => card.type,
-            "name"     => card.name,
+            "@id" => resource_iri,
+            "@type" => card.type,
+            "name" => card.name,
             "file" => card.file,
             "report_type" => card.report_type_card&.item_names.presence,
             "company" => get_company,

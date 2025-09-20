@@ -11,8 +11,8 @@ format :jsonld do
         print ("Metric Cars: #{metric}")
         {
             "@context" => context,
-            "@id"      => path(mark: card.name, format: nil),
-            "@type"    => card.type,
+            "@id" => resource_iri,
+            "@type" => card.type,
             "name" => card.name,
             "metric" => path(mark: card.metric),
             "subject_company" => path(mark: card.company),
