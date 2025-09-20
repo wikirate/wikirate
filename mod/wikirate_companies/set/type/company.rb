@@ -6,6 +6,7 @@ include_set Abstract::AccountHolder
 include_set Abstract::Bookmarker
 include_set Abstract::Stewarder
 include_set Abstract::DeckorateTabbed
+include_set Abstract::JsonldSupported
 
 include_set Abstract::Bookmarkable
 include_set Abstract::SearchContentFields

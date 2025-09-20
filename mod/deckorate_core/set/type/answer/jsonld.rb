@@ -1,6 +1,6 @@
 format :jsonld do
 
-    def atom
+    def molecule
         answer_jsonld()
     end
 
