@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "wr": "https://wikirate.org/ontology/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Answer": "wr:Answer",
+    "company": { "@id": "wr:aboutCompany", "@type": "@id" },
+    "metric": { "@id": "wr:aboutMetric", "@type": "@id" },
+    "year": { "@id": "wr:year", "@type": "xsd:gYear" },
+    "value": "schema:value",
+    "source": { "@id": "wr:hasSource", "@type": "@id", "@container": "@set" },
+    "unit":"schema:unitText",
+    "license":"schema:license"
+  }
+}
