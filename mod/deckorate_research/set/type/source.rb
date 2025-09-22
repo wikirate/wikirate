@@ -2,7 +2,7 @@ require "curb"
 require "link_thumbnailer"
 
 include_set Abstract::Delist
-include_set Abstract::JsonldSupported
+include_set Abstract::JsonldSupport
 
 card_accessor :metric, type: :list
 card_accessor :answer, type: :search_type

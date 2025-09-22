@@ -6,7 +6,7 @@ include_set Abstract::CommonFilters
 include_set Abstract::AnswerFilters
 include_set Abstract::CompanyFilters
 include_set Abstract::BarBoxToggle
-include_set Abstract::JsonldSupported
+include_set Abstract::JsonldSupport
 
 def bookmark_type
   :company

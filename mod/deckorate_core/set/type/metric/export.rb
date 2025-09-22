@@ -112,12 +112,12 @@ end
 format :jsonld do
 
   def molecule
-    metric_jsonld(atom.symbolize_keys!)
+    metric_jsonld atom.symbolize_keys
   end
 
   private
 
-    def metric_jsonld(a)
+  def metric_jsonld(a)
     {
       "@context" => context,
       "@id" => resource_iri,
@@ -145,18 +145,16 @@ format :jsonld do
   end
 
   def get_variables
-    variables = card.direct_dependee_metrics.map do |metric|
+    card.direct_dependee_metrics.map do |metric|
       path mark: metric, format: :json
-    end
-    variables.presence
+    end.presence
   end
 
   def get_topics topics
-    topics&.any? ? topics.map { |path| path(mark: path, format: nil) } : nil
+    topics.map { |path| path(mark: path, format: nil) }.presence
   end
 
   def get_formula
-    formula = card.formula
-    formula.presence
+    card.formula.presence
   end
 end

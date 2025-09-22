@@ -25,15 +25,13 @@ format :jsonld do
   private
 
   def get_parent
-    category = card.category_card
-    return unless category
-    path mark: category&.item_cards[0].name if category
+    return unless (category = card.category_card)
+
+    path mark: category.first_name
   end
 
   def get_children
-    subtopics = card.fetch("subtopics")
-    return unless subtopics.present?
-    subtopics.item_names.map { |name| path(mark: name, format: nil) }
+    card.subtopic_card.item_names.map { |name| path(mark: name, format: nil) }
   end
 end
 

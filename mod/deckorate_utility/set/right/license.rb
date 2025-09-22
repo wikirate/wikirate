@@ -45,8 +45,6 @@ def noncommercial_licenses
   LICENSES.select { |l| !l.match?(/NC/) }
 end
 
-
-
 # find the most permissive license that is compatible with the input licenses
 def compatible licenses
   bits = licenses.map { |license| license.split(/[-\s]/) }.flatten.uniq.join " "

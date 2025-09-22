@@ -5,7 +5,7 @@ include_set Abstract::SearchViews
 include_set Abstract::DetailedExport
 include_set Abstract::MetricSearch
 include_set Abstract::AnswerFilters
-include_set Abstract::JsonldSupported
+include_set Abstract::JsonldSupport
 
 delegate :inverse?, to: :metric_card
 
