@@ -15,7 +15,7 @@ format :html do
   end
 
   def metric_ids_in_results
-    clean_relation.select(:metric_id).distinct.pluck(:metric_id)
+    clean_relation.unscope(:order).select(:metric_id).distinct.pluck(:metric_id)
   end
 
   def all_noncommercial_metric_ids
