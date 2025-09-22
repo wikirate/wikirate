@@ -5,6 +5,7 @@ include_set Abstract::Answer
 include_set Abstract::StewardPermissions
 include_set Abstract::Lookup
 include_set Abstract::LookupEvents
+include_set Abstract::JsonldSupported
 
 card_accessor :checked_by, type: :list
 card_accessor :source, type: :list

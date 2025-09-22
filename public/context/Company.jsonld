@@ -1,0 +1,26 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "wr": "https://wikirate.org/ontology/",
+    "schema": "https://schema.org/",
+
+    "Company": "wr:Company",
+
+    "name": "schema:name",
+    "alias": "schema:alternateName",
+    "logo": { "@id": "schema:logo", "@type": "@id" },
+    "country": "schema:addressCountry",
+
+    "lei": "schema:leiCode",
+    "isin": "wr:internationalSecuritiesIdentificationNumber",
+    "open_corporates_id": "wr:openCorporatesId",
+    "wikidata_id": "wr:wikidataId",
+    "australian_business_number": "wr:australianBusinessNumber",
+    "australian_company_number": "wr:australianCompanyNumber",
+    "os_id": "wr:openSupplyHubId",
+    "uk_company_number": "wr:ukCompanyNumber",
+    "cik": "wr:centralIndexKey",
+
+    "same_as": { "@id": "schema:sameAs", "@type": "@id", "@container": "@set" }
+  }
+}
