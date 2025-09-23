@@ -1,0 +1,585 @@
+@prefix : <https://wikirate.org/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <https://schema.org/> .
+@base <https://wikirate.org/ontology/> .
+
+<https://wikirate.org/ontology/> rdf:type owl:Ontology ;
+                                  rdfs:comment "This ontology defines core concepts and relationships used in the Wikirate platform, including entities like Company, Metric, Answer, Source and their interconnections."@en ;
+                                  owl:versionInfo "0.1.0" .
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#gYear
+xsd:gYear rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://schema.org/about
+<http://schema.org/about> rdf:type owl:ObjectProperty .
+
+
+###  http://schema.org/citation
+<http://schema.org/citation> rdf:type owl:ObjectProperty .
+
+
+###  https://wikirate.org/ontology/aboutCompany
+:aboutCompany rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :aboutEntity ;
+              owl:inverseOf :companyHasAnswer ;
+              rdf:type owl:FunctionalProperty ;
+              rdfs:domain :Answer ;
+              rdfs:range :Company ;
+              rdfs:comment "Connects an Answer to a company."@en ;
+              rdfs:label "company"@en .
+
+
+###  https://wikirate.org/ontology/aboutEntity
+:aboutEntity rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf <http://schema.org/about> ;
+             rdfs:domain <http://schema.org/CreativeWork> ;
+             rdfs:comment "Generic link from an Answer to any entity it concerns."@en .
+
+
+###  https://wikirate.org/ontology/aboutMetric
+:aboutMetric rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :aboutEntity ;
+             owl:inverseOf :metricHasAnswer ;
+             rdf:type owl:FunctionalProperty ;
+             rdfs:domain :Answer ;
+             rdfs:range :Metric ;
+             rdfs:comment "Links an Answer to a Metric."@en .
+
+
+###  https://wikirate.org/ontology/aboutTopic
+:aboutTopic rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :aboutEntity ;
+            rdfs:domain :Metric ;
+            rdfs:range :Topic ;
+            rdfs:comment "Links a metric with a number of topics."@en .
+
+
+###  https://wikirate.org/ontology/companyHasAnswer
+:companyHasAnswer rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :entityHasAnswer .
+
+
+###  https://wikirate.org/ontology/entityHasAnswer
+:entityHasAnswer rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain owl:Thing ;
+                 rdfs:range :Answer .
+
+
+###  https://wikirate.org/ontology/hasInput
+:hasInput rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isInput ;
+          rdfs:domain :CalculatedMetric ;
+          rdfs:range :Metric ;
+          rdfs:label "Indicates that this calculated metric uses the specified metric as an input."@en .
+
+
+###  https://wikirate.org/ontology/hasInverseRelation
+:hasInverseRelation rdf:type owl:ObjectProperty ;
+                    owl:inverseOf :isInverseRelationOf ;
+                    rdf:type owl:FunctionalProperty ;
+                    rdfs:domain :RelationMetric ;
+                    rdfs:range :InverseRelationMetric .
+
+
+###  https://wikirate.org/ontology/hasSource
+:hasSource rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf <http://schema.org/citation> ;
+           owl:inverseOf :sourceHasAnswer ;
+           rdfs:domain :Answer ;
+           rdfs:range :Source ;
+           rdfs:comment "Connects an answer to a number of sources where evidence were found."@en .
+
+
+###  https://wikirate.org/ontology/isInput
+:isInput rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:label "Indicates that this metric is used as an input to the specified calculated metric."@en .
+
+
+###  https://wikirate.org/ontology/isInverseRelationOf
+:isInverseRelationOf rdf:type owl:ObjectProperty ,
+                              owl:FunctionalProperty .
+
+
+###  https://wikirate.org/ontology/metricHasAnswer
+:metricHasAnswer rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :entityHasAnswer ;
+                 rdfs:domain :Metric .
+
+
+###  https://wikirate.org/ontology/objectCompany
+:objectCompany rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf <http://schema.org/about> ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :RelationshipAnswer ;
+               rdfs:range :Company .
+
+
+###  https://wikirate.org/ontology/sourceHasAnswer
+:sourceHasAnswer rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :entityHasAnswer .
+
+
+###  https://wikirate.org/ontology/subjectCompany
+:subjectCompany rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf <http://schema.org/about> ;
+                rdf:type owl:FunctionalProperty ;
+                rdfs:domain :RelationshipAnswer ;
+                rdfs:range :Company .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://schema.org/category
+<http://schema.org/category> rdf:type owl:DatatypeProperty .
+
+
+###  http://schema.org/description
+<http://schema.org/description> rdf:type owl:DatatypeProperty .
+
+
+###  http://schema.org/identifier
+<http://schema.org/identifier> rdf:type owl:DatatypeProperty ;
+                               rdfs:domain owl:Thing .
+
+
+###  http://schema.org/leiCode
+<http://schema.org/leiCode> rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf <http://schema.org/identifier> ;
+                            rdfs:domain :Company ;
+                            rdfs:range xsd:string ;
+                            rdfs:comment "The Legal Entity Identifier (LEI) is a unique global identifier for legal entities participating in financial transactions. Also known as an LEI code or LEI number, its purpose is to help identify legal entities on a globally accessible database."@en .
+
+
+###  http://schema.org/license
+<http://schema.org/license> rdf:type owl:DatatypeProperty .
+
+
+###  http://schema.org/question
+<http://schema.org/question> rdf:type owl:DatatypeProperty .
+
+
+###  http://schema.org/temporalCoverage
+<http://schema.org/temporalCoverage> rdf:type owl:DatatypeProperty ;
+                                     rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://schema.org/url
+<http://schema.org/url> rdf:type owl:DatatypeProperty .
+
+
+###  http://schema.org/value
+<http://schema.org/value> rdf:type owl:DatatypeProperty .
+
+
+###  https://wikirate.org/ontology/answerValue
+:answerValue rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf <http://schema.org/value> ;
+             rdfs:domain :Answer ;
+             rdfs:range [ rdf:type rdfs:Datatype ;
+                          owl:unionOf ( xsd:boolean
+                                        xsd:decimal
+                                        xsd:double
+                                        xsd:long
+                                        xsd:string
+                                      )
+                        ] .
+
+
+###  https://wikirate.org/ontology/australianBusinessNumber
+:australianBusinessNumber rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf <http://schema.org/identifier> ;
+                          rdfs:domain :Company ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment "A unique 11-digit identifier issued by the Australian Business Register to identify businesses operating in Australia for tax and administrative purposes."@en .
+
+
+###  https://wikirate.org/ontology/australianCompanyNumber
+:australianCompanyNumber rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf <http://schema.org/identifier> ;
+                         rdfs:domain :Company ;
+                         rdfs:range xsd:string ;
+                         rdfs:comment "A unique 9-digit identifier assigned by the Australian Securities and Investments Commission (ASIC) to companies registered under the Corporations Act in Australia."@en .
+
+
+###  https://wikirate.org/ontology/centralIndexKey
+:centralIndexKey rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf <http://schema.org/identifier> ;
+                 rdfs:domain :Company ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "A unique identifier assigned by the U.S. Securities and Exchange Commission (SEC) to entities that file disclosures through the EDGAR system."@en .
+
+
+###  https://wikirate.org/ontology/fileUrl
+:fileUrl rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf <http://schema.org/url> ;
+         rdfs:domain :Source ;
+         rdfs:range xsd:anyURI ;
+         rdfs:comment "The direct URL to the stored file associated with this Source, typically hosted on Wikirate’s file storage. This is usually the PDF, spreadsheet, or other document that contains the evidence referenced by the Source entry." .
+
+
+###  https://wikirate.org/ontology/formula
+:formula rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf <https://schema.org/mathExpression> ;
+         rdfs:domain :FormulaMetric ;
+         rdfs:range xsd:string ;
+         rdfs:comment "The mathematical expression used to compute the values of this formula metric. The formula reference other metrics and include arithmetic operations, functions, or constants. Example: 'm1 / (m1 + m2) * 100'"@en .
+
+
+###  https://wikirate.org/ontology/internationalSecuritiesIdentificationNumber
+:internationalSecuritiesIdentificationNumber rdf:type owl:DatatypeProperty ;
+                                             rdfs:subPropertyOf <http://schema.org/identifier> ;
+                                             rdfs:domain :Company ;
+                                             rdfs:range xsd:string .
+
+
+###  https://wikirate.org/ontology/linkUrl
+:linkUrl rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf <http://schema.org/url> ;
+         rdfs:domain :Source ;
+         rdfs:range xsd:anyURI ;
+         rdfs:comment "The URL of the original external web page from which the Source was obtained or can be accessed. This is typically the publisher’s own link to the resource or directory entry, rather than the stored file on Wikirate." .
+
+
+###  https://wikirate.org/ontology/metricQuestion
+:metricQuestion rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf <http://schema.org/description> ,
+                                   <http://schema.org/question> ;
+                rdfs:domain :Metric ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The specific question that the metric seeks to answer. This field is crucial as it defines the exact information being sought. The question should be clear, concise, and focused to ensure that the data collected is relevant and useful."@en .
+
+
+###  https://wikirate.org/ontology/metricType
+:metricType rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf <http://schema.org/category> ;
+            rdfs:domain :Metric ;
+            rdfs:range xsd:string ;
+            rdfs:comment "The classification of the metric"@en .
+
+
+###  https://wikirate.org/ontology/openCorporatesId
+:openCorporatesId rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf <http://schema.org/identifier> ;
+                  rdfs:domain :Company ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "The unique company identifier used by OpenCorporates, typically consisting of a jurisdiction code and a company number (e.g., 'gb/12345678'). This ID can be used to construct a URL linking to the company's profile on opencorporates.com."@en .
+
+
+###  https://wikirate.org/ontology/openSupplyHubId
+:openSupplyHubId rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf <http://schema.org/identifier> ;
+                 rdfs:domain :Company ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "A unique alphanumeric identifier assigned by Open Supply Hub to facilities in the global apparel, footwear, and other product supply chains, enabling transparent facility tracking."@en .
+
+
+###  https://wikirate.org/ontology/predicate
+:predicate rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf <http://schema.org/description> ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :InverseRelationMetric
+                                       :RelationMetric
+                                     )
+                       ] ;
+           rdfs:range xsd:string .
+
+
+###  https://wikirate.org/ontology/reportType
+:reportType rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf <http://schema.org/category> ;
+            rdfs:domain :Source ;
+            rdfs:range xsd:string ;
+            rdfs:comment "The classification of report"@en .
+
+
+###  https://wikirate.org/ontology/researchPolicy
+:researchPolicy rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf <http://schema.org/category> ;
+                rdfs:domain :Metric ;
+                rdfs:range xsd:string ;
+                rdfs:comment "The classification of research policy on a specific metric"@en .
+
+
+###  https://wikirate.org/ontology/sourceYear
+:sourceYear rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf <http://schema.org/temporalCoverage> ;
+            rdfs:domain :Source ;
+            rdfs:range xsd:gYear ;
+            rdfs:comment "Indicates one or more years for which the source document contains relevant data."@en .
+
+
+###  https://wikirate.org/ontology/ukCompanyNumber
+:ukCompanyNumber rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf <http://schema.org/identifier> ;
+                 rdfs:domain :Company ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "A unique registration number assigned by Companies House to companies incorporated in the United Kingdom."@en .
+
+
+###  https://wikirate.org/ontology/valueOption
+:valueOption rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf <http://schema.org/value> ;
+             rdfs:domain :Metric ;
+             rdfs:range xsd:string .
+
+
+###  https://wikirate.org/ontology/valueType
+:valueType rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf <http://schema.org/category> ;
+           rdfs:domain :Metric ;
+           rdfs:range xsd:string ;
+           rdfs:comment "The classification for the answer value"@en .
+
+
+###  https://wikirate.org/ontology/wikidataId
+:wikidataId rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf <http://schema.org/identifier> ;
+            rdfs:domain :Company ;
+            rdfs:range xsd:string ;
+            rdfs:comment "A unique identifier (Q-number) assigned to an entity in Wikidata, used to link to the corresponding Wikidata item. The ID consists of the letter \"Q\" followed by a number (e.g., Q312 for Apple Inc.)."@en .
+
+
+###  https://wikirate.org/ontology/year
+:year rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf <http://schema.org/temporalCoverage> ;
+      rdf:type owl:FunctionalProperty ;
+      rdfs:domain :Answer ;
+      rdfs:range xsd:gYear ;
+      rdfs:comment "The calendar year that the answer refers to (e.g., reporting year for ESG data)."@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://schema.org/CreativeWork
+<http://schema.org/CreativeWork> rdf:type owl:Class .
+
+
+###  http://schema.org/Organization
+<http://schema.org/Organization> rdf:type owl:Class .
+
+
+###  http://www.w3.org/2004/02/skos/core#Concept
+skos:Concept rdf:type owl:Class .
+
+
+###  https://wikirate.org/ontology/Answer
+:Answer rdf:type owl:Class ;
+        rdfs:subClassOf <http://schema.org/CreativeWork> ;
+        owl:disjointWith :Company ,
+                         :Metric ,
+                         :Source ;
+        rdfs:comment "An answer is the response of a company to a Wikirate metric on a specific year." .
+
+
+###  https://wikirate.org/ontology/CalculatedAnswer
+:CalculatedAnswer rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :aboutMetric ;
+                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :CalculatedMetric
+                                      ] ;
+                  rdfs:subClassOf :Answer ;
+                  rdfs:comment "A Calculated Metric is any metric whose values are derived from other metrics, including Descendant, Formula, Rating, and Score Metrics."@en .
+
+
+###  https://wikirate.org/ontology/CalculatedMetric
+:CalculatedMetric rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Class ;
+                                        owl:unionOf ( :DescendantMetric
+                                                      :FormulaMetric
+                                                      :RatingMetric
+                                                      :ScoreMetric
+                                                    )
+                                      ] ;
+                  rdfs:subClassOf :Metric ;
+                  owl:disjointWith :InverseRelationMetric ,
+                                   :RelationMetric ,
+                                   :ResearchedMetric .
+
+
+###  https://wikirate.org/ontology/Company
+:Company rdf:type owl:Class ;
+         rdfs:subClassOf <http://schema.org/Organization> ;
+         owl:disjointWith :Metric ,
+                          :Source ;
+         rdfs:comment "A reporting entity represented on the wikirate platform. It can be a corporation, a brand, a label or a production location." .
+
+
+###  https://wikirate.org/ontology/DescendantMetric
+:DescendantMetric rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Metric
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :metricType ;
+                                                               owl:hasValue "Descendant"
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] ;
+                  rdfs:subClassOf :Metric ;
+                  rdfs:comment "A Descendant Metric inherits answers from one or more parent metrics without changing their values, selecting the first applicable answer by a defined priority or rule."@en .
+
+
+###  https://wikirate.org/ontology/FormulaMetric
+:FormulaMetric rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Metric
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :metricType ;
+                                                            owl:hasValue "Formula"
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Metric ;
+               rdfs:comment "A Formula Metric derives its value by applying a predefined calculation to the values of one or more other metrics. The formula can combine, transform, or aggregate those values to produce a new resul. Unlike a Researched Metric, which records values as reported in sources, a Formula Metric is generated computationall by following a documented calculation method in coffeescript. Formula Metrics are often used to create indicators or composite measures from multiple data points."@en .
+
+
+###  https://wikirate.org/ontology/InverseRelationMetric
+:InverseRelationMetric rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( :Metric
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :metricType ;
+                                                                    owl:hasValue "InverseRelation"
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf :Metric ;
+                       rdfs:comment "An Inverse Relation Metric represents the reverse direction of a specific Relation Metric between two companies. It is typically generated automatically from its corresponding Relation Metric and mirrors its meaning by swapping the subject and object companies. For example, the inverse of a \"supplied by\" Relation Metric could be “supplies to.” Inverse Relation Metrics ensure relationships can be navigated and queried in both directions without duplicating source data."@en .
+
+
+###  https://wikirate.org/ontology/Metric
+:Metric rdf:type owl:Class ;
+        rdfs:subClassOf <http://schema.org/CreativeWork> ;
+        owl:disjointWith :Source ;
+        rdfs:comment "A Metric is a question or indicator defined on Wikirate, used to assess ESG-related topics about companies."@en .
+
+
+###  https://wikirate.org/ontology/RatingMetric
+:RatingMetric rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Metric
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :metricType ;
+                                                           owl:hasValue "Rating"
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] ;
+              rdfs:subClassOf :Metric ;
+              rdfs:comment "A Rating Metric aggregates results from one or more underlying metrics, which may include Score Metrics and other Rating Metrics, to produce a single overall rating. The aggregation uses simple weighted averages (no complex statistics), letting designers reflect the relative importance of each component while keeping the method transparent. Because ratings can include other ratings, they support nested structures for multi‑level benchmarks and composites."@en .
+
+
+###  https://wikirate.org/ontology/RelationMetric
+:RelationMetric rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Metric
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :metricType ;
+                                                             owl:hasValue "Relation"
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf :Metric ;
+                rdfs:comment "A Relation Metric represents a directional relationship between two distinct company entities, where one acts as the subject and the other as the object of the relationship. Examples include supply chain links (e.g., “supplied by”), ownership (e.g., “subsidiary of”), or partnerships. Each relationship is typically supported by one or more public sources and may include qualifiers such as the relationship level (e.g., “Tier 1 Supplier”) and reporting year. Relation Metrics are often paired with an Inverse Relation Metric to represent the reverse direction of the same relationship type."@en .
+
+
+###  https://wikirate.org/ontology/RelationshipAnswer
+:RelationshipAnswer rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :aboutMetric ;
+                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                          owl:onClass [ rdf:type owl:Class ;
+                                                        owl:unionOf ( :InverseRelationMetric
+                                                                      :RelationMetric
+                                                                    )
+                                                      ]
+                                        ] ;
+                    rdfs:subClassOf :Answer .
+
+
+###  https://wikirate.org/ontology/ResearchedAnswer
+:ResearchedAnswer rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :aboutMetric ;
+                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                        owl:onClass :ResearchedMetric
+                                      ] ;
+                  rdfs:subClassOf :Answer .
+
+
+###  https://wikirate.org/ontology/ResearchedMetric
+:ResearchedMetric rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Metric
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :metricType ;
+                                                               owl:hasValue "Researched"
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] ;
+                  rdfs:subClassOf :Metric ;
+                  rdfs:comment "A Researched Metric captures a factual value obtained from one or more publicly available sources, such as sustainability reports, regulatory filings, or reputable third-party publications. The value is collected and verified by researchers, and represents the information as reported in the source material, without applying normalization or scoring. Researched Metrics form the factual foundation for other metric types, such as calculated or score metrics."@en .
+
+
+###  https://wikirate.org/ontology/ScoreMetric
+:ScoreMetric rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( :Metric
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :metricType ;
+                                                          owl:hasValue "Score"
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] ;
+             rdfs:subClassOf :Metric ;
+             rdfs:comment "A Score Metric converts the values of another metric into a standardized 0–10 scale, enabling comparison across different companies. This normalization can be based on predefined thresholds, relative rankings, or proportional scaling, and is often used in benchmarks or ratings to make results directly comparable."@en .
+
+
+###  https://wikirate.org/ontology/Source
+:Source rdf:type owl:Class ;
+        rdfs:subClassOf <http://schema.org/CreativeWork> ;
+        rdfs:comment "A document or webpage used as evidence or justification for answers to metrics on the Wikirate platform."@en .
+
+
+###  https://wikirate.org/ontology/Topic
+:Topic rdf:type owl:Class ;
+       rdfs:subClassOf skos:Concept ;
+       rdfs:comment "An ESG-related concept used to categorize metrics on the Wikirate platform."@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DescendantMetric
+                :FormulaMetric
+                :InverseRelationMetric
+                :RatingMetric
+                :RelationMetric
+                :ResearchedMetric
+                :ScoreMetric
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

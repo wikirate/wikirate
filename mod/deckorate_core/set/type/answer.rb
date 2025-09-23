@@ -1,6 +1,7 @@
 include_set Abstract::MetricChild, generation: 2
 include_set Abstract::Answer
 include_set Abstract::Lookup
+include_set Abstract::JsonldSupport
 
 attr_writer :answer
 

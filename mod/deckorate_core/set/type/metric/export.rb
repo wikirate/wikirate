@@ -108,3 +108,53 @@ format :csv do
     card.send("#{column}_card").item_names.join ";"
   end
 end
+
+format :jsonld do
+
+  def molecule
+    metric_jsonld atom.symbolize_keys
+  end
+
+  private
+
+  def metric_jsonld(a)
+    {
+      "@context" => context,
+      "@id" => resource_iri,
+      "@type" => card.type,
+
+      "title" => a[:title],
+      "designer" => "#{request.base_url}/#{a[:designer]}",
+      "question" => a[:headquarters],
+
+      "metric_type" => a[:metric_type],
+      "research_policy" => a[:research_policy],
+      "about" => sanitize_html(a[:about]),
+      "methodology" => sanitize_html(a[:methodology]),
+      "topics" => get_topics(a[:topics]),
+      "calculations" => a[:calculations].presence,
+      "variables" => get_variables,
+      "report_type" => a[:report_type],
+      "value_type" => a[:value_type],
+      "value_options" => card.value_options.presence,
+      "value_range" => a[:value_range],
+      "unit" => get_unit(card),
+      "formula" => get_formula,
+      "license" => license_url(card)
+    }.compact
+  end
+
+  def get_variables
+    card.direct_dependee_metrics.map do |metric|
+      path mark: metric, format: :json
+    end.presence
+  end
+
+  def get_topics topics
+    topics.map { |path| path(mark: path, format: nil) }.presence
+  end
+
+  def get_formula
+    card.formula.presence
+  end
+end

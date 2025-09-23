@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "wr": "https://wikirate.org/ontology/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Source": "wr:Source",
+    "name": "schema:name",
+    "title": "schema:headline",
+    "file": { "@id": "wr:fileUrl", "@type": "@id" },
+    "link": { "@id": "wr:linkUrl", "@type": "@id" },
+    "report_type": "wr:reportType",
+    "year": { "@id": "wr:year", "@type": "xsd:gYear", "@container": "@set"}
+  }
+}
