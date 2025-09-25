@@ -3,7 +3,10 @@ format :json do
     super.merge(
       bookmarkers: card.bookmarkers_card.cached_count,
       metrics: card.metric_card.cached_count,
-      datasets: card.dataset_card.cached_count
+      datasets: card.dataset_card.cached_count,
+      title: card.name.right,
+      framework: card.name.left,
+      family: card.topic_family_card.first_name.right
     )
   end
 end
