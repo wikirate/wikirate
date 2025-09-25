@@ -60,6 +60,10 @@ format :html do
   def filter_topic_family_options
     Card::Set::Self::Topic.family_list.item_names
   end
+
+  # def filter_topic_framework_label
+  #   "Framework"
+  # end
 end
 
 # FilterCql class for topic filtering

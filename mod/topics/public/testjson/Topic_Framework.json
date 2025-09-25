@@ -1,0 +1,37 @@
+{
+  "id": 645,
+  "name": "Topic Framework",
+  "type": {
+    "id": 3,
+    "name": "Cardtype",
+    "type": "Cardtype",
+    "url": "http://localhost:3001/Cardtype.json",
+    "codename": "cardtype"
+  },
+  "url": "http://localhost:3001/Topic_Framework.json",
+  "codename": "topic_framework",
+  "items": [
+    {
+      "id": 4683,
+      "name": "Test Topics",
+      "type": "Topic Framework",
+      "url": "http://localhost:3001/Test_Topics.json",
+      "content": ""
+    },
+    {
+      "id": 1474,
+      "name": "Wikirate ESG Topics",
+      "type": "Topic Framework",
+      "url": "http://localhost:3001/Wikirate_ESG_Topics.json",
+      "codename": "esg_topics",
+      "content": ""
+    }
+  ],
+  "links": [],
+  "ancestors": [],
+  "html_url": "http://localhost:3001/Topic_Framework",
+  "created_at": "2025-08-21 18:55:12 UTC",
+  "updated_at": "2025-08-21 18:55:12 UTC",
+  "requested_at": "2025-09-25 17:29:02 UTC",
+  "license": "Wikirate.org, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0). See http://localhost:3001/Attribution_Guide."
+}

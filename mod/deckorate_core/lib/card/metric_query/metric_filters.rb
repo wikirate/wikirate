@@ -49,8 +49,13 @@ class Card
           when "false"
             unpublished_condition
           when "all"
-            # Is this right?? Seems like we want _no_ conditions... Explain?
-            "(#{published_condition} OR (#{unpublished_condition}))"
+            if Auth.signed_in?
+              # note: not everyone can see all unpublished answers.
+              # Permission must be checked
+              "(#{published_condition} OR (#{unpublished_condition}))"
+            else
+              published_condition
+            end
           end
       end
 
@@ -72,8 +77,11 @@ class Card
       end
 
       def unpublished_condition
+        return (@empty_result = true) unless Auth.signed_in?
+
         cond = "#{lookup_table}.unpublished is true"
         return cond if stewards_all?
+
         metric_ids = Card::Auth.current.stewarded_metric_ids
         if metric_ids.empty?
           @empty_result = true
