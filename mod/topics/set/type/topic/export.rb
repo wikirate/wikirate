@@ -6,7 +6,7 @@ format :json do
       datasets: card.dataset_card.cached_count,
       title: card.name.right,
       framework: card.name.left,
-      family: card.topic_family_card.first_name.right
+      family: card.topic_family_title
     )
   end
 end
