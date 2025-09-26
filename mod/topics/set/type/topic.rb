@@ -47,3 +47,7 @@ def allowed_topic_families
   # @allowed_topic_families ||=
   left&.category_card&.item_ids || []
 end
+
+def topic_family_title
+  topic_family_card.first_name.right
+end
