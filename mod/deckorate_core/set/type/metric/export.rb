@@ -7,6 +7,7 @@ COUNT_FIELD_CODENAMES = %i[answer bookmarkers dataset company].freeze
 
 FIELD_LABELS = {
   topic: :topics,
+  topic_framework: :topic_frameworks,
   score: :scores,
   answer: :answer,
   dataset: :datasets,
