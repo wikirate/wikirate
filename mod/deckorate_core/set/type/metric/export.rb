@@ -112,7 +112,6 @@ format :json do
 end
 
 format :jsonld do
-
   def molecule
     metric_jsonld atom.symbolize_keys
   end

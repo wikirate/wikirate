@@ -29,3 +29,12 @@ format :html do
     field_nest :category, view: :content, items: { view: :tree_item }
   end
 end
+
+format :json do
+  def atom
+    super.tap do |hash|
+      hash.delete :content
+      hash[:families] = card.category_card.item_names.map(&:right)
+    end
+  end
+end
