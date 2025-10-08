@@ -17,6 +17,7 @@ card_accessor :value_type, type: :pointer
 card_accessor :value_options, type: :list
 card_accessor :dataset, type: :search_type
 card_accessor :answer, type: :search_type
+card_accessor :source, type: :search_type
 card_accessor :unit, type: :phrase
 card_accessor :range, type: :phrase
 card_accessor :hybrid, type: :toggle
