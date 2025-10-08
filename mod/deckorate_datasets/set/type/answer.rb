@@ -1,1 +1,1 @@
-card_reader :dataset, type: :search
+card_reader :dataset, type: :search_type
