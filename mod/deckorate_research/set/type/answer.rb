@@ -64,8 +64,14 @@ format :html do
   view :read_form_with_button, wrap: :slot, template: :haml
 
   view :new do
-    research_page_link = research_button text: "Research Page"
-    "Answers are created via the #{research_page_link}."
+    if card.researchable?
+      research_page_link = research_button text: "Research Page"
+      "Datapoint can be added via the #{research_page_link}."
+    elsif card.calculated?
+      "Datapoint will be calculated when all necessary inputs are available."
+    else
+      "Datapoint unavailable"
+    end
   end
 
   def research_button tab: nil, text: "Research Page"
