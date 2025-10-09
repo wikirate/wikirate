@@ -1,17 +1,60 @@
 NESTED_FIELD_CODENAMES = %i[
   question metric_type about methodology value_type value_options report_type
-  assessment unit range hybrid topic score formula rubric variables
+  assessment unit range hybrid topic topic_framework score formula rubric variables
 ].freeze
 
 COUNT_FIELD_CODENAMES = %i[answer bookmarkers dataset company].freeze
 
 FIELD_LABELS = {
   topic: :topics,
+  topic_framework: :topic_frameworks,
   score: :scores,
   answer: :answer,
   dataset: :datasets,
   company: :companies
 }.freeze
+
+format :csv do
+  COLUMN_METHODS = {
+    topic: :semicolon_separated_values,
+    topic_framework: :semicolon_separated_values,
+    report_type: :semicolon_separated_values,
+    assessment: :semicolon_separated_values,
+    value_options: :semicolon_separated_values
+  }.freeze
+
+  view :titled do # DEPRECATED.  +answer csv replaces this
+    field_nest :answer, view: :titled
+  end
+
+  view :row do
+    basic = cell_values(Abstract::MetricSearch::BASIC_COLUMNS)
+              .unshift card_url(card.id_string)
+    return basic unless detailed?
+
+    basic + cell_values(Abstract::MetricSearch::DETAILED_COLUMNS)
+  end
+
+  private
+
+  def cell_values columns
+    columns.map { |key| cell_value key }
+  end
+
+  def cell_value key
+    value = raw_cell_value key
+    value.blank? ? nil : value
+  end
+
+  def raw_cell_value key
+    method = COLUMN_METHODS[key]
+    method ? send(method, key) : card.try(key)
+  end
+
+  def semicolon_separated_values column
+    card.send("#{column}_card").item_names.join ";"
+  end
+end
 
 format :json do
   view :links do
@@ -68,49 +111,7 @@ format :json do
   end
 end
 
-format :csv do
-  COLUMN_METHODS = {
-    topic: :semicolon_separated_values,
-    report_type: :semicolon_separated_values,
-    assessment: :semicolon_separated_values,
-    value_options: :semicolon_separated_values
-  }.freeze
-
-  view :titled do # DEPRECATED.  +answer csv replaces this
-    field_nest :answer, view: :titled
-  end
-
-  view :row do
-    basic = cell_values(Abstract::MetricSearch::BASIC_COLUMNS)
-            .unshift card_url(card.id_string)
-    return basic unless detailed?
-
-    basic + cell_values(Abstract::MetricSearch::DETAILED_COLUMNS)
-  end
-
-  private
-
-  def cell_values columns
-    columns.map { |key| cell_value key }
-  end
-
-  def cell_value key
-    value = raw_cell_value key
-    value.blank? ? nil : value
-  end
-
-  def raw_cell_value key
-    method = COLUMN_METHODS[key]
-    method ? send(method, key) : card.try(key)
-  end
-
-  def semicolon_separated_values column
-    card.send("#{column}_card").item_names.join ";"
-  end
-end
-
 format :jsonld do
-
   def molecule
     metric_jsonld atom.symbolize_keys
   end

@@ -1,6 +1,6 @@
 include_set Abstract::Items
 
-assign_type :search
+assign_type :search_type
 
 def count
   ::Metric.select(:designer_id).distinct.count
