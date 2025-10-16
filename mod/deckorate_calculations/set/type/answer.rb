@@ -40,8 +40,8 @@ def each_depender_answer
 end
 
 def depender_answers
-  [].tap do |answer|
-    each_depender_answer do |answers|
+  [].tap do |answers|
+    each_depender_answer do |answer|
       answers << answer
     end
   end
