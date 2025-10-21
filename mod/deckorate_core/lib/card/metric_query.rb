@@ -48,9 +48,12 @@ class Card
         metric_title: :title_id }
     end
 
-    def filter_by_source value
-      subsql = AnswerQuery.new(source: value).lookup_relation.select(:metric_id).to_sql
-      @conditions << "metrics.metric_id in (#{subsql})"
+    def filter_by_source val
+      constraints = [AnswerQuery, RelationshipQuery].map do |query|
+        sql = query.new(source: val).lookup_relation.select(:metric_id).distinct.to_sql
+        "metrics.metric_id in (#{sql})"
+      end
+      @conditions << "(#{constraints.join ' OR '})"
     end
   end
 end
