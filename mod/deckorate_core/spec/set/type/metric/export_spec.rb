@@ -37,6 +37,21 @@ RSpec.describe Card::Set::Type::Metric::Export do
 
   end
 
+  describe "view: :molecule, format: :jsonld" do
+    subject { render_view :molecule, { name: metric.name }, format: :jsonld }
+
+    specify do
+      is_expected
+        .to include(
+          "@type" => "Metric",
+          "@id" => a_kind_of(String),
+          "@context" => "/context/Metric.jsonld"
+        )
+    end
+
+
+  end
+
   describe "CsvFormat" do
     # specify "view: header" do
     #   expect_view(:header, format: :csv)
