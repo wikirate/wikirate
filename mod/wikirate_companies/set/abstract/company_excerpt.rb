@@ -1,5 +1,7 @@
 def excerpt_json query={}
   JSON.parse excerpt_response(query)
+rescue StandardError
+  {}
 end
 
 def excerpt_response query={}
