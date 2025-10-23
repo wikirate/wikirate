@@ -125,7 +125,7 @@ format :jsonld do
       "@type" => card.type,
 
       "title" => a[:title],
-      "designer" => "#{request.base_url}/#{a[:designer]}",
+      "designer" => "#{request&.base_url}/#{a[:designer]}",
       "question" => a[:headquarters],
 
       "metric_type" => a[:metric_type],
