@@ -39,6 +39,19 @@ RSpec.describe Card::Set::Type::Company::Export do
     end
   end
 
+  describe "view: :molecule, format: :jsonld" do
+    subject { render_view :molecule, { name: company.name }, format: :jsonld }
+
+    specify do
+      is_expected
+        .to include(
+          "@type" => "Company",
+          "@id" => a_kind_of(String),
+          "@context" => "/context/Company.jsonld"
+        )
+    end
+  end
+
   context "with CSV Format" do
     subject { render_view :row, { name: company.name }, format: :csv }
 
