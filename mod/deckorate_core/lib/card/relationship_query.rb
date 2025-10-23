@@ -36,6 +36,11 @@ class Card
       restrict_by_cql :object_company_name, :object_company_id,
                       name: [:match, value], type: :company
     end
+
+    def filter_by_source value
+      restrict_by_cql :source, :relationship_id,
+                      right: :source, refer_to: value, return: :left_id
+    end
   end
 end
 

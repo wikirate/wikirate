@@ -67,6 +67,10 @@ format do
   view :attribution do
     "licensed under #{card.content} <#{url}>"
   end
+
+  view :url do
+    url
+  end
 end
 
 format :html do
