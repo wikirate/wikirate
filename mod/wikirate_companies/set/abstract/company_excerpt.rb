@@ -43,9 +43,11 @@ end
 format :html do
   delegate :excerpt_link_url, :excerpt_json, to: :card
 
+  view :standard_core, template: :haml
+
   view :core, async: true do
     if excerpt_result
-      haml :core
+      render_standard_core
     elsif @excerpt_error_message
       excerpt_error
     else
