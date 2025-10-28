@@ -9,8 +9,9 @@ RSpec.describe Card::Set::TypePlusRight::Company::Image::AwardBadges do
     def execute_awarded_action number
       company = nil
       Card::Auth.as_bot do
-        company = Card.create! type_id: Card::CompanyID,
-                               name: "Company #{number}"
+        company = Card.create! type: :company,
+                               name: "Company #{number}",
+                               fields: { headquarters: "Togo"}
       end
       Card::Auth.as_bot do
         Card.create! name: "#{company.name}+image", type_id: Card::BasicID

@@ -2,36 +2,55 @@
   :type: :company
   :fields:
     :about: Kuuuhhh Shhhhhh Kuuuhhhh Shhhhh
+    :headquarters: Togo
 
 - :name: Monster Inc
   :type: :company
   :fields:
     :about: We scare because we care.
+    :headquarters: Togo
 
 - :name: Slate Rock and Gravel Company
   :type: :company
   :fields:
     :about: Yabba Dabba Doo!
+    :headquarters: Togo
 
 - :name: Los Pollos Hermanos
   :type: :company
   :fields:
     :about: I'm the one who knocks
+    :headquarters: Togo
 
 - :name: SPECTRE
   :type: :company
   :fields:
     :about: shaken not stirred
+    :headquarters: Togo
 
 - :name: Google LLC
   :type: :company
+  :fields:
+    :headquarters: Togo
+
 - :name: Sony Corporation
   :type: :company
+  :fields:
+    :headquarters: Togo
+
 - :name: Samsung
   :type: :company
   :fields:
     :wikipedia: Samsung
+    :headquarters: Togo
+
 - :name: Apple Inc.
   :type: :company
+  :fields:
+    :headquarters: Togo
+
 - :name: Google Inc.
   :type: :company
+  :fields:
+    :headquarters: Togo
+
