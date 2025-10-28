@@ -1,15 +1,14 @@
 # -*- encoding : utf-8 -*-
 
-RSpec.describe Card::Set::Type::Company::AwardBadges do
+describe Card::Set::Type::Company::AwardBadges do
   let(:badge_action) { :create }
   let(:badge_type) { :company }
   let(:sample_acting_card) { sample_company }
 
   describe "create badges" do
     def execute_awarded_action number
-      Card.create! type: :company,
-                   name: "Company #{number}",
-                   fields: { headquarters: "Togo" }
+      Card.create! type_id: Card::CompanyID,
+                   name: "Company #{number}"
     end
 
     context "when reached bronze threshold" do

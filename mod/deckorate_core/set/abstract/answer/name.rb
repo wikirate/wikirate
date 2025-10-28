@@ -55,8 +55,7 @@ def add_company company
   if company_card&.real?
     errors.add "#{company} is not a Company; it's a #{company_card.type_name}"
   else
-    Card.create type: :company, name: company,
-                skip: :type__company__requires_field__headquarters
+    Card.create type: CompanyID, name: company
   end
 end
 

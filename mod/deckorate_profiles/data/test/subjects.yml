@@ -2,28 +2,17 @@
 - :name: updated company
   :type: :company
   :user: Joe Admin
-  :fields:
-    :headquarters: Togo
-
 - :name: discussed company
   :type: :company
   :user: Joe Admin
-  :fields:
-    :headquarters: Togo
-
 - :name: bookmarked company
   :type: :company
   :user: Joe Admin
-  :fields:
-    :headquarters: Togo
 
 - :name: created company
   :type: :company
   :content: updated
   :user: Joe User
-  :fields:
-    :headquarters: Togo
-
 - :name: updated company
   :content: updated
   :user: Joe User
