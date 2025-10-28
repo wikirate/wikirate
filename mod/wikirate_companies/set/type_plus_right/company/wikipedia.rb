@@ -26,6 +26,10 @@ format :html do
     card.excerpt_json exsentences: 5, prop: :extracts, exintro: nil, explaintext: nil
   end
 
+  view :core, async: false, wrap: :slot do
+    render_standard_core
+  end
+
   def excerpt_body
     return "" unless (pages = @excerpt_result&.query&.dig "pages")
 
