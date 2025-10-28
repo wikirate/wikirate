@@ -69,6 +69,11 @@ class Card
         Card::Source.find_or_add_source_card(url)&.id if Card::Source.url? url
       end
 
+      def auto_add_company value
+        Card.create! type: :company, name: value,
+                     skip: :type__company__requires_field__headquarters
+      end
+
       def export_csv_header
         ::Answer.csv_titles
       end
