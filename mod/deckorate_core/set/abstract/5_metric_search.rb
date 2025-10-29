@@ -115,7 +115,7 @@ format :html do
   end
 
   def filter_benchmark_options
-    { "Yes" => 1, "No" => 0 }
+    { "Yes" => "1", "No" => "0" }
   end
 
   def filter_benchmark_type
