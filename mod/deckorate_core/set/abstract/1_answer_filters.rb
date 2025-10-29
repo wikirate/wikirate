@@ -71,7 +71,7 @@ format :html do
 
   def filter_route_options
     ::Answer::ROUTES.values.each_with_object({}).with_index do |(v, h), i|
-      h[v] = i
+      h[v] = i.to_s
     end
   end
 
