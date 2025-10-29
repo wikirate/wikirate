@@ -22,8 +22,17 @@ def excerpt_link_url
 end
 
 format :html do
-  def excerpt_json
-    card.excerpt_json exsentences: 5, prop: :extracts, exintro: nil, explaintext: nil
+
+  def excerpt_uri
+    card.excerpt_uri exsentences: 5, prop: :extracts, exintro: nil, explaintext: nil
+  end
+  #
+  # def excerpt_json
+  #   card.excerpt_json exsentences: 5, prop: :extracts, exintro: nil, explaintext: nil
+  # end
+
+  view :core, async: false, wrap: :slot do
+    render_standard_core
   end
 
   def excerpt_body
