@@ -31,7 +31,9 @@ format :html do
   end
 
   def excerpt_body
-    content_tag :div,class: "_wikipediaExcerpt _unloaded",data: { url: excerpt_uri.to_s } do
+    content_tag :div,
+                class: "_wikipediaExcerpt _unloaded",
+                data: { url: excerpt_uri.to_s } do
       ""
     end
   end
