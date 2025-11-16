@@ -1,14 +1,14 @@
 require File.expand_path "../../script_helper.rb", __FILE__
 
-if ARGV.size < 2
-  echo "Usage: ruby ./script/single-use/import_topic_tree FRAMEWORK DATA_FILE_NAME"
+if ARGV.size < 1
+  puts "Usage: ruby ./script/single-use/import_topic_tree DATA_FILE_NAME"
   exit
 end
 
-FRAMEWORK = ARGV[0]
-CSVFILE = File.expand_path "data/#{ARGV[1]}", __dir__
+CSVFILE = File.expand_path "data/#{ARGV[0]}", __dir__
+# expects title row
+# each data row contains framework and two levels of topics
 # see data dir for examples
-# expects title row and three levels of topics (should change that)
 
 
 def topics_tree
@@ -26,43 +26,50 @@ def rows
 end
 
 def import_topic_tree
-  topics_tree.each do |t1, h1|
-    ensure_topic t1
-    h1.each do |t2, h2|
-      ensure_topic t2, t1
-      h2.each do |t3, _h3|
-        ensure_topic t3, t2
+  topics_tree.each do |framework, h1|
+    ensure_framework framework
+    h1.each do |t1, h2|
+      ensure_topic framework, t1
+      h2.each do |t2, _h3|
+        ensure_topic framework, t2, t1
       end
     end
+    ensure_framework_categories framework, h1.keys
   end
 end
 
-def ensure_topic topicname, category=nil
+def ensure_topic framework, topicname, category=nil
   puts "ensuring #{topicname}"
   args = {
-    name: fullname(topicname),
+    name: [framework, topicname].cardname,
     type: :topic,
     conflict: :override,
   }
-  args[:fields] = { category: fullname(category) } if category.present?
+  args[:fields] = { category: [framework, category].cardname } if category.present?
   Card.ensure! args
 end
 
-def ensure_topic_framework
+def ensure_framework framework
+  if (framework_card = framework.card)
+    return if framework_card.type_code == :topic_framework
+    fail "Framework name is taken by non framework card"
+  else
+    create_framework framework
+  end
+end
+
+def create_framework framework
   Card.ensure! type: :topic_framework,
-               name: FRAMEWORK,
-               conflict: :override,
-               fields:{
-                 category: framework_categories
-               }
+               name: framework,
+               conflict: :override
 end
 
-def framework_categories
-  topics_tree.keys.map { |title| fullname title }
-end
+def ensure_framework_categories framework, categories
+  category_names = categories.map { |title| [framework, title].cardname }
 
-def fullname title
-  [FRAMEWORK, title].cardname
+  Card.ensure! name: [framework, :category].cardname,
+               content: category_names,
+               conflict: :override
 end
 
 def puts_topics_tree
@@ -107,10 +114,5 @@ def change_type_of_metric_titles
   end
 end
 
-# delete_topic_taggings
-# change_type_of_metric_titles
-# delete_all_topics
-# Cardio::Utils.empty_trash
 puts_topics_tree
-ensure_topic_framework
 import_topic_tree
