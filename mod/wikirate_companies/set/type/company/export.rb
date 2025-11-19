@@ -11,6 +11,8 @@ format :json do
     super.tap do |h|
       h.delete :content
       add_fields_to_hash h, :core
+
+      h.delete_if { |_k, v| v.blank? }
     end
   end
 
@@ -18,6 +20,7 @@ format :json do
     super.tap do |h|
       add_fields_to_hash(h)
       h[:answers_url] = path mark: card.name.field(:answer), format: :json
+      h.delete_if { |_k, v| v.blank? }
     end
   end
 
