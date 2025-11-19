@@ -1,13 +1,27 @@
 format :json do
   def atom
     super.merge(
-      bookmarkers: card.bookmarkers_card.cached_count,
-      metrics: card.metric_card.cached_count,
-      datasets: card.dataset_card.cached_count,
+      # bookmarkers: card.bookmarkers_card.cached_count,
       title: card.name.right,
       framework: card.name.left,
-      family: card.topic_family_title
-    )
+      family: card.topic_family_title,
+      parent: get_parent,
+      children: get_children,
+      metrics: path(mark: card.metric_card.name),
+      datasets: path(mark: card.dataset_card.name)
+    ).compact_blank!
+  end
+
+  private
+
+  def get_parent
+    return unless (category = card.category_card)
+
+    category.first_name.presence || card.name.left
+  end
+
+  def get_children
+    card.subtopic_card.item_names
   end
 end
 
@@ -30,7 +44,7 @@ format :jsonld do
   def get_parent
     return unless (category = card.category_card)
 
-    path mark: category.first_name
+    category.first_name.present? ? path(mark: category.first_name) : path(mark: card.name.left)
   end
 
   def get_children
