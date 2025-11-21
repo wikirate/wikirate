@@ -33,11 +33,4 @@ format :json do
     false
   end
 
-  def get_unit metric
-    if metric.metric_type.in? ["Relation", "Inverse Relation"]
-      "related companies"
-    else
-      metric.unit.presence
-    end
-  end
 end
