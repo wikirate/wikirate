@@ -64,11 +64,11 @@ format :json do
   def atom
     hash = super().merge designer: card.metric_designer, title: card.metric_title
     add_fields_to_hash hash, :core
-    hash
+    hash.compact_blank
   end
 
   def molecule
-    super.merge add_fields_to_hash({})
+    super.merge(add_fields_to_hash({})).compact_blank!
   end
 
   private
@@ -127,12 +127,12 @@ format :jsonld do
       "title" => a[:title],
       "designer" => "#{request&.base_url}/#{a[:designer]}",
       "question" => a[:headquarters],
-
       "metric_type" => a[:metric_type],
       "research_policy" => a[:research_policy],
       "about" => sanitize_html(a[:about]),
       "methodology" => sanitize_html(a[:methodology]),
       "topics" => get_topics(a[:topics]),
+      "framework_mappings" => get_topics(a[:topic_frameworks]),
       "calculations" => a[:calculations].presence,
       "variables" => get_variables,
       "report_type" => a[:report_type],

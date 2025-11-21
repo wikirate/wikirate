@@ -65,7 +65,14 @@ xsd:gYear rdf:type rdfs:Datatype .
             rdfs:subPropertyOf :aboutEntity ;
             rdfs:domain :Metric ;
             rdfs:range :Topic ;
-            rdfs:comment "Links a metric with a number of topics."@en .
+            rdfs:comment "Links a metric with a number of wikirate native topics."@en .
+
+###  https://wikirate.org/ontology/frameworkMapping
+:frameworkMapping rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :aboutEntity ;
+                  rdfs:domain :Metric ;
+                  rdfs:range :Topic ;
+                  rdfs:comment "Links a metric with a number of framework topics."@en .
 
 
 ###  https://wikirate.org/ontology/companyHasAnswer
