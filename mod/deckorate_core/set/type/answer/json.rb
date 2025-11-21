@@ -4,16 +4,21 @@ format :json do
     super.tap do |atom|
       atom.delete :content
       atom[:metric] = lookup.metric_name
-      %i[company year value source comments].each do |key|
+      %i[company year value].each do |key|
         atom[key] = lookup.send key
       end
+      atom[:unit] = get_unit(lookup.metric)
+      atom[:sources] = lookup.source_card.item_names.presence
+      atom[:comments] = lookup.comments
       atom[:answer_url] = path mark: card.name.left, format: :json
+
+      atom.delete_if { |_k, v| v.blank? }
     end
   end
 
   def molecule
-    super.merge sources: field_nest(:source, view: :items),
-                checked_by: field_nest(:checked_by, view: :items)
+    super.merge(sources: field_nest(:source, view: :items),
+                checked_by: field_nest(:checked_by, view: :items)).compact_blank!
   end
 
   def item_cards
@@ -27,4 +32,5 @@ format :json do
   def atom_content?
     false
   end
+
 end

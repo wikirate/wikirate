@@ -12,7 +12,7 @@ format :json do
       comments: field_nest(:discussion, view: :core),
       subject_company: lookup.subject_company_id.cardname,
       object_company: lookup.object_company_id.cardname
-    )
+    ).compact_blank!
   end
 
   def lookup_fields fields
@@ -22,9 +22,9 @@ format :json do
   end
 
   def molecule
-    super().merge subject_company: nest(card.company, view: :atom),
+    super().merge(subject_company: nest(card.company, view: :atom),
                   object_company: nest(card.related_company, view: :atom),
                   sources: field_nest(:source, view: :items),
-                  checked_by: field_nest(:checked_by)
+                  checked_by: field_nest(:checked_by)).compact_blank!
   end
 end
