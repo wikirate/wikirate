@@ -8,7 +8,7 @@ format :json do
         atom[key] = lookup.send key
       end
       atom[:unit] = get_unit(lookup.metric)
-      atom[:source] = lookup.source
+      atom[:sources] = lookup.source_card.item_names.presence
       atom[:comments] = lookup.comments
       atom[:answer_url] = path mark: card.name.left, format: :json
 
