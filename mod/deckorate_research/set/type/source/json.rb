@@ -1,10 +1,10 @@
 format :json do
   def atom
-    nucleus.merge fields_with_view(atom_fields, :content)
+    nucleus.merge(fields_with_view(atom_fields, :content)).compact_blank!
   end
 
   def molecule
-    super.merge fields_with_view(molecule_fields, :atom)
+    super.merge(fields_with_view(molecule_fields, :atom)).compact_blank!
   end
 
   def atom_fields
