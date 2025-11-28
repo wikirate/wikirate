@@ -33,6 +33,12 @@ def stewarded_card
   framework_card
 end
 
+def parent
+  return unless (category = category_card)
+
+  category.first_card.presence || left
+end
+
 def recursive_categories
   return [] unless (cat = category_card.first_card)
 
