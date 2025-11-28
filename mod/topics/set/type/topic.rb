@@ -34,9 +34,9 @@ def stewarded_card
 end
 
 def parent
-  return unless (category = card.category_card)
+  return unless (category = category_card)
 
-  category.first_card.presence || card.left
+  category.first_card.presence || left
 end
 
 def recursive_categories
