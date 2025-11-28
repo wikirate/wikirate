@@ -18,7 +18,7 @@ format :json do
 
   def molecule
     super.merge(sources: field_nest(:source, view: :items),
-                checked_by: field_nest(:checked_by, view: :items)).compact_blank!
+                checked_by: field_nest(:checked_by, view: :items))
   end
 
   def item_cards

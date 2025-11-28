@@ -64,11 +64,11 @@ format :json do
   def atom
     hash = super().merge designer: card.metric_designer, title: card.metric_title
     add_fields_to_hash hash, :core
-    hash.compact_blank
+    hash
   end
 
   def molecule
-    super.merge(add_fields_to_hash({})).compact_blank!
+    super.merge(add_fields_to_hash({}))
   end
 
   private
