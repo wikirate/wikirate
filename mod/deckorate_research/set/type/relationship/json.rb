@@ -22,9 +22,9 @@ format :json do
   end
 
   def molecule
-    super().merge subject_company: nest(card.company, view: :atom),
+    super().merge(subject_company: nest(card.company, view: :atom),
                   object_company: nest(card.related_company, view: :atom),
                   sources: field_nest(:source, view: :items),
-                  checked_by: field_nest(:checked_by)
+                  checked_by: field_nest(:checked_by))
   end
 end
