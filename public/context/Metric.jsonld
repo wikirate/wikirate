@@ -22,6 +22,7 @@
     "report_type": "wr:reportType",
     "research_policy": "wr:researchPolicy",
     "topics": { "@id": "wr:aboutTopic", "@type": "@id", "@container": "@set" },
+    "framework_mappings": { "@id": "wr:frameworkMapping", "@type": "@id", "@container": "@set" },
     "variables": { "@id": "wr:hasInput", "@type": "@id", "@container": "@set" },
     "calculations": { "@id": "wr:isInput", "@type": "@id", "@container": "@set" },
     "license": "schema:license"
