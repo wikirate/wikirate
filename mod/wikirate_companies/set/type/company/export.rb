@@ -11,6 +11,7 @@ format :json do
     super.tap do |h|
       h.delete :content
       add_fields_to_hash h, :core
+
     end
   end
 

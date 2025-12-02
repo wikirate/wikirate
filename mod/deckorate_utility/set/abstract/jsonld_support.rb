@@ -1,10 +1,6 @@
-format :jsonld do
+format do
   def license_url metric
     nest metric.license_card, view: :url
-  end
-
-  def context
-    "#{request&.base_url}/context/#{card.type}.jsonld"
   end
 
   def get_unit metric
@@ -13,5 +9,11 @@ format :jsonld do
     else
       metric.unit.presence
     end
+  end
+end
+
+format :jsonld do
+  def context
+    "#{request&.base_url}/context/#{card.type}.jsonld"
   end
 end
