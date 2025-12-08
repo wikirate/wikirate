@@ -1,11 +1,11 @@
-event :store_attribution_snapshot, :integrate_with_delay,
-      priority: 90, on: :create do
-  snapshot_tmpfile do |tfile|
-    take_snapshot tfile
-    file_card.file = tfile
-    file_card.save!
-  end
-end
+# event :store_attribution_snapshot, :integrate_with_delay,
+#       priority: 90, on: :create do
+#   snapshot_tmpfile do |tfile|
+#     take_snapshot tfile
+#     file_card.file = tfile
+#     file_card.save!
+#   end
+# end
 
 format :csv do
   view :titles do
