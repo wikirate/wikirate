@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_11_172846) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_10_200407) do
   create_table "answers", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "answer_id"
     t.integer "metric_id", null: false
@@ -93,15 +93,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_11_172846) do
     t.index ["referer_id"], name: "card_references_referer_id_index"
   end
 
-  create_table "card_revisions", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.datetime "created_at", precision: nil, null: false
-    t.integer "card_id", null: false
-    t.integer "creator_id", null: false
-    t.text "content", null: false
-    t.index ["card_id"], name: "revisions_card_id_index"
-    t.index ["creator_id"], name: "revisions_created_by_index"
-  end
-
   create_table "card_virtuals", id: :integer, charset: "utf8mb3", force: :cascade do |t|
     t.integer "left_id"
     t.integer "right_id"
@@ -118,14 +109,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_11_172846) do
     t.string "codename"
     t.integer "left_id"
     t.integer "right_id"
-    t.integer "current_revision_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.integer "creator_id", null: false
     t.integer "updater_id", null: false
     t.string "read_rule_class"
     t.integer "read_rule_id"
-    t.integer "references_expired"
     t.boolean "trash", null: false
     t.integer "type_id", null: false
     t.text "db_content", size: :medium
@@ -207,30 +196,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_11_172846) do
     t.index ["value"], name: "value_index"
   end
 
-  create_table "sessions", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "session_id"
-    t.text "data"
-    t.datetime "updated_at", precision: nil
-    t.index ["session_id"], name: "sessions_session_id_index"
-  end
-
   create_table "transform_migrations", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.string "version", null: false
     t.index ["version"], name: "unique_schema_migrations_cards", unique: true
-  end
-
-  create_table "users", id: :integer, charset: "utf8mb3", force: :cascade do |t|
-    t.string "login", limit: 40
-    t.string "email", limit: 100
-    t.string "crypted_password", limit: 40
-    t.string "salt", limit: 42
-    t.datetime "created_at", precision: nil
-    t.datetime "updated_at", precision: nil
-    t.string "password_reset_code", limit: 40
-    t.string "status", default: "request"
-    t.integer "invite_sender_id"
-    t.string "identity_url"
-    t.integer "card_id", null: false
-    t.integer "account_id", null: false
   end
 end
