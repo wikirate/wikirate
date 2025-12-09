@@ -12,7 +12,7 @@ format :jsonld do
       "@id" => resource_iri,
       "@type" => card.type,
       "name" => card.name,
-      "file" => field_nest(:file,view: :content),
+      "file" => field_nest(:file, view: :content),
       "report_type" => card.report_type_card&.item_names.presence,
       "company" => get_company,
       "year" => card.year_card&.item_names.presence
