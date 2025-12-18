@@ -82,6 +82,7 @@ gem "net-imap", "0.4.17"             # 0.5.0 requires ruby version >= 3.1.0
 
 group :live do
   gem "dalli"                        # Memcache
+  gem "connection_pool", "~> 2.4"    # 3.x releases broke memcache handling
   # gem "therubyracer"                 # JS runtime
 end
 

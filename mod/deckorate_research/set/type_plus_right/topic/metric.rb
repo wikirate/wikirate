@@ -12,9 +12,18 @@ recount_trigger :type_plus_right, :metric, :topic do |topic_list|
   metric_fields_for_topics topic_list.changed_item_names
 end
 
+# trigger recount when metric's topic list is edited
+recount_trigger :type_plus_right, :metric, :topic_framework do |topic_list|
+  metric_fields_for_topics topic_list.changed_item_names
+end
+
+
 # ...or when metric is (un)published
 field_recount_trigger :type_plus_right, :metric, :unpublished do |changed_card|
-  metric_fields_for_topics changed_card.left.topic_card.item_names
+  %i[topic topic_framework].each do |field|
+    list = changed_card.left.send("#{field}_card")
+    metric_fields_for_topics list.item_names
+  end
 end
 
 def self.metric_fields_for_topics topic_list
