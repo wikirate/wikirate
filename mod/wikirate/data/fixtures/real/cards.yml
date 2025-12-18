@@ -1572,7 +1572,7 @@ cards_090:
   left_id:
   right_id:
   created_at: 2025-11-10 21:38:35.000000000 Z
-  updated_at: 2025-12-09 16:23:28.000000000 Z
+  updated_at: 2025-12-17 15:46:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -1589,7 +1589,7 @@ cards_091:
   left_id: 90
   right_id: 26
   created_at: 2025-11-10 21:38:35.000000000 Z
-  updated_at: 2025-12-09 16:23:28.000000000 Z
+  updated_at: 2025-12-17 15:46:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -1606,7 +1606,7 @@ cards_092:
   left_id: 91
   right_id: 66
   created_at: 2025-11-10 21:38:35.000000000 Z
-  updated_at: 2025-12-09 16:23:28.000000000 Z
+  updated_at: 2025-12-17 15:46:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -1623,7 +1623,7 @@ cards_093:
   left_id: 91
   right_id: 67
   created_at: 2025-11-10 21:38:35.000000000 Z
-  updated_at: 2025-12-09 16:23:28.000000000 Z
+  updated_at: 2025-12-17 15:46:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -1640,7 +1640,7 @@ cards_094:
   left_id: 91
   right_id: 68
   created_at: 2025-11-10 21:38:35.000000000 Z
-  updated_at: 2025-12-09 16:23:28.000000000 Z
+  updated_at: 2025-12-17 15:46:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -3034,7 +3034,7 @@ cards_173:
   left_id:
   right_id:
   created_at: 2025-11-10 21:38:44.000000000 Z
-  updated_at: 2025-12-09 16:24:48.000000000 Z
+  updated_at: 2025-12-17 15:49:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -3443,7 +3443,7 @@ cards_196:
   left_id:
   right_id:
   created_at: 2025-11-10 21:38:47.000000000 Z
-  updated_at: 2025-12-09 16:23:28.000000000 Z
+  updated_at: 2025-12-17 15:46:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -4497,7 +4497,7 @@ cards_256:
   left_id: 254
   right_id: 167
   created_at: 2025-11-10 21:38:52.000000000 Z
-  updated_at: 2025-12-09 16:24:44.000000000 Z
+  updated_at: 2025-12-17 15:49:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -4596,7 +4596,7 @@ cards_261:
   left_id: 259
   right_id: 167
   created_at: 2025-11-10 21:38:52.000000000 Z
-  updated_at: 2025-12-09 16:24:44.000000000 Z
+  updated_at: 2025-12-17 15:49:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5089,7 +5089,7 @@ cards_288:
   left_id:
   right_id:
   created_at: 2025-11-10 21:38:55.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -5454,7 +5454,7 @@ cards_306:
   left_id: 7
   right_id: 302
   created_at: 2025-11-10 21:38:59.000000000 Z
-  updated_at: 2025-12-09 16:26:16.000000000 Z
+  updated_at: 2025-12-17 15:52:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5491,6 +5491,7 @@ cards_306:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
+    mod: ticket+*script
   search_content: |-
     mod: format+*script
     mod: list+*script
@@ -5521,6 +5522,7 @@ cards_306:
     mod: wikirate+*script
     mod: tasks+*script
     mod: vega+*script
+    mod: ticket+*script
 cards_307:
   id: 307
   name:
@@ -5529,7 +5531,7 @@ cards_307:
   left_id: 306
   right_id: 299
   created_at: 2025-11-10 21:38:59.000000000 Z
-  updated_at: 2025-12-09 16:26:26.000000000 Z
+  updated_at: 2025-12-17 15:52:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -5537,7 +5539,7 @@ cards_307:
   trash: 0
   type_id: 282
   db_content: ":all+:script+:asset_output/wikirate.js"
-  search_content: "~307/1765297585.js"
+  search_content: "~307/1765986741.js"
 cards_308:
   id: 308
   name: JavaScript
@@ -5916,7 +5918,7 @@ cards_328:
   left_id:
   right_id:
   created_at: 2025-11-10 21:39:02.000000000 Z
-  updated_at: 2025-12-09 16:26:21.000000000 Z
+  updated_at: 2025-12-17 15:52:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -5964,6 +5966,7 @@ cards_328:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
+    mod: ticket+*style
   search_content: |-
     mod: format+*style
     mod: list+*style
@@ -6005,6 +6008,7 @@ cards_328:
     mod: badges+*style
     mod: tasks+*style
     mod: vega+*style
+    mod: ticket+*style
 cards_329:
   id: 329
   name: Local style folder group
@@ -6525,7 +6529,7 @@ cards_358:
   left_id:
   right_id:
   created_at: 2025-11-10 21:39:06.000000000 Z
-  updated_at: 2025-12-09 16:24:23.000000000 Z
+  updated_at: 2025-12-17 15:48:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -8024,7 +8028,7 @@ cards_446:
   left_id: 7
   right_id: 349
   created_at: 2025-11-10 21:40:32.000000000 Z
-  updated_at: 2025-12-09 16:24:42.000000000 Z
+  updated_at: 2025-12-17 15:49:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8041,7 +8045,7 @@ cards_447:
   left_id: 446
   right_id: 299
   created_at: 2025-11-10 21:40:33.000000000 Z
-  updated_at: 2025-12-09 16:26:26.000000000 Z
+  updated_at: 2025-12-17 15:52:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8049,7 +8053,7 @@ cards_447:
   trash: 0
   type_id: 282
   db_content: ":all+:style+:asset_output/wikirate.css"
-  search_content: "~447/1765297585.css"
+  search_content: "~447/1765986741.css"
 cards_448:
   id: 448
   name: discussion
@@ -8682,7 +8686,7 @@ cards_483:
   left_id:
   right_id:
   created_at: 2025-11-10 21:40:41.000000000 Z
-  updated_at: 2025-12-09 16:26:21.000000000 Z
+  updated_at: 2025-12-17 15:52:14.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -8949,7 +8953,7 @@ cards_497:
   left_id: 7
   right_id: 494
   created_at: 2025-11-10 21:40:43.000000000 Z
-  updated_at: 2025-12-09 16:23:43.000000000 Z
+  updated_at: 2025-12-17 15:47:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -8966,7 +8970,7 @@ cards_498:
   left_id:
   right_id:
   created_at: 2025-11-10 21:40:43.000000000 Z
-  updated_at: 2025-12-09 16:23:38.000000000 Z
+  updated_at: 2025-12-17 15:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -8987,7 +8991,7 @@ cards_499:
   left_id:
   right_id:
   created_at: 2025-11-10 21:40:44.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -9060,7 +9064,7 @@ cards_502:
   left_id: 498
   right_id: 27
   created_at: 2025-11-10 21:40:44.000000000 Z
-  updated_at: 2025-12-09 16:23:37.000000000 Z
+  updated_at: 2025-12-17 15:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -9077,7 +9081,7 @@ cards_503:
   left_id: 502
   right_id: 9
   created_at: 2025-11-10 21:40:44.000000000 Z
-  updated_at: 2025-12-09 16:23:37.000000000 Z
+  updated_at: 2025-12-17 15:46:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -9184,7 +9188,7 @@ cards_509:
   left_id:
   right_id:
   created_at: 2025-11-10 21:40:46.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -9206,7 +9210,7 @@ cards_510:
   left_id:
   right_id:
   created_at: 2025-11-10 21:40:46.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -9228,7 +9232,7 @@ cards_511:
   left_id:
   right_id:
   created_at: 2025-11-10 21:40:46.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -9250,7 +9254,7 @@ cards_512:
   left_id:
   right_id:
   created_at: 2025-11-10 21:40:47.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -9273,7 +9277,7 @@ cards_513:
   left_id:
   right_id:
   created_at: 2025-11-10 21:40:47.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -9426,7 +9430,7 @@ cards_521:
   left_id:
   right_id:
   created_at: 2025-11-10 21:40:50.000000000 Z
-  updated_at: 2025-12-09 16:25:28.000000000 Z
+  updated_at: 2025-12-17 15:50:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -9626,7 +9630,7 @@ cards_531:
   left_id: 196
   right_id: 525
   created_at: 2025-11-10 21:40:53.000000000 Z
-  updated_at: 2025-12-09 16:23:28.000000000 Z
+  updated_at: 2025-12-17 15:46:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -10968,8 +10972,8 @@ cards_604:
   codename: alias
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:35.000000000 Z
-  updated_at: 2025-12-09 16:23:35.000000000 Z
+  created_at: 2025-12-17 15:46:52.000000000 Z
+  updated_at: 2025-12-17 15:46:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -10996,8 +11000,8 @@ cards_605:
   codename: bookmarks
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:36.000000000 Z
-  updated_at: 2025-12-09 16:23:36.000000000 Z
+  created_at: 2025-12-17 15:46:53.000000000 Z
+  updated_at: 2025-12-17 15:46:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11013,8 +11017,8 @@ cards_606:
   codename: bookmarkers
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:36.000000000 Z
-  updated_at: 2025-12-09 16:23:36.000000000 Z
+  created_at: 2025-12-17 15:46:53.000000000 Z
+  updated_at: 2025-12-17 15:46:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11030,8 +11034,8 @@ cards_607:
   codename: bookmarked
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:36.000000000 Z
-  updated_at: 2025-12-09 16:23:36.000000000 Z
+  created_at: 2025-12-17 15:46:54.000000000 Z
+  updated_at: 2025-12-17 15:46:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11047,8 +11051,8 @@ cards_608:
   codename: import_map
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:37.000000000 Z
-  updated_at: 2025-12-09 16:23:37.000000000 Z
+  created_at: 2025-12-17 15:46:54.000000000 Z
+  updated_at: 2025-12-17 15:46:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11064,8 +11068,8 @@ cards_609:
   codename: import_status
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:37.000000000 Z
-  updated_at: 2025-12-09 16:23:37.000000000 Z
+  created_at: 2025-12-17 15:46:55.000000000 Z
+  updated_at: 2025-12-17 15:46:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11081,8 +11085,8 @@ cards_610:
   codename: flag_type
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:38.000000000 Z
-  updated_at: 2025-12-09 16:23:38.000000000 Z
+  created_at: 2025-12-17 15:46:57.000000000 Z
+  updated_at: 2025-12-17 15:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11109,8 +11113,8 @@ cards_611:
   codename: flag
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:38.000000000 Z
-  updated_at: 2025-12-09 16:23:38.000000000 Z
+  created_at: 2025-12-17 15:46:57.000000000 Z
+  updated_at: 2025-12-17 15:46:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11137,8 +11141,8 @@ cards_612:
   codename: other_flag
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:58.000000000 Z
+  updated_at: 2025-12-17 15:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11154,8 +11158,8 @@ cards_613:
   codename:
   left_id: 612
   right_id: 21
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:58.000000000 Z
+  updated_at: 2025-12-17 15:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11171,8 +11175,8 @@ cards_614:
   codename:
   left_id: 614
   right_id: 17
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:58.000000000 Z
+  updated_at: 2025-12-17 15:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11188,8 +11192,8 @@ cards_615:
   codename:
   left_id: 612
   right_id: 224
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:58.000000000 Z
+  updated_at: 2025-12-17 15:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*right"
@@ -11205,8 +11209,8 @@ cards_616:
   codename:
   left_id: 616
   right_id: 25
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:58.000000000 Z
+  updated_at: 2025-12-17 15:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11222,8 +11226,8 @@ cards_617:
   codename:
   left_id: 617
   right_id: 9
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:58.000000000 Z
+  updated_at: 2025-12-17 15:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11239,8 +11243,8 @@ cards_618:
   codename:
   left_id: 617
   right_id: 67
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:58.000000000 Z
+  updated_at: 2025-12-17 15:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11256,8 +11260,8 @@ cards_619:
   codename:
   left_id: 617
   right_id: 68
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:58.000000000 Z
+  updated_at: 2025-12-17 15:46:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11273,8 +11277,8 @@ cards_620:
   codename:
   left_id: 612
   right_id: 167
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:59.000000000 Z
+  updated_at: 2025-12-17 15:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11290,8 +11294,8 @@ cards_621:
   codename:
   left_id: 621
   right_id: 25
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:59.000000000 Z
+  updated_at: 2025-12-17 15:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11307,8 +11311,8 @@ cards_622:
   codename:
   left_id: 622
   right_id: 66
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:59.000000000 Z
+  updated_at: 2025-12-17 15:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11324,8 +11328,8 @@ cards_623:
   codename:
   left_id: 622
   right_id: 9
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:59.000000000 Z
+  updated_at: 2025-12-17 15:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11341,8 +11345,8 @@ cards_624:
   codename:
   left_id: 622
   right_id: 67
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:59.000000000 Z
+  updated_at: 2025-12-17 15:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11358,8 +11362,8 @@ cards_625:
   codename:
   left_id: 622
   right_id: 68
-  created_at: 2025-12-09 16:23:39.000000000 Z
-  updated_at: 2025-12-09 16:23:39.000000000 Z
+  created_at: 2025-12-17 15:46:59.000000000 Z
+  updated_at: 2025-12-17 15:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11375,8 +11379,8 @@ cards_626:
   codename: google_analytics_key
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:40.000000000 Z
-  updated_at: 2025-12-09 16:23:40.000000000 Z
+  created_at: 2025-12-17 15:46:59.000000000 Z
+  updated_at: 2025-12-17 15:46:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11392,8 +11396,8 @@ cards_627:
   codename: api_tracker
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:40.000000000 Z
-  updated_at: 2025-12-09 16:23:40.000000000 Z
+  created_at: 2025-12-17 15:47:00.000000000 Z
+  updated_at: 2025-12-17 15:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11409,8 +11413,8 @@ cards_628:
   codename: solid_cache
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:40.000000000 Z
-  updated_at: 2025-12-09 16:23:40.000000000 Z
+  created_at: 2025-12-17 15:47:00.000000000 Z
+  updated_at: 2025-12-17 15:47:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11426,8 +11430,8 @@ cards_629:
   codename:
   left_id: 629
   right_id: 26
-  created_at: 2025-12-09 16:23:40.000000000 Z
-  updated_at: 2025-12-09 16:23:40.000000000 Z
+  created_at: 2025-12-17 15:47:01.000000000 Z
+  updated_at: 2025-12-17 15:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11443,8 +11447,8 @@ cards_630:
   codename:
   left_id: 630
   right_id: 9
-  created_at: 2025-12-09 16:23:40.000000000 Z
-  updated_at: 2025-12-09 16:23:40.000000000 Z
+  created_at: 2025-12-17 15:47:01.000000000 Z
+  updated_at: 2025-12-17 15:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -11460,8 +11464,8 @@ cards_631:
   codename: guide_type
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:40.000000000 Z
-  updated_at: 2025-12-09 16:23:40.000000000 Z
+  created_at: 2025-12-17 15:47:01.000000000 Z
+  updated_at: 2025-12-17 15:47:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11488,8 +11492,8 @@ cards_632:
   codename: quote
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:40.000000000 Z
-  updated_at: 2025-12-09 16:23:40.000000000 Z
+  created_at: 2025-12-17 15:47:02.000000000 Z
+  updated_at: 2025-12-17 15:47:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11516,8 +11520,8 @@ cards_633:
   codename: job_title
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:41.000000000 Z
-  updated_at: 2025-12-09 16:23:41.000000000 Z
+  created_at: 2025-12-17 15:47:02.000000000 Z
+  updated_at: 2025-12-17 15:47:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11533,8 +11537,8 @@ cards_634:
   codename: quotee
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:41.000000000 Z
-  updated_at: 2025-12-09 16:23:41.000000000 Z
+  created_at: 2025-12-17 15:47:03.000000000 Z
+  updated_at: 2025-12-17 15:47:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11550,8 +11554,8 @@ cards_635:
   codename: detailed_quote
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:41.000000000 Z
-  updated_at: 2025-12-09 16:23:41.000000000 Z
+  created_at: 2025-12-17 15:47:03.000000000 Z
+  updated_at: 2025-12-17 15:47:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11567,8 +11571,8 @@ cards_636:
   codename: policy
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:41.000000000 Z
-  updated_at: 2025-12-09 16:25:30.000000000 Z
+  created_at: 2025-12-17 15:47:03.000000000 Z
+  updated_at: 2025-12-17 15:50:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11595,8 +11599,8 @@ cards_637:
   codename: fulltext
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:42.000000000 Z
-  updated_at: 2025-12-09 16:23:42.000000000 Z
+  created_at: 2025-12-17 15:47:04.000000000 Z
+  updated_at: 2025-12-17 15:47:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11612,8 +11616,8 @@ cards_638:
   codename: featured
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:42.000000000 Z
-  updated_at: 2025-12-09 16:23:42.000000000 Z
+  created_at: 2025-12-17 15:47:05.000000000 Z
+  updated_at: 2025-12-17 15:47:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11629,8 +11633,8 @@ cards_639:
   codename: wikirate_team
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:42.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  created_at: 2025-12-17 15:47:06.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11646,8 +11650,8 @@ cards_640:
   codename: wikirat
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:43.000000000 Z
-  updated_at: 2025-12-09 16:23:43.000000000 Z
+  created_at: 2025-12-17 15:47:07.000000000 Z
+  updated_at: 2025-12-17 15:47:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11663,8 +11667,8 @@ cards_641:
   codename: license
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:43.000000000 Z
-  updated_at: 2025-12-09 16:23:43.000000000 Z
+  created_at: 2025-12-17 15:47:09.000000000 Z
+  updated_at: 2025-12-17 15:47:09.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11680,8 +11684,8 @@ cards_642:
   codename: topic
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:43.000000000 Z
-  updated_at: 2025-12-09 16:23:43.000000000 Z
+  created_at: 2025-12-17 15:47:10.000000000 Z
+  updated_at: 2025-12-17 15:47:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11708,8 +11712,8 @@ cards_643:
   codename: subtopic
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:44.000000000 Z
-  updated_at: 2025-12-09 16:23:44.000000000 Z
+  created_at: 2025-12-17 15:47:10.000000000 Z
+  updated_at: 2025-12-17 15:47:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11725,8 +11729,8 @@ cards_644:
   codename: topic_framework
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:44.000000000 Z
-  updated_at: 2025-12-09 16:23:44.000000000 Z
+  created_at: 2025-12-17 15:47:11.000000000 Z
+  updated_at: 2025-12-17 15:47:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11753,8 +11757,8 @@ cards_645:
   codename: topic_family
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:44.000000000 Z
-  updated_at: 2025-12-09 16:23:44.000000000 Z
+  created_at: 2025-12-17 15:47:11.000000000 Z
+  updated_at: 2025-12-17 15:47:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11770,8 +11774,8 @@ cards_646:
   codename: topic_title
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:45.000000000 Z
-  updated_at: 2025-12-09 16:23:45.000000000 Z
+  created_at: 2025-12-17 15:47:12.000000000 Z
+  updated_at: 2025-12-17 15:47:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11798,8 +11802,8 @@ cards_647:
   codename: category
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:45.000000000 Z
-  updated_at: 2025-12-09 16:24:06.000000000 Z
+  created_at: 2025-12-17 15:47:13.000000000 Z
+  updated_at: 2025-12-17 15:47:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11821,8 +11825,8 @@ cards_648:
   codename: general_overview
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:45.000000000 Z
-  updated_at: 2025-12-09 16:23:45.000000000 Z
+  created_at: 2025-12-17 15:47:13.000000000 Z
+  updated_at: 2025-12-17 15:47:13.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11838,8 +11842,8 @@ cards_649:
   codename: badge
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:46.000000000 Z
-  updated_at: 2025-12-09 16:23:46.000000000 Z
+  created_at: 2025-12-17 15:47:15.000000000 Z
+  updated_at: 2025-12-17 15:47:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11866,8 +11870,8 @@ cards_650:
   codename: metric_bookmarker
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:46.000000000 Z
-  updated_at: 2025-12-09 16:23:46.000000000 Z
+  created_at: 2025-12-17 15:47:15.000000000 Z
+  updated_at: 2025-12-17 15:47:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11883,8 +11887,8 @@ cards_651:
   codename: research_pro
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:46.000000000 Z
-  updated_at: 2025-12-09 16:23:46.000000000 Z
+  created_at: 2025-12-17 15:47:16.000000000 Z
+  updated_at: 2025-12-17 15:47:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11900,8 +11904,8 @@ cards_652:
   codename: research_master
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:46.000000000 Z
-  updated_at: 2025-12-09 16:23:46.000000000 Z
+  created_at: 2025-12-17 15:47:17.000000000 Z
+  updated_at: 2025-12-17 15:47:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11917,8 +11921,8 @@ cards_653:
   codename: checker
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:47.000000000 Z
-  updated_at: 2025-12-09 16:23:47.000000000 Z
+  created_at: 2025-12-17 15:47:17.000000000 Z
+  updated_at: 2025-12-17 15:47:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11934,8 +11938,8 @@ cards_654:
   codename: check_pro
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:47.000000000 Z
-  updated_at: 2025-12-09 16:23:47.000000000 Z
+  created_at: 2025-12-17 15:47:17.000000000 Z
+  updated_at: 2025-12-17 15:47:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11951,8 +11955,8 @@ cards_655:
   codename: check_mate
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:47.000000000 Z
-  updated_at: 2025-12-09 16:23:47.000000000 Z
+  created_at: 2025-12-17 15:47:18.000000000 Z
+  updated_at: 2025-12-17 15:47:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11968,8 +11972,8 @@ cards_656:
   codename: answer_advancer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:48.000000000 Z
-  updated_at: 2025-12-09 16:23:48.000000000 Z
+  created_at: 2025-12-17 15:47:19.000000000 Z
+  updated_at: 2025-12-17 15:47:19.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -11985,8 +11989,8 @@ cards_657:
   codename: answer_enhancer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:48.000000000 Z
-  updated_at: 2025-12-09 16:23:48.000000000 Z
+  created_at: 2025-12-17 15:47:20.000000000 Z
+  updated_at: 2025-12-17 15:47:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12002,8 +12006,8 @@ cards_658:
   codename: answer_chancer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:48.000000000 Z
-  updated_at: 2025-12-09 16:23:48.000000000 Z
+  created_at: 2025-12-17 15:47:20.000000000 Z
+  updated_at: 2025-12-17 15:47:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12019,8 +12023,8 @@ cards_659:
   codename: commentator
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:48.000000000 Z
-  updated_at: 2025-12-09 16:23:48.000000000 Z
+  created_at: 2025-12-17 15:47:20.000000000 Z
+  updated_at: 2025-12-17 15:47:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12036,8 +12040,8 @@ cards_660:
   codename: commentary_team
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:49.000000000 Z
-  updated_at: 2025-12-09 16:23:49.000000000 Z
+  created_at: 2025-12-17 15:47:21.000000000 Z
+  updated_at: 2025-12-17 15:47:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12053,8 +12057,8 @@ cards_661:
   codename: expert_commentary
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:49.000000000 Z
-  updated_at: 2025-12-09 16:23:49.000000000 Z
+  created_at: 2025-12-17 15:47:22.000000000 Z
+  updated_at: 2025-12-17 15:47:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12070,8 +12074,8 @@ cards_662:
   codename: researcher
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:49.000000000 Z
-  updated_at: 2025-12-09 16:23:49.000000000 Z
+  created_at: 2025-12-17 15:47:22.000000000 Z
+  updated_at: 2025-12-17 15:47:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12087,8 +12091,8 @@ cards_663:
   codename: metric_critic
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:49.000000000 Z
-  updated_at: 2025-12-09 16:23:49.000000000 Z
+  created_at: 2025-12-17 15:47:23.000000000 Z
+  updated_at: 2025-12-17 15:47:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12104,8 +12108,8 @@ cards_664:
   codename: metric_connoisseur
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:50.000000000 Z
-  updated_at: 2025-12-09 16:23:50.000000000 Z
+  created_at: 2025-12-17 15:47:24.000000000 Z
+  updated_at: 2025-12-17 15:47:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12121,8 +12125,8 @@ cards_665:
   codename: project_q_a
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:50.000000000 Z
-  updated_at: 2025-12-09 16:23:50.000000000 Z
+  created_at: 2025-12-17 15:47:24.000000000 Z
+  updated_at: 2025-12-17 15:47:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12138,8 +12142,8 @@ cards_666:
   codename: project_launcher
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:50.000000000 Z
-  updated_at: 2025-12-09 16:23:50.000000000 Z
+  created_at: 2025-12-17 15:47:24.000000000 Z
+  updated_at: 2025-12-17 15:47:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12155,8 +12159,8 @@ cards_667:
   codename: inside_source
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:50.000000000 Z
-  updated_at: 2025-12-09 16:23:50.000000000 Z
+  created_at: 2025-12-17 15:47:26.000000000 Z
+  updated_at: 2025-12-17 15:47:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12172,8 +12176,8 @@ cards_668:
   codename: a_cite_to_behold
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:51.000000000 Z
-  updated_at: 2025-12-09 16:23:51.000000000 Z
+  created_at: 2025-12-17 15:47:26.000000000 Z
+  updated_at: 2025-12-17 15:47:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12189,8 +12193,8 @@ cards_669:
   codename: a_source_of_inspiration
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:51.000000000 Z
-  updated_at: 2025-12-09 16:23:51.000000000 Z
+  created_at: 2025-12-17 15:47:27.000000000 Z
+  updated_at: 2025-12-17 15:47:27.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12206,8 +12210,8 @@ cards_670:
   codename: company_register
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:51.000000000 Z
-  updated_at: 2025-12-09 16:23:51.000000000 Z
+  created_at: 2025-12-17 15:47:27.000000000 Z
+  updated_at: 2025-12-17 15:47:27.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12223,8 +12227,8 @@ cards_671:
   codename: the_company_store
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:51.000000000 Z
-  updated_at: 2025-12-09 16:23:51.000000000 Z
+  created_at: 2025-12-17 15:47:28.000000000 Z
+  updated_at: 2025-12-17 15:47:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12240,8 +12244,8 @@ cards_672:
   codename: companies_in_the_house
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:52.000000000 Z
-  updated_at: 2025-12-09 16:23:52.000000000 Z
+  created_at: 2025-12-17 15:47:29.000000000 Z
+  updated_at: 2025-12-17 15:47:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12257,8 +12261,8 @@ cards_673:
   codename: logo_adder
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:52.000000000 Z
-  updated_at: 2025-12-09 16:23:52.000000000 Z
+  created_at: 2025-12-17 15:47:29.000000000 Z
+  updated_at: 2025-12-17 15:47:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12274,8 +12278,8 @@ cards_674:
   codename: how_lo_can_you_go
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:52.000000000 Z
-  updated_at: 2025-12-09 16:23:52.000000000 Z
+  created_at: 2025-12-17 15:47:30.000000000 Z
+  updated_at: 2025-12-17 15:47:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12291,8 +12295,8 @@ cards_675:
   codename: logo_and_behold
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:53.000000000 Z
-  updated_at: 2025-12-09 16:23:53.000000000 Z
+  created_at: 2025-12-17 15:47:30.000000000 Z
+  updated_at: 2025-12-17 15:47:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12308,8 +12312,8 @@ cards_676:
   codename: metric_creator
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:53.000000000 Z
-  updated_at: 2025-12-09 16:23:53.000000000 Z
+  created_at: 2025-12-17 15:47:31.000000000 Z
+  updated_at: 2025-12-17 15:47:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12325,8 +12329,8 @@ cards_677:
   codename: metric_tonnes
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:53.000000000 Z
-  updated_at: 2025-12-09 16:23:53.000000000 Z
+  created_at: 2025-12-17 15:47:32.000000000 Z
+  updated_at: 2025-12-17 15:47:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12342,8 +12346,8 @@ cards_678:
   codename: research_agenda_setter
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:54.000000000 Z
-  updated_at: 2025-12-09 16:23:54.000000000 Z
+  created_at: 2025-12-17 15:47:32.000000000 Z
+  updated_at: 2025-12-17 15:47:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12359,8 +12363,8 @@ cards_679:
   codename: badges_earned
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:54.000000000 Z
-  updated_at: 2025-12-09 16:23:54.000000000 Z
+  created_at: 2025-12-17 15:47:33.000000000 Z
+  updated_at: 2025-12-17 15:47:33.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12376,8 +12380,8 @@ cards_680:
   codename: project_badge
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:55.000000000 Z
-  updated_at: 2025-12-09 16:23:55.000000000 Z
+  created_at: 2025-12-17 15:47:34.000000000 Z
+  updated_at: 2025-12-17 15:47:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12393,8 +12397,8 @@ cards_681:
   codename: company_badge
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:55.000000000 Z
-  updated_at: 2025-12-09 16:23:55.000000000 Z
+  created_at: 2025-12-17 15:47:34.000000000 Z
+  updated_at: 2025-12-17 15:47:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12410,8 +12414,8 @@ cards_682:
   codename: designer_badge
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:56.000000000 Z
-  updated_at: 2025-12-09 16:23:56.000000000 Z
+  created_at: 2025-12-17 15:47:34.000000000 Z
+  updated_at: 2025-12-17 15:47:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12427,8 +12431,8 @@ cards_683:
   codename: details
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:56.000000000 Z
-  updated_at: 2025-12-09 16:23:56.000000000 Z
+  created_at: 2025-12-17 15:47:36.000000000 Z
+  updated_at: 2025-12-17 15:47:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12444,8 +12448,8 @@ cards_684:
   codename: organizer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:57.000000000 Z
-  updated_at: 2025-12-09 16:23:57.000000000 Z
+  created_at: 2025-12-17 15:47:36.000000000 Z
+  updated_at: 2025-12-17 15:47:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12461,8 +12465,8 @@ cards_685:
   codename: metric_title
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:57.000000000 Z
-  updated_at: 2025-12-09 16:23:57.000000000 Z
+  created_at: 2025-12-17 15:47:37.000000000 Z
+  updated_at: 2025-12-17 15:47:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12489,8 +12493,8 @@ cards_686:
   codename: answer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:57.000000000 Z
-  updated_at: 2025-12-09 16:23:57.000000000 Z
+  created_at: 2025-12-17 15:47:37.000000000 Z
+  updated_at: 2025-12-17 15:47:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12517,8 +12521,8 @@ cards_687:
   codename: metric_type_type
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:58.000000000 Z
-  updated_at: 2025-12-09 16:23:58.000000000 Z
+  created_at: 2025-12-17 15:47:38.000000000 Z
+  updated_at: 2025-12-17 15:47:38.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12545,8 +12549,8 @@ cards_688:
   codename: year
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:58.000000000 Z
-  updated_at: 2025-12-09 16:23:58.000000000 Z
+  created_at: 2025-12-17 15:47:39.000000000 Z
+  updated_at: 2025-12-17 15:47:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12573,8 +12577,8 @@ cards_689:
   codename: company
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:58.000000000 Z
-  updated_at: 2025-12-09 16:23:58.000000000 Z
+  created_at: 2025-12-17 15:47:40.000000000 Z
+  updated_at: 2025-12-17 15:47:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12601,8 +12605,8 @@ cards_690:
   codename: record
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:59.000000000 Z
-  updated_at: 2025-12-09 16:23:59.000000000 Z
+  created_at: 2025-12-17 15:47:40.000000000 Z
+  updated_at: 2025-12-17 15:47:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12629,8 +12633,8 @@ cards_691:
   codename: metric
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:59.000000000 Z
-  updated_at: 2025-12-09 16:23:59.000000000 Z
+  created_at: 2025-12-17 15:47:41.000000000 Z
+  updated_at: 2025-12-17 15:47:41.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12657,8 +12661,8 @@ cards_692:
   codename: value
   left_id:
   right_id:
-  created_at: 2025-12-09 16:23:59.000000000 Z
-  updated_at: 2025-12-09 16:23:59.000000000 Z
+  created_at: 2025-12-17 15:47:41.000000000 Z
+  updated_at: 2025-12-17 15:47:41.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12674,8 +12678,8 @@ cards_693:
   codename: unknown
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:00.000000000 Z
-  updated_at: 2025-12-09 16:24:00.000000000 Z
+  created_at: 2025-12-17 15:47:42.000000000 Z
+  updated_at: 2025-12-17 15:47:42.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12691,8 +12695,8 @@ cards_694:
   codename: researched
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:00.000000000 Z
-  updated_at: 2025-12-09 16:24:00.000000000 Z
+  created_at: 2025-12-17 15:47:43.000000000 Z
+  updated_at: 2025-12-17 15:47:43.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12708,8 +12712,8 @@ cards_695:
   codename: unpublished
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:00.000000000 Z
-  updated_at: 2025-12-09 16:24:00.000000000 Z
+  created_at: 2025-12-17 15:47:43.000000000 Z
+  updated_at: 2025-12-17 15:47:43.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12725,8 +12729,8 @@ cards_696:
   codename: hybrid
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:00.000000000 Z
-  updated_at: 2025-12-09 16:24:00.000000000 Z
+  created_at: 2025-12-17 15:47:44.000000000 Z
+  updated_at: 2025-12-17 15:47:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12742,8 +12746,8 @@ cards_697:
   codename: company_group
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:00.000000000 Z
-  updated_at: 2025-12-09 16:24:00.000000000 Z
+  created_at: 2025-12-17 15:47:45.000000000 Z
+  updated_at: 2025-12-17 15:47:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12770,8 +12774,8 @@ cards_698:
   codename: assessment
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:01.000000000 Z
-  updated_at: 2025-12-09 16:24:01.000000000 Z
+  created_at: 2025-12-17 15:47:46.000000000 Z
+  updated_at: 2025-12-17 15:47:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12798,8 +12802,8 @@ cards_699:
   codename: report_type
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:01.000000000 Z
-  updated_at: 2025-12-09 16:24:01.000000000 Z
+  created_at: 2025-12-17 15:47:46.000000000 Z
+  updated_at: 2025-12-17 15:47:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12826,8 +12830,8 @@ cards_700:
   codename:
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:01.000000000 Z
-  updated_at: 2025-12-09 16:24:01.000000000 Z
+  created_at: 2025-12-17 15:47:47.000000000 Z
+  updated_at: 2025-12-17 15:47:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12843,8 +12847,8 @@ cards_701:
   codename:
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:02.000000000 Z
-  updated_at: 2025-12-09 16:24:02.000000000 Z
+  created_at: 2025-12-17 15:47:47.000000000 Z
+  updated_at: 2025-12-17 15:47:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12860,8 +12864,8 @@ cards_702:
   codename: headquarters
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:02.000000000 Z
-  updated_at: 2025-12-09 16:24:02.000000000 Z
+  created_at: 2025-12-17 15:47:48.000000000 Z
+  updated_at: 2025-12-17 15:47:48.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12877,8 +12881,8 @@ cards_703:
   codename: oc_jurisdiction_key
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:02.000000000 Z
-  updated_at: 2025-12-09 16:24:02.000000000 Z
+  created_at: 2025-12-17 15:47:48.000000000 Z
+  updated_at: 2025-12-17 15:47:48.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12894,8 +12898,8 @@ cards_704:
   codename: region
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:02.000000000 Z
-  updated_at: 2025-12-09 16:24:02.000000000 Z
+  created_at: 2025-12-17 15:47:49.000000000 Z
+  updated_at: 2025-12-17 15:47:49.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12922,8 +12926,8 @@ cards_705:
   codename: country
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:03.000000000 Z
-  updated_at: 2025-12-09 16:24:03.000000000 Z
+  created_at: 2025-12-17 15:47:50.000000000 Z
+  updated_at: 2025-12-17 15:47:50.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12939,8 +12943,8 @@ cards_706:
   codename: country_code
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:03.000000000 Z
-  updated_at: 2025-12-09 16:24:03.000000000 Z
+  created_at: 2025-12-17 15:47:50.000000000 Z
+  updated_at: 2025-12-17 15:47:50.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12956,8 +12960,8 @@ cards_707:
   codename: ilo_region
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:03.000000000 Z
-  updated_at: 2025-12-09 16:24:03.000000000 Z
+  created_at: 2025-12-17 15:47:51.000000000 Z
+  updated_at: 2025-12-17 15:47:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -12973,8 +12977,8 @@ cards_708:
   codename: value_type
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:04.000000000 Z
-  updated_at: 2025-12-09 16:24:04.000000000 Z
+  created_at: 2025-12-17 15:47:52.000000000 Z
+  updated_at: 2025-12-17 15:47:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13000,8 +13004,8 @@ cards_709:
   codename: number_value
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:04.000000000 Z
-  updated_at: 2025-12-09 16:24:04.000000000 Z
+  created_at: 2025-12-17 15:47:53.000000000 Z
+  updated_at: 2025-12-17 15:47:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13028,8 +13032,8 @@ cards_710:
   codename: money_value
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:04.000000000 Z
-  updated_at: 2025-12-09 16:24:04.000000000 Z
+  created_at: 2025-12-17 15:47:54.000000000 Z
+  updated_at: 2025-12-17 15:47:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13056,8 +13060,8 @@ cards_711:
   codename: category_value
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:05.000000000 Z
-  updated_at: 2025-12-09 16:24:05.000000000 Z
+  created_at: 2025-12-17 15:47:54.000000000 Z
+  updated_at: 2025-12-17 15:47:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13084,8 +13088,8 @@ cards_712:
   codename: multi_category_value
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:05.000000000 Z
-  updated_at: 2025-12-09 16:24:05.000000000 Z
+  created_at: 2025-12-17 15:47:55.000000000 Z
+  updated_at: 2025-12-17 15:47:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13112,8 +13116,8 @@ cards_713:
   codename: free_text_value
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:05.000000000 Z
-  updated_at: 2025-12-09 16:24:05.000000000 Z
+  created_at: 2025-12-17 15:47:56.000000000 Z
+  updated_at: 2025-12-17 15:47:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13140,8 +13144,8 @@ cards_714:
   codename: money
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:05.000000000 Z
-  updated_at: 2025-12-09 16:24:05.000000000 Z
+  created_at: 2025-12-17 15:47:56.000000000 Z
+  updated_at: 2025-12-17 15:47:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13157,8 +13161,8 @@ cards_715:
   codename: multi_category
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:06.000000000 Z
-  updated_at: 2025-12-09 16:24:06.000000000 Z
+  created_at: 2025-12-17 15:47:57.000000000 Z
+  updated_at: 2025-12-17 15:47:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13174,8 +13178,8 @@ cards_716:
   codename: free_text
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:06.000000000 Z
-  updated_at: 2025-12-09 16:24:06.000000000 Z
+  created_at: 2025-12-17 15:47:58.000000000 Z
+  updated_at: 2025-12-17 15:47:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13191,8 +13195,8 @@ cards_717:
   codename:
   left_id: 692
   right_id: 709
-  created_at: 2025-12-09 16:24:07.000000000 Z
-  updated_at: 2025-12-09 16:24:07.000000000 Z
+  created_at: 2025-12-17 15:47:59.000000000 Z
+  updated_at: 2025-12-17 15:47:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13208,8 +13212,8 @@ cards_718:
   codename:
   left_id: 718
   right_id: 25
-  created_at: 2025-12-09 16:24:07.000000000 Z
-  updated_at: 2025-12-09 16:24:07.000000000 Z
+  created_at: 2025-12-17 15:47:59.000000000 Z
+  updated_at: 2025-12-17 15:47:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13225,8 +13229,8 @@ cards_719:
   codename:
   left_id: 719
   right_id: 60
-  created_at: 2025-12-09 16:24:07.000000000 Z
-  updated_at: 2025-12-09 16:24:07.000000000 Z
+  created_at: 2025-12-17 15:47:59.000000000 Z
+  updated_at: 2025-12-17 15:47:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13252,8 +13256,8 @@ cards_720:
   codename: steward
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:07.000000000 Z
-  updated_at: 2025-12-09 16:24:07.000000000 Z
+  created_at: 2025-12-17 15:47:59.000000000 Z
+  updated_at: 2025-12-17 15:47:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13269,8 +13273,8 @@ cards_721:
   codename:
   left_id: 721
   right_id: 26
-  created_at: 2025-12-09 16:24:07.000000000 Z
-  updated_at: 2025-12-09 16:24:07.000000000 Z
+  created_at: 2025-12-17 15:47:59.000000000 Z
+  updated_at: 2025-12-17 15:47:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13286,8 +13290,8 @@ cards_722:
   codename:
   left_id: 722
   right_id: 60
-  created_at: 2025-12-09 16:24:07.000000000 Z
-  updated_at: 2025-12-09 16:24:07.000000000 Z
+  created_at: 2025-12-17 15:47:59.000000000 Z
+  updated_at: 2025-12-17 15:47:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13303,8 +13307,8 @@ cards_723:
   codename: value_options
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:07.000000000 Z
-  updated_at: 2025-12-09 16:24:07.000000000 Z
+  created_at: 2025-12-17 15:48:00.000000000 Z
+  updated_at: 2025-12-17 15:48:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13320,8 +13324,8 @@ cards_724:
   codename: unit
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:07.000000000 Z
-  updated_at: 2025-12-09 16:24:07.000000000 Z
+  created_at: 2025-12-17 15:48:00.000000000 Z
+  updated_at: 2025-12-17 15:48:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13337,8 +13341,8 @@ cards_725:
   codename: methodology
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:08.000000000 Z
-  updated_at: 2025-12-09 16:24:08.000000000 Z
+  created_at: 2025-12-17 15:48:02.000000000 Z
+  updated_at: 2025-12-17 15:48:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13354,8 +13358,8 @@ cards_726:
   codename: metric_type
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:08.000000000 Z
-  updated_at: 2025-12-09 16:24:08.000000000 Z
+  created_at: 2025-12-17 15:48:03.000000000 Z
+  updated_at: 2025-12-17 15:48:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13371,8 +13375,8 @@ cards_727:
   codename: question
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:08.000000000 Z
-  updated_at: 2025-12-09 16:24:08.000000000 Z
+  created_at: 2025-12-17 15:48:04.000000000 Z
+  updated_at: 2025-12-17 15:48:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13388,8 +13392,8 @@ cards_728:
   codename: about
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:08.000000000 Z
-  updated_at: 2025-12-09 16:24:08.000000000 Z
+  created_at: 2025-12-17 15:48:06.000000000 Z
+  updated_at: 2025-12-17 15:48:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13405,8 +13409,8 @@ cards_729:
   codename: range
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:09.000000000 Z
-  updated_at: 2025-12-09 16:24:09.000000000 Z
+  created_at: 2025-12-17 15:48:07.000000000 Z
+  updated_at: 2025-12-17 15:48:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13422,8 +13426,8 @@ cards_730:
   codename: designer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:09.000000000 Z
-  updated_at: 2025-12-09 16:24:09.000000000 Z
+  created_at: 2025-12-17 15:48:08.000000000 Z
+  updated_at: 2025-12-17 15:48:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13439,8 +13443,8 @@ cards_731:
   codename:
   left_id: 727
   right_id: 26
-  created_at: 2025-12-09 16:24:10.000000000 Z
-  updated_at: 2025-12-09 16:24:10.000000000 Z
+  created_at: 2025-12-17 15:48:10.000000000 Z
+  updated_at: 2025-12-17 15:48:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13456,8 +13460,8 @@ cards_732:
   codename:
   left_id: 732
   right_id: 66
-  created_at: 2025-12-09 16:24:10.000000000 Z
-  updated_at: 2025-12-09 16:24:10.000000000 Z
+  created_at: 2025-12-17 15:48:10.000000000 Z
+  updated_at: 2025-12-17 15:48:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13473,8 +13477,8 @@ cards_733:
   codename: inverse
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:10.000000000 Z
-  updated_at: 2025-12-09 16:24:10.000000000 Z
+  created_at: 2025-12-17 15:48:11.000000000 Z
+  updated_at: 2025-12-17 15:48:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13490,8 +13494,8 @@ cards_734:
   codename: inverse_relation
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:10.000000000 Z
-  updated_at: 2025-12-09 16:24:10.000000000 Z
+  created_at: 2025-12-17 15:48:11.000000000 Z
+  updated_at: 2025-12-17 15:48:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13507,8 +13511,8 @@ cards_735:
   codename: inverse_title
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:10.000000000 Z
-  updated_at: 2025-12-09 16:24:10.000000000 Z
+  created_at: 2025-12-17 15:48:12.000000000 Z
+  updated_at: 2025-12-17 15:48:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13524,8 +13528,8 @@ cards_736:
   codename: relation
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:11.000000000 Z
-  updated_at: 2025-12-09 16:24:11.000000000 Z
+  created_at: 2025-12-17 15:48:13.000000000 Z
+  updated_at: 2025-12-17 15:48:13.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13541,8 +13545,8 @@ cards_737:
   codename: relationship
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:11.000000000 Z
-  updated_at: 2025-12-09 16:24:11.000000000 Z
+  created_at: 2025-12-17 15:48:14.000000000 Z
+  updated_at: 2025-12-17 15:48:14.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13569,8 +13573,8 @@ cards_738:
   codename: related_company
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:12.000000000 Z
-  updated_at: 2025-12-09 16:24:12.000000000 Z
+  created_at: 2025-12-17 15:48:15.000000000 Z
+  updated_at: 2025-12-17 15:48:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13586,8 +13590,8 @@ cards_739:
   codename:
   left_id: 734
   right_id: 26
-  created_at: 2025-12-09 16:24:12.000000000 Z
-  updated_at: 2025-12-09 16:24:12.000000000 Z
+  created_at: 2025-12-17 15:48:16.000000000 Z
+  updated_at: 2025-12-17 15:48:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13603,8 +13607,8 @@ cards_740:
   codename:
   left_id: 740
   right_id: 8
-  created_at: 2025-12-09 16:24:12.000000000 Z
-  updated_at: 2025-12-09 16:24:12.000000000 Z
+  created_at: 2025-12-17 15:48:16.000000000 Z
+  updated_at: 2025-12-17 15:48:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13620,8 +13624,8 @@ cards_741:
   codename: source
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:12.000000000 Z
-  updated_at: 2025-12-09 16:24:12.000000000 Z
+  created_at: 2025-12-17 15:48:16.000000000 Z
+  updated_at: 2025-12-17 15:48:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13648,8 +13652,8 @@ cards_742:
   codename: wikirate_website
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:12.000000000 Z
-  updated_at: 2025-12-09 16:24:12.000000000 Z
+  created_at: 2025-12-17 15:48:17.000000000 Z
+  updated_at: 2025-12-17 15:48:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13676,8 +13680,8 @@ cards_743:
   codename: checked_by
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:13.000000000 Z
-  updated_at: 2025-12-09 16:24:13.000000000 Z
+  created_at: 2025-12-17 15:48:18.000000000 Z
+  updated_at: 2025-12-17 15:48:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13693,8 +13697,8 @@ cards_744:
   codename: request
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:14.000000000 Z
-  updated_at: 2025-12-09 16:24:14.000000000 Z
+  created_at: 2025-12-17 15:48:19.000000000 Z
+  updated_at: 2025-12-17 15:48:19.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13710,8 +13714,8 @@ cards_745:
   codename: wikirate_link
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:14.000000000 Z
-  updated_at: 2025-12-09 16:24:14.000000000 Z
+  created_at: 2025-12-17 15:48:20.000000000 Z
+  updated_at: 2025-12-17 15:48:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13727,8 +13731,8 @@ cards_746:
   codename: wikirate_tag
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:14.000000000 Z
-  updated_at: 2025-12-09 16:24:14.000000000 Z
+  created_at: 2025-12-17 15:48:20.000000000 Z
+  updated_at: 2025-12-17 15:48:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13744,8 +13748,8 @@ cards_747:
   codename: wikirate_title
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:22.000000000 Z
+  updated_at: 2025-12-17 15:48:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13761,8 +13765,8 @@ cards_748:
   codename:
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:23.000000000 Z
+  updated_at: 2025-12-17 15:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13778,8 +13782,8 @@ cards_749:
   codename:
   left_id: 749
   right_id: 12
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:23.000000000 Z
+  updated_at: 2025-12-17 15:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13795,8 +13799,8 @@ cards_750:
   codename:
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:23.000000000 Z
+  updated_at: 2025-12-17 15:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13812,8 +13816,8 @@ cards_751:
   codename:
   left_id: 751
   right_id: 12
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:23.000000000 Z
+  updated_at: 2025-12-17 15:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13829,8 +13833,8 @@ cards_752:
   codename:
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:23.000000000 Z
+  updated_at: 2025-12-17 15:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13846,8 +13850,8 @@ cards_753:
   codename:
   left_id: 753
   right_id: 12
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:23.000000000 Z
+  updated_at: 2025-12-17 15:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -13863,8 +13867,8 @@ cards_754:
   codename:
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:23.000000000 Z
+  updated_at: 2025-12-17 15:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13882,8 +13886,8 @@ cards_755:
   codename: answer_import
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:23.000000000 Z
+  updated_at: 2025-12-17 15:48:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13910,8 +13914,8 @@ cards_756:
   codename: relationship_import
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:15.000000000 Z
-  updated_at: 2025-12-09 16:24:15.000000000 Z
+  created_at: 2025-12-17 15:48:24.000000000 Z
+  updated_at: 2025-12-17 15:48:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13938,8 +13942,8 @@ cards_757:
   codename: source_import
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:16.000000000 Z
-  updated_at: 2025-12-09 16:24:16.000000000 Z
+  created_at: 2025-12-17 15:48:25.000000000 Z
+  updated_at: 2025-12-17 15:48:25.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13966,8 +13970,8 @@ cards_758:
   codename: metric_import
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:16.000000000 Z
-  updated_at: 2025-12-09 16:24:16.000000000 Z
+  created_at: 2025-12-17 15:48:26.000000000 Z
+  updated_at: 2025-12-17 15:48:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -13994,8 +13998,8 @@ cards_759:
   codename: calculation
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:16.000000000 Z
-  updated_at: 2025-12-09 16:24:16.000000000 Z
+  created_at: 2025-12-17 15:48:27.000000000 Z
+  updated_at: 2025-12-17 15:48:27.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14011,8 +14015,8 @@ cards_760:
   codename: yearly_variable
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:17.000000000 Z
-  updated_at: 2025-12-09 16:24:17.000000000 Z
+  created_at: 2025-12-17 15:48:28.000000000 Z
+  updated_at: 2025-12-17 15:48:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14039,8 +14043,8 @@ cards_761:
   codename: yearly_value
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:17.000000000 Z
-  updated_at: 2025-12-09 16:24:17.000000000 Z
+  created_at: 2025-12-17 15:48:29.000000000 Z
+  updated_at: 2025-12-17 15:48:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14067,8 +14071,8 @@ cards_762:
   codename: yearly_answer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:17.000000000 Z
-  updated_at: 2025-12-09 16:24:17.000000000 Z
+  created_at: 2025-12-17 15:48:29.000000000 Z
+  updated_at: 2025-12-17 15:48:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14095,8 +14099,8 @@ cards_763:
   codename: overridden_value
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:18.000000000 Z
-  updated_at: 2025-12-09 16:24:18.000000000 Z
+  created_at: 2025-12-17 15:48:31.000000000 Z
+  updated_at: 2025-12-17 15:48:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14112,8 +14116,8 @@ cards_764:
   codename: rubric
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:18.000000000 Z
-  updated_at: 2025-12-09 16:24:18.000000000 Z
+  created_at: 2025-12-17 15:48:32.000000000 Z
+  updated_at: 2025-12-17 15:48:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14129,8 +14133,8 @@ cards_765:
   codename: input_answer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:19.000000000 Z
-  updated_at: 2025-12-09 16:24:19.000000000 Z
+  created_at: 2025-12-17 15:48:33.000000000 Z
+  updated_at: 2025-12-17 15:48:33.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14146,8 +14150,8 @@ cards_766:
   codename: benchmark
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:19.000000000 Z
-  updated_at: 2025-12-09 16:24:19.000000000 Z
+  created_at: 2025-12-17 15:48:34.000000000 Z
+  updated_at: 2025-12-17 15:48:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14163,8 +14167,8 @@ cards_767:
   codename: formula
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:19.000000000 Z
-  updated_at: 2025-12-09 16:24:19.000000000 Z
+  created_at: 2025-12-17 15:48:34.000000000 Z
+  updated_at: 2025-12-17 15:48:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14180,8 +14184,8 @@ cards_768:
   codename: rating
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:19.000000000 Z
-  updated_at: 2025-12-09 16:24:19.000000000 Z
+  created_at: 2025-12-17 15:48:35.000000000 Z
+  updated_at: 2025-12-17 15:48:35.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14197,8 +14201,8 @@ cards_769:
   codename: score
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:20.000000000 Z
-  updated_at: 2025-12-09 16:24:20.000000000 Z
+  created_at: 2025-12-17 15:48:36.000000000 Z
+  updated_at: 2025-12-17 15:48:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14214,8 +14218,8 @@ cards_770:
   codename: descendant
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:20.000000000 Z
-  updated_at: 2025-12-09 16:24:20.000000000 Z
+  created_at: 2025-12-17 15:48:37.000000000 Z
+  updated_at: 2025-12-17 15:48:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14231,8 +14235,8 @@ cards_771:
   codename: headquarters_location
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:21.000000000 Z
-  updated_at: 2025-12-09 16:24:21.000000000 Z
+  created_at: 2025-12-17 15:48:38.000000000 Z
+  updated_at: 2025-12-17 15:48:38.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14248,8 +14252,8 @@ cards_772:
   codename: industry
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:21.000000000 Z
-  updated_at: 2025-12-09 16:24:21.000000000 Z
+  created_at: 2025-12-17 15:48:39.000000000 Z
+  updated_at: 2025-12-17 15:48:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14265,8 +14269,8 @@ cards_773:
   codename:
   left_id: 692
   right_id: 355
-  created_at: 2025-12-09 16:24:21.000000000 Z
-  updated_at: 2025-12-09 16:24:21.000000000 Z
+  created_at: 2025-12-17 15:48:40.000000000 Z
+  updated_at: 2025-12-17 15:48:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14282,8 +14286,8 @@ cards_774:
   codename:
   left_id: 774
   right_id: 25
-  created_at: 2025-12-09 16:24:21.000000000 Z
-  updated_at: 2025-12-09 16:24:21.000000000 Z
+  created_at: 2025-12-17 15:48:40.000000000 Z
+  updated_at: 2025-12-17 15:48:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14299,8 +14303,8 @@ cards_775:
   codename:
   left_id: 775
   right_id: 66
-  created_at: 2025-12-09 16:24:21.000000000 Z
-  updated_at: 2025-12-09 16:24:21.000000000 Z
+  created_at: 2025-12-17 15:48:40.000000000 Z
+  updated_at: 2025-12-17 15:48:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14316,8 +14320,8 @@ cards_776:
   codename:
   left_id: 775
   right_id: 67
-  created_at: 2025-12-09 16:24:22.000000000 Z
-  updated_at: 2025-12-09 16:24:22.000000000 Z
+  created_at: 2025-12-17 15:48:40.000000000 Z
+  updated_at: 2025-12-17 15:48:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14333,8 +14337,8 @@ cards_777:
   codename:
   left_id: 692
   right_id: 768
-  created_at: 2025-12-09 16:24:22.000000000 Z
-  updated_at: 2025-12-09 16:24:22.000000000 Z
+  created_at: 2025-12-17 15:48:40.000000000 Z
+  updated_at: 2025-12-17 15:48:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14350,8 +14354,8 @@ cards_778:
   codename:
   left_id: 778
   right_id: 25
-  created_at: 2025-12-09 16:24:22.000000000 Z
-  updated_at: 2025-12-09 16:24:22.000000000 Z
+  created_at: 2025-12-17 15:48:40.000000000 Z
+  updated_at: 2025-12-17 15:48:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14367,8 +14371,8 @@ cards_779:
   codename:
   left_id: 779
   right_id: 66
-  created_at: 2025-12-09 16:24:22.000000000 Z
-  updated_at: 2025-12-09 16:24:22.000000000 Z
+  created_at: 2025-12-17 15:48:40.000000000 Z
+  updated_at: 2025-12-17 15:48:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14384,8 +14388,8 @@ cards_780:
   codename:
   left_id: 779
   right_id: 67
-  created_at: 2025-12-09 16:24:22.000000000 Z
-  updated_at: 2025-12-09 16:24:22.000000000 Z
+  created_at: 2025-12-17 15:48:40.000000000 Z
+  updated_at: 2025-12-17 15:48:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14401,8 +14405,8 @@ cards_781:
   codename: dataset
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:22.000000000 Z
-  updated_at: 2025-12-09 16:24:22.000000000 Z
+  created_at: 2025-12-17 15:48:41.000000000 Z
+  updated_at: 2025-12-17 15:48:41.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14429,8 +14433,8 @@ cards_782:
   codename:
   left_id: 782
   right_id: 12
-  created_at: 2025-12-09 16:24:22.000000000 Z
-  updated_at: 2025-12-09 16:24:22.000000000 Z
+  created_at: 2025-12-17 15:48:41.000000000 Z
+  updated_at: 2025-12-17 15:48:41.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14454,8 +14458,8 @@ cards_783:
   codename: project
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:22.000000000 Z
-  updated_at: 2025-12-09 16:24:22.000000000 Z
+  created_at: 2025-12-17 15:48:41.000000000 Z
+  updated_at: 2025-12-17 15:48:41.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14482,8 +14486,8 @@ cards_784:
   codename: wikirate_status
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:22.000000000 Z
-  updated_at: 2025-12-09 16:24:22.000000000 Z
+  created_at: 2025-12-17 15:48:42.000000000 Z
+  updated_at: 2025-12-17 15:48:42.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14510,8 +14514,8 @@ cards_785:
   codename: data_subset
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:23.000000000 Z
-  updated_at: 2025-12-09 16:24:23.000000000 Z
+  created_at: 2025-12-17 15:48:43.000000000 Z
+  updated_at: 2025-12-17 15:48:43.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14527,8 +14531,8 @@ cards_786:
   codename: reference
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:23.000000000 Z
-  updated_at: 2025-12-09 16:24:23.000000000 Z
+  created_at: 2025-12-17 15:48:44.000000000 Z
+  updated_at: 2025-12-17 15:48:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14555,8 +14559,8 @@ cards_787:
   codename:
   left_id: 787
   right_id: 21
-  created_at: 2025-12-09 16:24:23.000000000 Z
-  updated_at: 2025-12-09 16:24:23.000000000 Z
+  created_at: 2025-12-17 15:48:44.000000000 Z
+  updated_at: 2025-12-17 15:48:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14572,8 +14576,8 @@ cards_788:
   codename:
   left_id: 788
   right_id: 66
-  created_at: 2025-12-09 16:24:23.000000000 Z
-  updated_at: 2025-12-09 16:24:23.000000000 Z
+  created_at: 2025-12-17 15:48:44.000000000 Z
+  updated_at: 2025-12-17 15:48:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14589,8 +14593,8 @@ cards_789:
   codename:
   left_id: 788
   right_id: 17
-  created_at: 2025-12-09 16:24:23.000000000 Z
-  updated_at: 2025-12-09 16:24:23.000000000 Z
+  created_at: 2025-12-17 15:48:44.000000000 Z
+  updated_at: 2025-12-17 15:48:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14606,8 +14610,8 @@ cards_790:
   codename: referrers
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:23.000000000 Z
-  updated_at: 2025-12-09 16:24:23.000000000 Z
+  created_at: 2025-12-17 15:48:45.000000000 Z
+  updated_at: 2025-12-17 15:48:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14623,8 +14627,8 @@ cards_791:
   codename: adaptation
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:24.000000000 Z
-  updated_at: 2025-12-09 16:24:24.000000000 Z
+  created_at: 2025-12-17 15:48:45.000000000 Z
+  updated_at: 2025-12-17 15:48:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14640,8 +14644,8 @@ cards_792:
   codename:
   left_id: 792
   right_id: 26
-  created_at: 2025-12-09 16:24:24.000000000 Z
-  updated_at: 2025-12-09 16:24:24.000000000 Z
+  created_at: 2025-12-17 15:48:45.000000000 Z
+  updated_at: 2025-12-17 15:48:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14657,8 +14661,8 @@ cards_793:
   codename:
   left_id: 793
   right_id: 8
-  created_at: 2025-12-09 16:24:24.000000000 Z
-  updated_at: 2025-12-09 16:24:24.000000000 Z
+  created_at: 2025-12-17 15:48:45.000000000 Z
+  updated_at: 2025-12-17 15:48:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14674,8 +14678,8 @@ cards_794:
   codename: no_adaptation
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:24.000000000 Z
-  updated_at: 2025-12-09 16:24:24.000000000 Z
+  created_at: 2025-12-17 15:48:47.000000000 Z
+  updated_at: 2025-12-17 15:48:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14691,8 +14695,8 @@ cards_795:
   codename: yes_adaptation
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:25.000000000 Z
-  updated_at: 2025-12-09 16:24:25.000000000 Z
+  created_at: 2025-12-17 15:48:47.000000000 Z
+  updated_at: 2025-12-17 15:48:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14708,8 +14712,8 @@ cards_796:
   codename: url
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:25.000000000 Z
-  updated_at: 2025-12-09 16:24:25.000000000 Z
+  created_at: 2025-12-17 15:48:48.000000000 Z
+  updated_at: 2025-12-17 15:48:48.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14725,8 +14729,8 @@ cards_797:
   codename: body
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:25.000000000 Z
-  updated_at: 2025-12-09 16:24:25.000000000 Z
+  created_at: 2025-12-17 15:48:49.000000000 Z
+  updated_at: 2025-12-17 15:48:49.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14742,8 +14746,8 @@ cards_798:
   codename: party
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:26.000000000 Z
-  updated_at: 2025-12-09 16:24:26.000000000 Z
+  created_at: 2025-12-17 15:48:50.000000000 Z
+  updated_at: 2025-12-17 15:48:50.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14759,8 +14763,8 @@ cards_799:
   codename: attribution_alert
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:26.000000000 Z
-  updated_at: 2025-12-09 16:24:26.000000000 Z
+  created_at: 2025-12-17 15:48:51.000000000 Z
+  updated_at: 2025-12-17 15:48:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14776,8 +14780,8 @@ cards_800:
   codename:
   left_id: 800
   right_id: 50
-  created_at: 2025-12-09 16:24:26.000000000 Z
-  updated_at: 2025-12-09 16:24:26.000000000 Z
+  created_at: 2025-12-17 15:48:51.000000000 Z
+  updated_at: 2025-12-17 15:48:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14793,8 +14797,8 @@ cards_801:
   codename:
   left_id: 800
   right_id: 798
-  created_at: 2025-12-09 16:24:26.000000000 Z
-  updated_at: 2025-12-09 16:24:26.000000000 Z
+  created_at: 2025-12-17 15:48:51.000000000 Z
+  updated_at: 2025-12-17 15:48:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14810,8 +14814,8 @@ cards_802:
   codename: research_group
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:27.000000000 Z
-  updated_at: 2025-12-09 16:24:27.000000000 Z
+  created_at: 2025-12-17 15:48:52.000000000 Z
+  updated_at: 2025-12-17 15:48:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14838,8 +14842,8 @@ cards_803:
   codename: activity
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:27.000000000 Z
-  updated_at: 2025-12-09 16:24:27.000000000 Z
+  created_at: 2025-12-17 15:48:53.000000000 Z
+  updated_at: 2025-12-17 15:48:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14855,8 +14859,8 @@ cards_804:
   codename: report_search
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:27.000000000 Z
-  updated_at: 2025-12-09 16:24:27.000000000 Z
+  created_at: 2025-12-17 15:48:53.000000000 Z
+  updated_at: 2025-12-17 15:48:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14872,8 +14876,8 @@ cards_805:
   codename: metrics_designed
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:28.000000000 Z
-  updated_at: 2025-12-09 16:24:28.000000000 Z
+  created_at: 2025-12-17 15:48:54.000000000 Z
+  updated_at: 2025-12-17 15:48:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14889,8 +14893,8 @@ cards_806:
   codename: answers_designed
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:28.000000000 Z
-  updated_at: 2025-12-09 16:24:28.000000000 Z
+  created_at: 2025-12-17 15:48:55.000000000 Z
+  updated_at: 2025-12-17 15:48:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14906,8 +14910,8 @@ cards_807:
   codename: projects_organized
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:29.000000000 Z
-  updated_at: 2025-12-09 16:24:29.000000000 Z
+  created_at: 2025-12-17 15:48:56.000000000 Z
+  updated_at: 2025-12-17 15:48:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14923,8 +14927,8 @@ cards_808:
   codename: commons
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:29.000000000 Z
-  updated_at: 2025-12-09 16:24:29.000000000 Z
+  created_at: 2025-12-17 15:48:57.000000000 Z
+  updated_at: 2025-12-17 15:48:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14940,8 +14944,8 @@ cards_809:
   codename: core
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:29.000000000 Z
-  updated_at: 2025-12-09 16:24:29.000000000 Z
+  created_at: 2025-12-17 15:48:58.000000000 Z
+  updated_at: 2025-12-17 15:48:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -14957,8 +14961,8 @@ cards_810:
   codename:
   left_id: 803
   right_id: 663
-  created_at: 2025-12-09 16:24:30.000000000 Z
-  updated_at: 2025-12-09 16:24:30.000000000 Z
+  created_at: 2025-12-17 15:48:59.000000000 Z
+  updated_at: 2025-12-17 15:48:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14974,8 +14978,8 @@ cards_811:
   codename:
   left_id: 811
   right_id: 25
-  created_at: 2025-12-09 16:24:30.000000000 Z
-  updated_at: 2025-12-09 16:24:30.000000000 Z
+  created_at: 2025-12-17 15:48:59.000000000 Z
+  updated_at: 2025-12-17 15:48:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -14991,8 +14995,8 @@ cards_812:
   codename:
   left_id: 812
   right_id: 9
-  created_at: 2025-12-09 16:24:30.000000000 Z
-  updated_at: 2025-12-09 16:24:30.000000000 Z
+  created_at: 2025-12-17 15:48:59.000000000 Z
+  updated_at: 2025-12-17 15:48:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15008,8 +15012,8 @@ cards_813:
   codename:
   left_id: 812
   right_id: 67
-  created_at: 2025-12-09 16:24:30.000000000 Z
-  updated_at: 2025-12-09 16:24:30.000000000 Z
+  created_at: 2025-12-17 15:48:59.000000000 Z
+  updated_at: 2025-12-17 15:48:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15025,8 +15029,8 @@ cards_814:
   codename: specification
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:30.000000000 Z
-  updated_at: 2025-12-09 16:24:30.000000000 Z
+  created_at: 2025-12-17 15:48:59.000000000 Z
+  updated_at: 2025-12-17 15:48:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15042,8 +15046,8 @@ cards_815:
   codename: jurisdiction
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:30.000000000 Z
-  updated_at: 2025-12-09 16:24:30.000000000 Z
+  created_at: 2025-12-17 15:48:59.000000000 Z
+  updated_at: 2025-12-17 15:48:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15070,8 +15074,8 @@ cards_816:
   codename: company_identifier
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:31.000000000 Z
-  updated_at: 2025-12-09 16:24:31.000000000 Z
+  created_at: 2025-12-17 15:49:01.000000000 Z
+  updated_at: 2025-12-17 15:49:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15098,8 +15102,8 @@ cards_817:
   codename:
   left_id: 817
   right_id: 21
-  created_at: 2025-12-09 16:24:31.000000000 Z
-  updated_at: 2025-12-09 16:24:31.000000000 Z
+  created_at: 2025-12-17 15:49:01.000000000 Z
+  updated_at: 2025-12-17 15:49:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15115,8 +15119,8 @@ cards_818:
   codename:
   left_id: 818
   right_id: 66
-  created_at: 2025-12-09 16:24:31.000000000 Z
-  updated_at: 2025-12-09 16:24:31.000000000 Z
+  created_at: 2025-12-17 15:49:01.000000000 Z
+  updated_at: 2025-12-17 15:49:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15132,8 +15136,8 @@ cards_819:
   codename:
   left_id: 818
   right_id: 68
-  created_at: 2025-12-09 16:24:31.000000000 Z
-  updated_at: 2025-12-09 16:24:31.000000000 Z
+  created_at: 2025-12-17 15:49:01.000000000 Z
+  updated_at: 2025-12-17 15:49:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15149,8 +15153,8 @@ cards_820:
   codename: abbreviation
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:31.000000000 Z
-  updated_at: 2025-12-09 16:24:31.000000000 Z
+  created_at: 2025-12-17 15:49:01.000000000 Z
+  updated_at: 2025-12-17 15:49:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15166,8 +15170,8 @@ cards_821:
   codename: oar_id
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:31.000000000 Z
-  updated_at: 2025-12-09 16:24:31.000000000 Z
+  created_at: 2025-12-17 15:49:03.000000000 Z
+  updated_at: 2025-12-17 15:49:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15183,8 +15187,8 @@ cards_822:
   codename:
   left_id: 822
   right_id: 821
-  created_at: 2025-12-09 16:24:31.000000000 Z
-  updated_at: 2025-12-09 16:24:31.000000000 Z
+  created_at: 2025-12-17 15:49:03.000000000 Z
+  updated_at: 2025-12-17 15:49:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15200,8 +15204,8 @@ cards_823:
   codename: sec_cik
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:32.000000000 Z
-  updated_at: 2025-12-09 16:24:32.000000000 Z
+  created_at: 2025-12-17 15:49:03.000000000 Z
+  updated_at: 2025-12-17 15:49:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15217,8 +15221,8 @@ cards_824:
   codename:
   left_id: 824
   right_id: 821
-  created_at: 2025-12-09 16:24:32.000000000 Z
-  updated_at: 2025-12-09 16:24:32.000000000 Z
+  created_at: 2025-12-17 15:49:03.000000000 Z
+  updated_at: 2025-12-17 15:49:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15234,8 +15238,8 @@ cards_825:
   codename: wikipedia
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:32.000000000 Z
-  updated_at: 2025-12-09 16:24:32.000000000 Z
+  created_at: 2025-12-17 15:49:04.000000000 Z
+  updated_at: 2025-12-17 15:49:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15251,8 +15255,8 @@ cards_826:
   codename:
   left_id: 826
   right_id: 821
-  created_at: 2025-12-09 16:24:32.000000000 Z
-  updated_at: 2025-12-09 16:24:32.000000000 Z
+  created_at: 2025-12-17 15:49:04.000000000 Z
+  updated_at: 2025-12-17 15:49:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15268,8 +15272,8 @@ cards_827:
   codename: open_corporates_id
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:33.000000000 Z
-  updated_at: 2025-12-09 16:24:33.000000000 Z
+  created_at: 2025-12-17 15:49:05.000000000 Z
+  updated_at: 2025-12-17 15:49:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15285,8 +15289,8 @@ cards_828:
   codename:
   left_id: 828
   right_id: 821
-  created_at: 2025-12-09 16:24:33.000000000 Z
-  updated_at: 2025-12-09 16:24:33.000000000 Z
+  created_at: 2025-12-17 15:49:05.000000000 Z
+  updated_at: 2025-12-17 15:49:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15302,8 +15306,8 @@ cards_829:
   codename: isin
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:33.000000000 Z
-  updated_at: 2025-12-09 16:24:33.000000000 Z
+  created_at: 2025-12-17 15:49:06.000000000 Z
+  updated_at: 2025-12-17 15:49:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15319,8 +15323,8 @@ cards_830:
   codename:
   left_id: 830
   right_id: 821
-  created_at: 2025-12-09 16:24:33.000000000 Z
-  updated_at: 2025-12-09 16:24:33.000000000 Z
+  created_at: 2025-12-17 15:49:06.000000000 Z
+  updated_at: 2025-12-17 15:49:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15336,8 +15340,8 @@ cards_831:
   codename: multiple
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:33.000000000 Z
-  updated_at: 2025-12-09 16:24:33.000000000 Z
+  created_at: 2025-12-17 15:49:06.000000000 Z
+  updated_at: 2025-12-17 15:49:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15353,8 +15357,8 @@ cards_832:
   codename: incorporation
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:34.000000000 Z
-  updated_at: 2025-12-09 16:24:34.000000000 Z
+  created_at: 2025-12-17 15:49:08.000000000 Z
+  updated_at: 2025-12-17 15:49:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15370,8 +15374,8 @@ cards_833:
   codename: company_search
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:34.000000000 Z
-  updated_at: 2025-12-09 16:24:34.000000000 Z
+  created_at: 2025-12-17 15:49:08.000000000 Z
+  updated_at: 2025-12-17 15:49:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -15387,8 +15391,8 @@ cards_834:
   codename:
   left_id: 810
   right_id: 706
-  created_at: 2025-12-09 16:24:35.000000000 Z
-  updated_at: 2025-12-09 16:24:35.000000000 Z
+  created_at: 2025-12-17 15:49:10.000000000 Z
+  updated_at: 2025-12-17 15:49:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15404,8 +15408,8 @@ cards_835:
   codename:
   left_id: 835
   right_id: 724
-  created_at: 2025-12-09 16:24:35.000000000 Z
-  updated_at: 2025-12-09 16:24:35.000000000 Z
+  created_at: 2025-12-17 15:49:10.000000000 Z
+  updated_at: 2025-12-17 15:49:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15923,8 +15927,8 @@ cards_836:
   codename:
   left_id: 835
   right_id: 642
-  created_at: 2025-12-09 16:24:35.000000000 Z
-  updated_at: 2025-12-09 16:24:35.000000000 Z
+  created_at: 2025-12-17 15:49:10.000000000 Z
+  updated_at: 2025-12-17 15:49:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15940,8 +15944,8 @@ cards_837:
   codename:
   left_id: 3
   right_id: 639
-  created_at: 2025-12-09 16:24:35.000000000 Z
-  updated_at: 2025-12-09 16:24:35.000000000 Z
+  created_at: 2025-12-17 15:49:11.000000000 Z
+  updated_at: 2025-12-17 15:49:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15975,8 +15979,8 @@ cards_838:
   codename:
   left_id: 205
   right_id: 639
-  created_at: 2025-12-09 16:24:35.000000000 Z
-  updated_at: 2025-12-09 16:24:35.000000000 Z
+  created_at: 2025-12-17 15:49:11.000000000 Z
+  updated_at: 2025-12-17 15:49:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -15992,8 +15996,8 @@ cards_839:
   codename:
   left_id: 731
   right_id: 639
-  created_at: 2025-12-09 16:24:35.000000000 Z
-  updated_at: 2025-12-09 16:24:35.000000000 Z
+  created_at: 2025-12-17 15:49:11.000000000 Z
+  updated_at: 2025-12-17 15:49:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16009,8 +16013,8 @@ cards_840:
   codename:
   left_id: 685
   right_id: 639
-  created_at: 2025-12-09 16:24:35.000000000 Z
-  updated_at: 2025-12-09 16:24:35.000000000 Z
+  created_at: 2025-12-17 15:49:12.000000000 Z
+  updated_at: 2025-12-17 15:49:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16026,8 +16030,8 @@ cards_841:
   codename:
   left_id: 692
   right_id: 639
-  created_at: 2025-12-09 16:24:35.000000000 Z
-  updated_at: 2025-12-09 16:24:35.000000000 Z
+  created_at: 2025-12-17 15:49:12.000000000 Z
+  updated_at: 2025-12-17 15:49:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16043,8 +16047,8 @@ cards_842:
   codename:
   left_id: 643
   right_id: 639
-  created_at: 2025-12-09 16:24:35.000000000 Z
-  updated_at: 2025-12-09 16:24:35.000000000 Z
+  created_at: 2025-12-17 15:49:12.000000000 Z
+  updated_at: 2025-12-17 15:49:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16060,8 +16064,8 @@ cards_843:
   codename: wikirate_skin
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:39.000000000 Z
-  updated_at: 2025-12-09 16:24:39.000000000 Z
+  created_at: 2025-12-17 15:49:21.000000000 Z
+  updated_at: 2025-12-17 15:49:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16077,8 +16081,8 @@ cards_844:
   codename:
   left_id: 844
   right_id: 357
-  created_at: 2025-12-09 16:24:39.000000000 Z
-  updated_at: 2025-12-09 16:24:39.000000000 Z
+  created_at: 2025-12-17 15:49:21.000000000 Z
+  updated_at: 2025-12-17 15:49:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16124,8 +16128,8 @@ cards_845:
   codename:
   left_id: 844
   right_id: 355
-  created_at: 2025-12-09 16:24:39.000000000 Z
-  updated_at: 2025-12-09 16:24:39.000000000 Z
+  created_at: 2025-12-17 15:49:21.000000000 Z
+  updated_at: 2025-12-17 15:49:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16271,8 +16275,8 @@ cards_846:
   codename: email_header
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:42.000000000 Z
-  updated_at: 2025-12-09 16:24:42.000000000 Z
+  created_at: 2025-12-17 15:49:28.000000000 Z
+  updated_at: 2025-12-17 15:49:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16288,8 +16292,8 @@ cards_847:
   codename: email_footer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:43.000000000 Z
-  updated_at: 2025-12-09 16:24:43.000000000 Z
+  created_at: 2025-12-17 15:49:29.000000000 Z
+  updated_at: 2025-12-17 15:49:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16305,8 +16309,8 @@ cards_848:
   codename:
   left_id: 847
   right_id: 288
-  created_at: 2025-12-09 16:24:44.000000000 Z
-  updated_at: 2025-12-09 16:24:44.000000000 Z
+  created_at: 2025-12-17 15:49:31.000000000 Z
+  updated_at: 2025-12-17 15:49:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16322,8 +16326,8 @@ cards_849:
   codename: blurb
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:48.000000000 Z
-  updated_at: 2025-12-09 16:24:48.000000000 Z
+  created_at: 2025-12-17 15:49:40.000000000 Z
+  updated_at: 2025-12-17 15:49:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16350,8 +16354,8 @@ cards_850:
   codename:
   left_id: 850
   right_id: 21
-  created_at: 2025-12-09 16:24:48.000000000 Z
-  updated_at: 2025-12-09 16:24:48.000000000 Z
+  created_at: 2025-12-17 15:49:40.000000000 Z
+  updated_at: 2025-12-17 15:49:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16367,8 +16371,8 @@ cards_851:
   codename:
   left_id: 851
   right_id: 17
-  created_at: 2025-12-09 16:24:48.000000000 Z
-  updated_at: 2025-12-09 16:24:48.000000000 Z
+  created_at: 2025-12-17 15:49:40.000000000 Z
+  updated_at: 2025-12-17 15:49:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16384,8 +16388,8 @@ cards_852:
   codename: icon
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:49.000000000 Z
-  updated_at: 2025-12-09 16:24:49.000000000 Z
+  created_at: 2025-12-17 15:49:41.000000000 Z
+  updated_at: 2025-12-17 15:49:41.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16401,8 +16405,8 @@ cards_853:
   codename: nav_menu
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:49.000000000 Z
-  updated_at: 2025-12-09 16:24:49.000000000 Z
+  created_at: 2025-12-17 15:49:42.000000000 Z
+  updated_at: 2025-12-17 15:49:42.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16418,8 +16422,8 @@ cards_854:
   codename: wikirate_community
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:49.000000000 Z
-  updated_at: 2025-12-09 16:24:49.000000000 Z
+  created_at: 2025-12-17 15:49:43.000000000 Z
+  updated_at: 2025-12-17 15:49:43.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16435,8 +16439,8 @@ cards_855:
   codename: wikirate_data
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:50.000000000 Z
-  updated_at: 2025-12-09 16:24:50.000000000 Z
+  created_at: 2025-12-17 15:49:44.000000000 Z
+  updated_at: 2025-12-17 15:49:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16452,8 +16456,8 @@ cards_856:
   codename: wikirate_mel
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:50.000000000 Z
-  updated_at: 2025-12-09 16:24:50.000000000 Z
+  created_at: 2025-12-17 15:49:45.000000000 Z
+  updated_at: 2025-12-17 15:49:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*self"
@@ -16469,8 +16473,8 @@ cards_857:
   codename:
   left_id: 857
   right_id: 27
-  created_at: 2025-12-09 16:24:50.000000000 Z
-  updated_at: 2025-12-09 16:24:50.000000000 Z
+  created_at: 2025-12-17 15:49:45.000000000 Z
+  updated_at: 2025-12-17 15:49:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16486,8 +16490,8 @@ cards_858:
   codename:
   left_id: 858
   right_id: 9
-  created_at: 2025-12-09 16:24:50.000000000 Z
-  updated_at: 2025-12-09 16:24:50.000000000 Z
+  created_at: 2025-12-17 15:49:45.000000000 Z
+  updated_at: 2025-12-17 15:49:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16503,8 +16507,8 @@ cards_859:
   codename: homepage_banner
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:51.000000000 Z
-  updated_at: 2025-12-09 16:24:51.000000000 Z
+  created_at: 2025-12-17 15:49:46.000000000 Z
+  updated_at: 2025-12-17 15:49:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16520,8 +16524,8 @@ cards_860:
   codename:
   left_id: 860
   right_id: 50
-  created_at: 2025-12-09 16:24:51.000000000 Z
-  updated_at: 2025-12-09 16:24:51.000000000 Z
+  created_at: 2025-12-17 15:49:46.000000000 Z
+  updated_at: 2025-12-17 15:49:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16537,8 +16541,8 @@ cards_861:
   codename:
   left_id: 860
   right_id: 798
-  created_at: 2025-12-09 16:24:51.000000000 Z
-  updated_at: 2025-12-09 16:24:51.000000000 Z
+  created_at: 2025-12-17 15:49:46.000000000 Z
+  updated_at: 2025-12-17 15:49:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16558,8 +16562,8 @@ cards_862:
   codename: homepage_involved_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:51.000000000 Z
-  updated_at: 2025-12-09 16:24:51.000000000 Z
+  created_at: 2025-12-17 15:49:47.000000000 Z
+  updated_at: 2025-12-17 15:49:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16575,8 +16579,8 @@ cards_863:
   codename:
   left_id: 863
   right_id: 50
-  created_at: 2025-12-09 16:24:51.000000000 Z
-  updated_at: 2025-12-09 16:24:51.000000000 Z
+  created_at: 2025-12-17 15:49:47.000000000 Z
+  updated_at: 2025-12-17 15:49:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16592,8 +16596,8 @@ cards_864:
   codename:
   left_id: 863
   right_id: 798
-  created_at: 2025-12-09 16:24:51.000000000 Z
-  updated_at: 2025-12-09 16:24:51.000000000 Z
+  created_at: 2025-12-17 15:49:47.000000000 Z
+  updated_at: 2025-12-17 15:49:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16612,8 +16616,8 @@ cards_865:
   codename: homepage_delta_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:52.000000000 Z
-  updated_at: 2025-12-09 16:24:52.000000000 Z
+  created_at: 2025-12-17 15:49:48.000000000 Z
+  updated_at: 2025-12-17 15:49:48.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16629,8 +16633,8 @@ cards_866:
   codename:
   left_id: 866
   right_id: 50
-  created_at: 2025-12-09 16:24:52.000000000 Z
-  updated_at: 2025-12-09 16:24:52.000000000 Z
+  created_at: 2025-12-17 15:49:48.000000000 Z
+  updated_at: 2025-12-17 15:49:48.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16646,8 +16650,8 @@ cards_867:
   codename:
   left_id: 866
   right_id: 798
-  created_at: 2025-12-09 16:24:52.000000000 Z
-  updated_at: 2025-12-09 16:24:52.000000000 Z
+  created_at: 2025-12-17 15:49:48.000000000 Z
+  updated_at: 2025-12-17 15:49:48.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16669,8 +16673,8 @@ cards_868:
   codename: homepage_designers_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:52.000000000 Z
-  updated_at: 2025-12-09 16:24:52.000000000 Z
+  created_at: 2025-12-17 15:49:49.000000000 Z
+  updated_at: 2025-12-17 15:49:49.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16686,8 +16690,8 @@ cards_869:
   codename:
   left_id: 869
   right_id: 50
-  created_at: 2025-12-09 16:24:52.000000000 Z
-  updated_at: 2025-12-09 16:24:52.000000000 Z
+  created_at: 2025-12-17 15:49:49.000000000 Z
+  updated_at: 2025-12-17 15:49:49.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16703,8 +16707,8 @@ cards_870:
   codename:
   left_id: 869
   right_id: 798
-  created_at: 2025-12-09 16:24:52.000000000 Z
-  updated_at: 2025-12-09 16:24:52.000000000 Z
+  created_at: 2025-12-17 15:49:49.000000000 Z
+  updated_at: 2025-12-17 15:49:49.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16722,8 +16726,8 @@ cards_871:
   codename: platform_main_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:53.000000000 Z
-  updated_at: 2025-12-09 16:24:53.000000000 Z
+  created_at: 2025-12-17 15:49:50.000000000 Z
+  updated_at: 2025-12-17 15:49:50.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16739,8 +16743,8 @@ cards_872:
   codename:
   left_id: 872
   right_id: 50
-  created_at: 2025-12-09 16:24:53.000000000 Z
-  updated_at: 2025-12-09 16:24:53.000000000 Z
+  created_at: 2025-12-17 15:49:50.000000000 Z
+  updated_at: 2025-12-17 15:49:50.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16756,8 +16760,8 @@ cards_873:
   codename: platform_vision
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:53.000000000 Z
-  updated_at: 2025-12-09 16:24:53.000000000 Z
+  created_at: 2025-12-17 15:49:51.000000000 Z
+  updated_at: 2025-12-17 15:49:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16773,8 +16777,8 @@ cards_874:
   codename:
   left_id: 874
   right_id: 50
-  created_at: 2025-12-09 16:24:53.000000000 Z
-  updated_at: 2025-12-09 16:24:53.000000000 Z
+  created_at: 2025-12-17 15:49:51.000000000 Z
+  updated_at: 2025-12-17 15:49:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16790,8 +16794,8 @@ cards_875:
   codename:
   left_id: 874
   right_id: 798
-  created_at: 2025-12-09 16:24:53.000000000 Z
-  updated_at: 2025-12-09 16:24:53.000000000 Z
+  created_at: 2025-12-17 15:49:51.000000000 Z
+  updated_at: 2025-12-17 15:49:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16807,8 +16811,8 @@ cards_876:
   codename:
   left_id: 874
   right_id: 853
-  created_at: 2025-12-09 16:24:53.000000000 Z
-  updated_at: 2025-12-09 16:24:53.000000000 Z
+  created_at: 2025-12-17 15:49:51.000000000 Z
+  updated_at: 2025-12-17 15:49:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16824,8 +16828,8 @@ cards_877:
   codename: platform_mission
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:54.000000000 Z
-  updated_at: 2025-12-09 16:24:54.000000000 Z
+  created_at: 2025-12-17 15:49:51.000000000 Z
+  updated_at: 2025-12-17 15:49:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16841,8 +16845,8 @@ cards_878:
   codename:
   left_id: 878
   right_id: 50
-  created_at: 2025-12-09 16:24:54.000000000 Z
-  updated_at: 2025-12-09 16:24:54.000000000 Z
+  created_at: 2025-12-17 15:49:51.000000000 Z
+  updated_at: 2025-12-17 15:49:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16858,8 +16862,8 @@ cards_879:
   codename:
   left_id: 878
   right_id: 798
-  created_at: 2025-12-09 16:24:54.000000000 Z
-  updated_at: 2025-12-09 16:24:54.000000000 Z
+  created_at: 2025-12-17 15:49:51.000000000 Z
+  updated_at: 2025-12-17 15:49:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16877,8 +16881,8 @@ cards_880:
   codename:
   left_id: 878
   right_id: 853
-  created_at: 2025-12-09 16:24:54.000000000 Z
-  updated_at: 2025-12-09 16:24:54.000000000 Z
+  created_at: 2025-12-17 15:49:51.000000000 Z
+  updated_at: 2025-12-17 15:49:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16894,8 +16898,8 @@ cards_881:
   codename: collect_blurb
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:55.000000000 Z
-  updated_at: 2025-12-09 16:24:55.000000000 Z
+  created_at: 2025-12-17 15:49:53.000000000 Z
+  updated_at: 2025-12-17 15:49:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16911,8 +16915,8 @@ cards_882:
   codename:
   left_id: 882
   right_id: 50
-  created_at: 2025-12-09 16:24:55.000000000 Z
-  updated_at: 2025-12-09 16:24:55.000000000 Z
+  created_at: 2025-12-17 15:49:53.000000000 Z
+  updated_at: 2025-12-17 15:49:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16928,8 +16932,8 @@ cards_883:
   codename:
   left_id: 882
   right_id: 798
-  created_at: 2025-12-09 16:24:55.000000000 Z
-  updated_at: 2025-12-09 16:24:55.000000000 Z
+  created_at: 2025-12-17 15:49:53.000000000 Z
+  updated_at: 2025-12-17 15:49:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16949,8 +16953,8 @@ cards_884:
   codename:
   left_id: 882
   right_id: 853
-  created_at: 2025-12-09 16:24:55.000000000 Z
-  updated_at: 2025-12-09 16:24:55.000000000 Z
+  created_at: 2025-12-17 15:49:53.000000000 Z
+  updated_at: 2025-12-17 15:49:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -16966,8 +16970,8 @@ cards_885:
   codename: collaborate_blurb
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:57.000000000 Z
-  updated_at: 2025-12-09 16:24:57.000000000 Z
+  created_at: 2025-12-17 15:49:54.000000000 Z
+  updated_at: 2025-12-17 15:49:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -16983,8 +16987,8 @@ cards_886:
   codename:
   left_id: 886
   right_id: 50
-  created_at: 2025-12-09 16:24:57.000000000 Z
-  updated_at: 2025-12-09 16:24:57.000000000 Z
+  created_at: 2025-12-17 15:49:54.000000000 Z
+  updated_at: 2025-12-17 15:49:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17000,8 +17004,8 @@ cards_887:
   codename:
   left_id: 886
   right_id: 798
-  created_at: 2025-12-09 16:24:57.000000000 Z
-  updated_at: 2025-12-09 16:24:57.000000000 Z
+  created_at: 2025-12-17 15:49:54.000000000 Z
+  updated_at: 2025-12-17 15:49:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17021,8 +17025,8 @@ cards_888:
   codename:
   left_id: 886
   right_id: 853
-  created_at: 2025-12-09 16:24:57.000000000 Z
-  updated_at: 2025-12-09 16:24:57.000000000 Z
+  created_at: 2025-12-17 15:49:54.000000000 Z
+  updated_at: 2025-12-17 15:49:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17038,8 +17042,8 @@ cards_889:
   codename: analyze_blurb
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:57.000000000 Z
-  updated_at: 2025-12-09 16:24:57.000000000 Z
+  created_at: 2025-12-17 15:49:55.000000000 Z
+  updated_at: 2025-12-17 15:49:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17055,8 +17059,8 @@ cards_890:
   codename:
   left_id: 890
   right_id: 50
-  created_at: 2025-12-09 16:24:57.000000000 Z
-  updated_at: 2025-12-09 16:24:57.000000000 Z
+  created_at: 2025-12-17 15:49:55.000000000 Z
+  updated_at: 2025-12-17 15:49:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17072,8 +17076,8 @@ cards_891:
   codename:
   left_id: 890
   right_id: 798
-  created_at: 2025-12-09 16:24:57.000000000 Z
-  updated_at: 2025-12-09 16:24:57.000000000 Z
+  created_at: 2025-12-17 15:49:55.000000000 Z
+  updated_at: 2025-12-17 15:49:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17091,8 +17095,8 @@ cards_892:
   codename:
   left_id: 890
   right_id: 853
-  created_at: 2025-12-09 16:24:57.000000000 Z
-  updated_at: 2025-12-09 16:24:57.000000000 Z
+  created_at: 2025-12-17 15:49:55.000000000 Z
+  updated_at: 2025-12-17 15:49:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17108,8 +17112,8 @@ cards_893:
   codename: map_blurb
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:58.000000000 Z
-  updated_at: 2025-12-09 16:24:58.000000000 Z
+  created_at: 2025-12-17 15:49:56.000000000 Z
+  updated_at: 2025-12-17 15:49:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17125,8 +17129,8 @@ cards_894:
   codename:
   left_id: 894
   right_id: 50
-  created_at: 2025-12-09 16:24:58.000000000 Z
-  updated_at: 2025-12-09 16:24:58.000000000 Z
+  created_at: 2025-12-17 15:49:56.000000000 Z
+  updated_at: 2025-12-17 15:49:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17142,8 +17146,8 @@ cards_895:
   codename:
   left_id: 894
   right_id: 798
-  created_at: 2025-12-09 16:24:58.000000000 Z
-  updated_at: 2025-12-09 16:24:58.000000000 Z
+  created_at: 2025-12-17 15:49:56.000000000 Z
+  updated_at: 2025-12-17 15:49:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17163,8 +17167,8 @@ cards_896:
   codename:
   left_id: 894
   right_id: 853
-  created_at: 2025-12-09 16:24:58.000000000 Z
-  updated_at: 2025-12-09 16:24:58.000000000 Z
+  created_at: 2025-12-17 15:49:56.000000000 Z
+  updated_at: 2025-12-17 15:49:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17180,8 +17184,8 @@ cards_897:
   codename: share_blurb
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:58.000000000 Z
-  updated_at: 2025-12-09 16:24:58.000000000 Z
+  created_at: 2025-12-17 15:49:57.000000000 Z
+  updated_at: 2025-12-17 15:49:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17197,8 +17201,8 @@ cards_898:
   codename:
   left_id: 898
   right_id: 50
-  created_at: 2025-12-09 16:24:58.000000000 Z
-  updated_at: 2025-12-09 16:24:58.000000000 Z
+  created_at: 2025-12-17 15:49:57.000000000 Z
+  updated_at: 2025-12-17 15:49:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17214,8 +17218,8 @@ cards_899:
   codename:
   left_id: 898
   right_id: 798
-  created_at: 2025-12-09 16:24:58.000000000 Z
-  updated_at: 2025-12-09 16:24:58.000000000 Z
+  created_at: 2025-12-17 15:49:57.000000000 Z
+  updated_at: 2025-12-17 15:49:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17235,8 +17239,8 @@ cards_900:
   codename:
   left_id: 898
   right_id: 853
-  created_at: 2025-12-09 16:24:58.000000000 Z
-  updated_at: 2025-12-09 16:24:58.000000000 Z
+  created_at: 2025-12-17 15:49:57.000000000 Z
+  updated_at: 2025-12-17 15:49:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17252,8 +17256,8 @@ cards_901:
   codename: extract_blurb
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:59.000000000 Z
-  updated_at: 2025-12-09 16:24:59.000000000 Z
+  created_at: 2025-12-17 15:49:58.000000000 Z
+  updated_at: 2025-12-17 15:49:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17269,8 +17273,8 @@ cards_902:
   codename:
   left_id: 902
   right_id: 50
-  created_at: 2025-12-09 16:24:59.000000000 Z
-  updated_at: 2025-12-09 16:24:59.000000000 Z
+  created_at: 2025-12-17 15:49:58.000000000 Z
+  updated_at: 2025-12-17 15:49:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17286,8 +17290,8 @@ cards_903:
   codename:
   left_id: 902
   right_id: 798
-  created_at: 2025-12-09 16:24:59.000000000 Z
-  updated_at: 2025-12-09 16:24:59.000000000 Z
+  created_at: 2025-12-17 15:49:58.000000000 Z
+  updated_at: 2025-12-17 15:49:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17307,8 +17311,8 @@ cards_904:
   codename:
   left_id: 902
   right_id: 853
-  created_at: 2025-12-09 16:24:59.000000000 Z
-  updated_at: 2025-12-09 16:24:59.000000000 Z
+  created_at: 2025-12-17 15:49:58.000000000 Z
+  updated_at: 2025-12-17 15:49:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17324,8 +17328,8 @@ cards_905:
   codename: values_blurb1
   left_id:
   right_id:
-  created_at: 2025-12-09 16:24:59.000000000 Z
-  updated_at: 2025-12-09 16:24:59.000000000 Z
+  created_at: 2025-12-17 15:49:58.000000000 Z
+  updated_at: 2025-12-17 15:49:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17341,8 +17345,8 @@ cards_906:
   codename:
   left_id: 906
   right_id: 50
-  created_at: 2025-12-09 16:24:59.000000000 Z
-  updated_at: 2025-12-09 16:24:59.000000000 Z
+  created_at: 2025-12-17 15:49:58.000000000 Z
+  updated_at: 2025-12-17 15:49:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17358,8 +17362,8 @@ cards_907:
   codename:
   left_id: 906
   right_id: 798
-  created_at: 2025-12-09 16:24:59.000000000 Z
-  updated_at: 2025-12-09 16:24:59.000000000 Z
+  created_at: 2025-12-17 15:49:58.000000000 Z
+  updated_at: 2025-12-17 15:49:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17377,8 +17381,8 @@ cards_908:
   codename:
   left_id: 906
   right_id: 853
-  created_at: 2025-12-09 16:24:59.000000000 Z
-  updated_at: 2025-12-09 16:24:59.000000000 Z
+  created_at: 2025-12-17 15:49:58.000000000 Z
+  updated_at: 2025-12-17 15:49:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17394,8 +17398,8 @@ cards_909:
   codename: values_blurb2
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:00.000000000 Z
-  updated_at: 2025-12-09 16:25:00.000000000 Z
+  created_at: 2025-12-17 15:49:59.000000000 Z
+  updated_at: 2025-12-17 15:49:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17411,8 +17415,8 @@ cards_910:
   codename:
   left_id: 910
   right_id: 50
-  created_at: 2025-12-09 16:25:00.000000000 Z
-  updated_at: 2025-12-09 16:25:00.000000000 Z
+  created_at: 2025-12-17 15:49:59.000000000 Z
+  updated_at: 2025-12-17 15:49:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17428,8 +17432,8 @@ cards_911:
   codename:
   left_id: 910
   right_id: 798
-  created_at: 2025-12-09 16:25:00.000000000 Z
-  updated_at: 2025-12-09 16:25:00.000000000 Z
+  created_at: 2025-12-17 15:49:59.000000000 Z
+  updated_at: 2025-12-17 15:49:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17447,8 +17451,8 @@ cards_912:
   codename:
   left_id: 910
   right_id: 853
-  created_at: 2025-12-09 16:25:00.000000000 Z
-  updated_at: 2025-12-09 16:25:00.000000000 Z
+  created_at: 2025-12-17 15:49:59.000000000 Z
+  updated_at: 2025-12-17 15:49:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17464,8 +17468,8 @@ cards_913:
   codename: values_blurb3
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:01.000000000 Z
-  updated_at: 2025-12-09 16:25:01.000000000 Z
+  created_at: 2025-12-17 15:50:01.000000000 Z
+  updated_at: 2025-12-17 15:50:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17481,8 +17485,8 @@ cards_914:
   codename:
   left_id: 914
   right_id: 50
-  created_at: 2025-12-09 16:25:01.000000000 Z
-  updated_at: 2025-12-09 16:25:01.000000000 Z
+  created_at: 2025-12-17 15:50:01.000000000 Z
+  updated_at: 2025-12-17 15:50:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17498,8 +17502,8 @@ cards_915:
   codename:
   left_id: 914
   right_id: 798
-  created_at: 2025-12-09 16:25:01.000000000 Z
-  updated_at: 2025-12-09 16:25:01.000000000 Z
+  created_at: 2025-12-17 15:50:01.000000000 Z
+  updated_at: 2025-12-17 15:50:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17515,8 +17519,8 @@ cards_916:
   codename:
   left_id: 914
   right_id: 853
-  created_at: 2025-12-09 16:25:01.000000000 Z
-  updated_at: 2025-12-09 16:25:01.000000000 Z
+  created_at: 2025-12-17 15:50:01.000000000 Z
+  updated_at: 2025-12-17 15:50:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17532,8 +17536,8 @@ cards_917:
   codename: data_main_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:02.000000000 Z
-  updated_at: 2025-12-09 16:25:02.000000000 Z
+  created_at: 2025-12-17 15:50:01.000000000 Z
+  updated_at: 2025-12-17 15:50:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17549,8 +17553,8 @@ cards_918:
   codename:
   left_id: 918
   right_id: 50
-  created_at: 2025-12-09 16:25:02.000000000 Z
-  updated_at: 2025-12-09 16:25:02.000000000 Z
+  created_at: 2025-12-17 15:50:01.000000000 Z
+  updated_at: 2025-12-17 15:50:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17567,8 +17571,8 @@ cards_919:
   codename:
   left_id: 918
   right_id: 798
-  created_at: 2025-12-09 16:25:02.000000000 Z
-  updated_at: 2025-12-09 16:25:02.000000000 Z
+  created_at: 2025-12-17 15:50:01.000000000 Z
+  updated_at: 2025-12-17 15:50:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17586,8 +17590,8 @@ cards_920:
   codename: data_special
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:02.000000000 Z
-  updated_at: 2025-12-09 16:25:02.000000000 Z
+  created_at: 2025-12-17 15:50:02.000000000 Z
+  updated_at: 2025-12-17 15:50:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17603,8 +17607,8 @@ cards_921:
   codename:
   left_id: 921
   right_id: 50
-  created_at: 2025-12-09 16:25:02.000000000 Z
-  updated_at: 2025-12-09 16:25:02.000000000 Z
+  created_at: 2025-12-17 15:50:02.000000000 Z
+  updated_at: 2025-12-17 15:50:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17620,8 +17624,8 @@ cards_922:
   codename:
   left_id: 921
   right_id: 798
-  created_at: 2025-12-09 16:25:02.000000000 Z
-  updated_at: 2025-12-09 16:25:02.000000000 Z
+  created_at: 2025-12-17 15:50:02.000000000 Z
+  updated_at: 2025-12-17 15:50:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17639,8 +17643,8 @@ cards_923:
   codename: data_reliable
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:03.000000000 Z
-  updated_at: 2025-12-09 16:25:03.000000000 Z
+  created_at: 2025-12-17 15:50:03.000000000 Z
+  updated_at: 2025-12-17 15:50:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17656,8 +17660,8 @@ cards_924:
   codename:
   left_id: 924
   right_id: 50
-  created_at: 2025-12-09 16:25:03.000000000 Z
-  updated_at: 2025-12-09 16:25:03.000000000 Z
+  created_at: 2025-12-17 15:50:03.000000000 Z
+  updated_at: 2025-12-17 15:50:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17673,8 +17677,8 @@ cards_925:
   codename:
   left_id: 924
   right_id: 798
-  created_at: 2025-12-09 16:25:03.000000000 Z
-  updated_at: 2025-12-09 16:25:03.000000000 Z
+  created_at: 2025-12-17 15:50:03.000000000 Z
+  updated_at: 2025-12-17 15:50:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17694,8 +17698,8 @@ cards_926:
   codename: data_usage
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:03.000000000 Z
-  updated_at: 2025-12-09 16:25:03.000000000 Z
+  created_at: 2025-12-17 15:50:05.000000000 Z
+  updated_at: 2025-12-17 15:50:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17711,8 +17715,8 @@ cards_927:
   codename:
   left_id: 927
   right_id: 50
-  created_at: 2025-12-09 16:25:03.000000000 Z
-  updated_at: 2025-12-09 16:25:03.000000000 Z
+  created_at: 2025-12-17 15:50:05.000000000 Z
+  updated_at: 2025-12-17 15:50:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17728,8 +17732,8 @@ cards_928:
   codename:
   left_id: 927
   right_id: 798
-  created_at: 2025-12-09 16:25:03.000000000 Z
-  updated_at: 2025-12-09 16:25:03.000000000 Z
+  created_at: 2025-12-17 15:50:05.000000000 Z
+  updated_at: 2025-12-17 15:50:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17747,8 +17751,8 @@ cards_929:
   codename: data_special1
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:04.000000000 Z
-  updated_at: 2025-12-09 16:25:04.000000000 Z
+  created_at: 2025-12-17 15:50:05.000000000 Z
+  updated_at: 2025-12-17 15:50:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17764,8 +17768,8 @@ cards_930:
   codename:
   left_id: 930
   right_id: 50
-  created_at: 2025-12-09 16:25:04.000000000 Z
-  updated_at: 2025-12-09 16:25:04.000000000 Z
+  created_at: 2025-12-17 15:50:06.000000000 Z
+  updated_at: 2025-12-17 15:50:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17781,8 +17785,8 @@ cards_931:
   codename:
   left_id: 930
   right_id: 798
-  created_at: 2025-12-09 16:25:04.000000000 Z
-  updated_at: 2025-12-09 16:25:04.000000000 Z
+  created_at: 2025-12-17 15:50:06.000000000 Z
+  updated_at: 2025-12-17 15:50:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17800,8 +17804,8 @@ cards_932:
   codename:
   left_id: 930
   right_id: 853
-  created_at: 2025-12-09 16:25:04.000000000 Z
-  updated_at: 2025-12-09 16:25:04.000000000 Z
+  created_at: 2025-12-17 15:50:06.000000000 Z
+  updated_at: 2025-12-17 15:50:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17817,8 +17821,8 @@ cards_933:
   codename: data_special2
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:05.000000000 Z
-  updated_at: 2025-12-09 16:25:05.000000000 Z
+  created_at: 2025-12-17 15:50:07.000000000 Z
+  updated_at: 2025-12-17 15:50:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17834,8 +17838,8 @@ cards_934:
   codename:
   left_id: 934
   right_id: 50
-  created_at: 2025-12-09 16:25:05.000000000 Z
-  updated_at: 2025-12-09 16:25:05.000000000 Z
+  created_at: 2025-12-17 15:50:07.000000000 Z
+  updated_at: 2025-12-17 15:50:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17851,8 +17855,8 @@ cards_935:
   codename:
   left_id: 934
   right_id: 798
-  created_at: 2025-12-09 16:25:05.000000000 Z
-  updated_at: 2025-12-09 16:25:05.000000000 Z
+  created_at: 2025-12-17 15:50:07.000000000 Z
+  updated_at: 2025-12-17 15:50:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17870,8 +17874,8 @@ cards_936:
   codename:
   left_id: 934
   right_id: 853
-  created_at: 2025-12-09 16:25:05.000000000 Z
-  updated_at: 2025-12-09 16:25:05.000000000 Z
+  created_at: 2025-12-17 15:50:07.000000000 Z
+  updated_at: 2025-12-17 15:50:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17887,8 +17891,8 @@ cards_937:
   codename: data_special3
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:05.000000000 Z
-  updated_at: 2025-12-09 16:25:05.000000000 Z
+  created_at: 2025-12-17 15:50:08.000000000 Z
+  updated_at: 2025-12-17 15:50:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17904,8 +17908,8 @@ cards_938:
   codename:
   left_id: 938
   right_id: 50
-  created_at: 2025-12-09 16:25:05.000000000 Z
-  updated_at: 2025-12-09 16:25:05.000000000 Z
+  created_at: 2025-12-17 15:50:08.000000000 Z
+  updated_at: 2025-12-17 15:50:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17921,8 +17925,8 @@ cards_939:
   codename:
   left_id: 938
   right_id: 798
-  created_at: 2025-12-09 16:25:05.000000000 Z
-  updated_at: 2025-12-09 16:25:05.000000000 Z
+  created_at: 2025-12-17 15:50:08.000000000 Z
+  updated_at: 2025-12-17 15:50:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17940,8 +17944,8 @@ cards_940:
   codename:
   left_id: 938
   right_id: 853
-  created_at: 2025-12-09 16:25:05.000000000 Z
-  updated_at: 2025-12-09 16:25:05.000000000 Z
+  created_at: 2025-12-17 15:50:08.000000000 Z
+  updated_at: 2025-12-17 15:50:08.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17957,8 +17961,8 @@ cards_941:
   codename: data_reliable1
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:06.000000000 Z
-  updated_at: 2025-12-09 16:25:06.000000000 Z
+  created_at: 2025-12-17 15:50:10.000000000 Z
+  updated_at: 2025-12-17 15:50:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -17974,8 +17978,8 @@ cards_942:
   codename:
   left_id: 942
   right_id: 50
-  created_at: 2025-12-09 16:25:06.000000000 Z
-  updated_at: 2025-12-09 16:25:06.000000000 Z
+  created_at: 2025-12-17 15:50:10.000000000 Z
+  updated_at: 2025-12-17 15:50:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -17991,8 +17995,8 @@ cards_943:
   codename:
   left_id: 942
   right_id: 798
-  created_at: 2025-12-09 16:25:06.000000000 Z
-  updated_at: 2025-12-09 16:25:06.000000000 Z
+  created_at: 2025-12-17 15:50:10.000000000 Z
+  updated_at: 2025-12-17 15:50:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18012,8 +18016,8 @@ cards_944:
   codename:
   left_id: 942
   right_id: 853
-  created_at: 2025-12-09 16:25:06.000000000 Z
-  updated_at: 2025-12-09 16:25:06.000000000 Z
+  created_at: 2025-12-17 15:50:10.000000000 Z
+  updated_at: 2025-12-17 15:50:10.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18029,8 +18033,8 @@ cards_945:
   codename: data_reliable2
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:07.000000000 Z
-  updated_at: 2025-12-09 16:25:07.000000000 Z
+  created_at: 2025-12-17 15:50:11.000000000 Z
+  updated_at: 2025-12-17 15:50:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18046,8 +18050,8 @@ cards_946:
   codename:
   left_id: 946
   right_id: 50
-  created_at: 2025-12-09 16:25:07.000000000 Z
-  updated_at: 2025-12-09 16:25:07.000000000 Z
+  created_at: 2025-12-17 15:50:11.000000000 Z
+  updated_at: 2025-12-17 15:50:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18063,8 +18067,8 @@ cards_947:
   codename:
   left_id: 946
   right_id: 798
-  created_at: 2025-12-09 16:25:07.000000000 Z
-  updated_at: 2025-12-09 16:25:07.000000000 Z
+  created_at: 2025-12-17 15:50:11.000000000 Z
+  updated_at: 2025-12-17 15:50:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18082,8 +18086,8 @@ cards_948:
   codename:
   left_id: 946
   right_id: 853
-  created_at: 2025-12-09 16:25:07.000000000 Z
-  updated_at: 2025-12-09 16:25:07.000000000 Z
+  created_at: 2025-12-17 15:50:11.000000000 Z
+  updated_at: 2025-12-17 15:50:11.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18099,8 +18103,8 @@ cards_949:
   codename: data_reliable3
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:08.000000000 Z
-  updated_at: 2025-12-09 16:25:08.000000000 Z
+  created_at: 2025-12-17 15:50:12.000000000 Z
+  updated_at: 2025-12-17 15:50:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18116,8 +18120,8 @@ cards_950:
   codename:
   left_id: 950
   right_id: 50
-  created_at: 2025-12-09 16:25:08.000000000 Z
-  updated_at: 2025-12-09 16:25:08.000000000 Z
+  created_at: 2025-12-17 15:50:12.000000000 Z
+  updated_at: 2025-12-17 15:50:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18133,8 +18137,8 @@ cards_951:
   codename:
   left_id: 950
   right_id: 798
-  created_at: 2025-12-09 16:25:08.000000000 Z
-  updated_at: 2025-12-09 16:25:08.000000000 Z
+  created_at: 2025-12-17 15:50:12.000000000 Z
+  updated_at: 2025-12-17 15:50:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18152,8 +18156,8 @@ cards_952:
   codename:
   left_id: 950
   right_id: 853
-  created_at: 2025-12-09 16:25:08.000000000 Z
-  updated_at: 2025-12-09 16:25:08.000000000 Z
+  created_at: 2025-12-17 15:50:12.000000000 Z
+  updated_at: 2025-12-17 15:50:12.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18169,8 +18173,8 @@ cards_953:
   codename: data_reliable4
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:08.000000000 Z
-  updated_at: 2025-12-09 16:25:08.000000000 Z
+  created_at: 2025-12-17 15:50:14.000000000 Z
+  updated_at: 2025-12-17 15:50:14.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18186,8 +18190,8 @@ cards_954:
   codename:
   left_id: 954
   right_id: 50
-  created_at: 2025-12-09 16:25:08.000000000 Z
-  updated_at: 2025-12-09 16:25:08.000000000 Z
+  created_at: 2025-12-17 15:50:14.000000000 Z
+  updated_at: 2025-12-17 15:50:14.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18203,8 +18207,8 @@ cards_955:
   codename:
   left_id: 954
   right_id: 798
-  created_at: 2025-12-09 16:25:08.000000000 Z
-  updated_at: 2025-12-09 16:25:08.000000000 Z
+  created_at: 2025-12-17 15:50:14.000000000 Z
+  updated_at: 2025-12-17 15:50:14.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18224,8 +18228,8 @@ cards_956:
   codename:
   left_id: 954
   right_id: 853
-  created_at: 2025-12-09 16:25:08.000000000 Z
-  updated_at: 2025-12-09 16:25:08.000000000 Z
+  created_at: 2025-12-17 15:50:14.000000000 Z
+  updated_at: 2025-12-17 15:50:14.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18241,8 +18245,8 @@ cards_957:
   codename: main_impact_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:09.000000000 Z
-  updated_at: 2025-12-09 16:25:09.000000000 Z
+  created_at: 2025-12-17 15:50:15.000000000 Z
+  updated_at: 2025-12-17 15:50:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18258,8 +18262,8 @@ cards_958:
   codename:
   left_id: 958
   right_id: 50
-  created_at: 2025-12-09 16:25:09.000000000 Z
-  updated_at: 2025-12-09 16:25:09.000000000 Z
+  created_at: 2025-12-17 15:50:15.000000000 Z
+  updated_at: 2025-12-17 15:50:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18275,8 +18279,8 @@ cards_959:
   codename:
   left_id: 958
   right_id: 798
-  created_at: 2025-12-09 16:25:09.000000000 Z
-  updated_at: 2025-12-09 16:25:09.000000000 Z
+  created_at: 2025-12-17 15:50:15.000000000 Z
+  updated_at: 2025-12-17 15:50:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18294,8 +18298,8 @@ cards_960:
   codename: contribute_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:09.000000000 Z
-  updated_at: 2025-12-09 16:25:09.000000000 Z
+  created_at: 2025-12-17 15:50:16.000000000 Z
+  updated_at: 2025-12-17 15:50:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18311,8 +18315,8 @@ cards_961:
   codename:
   left_id: 961
   right_id: 50
-  created_at: 2025-12-09 16:25:09.000000000 Z
-  updated_at: 2025-12-09 16:25:09.000000000 Z
+  created_at: 2025-12-17 15:50:16.000000000 Z
+  updated_at: 2025-12-17 15:50:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18328,8 +18332,8 @@ cards_962:
   codename:
   left_id: 961
   right_id: 798
-  created_at: 2025-12-09 16:25:09.000000000 Z
-  updated_at: 2025-12-09 16:25:09.000000000 Z
+  created_at: 2025-12-17 15:50:16.000000000 Z
+  updated_at: 2025-12-17 15:50:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18347,8 +18351,8 @@ cards_963:
   codename: main_community_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:10.000000000 Z
-  updated_at: 2025-12-09 16:25:10.000000000 Z
+  created_at: 2025-12-17 15:50:17.000000000 Z
+  updated_at: 2025-12-17 15:50:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18364,8 +18368,8 @@ cards_964:
   codename:
   left_id: 964
   right_id: 50
-  created_at: 2025-12-09 16:25:10.000000000 Z
-  updated_at: 2025-12-09 16:25:10.000000000 Z
+  created_at: 2025-12-17 15:50:17.000000000 Z
+  updated_at: 2025-12-17 15:50:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18381,8 +18385,8 @@ cards_965:
   codename:
   left_id: 964
   right_id: 798
-  created_at: 2025-12-09 16:25:10.000000000 Z
-  updated_at: 2025-12-09 16:25:10.000000000 Z
+  created_at: 2025-12-17 15:50:17.000000000 Z
+  updated_at: 2025-12-17 15:50:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18402,8 +18406,8 @@ cards_966:
   codename: community_action_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:10.000000000 Z
-  updated_at: 2025-12-09 16:25:10.000000000 Z
+  created_at: 2025-12-17 15:50:18.000000000 Z
+  updated_at: 2025-12-17 15:50:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18419,8 +18423,8 @@ cards_967:
   codename:
   left_id: 967
   right_id: 50
-  created_at: 2025-12-09 16:25:10.000000000 Z
-  updated_at: 2025-12-09 16:25:10.000000000 Z
+  created_at: 2025-12-17 15:50:18.000000000 Z
+  updated_at: 2025-12-17 15:50:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18436,8 +18440,8 @@ cards_968:
   codename:
   left_id: 967
   right_id: 798
-  created_at: 2025-12-09 16:25:10.000000000 Z
-  updated_at: 2025-12-09 16:25:10.000000000 Z
+  created_at: 2025-12-17 15:50:18.000000000 Z
+  updated_at: 2025-12-17 15:50:18.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18455,8 +18459,8 @@ cards_969:
   codename: community_member_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:11.000000000 Z
-  updated_at: 2025-12-09 16:25:11.000000000 Z
+  created_at: 2025-12-17 15:50:19.000000000 Z
+  updated_at: 2025-12-17 15:50:19.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18472,8 +18476,8 @@ cards_970:
   codename:
   left_id: 970
   right_id: 50
-  created_at: 2025-12-09 16:25:11.000000000 Z
-  updated_at: 2025-12-09 16:25:11.000000000 Z
+  created_at: 2025-12-17 15:50:19.000000000 Z
+  updated_at: 2025-12-17 15:50:19.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18489,8 +18493,8 @@ cards_971:
   codename:
   left_id: 970
   right_id: 798
-  created_at: 2025-12-09 16:25:11.000000000 Z
-  updated_at: 2025-12-09 16:25:11.000000000 Z
+  created_at: 2025-12-17 15:50:20.000000000 Z
+  updated_at: 2025-12-17 15:50:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18508,8 +18512,8 @@ cards_972:
   codename: community_action1
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:11.000000000 Z
-  updated_at: 2025-12-09 16:25:11.000000000 Z
+  created_at: 2025-12-17 15:50:20.000000000 Z
+  updated_at: 2025-12-17 15:50:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18525,8 +18529,8 @@ cards_973:
   codename:
   left_id: 973
   right_id: 50
-  created_at: 2025-12-09 16:25:11.000000000 Z
-  updated_at: 2025-12-09 16:25:11.000000000 Z
+  created_at: 2025-12-17 15:50:20.000000000 Z
+  updated_at: 2025-12-17 15:50:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18542,8 +18546,8 @@ cards_974:
   codename:
   left_id: 973
   right_id: 45
-  created_at: 2025-12-09 16:25:11.000000000 Z
-  updated_at: 2025-12-09 16:25:11.000000000 Z
+  created_at: 2025-12-17 15:50:20.000000000 Z
+  updated_at: 2025-12-17 15:50:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18559,8 +18563,8 @@ cards_975:
   codename:
   left_id: 973
   right_id: 798
-  created_at: 2025-12-09 16:25:11.000000000 Z
-  updated_at: 2025-12-09 16:25:11.000000000 Z
+  created_at: 2025-12-17 15:50:20.000000000 Z
+  updated_at: 2025-12-17 15:50:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18578,8 +18582,8 @@ cards_976:
   codename: community_action2
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:12.000000000 Z
-  updated_at: 2025-12-09 16:25:12.000000000 Z
+  created_at: 2025-12-17 15:50:21.000000000 Z
+  updated_at: 2025-12-17 15:50:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18595,8 +18599,8 @@ cards_977:
   codename:
   left_id: 977
   right_id: 50
-  created_at: 2025-12-09 16:25:12.000000000 Z
-  updated_at: 2025-12-09 16:25:12.000000000 Z
+  created_at: 2025-12-17 15:50:22.000000000 Z
+  updated_at: 2025-12-17 15:50:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18612,8 +18616,8 @@ cards_978:
   codename:
   left_id: 977
   right_id: 45
-  created_at: 2025-12-09 16:25:12.000000000 Z
-  updated_at: 2025-12-09 16:25:12.000000000 Z
+  created_at: 2025-12-17 15:50:22.000000000 Z
+  updated_at: 2025-12-17 15:50:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18629,8 +18633,8 @@ cards_979:
   codename:
   left_id: 977
   right_id: 798
-  created_at: 2025-12-09 16:25:12.000000000 Z
-  updated_at: 2025-12-09 16:25:12.000000000 Z
+  created_at: 2025-12-17 15:50:22.000000000 Z
+  updated_at: 2025-12-17 15:50:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18646,8 +18650,8 @@ cards_980:
   codename: community_action3
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:12.000000000 Z
-  updated_at: 2025-12-09 16:25:12.000000000 Z
+  created_at: 2025-12-17 15:50:23.000000000 Z
+  updated_at: 2025-12-17 15:50:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18663,8 +18667,8 @@ cards_981:
   codename:
   left_id: 981
   right_id: 50
-  created_at: 2025-12-09 16:25:12.000000000 Z
-  updated_at: 2025-12-09 16:25:12.000000000 Z
+  created_at: 2025-12-17 15:50:23.000000000 Z
+  updated_at: 2025-12-17 15:50:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18680,8 +18684,8 @@ cards_982:
   codename:
   left_id: 981
   right_id: 45
-  created_at: 2025-12-09 16:25:12.000000000 Z
-  updated_at: 2025-12-09 16:25:12.000000000 Z
+  created_at: 2025-12-17 15:50:23.000000000 Z
+  updated_at: 2025-12-17 15:50:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18697,8 +18701,8 @@ cards_983:
   codename:
   left_id: 981
   right_id: 798
-  created_at: 2025-12-09 16:25:12.000000000 Z
-  updated_at: 2025-12-09 16:25:12.000000000 Z
+  created_at: 2025-12-17 15:50:23.000000000 Z
+  updated_at: 2025-12-17 15:50:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18716,8 +18720,8 @@ cards_984:
   codename: community_action4
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:13.000000000 Z
-  updated_at: 2025-12-09 16:25:13.000000000 Z
+  created_at: 2025-12-17 15:50:24.000000000 Z
+  updated_at: 2025-12-17 15:50:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18733,8 +18737,8 @@ cards_985:
   codename:
   left_id: 985
   right_id: 50
-  created_at: 2025-12-09 16:25:13.000000000 Z
-  updated_at: 2025-12-09 16:25:13.000000000 Z
+  created_at: 2025-12-17 15:50:24.000000000 Z
+  updated_at: 2025-12-17 15:50:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18750,8 +18754,8 @@ cards_986:
   codename:
   left_id: 985
   right_id: 45
-  created_at: 2025-12-09 16:25:13.000000000 Z
-  updated_at: 2025-12-09 16:25:13.000000000 Z
+  created_at: 2025-12-17 15:50:24.000000000 Z
+  updated_at: 2025-12-17 15:50:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18767,8 +18771,8 @@ cards_987:
   codename:
   left_id: 985
   right_id: 798
-  created_at: 2025-12-09 16:25:13.000000000 Z
-  updated_at: 2025-12-09 16:25:13.000000000 Z
+  created_at: 2025-12-17 15:50:24.000000000 Z
+  updated_at: 2025-12-17 15:50:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18786,8 +18790,8 @@ cards_988:
   codename: homepage_action1
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:13.000000000 Z
-  updated_at: 2025-12-09 16:25:13.000000000 Z
+  created_at: 2025-12-17 15:50:25.000000000 Z
+  updated_at: 2025-12-17 15:50:25.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18803,8 +18807,8 @@ cards_989:
   codename:
   left_id: 989
   right_id: 50
-  created_at: 2025-12-09 16:25:13.000000000 Z
-  updated_at: 2025-12-09 16:25:13.000000000 Z
+  created_at: 2025-12-17 15:50:25.000000000 Z
+  updated_at: 2025-12-17 15:50:25.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18820,8 +18824,8 @@ cards_990:
   codename:
   left_id: 989
   right_id: 45
-  created_at: 2025-12-09 16:25:13.000000000 Z
-  updated_at: 2025-12-09 16:25:13.000000000 Z
+  created_at: 2025-12-17 15:50:25.000000000 Z
+  updated_at: 2025-12-17 15:50:25.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18837,8 +18841,8 @@ cards_991:
   codename:
   left_id: 989
   right_id: 798
-  created_at: 2025-12-09 16:25:13.000000000 Z
-  updated_at: 2025-12-09 16:25:13.000000000 Z
+  created_at: 2025-12-17 15:50:25.000000000 Z
+  updated_at: 2025-12-17 15:50:25.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18856,8 +18860,8 @@ cards_992:
   codename: homepage_action2
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:14.000000000 Z
-  updated_at: 2025-12-09 16:25:14.000000000 Z
+  created_at: 2025-12-17 15:50:26.000000000 Z
+  updated_at: 2025-12-17 15:50:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18873,8 +18877,8 @@ cards_993:
   codename:
   left_id: 993
   right_id: 50
-  created_at: 2025-12-09 16:25:14.000000000 Z
-  updated_at: 2025-12-09 16:25:14.000000000 Z
+  created_at: 2025-12-17 15:50:26.000000000 Z
+  updated_at: 2025-12-17 15:50:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18890,8 +18894,8 @@ cards_994:
   codename:
   left_id: 993
   right_id: 45
-  created_at: 2025-12-09 16:25:14.000000000 Z
-  updated_at: 2025-12-09 16:25:14.000000000 Z
+  created_at: 2025-12-17 15:50:26.000000000 Z
+  updated_at: 2025-12-17 15:50:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18907,8 +18911,8 @@ cards_995:
   codename:
   left_id: 993
   right_id: 798
-  created_at: 2025-12-09 16:25:14.000000000 Z
-  updated_at: 2025-12-09 16:25:14.000000000 Z
+  created_at: 2025-12-17 15:50:26.000000000 Z
+  updated_at: 2025-12-17 15:50:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18926,8 +18930,8 @@ cards_996:
   codename: homepage_action3
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:15.000000000 Z
-  updated_at: 2025-12-09 16:25:15.000000000 Z
+  created_at: 2025-12-17 15:50:27.000000000 Z
+  updated_at: 2025-12-17 15:50:27.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -18943,8 +18947,8 @@ cards_997:
   codename:
   left_id: 997
   right_id: 50
-  created_at: 2025-12-09 16:25:15.000000000 Z
-  updated_at: 2025-12-09 16:25:15.000000000 Z
+  created_at: 2025-12-17 15:50:27.000000000 Z
+  updated_at: 2025-12-17 15:50:27.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18960,8 +18964,8 @@ cards_998:
   codename:
   left_id: 997
   right_id: 45
-  created_at: 2025-12-09 16:25:15.000000000 Z
-  updated_at: 2025-12-09 16:25:15.000000000 Z
+  created_at: 2025-12-17 15:50:27.000000000 Z
+  updated_at: 2025-12-17 15:50:27.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18977,8 +18981,8 @@ cards_999:
   codename:
   left_id: 997
   right_id: 798
-  created_at: 2025-12-09 16:25:15.000000000 Z
-  updated_at: 2025-12-09 16:25:15.000000000 Z
+  created_at: 2025-12-17 15:50:27.000000000 Z
+  updated_at: 2025-12-17 15:50:27.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -18996,8 +19000,8 @@ cards_1000:
   codename: homepage_action4
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:15.000000000 Z
-  updated_at: 2025-12-09 16:25:15.000000000 Z
+  created_at: 2025-12-17 15:50:28.000000000 Z
+  updated_at: 2025-12-17 15:50:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19013,8 +19017,8 @@ cards_1001:
   codename:
   left_id: 1001
   right_id: 50
-  created_at: 2025-12-09 16:25:15.000000000 Z
-  updated_at: 2025-12-09 16:25:15.000000000 Z
+  created_at: 2025-12-17 15:50:28.000000000 Z
+  updated_at: 2025-12-17 15:50:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19030,8 +19034,8 @@ cards_1002:
   codename:
   left_id: 1001
   right_id: 45
-  created_at: 2025-12-09 16:25:15.000000000 Z
-  updated_at: 2025-12-09 16:25:15.000000000 Z
+  created_at: 2025-12-17 15:50:28.000000000 Z
+  updated_at: 2025-12-17 15:50:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19047,8 +19051,8 @@ cards_1003:
   codename:
   left_id: 1001
   right_id: 798
-  created_at: 2025-12-09 16:25:15.000000000 Z
-  updated_at: 2025-12-09 16:25:15.000000000 Z
+  created_at: 2025-12-17 15:50:28.000000000 Z
+  updated_at: 2025-12-17 15:50:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19064,8 +19068,8 @@ cards_1004:
   codename: homepage_action5
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:16.000000000 Z
-  updated_at: 2025-12-09 16:25:16.000000000 Z
+  created_at: 2025-12-17 15:50:29.000000000 Z
+  updated_at: 2025-12-17 15:50:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19081,8 +19085,8 @@ cards_1005:
   codename:
   left_id: 1005
   right_id: 50
-  created_at: 2025-12-09 16:25:16.000000000 Z
-  updated_at: 2025-12-09 16:25:16.000000000 Z
+  created_at: 2025-12-17 15:50:29.000000000 Z
+  updated_at: 2025-12-17 15:50:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19098,8 +19102,8 @@ cards_1006:
   codename:
   left_id: 1005
   right_id: 45
-  created_at: 2025-12-09 16:25:16.000000000 Z
-  updated_at: 2025-12-09 16:25:16.000000000 Z
+  created_at: 2025-12-17 15:50:29.000000000 Z
+  updated_at: 2025-12-17 15:50:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19115,8 +19119,8 @@ cards_1007:
   codename:
   left_id: 1005
   right_id: 798
-  created_at: 2025-12-09 16:25:16.000000000 Z
-  updated_at: 2025-12-09 16:25:16.000000000 Z
+  created_at: 2025-12-17 15:50:29.000000000 Z
+  updated_at: 2025-12-17 15:50:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19134,8 +19138,8 @@ cards_1008:
   codename: homepage_action6
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:17.000000000 Z
-  updated_at: 2025-12-09 16:25:17.000000000 Z
+  created_at: 2025-12-17 15:50:30.000000000 Z
+  updated_at: 2025-12-17 15:50:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19151,8 +19155,8 @@ cards_1009:
   codename:
   left_id: 1009
   right_id: 50
-  created_at: 2025-12-09 16:25:17.000000000 Z
-  updated_at: 2025-12-09 16:25:17.000000000 Z
+  created_at: 2025-12-17 15:50:30.000000000 Z
+  updated_at: 2025-12-17 15:50:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19168,8 +19172,8 @@ cards_1010:
   codename:
   left_id: 1009
   right_id: 45
-  created_at: 2025-12-09 16:25:17.000000000 Z
-  updated_at: 2025-12-09 16:25:17.000000000 Z
+  created_at: 2025-12-17 15:50:30.000000000 Z
+  updated_at: 2025-12-17 15:50:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19185,8 +19189,8 @@ cards_1011:
   codename:
   left_id: 1009
   right_id: 798
-  created_at: 2025-12-09 16:25:17.000000000 Z
-  updated_at: 2025-12-09 16:25:17.000000000 Z
+  created_at: 2025-12-17 15:50:30.000000000 Z
+  updated_at: 2025-12-17 15:50:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19204,8 +19208,8 @@ cards_1012:
   codename: community_cta
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:17.000000000 Z
-  updated_at: 2025-12-09 16:25:17.000000000 Z
+  created_at: 2025-12-17 15:50:31.000000000 Z
+  updated_at: 2025-12-17 15:50:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19221,8 +19225,8 @@ cards_1013:
   codename:
   left_id: 1013
   right_id: 50
-  created_at: 2025-12-09 16:25:17.000000000 Z
-  updated_at: 2025-12-09 16:25:17.000000000 Z
+  created_at: 2025-12-17 15:50:31.000000000 Z
+  updated_at: 2025-12-17 15:50:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19238,8 +19242,8 @@ cards_1014:
   codename:
   left_id: 1013
   right_id: 45
-  created_at: 2025-12-09 16:25:17.000000000 Z
-  updated_at: 2025-12-09 16:25:17.000000000 Z
+  created_at: 2025-12-17 15:50:31.000000000 Z
+  updated_at: 2025-12-17 15:50:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19255,8 +19259,8 @@ cards_1015:
   codename:
   left_id: 1013
   right_id: 798
-  created_at: 2025-12-09 16:25:17.000000000 Z
-  updated_at: 2025-12-09 16:25:17.000000000 Z
+  created_at: 2025-12-17 15:50:31.000000000 Z
+  updated_at: 2025-12-17 15:50:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19274,8 +19278,8 @@ cards_1016:
   codename:
   left_id: 1013
   right_id: 853
-  created_at: 2025-12-09 16:25:17.000000000 Z
-  updated_at: 2025-12-09 16:25:17.000000000 Z
+  created_at: 2025-12-17 15:50:31.000000000 Z
+  updated_at: 2025-12-17 15:50:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19291,8 +19295,8 @@ cards_1017:
   codename: about_cta
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:18.000000000 Z
-  updated_at: 2025-12-09 16:25:18.000000000 Z
+  created_at: 2025-12-17 15:50:32.000000000 Z
+  updated_at: 2025-12-17 15:50:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19308,8 +19312,8 @@ cards_1018:
   codename:
   left_id: 1018
   right_id: 50
-  created_at: 2025-12-09 16:25:18.000000000 Z
-  updated_at: 2025-12-09 16:25:18.000000000 Z
+  created_at: 2025-12-17 15:50:32.000000000 Z
+  updated_at: 2025-12-17 15:50:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19325,8 +19329,8 @@ cards_1019:
   codename:
   left_id: 1018
   right_id: 45
-  created_at: 2025-12-09 16:25:18.000000000 Z
-  updated_at: 2025-12-09 16:25:18.000000000 Z
+  created_at: 2025-12-17 15:50:32.000000000 Z
+  updated_at: 2025-12-17 15:50:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19342,8 +19346,8 @@ cards_1020:
   codename:
   left_id: 1018
   right_id: 798
-  created_at: 2025-12-09 16:25:18.000000000 Z
-  updated_at: 2025-12-09 16:25:18.000000000 Z
+  created_at: 2025-12-17 15:50:32.000000000 Z
+  updated_at: 2025-12-17 15:50:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19359,8 +19363,8 @@ cards_1021:
   codename:
   left_id: 1018
   right_id: 853
-  created_at: 2025-12-09 16:25:18.000000000 Z
-  updated_at: 2025-12-09 16:25:18.000000000 Z
+  created_at: 2025-12-17 15:50:32.000000000 Z
+  updated_at: 2025-12-17 15:50:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19376,8 +19380,8 @@ cards_1022:
   codename: contact_cta1
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:18.000000000 Z
-  updated_at: 2025-12-09 16:25:18.000000000 Z
+  created_at: 2025-12-17 15:50:33.000000000 Z
+  updated_at: 2025-12-17 15:50:33.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19393,8 +19397,8 @@ cards_1023:
   codename:
   left_id: 1023
   right_id: 50
-  created_at: 2025-12-09 16:25:18.000000000 Z
-  updated_at: 2025-12-09 16:25:18.000000000 Z
+  created_at: 2025-12-17 15:50:33.000000000 Z
+  updated_at: 2025-12-17 15:50:33.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19410,8 +19414,8 @@ cards_1024:
   codename:
   left_id: 1023
   right_id: 45
-  created_at: 2025-12-09 16:25:18.000000000 Z
-  updated_at: 2025-12-09 16:25:18.000000000 Z
+  created_at: 2025-12-17 15:50:33.000000000 Z
+  updated_at: 2025-12-17 15:50:33.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19427,8 +19431,8 @@ cards_1025:
   codename:
   left_id: 1023
   right_id: 798
-  created_at: 2025-12-09 16:25:18.000000000 Z
-  updated_at: 2025-12-09 16:25:18.000000000 Z
+  created_at: 2025-12-17 15:50:33.000000000 Z
+  updated_at: 2025-12-17 15:50:33.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19444,8 +19448,8 @@ cards_1026:
   codename: contact_cta2
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:34.000000000 Z
+  updated_at: 2025-12-17 15:50:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19461,8 +19465,8 @@ cards_1027:
   codename:
   left_id: 1027
   right_id: 50
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:34.000000000 Z
+  updated_at: 2025-12-17 15:50:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19478,8 +19482,8 @@ cards_1028:
   codename:
   left_id: 1027
   right_id: 45
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:34.000000000 Z
+  updated_at: 2025-12-17 15:50:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19495,8 +19499,8 @@ cards_1029:
   codename:
   left_id: 1027
   right_id: 798
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:34.000000000 Z
+  updated_at: 2025-12-17 15:50:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19512,8 +19516,8 @@ cards_1030:
   codename: project_organizer_heading
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:35.000000000 Z
+  updated_at: 2025-12-17 15:50:35.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19529,8 +19533,8 @@ cards_1031:
   codename:
   left_id: 1031
   right_id: 50
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:35.000000000 Z
+  updated_at: 2025-12-17 15:50:35.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19546,8 +19550,8 @@ cards_1032:
   codename:
   left_id: 1031
   right_id: 798
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:35.000000000 Z
+  updated_at: 2025-12-17 15:50:35.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19565,8 +19569,8 @@ cards_1033:
   codename: community_action5
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:36.000000000 Z
+  updated_at: 2025-12-17 15:50:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19582,8 +19586,8 @@ cards_1034:
   codename:
   left_id: 1034
   right_id: 50
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:36.000000000 Z
+  updated_at: 2025-12-17 15:50:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19599,8 +19603,8 @@ cards_1035:
   codename:
   left_id: 1034
   right_id: 45
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:36.000000000 Z
+  updated_at: 2025-12-17 15:50:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19616,8 +19620,8 @@ cards_1036:
   codename:
   left_id: 1034
   right_id: 798
-  created_at: 2025-12-09 16:25:19.000000000 Z
-  updated_at: 2025-12-09 16:25:19.000000000 Z
+  created_at: 2025-12-17 15:50:36.000000000 Z
+  updated_at: 2025-12-17 15:50:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19637,8 +19641,8 @@ cards_1037:
   codename: community_action6
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:20.000000000 Z
-  updated_at: 2025-12-09 16:25:20.000000000 Z
+  created_at: 2025-12-17 15:50:37.000000000 Z
+  updated_at: 2025-12-17 15:50:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19654,8 +19658,8 @@ cards_1038:
   codename:
   left_id: 1038
   right_id: 50
-  created_at: 2025-12-09 16:25:20.000000000 Z
-  updated_at: 2025-12-09 16:25:20.000000000 Z
+  created_at: 2025-12-17 15:50:37.000000000 Z
+  updated_at: 2025-12-17 15:50:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19671,8 +19675,8 @@ cards_1039:
   codename:
   left_id: 1038
   right_id: 45
-  created_at: 2025-12-09 16:25:20.000000000 Z
-  updated_at: 2025-12-09 16:25:20.000000000 Z
+  created_at: 2025-12-17 15:50:37.000000000 Z
+  updated_at: 2025-12-17 15:50:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19688,8 +19692,8 @@ cards_1040:
   codename:
   left_id: 1038
   right_id: 798
-  created_at: 2025-12-09 16:25:20.000000000 Z
-  updated_at: 2025-12-09 16:25:20.000000000 Z
+  created_at: 2025-12-17 15:50:37.000000000 Z
+  updated_at: 2025-12-17 15:50:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19707,8 +19711,8 @@ cards_1041:
   codename:
   left_id: 693
   right_id: 850
-  created_at: 2025-12-09 16:25:20.000000000 Z
-  updated_at: 2025-12-09 16:25:20.000000000 Z
+  created_at: 2025-12-17 15:50:38.000000000 Z
+  updated_at: 2025-12-17 15:50:38.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19730,8 +19734,8 @@ cards_1042:
   codename:
   left_id: 729
   right_id: 850
-  created_at: 2025-12-09 16:25:21.000000000 Z
-  updated_at: 2025-12-09 16:25:21.000000000 Z
+  created_at: 2025-12-17 15:50:38.000000000 Z
+  updated_at: 2025-12-17 15:50:38.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19759,8 +19763,8 @@ cards_1043:
   codename:
   left_id: 856
   right_id: 850
-  created_at: 2025-12-09 16:25:21.000000000 Z
-  updated_at: 2025-12-09 16:25:21.000000000 Z
+  created_at: 2025-12-17 15:50:38.000000000 Z
+  updated_at: 2025-12-17 15:50:38.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19782,8 +19786,8 @@ cards_1044:
   codename:
   left_id: 856
   right_id: 4
-  created_at: 2025-12-09 16:25:21.000000000 Z
-  updated_at: 2025-12-09 16:25:21.000000000 Z
+  created_at: 2025-12-17 15:50:39.000000000 Z
+  updated_at: 2025-12-17 15:50:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19807,8 +19811,8 @@ cards_1045:
   codename:
   left_id: 855
   right_id: 850
-  created_at: 2025-12-09 16:25:21.000000000 Z
-  updated_at: 2025-12-09 16:25:21.000000000 Z
+  created_at: 2025-12-17 15:50:39.000000000 Z
+  updated_at: 2025-12-17 15:50:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19836,8 +19840,8 @@ cards_1046:
   codename:
   left_id: 521
   right_id: 850
-  created_at: 2025-12-09 16:25:21.000000000 Z
-  updated_at: 2025-12-09 16:25:21.000000000 Z
+  created_at: 2025-12-17 15:50:39.000000000 Z
+  updated_at: 2025-12-17 15:50:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19865,8 +19869,8 @@ cards_1047:
   codename: publication
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:21.000000000 Z
-  updated_at: 2025-12-09 16:25:21.000000000 Z
+  created_at: 2025-12-17 15:50:39.000000000 Z
+  updated_at: 2025-12-17 15:50:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19882,8 +19886,8 @@ cards_1048:
   codename: case_study
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:21.000000000 Z
-  updated_at: 2025-12-09 16:25:21.000000000 Z
+  created_at: 2025-12-17 15:50:40.000000000 Z
+  updated_at: 2025-12-17 15:50:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19899,8 +19903,8 @@ cards_1049:
   codename: use_case
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:21.000000000 Z
-  updated_at: 2025-12-09 16:25:21.000000000 Z
+  created_at: 2025-12-17 15:50:41.000000000 Z
+  updated_at: 2025-12-17 15:50:41.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19916,8 +19920,8 @@ cards_1050:
   codename: policy_cta
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:22.000000000 Z
-  updated_at: 2025-12-09 16:25:22.000000000 Z
+  created_at: 2025-12-17 15:50:42.000000000 Z
+  updated_at: 2025-12-17 15:50:42.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -19933,8 +19937,8 @@ cards_1051:
   codename:
   left_id: 1051
   right_id: 50
-  created_at: 2025-12-09 16:25:22.000000000 Z
-  updated_at: 2025-12-09 16:25:22.000000000 Z
+  created_at: 2025-12-17 15:50:42.000000000 Z
+  updated_at: 2025-12-17 15:50:42.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19950,8 +19954,8 @@ cards_1052:
   codename:
   left_id: 1051
   right_id: 798
-  created_at: 2025-12-09 16:25:22.000000000 Z
-  updated_at: 2025-12-09 16:25:22.000000000 Z
+  created_at: 2025-12-17 15:50:42.000000000 Z
+  updated_at: 2025-12-17 15:50:42.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19967,8 +19971,8 @@ cards_1053:
   codename:
   left_id: 1051
   right_id: 45
-  created_at: 2025-12-09 16:25:22.000000000 Z
-  updated_at: 2025-12-09 16:25:22.000000000 Z
+  created_at: 2025-12-17 15:50:42.000000000 Z
+  updated_at: 2025-12-17 15:50:42.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -19984,8 +19988,8 @@ cards_1054:
   codename:
   left_id: 692
   right_id: 21
-  created_at: 2025-12-09 16:25:23.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  created_at: 2025-12-17 15:50:44.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20001,8 +20005,8 @@ cards_1055:
   codename:
   left_id: 1055
   right_id: 68
-  created_at: 2025-12-09 16:25:23.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  created_at: 2025-12-17 15:50:44.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20018,8 +20022,8 @@ cards_1056:
   codename: wikirate_footer
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:23.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  created_at: 2025-12-17 15:50:44.000000000 Z
+  updated_at: 2025-12-17 15:50:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20035,8 +20039,8 @@ cards_1057:
   codename: wikirate_license
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:23.000000000 Z
-  updated_at: 2025-12-09 16:25:23.000000000 Z
+  created_at: 2025-12-17 15:50:45.000000000 Z
+  updated_at: 2025-12-17 15:50:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20052,8 +20056,8 @@ cards_1058:
   codename: nav_bar
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:24.000000000 Z
-  updated_at: 2025-12-09 16:25:24.000000000 Z
+  created_at: 2025-12-17 15:50:46.000000000 Z
+  updated_at: 2025-12-17 15:50:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20069,8 +20073,8 @@ cards_1059:
   codename: wikirate_impact
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:24.000000000 Z
-  updated_at: 2025-12-09 16:25:24.000000000 Z
+  created_at: 2025-12-17 15:50:47.000000000 Z
+  updated_at: 2025-12-17 15:50:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20086,8 +20090,8 @@ cards_1060:
   codename: contact_us
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:25.000000000 Z
-  updated_at: 2025-12-09 16:25:25.000000000 Z
+  created_at: 2025-12-17 15:50:48.000000000 Z
+  updated_at: 2025-12-17 15:50:48.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20103,8 +20107,8 @@ cards_1061:
   codename: output
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:26.000000000 Z
-  updated_at: 2025-12-09 16:25:26.000000000 Z
+  created_at: 2025-12-17 15:50:49.000000000 Z
+  updated_at: 2025-12-17 15:50:49.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20131,8 +20135,8 @@ cards_1062:
   codename: output_type
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:27.000000000 Z
-  updated_at: 2025-12-09 16:25:27.000000000 Z
+  created_at: 2025-12-17 15:50:50.000000000 Z
+  updated_at: 2025-12-17 15:50:50.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20148,8 +20152,8 @@ cards_1063:
   codename: testimonial
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:28.000000000 Z
-  updated_at: 2025-12-09 16:25:28.000000000 Z
+  created_at: 2025-12-17 15:50:50.000000000 Z
+  updated_at: 2025-12-17 15:50:50.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20176,8 +20180,8 @@ cards_1064:
   codename: newsletter
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:28.000000000 Z
-  updated_at: 2025-12-09 16:25:28.000000000 Z
+  created_at: 2025-12-17 15:50:52.000000000 Z
+  updated_at: 2025-12-17 15:50:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20193,8 +20197,8 @@ cards_1065:
   codename:
   left_id: 1065
   right_id: 26
-  created_at: 2025-12-09 16:25:28.000000000 Z
-  updated_at: 2025-12-09 16:25:28.000000000 Z
+  created_at: 2025-12-17 15:50:52.000000000 Z
+  updated_at: 2025-12-17 15:50:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20210,8 +20214,8 @@ cards_1066:
   codename:
   left_id: 1066
   right_id: 8
-  created_at: 2025-12-09 16:25:28.000000000 Z
-  updated_at: 2025-12-09 16:25:28.000000000 Z
+  created_at: 2025-12-17 15:50:52.000000000 Z
+  updated_at: 2025-12-17 15:50:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20227,8 +20231,8 @@ cards_1067:
   codename:
   left_id: 1066
   right_id: 60
-  created_at: 2025-12-09 16:25:28.000000000 Z
-  updated_at: 2025-12-09 16:25:28.000000000 Z
+  created_at: 2025-12-17 15:50:52.000000000 Z
+  updated_at: 2025-12-17 15:50:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20248,8 +20252,8 @@ cards_1068:
   codename:
   left_id: 1066
   right_id: 149
-  created_at: 2025-12-09 16:25:28.000000000 Z
-  updated_at: 2025-12-09 16:25:28.000000000 Z
+  created_at: 2025-12-17 15:50:52.000000000 Z
+  updated_at: 2025-12-17 15:50:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20265,8 +20269,8 @@ cards_1069:
   codename:
   left_id: 1066
   right_id: 90
-  created_at: 2025-12-09 16:25:28.000000000 Z
-  updated_at: 2025-12-09 16:25:28.000000000 Z
+  created_at: 2025-12-17 15:50:52.000000000 Z
+  updated_at: 2025-12-17 15:50:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20282,8 +20286,8 @@ cards_1070:
   codename: profile_type
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:29.000000000 Z
-  updated_at: 2025-12-09 16:25:29.000000000 Z
+  created_at: 2025-12-17 15:50:54.000000000 Z
+  updated_at: 2025-12-17 15:50:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20299,8 +20303,8 @@ cards_1071:
   codename:
   left_id: 1071
   right_id: 26
-  created_at: 2025-12-09 16:25:29.000000000 Z
-  updated_at: 2025-12-09 16:25:29.000000000 Z
+  created_at: 2025-12-17 15:50:54.000000000 Z
+  updated_at: 2025-12-17 15:50:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20316,8 +20320,8 @@ cards_1072:
   codename:
   left_id: 1072
   right_id: 149
-  created_at: 2025-12-09 16:25:29.000000000 Z
-  updated_at: 2025-12-09 16:25:29.000000000 Z
+  created_at: 2025-12-17 15:50:54.000000000 Z
+  updated_at: 2025-12-17 15:50:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20333,8 +20337,8 @@ cards_1073:
   codename:
   left_id: 1072
   right_id: 90
-  created_at: 2025-12-09 16:25:29.000000000 Z
-  updated_at: 2025-12-09 16:25:29.000000000 Z
+  created_at: 2025-12-17 15:50:54.000000000 Z
+  updated_at: 2025-12-17 15:50:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20350,8 +20354,8 @@ cards_1074:
   codename:
   left_id: 1072
   right_id: 60
-  created_at: 2025-12-09 16:25:29.000000000 Z
-  updated_at: 2025-12-09 16:25:29.000000000 Z
+  created_at: 2025-12-17 15:50:54.000000000 Z
+  updated_at: 2025-12-17 15:50:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20417,8 +20421,8 @@ cards_1075:
   codename: community_guidelines
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:30.000000000 Z
-  updated_at: 2025-12-09 16:25:30.000000000 Z
+  created_at: 2025-12-17 15:50:55.000000000 Z
+  updated_at: 2025-12-17 15:50:55.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20434,8 +20438,8 @@ cards_1076:
   codename: privacy_policy
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:30.000000000 Z
-  updated_at: 2025-12-09 16:25:30.000000000 Z
+  created_at: 2025-12-17 15:50:56.000000000 Z
+  updated_at: 2025-12-17 15:50:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20451,8 +20455,8 @@ cards_1077:
   codename: terms_of_use
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:31.000000000 Z
-  updated_at: 2025-12-09 16:25:31.000000000 Z
+  created_at: 2025-12-17 15:50:57.000000000 Z
+  updated_at: 2025-12-17 15:50:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20468,8 +20472,8 @@ cards_1078:
   codename: impressum
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:31.000000000 Z
-  updated_at: 2025-12-09 16:25:31.000000000 Z
+  created_at: 2025-12-17 15:50:58.000000000 Z
+  updated_at: 2025-12-17 15:50:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20485,8 +20489,8 @@ cards_1079:
   codename: disclaimers
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:31.000000000 Z
-  updated_at: 2025-12-09 16:25:31.000000000 Z
+  created_at: 2025-12-17 15:50:59.000000000 Z
+  updated_at: 2025-12-17 15:50:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20502,8 +20506,8 @@ cards_1080:
   codename: notice_and_take_down
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:32.000000000 Z
-  updated_at: 2025-12-09 16:25:32.000000000 Z
+  created_at: 2025-12-17 15:51:00.000000000 Z
+  updated_at: 2025-12-17 15:51:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20519,8 +20523,8 @@ cards_1081:
   codename:
   left_id: 637
   right_id: 12
-  created_at: 2025-12-09 16:25:33.000000000 Z
-  updated_at: 2025-12-09 16:25:33.000000000 Z
+  created_at: 2025-12-17 15:51:01.000000000 Z
+  updated_at: 2025-12-17 15:51:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20540,8 +20544,8 @@ cards_1082:
   codename: our_story
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:33.000000000 Z
-  updated_at: 2025-12-09 16:25:33.000000000 Z
+  created_at: 2025-12-17 15:51:01.000000000 Z
+  updated_at: 2025-12-17 15:51:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20574,8 +20578,8 @@ cards_1083:
   codename:
   left_id: 855
   right_id: 633
-  created_at: 2025-12-09 16:25:33.000000000 Z
-  updated_at: 2025-12-09 16:25:33.000000000 Z
+  created_at: 2025-12-17 15:51:02.000000000 Z
+  updated_at: 2025-12-17 15:51:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20599,8 +20603,8 @@ cards_1084:
   codename: alert_banner
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:33.000000000 Z
-  updated_at: 2025-12-09 16:25:33.000000000 Z
+  created_at: 2025-12-17 15:51:02.000000000 Z
+  updated_at: 2025-12-17 15:51:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20618,8 +20622,8 @@ cards_1085:
   codename: attribution_guide
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:33.000000000 Z
-  updated_at: 2025-12-09 16:25:33.000000000 Z
+  created_at: 2025-12-17 15:51:03.000000000 Z
+  updated_at: 2025-12-17 15:51:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20635,8 +20639,8 @@ cards_1086:
   codename: no_badges
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:34.000000000 Z
-  updated_at: 2025-12-09 16:25:34.000000000 Z
+  created_at: 2025-12-17 15:51:03.000000000 Z
+  updated_at: 2025-12-17 15:51:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20655,8 +20659,8 @@ cards_1087:
   codename: task
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:35.000000000 Z
-  updated_at: 2025-12-09 16:25:35.000000000 Z
+  created_at: 2025-12-17 15:51:05.000000000 Z
+  updated_at: 2025-12-17 15:51:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20683,8 +20687,8 @@ cards_1088:
   codename: how_to
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:35.000000000 Z
-  updated_at: 2025-12-09 16:25:35.000000000 Z
+  created_at: 2025-12-17 15:51:06.000000000 Z
+  updated_at: 2025-12-17 15:51:06.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20700,8 +20704,8 @@ cards_1089:
   codename: why
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:36.000000000 Z
-  updated_at: 2025-12-09 16:25:36.000000000 Z
+  created_at: 2025-12-17 15:51:07.000000000 Z
+  updated_at: 2025-12-17 15:51:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20717,8 +20721,8 @@ cards_1090:
   codename: ticket
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:36.000000000 Z
-  updated_at: 2025-12-09 16:25:36.000000000 Z
+  created_at: 2025-12-17 15:51:07.000000000 Z
+  updated_at: 2025-12-17 15:51:07.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20745,8 +20749,8 @@ cards_1091:
   codename: status_list
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:37.000000000 Z
-  updated_at: 2025-12-09 16:25:37.000000000 Z
+  created_at: 2025-12-17 15:51:09.000000000 Z
+  updated_at: 2025-12-17 15:51:09.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20762,8 +20766,8 @@ cards_1092:
   codename: mod_alias
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:39.000000000 Z
-  updated_at: 2025-12-09 16:25:39.000000000 Z
+  created_at: 2025-12-17 15:51:15.000000000 Z
+  updated_at: 2025-12-17 15:51:15.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20779,8 +20783,8 @@ cards_1093:
   codename: mod_filter
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:40.000000000 Z
-  updated_at: 2025-12-09 16:25:40.000000000 Z
+  created_at: 2025-12-17 15:51:16.000000000 Z
+  updated_at: 2025-12-17 15:51:16.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20796,8 +20800,8 @@ cards_1094:
   codename:
   left_id: 1094
   right_id: 302
-  created_at: 2025-12-09 16:25:40.000000000 Z
-  updated_at: 2025-12-09 16:25:40.000000000 Z
+  created_at: 2025-12-17 15:51:17.000000000 Z
+  updated_at: 2025-12-17 15:51:17.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20813,8 +20817,8 @@ cards_1095:
   codename:
   left_id: 1094
   right_id: 349
-  created_at: 2025-12-09 16:25:42.000000000 Z
-  updated_at: 2025-12-09 16:25:42.000000000 Z
+  created_at: 2025-12-17 15:51:19.000000000 Z
+  updated_at: 2025-12-17 15:51:19.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20830,8 +20834,8 @@ cards_1096:
   codename: mod_counts
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:42.000000000 Z
-  updated_at: 2025-12-09 16:25:42.000000000 Z
+  created_at: 2025-12-17 15:51:19.000000000 Z
+  updated_at: 2025-12-17 15:51:19.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20847,8 +20851,8 @@ cards_1097:
   codename: mod_bookmarks
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:43.000000000 Z
-  updated_at: 2025-12-09 16:25:43.000000000 Z
+  created_at: 2025-12-17 15:51:20.000000000 Z
+  updated_at: 2025-12-17 15:51:20.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20864,8 +20868,8 @@ cards_1098:
   codename:
   left_id: 1098
   right_id: 349
-  created_at: 2025-12-09 16:25:44.000000000 Z
-  updated_at: 2025-12-09 16:25:44.000000000 Z
+  created_at: 2025-12-17 15:51:21.000000000 Z
+  updated_at: 2025-12-17 15:51:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20881,8 +20885,8 @@ cards_1099:
   codename: mod_export
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:45.000000000 Z
-  updated_at: 2025-12-09 16:25:45.000000000 Z
+  created_at: 2025-12-17 15:51:21.000000000 Z
+  updated_at: 2025-12-17 15:51:21.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20898,8 +20902,8 @@ cards_1100:
   codename: mod_csv_import
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:46.000000000 Z
-  updated_at: 2025-12-09 16:25:46.000000000 Z
+  created_at: 2025-12-17 15:51:22.000000000 Z
+  updated_at: 2025-12-17 15:51:22.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20915,8 +20919,8 @@ cards_1101:
   codename:
   left_id: 1101
   right_id: 302
-  created_at: 2025-12-09 16:25:46.000000000 Z
-  updated_at: 2025-12-09 16:25:46.000000000 Z
+  created_at: 2025-12-17 15:51:23.000000000 Z
+  updated_at: 2025-12-17 15:51:23.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20932,8 +20936,8 @@ cards_1102:
   codename:
   left_id: 1101
   right_id: 349
-  created_at: 2025-12-09 16:25:46.000000000 Z
-  updated_at: 2025-12-09 16:25:46.000000000 Z
+  created_at: 2025-12-17 15:51:24.000000000 Z
+  updated_at: 2025-12-17 15:51:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20949,8 +20953,8 @@ cards_1103:
   codename: mod_deckorate_search
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:47.000000000 Z
-  updated_at: 2025-12-09 16:25:47.000000000 Z
+  created_at: 2025-12-17 15:51:24.000000000 Z
+  updated_at: 2025-12-17 15:51:24.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -20966,8 +20970,8 @@ cards_1104:
   codename:
   left_id: 1104
   right_id: 302
-  created_at: 2025-12-09 16:25:48.000000000 Z
-  updated_at: 2025-12-09 16:25:48.000000000 Z
+  created_at: 2025-12-17 15:51:25.000000000 Z
+  updated_at: 2025-12-17 15:51:25.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -20983,8 +20987,8 @@ cards_1105:
   codename:
   left_id: 1104
   right_id: 349
-  created_at: 2025-12-09 16:25:49.000000000 Z
-  updated_at: 2025-12-09 16:25:49.000000000 Z
+  created_at: 2025-12-17 15:51:26.000000000 Z
+  updated_at: 2025-12-17 15:51:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21000,8 +21004,8 @@ cards_1106:
   codename: mod_flag
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:49.000000000 Z
-  updated_at: 2025-12-09 16:25:49.000000000 Z
+  created_at: 2025-12-17 15:51:26.000000000 Z
+  updated_at: 2025-12-17 15:51:26.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21017,8 +21021,8 @@ cards_1107:
   codename:
   left_id: 1107
   right_id: 349
-  created_at: 2025-12-09 16:25:51.000000000 Z
-  updated_at: 2025-12-09 16:25:51.000000000 Z
+  created_at: 2025-12-17 15:51:27.000000000 Z
+  updated_at: 2025-12-17 15:51:27.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21034,8 +21038,8 @@ cards_1108:
   codename: mod_fulltext
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:51.000000000 Z
-  updated_at: 2025-12-09 16:25:51.000000000 Z
+  created_at: 2025-12-17 15:51:27.000000000 Z
+  updated_at: 2025-12-17 15:51:27.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21051,8 +21055,8 @@ cards_1109:
   codename: mod_google_analytics
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:52.000000000 Z
-  updated_at: 2025-12-09 16:25:52.000000000 Z
+  created_at: 2025-12-17 15:51:28.000000000 Z
+  updated_at: 2025-12-17 15:51:28.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21068,8 +21072,8 @@ cards_1110:
   codename: mod_graphql
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:53.000000000 Z
-  updated_at: 2025-12-09 16:25:53.000000000 Z
+  created_at: 2025-12-17 15:51:29.000000000 Z
+  updated_at: 2025-12-17 15:51:29.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21085,8 +21089,8 @@ cards_1111:
   codename: mod_lookup
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:53.000000000 Z
-  updated_at: 2025-12-09 16:25:53.000000000 Z
+  created_at: 2025-12-17 15:51:30.000000000 Z
+  updated_at: 2025-12-17 15:51:30.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21102,8 +21106,8 @@ cards_1112:
   codename: mod_new_relic
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:53.000000000 Z
-  updated_at: 2025-12-09 16:25:53.000000000 Z
+  created_at: 2025-12-17 15:51:31.000000000 Z
+  updated_at: 2025-12-17 15:51:31.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21119,8 +21123,8 @@ cards_1113:
   codename: mod_pdfjs
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:54.000000000 Z
-  updated_at: 2025-12-09 16:25:54.000000000 Z
+  created_at: 2025-12-17 15:51:32.000000000 Z
+  updated_at: 2025-12-17 15:51:32.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21136,8 +21140,8 @@ cards_1114:
   codename: mod_social
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:55.000000000 Z
-  updated_at: 2025-12-09 16:25:55.000000000 Z
+  created_at: 2025-12-17 15:51:33.000000000 Z
+  updated_at: 2025-12-17 15:51:33.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21153,8 +21157,8 @@ cards_1115:
   codename: mod_solid_cache
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:55.000000000 Z
-  updated_at: 2025-12-09 16:25:55.000000000 Z
+  created_at: 2025-12-17 15:51:34.000000000 Z
+  updated_at: 2025-12-17 15:51:34.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21170,8 +21174,8 @@ cards_1116:
   codename: mod_thumbnail
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:56.000000000 Z
-  updated_at: 2025-12-09 16:25:56.000000000 Z
+  created_at: 2025-12-17 15:51:35.000000000 Z
+  updated_at: 2025-12-17 15:51:35.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21187,8 +21191,8 @@ cards_1117:
   codename:
   left_id: 1117
   right_id: 349
-  created_at: 2025-12-09 16:25:57.000000000 Z
-  updated_at: 2025-12-09 16:25:57.000000000 Z
+  created_at: 2025-12-17 15:51:36.000000000 Z
+  updated_at: 2025-12-17 15:51:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21204,8 +21208,8 @@ cards_1118:
   codename: mod_guides
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:57.000000000 Z
-  updated_at: 2025-12-09 16:25:57.000000000 Z
+  created_at: 2025-12-17 15:51:36.000000000 Z
+  updated_at: 2025-12-17 15:51:36.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21221,8 +21225,8 @@ cards_1119:
   codename:
   left_id: 1119
   right_id: 349
-  created_at: 2025-12-09 16:25:58.000000000 Z
-  updated_at: 2025-12-09 16:25:58.000000000 Z
+  created_at: 2025-12-17 15:51:37.000000000 Z
+  updated_at: 2025-12-17 15:51:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21238,8 +21242,8 @@ cards_1120:
   codename: mod_wikirate_shared
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:58.000000000 Z
-  updated_at: 2025-12-09 16:25:58.000000000 Z
+  created_at: 2025-12-17 15:51:37.000000000 Z
+  updated_at: 2025-12-17 15:51:37.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21255,8 +21259,8 @@ cards_1121:
   codename:
   left_id: 1121
   right_id: 302
-  created_at: 2025-12-09 16:25:59.000000000 Z
-  updated_at: 2025-12-09 16:25:59.000000000 Z
+  created_at: 2025-12-17 15:51:38.000000000 Z
+  updated_at: 2025-12-17 15:51:38.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21272,8 +21276,8 @@ cards_1122:
   codename:
   left_id: 1121
   right_id: 349
-  created_at: 2025-12-09 16:25:59.000000000 Z
-  updated_at: 2025-12-09 16:25:59.000000000 Z
+  created_at: 2025-12-17 15:51:39.000000000 Z
+  updated_at: 2025-12-17 15:51:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21289,8 +21293,8 @@ cards_1123:
   codename: mod_deckorate_utility
   left_id:
   right_id:
-  created_at: 2025-12-09 16:25:59.000000000 Z
-  updated_at: 2025-12-09 16:25:59.000000000 Z
+  created_at: 2025-12-17 15:51:39.000000000 Z
+  updated_at: 2025-12-17 15:51:39.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21306,8 +21310,8 @@ cards_1124:
   codename:
   left_id: 1124
   right_id: 302
-  created_at: 2025-12-09 16:26:00.000000000 Z
-  updated_at: 2025-12-09 16:26:00.000000000 Z
+  created_at: 2025-12-17 15:51:40.000000000 Z
+  updated_at: 2025-12-17 15:51:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21323,8 +21327,8 @@ cards_1125:
   codename:
   left_id: 1124
   right_id: 349
-  created_at: 2025-12-09 16:26:02.000000000 Z
-  updated_at: 2025-12-09 16:26:02.000000000 Z
+  created_at: 2025-12-17 15:51:40.000000000 Z
+  updated_at: 2025-12-17 15:51:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21340,8 +21344,8 @@ cards_1126:
   codename: mod_deckorate_layout
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:02.000000000 Z
-  updated_at: 2025-12-09 16:26:02.000000000 Z
+  created_at: 2025-12-17 15:51:40.000000000 Z
+  updated_at: 2025-12-17 15:51:40.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21357,8 +21361,8 @@ cards_1127:
   codename:
   left_id: 1127
   right_id: 349
-  created_at: 2025-12-09 16:26:03.000000000 Z
-  updated_at: 2025-12-09 16:26:03.000000000 Z
+  created_at: 2025-12-17 15:51:41.000000000 Z
+  updated_at: 2025-12-17 15:51:41.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21374,8 +21378,8 @@ cards_1128:
   codename: mod_topics
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:04.000000000 Z
-  updated_at: 2025-12-09 16:26:04.000000000 Z
+  created_at: 2025-12-17 15:51:42.000000000 Z
+  updated_at: 2025-12-17 15:51:42.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21391,8 +21395,8 @@ cards_1129:
   codename:
   left_id: 1129
   right_id: 302
-  created_at: 2025-12-09 16:26:04.000000000 Z
-  updated_at: 2025-12-09 16:26:04.000000000 Z
+  created_at: 2025-12-17 15:51:43.000000000 Z
+  updated_at: 2025-12-17 15:51:43.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21408,8 +21412,8 @@ cards_1130:
   codename:
   left_id: 1129
   right_id: 349
-  created_at: 2025-12-09 16:26:04.000000000 Z
-  updated_at: 2025-12-09 16:26:04.000000000 Z
+  created_at: 2025-12-17 15:51:44.000000000 Z
+  updated_at: 2025-12-17 15:51:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21425,8 +21429,8 @@ cards_1131:
   codename: mod_deckorate_core
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:04.000000000 Z
-  updated_at: 2025-12-09 16:26:04.000000000 Z
+  created_at: 2025-12-17 15:51:44.000000000 Z
+  updated_at: 2025-12-17 15:51:44.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21442,8 +21446,8 @@ cards_1132:
   codename:
   left_id: 1132
   right_id: 302
-  created_at: 2025-12-09 16:26:05.000000000 Z
-  updated_at: 2025-12-09 16:26:05.000000000 Z
+  created_at: 2025-12-17 15:51:45.000000000 Z
+  updated_at: 2025-12-17 15:51:45.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21459,8 +21463,8 @@ cards_1133:
   codename:
   left_id: 1132
   right_id: 349
-  created_at: 2025-12-09 16:26:06.000000000 Z
-  updated_at: 2025-12-09 16:26:06.000000000 Z
+  created_at: 2025-12-17 15:51:46.000000000 Z
+  updated_at: 2025-12-17 15:51:46.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21476,8 +21480,8 @@ cards_1134:
   codename: mod_deckorate_research
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:06.000000000 Z
-  updated_at: 2025-12-09 16:26:06.000000000 Z
+  created_at: 2025-12-17 15:51:47.000000000 Z
+  updated_at: 2025-12-17 15:51:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21493,8 +21497,8 @@ cards_1135:
   codename:
   left_id: 1135
   right_id: 302
-  created_at: 2025-12-09 16:26:06.000000000 Z
-  updated_at: 2025-12-09 16:26:06.000000000 Z
+  created_at: 2025-12-17 15:51:47.000000000 Z
+  updated_at: 2025-12-17 15:51:47.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21510,8 +21514,8 @@ cards_1136:
   codename:
   left_id: 1135
   right_id: 349
-  created_at: 2025-12-09 16:26:07.000000000 Z
-  updated_at: 2025-12-09 16:26:07.000000000 Z
+  created_at: 2025-12-17 15:51:48.000000000 Z
+  updated_at: 2025-12-17 15:51:48.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21527,8 +21531,8 @@ cards_1137:
   codename: mod_deckorate_import
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:07.000000000 Z
-  updated_at: 2025-12-09 16:26:07.000000000 Z
+  created_at: 2025-12-17 15:51:48.000000000 Z
+  updated_at: 2025-12-17 15:51:48.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21544,8 +21548,8 @@ cards_1138:
   codename: mod_deckorate_calculations
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:07.000000000 Z
-  updated_at: 2025-12-09 16:26:07.000000000 Z
+  created_at: 2025-12-17 15:51:49.000000000 Z
+  updated_at: 2025-12-17 15:51:49.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21561,8 +21565,8 @@ cards_1139:
   codename:
   left_id: 1139
   right_id: 302
-  created_at: 2025-12-09 16:26:08.000000000 Z
-  updated_at: 2025-12-09 16:26:08.000000000 Z
+  created_at: 2025-12-17 15:51:51.000000000 Z
+  updated_at: 2025-12-17 15:51:51.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21578,8 +21582,8 @@ cards_1140:
   codename:
   left_id: 1139
   right_id: 349
-  created_at: 2025-12-09 16:26:09.000000000 Z
-  updated_at: 2025-12-09 16:26:09.000000000 Z
+  created_at: 2025-12-17 15:51:52.000000000 Z
+  updated_at: 2025-12-17 15:51:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21595,8 +21599,8 @@ cards_1141:
   codename: mod_deckorate_datasets
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:09.000000000 Z
-  updated_at: 2025-12-09 16:26:09.000000000 Z
+  created_at: 2025-12-17 15:51:52.000000000 Z
+  updated_at: 2025-12-17 15:51:52.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21612,8 +21616,8 @@ cards_1142:
   codename:
   left_id: 1142
   right_id: 349
-  created_at: 2025-12-09 16:26:09.000000000 Z
-  updated_at: 2025-12-09 16:26:09.000000000 Z
+  created_at: 2025-12-17 15:51:53.000000000 Z
+  updated_at: 2025-12-17 15:51:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21629,8 +21633,8 @@ cards_1143:
   codename: mod_deckorate_graphql
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:09.000000000 Z
-  updated_at: 2025-12-09 16:26:09.000000000 Z
+  created_at: 2025-12-17 15:51:53.000000000 Z
+  updated_at: 2025-12-17 15:51:53.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21646,8 +21650,8 @@ cards_1144:
   codename: mod_deckorate_attribution
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:10.000000000 Z
-  updated_at: 2025-12-09 16:26:10.000000000 Z
+  created_at: 2025-12-17 15:51:54.000000000 Z
+  updated_at: 2025-12-17 15:51:54.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21663,8 +21667,8 @@ cards_1145:
   codename:
   left_id: 1145
   right_id: 302
-  created_at: 2025-12-09 16:26:10.000000000 Z
-  updated_at: 2025-12-09 16:26:10.000000000 Z
+  created_at: 2025-12-17 15:51:56.000000000 Z
+  updated_at: 2025-12-17 15:51:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21680,8 +21684,8 @@ cards_1146:
   codename:
   left_id: 1145
   right_id: 349
-  created_at: 2025-12-09 16:26:10.000000000 Z
-  updated_at: 2025-12-09 16:26:10.000000000 Z
+  created_at: 2025-12-17 15:51:56.000000000 Z
+  updated_at: 2025-12-17 15:51:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21697,8 +21701,8 @@ cards_1147:
   codename: mod_deckorate_profiles
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:10.000000000 Z
-  updated_at: 2025-12-09 16:26:10.000000000 Z
+  created_at: 2025-12-17 15:51:56.000000000 Z
+  updated_at: 2025-12-17 15:51:56.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21714,8 +21718,8 @@ cards_1148:
   codename:
   left_id: 1148
   right_id: 349
-  created_at: 2025-12-09 16:26:11.000000000 Z
-  updated_at: 2025-12-09 16:26:11.000000000 Z
+  created_at: 2025-12-17 15:51:57.000000000 Z
+  updated_at: 2025-12-17 15:51:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21731,8 +21735,8 @@ cards_1149:
   codename: mod_wikirate_companies
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:11.000000000 Z
-  updated_at: 2025-12-09 16:26:11.000000000 Z
+  created_at: 2025-12-17 15:51:57.000000000 Z
+  updated_at: 2025-12-17 15:51:57.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21748,8 +21752,8 @@ cards_1150:
   codename:
   left_id: 1150
   right_id: 302
-  created_at: 2025-12-09 16:26:12.000000000 Z
-  updated_at: 2025-12-09 16:26:12.000000000 Z
+  created_at: 2025-12-17 15:51:58.000000000 Z
+  updated_at: 2025-12-17 15:51:58.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21765,8 +21769,8 @@ cards_1151:
   codename:
   left_id: 1150
   right_id: 349
-  created_at: 2025-12-09 16:26:12.000000000 Z
-  updated_at: 2025-12-09 16:26:12.000000000 Z
+  created_at: 2025-12-17 15:51:59.000000000 Z
+  updated_at: 2025-12-17 15:51:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21782,8 +21786,8 @@ cards_1152:
   codename: mod_wikirate
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:12.000000000 Z
-  updated_at: 2025-12-09 16:26:12.000000000 Z
+  created_at: 2025-12-17 15:51:59.000000000 Z
+  updated_at: 2025-12-17 15:51:59.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21799,8 +21803,8 @@ cards_1153:
   codename:
   left_id: 1153
   right_id: 302
-  created_at: 2025-12-09 16:26:12.000000000 Z
-  updated_at: 2025-12-09 16:26:12.000000000 Z
+  created_at: 2025-12-17 15:52:00.000000000 Z
+  updated_at: 2025-12-17 15:52:00.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21816,8 +21820,8 @@ cards_1154:
   codename:
   left_id: 1153
   right_id: 349
-  created_at: 2025-12-09 16:26:13.000000000 Z
-  updated_at: 2025-12-09 16:26:13.000000000 Z
+  created_at: 2025-12-17 15:52:01.000000000 Z
+  updated_at: 2025-12-17 15:52:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21833,8 +21837,8 @@ cards_1155:
   codename: mod_badges
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:14.000000000 Z
-  updated_at: 2025-12-09 16:26:14.000000000 Z
+  created_at: 2025-12-17 15:52:01.000000000 Z
+  updated_at: 2025-12-17 15:52:01.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21850,8 +21854,8 @@ cards_1156:
   codename:
   left_id: 1156
   right_id: 349
-  created_at: 2025-12-09 16:26:14.000000000 Z
-  updated_at: 2025-12-09 16:26:14.000000000 Z
+  created_at: 2025-12-17 15:52:02.000000000 Z
+  updated_at: 2025-12-17 15:52:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21867,8 +21871,8 @@ cards_1157:
   codename: mod_tasks
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:14.000000000 Z
-  updated_at: 2025-12-09 16:26:14.000000000 Z
+  created_at: 2025-12-17 15:52:02.000000000 Z
+  updated_at: 2025-12-17 15:52:02.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21884,8 +21888,8 @@ cards_1158:
   codename:
   left_id: 1158
   right_id: 302
-  created_at: 2025-12-09 16:26:15.000000000 Z
-  updated_at: 2025-12-09 16:26:15.000000000 Z
+  created_at: 2025-12-17 15:52:03.000000000 Z
+  updated_at: 2025-12-17 15:52:03.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21901,8 +21905,8 @@ cards_1159:
   codename:
   left_id: 1158
   right_id: 349
-  created_at: 2025-12-09 16:26:15.000000000 Z
-  updated_at: 2025-12-09 16:26:15.000000000 Z
+  created_at: 2025-12-17 15:52:04.000000000 Z
+  updated_at: 2025-12-17 15:52:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21918,8 +21922,8 @@ cards_1160:
   codename: mod_vega
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:15.000000000 Z
-  updated_at: 2025-12-09 16:26:15.000000000 Z
+  created_at: 2025-12-17 15:52:04.000000000 Z
+  updated_at: 2025-12-17 15:52:04.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
@@ -21935,8 +21939,8 @@ cards_1161:
   codename:
   left_id: 1161
   right_id: 302
-  created_at: 2025-12-09 16:26:16.000000000 Z
-  updated_at: 2025-12-09 16:26:16.000000000 Z
+  created_at: 2025-12-17 15:52:05.000000000 Z
+  updated_at: 2025-12-17 15:52:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21952,8 +21956,8 @@ cards_1162:
   codename:
   left_id: 1161
   right_id: 349
-  created_at: 2025-12-09 16:26:16.000000000 Z
-  updated_at: 2025-12-09 16:26:16.000000000 Z
+  created_at: 2025-12-17 15:52:05.000000000 Z
+  updated_at: 2025-12-17 15:52:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all plus"
@@ -21969,14 +21973,48 @@ cards_1163:
   codename: mod_ticket
   left_id:
   right_id:
-  created_at: 2025-12-09 16:26:16.000000000 Z
-  updated_at: 2025-12-09 16:26:16.000000000 Z
+  created_at: 2025-12-17 15:52:05.000000000 Z
+  updated_at: 2025-12-17 15:52:05.000000000 Z
   creator_id: 1
   updater_id: 1
   read_rule_class: "*all"
   read_rule_id: 10
   trash: 0
   type_id: 15
+  db_content: ''
+  search_content: ''
+cards_1164:
+  id: 1165
+  name:
+  key:
+  codename:
+  left_id: 1164
+  right_id: 302
+  created_at: 2025-12-17 15:52:06.000000000 Z
+  updated_at: 2025-12-17 15:52:06.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  trash: 0
+  type_id: 4
+  db_content: ''
+  search_content: ''
+cards_1165:
+  id: 1166
+  name:
+  key:
+  codename:
+  left_id: 1164
+  right_id: 349
+  created_at: 2025-12-17 15:52:07.000000000 Z
+  updated_at: 2025-12-17 15:52:07.000000000 Z
+  creator_id: 1
+  updater_id: 1
+  read_rule_class: "*all plus"
+  read_rule_id: 10
+  trash: 0
+  type_id: 4
   db_content: ''
   search_content: ''
 ...
