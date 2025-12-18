@@ -40,6 +40,14 @@ class Card
         end
       end
 
+      def filter_by_after_id value
+        filter :id, value, ">"
+      end
+
+      def filter_by_before_id value
+        filter :id, value, "<"
+      end
+
       def checked_by whom
         restrict_by_cql :checked_by, :answer_id,
                         type_id: AnswerID,
