@@ -1,14 +1,20 @@
 format :json do
   def atom
     super.merge(
-      # bookmarkers: card.bookmarkers_card.cached_count,
       title: card.name.right_name,
       framework: card.name.left_name,
       family: card.topic_family_title,
       parent: card.parent.name,
       children: card.subtopic_card.item_names,
-      metrics: path(mark: card.metric_card.name),
-      datasets: path(mark: card.dataset_card.name)
+      metrics: { 
+        count: card.metric_card.cached_count,
+        url: path(mark: card.metric_card.name),
+      },
+      datasets: {
+        count: card.dataset_card.cached_count,
+        url: path(mark: card.dataset_card.name),
+      },
+      bookmarkers: card.bookmarkers_card.cached_count,
     ).compact_blank!
   end
 end
