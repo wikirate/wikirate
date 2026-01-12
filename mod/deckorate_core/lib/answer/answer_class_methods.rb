@@ -10,6 +10,11 @@ class Answer
       title: "Verified by Steward" }
   ].freeze
 
+  VERIFICATION_TITLES = {
+    current_user: "by Me",
+    wikirate_team: "by Wikirate"
+  }
+
   UNKNOWN = "Unknown".freeze
 
   ROUTES = {
@@ -62,7 +67,11 @@ class Answer
     end
 
     def verification_title name
-      VERIFICATION_LEVELS[verification_index(name)][:title]
+      if index = (verification_index name)
+        VERIFICATION_LEVELS[index][:title]
+      else
+        VERIFICATION_TITLES[name.to_sym]
+      end
     end
 
     def route_index symbol

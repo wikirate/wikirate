@@ -40,12 +40,12 @@ class Card
         end
       end
 
-      def filter_by_after_id value
-        filter :id, value, ">"
+      def filter_by_after_answer_id value
+        filter :answer_id, value, ">"
       end
 
-      def filter_by_before_id value
-        filter :id, value, "<"
+      def filter_by_before_answer_id value
+        filter :answer_id, value, "<"
       end
 
       def checked_by whom
